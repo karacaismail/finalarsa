@@ -1,0 +1,606 @@
+{
+  "id": "metrics",
+  "kind": "shared",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "description": "Tüm kanonik rakamların tek kaynağı. Bölümler {{metric:<key>}} ile referans verir; sayı asla bölüm içinde elle tekrarlanmaz.",
+  "count": 89,
+  "metrics": {
+    "capital.investor_pocket": {
+      "value": 15000000,
+      "unit": "TRY",
+      "display": "15 milyon ₺",
+      "label": "Yatırımcı cebinden çıkan",
+      "source": "model-v9-15",
+      "note": "Her iki pitch sürümünde de tutarlı."
+    },
+    "capital.total_raised": {
+      "value": 40000000,
+      "unit": "TRY",
+      "display": "40 milyon ₺",
+      "label": "Başlangıç sermayesi (model tabanı)",
+      "source": "model-v9-15"
+    },
+    "capital.breakeven_spend": {
+      "value": 15000000,
+      "unit": "TRY",
+      "display": "15 milyon ₺",
+      "label": "Başabaşa kadar kümülatif gider",
+      "source": "model-v9-15"
+    },
+    "capital.reserve": {
+      "value": 25000000,
+      "unit": "TRY",
+      "display": "25 milyon ₺",
+      "label": "Başabaş sonrası kasada kalan yedek",
+      "source": "model-v9-15"
+    },
+    "capital.ops_funded": {
+      "value": 34000000,
+      "unit": "TRY",
+      "display": "34 milyon ₺",
+      "label": "Operasyonun kendi cirosundan finanse ettiği gider"
+    },
+    "capital.lifetime_spend": {
+      "value": 49000000,
+      "unit": "TRY",
+      "display": "49 milyon ₺",
+      "label": "Toplam harcanan (15M cep + 34M operasyon)",
+      "note": "arsam-pitch sürümünün çerçevesi; reconciliation: capital.total_raised ile karşılaştır."
+    },
+    "capital.min_return": {
+      "value": 259000000,
+      "unit": "TRY",
+      "display": "259 milyon ₺",
+      "label": "Minimum kazanç (kötümser senaryo geliri)"
+    },
+    "revenue.pessimist": {
+      "value": 259000000,
+      "unit": "TRY",
+      "display": "259 milyon ₺",
+      "label": "Kötümser senaryo yıllık gelir",
+      "note": "Bazı bölümlerde 260M olarak yuvarlanır."
+    },
+    "revenue.median": {
+      "value": 519000000,
+      "unit": "TRY",
+      "display": "519 milyon ₺",
+      "label": "Medyan (plan baz) yıllık gelir",
+      "source": "model-v9-15",
+      "note": "TAM_SAM_SOM tam değer: 518.667.093 ₺."
+    },
+    "revenue.optimist": {
+      "value": 823000000,
+      "unit": "TRY",
+      "display": "823 milyon ₺",
+      "label": "İyimser senaryo yıllık gelir"
+    },
+    "revenue.potential_exact": {
+      "value": 518667093,
+      "unit": "TRY",
+      "display": "518.667.093 ₺",
+      "label": "SOM × take rate tam değer",
+      "source": "model-v9-15"
+    },
+    "market.total_realestate_2024": {
+      "value": 3065872,
+      "unit": "adet",
+      "display": "3.065.872",
+      "label": "2024 toplam taşınmaz satışı",
+      "source": "tkgm-2024"
+    },
+    "market.land_commercial_2024": {
+      "value": 1587847,
+      "unit": "adet",
+      "display": "1.587.847",
+      "label": "Arsa + tarla + ticari (arsam.net direkt pazarı)",
+      "source": "tkgm-2024"
+    },
+    "market.housing_2024": {
+      "value": 1478025,
+      "unit": "adet",
+      "display": "1.478.025",
+      "label": "Konut satışı",
+      "source": "tuik-2024"
+    },
+    "market.daily_transfers": {
+      "value": 8400,
+      "unit": "adet/gün",
+      "display": "8.400",
+      "label": "Günlük ortalama tapu devri",
+      "source": "tkgm-2024"
+    },
+    "market.monthly_transfers": {
+      "value": 255490,
+      "unit": "adet/ay",
+      "display": "~255.490",
+      "label": "Aylık ortalama tapu devri",
+      "source": "tkgm-2024"
+    },
+    "market.tam_try": {
+      "value": 1850000000000,
+      "unit": "TRY",
+      "display": "1,85 trilyon ₺",
+      "label": "TAM — arsa toplam pazar",
+      "source": "model-v9-15",
+      "note": "1,4M işlem × ~1,32M ₺ ort. değer"
+    },
+    "market.sam_try": {
+      "value": 346000000000,
+      "unit": "TRY",
+      "display": "346 milyar ₺",
+      "label": "SAM — dijitale açık pay",
+      "source": "model-v9-15"
+    },
+    "market.som_try": {
+      "value": 34600000000,
+      "unit": "TRY",
+      "display": "34,6 milyar ₺",
+      "label": "SOM — elde edilebilir pay",
+      "source": "model-v9-15"
+    },
+    "market.online_penetration": {
+      "value": 0.187,
+      "unit": "ratio",
+      "display": "%18,7",
+      "label": "Online penetrasyon",
+      "source": "model-v9-15"
+    },
+    "market.take_rate": {
+      "value": 0.015,
+      "unit": "ratio",
+      "display": "%1,5",
+      "label": "İlan-reklam geliri oranı (take rate)",
+      "source": "model-v9-15"
+    },
+    "market.land_tx_annual": {
+      "value": 1400000,
+      "unit": "adet",
+      "display": "1,4 milyon",
+      "label": "Yıllık arsa işlemi",
+      "source": "model-v9-15"
+    },
+    "market.avg_land_value": {
+      "value": 1320000,
+      "unit": "TRY",
+      "display": "1,32 milyon ₺",
+      "label": "Ortalama arsa işlem değeri",
+      "source": "model-v9-15",
+      "note": "Model tam değer: 1.323.162 ₺"
+    },
+    "market.emlak_tam_try": {
+      "value": 5500000000000,
+      "unit": "TRY",
+      "display": "5,5 trilyon ₺",
+      "label": "Emlak (arsa hariç) TAM",
+      "source": "model-v9-15"
+    },
+    "market.sahibinden_share_land": {
+      "value": 0.68,
+      "unit": "ratio",
+      "display": "%68",
+      "label": "sahibinden arsa kategorisi payı",
+      "source": "rekabet-kurulu"
+    },
+    "market.sahibinden_share_realestate": {
+      "value": 0.55,
+      "unit": "ratio",
+      "display": "%55",
+      "label": "sahibinden genel emlak payı",
+      "source": "rekabet-kurulu"
+    },
+    "tax.saving_2027": {
+      "value": 131000000,
+      "unit": "TRY",
+      "display": "~131 milyon ₺",
+      "label": "İlk yıl (2027) vergi tasarrufu",
+      "source": "kanun-4691",
+      "note": "arsam-pitch çerçevesi; code2 muhafazakar türevi ~115M (389M net × %25 + personel kalemleri)."
+    },
+    "tax.saving_mature_annual": {
+      "value": 120000000,
+      "unit": "TRY",
+      "display": "~120 milyon ₺",
+      "label": "Olgun yıllık vergi tasarrufu",
+      "source": "kanun-4691"
+    },
+    "tax.saving_two_year": {
+      "value": 240000000,
+      "unit": "TRY",
+      "display": "240 milyon ₺",
+      "label": "2027-2028 iki yıl garanti tasarruf",
+      "source": "kanun-4691"
+    },
+    "tax.saving_cumulative_7y": {
+      "value": 1000000000,
+      "unit": "TRY",
+      "display": "~1 milyar ₺",
+      "label": "7 yıl (2026-2032) kümülatif tasarruf",
+      "source": "kanun-4691"
+    },
+    "tax.corporate_rate": {
+      "value": 0.25,
+      "unit": "ratio",
+      "display": "%25 → %0",
+      "label": "Kurumlar vergisi istisnası",
+      "source": "kanun-4691"
+    },
+    "tax.income_withholding": {
+      "value": 1.0,
+      "unit": "ratio",
+      "display": "%100",
+      "label": "Gelir vergisi stopajı muafiyeti (Ar-Ge personeli)",
+      "source": "kanun-4691"
+    },
+    "tax.sgk_employer": {
+      "value": 0.5,
+      "unit": "ratio",
+      "display": "%50",
+      "label": "SGK işveren payı hazine desteği",
+      "source": "kanun-4691"
+    },
+    "tax.ebitda_2032": {
+      "value": 0.926,
+      "unit": "ratio",
+      "display": "~%92,6",
+      "label": "2032 EBITDA marjı (vergi yükü kalkınca)"
+    },
+    "tax.ebitda_total": {
+      "value": 0.9,
+      "unit": "ratio",
+      "display": "~%90",
+      "label": "Toplam EBITDA marjı"
+    },
+    "tax.valid_until": {
+      "value": "2028-12-31",
+      "unit": "date",
+      "display": "31/12/2028",
+      "label": "4691 istisna süresi (tarihsel olarak uzatılagelmiş)",
+      "source": "kanun-4691"
+    },
+    "tax.investment_multiple": {
+      "value": 40,
+      "unit": "x",
+      "display": "40 kat",
+      "label": "Kümülatif tasarrufun yatırım turuna oranı"
+    },
+    "pricing.premium_annual": {
+      "value": 90000,
+      "unit": "TRY/yıl",
+      "display": "90.000 ₺/yıl",
+      "label": "Premium yıllık abonelik",
+      "source": "model-v9-15"
+    },
+    "pricing.premium_monthly": {
+      "value": 7500,
+      "unit": "TRY/ay",
+      "display": "7.500 ₺/ay",
+      "label": "Premium aylık karşılığı",
+      "source": "model-v9-15"
+    },
+    "pricing.vitrin_monthly": {
+      "value": 3000,
+      "unit": "TRY/ay",
+      "display": "3.000 ₺/ay",
+      "label": "Vitrin slot",
+      "source": "model-v9-15"
+    },
+    "pricing.starter_monthly": {
+      "value": 1500,
+      "unit": "TRY/ay",
+      "display": "1.500 ₺/ay",
+      "label": "Başlangıç paketi",
+      "source": "model-v9-15"
+    },
+    "pricing.doping_per": {
+      "value": 500,
+      "unit": "TRY",
+      "display": "500 ₺/sefer",
+      "label": "Doping · öne çıkar",
+      "source": "model-v9-15"
+    },
+    "pricing.premium_conversion": {
+      "value": 0.003,
+      "unit": "ratio",
+      "display": "%0,3",
+      "label": "Premium dönüşüm oranı",
+      "source": "model-v9-15"
+    },
+    "fin.revenue_2027": {
+      "value": 429141625,
+      "unit": "TRY",
+      "display": "429M ₺",
+      "label": "2027 gelir",
+      "source": "model-v9-15"
+    },
+    "fin.net_2027": {
+      "value": 389127572,
+      "unit": "TRY",
+      "display": "+389M ₺",
+      "label": "2027 net kâr",
+      "source": "model-v9-15"
+    },
+    "fin.cash_2032": {
+      "value": 4224379820,
+      "unit": "TRY",
+      "display": "4,2 milyar ₺",
+      "label": "2032 yıl sonu nakit",
+      "source": "model-v9-15"
+    },
+    "fin.profit_margin_min": {
+      "value": 0.88,
+      "unit": "ratio",
+      "display": "%88+",
+      "label": "2027'den itibaren kâr marjı",
+      "source": "model-v9-15"
+    },
+    "fin.headcount_2026": {
+      "value": 19,
+      "unit": "kişi",
+      "display": "19 kişi",
+      "label": "2026 sonu kadro",
+      "source": "model-v9-15"
+    },
+    "fin.headcount_2027": {
+      "value": 63,
+      "unit": "kişi",
+      "display": "63 kişi",
+      "label": "2027 sonu kadro",
+      "source": "model-v9-15"
+    },
+    "fin.headcount_2032": {
+      "value": 149,
+      "unit": "kişi",
+      "display": "149 kişi",
+      "label": "2032 sonu kadro",
+      "source": "model-v9-15",
+      "note": "Pitch'in eski s06 yorumundaki '256' modelle uyumsuz; kanonik 149."
+    },
+    "fin.projection_months": {
+      "value": 78,
+      "unit": "ay",
+      "display": "78 ay",
+      "label": "Projeksiyon süresi (Tem 2026 – Ara 2032)",
+      "source": "model-v9-15"
+    },
+    "fin.breakeven_month": {
+      "value": "2027-01",
+      "unit": "month",
+      "display": "Oca 2027",
+      "label": "Operasyonel başabaş ayı",
+      "source": "model-v9-15"
+    },
+    "fin.breakeven_months": {
+      "value": 18,
+      "unit": "ay",
+      "display": "18 ay",
+      "label": "Başabaşa kalan süre"
+    },
+    "strategy.total_models": {
+      "value": 470,
+      "unit": "model",
+      "display": "470 model",
+      "label": "Toplam asimetrik pazarlama modeli envanteri",
+      "note": "130 hijack + 130 topluluk + 210 ürün-içi = 470. arsam-pitch'teki '14+468=482' reconciliation'da 470'e sabitlendi."
+    },
+    "strategy.hero_weapons": {
+      "value": 6,
+      "unit": "silah",
+      "display": "6 silah",
+      "label": "Pitch'te detaylandırılan ana silah"
+    },
+    "strategy.named_strategies": {
+      "value": 14,
+      "unit": "strateji",
+      "display": "14 strateji",
+      "label": "Adı listelenen strateji (arsam-pitch s04)"
+    },
+    "strategy.prioritized": {
+      "value": 45,
+      "unit": "model",
+      "display": "45 model",
+      "label": "arsam.net için önceliklendirilmiş filtre"
+    },
+    "strategy.manifesto_items": {
+      "value": 14,
+      "unit": "madde",
+      "display": "14 madde",
+      "label": "Kapanış manifestosu madde sayısı"
+    },
+    "strategy.seo_pages": {
+      "value": 448000,
+      "unit": "sayfa",
+      "display": "~448.000 sayfa",
+      "label": "Programatik SEO sayfa sayısı",
+      "note": "81 il × 922 ilçe × 6 ilan tipi ≈ 448.000. arsam-pitch'teki '4.865 ilçe sayfası' ilçe-bazlı eski türev; reconciliation'a bakınız."
+    },
+    "invest.seed_amount": {
+      "value": 5000000,
+      "unit": "TRY",
+      "display": "5M ₺",
+      "label": "Çekirdek tur tutarı"
+    },
+    "invest.seed_equity": {
+      "value": 0.025,
+      "unit": "ratio",
+      "display": "%2,5",
+      "label": "Çekirdek hisse"
+    },
+    "invest.seed_valuation": {
+      "value": 200000000,
+      "unit": "TRY",
+      "display": "200M ₺",
+      "label": "Çekirdek valuation"
+    },
+    "invest.strategic_amount": {
+      "value": 15000000,
+      "unit": "TRY",
+      "display": "15M ₺",
+      "label": "Stratejik (önerilen) tur tutarı"
+    },
+    "invest.strategic_equity": {
+      "value": 0.07,
+      "unit": "ratio",
+      "display": "%7",
+      "label": "Stratejik hisse"
+    },
+    "invest.strategic_valuation": {
+      "value": 215000000,
+      "unit": "TRY",
+      "display": "215M ₺",
+      "label": "Stratejik valuation"
+    },
+    "invest.lead_amount": {
+      "value": 25000000,
+      "unit": "TRY",
+      "display": "25M ₺",
+      "label": "Lider tur tutarı"
+    },
+    "invest.lead_equity": {
+      "value": 0.1,
+      "unit": "ratio",
+      "display": "%10",
+      "label": "Lider hisse + yönetim kurulu koltuğu"
+    },
+    "invest.revenue_multiple": {
+      "value": 15,
+      "unit": "x",
+      "display": "15× gelir",
+      "label": "4 yıl sonra gelir çarpanı"
+    },
+    "window.slots_total": {
+      "value": 8,
+      "unit": "slot",
+      "display": "8 slot",
+      "label": "Erken-yatırımcı toplam slot"
+    },
+    "window.slots_open": {
+      "value": 3,
+      "unit": "slot",
+      "display": "3 slot",
+      "label": "Açık kalan slot"
+    },
+    "window.close": {
+      "value": "2026-12",
+      "unit": "month",
+      "display": "Aralık 2026",
+      "label": "Erken-yatırımcı penceresi kapanışı / ulusal kampanya"
+    },
+    "window.countdown_target": {
+      "value": "2026-12-01",
+      "unit": "date",
+      "display": "1 Aralık 2026",
+      "label": "Ulusal kampanya geri sayım hedefi"
+    },
+    "team.lean": {
+      "value": 7,
+      "unit": "kişi",
+      "display": "7 kişi",
+      "label": "Yalın çekirdek ekip (700 kişinin işini yapar)"
+    },
+    "team.sahibinden_benchmark": {
+      "value": "750-1000",
+      "unit": "kişi",
+      "display": "750-1000 kişi",
+      "label": "sahibinden çalışan sayısı benchmark"
+    },
+    "team.efficiency_multiple": {
+      "value": "6-7",
+      "unit": "x",
+      "display": "6-7×",
+      "label": "Hedef verimlilik çarpanı (2032)"
+    },
+    "ai.fte_without": {
+      "value": 74,
+      "unit": "FTE",
+      "display": "74 FTE",
+      "label": "AI'sız gerekli kadro"
+    },
+    "ai.fte_with": {
+      "value": 38,
+      "unit": "FTE",
+      "display": "38 FTE",
+      "label": "AI ile gerekli kadro"
+    },
+    "ai.fte_saved": {
+      "value": 36,
+      "unit": "FTE",
+      "display": "36 FTE",
+      "label": "AI ile tasarruf edilen kadro"
+    },
+    "ai.annual_saving": {
+      "value": 21000000,
+      "unit": "TRY",
+      "display": "21 milyon ₺",
+      "label": "AI verimlilik yıllık tasarruf"
+    },
+    "macro.usdtry_start": {
+      "value": 44.5,
+      "unit": "TL/USD",
+      "display": "44,50",
+      "label": "USD/TRY başlangıç (Tem 2026)",
+      "source": "model-v9-15"
+    },
+    "macro.usdtry_2026": {
+      "value": 51.09,
+      "unit": "TL/USD",
+      "display": "51,09",
+      "label": "USD/TRY yıl sonu 2026",
+      "source": "model-v9-15"
+    },
+    "macro.usdtry_2027": {
+      "value": 56.0,
+      "unit": "TL/USD",
+      "display": "56,00",
+      "label": "USD/TRY yıl sonu 2027",
+      "source": "model-v9-15"
+    },
+    "macro.min_wage_net_2026": {
+      "value": 28075.5,
+      "unit": "TRY/ay",
+      "display": "28.075,5 ₺",
+      "label": "2026 net asgari ücret",
+      "source": "model-v9-15"
+    },
+    "macro.employer_multiplier": {
+      "value": 1.34,
+      "unit": "x",
+      "display": "1,34×",
+      "label": "İşveren maliyeti çarpanı (SGK+işsizlik)",
+      "source": "model-v9-15"
+    },
+    "cpo.salary_usd": {
+      "value": 7500,
+      "unit": "USD/ay",
+      "display": "$7.500",
+      "label": "CPO aylık sabit maaş (plan baz)",
+      "source": "model-v9-15"
+    },
+    "cpo.salary_try": {
+      "value": 350000,
+      "unit": "TRY/ay",
+      "display": "350.000 ₺/ay",
+      "label": "CPO maaş TL karşılığı (Tem-Ara 2026 sabit)",
+      "source": "model-v9-15"
+    },
+    "cpo.car": {
+      "value": "Škoda Superb",
+      "unit": "vehicle",
+      "display": "Škoda Superb",
+      "label": "CPO araç tahsisi (rica; karar yatırımcıda)"
+    },
+    "competitor.sahibinden_visitors": {
+      "value": 519000000,
+      "unit": "ziyaretçi",
+      "display": "519 milyon",
+      "label": "sahibinden yıllık ziyaretçi (retorik)",
+      "note": "revenue.median (519M ₺) ile aynı rakam ama FARKLI birim/anlam — ziyaretçi vs gelir."
+    },
+    "competitor.sahibinden_commission": {
+      "value": 2400000000,
+      "unit": "TRY",
+      "display": "~2,4 milyar ₺",
+      "label": "sahibinden'in vazgeçemeyeceği yıllık ilan komisyonu"
+    }
+  }
+}

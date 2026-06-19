@@ -1,0 +1,118 @@
+{
+  "id": "strategy-frameworks",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "description": "İş stratejisi literatürü haritası (rapor1.md) — arsam.net'in konumlandığı çerçeveler.",
+  "categories": [
+    {
+      "name": "Klasik Konumlandırma",
+      "models": [
+        {
+          "name": "Porter Jenerik Stratejileri",
+          "author": "Michael Porter",
+          "note": "maliyet liderliği / farklılaştırma / odaklanma"
+        },
+        {
+          "name": "Değer Disiplinleri",
+          "author": "Treacy & Wiersema"
+        },
+        {
+          "name": "Konumlandırma",
+          "author": "Ries & Trout"
+        }
+      ]
+    },
+    {
+      "name": "Yeni Pazar / Talep Yaratma",
+      "models": [
+        {
+          "name": "Kategori Tasarımı",
+          "author": "Play Bigger",
+          "note": "kategori kralı pazar değerinin ~%76'sını alır"
+        },
+        {
+          "name": "Yıkıcı İnovasyon",
+          "author": "Clayton Christensen",
+          "note": "Netflix vs Blockbuster"
+        },
+        {
+          "name": "Jobs-to-be-Done",
+          "author": "Christensen, Ulwick"
+        }
+      ]
+    },
+    {
+      "name": "Asimetrik / Savaş",
+      "models": [
+        {
+          "name": "Marketing Warfare",
+          "author": "Ries & Trout"
+        },
+        {
+          "name": "Judo / Aikido",
+          "author": "Yoffie & Kwak"
+        },
+        {
+          "name": "Counter-positioning",
+          "author": "Hamilton Helmer",
+          "note": "Vanguard endeks fonları"
+        }
+      ]
+    },
+    {
+      "name": "Sürdürülebilir Avantaj (Moat)",
+      "models": [
+        {
+          "name": "7 Powers",
+          "author": "Hamilton Helmer",
+          "note": "ölçek, ağ, counter-positioning, switching cost, marka, cornered resource, process power"
+        },
+        {
+          "name": "Kirpi Konsepti",
+          "author": "Jim Collins"
+        },
+        {
+          "name": "Hidden Champions",
+          "author": "Hermann Simon"
+        }
+      ]
+    },
+    {
+      "name": "Niş Hakimiyeti ve Yayılma",
+      "models": [
+        {
+          "name": "Crossing the Chasm + Bowling Pin",
+          "author": "Geoffrey Moore"
+        },
+        {
+          "name": "Land and Expand"
+        },
+        {
+          "name": "Long Tail",
+          "author": "Chris Anderson"
+        }
+      ]
+    },
+    {
+      "name": "Platform / Ağ",
+      "models": [
+        {
+          "name": "Platform Strategy / İki Taraflı Pazarlar",
+          "author": "Rochet & Tirole; Eisenmann, Parker, Van Alstyne"
+        },
+        {
+          "name": "Aggregation Theory",
+          "author": "Ben Thompson"
+        },
+        {
+          "name": "Freemium / Free",
+          "author": "Chris Anderson"
+        },
+        {
+          "name": "Product-Led Growth"
+        }
+      ]
+    }
+  ]
+}

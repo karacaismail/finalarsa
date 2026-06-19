@@ -1,0 +1,60 @@
+{
+  "id": "sources",
+  "kind": "shared",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "items": {
+    "tkgm-2024": {
+      "label": "TKGM 2024",
+      "full": "Tapu ve Kadastro Genel Müdürlüğü 2024 yılı taşınmaz satış istatistikleri"
+    },
+    "tuik-2024": {
+      "label": "TÜİK 2024",
+      "full": "TÜİK Konut Satış İstatistikleri 2024"
+    },
+    "tuik-tapu-2025": {
+      "label": "TÜİK Tapu 2025",
+      "full": "TÜİK Tapu İstatistikleri (2025 kayıt)"
+    },
+    "rekabet-kurulu": {
+      "label": "Rekabet Kurulu",
+      "full": "Rekabet Kurulu kararları (sahibinden.com hâkim konum tespiti)"
+    },
+    "similarweb": {
+      "label": "SimilarWeb",
+      "full": "SimilarWeb trafik verileri (2025-2026)"
+    },
+    "gyoder-webrazzi": {
+      "label": "GYODER & Webrazzi 2024",
+      "full": "Online emlak pazar payı sektör tahminleri"
+    },
+    "kanun-4691": {
+      "label": "4691 sayılı Kanun",
+      "full": "Teknoloji Geliştirme Bölgeleri Kanunu (Teknopark vergi istisnaları)"
+    },
+    "kanun-5746": {
+      "label": "5746 sayılı Kanun",
+      "full": "Ar-Ge ve Tasarım Faaliyetlerinin Desteklenmesi Hakkında Kanun"
+    },
+    "model-v9-15": {
+      "label": "Finansal model v9-15",
+      "full": "master_plan_arsam_edit-sync-v9-15.xlsx · 78 aylık projeksiyon (Tem 2026 – Ara 2032)"
+    },
+    "helmer-7powers": {
+      "label": "7 Powers (Hamilton Helmer)",
+      "full": "Counter-positioning ve moat çerçevesi"
+    },
+    "chen-coldstart": {
+      "label": "Cold Start Theory (Andrew Chen)",
+      "full": "Atomik ağ / cold-start"
+    },
+    "wei-saas": {
+      "label": "Status as a Service (Eugene Wei)",
+      "full": "Statü mühendisliği"
+    },
+    "levinson-1984": {
+      "label": "Guerrilla Marketing (Levinson, 1984)",
+      "full": "Klasik gerilla pazarlama referansı"
+    }
+  }
+}

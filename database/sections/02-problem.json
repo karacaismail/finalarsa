@@ -1,0 +1,76 @@
+{
+  "id": "problem",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 2,
+  "slug": "problem",
+  "nav": {
+    "num": "02",
+    "label": "Problem"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "Arsa almak tehlikeli",
+    "accent": "tehlikeli"
+  },
+  "blocks": [
+    {
+      "text": "problem · 02 / 16",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Arsa almak tehlikeli.",
+      "accent": "tehlikeli",
+      "type": "heading"
+    },
+    {
+      "text": "Sahte ilan, kapora dolandırıcılığı, fiyat dağınıklığı. Mevcut platformlar arsa için tasarlanmadı.",
+      "type": "lead"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "title": "Aynı parsel, üç farklı ilan, üç farklı fiyat.",
+          "tone": "warn",
+          "type": "card",
+          "body": "m² fiyatı 1.000 ile 4.000 ₺ arası gezen aynı bölge. Emsal yok, doğrulama yok.",
+          "eyebrow": "sahte ilan"
+        },
+        {
+          "title": "Para alınır, satıcı kaybolur.",
+          "tone": "warn",
+          "type": "card",
+          "body": "Tapu öncesi güven boşluğu. Emanet hesap yok, iade mekanizması yok.",
+          "eyebrow": "kapora dolandırıcılığı"
+        },
+        {
+          "title": "EİDS zorunluluğu başladı.",
+          "tone": "warn",
+          "type": "card",
+          "body": "Elektronik ilan doğrulama artık yasal şart. Mevcut platformlar uyumsuz; idari ceza riski yüksek.",
+          "eyebrow": "regülasyon · Şub 2026"
+        },
+        {
+          "title": "Arsa, evin yanına atılmış kategori.",
+          "tone": "warn",
+          "type": "card",
+          "body": "İmar durumu, kadastro, jeoloji, drone tur — hiçbiri standart değil. Arsa-spesifik araç yok.",
+          "eyebrow": "kategori körlüğü"
+        }
+      ],
+      "type": "cardGrid"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "glossary"
+    ],
+    "glossary": [
+      "EİDS"
+    ],
+    "metrics": []
+  }
+}

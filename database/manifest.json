@@ -1,0 +1,506 @@
+{
+  "id": "manifest",
+  "kind": "meta",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "arsam.net — pitch içerik veritabanı",
+  "description": "Landing page üretimi için parçalanmış, tekrarsız, tutarlı JSON içerik kümesi. 1 bölüm = 1 dosya; tüm rakamlar shared/metrics.json'da tek kaynak.",
+  "clusters": {
+    "shared": "Çapraz kesen tek kaynaklar (brand, metrics, sources, glossary, design-tokens)",
+    "sections": "Sunum birimleri — her HTML bölümü için 1 dosya (16 adet)",
+    "data": "Analitik veri kümeleri (finansal model, pazar, İK/AI, strateji cephanesi, çerçeveler, teşvikler)",
+    "meta": "manifest + reconciliation + schema"
+  },
+  "sectionOrder": [
+    "hero",
+    "problem",
+    "pazar",
+    "urun",
+    "model",
+    "strateji",
+    "cephane",
+    "kopru",
+    "bootstrap",
+    "teknopark",
+    "roadmap",
+    "rekabet",
+    "finansal",
+    "cpo",
+    "yatirim",
+    "kapanis"
+  ],
+  "sections": [
+    {
+      "order": 1,
+      "slug": "hero",
+      "file": "sections/01-hero.json",
+      "nav": {
+        "num": "01",
+        "label": "Hero"
+      },
+      "title": "Türkiye'nin ilk dikey arsa pazaryeri",
+      "refs": {
+        "shared": [
+          "brand"
+        ],
+        "metrics": []
+      }
+    },
+    {
+      "order": 2,
+      "slug": "problem",
+      "file": "sections/02-problem.json",
+      "nav": {
+        "num": "02",
+        "label": "Problem"
+      },
+      "title": "Arsa almak tehlikeli",
+      "refs": {
+        "shared": [
+          "glossary"
+        ],
+        "glossary": [
+          "EİDS"
+        ],
+        "metrics": []
+      }
+    },
+    {
+      "order": 3,
+      "slug": "pazar",
+      "file": "sections/03-pazar.json",
+      "nav": {
+        "num": "03",
+        "label": "Pazar"
+      },
+      "title": "Erişilmemiş dikey pazar",
+      "refs": {
+        "shared": [
+          "sources",
+          "glossary"
+        ],
+        "sources": [
+          "tkgm-2024",
+          "tuik-2024",
+          "gyoder-webrazzi"
+        ],
+        "data": [
+          "market-tam-sam-som"
+        ],
+        "glossary": [
+          "TAM",
+          "SAM",
+          "SOM",
+          "CAC",
+          "LTV"
+        ],
+        "metrics": [
+          "market.avg_land_value",
+          "market.daily_transfers",
+          "market.housing_2024",
+          "market.land_commercial_2024",
+          "market.land_tx_annual",
+          "market.monthly_transfers",
+          "market.online_penetration",
+          "market.sam_try",
+          "market.take_rate",
+          "market.tam_try",
+          "market.total_realestate_2024",
+          "revenue.median",
+          "revenue.optimist",
+          "revenue.pessimist"
+        ]
+      }
+    },
+    {
+      "order": 4,
+      "slug": "urun",
+      "file": "sections/04-urun.json",
+      "nav": {
+        "num": "04",
+        "label": "Ürün"
+      },
+      "title": "Arsa için tasarlanmış platform",
+      "refs": {
+        "glossary": [
+          "EİDS",
+          "TAKBİS"
+        ],
+        "metrics": []
+      }
+    },
+    {
+      "order": 5,
+      "slug": "model",
+      "file": "sections/05-model.json",
+      "nav": {
+        "num": "05",
+        "label": "Model"
+      },
+      "title": "İlan reklamı. Komisyon yok.",
+      "refs": {
+        "data": [
+          "financial-model"
+        ],
+        "metrics": [
+          "pricing.doping_per",
+          "pricing.premium_annual",
+          "pricing.starter_monthly",
+          "pricing.vitrin_monthly"
+        ]
+      }
+    },
+    {
+      "order": 6,
+      "slug": "strateji",
+      "file": "sections/06-strateji.json",
+      "nav": {
+        "num": "06",
+        "label": "Strateji"
+      },
+      "title": "Asimetrik komando",
+      "refs": {
+        "shared": [
+          "sources"
+        ],
+        "sources": [
+          "levinson-1984"
+        ],
+        "data": [
+          "strategy-arsenal"
+        ],
+        "metrics": [
+          "competitor.sahibinden_visitors"
+        ]
+      }
+    },
+    {
+      "order": 7,
+      "slug": "cephane",
+      "file": "sections/07-cephane.json",
+      "nav": {
+        "num": "07",
+        "label": "Cephane"
+      },
+      "title": "Seçilmiş silahlar",
+      "refs": {
+        "data": [
+          "strategy-arsenal"
+        ],
+        "glossary": [
+          "Counter-Positioning",
+          "Atomic Network",
+          "Programmatic SEO",
+          "Memetic Warfare",
+          "Status as a Service",
+          "Trojan Horse"
+        ],
+        "metrics": [
+          "strategy.hero_weapons",
+          "strategy.manifesto_items",
+          "strategy.total_models"
+        ]
+      }
+    },
+    {
+      "order": 8,
+      "slug": "kopru",
+      "file": "sections/08-kopru.json",
+      "nav": {
+        "num": "08",
+        "label": "Köprü"
+      },
+      "title": "TAM'dan SOM'a mantık zinciri",
+      "refs": {
+        "shared": [
+          "glossary"
+        ],
+        "glossary": [
+          "TAM",
+          "SAM",
+          "SOM",
+          "take rate"
+        ],
+        "data": [
+          "market-tam-sam-som"
+        ],
+        "metrics": [
+          "market.online_penetration",
+          "market.sam_try",
+          "market.som_try",
+          "market.take_rate",
+          "market.tam_try",
+          "revenue.median",
+          "strategy.hero_weapons"
+        ]
+      }
+    },
+    {
+      "order": 9,
+      "slug": "bootstrap",
+      "file": "sections/09-bootstrap.json",
+      "nav": {
+        "num": "09",
+        "label": "Bootstrap"
+      },
+      "title": "Bootstrap · kontrollü yakım",
+      "refs": {
+        "data": [
+          "financial-model"
+        ],
+        "metrics": [
+          "capital.breakeven_spend",
+          "capital.investor_pocket",
+          "capital.reserve",
+          "capital.total_raised",
+          "fin.breakeven_month",
+          "fin.breakeven_months",
+          "fin.headcount_2026",
+          "fin.headcount_2027",
+          "fin.revenue_2027"
+        ]
+      }
+    },
+    {
+      "order": 10,
+      "slug": "teknopark",
+      "file": "sections/10-teknopark.json",
+      "nav": {
+        "num": "10",
+        "label": "Teknopark"
+      },
+      "title": "Mecidiyeköy değil İTÜ ARI",
+      "refs": {
+        "shared": [
+          "sources"
+        ],
+        "sources": [
+          "kanun-4691",
+          "kanun-5746"
+        ],
+        "data": [
+          "incentives",
+          "financial-model"
+        ],
+        "glossary": [
+          "4691",
+          "EBITDA"
+        ],
+        "metrics": [
+          "tax.corporate_rate",
+          "tax.ebitda_2032",
+          "tax.income_withholding",
+          "tax.investment_multiple",
+          "tax.saving_2027",
+          "tax.saving_cumulative_7y",
+          "tax.saving_mature_annual",
+          "tax.saving_two_year",
+          "tax.sgk_employer",
+          "tax.valid_until"
+        ]
+      }
+    },
+    {
+      "order": 11,
+      "slug": "roadmap",
+      "file": "sections/11-roadmap.json",
+      "nav": {
+        "num": "11",
+        "label": "Roadmap · Risk"
+      },
+      "title": "Rakip gördüğünde ne yapar?",
+      "refs": {
+        "glossary": [
+          "EİDS",
+          "TAKBİS",
+          "Counter-Positioning"
+        ],
+        "metrics": [
+          "competitor.sahibinden_commission",
+          "fin.headcount_2027",
+          "team.lean"
+        ]
+      }
+    },
+    {
+      "order": 12,
+      "slug": "rekabet",
+      "file": "sections/12-rekabet.json",
+      "nav": {
+        "num": "12",
+        "label": "Rekabet"
+      },
+      "title": "Sadece biz dikey + küratoryal",
+      "refs": {
+        "shared": [
+          "brand",
+          "sources"
+        ],
+        "sources": [
+          "helmer-7powers",
+          "rekabet-kurulu"
+        ],
+        "glossary": [
+          "Counter-Positioning"
+        ],
+        "metrics": []
+      }
+    },
+    {
+      "order": 13,
+      "slug": "finansal",
+      "file": "sections/13-finansal.json",
+      "nav": {
+        "num": "13",
+        "label": "Finansal"
+      },
+      "title": "Finansal model · yedi yıl",
+      "refs": {
+        "shared": [
+          "sources"
+        ],
+        "sources": [
+          "model-v9-15"
+        ],
+        "data": [
+          "financial-model",
+          "hr-plan"
+        ],
+        "metrics": [
+          "fin.profit_margin_min",
+          "fin.projection_months"
+        ]
+      }
+    },
+    {
+      "order": 14,
+      "slug": "cpo",
+      "file": "sections/14-cpo.json",
+      "nav": {
+        "num": "14",
+        "label": "CPO Modeli"
+      },
+      "title": "Tam odak için iki şart",
+      "refs": {
+        "shared": [
+          "brand"
+        ],
+        "data": [
+          "financial-model"
+        ],
+        "metrics": [
+          "cpo.car",
+          "cpo.salary_usd"
+        ]
+      }
+    },
+    {
+      "order": 15,
+      "slug": "yatirim",
+      "file": "sections/15-yatirim.json",
+      "nav": {
+        "num": "15",
+        "label": "Yatırım"
+      },
+      "title": "Üç katman. Tek pencere.",
+      "refs": {
+        "data": [
+          "financial-model"
+        ],
+        "metrics": [
+          "fin.projection_months",
+          "invest.lead_amount",
+          "invest.lead_equity",
+          "invest.revenue_multiple",
+          "invest.seed_amount",
+          "invest.seed_equity",
+          "invest.seed_valuation",
+          "invest.strategic_amount",
+          "invest.strategic_equity",
+          "invest.strategic_valuation",
+          "window.close"
+        ]
+      }
+    },
+    {
+      "order": 16,
+      "slug": "kapanis",
+      "file": "sections/16-kapanis.json",
+      "nav": {
+        "num": "16",
+        "label": "Kapanış"
+      },
+      "title": "Tohum sizden, toprak bizden. Hasat ortak.",
+      "refs": {
+        "shared": [
+          "brand"
+        ],
+        "metrics": [
+          "fin.breakeven_months",
+          "window.close",
+          "window.slots_open",
+          "window.slots_total"
+        ]
+      }
+    }
+  ],
+  "shared": [
+    "shared/brand.json",
+    "shared/metrics.json",
+    "shared/sources.json",
+    "shared/glossary.json",
+    "shared/design-tokens.json"
+  ],
+  "data": [
+    "data/financial-model.json",
+    "data/market-tam-sam-som.json",
+    "data/hr-plan.json",
+    "data/strategy-arsenal.json",
+    "data/strategy-frameworks.json",
+    "data/incentives.json"
+  ],
+  "meta": [
+    "manifest.json",
+    "reconciliation.json",
+    "schema/README.md",
+    "schema/section.schema.json"
+  ],
+  "counts": {
+    "sections": 16,
+    "metrics": 89,
+    "dataFiles": 6,
+    "sharedFiles": 5,
+    "totalFiles": 31
+  },
+  "renderHints": {
+    "uiLibrary": "Flowbite (mevcut pitch zaten Flowbite kullanıyor)",
+    "tokenInterpolation": "Metinlerdeki {{metric:<key>}} ifadeleri shared/metrics.json[key].display ile değiştirilir.",
+    "valueRefResolution": "stat/card/funnel bloklarındaki valueRef, metrics[key] nesnesinin tamamına çözülür (value+unit+display).",
+    "blockTypes": [
+      "eyebrow",
+      "heading",
+      "lead",
+      "paragraph",
+      "stat",
+      "statGrid",
+      "card",
+      "cardGrid",
+      "list",
+      "table",
+      "timeline",
+      "funnel",
+      "pillRow",
+      "quote",
+      "cta",
+      "ctaStack",
+      "chart",
+      "note",
+      "feature",
+      "fomoVeil",
+      "crisisBox",
+      "countdown",
+      "scrollHint",
+      "badge"
+    ]
+  }
+}

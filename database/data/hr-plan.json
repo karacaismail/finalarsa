@@ -1,0 +1,129 @@
+{
+  "id": "hr-plan",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "source": "model-v9-15",
+  "headcountGrowth": [
+    {
+      "year": "2026 H2",
+      "count": 19
+    },
+    {
+      "year": "2027",
+      "count": 63
+    },
+    {
+      "year": "2028",
+      "count": 84
+    },
+    {
+      "year": "2029",
+      "count": 101
+    },
+    {
+      "year": "2030",
+      "count": 117
+    },
+    {
+      "year": "2031",
+      "count": 133
+    },
+    {
+      "year": "2032",
+      "count": 149
+    }
+  ],
+  "positionsModeled": 152,
+  "jobFamilies": [
+    "Engineering & Platform",
+    "Product / UX / Program",
+    "Marketing / Growth / CRM",
+    "Customer & Seller Support / CX",
+    "Finance / Legal / Corporate",
+    "People / HR / Talent",
+    "Data / AI / Analytics",
+    "Admin / PR / Office"
+  ],
+  "salaryAnchors": {
+    "netMinWage2026": 28075.5,
+    "scale": "1.0×–3.5× asgari ücret",
+    "examples": {
+      "CPO": "USD bazlı (≈350.000 ₺/ay)",
+      "CMO/CRO": 250000,
+      "ML Engineer": 70189,
+      "Senior (Lead)": 77208,
+      "Mid": 56151,
+      "Junior": 28076
+    }
+  },
+  "teamsSAFe": {
+    "ART-1 Platform": [
+      "Backend Squad",
+      "Frontend Squad",
+      "Mobile Squad",
+      "DevOps & Infra",
+      "QA & Test",
+      "Data / AI"
+    ],
+    "ART-2 Growth": [
+      "SEO & İçerik",
+      "Performance Marketing",
+      "Müşteri Deneyimi (CX)"
+    ],
+    "Non-Agile": [
+      "Hukuk & Uyum",
+      "Finans & Muhasebe",
+      "İnsan Kaynakları",
+      "İdari & PR",
+      "Ürün & Program"
+    ]
+  },
+  "orgRules": [
+    "Ünvan = sorumluluk tanımı, statü değil",
+    "2026'da IC ile C-Level arası max 2 katman",
+    "Teknik kariyer hattı (Jr→Sr→Staff) ile yönetim hattı ayrı",
+    "Aylık skip-level görüşme",
+    "İnsan eklemek ≠ katman eklemek"
+  ],
+  "aiEfficiency": {
+    "fteWithout": 74,
+    "fteWith": 38,
+    "fteSaved": 36,
+    "annualSaving": 21000000,
+    "sahibindenBenchmark": "750-1000 çalışan",
+    "target2032": "110-150 kişi → ~6-7× verimlilik",
+    "departments": [
+      {
+        "dept": "Backend Dev",
+        "without": 8,
+        "with": 3,
+        "tools": "GitHub Copilot, Claude Code, Cursor"
+      },
+      {
+        "dept": "Müşteri Hizmetleri",
+        "without": 12,
+        "with": 5,
+        "tools": "AI chatbot, Intercom AI"
+      },
+      {
+        "dept": "SEO & İçerik",
+        "without": 8,
+        "with": 4,
+        "tools": "SurferSEO, Jasper, ChatGPT"
+      },
+      {
+        "dept": "QA & Test",
+        "without": 6,
+        "with": 3,
+        "tools": "Testim AI, Playwright"
+      },
+      {
+        "dept": "Frontend Dev",
+        "without": 6,
+        "with": 3,
+        "tools": "v0.dev, Copilot, Bolt.new"
+      }
+    ]
+  }
+}

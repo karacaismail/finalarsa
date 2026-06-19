@@ -1,0 +1,88 @@
+{
+  "id": "market-tam-sam-som",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "transactionView": {
+    "year": 2024,
+    "sources": [
+      "tkgm-2024",
+      "tuik-2024"
+    ],
+    "totalRealEstate": 3065872,
+    "landCommercial": 1587847,
+    "housing": 1478025,
+    "dailyTransfers": 8400,
+    "monthlyTransfers": 255490
+  },
+  "valueFunnel": {
+    "year": 2025,
+    "source": "model-v9-15",
+    "tam": {
+      "value": 1850000000000,
+      "basis": "1,4M işlem × ~1,32M ₺ ort. değer"
+    },
+    "sam": {
+      "value": 346000000000,
+      "basis": "TAM × %18,7 online penetrasyon"
+    },
+    "som": {
+      "value": 34600000000,
+      "basis": "SAM × %10 hedef pay"
+    },
+    "annualRevenuePotential": {
+      "value": 518667093,
+      "basis": "SOM × %1,5 take rate"
+    },
+    "onlinePenetration": 0.187,
+    "takeRate": 0.015,
+    "emlakTam": 5500000000000,
+    "emlakTargetShare": 0.01
+  },
+  "competitorShares": {
+    "sahibinden_land": 0.68,
+    "sahibinden_realestate": 0.55,
+    "hepsiemlak_land": 0.12,
+    "emlakjet_land": 0.1,
+    "other": 0.1
+  },
+  "scenarios": [
+    {
+      "id": "pessimist",
+      "label": "Kötümser",
+      "revenue": 259000000,
+      "revenueRounded": 260000000,
+      "shareLabel": "%5 (online arsa) / %0,75 (toplam)",
+      "note": "CAC 2× · 2027 baz"
+    },
+    {
+      "id": "median",
+      "label": "Medyan",
+      "revenue": 519000000,
+      "shareLabel": "%10 (online arsa) / %1,5 (take rate)",
+      "note": "plan baz · finansal modelin temeli"
+    },
+    {
+      "id": "optimist",
+      "label": "İyimser",
+      "revenue": 823000000,
+      "shareLabel": "%2,4 (toplam)",
+      "note": "diaspora dahil · kanal ortaklıkları aktif"
+    }
+  ],
+  "trafficMix": {
+    "land": {
+      "share": 0.8,
+      "note": "reklam bütçesi · düşük CAC · CAC sektörün 1/3'ü"
+    },
+    "realestate": {
+      "share": 0.2,
+      "note": "sıfır CAC · cross-sell %38 · LTV 4,7×"
+    }
+  },
+  "crossCategoryEvidence": [
+    "Zillow rental→sales ilk yıl %8 cross-sell",
+    "Trendyol moda→elektronik ilk yıl %12",
+    "1/10 çarpanı sektör ortalamasının alt bandı — muhafazakar"
+  ]
+}

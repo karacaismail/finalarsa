@@ -1,0 +1,110 @@
+{
+  "id": "kapanis",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 16,
+  "slug": "kapanis",
+  "nav": {
+    "num": "16",
+    "label": "Kapanış"
+  },
+  "background": "bg-end",
+  "title": {
+    "text": "Tohum sizden, toprak bizden. Hasat ortak.",
+    "accent": "Hasat ortak"
+  },
+  "blocks": [
+    {
+      "text": "kapanan pencere · 16 / 16",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Bu fırsat herkes için değil.",
+      "accent": "herkes için",
+      "type": "heading"
+    },
+    {
+      "text": "{{metric:window.close}}'da metro, havalimanı, maç arası kampanya başlar. O tarihten sonra erken-yatırımcı kategorisi kapanır.",
+      "type": "lead"
+    },
+    {
+      "title": "bu sayfayı 5 yatırımcı daha gördü. Açık {{metric:window.slots_open}} kaldı.",
+      "cells": [
+        {
+          "label": "slot",
+          "tone": "warn",
+          "type": "stat",
+          "valueRef": "window.slots_open",
+          "sub": "/ {{metric:window.slots_total}}"
+        },
+        {
+          "label": "kapanma",
+          "tone": "gold",
+          "type": "stat",
+          "valueRef": "window.close"
+        },
+        {
+          "label": "başabaş",
+          "tone": "accent",
+          "type": "stat",
+          "valueRef": "fin.breakeven_months"
+        }
+      ],
+      "type": "crisisBox"
+    },
+    {
+      "targetRef": "window.countdown_target",
+      "label": "ulusal kampanyaya kalan",
+      "type": "countdown"
+    },
+    {
+      "level": 2,
+      "text": "Tohum sizden, toprak bizden. Hasat ortak.",
+      "accent": "Hasat ortak",
+      "type": "heading"
+    },
+    {
+      "text": "Konuşmaya kaldığımız yerden başlayalım.",
+      "type": "lead"
+    },
+    {
+      "items": [
+        {
+          "label": "şimdi konuş",
+          "action": "contact",
+          "meta": "5 dk",
+          "type": "cta"
+        },
+        {
+          "label": "direkt ara",
+          "action": "phone",
+          "meta": "CPO",
+          "type": "cta"
+        }
+      ],
+      "type": "ctaStack"
+    },
+    {
+      "text": "İsmail · cpo@arsam.net · +90 532 295 10 80",
+      "type": "paragraph"
+    },
+    {
+      "text": "Hazırlık tamamlandı · Nisan 2026 · arsam.net",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "brand"
+    ],
+    "metrics": [
+      "fin.breakeven_months",
+      "window.close",
+      "window.slots_open",
+      "window.slots_total"
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "id": "financial-model",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "source": "model-v9-15",
+  "scenario": "Muhafazakar",
+  "projection": {
+    "months": 78,
+    "start": "2026-07",
+    "end": "2032-12",
+    "years": 6.5
+  },
+  "yearly": [
+    {
+      "year": "2026 H2",
+      "revenue": 1409045,
+      "expense": 9238891,
+      "net": -7829846,
+      "headcount": 19,
+      "cashEnd": 32170154
+    },
+    {
+      "year": "2027",
+      "revenue": 429141625,
+      "expense": 40014053,
+      "net": 389127572,
+      "headcount": 63,
+      "cashEnd": 421297726
+    },
+    {
+      "year": "2028",
+      "revenue": 753714895,
+      "expense": 56595782,
+      "net": 697119113,
+      "headcount": 84,
+      "cashEnd": 1118416839
+    },
+    {
+      "year": "2029",
+      "revenue": 837058287,
+      "expense": 64605927,
+      "net": 772452360,
+      "headcount": 101,
+      "cashEnd": 1890869199
+    },
+    {
+      "year": "2030",
+      "revenue": 851808419,
+      "expense": 73198235,
+      "net": 778610184,
+      "headcount": 117,
+      "cashEnd": 2669479383
+    },
+    {
+      "year": "2031",
+      "revenue": 862086515,
+      "expense": 82811715,
+      "net": 779274800,
+      "headcount": 133,
+      "cashEnd": 3448754183
+    },
+    {
+      "year": "2032",
+      "revenue": 869655899,
+      "expense": 94030262,
+      "net": 775625637,
+      "headcount": 149,
+      "cashEnd": 4224379820
+    }
+  ],
+  "breakeven": {
+    "operational": "2027-01",
+    "operationalLabel": "Oca 2027",
+    "investmentPayback": "Tem 2026'dan itibaren sermaye girişiyle karşılanmış (40M ₺ kümülatif)"
+  },
+  "parameters": {
+    "usdtry": {
+      "start_2026_07": 44.5,
+      "end_2026": 51.09,
+      "end_2027": 56.0
+    },
+    "inflation_monthly": {
+      "2026_h2": 0.013,
+      "2027_plus": 0.008
+    },
+    "corporateTax": 0.25,
+    "vat": 0.2,
+    "minWage2026": {
+      "net": 28075.5,
+      "gross": 33030.0,
+      "employerMultiplier": 1.34
+    },
+    "cpoSalary": {
+      "fixed_2026": 350000,
+      "usd_2027_plus": [
+        10000,
+        15000,
+        20000
+      ]
+    },
+    "officeRent_monthly": 150000,
+    "officeDeposit_months": 3,
+    "initialCapital": 40000000,
+    "welcomePackagePerPerson": 5950,
+    "capexFirstMonth": 2863100
+  },
+  "pricing": {
+    "premiumAnnual": 90000,
+    "premiumMonthlyEq": 7500,
+    "vitrinMonthly": 3000,
+    "starterMonthly": 1500,
+    "dopingPer": 500,
+    "premiumConversion": 0.003,
+    "takeRate": 0.015
+  },
+  "revenueLogic": {
+    "listingGrowth_monthly": 0.25,
+    "plateau_2027_12": {
+      "land": 5000,
+      "realestate": 15000
+    },
+    "organicGrowth_annual": 0.03,
+    "realestateMultiplier": "arsa gelirinin 1/10'u (risk hedge)"
+  },
+  "opexGroups": [
+    "İK personel",
+    "Ofis sabit",
+    "Dijital altyapı (AWS/CDN/Maps API/SMS)",
+    "AI & yazılım araçları",
+    "Platform AI/Agent (Anthropic API token)",
+    "Hukuki & idari"
+  ],
+  "digitalMarketing": {
+    "2026_07": 163000,
+    "2027_12": 2290000,
+    "2032_12": 2900000
+  },
+  "legalThresholds": {
+    "isgOsgb": ">=1 çalışan (8K ₺/ay)",
+    "isgKurulu": "50+ kişi",
+    "sozlesmeliAvukat": "A.Ş. sermayesi 1.25M ₺+",
+    "engelliIstihdam": "%3 · 50+ kişi",
+    "calisanTemsilcisi": "2+ kişi"
+  },
+  "knownIssues": [
+    "GELİR SENARYOSU 'Arsa Gerçekleşen Pay' Haz 27'den 1.0+, Ara 30'da 2.0 — üretilen gelir SOM'u ~2× aşıyor (SOM tanım gereği aşılamaz).",
+    "Plateau 5.000 arsa ilanı, sahibinden'in ~100K+ aktif ilanına göre düşük; akış (1,4M işlem) ile stok (aktif ilan) karışmış.",
+    "Plateau ilan başı gelir ~14.200 ₺/ay/ilan; premium 7.500 ₺/ay ile çelişir → 519M SOM'un modelde 800-870M'ye çıkma nedeni.",
+    "DASHBOARD B8 (Arsa TAM)=0, B9 (Arsa SOM) boş — TAM_SAM_SOM referansı kopuk.",
+    "ÇAĞRI MERKEZİ ve YAZILIM EKİBİ sayfalarında #VALUE! hataları; İK doğrulama formülleri (R18, R21-R22) çalışmıyor."
+  ],
+  "note": "Yıllık tablo DASHBOARD sayfasından birebir. knownIssues rapor2.md analizinden; pitch'te muhafazakar başlık rakamlar kullanıldı."
+}

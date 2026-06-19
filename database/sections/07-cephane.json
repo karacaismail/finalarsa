@@ -1,0 +1,67 @@
+{
+  "id": "cephane",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 7,
+  "slug": "cephane",
+  "nav": {
+    "num": "07",
+    "label": "Cephane"
+  },
+  "background": "bg-3",
+  "title": {
+    "text": "Seçilmiş silahlar",
+    "accent": "silahlar"
+  },
+  "blocks": [
+    {
+      "text": "cephane · 07 / 16",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "{{metric:strategy.total_models}}den {{metric:strategy.hero_weapons}}.",
+      "accent": "silah",
+      "type": "heading"
+    },
+    {
+      "text": "Her biri rakibin kopyalayamayacağı. Çünkü kopyalamak kendi modelini öldürmek.",
+      "type": "lead"
+    },
+    {
+      "chartType": "weaponGrid",
+      "dataRef": "strategy-arsenal",
+      "caption": "Altı hero silah · detay strategy-arsenal verisinde",
+      "type": "chart"
+    },
+    {
+      "big": "+ {{metric:strategy.total_models}} envanterinden seçilmiş silahlar; kalan görüşmede.",
+      "sub": "Tamamı {{metric:strategy.manifesto_items}}lik manifesto altında. Ulusal kampanya öncesi sadece yatırımcı görüşmesinde.",
+      "type": "fomoVeil"
+    },
+    {
+      "text": "Peki bu silahlar pazar payına nasıl dönüşüyor? sahibinden'in %68 hâkim payı altında %10 SOM'a giden mantık zinciri sonraki bölümde.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "data": [
+      "strategy-arsenal"
+    ],
+    "glossary": [
+      "Counter-Positioning",
+      "Atomic Network",
+      "Programmatic SEO",
+      "Memetic Warfare",
+      "Status as a Service",
+      "Trojan Horse"
+    ],
+    "metrics": [
+      "strategy.hero_weapons",
+      "strategy.manifesto_items",
+      "strategy.total_models"
+    ]
+  }
+}

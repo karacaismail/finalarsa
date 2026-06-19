@@ -1,0 +1,60 @@
+{
+  "id": "strateji",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 6,
+  "slug": "strateji",
+  "nav": {
+    "num": "06",
+    "label": "Strateji"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "Asimetrik komando",
+    "accent": "tek bir gerillayla"
+  },
+  "blocks": [
+    {
+      "text": "strateji · 06 / 16",
+      "type": "eyebrow"
+    },
+    {
+      "text": "sahibinden {{metric:competitor.sahibinden_visitors}} ziyaretçiyle gelir. Biz tek bir gerillayla giriyoruz.",
+      "cite": null,
+      "type": "quote"
+    },
+    {
+      "level": 1,
+      "text": "sahibinden {{metric:competitor.sahibinden_visitors}} ziyaretçiyle gelir. Biz tek bir gerillayla giriyoruz.",
+      "accent": "tek bir gerillayla",
+      "type": "heading"
+    },
+    {
+      "text": "Klasik gerilla pazarlama, Levinson'un 1984 kitabıdır — ucuz reklamcılığın küçük versiyonu. Bizim 2026 paradigmamız farklı: tek bir gerilla, bir komando timini yok edecek silahla donatılır. Rakibin büyüklüğü hızsızlığa, geniş kategorisi odak kaybına, marka kabuğu atalet ivmesine dönüşür.",
+      "type": "lead"
+    },
+    {
+      "text": "guerilla marketing klasik kaldı. Asimetrik komando, rakibin ağırlığını silaha çevirir.",
+      "type": "paragraph"
+    },
+    {
+      "label": "cephaneye in",
+      "type": "scrollHint"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "sources"
+    ],
+    "sources": [
+      "levinson-1984"
+    ],
+    "data": [
+      "strategy-arsenal"
+    ],
+    "metrics": [
+      "competitor.sahibinden_visitors"
+    ]
+  }
+}

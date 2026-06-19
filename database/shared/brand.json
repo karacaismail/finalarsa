@@ -1,0 +1,43 @@
+{
+  "id": "brand",
+  "kind": "shared",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "name": "arsam.net",
+  "legalNote": "A.Ş. (kuruluş planı: Q3 2026)",
+  "tagline": "Türkiye'nin ilk dikey arsa pazaryeri",
+  "positioning": "sahibinden yatay; biz dikey. arsa, tarla, bağ, çiftlik, hisseli, hobi bahçesi — tek kategoride hâkim.",
+  "founder": {
+    "name": "İsmail",
+    "role": "CPO",
+    "title": "Chief Product Officer"
+  },
+  "contact": {
+    "email": "cpo@arsam.net",
+    "phone": "+90 532 295 10 80",
+    "phoneHref": "tel:+905322951080",
+    "city": "İstanbul"
+  },
+  "officeTarget": {
+    "name": "İTÜ ARI Teknokent",
+    "district": "Maslak",
+    "access": "M2 metrosu"
+  },
+  "competitors": [
+    {
+      "name": "sahibinden.com",
+      "axis": "yatay · açık",
+      "note": "hâkim konum; arsa kategorisinde %68 pay"
+    },
+    {
+      "name": "hepsiemlak",
+      "axis": "yatay · açık"
+    },
+    {
+      "name": "emlakjet",
+      "axis": "yatay · küratoryal kısmi"
+    }
+  ],
+  "preparedAt": "Nisan 2026",
+  "domain": "arsam.net"
+}

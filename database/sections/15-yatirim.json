@@ -1,0 +1,86 @@
+{
+  "id": "yatirim",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 15,
+  "slug": "yatirim",
+  "nav": {
+    "num": "15",
+    "label": "Yatırım"
+  },
+  "background": "bg-3",
+  "title": {
+    "text": "Üç katman. Tek pencere.",
+    "accent": "tek pencere"
+  },
+  "blocks": [
+    {
+      "text": "yatırım turu · 15 / 16",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Üç katman. Tek pencere.",
+      "accent": "tek pencere",
+      "type": "heading"
+    },
+    {
+      "text": "{{metric:window.close}} ulusal kampanyaya kadar açık. Sonra valuation katlanır, koşullar sertleşir.",
+      "type": "lead"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "title": "çekirdek",
+          "tone": null,
+          "type": "card",
+          "body": "2 dev · 1 designer · 6 ay runway · Söke + Bodrum atomik ağ",
+          "eyebrow": "{{metric:invest.seed_equity}} hisse · {{metric:invest.seed_valuation}} valuation",
+          "valueRef": "invest.seed_amount"
+        },
+        {
+          "title": "stratejik · önerilen",
+          "tone": "gold",
+          "type": "card",
+          "body": "başabaşa tam yükleme · CPO araç + 6 kalem · programmatic SEO motoru · ilk 1000 kurucu satıcı kampanyası",
+          "eyebrow": "{{metric:invest.strategic_equity}} hisse · {{metric:invest.strategic_valuation}} valuation",
+          "valueRef": "invest.strategic_amount"
+        },
+        {
+          "title": "lider",
+          "tone": null,
+          "type": "card",
+          "body": "stratejik + yedek · 2027 ulusal kampanya yedekle finanse · yönetim kurulu koltuğu",
+          "eyebrow": "{{metric:invest.lead_equity}} hisse · board seat",
+          "valueRef": "invest.lead_amount"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Valuation referansı: emlakjet 2024 turu 28M $ post-money @ ~5M $ gelir. Biz {{metric:fin.projection_months}}lık projeksiyonda 4 yıl sonra {{metric:invest.revenue_multiple}}.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "data": [
+      "financial-model"
+    ],
+    "metrics": [
+      "fin.projection_months",
+      "invest.lead_amount",
+      "invest.lead_equity",
+      "invest.revenue_multiple",
+      "invest.seed_amount",
+      "invest.seed_equity",
+      "invest.seed_valuation",
+      "invest.strategic_amount",
+      "invest.strategic_equity",
+      "invest.strategic_valuation",
+      "window.close"
+    ]
+  }
+}

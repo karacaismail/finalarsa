@@ -1,0 +1,97 @@
+{
+  "id": "rekabet",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 12,
+  "slug": "rekabet",
+  "nav": {
+    "num": "12",
+    "label": "Rekabet"
+  },
+  "background": "bg-4",
+  "title": {
+    "text": "Sadece biz dikey + küratoryal",
+    "accent": "dikey + küratoryal"
+  },
+  "blocks": [
+    {
+      "text": "rekabet · 12 / 16",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Sadece biz dikey + küratoryal.",
+      "accent": "dikey + küratoryal",
+      "type": "heading"
+    },
+    {
+      "text": "Konumlanma haritası. İki eksen: kategori (yatay/dikey), kalite (açık/küratoryal). Tek başına bir kadrandayız.",
+      "type": "lead"
+    },
+    {
+      "columns": [
+        "Oyuncu",
+        "Konum",
+        "Arsa odaklı",
+        "Tapu doğrulama",
+        "Drone tur",
+        "Model"
+      ],
+      "rows": [
+        [
+          "sahibinden",
+          "yatay · açık",
+          "hayır",
+          "kısmi",
+          "hayır",
+          "komisyon + ilan"
+        ],
+        [
+          "hepsiemlak",
+          "yatay · açık",
+          "hayır",
+          "hayır",
+          "hayır",
+          "ilan + emlakçı"
+        ],
+        [
+          "emlakjet",
+          "yatay · küratoryal kısmi",
+          "hayır",
+          "kısmi",
+          "hayır",
+          "ilan"
+        ],
+        [
+          "arsam.net",
+          "dikey · küratoryal",
+          "evet",
+          "tam · EİDS",
+          "premium dahil",
+          "ilan reklamı"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "text": "Moat: rakibin bizim kadranımıza geçmesi, kategori-genişliğini ve komisyon ekonomisini bırakması demek. 7 Powers'ın counter-positioning ilkesi: taklit, intihar olur.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "brand",
+      "sources"
+    ],
+    "sources": [
+      "helmer-7powers",
+      "rekabet-kurulu"
+    ],
+    "glossary": [
+      "Counter-Positioning"
+    ],
+    "metrics": []
+  }
+}

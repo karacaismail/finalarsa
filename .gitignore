@@ -1,0 +1,14 @@
+# bağımlılıklar & build çıktıları
+node_modules/
+dist/
+.vite/
+
+# python cache (database/_build)
+__pycache__/
+*.pyc
+
+# işletim sistemi / editör
+.DS_Store
+*.log
+.idea/
+.vscode/

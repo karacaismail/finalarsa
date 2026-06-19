@@ -1,0 +1,104 @@
+{
+  "id": "incentives",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "description": "Türkiye devlet destekleri, teşvikleri ve hibeleri envanteri (Nisan 2026 itibarıyla).",
+  "profile": {
+    "sector": "Emlak/arsa dikey pazaryeri",
+    "model": "B2B2C ilan satış",
+    "tech": "Django/Python",
+    "location": "İstanbul",
+    "team": "3→18 kişi",
+    "launch": "Aralık 2026"
+  },
+  "providers": [
+    "KOSGEB",
+    "TÜBİTAK",
+    "Sanayi ve Teknoloji Bakanlığı",
+    "Ticaret Bakanlığı",
+    "Hazine ve Maliye Bakanlığı",
+    "İŞKUR",
+    "SGK",
+    "Kalkınma Ajansları",
+    "TÜRKPATENT",
+    "AB Fonları"
+  ],
+  "programs": [
+    {
+      "name": "Teknopark (4691 sayılı Kanun)",
+      "provider": "Sanayi ve Teknoloji Bakanlığı",
+      "benefit": "Kurumlar vergisi, gelir vergisi stopajı, SGK işveren payı muafiyetleri",
+      "validUntil": "31/12/2028",
+      "fit": "Yüksek",
+      "priority": 1
+    },
+    {
+      "name": "TÜBİTAK 1512 BİGG",
+      "provider": "TÜBİTAK",
+      "amount": "1.350.000 ₺ (%3 hisse karşılığı, 2026)",
+      "requirement": "A.Ş. zorunlu",
+      "deadline": "10 Mayıs 2026 (2026/1)",
+      "fit": "Yüksek",
+      "priority": 2
+    },
+    {
+      "name": "TÜBİTAK 1507 — KOBİ Ar-Ge Başlangıç",
+      "provider": "TÜBİTAK",
+      "amount": "2.4 milyon ₺'ye kadar %75 hibe (geri ödemesiz)",
+      "fit": "Yüksek",
+      "priority": 3
+    },
+    {
+      "name": "KOSGEB İleri Girişimci",
+      "provider": "KOSGEB",
+      "amount": "2 milyon ₺'ye kadar (kuruluş + iş geliştirme)",
+      "fit": "Yüksek"
+    },
+    {
+      "name": "KOSGEB Geleneksel/İleri Girişimci Kuruluş",
+      "provider": "KOSGEB",
+      "amount": "20.000 ₺ hibe (sermaye şirketi)",
+      "requirement": "Girişimcilik eğitimi (ücretsiz, 32-70 saat)"
+    },
+    {
+      "name": "TEKMER (Teknoloji Merkezi)",
+      "provider": "KOSGEB",
+      "amount": "%100 destek · yıllık 5 milyon ₺'ye kadar"
+    },
+    {
+      "name": "TÜBİTAK 1501 — Sanayi Ar-Ge",
+      "provider": "TÜBİTAK",
+      "amount": "%60 hibe (KOBİ) · max 24 ay"
+    },
+    {
+      "name": "TÜBİTAK 1711 — Yapay Zekâ Ekosistemi",
+      "provider": "TÜBİTAK",
+      "fit": "Orta-Yüksek (AI altyapı)"
+    },
+    {
+      "name": "KOSGEB Sınai Mülkiyet Hakları",
+      "provider": "KOSGEB",
+      "amount": "%100 · üst limit 30.000 ₺ (yurtdışı marka %50 · 50.000 USD)"
+    },
+    {
+      "name": "Girişimci Kredisi",
+      "provider": "Kamu bankaları",
+      "amount": "<45 yaş 600.000 ₺'ye kadar; <35 esnaf 300.000 ₺ sıfır faizli"
+    },
+    {
+      "name": "İŞKUR İşbaşı Eğitim + SGK Teşviki",
+      "provider": "İŞKUR / SGK",
+      "amount": "Kursiyere 1.079,83 ₺/gün; SGK işveren payı 24-54 ay İşsizlik Fonundan"
+    }
+  ],
+  "argDecRade": {
+    "argument": "~%88 kâr marjı üstüne kurumlar vergisi istisnası → yatırımcı IRR'si yükselir",
+    "itu_ari": {
+      "girisimci": "18.500 ₺+KDV",
+      "kulucka": "7.350 ₺+KDV",
+      "rank": "#1 üniversite kuluçka (UBI Global)"
+    },
+    "argeMerkeziVsTeknopark": "Ar-Ge Merkezi min. 15 tam zamanlı Ar-Ge personeli; Teknopark 1 kişi de olur → 18 kişiye kadar Teknopark"
+  }
+}

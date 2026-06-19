@@ -1,0 +1,75 @@
+{
+  "id": "cpo",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 14,
+  "slug": "cpo",
+  "nav": {
+    "num": "14",
+    "label": "CPO Modeli"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "Tam odak için iki şart",
+    "accent": "iki şart"
+  },
+  "blocks": [
+    {
+      "text": "CPO · çalışma modeli · 14 / 16",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Tam odak için iki şart.",
+      "accent": "iki şart",
+      "type": "heading"
+    },
+    {
+      "text": "Şeffaf olmayı tercih ediyorum. Çalışma şartlarım iki maddeden ibaret.",
+      "type": "lead"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "label": "Aylık sabit maaş · plan baz",
+          "tone": "accent",
+          "type": "stat",
+          "valueRef": "cpo.salary_usd",
+          "sub": "USD / ay"
+        },
+        {
+          "label": "Araç tahsisi",
+          "tone": "gold",
+          "type": "stat",
+          "valueRef": "cpo.car",
+          "sub": "veya benzer segment bir araç"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "text": "Bu projeye tam odaklanmam, mevcut işlerimden tamamen ayrılmam anlamına gelir. Bu adımdan sonra tek gelirim bu projeden olacak; mevcut aracımı da şirkete devrediyorum. Bir araç tahsisini açıkça rica ediyorum. Maaş plan baz; araç ise bir rica — takdir sizindir.",
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "text": "Bu kalemler önce sunduğum tüm finansal plana zaten dahildi — yukarıdaki rakamları değiştirmiyor.",
+      "cite": null,
+      "type": "quote"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "brand"
+    ],
+    "data": [
+      "financial-model"
+    ],
+    "metrics": [
+      "cpo.car",
+      "cpo.salary_usd"
+    ]
+  }
+}

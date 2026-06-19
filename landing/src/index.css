@@ -1,0 +1,43 @@
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  background: #ffffff;
+  color: #1b1a17;
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1rem; /* WCAG: taban metin >= 1rem */
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+*::selection {
+  background: #7cb342;
+  color: #ffffff;
+}
+
+/* WCAG 2.2 (2.4.7 / 2.4.11) — her etkileşimli öğede görünür odak */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid #4d7c1f;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* WCAG 2.3.3 — hareket azaltma tercihi */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

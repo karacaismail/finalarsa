@@ -1,0 +1,95 @@
+{
+  "id": "design-tokens",
+  "kind": "shared",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "theme": {
+    "mode": "dark",
+    "mood": "sıcak (warm brown)",
+    "uiStyle": "minimalist · flat · shadcn/Flowbite estetiği"
+  },
+  "color": {
+    "bg-1": "#1a1410",
+    "bg-2": "#241a12",
+    "bg-3": "#2c2017",
+    "bg-4": "#34261b",
+    "soil-deep": "#0f0a07",
+    "grass": "#7cb342",
+    "grass-deep": "#5a8a2e",
+    "gold": "#cc9900",
+    "warn": "#e2723a",
+    "t1": "#f5efe6",
+    "t2": "#cabfae",
+    "t3": "#9a8d78",
+    "t4": "#6b6052",
+    "line-1": "rgba(255,255,255,.06)",
+    "line-2": "rgba(255,255,255,.10)",
+    "line-3": "rgba(255,255,255,.16)"
+  },
+  "colorRoles": {
+    "primary": "#ffffff (beyaz)",
+    "accent": "#7cb342 (çimen yeşili · büyüme/tarım)",
+    "secondary": "#cc9900 (altın · değer saklama)",
+    "warn": "#e2723a (uyarı · risk/kapanış)"
+  },
+  "glassTokens": [
+    "--glass-blur",
+    "--glass-blur-strong",
+    "--glass-bg-1",
+    "--glass-bg-2",
+    "--glass-bg-3",
+    "--glass-edge",
+    "--glass-edge-hi",
+    "--glass-spec",
+    "--glass-shade"
+  ],
+  "radius": {
+    "root": "1rem",
+    "shell": "1rem",
+    "surface": ".75rem",
+    "control": ".5rem",
+    "micro": ".25rem",
+    "chip": "9999px",
+    "dot": "50%",
+    "cornerSmoothing": "0.6"
+  },
+  "radiusInnerHelper": {
+    "formula": "radiusInner(outer, padding) = max(outer - padding, 0)",
+    "rule": "İç içe köşelerde iç radius = dış radius − padding (concentric nesting).",
+    "cssVars": [
+      "--radius-inner-shell-1_75",
+      "--radius-inner-shell-2_25",
+      "--radius-inner-shell-2_5"
+    ]
+  },
+  "typography": {
+    "family": "Roboto",
+    "weights": [
+      300,
+      400,
+      500
+    ],
+    "minSize": "1.5rem (24px)",
+    "h1Max": "4rem",
+    "border": "0.5px",
+    "shadow": "none"
+  },
+  "spacing": {
+    "card": "1.75–2.5rem",
+    "banner": "2.5rem 1.5rem",
+    "btn": "1rem 1.75rem (min-height 56px)",
+    "pill": ".625rem 1.125rem",
+    "chartBox": "1rem"
+  },
+  "motion": {
+    "ease": "var(--ease)"
+  },
+  "backgrounds": {
+    "bg-1": "en koyu",
+    "bg-2": "",
+    "bg-3": "",
+    "bg-4": "en açık",
+    "sec-bg-end": "kapanış"
+  },
+  "note": "Değerler arsam-pitch.html :root + docs/radius-audit.md FAZ 1 token katmanından alınmıştır. t1-t4 ve line-* yaklaşık eşleştirmedir; ham hex yalnız bg-1/bg-4/soil-deep/grass/gold/warn için belgelenmiştir."
+}

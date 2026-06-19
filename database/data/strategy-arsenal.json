@@ -1,0 +1,176 @@
+{
+  "id": "strategy-arsenal",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "totalModels": 470,
+  "inventory": {
+    "asymmetricHijack": 130,
+    "communityCultMovement": 130,
+    "productLedAiNative": 210
+  },
+  "prioritizedForArsam": 45,
+  "manifestoItems": 14,
+  "radicalBreaks": [
+    {
+      "name": "Distribution = Product",
+      "attribution": "Andrew Chen, Brian Balfour, Casey Winters"
+    },
+    {
+      "name": "Counter-Positioning",
+      "attribution": "Hamilton Helmer · 7 Powers",
+      "examples": [
+        "Netflix vs DVD",
+        "Vanguard vs aktif fonlar"
+      ]
+    },
+    {
+      "name": "Memetic Warfare",
+      "examples": [
+        "Liquid Death",
+        "Duolingo",
+        "Ryanair",
+        "Cluely"
+      ]
+    },
+    {
+      "name": "Status as a Service",
+      "attribution": "Eugene Wei"
+    },
+    {
+      "name": "Cold Start Theory",
+      "attribution": "Andrew Chen"
+    }
+  ],
+  "heroWeapons": [
+    {
+      "idx": "01",
+      "name": "Counter-Positioning",
+      "tr": "karşı konumlama",
+      "badge": "helmer",
+      "body": "sahibinden komisyon-bazlı. İlan reklam modelini kopyalaması, 8M ilanlık akışı ücretsizleştirmek demek. Kazansa da kaybeder.",
+      "example": "Vanguard'ın aktif fonlara, Netflix'in DVD'ye karşı yaptığı."
+    },
+    {
+      "idx": "02",
+      "name": "Atomic Network",
+      "tr": "atomik ağ",
+      "badge": "chen",
+      "body": "Türkiye geneli yerine tek ilçede tam doygunluk. Söke. Bodrum. Yalova. Bir şehir kazanılır, diğerine sıçranır.",
+      "example": "Facebook Harvard'da, Uber San Francisco'da."
+    },
+    {
+      "idx": "03",
+      "name": "Programmatic SEO",
+      "tr": "programatik SEO",
+      "badge": "SEO",
+      "body": "81 il × 922 ilçe × 6 ilan tipi = ~448.000 sayfa. Tek şablon, dev katalog.",
+      "example": "Zillow ve Zapier bu yolla milyarlarca trafik alıyor."
+    },
+    {
+      "idx": "04",
+      "name": "Memetic Warfare",
+      "tr": "mem savaşı",
+      "badge": "mem savaşı",
+      "fomo": true,
+      "body": "sahibinden TV reklamı verirken biz 'toprağını geri al' hareketinin sözcüsü oluruz. Sıfır medya alımı, milyonlarca organik gösterim.",
+      "example": "Duolingo, Ryanair, Wendy's."
+    },
+    {
+      "idx": "05",
+      "name": "Status as a Service",
+      "tr": "statü hizmeti",
+      "badge": "wei",
+      "fomo": true,
+      "body": "İlk 1000 satıcı kalıcı kurucu rozeti. Numara 1/1000, 87/1000 olarak görünür. Statü sosyal sermaye olur.",
+      "example": "Tinder, Clubhouse, Supreme."
+    },
+    {
+      "idx": "06",
+      "name": "Trojan Horse",
+      "tr": "truva atı",
+      "badge": "trojan",
+      "fomo": true,
+      "body": "Ücretsiz değerleme aracı + tapu sorgu widget'ı emlakçı sitelerine gömülür. Rakibin sitesi bizi taşır.",
+      "example": "Airbnb Craigslist'i, Eventbrite e-postayı bu mantıkla kullandı."
+    }
+  ],
+  "namedStrategies": [
+    {
+      "idx": "01",
+      "name": "Counter-Positioning",
+      "claim": "Kopyalanamaz model."
+    },
+    {
+      "idx": "02",
+      "name": "Atomic Network",
+      "claim": "Tek ilçe. Tam doygunluk."
+    },
+    {
+      "idx": "03",
+      "name": "Programmatic SEO",
+      "claim": "Programatik ilçe sayfaları (~448.000)."
+    },
+    {
+      "idx": "04",
+      "name": "Drone Moat",
+      "claim": "Hava görüntüsü, standart."
+    },
+    {
+      "idx": "05",
+      "name": "TAKBİS API",
+      "claim": "Tapuyu kaynaktan doğrula."
+    },
+    {
+      "idx": "06",
+      "name": "Escrow Trust",
+      "claim": "Kapora bize gelmez."
+    },
+    {
+      "idx": "07",
+      "name": "Diaspora First",
+      "claim": "Berlin parası, Türk toprağı."
+    },
+    {
+      "idx": "08",
+      "name": "Bank Channel",
+      "claim": "Banka gişesi = arsam standı."
+    },
+    {
+      "idx": "09",
+      "name": "İmar AI",
+      "claim": "'Bu arsa ne yapılır?'"
+    },
+    {
+      "idx": "10",
+      "name": "Freemium Tier",
+      "claim": "Listeleme bedava. Görünürlük ücretli."
+    },
+    {
+      "idx": "11",
+      "name": "İlçe Operatör",
+      "claim": "Her ilçeye lokal CEO."
+    },
+    {
+      "idx": "12",
+      "name": "Land Storytelling",
+      "claim": "Her arsanın bir hikâyesi."
+    },
+    {
+      "idx": "13",
+      "name": "Mikro Kredi Köprüsü",
+      "claim": "Kredisi olmayana, kefil platform."
+    },
+    {
+      "idx": "14",
+      "name": "Üç Hatlı Ekosistem",
+      "claim": "İlan + değerleme + tapu hizmeti."
+    }
+  ],
+  "note": "Toplam 470 model (130+130+210). Pitch'te 6 silah detaylandırılır, 14 strateji adlandırılır. '+N daha' = 470 − gösterilen.",
+  "researchMeta": {
+    "sources": 195,
+    "duration": "25m 53s",
+    "context": "arsam.net · sahibinden rakibi · Türkiye + diaspora"
+  }
+}

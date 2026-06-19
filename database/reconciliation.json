@@ -1,0 +1,108 @@
+{
+  "id": "reconciliation",
+  "kind": "meta",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "description": "İki pitch sürümü (arsam-pitch.html = güncel/8 bölüm, code2 = 15 bölüm) ve Excel modeli arasındaki rakam/ifade farkları ve verilen kanonik kararlar.",
+  "items": [
+    {
+      "topic": "Sermaye çerçevesi",
+      "values": {
+        "arsam-pitch": "15M cep + 34M operasyon = 49M toplam harcanır",
+        "code2/excel": "40M başlangıç sermayesi = 15M (başabaşa) + 25M (yedek)"
+      },
+      "decision": "İkisi farklı metrik olarak korundu. investor_pocket=15M (iki kaynakta da aynı) ortak çıpa. total_raised=40M (model), lifetime_spend=49M (güncel anlatı).",
+      "canonical": [
+        "capital.investor_pocket",
+        "capital.total_raised",
+        "capital.lifetime_spend"
+      ]
+    },
+    {
+      "topic": "Teknopark 2027 tasarrufu",
+      "values": {
+        "arsam-pitch": "~131 milyon ₺",
+        "code2": "~115 milyon ₺ (389M net × %25 + personel)"
+      },
+      "decision": "131M kanonik başlık; 115M muhafazakar türev olarak not edildi.",
+      "canonical": [
+        "tax.saving_2027"
+      ]
+    },
+    {
+      "topic": "Strateji model toplamı",
+      "values": {
+        "code2/pazarlama": "470 (130+130+210)",
+        "arsam-pitch": "14 listelenen + 468 = 482"
+      },
+      "decision": "470 kanonik. '+N daha' ifadesi 470 − gösterilen olarak türetilir.",
+      "canonical": [
+        "strategy.total_models"
+      ]
+    },
+    {
+      "topic": "Programatik SEO sayfa sayısı",
+      "values": {
+        "code2": "~448.000 (81×922×6)",
+        "arsam-pitch": "4.865 ilçe sayfası"
+      },
+      "decision": "448.000 kanonik (tam programatik). 4.865 ilçe-bazlı eski türev olarak not.",
+      "canonical": [
+        "strategy.seo_pages"
+      ]
+    },
+    {
+      "topic": "Maksimum kadro",
+      "values": {
+        "model 2032": "149 kişi",
+        "eski s06 yorumu": "256"
+      },
+      "decision": "149 kanonik (model DASHBOARD).",
+      "canonical": [
+        "fin.headcount_2032"
+      ]
+    },
+    {
+      "topic": "Pazar çerçevesi",
+      "values": {
+        "arsam-pitch": "işlem adedi (2024 TKGM/TÜİK)",
+        "code2/excel": "₺ değer hunisi TAM/SAM/SOM (2025)"
+      },
+      "decision": "İkisi tamamlayıcı görünüm olarak korundu; medyan gelir 519M her ikisinde tutarlı.",
+      "canonical": [
+        "revenue.median"
+      ]
+    },
+    {
+      "topic": "Kötümser gelir",
+      "values": {
+        "arsam-pitch": "259M (%5)",
+        "senaryo kartı": "260M"
+      },
+      "decision": "259M kanonik; 260M yuvarlama.",
+      "canonical": [
+        "revenue.pessimist"
+      ]
+    },
+    {
+      "topic": "Pazar payı yüzde etiketleri",
+      "values": {
+        "hedef pay": "%5 / %10 (online arsa SOM payı)",
+        "senaryo": "%0,75 / %1,5 / %2,4 (toplam pazar)",
+        "take rate": "%1,5"
+      },
+      "decision": "Gelir rakamları kanonik; yüzde etiketleri kendi tanımına göre korundu, bölümlerde bağlamıyla yazıldı.",
+      "canonical": [
+        "market.take_rate"
+      ]
+    },
+    {
+      "topic": "Model iç tutarsızlıkları (rapor2)",
+      "values": {
+        "gözlem": "GELİR SENARYOSU gerçekleşen pay SOM'u ~2× aşıyor; plateau 5.000 arsa ilanı düşük; ilan başı 14.200₺/ay yüksek; DASHBOARD TAM/SOM hücreleri kopuk; #VALUE! hataları"
+      },
+      "decision": "data/financial-model.json içinde 'knownIssues' olarak belgelendi; pitch rakamları muhafazakar başlık olarak kullanıldı.",
+      "canonical": []
+    }
+  ]
+}
