@@ -101,16 +101,16 @@
         "tools": "GitHub Copilot, Claude Code, Cursor"
       },
       {
-        "dept": "Müşteri Hizmetleri",
-        "without": 12,
-        "with": 5,
-        "tools": "AI chatbot, Intercom AI"
+        "dept": "Frontend Dev",
+        "without": 6,
+        "with": 3,
+        "tools": "v0.dev, Copilot, Bolt.new"
       },
       {
-        "dept": "SEO & İçerik",
-        "without": 8,
-        "with": 4,
-        "tools": "SurferSEO, Jasper, ChatGPT"
+        "dept": "Mobile Dev",
+        "without": 4,
+        "with": 2,
+        "tools": "Copilot, React Native AI"
       },
       {
         "dept": "QA & Test",
@@ -119,10 +119,58 @@
         "tools": "Testim AI, Playwright"
       },
       {
-        "dept": "Frontend Dev",
+        "dept": "DevOps",
+        "without": 4,
+        "with": 2,
+        "tools": "Terraform AI, IaC otomasyon"
+      },
+      {
+        "dept": "Data & AI",
+        "without": 5,
+        "with": 3,
+        "tools": "AutoML, AI-destekli analiz"
+      },
+      {
+        "dept": "SEO & İçerik",
+        "without": 8,
+        "with": 4,
+        "tools": "SurferSEO, Jasper, ChatGPT"
+      },
+      {
+        "dept": "Pazarlama",
         "without": 6,
         "with": 3,
-        "tools": "v0.dev, Copilot, Bolt.new"
+        "tools": "AI creative, auto-bidding"
+      },
+      {
+        "dept": "Müşteri Hizmetleri",
+        "without": 12,
+        "with": 5,
+        "tools": "AI chatbot, Intercom AI"
+      },
+      {
+        "dept": "Moderasyon",
+        "without": 4,
+        "with": 2,
+        "tools": "AI içerik filtre, oto-moderasyon"
+      },
+      {
+        "dept": "Hukuk & Uyum",
+        "without": 4,
+        "with": 3,
+        "tools": "AI sözleşme inceleme, uyum"
+      },
+      {
+        "dept": "İK & İdari",
+        "without": 4,
+        "with": 3,
+        "tools": "AI recruiter, İK otomasyon"
+      },
+      {
+        "dept": "Finans",
+        "without": 3,
+        "with": 2,
+        "tools": "AI muhasebe, oto-raporlama"
       }
     ]
   }

@@ -187,6 +187,22 @@
       "type": "cardGrid"
     },
     {
+      "level": 3,
+      "text": "Her yıl · senaryo bazında pazar payı ve gelir hedefi",
+      "accent": null,
+      "type": "heading"
+    },
+    {
+      "text": "Üç senaryo da 2026'da soft-launch ile başlar, 2027'de yarı yola gelir ve hedefe 2028'i geçmeden ulaşır; sonrasında plato yapar. Medyan hedef {{metric:revenue.median}}, 2028 içinde tutturulur.",
+      "type": "lead"
+    },
+    {
+      "chartType": "scenarioYears",
+      "dataRef": "market-tam-sam-som",
+      "caption": "Senaryo bazında yıllık gelir patikası · hedef yılı 2028 (kesik çizgi)",
+      "type": "chart"
+    },
+    {
       "text": "Kaynaklar: TKGM 2024 taşınmaz satış istatistikleri · TÜİK Konut Satış İstatistikleri 2024 · Online emlak pazar payı: GYODER & Webrazzi 2024 sektör tahminleri.",
       "tone": "info",
       "type": "note"

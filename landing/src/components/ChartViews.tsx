@@ -11,7 +11,7 @@ import {
   financialComboOption,
   marginOption,
   marketFunnelOption,
-  scenariosBarOption,
+  scenarioLinesOption,
 } from "./charts";
 
 const card = {
@@ -22,27 +22,72 @@ const card = {
   p: { base: "5", md: "6" },
 } as const;
 
-/* ---------------- Pazar: huni + senaryo bar ---------------- */
+/* ---------------- Pazar: değer hunisi ---------------- */
 export function MarketFunnelView() {
   const d = getData<{
     valueFunnel: { tam: { value: number }; sam: { value: number }; som: { value: number }; annualRevenuePotential: { value: number } };
-    scenarios: { label: string; revenue: number }[];
   }>("market-tam-sam-som");
   const f = d.valueFunnel;
   return (
+    <EChart
+      height={340}
+      ariaLabel={`Pazar hunisi: TAM ${fmt(f.tam.value)}, SAM ${fmt(f.sam.value)}, SOM ${fmt(f.som.value)}, yıllık gelir potansiyeli ${fmt(f.annualRevenuePotential.value)}`}
+      option={marketFunnelOption({ tam: f.tam.value, sam: f.sam.value, som: f.som.value, revenue: f.annualRevenuePotential.value })}
+    />
+  );
+}
+
+/* ---------------- Senaryo bazında yıllık gelir + pazar payı (hedef 2028) ---------------- */
+export function ScenarioYearsView() {
+  const d = getData<{
+    scenariosByYear: {
+      years: string[];
+      targetYear: string;
+      scenarios: { label: string; revenue: number[]; shareOfSam: number[] }[];
+    };
+  }>("market-tam-sam-som");
+  const s = d.scenariosByYear;
+  const toneFor = (i: number) => ["warn", "gold", "grass"][i] ?? "ink";
+  const pct = (x: number) => `%${(x * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}`;
+  return (
     <Stack gap="4">
       <EChart
-        height={340}
-        ariaLabel={`Pazar hunisi: TAM ${fmt(f.tam.value)}, SAM ${fmt(f.sam.value)}, SOM ${fmt(f.som.value)}, yıllık gelir potansiyeli ${fmt(f.annualRevenuePotential.value)}`}
-        option={marketFunnelOption({ tam: f.tam.value, sam: f.sam.value, som: f.som.value, revenue: f.annualRevenuePotential.value })}
+        height={360}
+        ariaLabel="Senaryo bazında yıllık gelir patikası; hedef 2028'de tutturulur"
+        option={scenarioLinesOption({ years: s.years, targetYear: s.targetYear, scenarios: s.scenarios })}
       />
-      <Box>
-        <H3 fontSize="md" color="inkMuted" fontWeight="medium" mb="2">Üç senaryo · yıllık gelir</H3>
-        <EChart
-          height={280}
-          ariaLabel={d.scenarios.map((s) => `${s.label} ${fmt(s.revenue)}`).join(", ")}
-          option={scenariosBarOption(d.scenarios.map((s) => ({ label: s.label, revenue: s.revenue })))}
-        />
+      <Box {...card} p="0" overflowX="auto">
+        <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="620px">
+          <Thead>
+            <Tr>
+              <Th scope="col" textAlign="start" p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold">Yıl</Th>
+              {s.scenarios.map((sc, i) => (
+                <Th key={sc.label} scope="col" textAlign="end" p="3" borderBottom="2px solid" borderColor="lineStrong" color={toneFor(i)} fontWeight="bold">
+                  {sc.label}
+                  <Box as="span" display="block" fontSize="md" fontWeight="normal" color="inkMuted">online arsa payı · gelir</Box>
+                </Th>
+              ))}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {s.years.map((yr, yi) => {
+              const isTarget = yr === s.targetYear;
+              return (
+                <Tr key={yr} {...(isTarget ? { bg: "surface" } : {})}>
+                  <Th scope="row" textAlign="start" p="3" borderBottom="1px solid" borderColor="line" color="ink" fontWeight="bold" whiteSpace="nowrap">
+                    {yr}{isTarget ? " · hedef" : ""}
+                  </Th>
+                  {s.scenarios.map((sc, i) => (
+                    <Td key={sc.label} p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink" whiteSpace="nowrap">
+                      <Box as="span" color={toneFor(i)} fontWeight="bold">{pct(sc.shareOfSam[yi])}</Box>
+                      <Box as="span" color="inkMuted"> · {fmt(sc.revenue[yi])}</Box>
+                    </Td>
+                  ))}
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Tbl>
       </Box>
     </Stack>
   );
@@ -162,7 +207,7 @@ export function AiFirstPanel() {
         </Dl>
         <H3 fontSize="md" color="inkMuted" fontWeight="medium" mb="2">Departman bazında insan kaynağı: AI'sız vs AI ile (FTE)</H3>
         <EChart
-          height={300}
+          height={Math.max(340, ai.departments.length * 34)}
           ariaLabel={"Departman bazında AI'sız ve AI ile gerekli kadro karşılaştırması"}
           option={aiDeptOption(ai.departments.map((r) => ({ dept: r.dept, without: r.without, with: r.with })))}
         />
@@ -197,6 +242,8 @@ export function ChartBlock({ chartType, highlightYears }: { chartType: string; h
   switch (chartType) {
     case "funnel":
       return <MarketFunnelView />;
+    case "scenarioYears":
+      return <ScenarioYearsView />;
     case "yearlyHighlights":
     case "yearlyTable":
       return <YearlyView highlightYears={highlightYears} />;

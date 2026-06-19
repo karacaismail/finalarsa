@@ -90,6 +90,49 @@ export function scenariosBarOption(s: { label: string; revenue: number }[]): ECh
   };
 }
 
+/* ---------- Senaryo bazında yıllık gelir patikası (hedef 2028) ---------- */
+export function scenarioLinesOption(data: {
+  years: string[];
+  targetYear: string;
+  scenarios: { label: string; revenue: number[] }[];
+}): EChartsCoreOption {
+  const colors = [C.warn, C.gold, C.grass];
+  return {
+    aria,
+    textStyle,
+    grid: { left: 8, right: 16, top: 40, bottom: 8, containLabel: true },
+    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT }, itemWidth: 14, itemHeight: 10 },
+    tooltip: {
+      ...tooltipBase,
+      trigger: "axis",
+      formatter: (ps: any) => `<b>${ps[0].axisValue}</b><br/>` + ps.map((p: any) => `${p.marker} ${p.seriesName}: <b>${fmt(p.value)}</b>`).join("<br/>"),
+    },
+    xAxis: { type: "category", boundaryGap: false, data: data.years, axisLabel, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
+    yAxis: { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
+    series: data.scenarios.map((s, i) => ({
+      name: s.label,
+      type: "line",
+      smooth: true,
+      symbol: "circle",
+      symbolSize: 7,
+      lineStyle: { color: colors[i], width: 3 },
+      itemStyle: { color: colors[i] },
+      data: s.revenue,
+      ...(i === 1
+        ? {
+            markLine: {
+              silent: true,
+              symbol: "none",
+              lineStyle: { type: "dashed", color: C.ink, width: 1.5 },
+              label: { formatter: `Hedef · ${data.targetYear}`, color: C.ink, fontFamily: FONT, fontWeight: 600, position: "insideEndTop" },
+              data: [{ xAxis: data.targetYear }],
+            },
+          }
+        : {}),
+    })),
+  };
+}
+
 /* ---------- Finansal kombine: gelir/gider bar + net çizgi ---------- */
 export function financialComboOption(y: FinancialYear[]): EChartsCoreOption {
   return {

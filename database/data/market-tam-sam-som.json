@@ -84,5 +84,91 @@
     "Zillow rental→sales ilk yıl %8 cross-sell",
     "Trendyol moda→elektronik ilk yıl %12",
     "1/10 çarpanı sektör ortalamasının alt bandı — muhafazakar"
-  ]
+  ],
+  "scenariosByYear": {
+    "years": [
+      "2026 H2",
+      "2027",
+      "2028",
+      "2029",
+      "2030",
+      "2031",
+      "2032"
+    ],
+    "targetYear": "2028",
+    "samBase": 346000000000,
+    "takeRate": 0.015,
+    "note": "Gelir = SAM payı × SAM (346 milyar ₺) × take rate (%1,5). 2026 H2 soft-launch (senaryodan bağımsız); hedef 2028'de tutturulur, sonrası plato.",
+    "scenarios": [
+      {
+        "label": "Kötümser",
+        "steadyRevenue": 259000000,
+        "steadyShare": 0.05,
+        "revenue": [
+          1409045,
+          130000000,
+          259000000,
+          259000000,
+          259000000,
+          259000000,
+          259000000
+        ],
+        "shareOfSam": [
+          0.0003,
+          0.025,
+          0.0499,
+          0.0499,
+          0.0499,
+          0.0499,
+          0.0499
+        ]
+      },
+      {
+        "label": "Medyan",
+        "steadyRevenue": 519000000,
+        "steadyShare": 0.1,
+        "revenue": [
+          1409045,
+          259000000,
+          519000000,
+          519000000,
+          519000000,
+          519000000,
+          519000000
+        ],
+        "shareOfSam": [
+          0.0003,
+          0.0499,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      },
+      {
+        "label": "İyimser",
+        "steadyRevenue": 823000000,
+        "steadyShare": 0.159,
+        "revenue": [
+          1409045,
+          415000000,
+          823000000,
+          823000000,
+          823000000,
+          823000000,
+          823000000
+        ],
+        "shareOfSam": [
+          0.0003,
+          0.08,
+          0.1586,
+          0.1586,
+          0.1586,
+          0.1586,
+          0.1586
+        ]
+      }
+    ]
+  }
 }
