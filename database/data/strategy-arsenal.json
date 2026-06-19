@@ -172,5 +172,10 @@
     "sources": 195,
     "duration": "25m 53s",
     "context": "arsam.net · sahibinden rakibi · Türkiye + diaspora"
+  },
+  "_verification": {
+    "verifiedAt": "2026-06-19",
+    "note": "F7/F8: Türkiye toplam ilçe sayısı 973'tür (922 yalnız kaymakamlıkla yönetilenler + 51 merkez ilçe). '~448.000 sayfa' 922 tabanıyla doğru; tüm ilçe tabanıyla 81×973×6≈472.878. Strateji çerçeveleri ve örnekler (Helmer/Chen/Wei/Levinson/Vanguard vb.) doğrulandı: tamamı DOĞRU.",
+    "weaponExamplesVerified": true
   }
 }

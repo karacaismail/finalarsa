@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 """
+!!! UYARI (19.06.2026): JSON dosyalarına bu builder'dan SONRA dış-kaynak doğrulama
+düzeltmeleri elle uygulandı (data/incentives.json, shared/metrics.json,
+data/strategy-arsenal.json; bkz. verification/dogrulama-raporu.md). Bu script'i yeniden
+çalıştırmak o düzeltmeleri GERİ ALIR. Regenerate edecekseniz önce düzeltmeleri buraya taşıyın.
+
 arsam.net pitch verisi -> yapısal JSON üretici (builder).
 Bu script tek kaynaktan (metrics) tutarlı JSON dosyaları üretir.
 Çıktı: database/ altında shared/, sections/, data/, schema/, manifest.json, reconciliation.json

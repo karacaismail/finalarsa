@@ -4,6 +4,10 @@
   "schemaVersion": "1.0.0",
   "lang": "tr",
   "description": "Türkiye devlet destekleri, teşvikleri ve hibeleri envanteri (Nisan 2026 itibarıyla).",
+  "_verification": {
+    "verifiedAt": "2026-06-19",
+    "note": "Bu dosya 19 Haziran 2026 doğrulama denetiminden geçti; objektif hatalar düzeltildi. Detay: verification/dogrulama-raporu.md. Düzeltilen kalemler: 1512→1812, 1507 tavan, 1501 oran, Sınai Mülkiyet, İTÜ ARI ücretleri."
+  },
   "profile": {
     "sector": "Emlak/arsa dikey pazaryeri",
     "model": "B2B2C ilan satış",
@@ -34,20 +38,22 @@
       "priority": 1
     },
     {
-      "name": "TÜBİTAK 1512 BİGG",
+      "name": "TÜBİTAK 1812 BiGG Yatırım (Tohum Öncesi)",
       "provider": "TÜBİTAK",
-      "amount": "1.350.000 ₺ (%3 hisse karşılığı, 2026)",
-      "requirement": "A.Ş. zorunlu",
-      "deadline": "10 Mayıs 2026 (2026/1)",
+      "amount": "1.350.000 ₺ (%3 hisse karşılığı, 2026-1); temiz teknoloji ilk 3 için 2.250.000 ₺/%5",
+      "requirement": "A.Ş. zorunlu · Mükemmeliyet Belgesi",
+      "deadline": "Aşama 2: 15 Haz–3 Tem 2026; girişimci belge son: ~10 Tem 2026",
       "fit": "Yüksek",
-      "priority": 2
+      "priority": 2,
+      "_verifiedNote": "DÜZELTİLDİ: 1.350.000 ₺/%3 değeri 1512 değil 1812 (BiGG Yatırım) programıdır. Klasik 1512 BİGG ≈ 900.000 ₺ hibe (hisse karşılığı değil). Önceki 'son tarih 10 Mayıs' yanlıştı (~10 Temmuz)."
     },
     {
       "name": "TÜBİTAK 1507 — KOBİ Ar-Ge Başlangıç",
       "provider": "TÜBİTAK",
-      "amount": "2.4 milyon ₺'ye kadar %75 hibe (geri ödemesiz)",
+      "amount": "~3.000.000–3.500.000 ₺'ye kadar %75 hibe (geri ödemesiz)",
       "fit": "Yüksek",
-      "priority": 3
+      "priority": 3,
+      "_verifiedNote": "DÜZELTİLDİ: %75 oran doğru; proje bütçe tavanı 2,4M ₺'den ~3,0–3,5M ₺'ye yükseltildi (2025-2026). Yalnız KOBİ sermaye şirketleri."
     },
     {
       "name": "KOSGEB İleri Girişimci",
@@ -69,7 +75,8 @@
     {
       "name": "TÜBİTAK 1501 — Sanayi Ar-Ge",
       "provider": "TÜBİTAK",
-      "amount": "%60 hibe (KOBİ) · max 24 ay"
+      "amount": "KOBİ %75 hibe · büyük kuruluş %60 · max 24 ay (gerekirse 36 ay)",
+      "_verifiedNote": "DÜZELTİLDİ (gerçek hata): KOBİ oranı %60 değil %75'tir; %60 büyük kuruluşlar içindir."
     },
     {
       "name": "TÜBİTAK 1711 — Yapay Zekâ Ekosistemi",
@@ -77,9 +84,10 @@
       "fit": "Orta-Yüksek (AI altyapı)"
     },
     {
-      "name": "KOSGEB Sınai Mülkiyet Hakları",
+      "name": "KOSGEB Sınai Mülkiyet (İş Geliştirme içinde)",
       "provider": "KOSGEB",
-      "amount": "%100 · üst limit 30.000 ₺ (yurtdışı marka %50 · 50.000 USD)"
+      "amount": "Sınai mülkiyet giderleri güncelde İş Geliştirme / İşletme Geliştirme Destek Programı kapsamında",
+      "_verifiedNote": "DÜZELTİLDİ: '%100 / 30.000 ₺' eski Genel Destek Programı değeriydi (kapatıldı). '%50 / 50.000 USD yurtdışı marka' KOSGEB değil, muhtemelen Ticaret Bakanlığı/Turquality desteğidir."
     },
     {
       "name": "Girişimci Kredisi",
@@ -95,9 +103,10 @@
   "argDecRade": {
     "argument": "~%88 kâr marjı üstüne kurumlar vergisi istisnası → yatırımcı IRR'si yükselir",
     "itu_ari": {
-      "girisimci": "18.500 ₺+KDV",
-      "kulucka": "7.350 ₺+KDV",
-      "rank": "#1 üniversite kuluçka (UBI Global)"
+      "girisimci": "13.950 ₺+KDV (tek seferlik başvuru ücreti)",
+      "kulucka": "5.550 ₺+KDV (TÜBİTAK/KOSGEB destekli proje: 3.750 ₺+KDV)",
+      "rank": "UBI Global #1 üniversite kuluçka unvanı İTÜ ARI'nin bünyesindeki İTÜ Çekirdek programına aittir",
+      "_verifiedNote": "DÜZELTİLDİ: Önceki 18.500/7.350 ₺ güncel değildi ve 'ofis kirası' değil tek seferlik BAŞVURU ücretidir; güncel resmî değerler 13.950/5.550 ₺+KDV."
     },
     "argeMerkeziVsTeknopark": "Ar-Ge Merkezi min. 15 tam zamanlı Ar-Ge personeli; Teknopark 1 kişi de olur → 18 kişiye kadar Teknopark"
   }
