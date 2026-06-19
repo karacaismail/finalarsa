@@ -30,29 +30,29 @@
       "type": "lead"
     },
     {
-      "title": "bu sayfayı 5 yatırımcı daha gördü. Açık {{metric:window.slots_open}} kaldı.",
-      "cells": [
+      "cols": 2,
+      "items": [
         {
-          "label": "slot",
-          "tone": "warn",
-          "type": "stat",
-          "valueRef": "window.slots_open",
-          "sub": "/ {{metric:window.slots_total}}"
-        },
-        {
-          "label": "kapanma",
+          "label": "Pencere kapanışı",
           "tone": "gold",
           "type": "stat",
-          "valueRef": "window.close"
+          "valueRef": "window.close",
+          "sub": "ulusal kampanya · sonrası valuation katlanır"
         },
         {
-          "label": "başabaş",
+          "label": "Operasyonel başabaş",
           "tone": "accent",
           "type": "stat",
-          "valueRef": "fin.breakeven_months"
+          "valueRef": "fin.breakeven_months",
+          "sub": "bu noktadan sonra net pozitif"
         }
       ],
-      "type": "crisisBox"
+      "type": "statGrid"
+    },
+    {
+      "text": "Bu sunum size özel hazırlandı; tek muhatapla ilerliyoruz. Karar ve zamanlama sizde.",
+      "tone": "accent",
+      "type": "note"
     },
     {
       "targetRef": "window.countdown_target",
@@ -103,8 +103,7 @@
     "metrics": [
       "fin.breakeven_months",
       "window.close",
-      "window.slots_open",
-      "window.slots_total"
+      "window.countdown_target"
     ]
   }
 }

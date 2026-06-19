@@ -600,7 +600,7 @@
       "value": 519000000,
       "unit": "ziyaretçi",
       "display": "519 milyon",
-      "label": "sahibinden yıllık ziyaretçi (retorik)",
+      "label": "sahibinden aylık ziyaret (visits; tekil kullanıcı ~63M/ay)",
       "note": "revenue.median (519M ₺) ile aynı rakam ama FARKLI birim/anlam — ziyaretçi vs gelir.",
       "verificationNote": "F2 (KISMEN): 519M = AYLIK ZİYARET (visits), yıllık ziyaretçi değil; tekil kullanıcı ~63M/ay; güncel ~548-560M/ay."
     },

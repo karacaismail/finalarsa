@@ -43,7 +43,7 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
     case "eyebrow":
       return (
         <P color="grass" fontWeight="bold" textTransform="uppercase" letterSpacing="0.06em" fontSize="md">
-          {b.text}
+          {interpolate(b.text)}
         </P>
       );
 
@@ -412,7 +412,7 @@ function CardInner({ b }: { b: Block }) {
     <Stack gap="2">
       {b.eyebrow && (
         <P fontSize="md" color={txt(b.tone as string) === "ink" ? "inkMuted" : txt(b.tone as string)} fontWeight="medium" textTransform="uppercase" letterSpacing="0.04em">
-          {b.eyebrow as string}
+          {interpolate(b.eyebrow as string)}
         </P>
       )}
       {(b.valueRef || b.value != null) && (

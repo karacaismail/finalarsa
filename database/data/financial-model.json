@@ -103,7 +103,8 @@
     "officeDeposit_months": 3,
     "initialCapital": 40000000,
     "welcomePackagePerPerson": 5950,
-    "capexFirstMonth": 2863100
+    "capexFirstMonth": 2863100,
+    "_verifiedNote": "19.06.2026 doğrulama: usdtry başlangıç 44,50 güncel değil (gerçek ~46,36); employerMultiplier 1,34 fazla (gerçek yasal ek yük %22,75 → ~1,2375, muhafazakar yön). Değerler modelin orijinal projeksiyonunu korumak için değiştirilmedi; bkz. verification/dogrulama-raporu.md"
   },
   "pricing": {
     "premiumAnnual": 90000,

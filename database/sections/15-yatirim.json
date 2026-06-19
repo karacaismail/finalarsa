@@ -60,7 +60,7 @@
       "type": "cardGrid"
     },
     {
-      "text": "Valuation referansı: emlakjet 2024 turu 28M $ post-money @ ~5M $ gelir. Biz {{metric:fin.projection_months}}lık projeksiyonda 4 yıl sonra {{metric:invest.revenue_multiple}}.",
+      "text": "Biz {{metric:fin.projection_months}}lık projeksiyonda 4 yıl sonra {{metric:invest.revenue_multiple}}. (Kıyas: emlak teknolojisinde geç-aşama turlarda kamuya açık valuation verisi sınırlıdır; bu yüzden çarpan kendi modelimize dayanır.)",
       "tone": "info",
       "type": "note"
     }

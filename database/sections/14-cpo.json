@@ -11,8 +11,8 @@
   },
   "background": "bg-2",
   "title": {
-    "text": "Tam odak için iki şart",
-    "accent": "iki şart"
+    "text": "Tam odak için üç şart",
+    "accent": "üç şart"
   },
   "blocks": [
     {
@@ -21,16 +21,16 @@
     },
     {
       "level": 2,
-      "text": "Tam odak için iki şart.",
-      "accent": "iki şart",
+      "text": "Tam odak için üç şart.",
+      "accent": "üç şart",
       "type": "heading"
     },
     {
-      "text": "Şeffaf olmayı tercih ediyorum. Çalışma şartlarım iki maddeden ibaret.",
+      "text": "Şeffaf olmayı tercih ediyorum. Çalışma şartlarım üç maddeden ibaret.",
       "type": "lead"
     },
     {
-      "cols": 2,
+      "cols": 3,
       "items": [
         {
           "label": "Aylık sabit maaş · plan baz",
@@ -45,12 +45,19 @@
           "type": "stat",
           "valueRef": "cpo.car",
           "sub": "veya benzer segment bir araç"
+        },
+        {
+          "label": "Özel sağlık sigortası",
+          "tone": "accent",
+          "type": "stat",
+          "value": "Aile dahil",
+          "sub": "genel, tam kapsamlı özel sağlık sigortası"
         }
       ],
       "type": "statGrid"
     },
     {
-      "text": "Bu projeye tam odaklanmam, mevcut işlerimden tamamen ayrılmam anlamına gelir. Bu adımdan sonra tek gelirim bu projeden olacak; mevcut aracımı da şirkete devrediyorum. Bir araç tahsisini açıkça rica ediyorum. Maaş plan baz; araç ise bir rica — takdir sizindir.",
+      "text": "Bu projeye tam odaklanmam, mevcut işlerimden tamamen ayrılmam anlamına gelir. Bu adımdan sonra tek gelirim bu projeden olacak; mevcut aracımı da şirkete devrediyorum. Açıkça rica ettiklerim: bir araç tahsisi ve aileyi de kapsayan genel, tam kapsamlı özel sağlık sigortası. Maaş plan baz; araç ve sağlık sigortası ise rica — takdir sizindir.",
       "tone": "accent",
       "type": "note"
     },

@@ -20,13 +20,13 @@
       "type": "eyebrow"
     },
     {
-      "text": "sahibinden {{metric:competitor.sahibinden_visitors}} ziyaretçiyle gelir. Biz tek bir gerillayla giriyoruz.",
+      "text": "sahibinden {{metric:competitor.sahibinden_visitors}} aylık ziyaretle gelir. Biz tek bir gerillayla giriyoruz.",
       "cite": null,
       "type": "quote"
     },
     {
       "level": 1,
-      "text": "sahibinden {{metric:competitor.sahibinden_visitors}} ziyaretçiyle gelir. Biz tek bir gerillayla giriyoruz.",
+      "text": "sahibinden {{metric:competitor.sahibinden_visitors}} aylık ziyaretle gelir. Biz tek bir gerillayla giriyoruz.",
       "accent": "tek bir gerillayla",
       "type": "heading"
     },
