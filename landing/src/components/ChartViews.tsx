@@ -7,6 +7,7 @@ import { Dd, Dl, Dt, Flex, Grid, H3, P, Stack, Tbl, Tbody, Td, Th, Thead, Tr } f
 const trNum = (n: number) => n.toLocaleString("tr-TR");
 function fmtShort(n: number): string {
   const a = Math.abs(n);
+  if (a >= 1e12) return `${(n / 1e12).toLocaleString("tr-TR", { maximumFractionDigits: 2 })} trilyon ₺`;
   if (a >= 1e9) return `${(n / 1e9).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} milyar ₺`;
   if (a >= 1e6) return `${Math.round(n / 1e6).toLocaleString("tr-TR")} milyon ₺`;
   if (a >= 1e3) return `${Math.round(n / 1e3).toLocaleString("tr-TR")} bin ₺`;
