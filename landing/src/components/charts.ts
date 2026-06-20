@@ -16,8 +16,12 @@ const C = {
 };
 
 const FONT = "'Roboto', system-ui, sans-serif";
-const textStyle = { fontFamily: FONT, color: C.ink, fontSize: 13 };
-const axisLabel = { color: C.inkMuted, fontFamily: FONT, fontSize: 12 };
+// Ölçüt: tüm grafik metni en az 1rem (16px). Üstü orantılı, AA-uyumlu.
+const LBL = 16;
+const textStyle = { fontFamily: FONT, color: C.ink, fontSize: LBL };
+const axisLabel = { color: C.inkMuted, fontFamily: FONT, fontSize: LBL };
+const nameStyle = { color: C.inkMuted, fontFamily: FONT, fontSize: LBL };
+const legendStyle = { color: C.inkMuted, fontFamily: FONT, fontSize: LBL };
 const splitLine = { lineStyle: { color: C.line } };
 const aria = { enabled: true };
 
@@ -34,7 +38,7 @@ const tooltipBase = {
   backgroundColor: "#ffffff",
   borderColor: C.line,
   borderWidth: 1,
-  textStyle: { color: C.ink, fontFamily: FONT },
+  textStyle: { color: C.ink, fontFamily: FONT, fontSize: LBL },
   extraCssText: "box-shadow:0 4px 16px rgba(0,0,0,.08);border-radius:8px;",
 };
 
@@ -60,7 +64,7 @@ export function marketFunnelOption(f: { tam: number; sam: number; som: number; r
         sort: "descending",
         gap: 4,
         funnelAlign: "center",
-        label: { show: true, position: "inside", color: "#fff", fontFamily: FONT, fontWeight: 600, formatter: (p: any) => fmt(p.data.real) },
+        label: { show: true, position: "inside", color: "#fff", fontFamily: FONT, fontWeight: 600, fontSize: LBL, formatter: (p: any) => fmt(p.data.real) },
         labelLine: { show: false },
         itemStyle: { borderWidth: 0 },
         color: [C.grass, C.grassBright, "#9ccc65", C.gold],
@@ -84,7 +88,7 @@ export function scenariosBarOption(s: { label: string; revenue: number }[]): ECh
         type: "bar",
         barWidth: "46%",
         data: s.map((x, i) => ({ value: x.revenue, itemStyle: { color: [C.warn, C.gold, C.grass][i] ?? C.grass, borderRadius: [6, 6, 0, 0] } })),
-        label: { show: true, position: "top", formatter: (p: any) => fmt(p.value), color: C.ink, fontFamily: FONT, fontWeight: 600 },
+        label: { show: true, position: "top", formatter: (p: any) => fmt(p.value), color: C.ink, fontFamily: FONT, fontWeight: 600, fontSize: LBL },
       },
     ],
   };
@@ -101,7 +105,7 @@ export function scenarioLinesOption(data: {
     aria,
     textStyle,
     grid: { left: 8, right: 16, top: 40, bottom: 8, containLabel: true },
-    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT }, itemWidth: 14, itemHeight: 10 },
+    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL }, itemWidth: 14, itemHeight: 10 },
     tooltip: {
       ...tooltipBase,
       trigger: "axis",
@@ -124,7 +128,7 @@ export function scenarioLinesOption(data: {
               silent: true,
               symbol: "none",
               lineStyle: { type: "dashed", color: C.ink, width: 1.5 },
-              label: { formatter: `Hedef · ${data.targetYear}`, color: C.ink, fontFamily: FONT, fontWeight: 600, position: "insideEndTop" },
+              label: { formatter: `Hedef · ${data.targetYear}`, color: C.ink, fontFamily: FONT, fontWeight: 600, fontSize: LBL, position: "insideEndTop" },
               data: [{ xAxis: data.targetYear }],
             },
           }
@@ -139,7 +143,7 @@ export function financialComboOption(y: FinancialYear[]): EChartsCoreOption {
     aria,
     textStyle,
     grid: { left: 8, right: 16, top: 40, bottom: 8, containLabel: true },
-    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT }, itemWidth: 14, itemHeight: 10 },
+    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL }, itemWidth: 14, itemHeight: 10 },
     tooltip: { ...tooltipBase, trigger: "axis", formatter: (ps: any) => `<b>${ps[0].axisValue}</b><br/>` + ps.map((p: any) => `${p.marker} ${p.seriesName}: <b>${fmt(p.value)}</b>`).join("<br/>") },
     xAxis: { type: "category", data: y.map((d) => d.year), axisLabel, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
     yAxis: { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
@@ -157,7 +161,7 @@ export function cashHeadcountOption(y: FinancialYear[]): EChartsCoreOption {
     aria,
     textStyle,
     grid: { left: 8, right: 16, top: 40, bottom: 8, containLabel: true },
-    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT }, itemWidth: 14, itemHeight: 10 },
+    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL }, itemWidth: 14, itemHeight: 10 },
     tooltip: {
       ...tooltipBase,
       trigger: "axis",
@@ -168,7 +172,7 @@ export function cashHeadcountOption(y: FinancialYear[]): EChartsCoreOption {
     xAxis: { type: "category", data: y.map((d) => d.year), axisLabel, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
     yAxis: [
       { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
-      { type: "value", name: "kişi", position: "right", axisLabel: { ...axisLabel, formatter: "{value}" }, splitLine: { show: false }, nameTextStyle: { color: C.inkMuted, fontFamily: FONT } },
+      { type: "value", name: "kişi", position: "right", axisLabel: { ...axisLabel, formatter: "{value}" }, splitLine: { show: false }, nameTextStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL } },
     ],
     series: [
       {
@@ -214,7 +218,7 @@ export function marginOption(y: FinancialYear[]): EChartsCoreOption {
         lineStyle: { color: C.gold, width: 3 },
         itemStyle: { color: C.gold },
         areaStyle: { color: "rgba(204,153,0,0.12)" },
-        label: { show: true, formatter: (p: any) => `%${p.value}`, color: C.goldText, fontFamily: FONT, fontWeight: 600, position: "top" },
+        label: { show: true, formatter: (p: any) => `%${p.value}`, color: C.goldText, fontFamily: FONT, fontWeight: 600, fontSize: LBL, position: "top" },
         data: rows.map((d) => Math.round((d.net / d.revenue) * 100)),
       },
     ],
@@ -229,14 +233,14 @@ export function headcountGrowthOption(rows: { year: string; count: number }[]): 
     grid: { left: 8, right: 16, top: 24, bottom: 8, containLabel: true },
     tooltip: { ...tooltipBase, trigger: "axis", formatter: (p: any) => `<b>${p[0].axisValue}</b><br/>${p[0].value} kişi` },
     xAxis: { type: "category", data: rows.map((r) => r.year), axisLabel, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
-    yAxis: { type: "value", name: "kişi", axisLabel, splitLine, nameTextStyle: { color: C.inkMuted, fontFamily: FONT } },
+    yAxis: { type: "value", name: "kişi", axisLabel, splitLine, nameTextStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL } },
     series: [
       {
         type: "bar",
         barWidth: "52%",
         data: rows.map((r) => r.count),
         itemStyle: { color: C.grassBright, borderRadius: [6, 6, 0, 0] },
-        label: { show: true, position: "top", formatter: (p: any) => `${p.value}`, color: C.ink, fontFamily: FONT, fontWeight: 600 },
+        label: { show: true, position: "top", formatter: (p: any) => `${p.value}`, color: C.ink, fontFamily: FONT, fontWeight: 600, fontSize: LBL },
       },
     ],
   };
@@ -281,7 +285,7 @@ export function basabasWaterfallOption(steps: { name: string; delta: number; kin
         stack: "wf",
         data: values.map((v, i) => ({ value: v, itemStyle: { color: colors[i], borderRadius: [4, 4, 0, 0] } })),
         barWidth: "52%",
-        label: { show: true, position: "top", formatter: (p: any) => fmt(Math.abs(steps[p.dataIndex].kind === "down" ? steps[p.dataIndex].delta : p.value)), color: C.ink, fontFamily: FONT, fontWeight: 600 },
+        label: { show: true, position: "top", formatter: (p: any) => fmt(Math.abs(steps[p.dataIndex].kind === "down" ? steps[p.dataIndex].delta : p.value)), color: C.ink, fontFamily: FONT, fontWeight: 600, fontSize: LBL },
       },
     ],
   };
@@ -293,7 +297,7 @@ export function monthlyEarlyOption(rows: { label: string; gelir: number; gider: 
     aria,
     textStyle,
     grid: { left: 8, right: 8, top: 40, bottom: 8, containLabel: true },
-    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT }, itemWidth: 14, itemHeight: 10 },
+    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL }, itemWidth: 14, itemHeight: 10 },
     tooltip: {
       ...tooltipBase,
       trigger: "axis",
@@ -302,7 +306,7 @@ export function monthlyEarlyOption(rows: { label: string; gelir: number; gider: 
     xAxis: {
       type: "category",
       data: rows.map((r) => r.label),
-      axisLabel: { ...axisLabel, fontSize: 10, interval: 2, rotate: 45 },
+      axisLabel: { ...axisLabel, interval: 5, rotate: 30 },
       axisLine: { lineStyle: { color: C.line } },
       axisTick: { show: false },
     },
@@ -333,10 +337,10 @@ export function aiDeptOption(d: { dept: string; without: number; with: number }[
     aria,
     textStyle,
     grid: { left: 8, right: 24, top: 36, bottom: 8, containLabel: true },
-    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT }, itemWidth: 14, itemHeight: 10 },
+    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL }, itemWidth: 14, itemHeight: 10 },
     tooltip: { ...tooltipBase, trigger: "axis", axisPointer: { type: "shadow" } },
-    xAxis: { type: "value", axisLabel, splitLine, name: "kişi (FTE)", nameLocation: "end", nameTextStyle: { color: C.inkMuted, fontFamily: FONT } },
-    yAxis: { type: "category", data: d.map((x) => x.dept), axisLabel: { ...axisLabel, fontSize: 11 }, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
+    xAxis: { type: "value", axisLabel, splitLine, name: "kişi (FTE)", nameLocation: "end", nameTextStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL } },
+    yAxis: { type: "category", data: d.map((x) => x.dept), axisLabel: { ...axisLabel }, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
     series: [
       { name: "AI'sız", type: "bar", data: d.map((x) => x.without), itemStyle: { color: C.inkMuted, borderRadius: [0, 4, 4, 0] }, barGap: "10%" },
       { name: "AI ile", type: "bar", data: d.map((x) => x.with), itemStyle: { color: C.grass, borderRadius: [0, 4, 4, 0] } },
