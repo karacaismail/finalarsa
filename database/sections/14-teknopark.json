@@ -11,8 +11,8 @@
   },
   "background": "bg-2",
   "title": {
-    "text": "Uygunluk halinde teşvik avantajı doğar",
-    "accent": "uygunluk halinde"
+    "text": "Şartlar sağlandığında vergi avantajı kesindir",
+    "accent": "kesindir"
   },
   "blocks": [
     {
@@ -21,12 +21,12 @@
     },
     {
       "level": 2,
-      "text": "Uygunluk halinde teşvik avantajı doğar.",
-      "accent": "uygunluk halinde",
+      "text": "Şartlar sağlandığında vergi avantajı kesindir.",
+      "accent": "kesindir",
       "type": "heading"
     },
     {
-      "text": "Şirket uygun proje kabulüyle teknopark çatısına alınırsa, yazılım gelirlerinde 4691 kapsamlı vergi avantajı doğar.",
+      "text": "Şirket teknopark çatısına alınıp aşağıdaki şartları sağladığında, yazılım gelirlerinde 4691 kapsamlı vergi avantajı yasal olarak doğar. Avantajın mekanizması kesindir; değişen tek şey kazanç düzeyine bağlı tutardır.",
       "tone": "accent",
       "type": "note"
     },
@@ -59,10 +59,10 @@
       "type": "statGrid"
     },
     {
-      "title": "İlk yıl modelde dikkate alınan avantaj",
+      "title": "İlk yıl avantajı (model tahmini)",
       "tone": "gold",
       "type": "card",
-      "body": "Uygunluğa bağlıdır; kesin tasarruf değildir. İstisna süresi 31/12/2028.",
+      "body": "Mekanizma yasal ve kesin; ₺ tutarı kazanç düzeyine bağlı olduğu için model tahminidir. İstisna süresi 31/12/2028.",
       "eyebrow": "~2027",
       "valueRef": "tax.saving_2027",
       "tag": "model varsayımı"
@@ -93,14 +93,14 @@
         },
         {
           "title": "Süre",
-          "body": "Tüm avantajlar 31/12/2028'e kadar geçerli; tarihsel olarak uzatılmış ama uzaması kesin değildir.",
+          "body": "Tüm avantajlar 31/12/2028'e kadar yasaldır; süre 2013 → 2023 → 2028 olarak uzatıldı, sonrası için yeni uzatma kararı beklenir.",
           "num": "04"
         }
       ],
       "type": "list"
     },
     {
-      "text": "Burada 'kesin tasarruf' denmez; uygunluğa ve yukarıdaki şartlara bağlı, modelde dikkate alınan avantajdır.",
+      "text": "Vergi avantajının mekanizması yasal ve kesindir. Yandaki ₺ tutarı kazanç düzeyine bağlı bir model tahminidir; şartlar sağlandığında avantajın kendisi kesin doğar.",
       "tone": "info",
       "type": "note"
     }

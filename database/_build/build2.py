@@ -294,25 +294,25 @@ section(13, "risk", "13", "Risk", "bg-1",
 
 # ============ 14 · Teknopark ve teşvik ============
 section(14, "teknopark", "14", "Teknopark", "bg-2",
-    {"text": "Uygunluk halinde teşvik avantajı doğar", "accent": "uygunluk halinde"},
+    {"text": "Şartlar sağlandığında vergi avantajı kesindir", "accent": "kesindir"},
     [
         eyebrow("teknopark ve teşvik · 14 / " + TOTAL),
-        heading(2, "Uygunluk halinde teşvik avantajı doğar.", accent="uygunluk halinde"),
-        note("Şirket uygun proje kabulüyle teknopark çatısına alınırsa, yazılım gelirlerinde 4691 kapsamlı vergi avantajı doğar.", tone="accent"),
+        heading(2, "Şartlar sağlandığında vergi avantajı kesindir.", accent="kesindir"),
+        note("Şirket teknopark çatısına alınıp aşağıdaki şartları sağladığında, yazılım gelirlerinde 4691 kapsamlı vergi avantajı yasal olarak doğar. Avantajın mekanizması kesindir; değişen tek şey kazanç düzeyine bağlı tutardır.", tone="accent"),
         statGrid(3, [
             stat("Kurumlar vergisi istisnası", ref="tax.corporate_rate", tone="gold", tag=DOG),
             stat("Ar-Ge personel gelir vergisi", ref="tax.income_withholding", tone="gold", sub="stopaj istisnası (tavanlı)", tag=DOG),
             stat("SGK işveren payı desteği", ref="tax.sgk_employer", tone="gold", tag=DOG),
         ]),
-        card("İlk yıl modelde dikkate alınan avantaj", "Uygunluğa bağlıdır; kesin tasarruf değildir. İstisna süresi 31/12/2028.", eyebrow="~2027", tone="gold", valueRef="tax.saving_2027", tag=VAR),
+        card("İlk yıl avantajı (model tahmini)", "Mekanizma yasal ve kesin; ₺ tutarı kazanç düzeyine bağlı olduğu için model tahminidir. İstisna süresi 31/12/2028.", eyebrow="~2027", tone="gold", valueRef="tax.saving_2027", tag=VAR),
         heading(3, "Avantajın şartları"),
         listb([
             li("Teknoparka kabul", "Yönetici şirkete proje başvurusu ve kabul; kazancın münhasıran onaylı yazılım/Ar-Ge faaliyetinden olması.", num="01"),
             li("Kurumlar vergisi yatırım yükümlülüğü", "İstisna kazanç eşiğin (2025: 2 milyon ₺) üstündeyse bir kısmı (≈%3, yıllık tavan 100 milyon ₺) yıl sonuna kadar girişim sermayesi fonuna veya kuluçka girişimine yatırılmalı; aksi halde istisnanın o kısmı kaybedilir.", num="02"),
             li("Stopaj tavanı ve oranlar", "Kişi başı aylık brüt asgari ücretin 40 katı tavanı (7555 sayılı Kanun, Ağu 2025); destek personeli %10 sınırı; bölge dışı çalışma oranı (BT personeli 2026 sonuna kadar %100).", num="03"),
-            li("Süre", "Tüm avantajlar 31/12/2028'e kadar geçerli; tarihsel olarak uzatılmış ama uzaması kesin değildir.", num="04"),
+            li("Süre", "Tüm avantajlar 31/12/2028'e kadar yasaldır; süre 2013 → 2023 → 2028 olarak uzatıldı, sonrası için yeni uzatma kararı beklenir.", num="04"),
         ]),
-        note("Burada 'kesin tasarruf' denmez; uygunluğa ve yukarıdaki şartlara bağlı, modelde dikkate alınan avantajdır."),
+        note("Vergi avantajının mekanizması yasal ve kesindir. Yandaki ₺ tutarı kazanç düzeyine bağlı bir model tahminidir; şartlar sağlandığında avantajın kendisi kesin doğar."),
     ], refs={"shared": ["sources"], "sources": ["kanun-4691"], "data": ["incentives"], "glossary": ["4691"]})
 
 # ============ 15 · CPO çalışma şartları ============
