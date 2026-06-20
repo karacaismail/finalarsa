@@ -1,0 +1,133 @@
+{
+  "id": "pazar",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 6,
+  "slug": "pazar",
+  "nav": {
+    "num": "06",
+    "label": "Pazar"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "Pazar büyük; biz ölçülü bir dilim hedefliyoruz",
+    "accent": "ölçülü bir dilim"
+  },
+  "blocks": [
+    {
+      "text": "pazar ve varsayımlar · 06 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Pazar büyük; biz ölçülü bir dilim hedefliyoruz.",
+      "accent": "ölçülü bir dilim",
+      "type": "heading"
+    },
+    {
+      "text": "Resmi veriyi, model varsayımını ve hedefi ayrı tutuyoruz; her rakamın türünü etiketliyoruz.",
+      "type": "lead"
+    },
+    {
+      "type": "claimLegend"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "label": "2024 toplam taşınmaz satışı",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "market.total_realestate_2024",
+          "tag": "doğrulanmış kaynak"
+        },
+        {
+          "label": "Arsa + tarla + ticari",
+          "tone": "accent",
+          "type": "stat",
+          "valueRef": "market.land_commercial_2024",
+          "tag": "doğrulanmış kaynak"
+        },
+        {
+          "label": "Konut",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "market.housing_2024",
+          "tag": "doğrulanmış kaynak"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "text": "Değer hunisi · Türkçesiyle: TAM = toplam pazar, SAM = dijitale açık pazar, SOM = ulaşılabilir hedef pazar.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "chartType": "funnel",
+      "dataRef": "market-tam-sam-som",
+      "caption": "Toplam pazardan ulaşılabilir hedefe",
+      "type": "chart"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "label": "Toplam pazar (TAM)",
+          "tone": "gold",
+          "type": "stat",
+          "valueRef": "market.tam_try",
+          "sub": "ortalama işlem değerine dayanır",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "Ulaşılabilir hedef gelir (medyan)",
+          "tone": "accent",
+          "type": "stat",
+          "valueRef": "revenue.median",
+          "sub": "online arsa payı %10 · take rate {{metric:market.take_rate}}",
+          "tag": "hedef"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "chartType": "scenarioYears",
+      "dataRef": "market-tam-sam-som",
+      "caption": "Senaryo bazında yıllık gelir hedefi · 2028'de tutturulur",
+      "type": "chart"
+    },
+    {
+      "text": "TKGM/TÜİK işlem adetleri doğrulanmış kaynaktır; online penetrasyon, ortalama arsa işlem değeri ve pazar payı model varsayımıdır.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "sources",
+      "glossary"
+    ],
+    "sources": [
+      "tkgm-2024",
+      "tuik-2024"
+    ],
+    "data": [
+      "market-tam-sam-som"
+    ],
+    "glossary": [
+      "TAM",
+      "SAM",
+      "SOM"
+    ],
+    "metrics": [
+      "market.housing_2024",
+      "market.land_commercial_2024",
+      "market.take_rate",
+      "market.tam_try",
+      "market.total_realestate_2024",
+      "revenue.median"
+    ]
+  }
+}

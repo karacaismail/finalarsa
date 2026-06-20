@@ -1,0 +1,78 @@
+{
+  "id": "cozum",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 5,
+  "slug": "cozum",
+  "nav": {
+    "num": "05",
+    "label": "Çözüm"
+  },
+  "background": "bg-1",
+  "title": {
+    "text": "Tek panel, tek güven dosyası",
+    "accent": "güven dosyası"
+  },
+  "blocks": [
+    {
+      "text": "çözüm · 05 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Tek panel, tek güven dosyası.",
+      "accent": "güven dosyası",
+      "type": "heading"
+    },
+    {
+      "text": "İlan sayfası yalnızca fotoğraf göstermez; parselin güven dosyasını gösterir.",
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "chartType": "panelMock",
+      "dataRef": "brand",
+      "caption": "İlan güven dosyası · örnek panel",
+      "type": "chart"
+    },
+    {
+      "ordered": false,
+      "items": [
+        {
+          "title": "İlan kimliği ve yetki doğrulama",
+          "body": "İlan sahibi ve ilan, EİDS uyumlu biçimde doğrulanır.",
+          "num": "01"
+        },
+        {
+          "title": "Parsel, konum ve imar katmanı",
+          "body": "Kadastro ve imar bilgisi haritada tek ekranda.",
+          "num": "02"
+        },
+        {
+          "title": "Emsal fiyat ve bölgesel m² aralığı",
+          "body": "Fiyat, bölgesel emsalle şeffaflaşır.",
+          "num": "03"
+        },
+        {
+          "title": "Drone ve yerinde keşif materyali",
+          "body": "Premium ilanda arsa gerçekten görünür.",
+          "num": "04"
+        },
+        {
+          "title": "Kapora ve ön ödeme güven protokolü",
+          "body": "Bedel, tapu transferine kadar güvende kalır.",
+          "num": "05"
+        }
+      ],
+      "type": "list"
+    }
+  ],
+  "refs": {
+    "glossary": [
+      "EİDS",
+      "TAKBİS"
+    ],
+    "metrics": []
+  }
+}

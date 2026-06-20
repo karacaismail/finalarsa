@@ -1,0 +1,81 @@
+{
+  "id": "cpo",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 15,
+  "slug": "cpo",
+  "nav": {
+    "num": "15",
+    "label": "CPO"
+  },
+  "background": "bg-3",
+  "title": {
+    "text": "Tam zamanlı odak çalışma varsayımı",
+    "accent": "tam zamanlı odak"
+  },
+  "blocks": [
+    {
+      "text": "CPO çalışma şartları · 15 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Tam zamanlı odak çalışma varsayımı.",
+      "accent": "tam zamanlı odak",
+      "type": "heading"
+    },
+    {
+      "text": "Bu rol, mevcut işlerden ayrılarak tam zamanlı odak gerektirir. Bu nedenle modelde CPO için sabit ücret, mobilite ve aile dahil tam kapsamlı özel sağlık sigortası çalışma varsayımı olarak tanımlanmıştır.",
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "label": "Aylık sabit ücret",
+          "tone": "accent",
+          "type": "stat",
+          "valueRef": "cpo.salary_usd",
+          "sub": "USD / ay · plan baz",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "Mobilite",
+          "tone": "gold",
+          "type": "stat",
+          "valueRef": "cpo.car",
+          "sub": "araç tahsisi veya eşdeğer çözüm",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "Özel sağlık sigortası",
+          "tone": null,
+          "type": "stat",
+          "value": "Aile dahil",
+          "sub": "genel, tam kapsamlı",
+          "tag": "model varsayımı"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "text": "Bu kalemlerin nihai biçimi ortak kararınızla netleşebilir; fakat model bu maliyeti baştan içerir.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "brand"
+    ],
+    "data": [
+      "financial-model"
+    ],
+    "metrics": [
+      "cpo.car",
+      "cpo.salary_usd"
+    ]
+  }
+}

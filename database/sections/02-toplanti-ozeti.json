@@ -1,0 +1,66 @@
+{
+  "id": "toplanti-ozeti",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 2,
+  "slug": "toplanti-ozeti",
+  "nav": {
+    "num": "02",
+    "label": "Süreç"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "Bugüne kadar ne konuştuk?",
+    "accent": "ne konuştuk"
+  },
+  "blocks": [
+    {
+      "text": "süreç · 02 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Bugüne kadar ne konuştuk?",
+      "accent": "ne konuştuk",
+      "type": "heading"
+    },
+    {
+      "text": "Üç görüşmede ürün, strateji ve finansal plan konuşuldu. Bugün karar adımındayız.",
+      "type": "lead"
+    },
+    {
+      "items": [
+        {
+          "when": "Görüşme 1",
+          "what": "arsam.net'in bir web sitesi değil, arsa satışında dikey bir pazar işletmesi (B2B2C) olduğu konuşuldu.",
+          "state": "done"
+        },
+        {
+          "when": "Görüşme 2",
+          "what": "Ürün, yönetim süreci ve pazara giriş planı konuşuldu.",
+          "state": "done"
+        },
+        {
+          "when": "Görüşme 3",
+          "what": "Finansal plan, gider, gelir, senaryo ve çalışma modeli konuşuldu.",
+          "state": "done"
+        },
+        {
+          "when": "Bugün",
+          "what": "Başabaş, insan kaynağı, yan haklar, yatırım seçeneği ve karar adımı.",
+          "state": "now"
+        }
+      ],
+      "type": "timeline"
+    },
+    {
+      "text": "Bu özet, sürecin baştan ciddiyetle yürütüldüğünü gösterir.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "metrics": []
+  }
+}

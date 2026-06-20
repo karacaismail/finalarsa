@@ -12,33 +12,34 @@
     "meta": "manifest + reconciliation + schema"
   },
   "sectionOrder": [
-    "hero",
+    "karar-notu",
+    "toplanti-ozeti",
+    "neden-ortak",
     "problem",
+    "cozum",
     "pazar",
-    "urun",
     "model",
-    "strateji",
-    "cephane",
-    "kopru",
-    "bootstrap",
-    "teknopark",
-    "roadmap",
+    "gtm",
     "rekabet",
-    "finansal",
+    "ai-operasyon",
+    "ik-plani",
+    "basabas",
+    "risk",
+    "teknopark",
     "cpo",
     "yatirim",
-    "kapanis"
+    "ilk-30-gun"
   ],
   "sections": [
     {
       "order": 1,
-      "slug": "hero",
-      "file": "sections/01-hero.json",
+      "slug": "karar-notu",
+      "file": "sections/01-karar-notu.json",
       "nav": {
         "num": "01",
-        "label": "Hero"
+        "label": "Karar notu"
       },
-      "title": "Türkiye'nin ilk dikey arsa pazaryeri",
+      "title": "Arsa işini dijitalde güvenli, ölçülebilir ve ölçeklenebilir bir işletmeye çevirme planı",
       "refs": {
         "shared": [
           "brand"
@@ -48,17 +49,43 @@
     },
     {
       "order": 2,
-      "slug": "problem",
-      "file": "sections/02-problem.json",
+      "slug": "toplanti-ozeti",
+      "file": "sections/02-toplanti-ozeti.json",
       "nav": {
         "num": "02",
-        "label": "Problem"
+        "label": "Süreç"
       },
-      "title": "Arsa almak tehlikeli",
+      "title": "Bugüne kadar ne konuştuk?",
+      "refs": {
+        "metrics": []
+      }
+    },
+    {
+      "order": 3,
+      "slug": "neden-ortak",
+      "file": "sections/03-neden-ortak.json",
+      "nav": {
+        "num": "03",
+        "label": "Ortaklık"
+      },
+      "title": "Neden doğru ortak sizsiniz?",
       "refs": {
         "shared": [
-          "glossary"
+          "brand"
         ],
+        "metrics": []
+      }
+    },
+    {
+      "order": 4,
+      "slug": "problem",
+      "file": "sections/04-problem.json",
+      "nav": {
+        "num": "04",
+        "label": "Problem"
+      },
+      "title": "Arsa, dijitalde güven maliyeti yüksek bir üründür",
+      "refs": {
         "glossary": [
           "EİDS"
         ],
@@ -66,61 +93,14 @@
       }
     },
     {
-      "order": 3,
-      "slug": "pazar",
-      "file": "sections/03-pazar.json",
+      "order": 5,
+      "slug": "cozum",
+      "file": "sections/05-cozum.json",
       "nav": {
-        "num": "03",
-        "label": "Pazar"
+        "num": "05",
+        "label": "Çözüm"
       },
-      "title": "Erişilmemiş dikey pazar",
-      "refs": {
-        "shared": [
-          "sources",
-          "glossary"
-        ],
-        "sources": [
-          "tkgm-2024",
-          "tuik-2024",
-          "gyoder-webrazzi"
-        ],
-        "data": [
-          "market-tam-sam-som"
-        ],
-        "glossary": [
-          "TAM",
-          "SAM",
-          "SOM",
-          "CAC",
-          "LTV"
-        ],
-        "metrics": [
-          "market.avg_land_value",
-          "market.daily_transfers",
-          "market.housing_2024",
-          "market.land_commercial_2024",
-          "market.land_tx_annual",
-          "market.monthly_transfers",
-          "market.online_penetration",
-          "market.sam_try",
-          "market.take_rate",
-          "market.tam_try",
-          "market.total_realestate_2024",
-          "revenue.median",
-          "revenue.optimist",
-          "revenue.pessimist"
-        ]
-      }
-    },
-    {
-      "order": 4,
-      "slug": "urun",
-      "file": "sections/04-urun.json",
-      "nav": {
-        "num": "04",
-        "label": "Ürün"
-      },
-      "title": "Arsa için tasarlanmış platform",
+      "title": "Tek panel, tek güven dosyası",
       "refs": {
         "glossary": [
           "EİDS",
@@ -130,14 +110,50 @@
       }
     },
     {
-      "order": 5,
-      "slug": "model",
-      "file": "sections/05-model.json",
+      "order": 6,
+      "slug": "pazar",
+      "file": "sections/06-pazar.json",
       "nav": {
-        "num": "05",
-        "label": "Model"
+        "num": "06",
+        "label": "Pazar"
       },
-      "title": "İlan reklamı. Komisyon yok.",
+      "title": "Pazar büyük; biz ölçülü bir dilim hedefliyoruz",
+      "refs": {
+        "shared": [
+          "sources",
+          "glossary"
+        ],
+        "sources": [
+          "tkgm-2024",
+          "tuik-2024"
+        ],
+        "data": [
+          "market-tam-sam-som"
+        ],
+        "glossary": [
+          "TAM",
+          "SAM",
+          "SOM"
+        ],
+        "metrics": [
+          "market.housing_2024",
+          "market.land_commercial_2024",
+          "market.take_rate",
+          "market.tam_try",
+          "market.total_realestate_2024",
+          "revenue.median"
+        ]
+      }
+    },
+    {
+      "order": 7,
+      "slug": "model",
+      "file": "sections/07-model.json",
+      "nav": {
+        "num": "07",
+        "label": "İş modeli"
+      },
+      "title": "Satıştan pay almayız; hizmetten gelir üretiriz",
       "refs": {
         "data": [
           "financial-model"
@@ -151,236 +167,151 @@
       }
     },
     {
-      "order": 6,
-      "slug": "strateji",
-      "file": "sections/06-strateji.json",
-      "nav": {
-        "num": "06",
-        "label": "Strateji"
-      },
-      "title": "Asimetrik komando",
-      "refs": {
-        "shared": [
-          "sources"
-        ],
-        "sources": [
-          "levinson-1984"
-        ],
-        "data": [
-          "strategy-arsenal"
-        ],
-        "metrics": [
-          "competitor.sahibinden_visitors"
-        ]
-      }
-    },
-    {
-      "order": 7,
-      "slug": "cephane",
-      "file": "sections/07-cephane.json",
-      "nav": {
-        "num": "07",
-        "label": "Cephane"
-      },
-      "title": "Seçilmiş silahlar",
-      "refs": {
-        "data": [
-          "strategy-arsenal"
-        ],
-        "glossary": [
-          "Counter-Positioning",
-          "Atomic Network",
-          "Programmatic SEO",
-          "Memetic Warfare",
-          "Status as a Service",
-          "Trojan Horse"
-        ],
-        "metrics": [
-          "strategy.hero_weapons",
-          "strategy.manifesto_items",
-          "strategy.total_models"
-        ]
-      }
-    },
-    {
       "order": 8,
-      "slug": "kopru",
-      "file": "sections/08-kopru.json",
+      "slug": "gtm",
+      "file": "sections/08-gtm.json",
       "nav": {
         "num": "08",
-        "label": "Köprü"
+        "label": "Pazara giriş"
       },
-      "title": "TAM'dan SOM'a mantık zinciri",
+      "title": "Önce Ege'de dar bir bölgede yoğunlaşıyoruz",
       "refs": {
-        "shared": [
-          "glossary"
-        ],
-        "glossary": [
-          "TAM",
-          "SAM",
-          "SOM",
-          "take rate"
-        ],
-        "data": [
-          "market-tam-sam-som"
-        ],
-        "metrics": [
-          "market.online_penetration",
-          "market.sam_try",
-          "market.som_try",
-          "market.take_rate",
-          "market.tam_try",
-          "revenue.median",
-          "strategy.hero_weapons"
-        ]
+        "metrics": []
       }
     },
     {
       "order": 9,
-      "slug": "bootstrap",
-      "file": "sections/09-bootstrap.json",
+      "slug": "rekabet",
+      "file": "sections/09-rekabet.json",
       "nav": {
         "num": "09",
-        "label": "Bootstrap"
-      },
-      "title": "Bootstrap · kontrollü yakım",
-      "refs": {
-        "data": [
-          "financial-model"
-        ],
-        "metrics": [
-          "capital.breakeven_spend",
-          "capital.investor_pocket",
-          "capital.reserve",
-          "capital.total_raised",
-          "fin.breakeven_month",
-          "fin.breakeven_months",
-          "fin.headcount_2026",
-          "fin.headcount_2027",
-          "fin.revenue_2027"
-        ]
-      }
-    },
-    {
-      "order": 10,
-      "slug": "teknopark",
-      "file": "sections/10-teknopark.json",
-      "nav": {
-        "num": "10",
-        "label": "Teknopark"
-      },
-      "title": "Mecidiyeköy değil İTÜ ARI",
-      "refs": {
-        "shared": [
-          "sources"
-        ],
-        "sources": [
-          "kanun-4691",
-          "kanun-5746"
-        ],
-        "data": [
-          "incentives",
-          "financial-model"
-        ],
-        "glossary": [
-          "4691",
-          "EBITDA"
-        ],
-        "metrics": [
-          "tax.corporate_rate",
-          "tax.ebitda_2032",
-          "tax.income_withholding",
-          "tax.investment_multiple",
-          "tax.saving_2027",
-          "tax.saving_cumulative_7y",
-          "tax.saving_mature_annual",
-          "tax.saving_two_year",
-          "tax.sgk_employer",
-          "tax.valid_until"
-        ]
-      }
-    },
-    {
-      "order": 11,
-      "slug": "roadmap",
-      "file": "sections/11-roadmap.json",
-      "nav": {
-        "num": "11",
-        "label": "Roadmap · Risk"
-      },
-      "title": "Rakip gördüğünde ne yapar?",
-      "refs": {
-        "glossary": [
-          "EİDS",
-          "TAKBİS",
-          "Counter-Positioning"
-        ],
-        "metrics": [
-          "competitor.sahibinden_commission",
-          "fin.headcount_2027",
-          "team.lean"
-        ]
-      }
-    },
-    {
-      "order": 12,
-      "slug": "rekabet",
-      "file": "sections/12-rekabet.json",
-      "nav": {
-        "num": "12",
         "label": "Rekabet"
       },
-      "title": "Sadece biz dikey + küratoryal",
+      "title": "Savunmamız trafik değil; arsa derinliği",
       "refs": {
         "shared": [
-          "brand",
           "sources"
         ],
         "sources": [
-          "helmer-7powers",
           "rekabet-kurulu"
         ],
         "glossary": [
-          "Counter-Positioning"
+          "EİDS"
         ],
         "metrics": []
       }
     },
     {
+      "order": 10,
+      "slug": "ai-operasyon",
+      "file": "sections/10-ai-operasyon.json",
+      "nav": {
+        "num": "10",
+        "label": "AI operasyon"
+      },
+      "title": "AI, insanı değil maliyeti azaltır",
+      "refs": {
+        "data": [
+          "hr-plan"
+        ],
+        "metrics": [
+          "ai.annual_saving",
+          "ai.fte_with",
+          "ai.fte_without"
+        ]
+      }
+    },
+    {
+      "order": 11,
+      "slug": "ik-plani",
+      "file": "sections/11-ik-plani.json",
+      "nav": {
+        "num": "11",
+        "label": "İK planı"
+      },
+      "title": "Kadro, gelir ve riske göre büyür",
+      "refs": {
+        "data": [
+          "hr-plan"
+        ],
+        "metrics": []
+      }
+    },
+    {
+      "order": 12,
+      "slug": "basabas",
+      "file": "sections/12-basabas.json",
+      "nav": {
+        "num": "12",
+        "label": "Başabaş"
+      },
+      "title": "Para başabaşa kadar kapılara bölünerek harcanır",
+      "refs": {
+        "data": [
+          "financial-model"
+        ],
+        "metrics": [
+          "capital.investor_pocket",
+          "capital.reserve",
+          "fin.breakeven_month"
+        ]
+      }
+    },
+    {
       "order": 13,
-      "slug": "finansal",
-      "file": "sections/13-finansal.json",
+      "slug": "risk",
+      "file": "sections/13-risk.json",
       "nav": {
         "num": "13",
-        "label": "Finansal"
+        "label": "Risk"
       },
-      "title": "Finansal model · yedi yıl",
+      "title": "Her riskin bir ölçümü ve bir kararı var",
+      "refs": {
+        "glossary": [
+          "EİDS"
+        ],
+        "metrics": []
+      }
+    },
+    {
+      "order": 14,
+      "slug": "teknopark",
+      "file": "sections/14-teknopark.json",
+      "nav": {
+        "num": "14",
+        "label": "Teknopark"
+      },
+      "title": "Uygunluk halinde teşvik avantajı doğar",
       "refs": {
         "shared": [
           "sources"
         ],
         "sources": [
-          "model-v9-15"
+          "kanun-4691"
         ],
         "data": [
-          "financial-model",
-          "hr-plan"
+          "incentives"
+        ],
+        "glossary": [
+          "4691"
         ],
         "metrics": [
-          "fin.profit_margin_min",
-          "fin.projection_months"
+          "tax.corporate_rate",
+          "tax.income_withholding",
+          "tax.saving_2027",
+          "tax.sgk_employer"
         ]
       }
     },
     {
-      "order": 14,
+      "order": 15,
       "slug": "cpo",
-      "file": "sections/14-cpo.json",
+      "file": "sections/15-cpo.json",
       "nav": {
-        "num": "14",
-        "label": "CPO Modeli"
+        "num": "15",
+        "label": "CPO"
       },
-      "title": "Tam odak için iki şart",
+      "title": "Tam zamanlı odak çalışma varsayımı",
       "refs": {
         "shared": [
           "brand"
@@ -395,52 +326,44 @@
       }
     },
     {
-      "order": 15,
+      "order": 16,
       "slug": "yatirim",
-      "file": "sections/15-yatirim.json",
+      "file": "sections/16-yatirim.json",
       "nav": {
-        "num": "15",
+        "num": "16",
         "label": "Yatırım"
       },
-      "title": "Üç katman. Tek pencere.",
+      "title": "Üç seçenek, tek karar çerçevesi",
       "refs": {
         "data": [
           "financial-model"
         ],
         "metrics": [
-          "fin.projection_months",
           "invest.lead_amount",
           "invest.lead_equity",
-          "invest.revenue_multiple",
           "invest.seed_amount",
           "invest.seed_equity",
           "invest.seed_valuation",
           "invest.strategic_amount",
           "invest.strategic_equity",
-          "invest.strategic_valuation",
-          "window.close"
+          "invest.strategic_valuation"
         ]
       }
     },
     {
-      "order": 16,
-      "slug": "kapanis",
-      "file": "sections/16-kapanis.json",
+      "order": 17,
+      "slug": "ilk-30-gun",
+      "file": "sections/17-ilk-30-gun.json",
       "nav": {
-        "num": "16",
-        "label": "Kapanış"
+        "num": "17",
+        "label": "Karar"
       },
-      "title": "Tohum sizden, toprak bizden. Hasat ortak.",
+      "title": "Bugünkü karar: tutar, rol, ilk 30 gün",
       "refs": {
         "shared": [
           "brand"
         ],
-        "metrics": [
-          "fin.breakeven_months",
-          "window.close",
-          "window.slots_open",
-          "window.slots_total"
-        ]
+        "metrics": []
       }
     }
   ],
@@ -466,7 +389,7 @@
     "schema/section.schema.json"
   ],
   "counts": {
-    "sections": 16,
+    "sections": 17,
     "metrics": 89,
     "dataFiles": 6,
     "sharedFiles": 5,
@@ -502,5 +425,9 @@
       "scrollHint",
       "badge"
     ]
+  },
+  "_revision": {
+    "at": "2026-06-20",
+    "note": "section-ux-strateji-elestiri.md çerçevesine göre 17 bölümlük yatırımcı-merkezli akışa yeniden yazıldı."
   }
 }

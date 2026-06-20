@@ -1,0 +1,48 @@
+{
+  "id": "karar-notu",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 1,
+  "slug": "karar-notu",
+  "nav": {
+    "num": "01",
+    "label": "Karar notu"
+  },
+  "background": "bg-1",
+  "title": {
+    "text": "Arsa işini dijitalde güvenli, ölçülebilir ve ölçeklenebilir bir işletmeye çevirme planı",
+    "accent": "güvenli, ölçülebilir ve ölçeklenebilir"
+  },
+  "blocks": [
+    {
+      "text": "arsam.net · karar notu · 01 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 1,
+      "text": "Arsa işini dijitalde güvenli, ölçülebilir ve ölçeklenebilir bir işletmeye çevirme planı.",
+      "accent": "güvenli, ölçülebilir ve ölçeklenebilir",
+      "type": "heading"
+    },
+    {
+      "text": "Bu not, önceki üç görüşmede konuşulan ürünü, stratejiyi ve finansal planı karar aşamasına taşımak için hazırlanmıştır.",
+      "type": "lead"
+    },
+    {
+      "text": "arsam.net bir web sitesi değildir. Arsa satışında güven, doğrulama, ilan, veri, pazarlama ve operasyonu tek panele toplayan dikey bir pazar işletmesidir.",
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "text": "İsmail · CPO · Haziran 2026",
+      "type": "paragraph"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "brand"
+    ],
+    "metrics": []
+  }
+}

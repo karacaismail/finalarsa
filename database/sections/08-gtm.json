@@ -1,0 +1,72 @@
+{
+  "id": "gtm",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 8,
+  "slug": "gtm",
+  "nav": {
+    "num": "08",
+    "label": "Pazara giriş"
+  },
+  "background": "bg-4",
+  "title": {
+    "text": "Önce Ege'de dar bir bölgede yoğunlaşıyoruz",
+    "accent": "dar bir bölgede"
+  },
+  "blocks": [
+    {
+      "text": "pazara giriş planı · 08 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Önce Ege'de dar bir bölgede yoğunlaşıyoruz.",
+      "accent": "dar bir bölgede",
+      "type": "heading"
+    },
+    {
+      "text": "Amaç, ulusal kampanyadan önce arz kalitesi ve satış sinyali üretmektir.",
+      "type": "lead"
+    },
+    {
+      "ordered": false,
+      "items": [
+        {
+          "title": "Dar bölgede yoğunlaş",
+          "body": "Söke, Bodrum, Aydın — arsa ilgisi yüksek, sahaya yakın bölgeler.",
+          "num": "01"
+        },
+        {
+          "title": "Satıcı arzını kur",
+          "body": "Kurucu satıcı programıyla ilk doğrulanmış ilanları topla.",
+          "num": "02"
+        },
+        {
+          "title": "İlan kalitesini standardize et",
+          "body": "Her ilan aynı güven dosyası standardına geçer.",
+          "num": "03"
+        },
+        {
+          "title": "Alıcı güvenini veriyle artır",
+          "body": "Emsal fiyat, doğrulama ve drone ile güven üret.",
+          "num": "04"
+        },
+        {
+          "title": "Formülü başka bölgelere taşı",
+          "body": "Başarılı bölge modeli adım adım ölçeklenir.",
+          "num": "05"
+        }
+      ],
+      "type": "list"
+    },
+    {
+      "text": "Bu plan 'rakibi nasıl yeneriz' değil, 'nasıl kazanırız' sorusunu cevaplar.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "metrics": []
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "id": "ik-plani",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 11,
+  "slug": "ik-plani",
+  "nav": {
+    "num": "11",
+    "label": "İK planı"
+  },
+  "background": "bg-3",
+  "title": {
+    "text": "Kadro, gelir ve riske göre büyür",
+    "accent": "gelir ve riske göre"
+  },
+  "blocks": [
+    {
+      "text": "İK planı · 11 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Kadro, gelir ve riske göre büyür.",
+      "accent": "gelir ve riske göre",
+      "type": "heading"
+    },
+    {
+      "text": "Hangi rol gelir üretir, hangi rol riski azaltır — kadro buna göre planlanır.",
+      "type": "lead"
+    },
+    {
+      "chartType": "headcountGrowth",
+      "dataRef": "hr-plan",
+      "caption": "Kadro büyümesi · 2026 (19) → 2032 (149)",
+      "type": "chart"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "title": "Gelir üreten roller",
+          "tone": "accent",
+          "type": "card",
+          "body": "Satış/satıcı operasyonu, pazarlama, ürün ve büyüme.",
+          "eyebrow": "kadro"
+        },
+        {
+          "title": "Riski azaltan roller",
+          "tone": "gold",
+          "type": "card",
+          "body": "Hukuk ve uyum, doğrulama/güven, finans.",
+          "eyebrow": "kadro"
+        },
+        {
+          "title": "Operasyon rolleri",
+          "tone": null,
+          "type": "card",
+          "body": "Müşteri deneyimi, moderasyon, içerik.",
+          "eyebrow": "kadro"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Kadro 2026'da 19 kişiyle başlar, 2032'de yaklaşık 149'a ulaşır; her ekleme bir gerekçeye bağlıdır.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "data": [
+      "hr-plan"
+    ],
+    "metrics": []
+  }
+}

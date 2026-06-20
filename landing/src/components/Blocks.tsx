@@ -12,6 +12,22 @@ const toneBg: Record<string, string> = { accent: "#f1f6ea", gold: "#fbf4df", war
 const toneBorder: Record<string, string> = { accent: "#cfe0b4", gold: "#ecd9a0", warn: "#f0cdb6", info: "line" };
 const txt = (t?: string) => (t && toneText[t]) || "ink";
 
+/* İddia etiketleri (claim tag): doğrulanmış kaynak / model varsayımı / hedef / şirket tahmini */
+const tagMeta: Record<string, { color: string; bg: string }> = {
+  "doğrulanmış kaynak": { color: "grassInk", bg: "#eef5e3" },
+  "model varsayımı": { color: "gold", bg: "#fbf4df" },
+  hedef: { color: "ink", bg: "#ecebe4" },
+  "şirket tahmini": { color: "warn", bg: "#fbeee7" },
+};
+function TagBadge({ tag }: { tag: string }) {
+  const m = tagMeta[tag] ?? tagMeta["hedef"];
+  return (
+    <Box as="span" display="inline-flex" alignItems="center" alignSelf="flex-start" px="2" py="0.5" mb="1" borderRadius="full" bg={m.bg} color={m.color} fontSize="md" fontWeight="medium" lineHeight="1.3" letterSpacing="0.01em">
+      {tag}
+    </Box>
+  );
+}
+
 const cardBase = (tone?: string) => ({
   border: "1px solid",
   borderColor: (tone && toneBorder[tone]) || "line",
@@ -381,6 +397,16 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
         </Box>
       );
 
+    case "claimLegend":
+      return (
+        <Flex wrap="wrap" gap="2" align="center">
+          <P fontSize="md" color="inkMuted" mr="1">Rakam türleri:</P>
+          {["doğrulanmış kaynak", "model varsayımı", "hedef", "şirket tahmini"].map((t) => (
+            <TagBadge key={t} tag={t} />
+          ))}
+        </Flex>
+      );
+
     default:
       return null;
   }
@@ -391,6 +417,11 @@ function StatCard({ b, bare }: { b: Block; bare?: boolean }) {
   const color = txt(b.tone as string);
   const inner = (
     <Dl m="0">
+      {b.tag && (
+        <Box mb="1">
+          <TagBadge tag={b.tag as string} />
+        </Box>
+      )}
       <Dd m="0" fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" color={color} lineHeight="1.05" letterSpacing="-0.01em">
         {statValue(b)}
       </Dd>
@@ -410,6 +441,7 @@ function StatCard({ b, bare }: { b: Block; bare?: boolean }) {
 function CardInner({ b }: { b: Block }) {
   return (
     <Stack gap="2">
+      {b.tag && <TagBadge tag={b.tag as string} />}
       {b.eyebrow && (
         <P fontSize="md" color={txt(b.tone as string) === "ink" ? "inkMuted" : txt(b.tone as string)} fontWeight="medium" textTransform="uppercase" letterSpacing="0.04em">
           {interpolate(b.eyebrow as string)}

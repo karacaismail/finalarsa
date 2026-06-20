@@ -1,0 +1,82 @@
+{
+  "id": "ai-operasyon",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 10,
+  "slug": "ai-operasyon",
+  "nav": {
+    "num": "10",
+    "label": "AI operasyon"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "AI, insanı değil maliyeti azaltır",
+    "accent": "maliyeti azaltır"
+  },
+  "blocks": [
+    {
+      "text": "AI destekli operasyon · 10 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "AI, insanı değil maliyeti azaltır.",
+      "accent": "maliyeti azaltır",
+      "type": "heading"
+    },
+    {
+      "text": "AI; ilan kontrolü, müşteri yönlendirme, içerik üretimi, veri temizliği ve raporlama maliyetini düşürmek için kullanılır. İnsan karar ve denetim zinciri korunur.",
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "label": "AI'sız gerekli kadro",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "ai.fte_without",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "AI ile gerekli kadro",
+          "tone": "accent",
+          "type": "stat",
+          "valueRef": "ai.fte_with",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "Yıllık operasyon tasarrufu",
+          "tone": "gold",
+          "type": "stat",
+          "valueRef": "ai.annual_saving",
+          "tag": "model varsayımı"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "chartType": "aiEfficiency",
+      "dataRef": "hr-plan",
+      "caption": "Departman bazında AI'sız ve AI ile gerekli kadro",
+      "type": "chart"
+    },
+    {
+      "text": "Hedef, insanı azaltmak değil; aynı işi daha düşük maliyet ve daha hızlı denetim döngüsüyle yapmaktır.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "data": [
+      "hr-plan"
+    ],
+    "metrics": [
+      "ai.annual_saving",
+      "ai.fte_with",
+      "ai.fte_without"
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "yatirim",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 16,
+  "slug": "yatirim",
+  "nav": {
+    "num": "16",
+    "label": "Yatırım"
+  },
+  "background": "bg-4",
+  "title": {
+    "text": "Üç seçenek, tek karar çerçevesi",
+    "accent": "karar çerçevesi"
+  },
+  "blocks": [
+    {
+      "text": "yatırım seçenekleri · 16 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Üç seçenek, tek karar çerçevesi.",
+      "accent": "karar çerçevesi",
+      "type": "heading"
+    },
+    {
+      "text": "Her seçenek için: tutar, hisse, ne finanse ettiği, hangi riski kapattığı ve yatırımcının rolü.",
+      "type": "lead"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "title": "Çekirdek",
+          "tone": null,
+          "type": "card",
+          "body": "Ne finanse eder: 2 yazılımcı + 1 tasarımcı, 6 ay nakit çalışma süresi, Söke + Bodrum pilotu. Kapattığı risk: ürün-pazar uyumu. Rol: erken ortak.",
+          "eyebrow": "{{metric:invest.seed_equity}} hisse · {{metric:invest.seed_valuation}} değerleme",
+          "valueRef": "invest.seed_amount"
+        },
+        {
+          "title": "Stratejik · önerilen",
+          "tone": "gold",
+          "type": "card",
+          "body": "Ne finanse eder: başabaşa tam yükleme, pilot + pazara giriş, kurucu satıcı programı. Kapattığı risk: arz ve gelir sinyali. Rol: lider yatırımcı.",
+          "eyebrow": "{{metric:invest.strategic_equity}} hisse · {{metric:invest.strategic_valuation}} değerleme",
+          "valueRef": "invest.strategic_amount"
+        },
+        {
+          "title": "Lider",
+          "tone": null,
+          "type": "card",
+          "body": "Ne finanse eder: stratejik + yedek, ulusal kampanya hazırlığı. Kapattığı risk: ölçek finansmanı. Rol: yönetim kurulunda temsil ve stratejik karar katılımı.",
+          "eyebrow": "{{metric:invest.lead_equity}} hisse · yönetim kurulunda temsil",
+          "valueRef": "invest.lead_amount"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Ulusal kampanya sonrası değerleme yeniden ele alınır. Bugünkü teklif, kampanya öncesi riskleri birlikte üstlenme teklifidir.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "data": [
+      "financial-model"
+    ],
+    "metrics": [
+      "invest.lead_amount",
+      "invest.lead_equity",
+      "invest.seed_amount",
+      "invest.seed_equity",
+      "invest.seed_valuation",
+      "invest.strategic_amount",
+      "invest.strategic_equity",
+      "invest.strategic_valuation"
+    ]
+  }
+}

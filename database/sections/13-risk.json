@@ -1,0 +1,79 @@
+{
+  "id": "risk",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 13,
+  "slug": "risk",
+  "nav": {
+    "num": "13",
+    "label": "Risk"
+  },
+  "background": "bg-1",
+  "title": {
+    "text": "Her riskin bir ölçümü ve bir kararı var",
+    "accent": "ölçümü ve bir kararı"
+  },
+  "blocks": [
+    {
+      "text": "risk ve kontrol kapıları · 13 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Her riskin bir ölçümü ve bir kararı var.",
+      "accent": "ölçümü ve bir kararı",
+      "type": "heading"
+    },
+    {
+      "text": "Önemli olan rakip değil; hangi sırayla ne yapacağımız ve nerede duracağımız.",
+      "type": "lead"
+    },
+    {
+      "columns": [
+        "Risk",
+        "Ölçüm",
+        "Karar kapısı",
+        "Aksiyon"
+      ],
+      "rows": [
+        [
+          "Satıcı arzı beklenenden yavaş oluşur",
+          "İlk 90 günde aktif doğrulanmış ilan sayısı",
+          "Hedefin altındaysa",
+          "Bölge daraltma · kurucu satıcı teşviki · saha satış desteği"
+        ],
+        [
+          "Alıcı güveni düşük kalır",
+          "İlan başına iletişim ve dönüşüm",
+          "Eşik altındaysa",
+          "Doğrulama katmanını ve emsal veriyi güçlendir"
+        ],
+        [
+          "Kur oynaklığı maliyeti artırır",
+          "USD bazlı gider payı (OPEX)",
+          "%20 üstüne çıkarsa",
+          "Hibrit altyapı · harcama kısıtı"
+        ],
+        [
+          "Regülasyon (EİDS/SPK) sıkılaşır",
+          "Uyum açığı",
+          "Yeni şart geldiğinde",
+          "İlk günden EİDS-uyumlu altyapı avantaja döner"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "text": "Bu tablo sürpriz değil, senaryo üretir; her risk bir karar kapısına bağlıdır.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "glossary": [
+      "EİDS"
+    ],
+    "metrics": []
+  }
+}

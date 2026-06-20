@@ -1,0 +1,96 @@
+{
+  "id": "teknopark",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 14,
+  "slug": "teknopark",
+  "nav": {
+    "num": "14",
+    "label": "Teknopark"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "Uygunluk halinde teşvik avantajı doğar",
+    "accent": "uygunluk halinde"
+  },
+  "blocks": [
+    {
+      "text": "teknopark ve teşvik · 14 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Uygunluk halinde teşvik avantajı doğar.",
+      "accent": "uygunluk halinde",
+      "type": "heading"
+    },
+    {
+      "text": "Şirket uygun proje kabulüyle teknopark çatısına alınırsa, yazılım gelirlerinde 4691 kapsamlı vergi avantajı doğar.",
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "label": "Kurumlar vergisi istisnası",
+          "tone": "gold",
+          "type": "stat",
+          "valueRef": "tax.corporate_rate",
+          "tag": "doğrulanmış kaynak"
+        },
+        {
+          "label": "Ar-Ge personel gelir vergisi",
+          "tone": "gold",
+          "type": "stat",
+          "valueRef": "tax.income_withholding",
+          "sub": "stopaj istisnası (tavanlı)",
+          "tag": "doğrulanmış kaynak"
+        },
+        {
+          "label": "SGK işveren payı desteği",
+          "tone": "gold",
+          "type": "stat",
+          "valueRef": "tax.sgk_employer",
+          "tag": "doğrulanmış kaynak"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "title": "İlk yıl modelde dikkate alınan avantaj",
+      "tone": "gold",
+      "type": "card",
+      "body": "Uygunluğa bağlıdır; kesin tasarruf değildir. İstisna süresi 31/12/2028.",
+      "eyebrow": "~2027",
+      "valueRef": "tax.saving_2027",
+      "tag": "model varsayımı"
+    },
+    {
+      "text": "Burada 'kesin tasarruf' denmez; uygunluğa bağlı, modelde dikkate alınan avantajdır.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "sources"
+    ],
+    "sources": [
+      "kanun-4691"
+    ],
+    "data": [
+      "incentives"
+    ],
+    "glossary": [
+      "4691"
+    ],
+    "metrics": [
+      "tax.corporate_rate",
+      "tax.income_withholding",
+      "tax.saving_2027",
+      "tax.sgk_employer"
+    ]
+  }
+}

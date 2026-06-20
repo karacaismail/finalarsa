@@ -1,0 +1,83 @@
+{
+  "id": "basabas",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 12,
+  "slug": "basabas",
+  "nav": {
+    "num": "12",
+    "label": "Başabaş"
+  },
+  "background": "bg-4",
+  "title": {
+    "text": "Para başabaşa kadar kapılara bölünerek harcanır",
+    "accent": "kapılara bölünerek"
+  },
+  "blocks": [
+    {
+      "text": "başabaş analizi · 12 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Para başabaşa kadar kapılara bölünerek harcanır.",
+      "accent": "kapılara bölünerek",
+      "type": "heading"
+    },
+    {
+      "text": "Yatırımcının en kritik sorusu: ne kadar para girer, ne zaman geri döner?",
+      "type": "lead"
+    },
+    {
+      "chartType": "basabasWaterfall",
+      "dataRef": "financial-model",
+      "caption": "Sermaye → gider kalemleri → başabaş → kasa",
+      "type": "chart"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "label": "Yatırımcı cebinden",
+          "tone": "accent",
+          "type": "stat",
+          "valueRef": "capital.investor_pocket",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "Operasyonel başabaş",
+          "tone": "gold",
+          "type": "stat",
+          "valueRef": "fin.breakeven_month",
+          "sub": "18. ay",
+          "tag": "hedef"
+        },
+        {
+          "label": "Başabaş sonrası kasa",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "capital.reserve",
+          "sub": "yedek, dokunulmaz",
+          "tag": "model varsayımı"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "text": "Risk belirsiz değil; ölçülmüş ve kapılara bölünmüştür. Her kapı bir ölçümle açılır.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "data": [
+      "financial-model"
+    ],
+    "metrics": [
+      "capital.investor_pocket",
+      "capital.reserve",
+      "fin.breakeven_month"
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "id": "neden-ortak",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 3,
+  "slug": "neden-ortak",
+  "nav": {
+    "num": "03",
+    "label": "Ortaklık"
+  },
+  "background": "bg-3",
+  "title": {
+    "text": "Neden doğru ortak sizsiniz?",
+    "accent": "doğru ortak"
+  },
+  "blocks": [
+    {
+      "text": "stratejik ortaklık · 03 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Neden doğru ortak sizsiniz?",
+      "accent": "doğru ortak",
+      "type": "heading"
+    },
+    {
+      "text": "Bu iş yalnızca yazılımla kurulmaz; arsa piyasasının güven, saha ve satış refleksi gerekir.",
+      "type": "lead"
+    },
+    {
+      "text": "Bu işin yazılım tarafını biz kurarız; fakat arsa piyasasının güven, saha ve satış refleksi olmadan kategori kurulmaz.",
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "title": "Siz: saha ve güven",
+          "tone": "gold",
+          "type": "card",
+          "body": "Lokasyon bilgisi, satıcı ağı, tapu ve satış refleksi, bölgesel itibar.",
+          "eyebrow": "ortaklık"
+        },
+        {
+          "title": "Biz: yazılım ve operasyon",
+          "tone": "accent",
+          "type": "card",
+          "body": "Doğrulama altyapısı, veri standardı, panel ve AI destekli operasyon disiplini.",
+          "eyebrow": "ortaklık"
+        }
+      ],
+      "type": "cardGrid"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "brand"
+    ],
+    "metrics": []
+  }
+}

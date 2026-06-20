@@ -221,6 +221,72 @@ export function marginOption(y: FinancialYear[]): EChartsCoreOption {
   };
 }
 
+/* ---------- Kadro büyümesi (yıllara göre) ---------- */
+export function headcountGrowthOption(rows: { year: string; count: number }[]): EChartsCoreOption {
+  return {
+    aria,
+    textStyle,
+    grid: { left: 8, right: 16, top: 24, bottom: 8, containLabel: true },
+    tooltip: { ...tooltipBase, trigger: "axis", formatter: (p: any) => `<b>${p[0].axisValue}</b><br/>${p[0].value} kişi` },
+    xAxis: { type: "category", data: rows.map((r) => r.year), axisLabel, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
+    yAxis: { type: "value", name: "kişi", axisLabel, splitLine, nameTextStyle: { color: C.inkMuted, fontFamily: FONT } },
+    series: [
+      {
+        type: "bar",
+        barWidth: "52%",
+        data: rows.map((r) => r.count),
+        itemStyle: { color: C.grassBright, borderRadius: [6, 6, 0, 0] },
+        label: { show: true, position: "top", formatter: (p: any) => `${p.value}`, color: C.ink, fontFamily: FONT, fontWeight: 600 },
+      },
+    ],
+  };
+}
+
+/* ---------- Başabaş şelalesi (waterfall) ---------- */
+export function basabasWaterfallOption(steps: { name: string; delta: number; kind: "start" | "down" | "end" }[]): EChartsCoreOption {
+  // running base for floating bars
+  const bases: number[] = [];
+  const values: number[] = [];
+  const colors: string[] = [];
+  let run = 0;
+  for (const s of steps) {
+    if (s.kind === "start") {
+      bases.push(0); values.push(s.delta); colors.push(C.grass); run = s.delta;
+    } else if (s.kind === "down") {
+      run += s.delta; // delta negative
+      bases.push(run); values.push(-s.delta); colors.push(C.warn);
+    } else {
+      bases.push(0); values.push(run); colors.push(C.gold);
+    }
+  }
+  return {
+    aria,
+    textStyle,
+    grid: { left: 8, right: 16, top: 24, bottom: 8, containLabel: true },
+    tooltip: {
+      ...tooltipBase,
+      trigger: "axis",
+      axisPointer: { type: "shadow" },
+      formatter: (p: any) => {
+        const i = p[0].dataIndex;
+        return `<b>${steps[i].name}</b><br/>${steps[i].kind === "down" ? "−" : ""}${fmt(Math.abs(steps[i].delta || values[i]))}`;
+      },
+    },
+    xAxis: { type: "category", data: steps.map((s) => s.name), axisLabel: { ...axisLabel, interval: 0, lineHeight: 14 }, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
+    yAxis: { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
+    series: [
+      { type: "bar", stack: "wf", itemStyle: { color: "transparent" }, emphasis: { itemStyle: { color: "transparent" } }, data: bases, silent: true, tooltip: { show: false } },
+      {
+        type: "bar",
+        stack: "wf",
+        data: values.map((v, i) => ({ value: v, itemStyle: { color: colors[i], borderRadius: [4, 4, 0, 0] } })),
+        barWidth: "52%",
+        label: { show: true, position: "top", formatter: (p: any) => fmt(Math.abs(steps[p.dataIndex].kind === "down" ? steps[p.dataIndex].delta : p.value)), color: C.ink, fontFamily: FONT, fontWeight: 600 },
+      },
+    ],
+  };
+}
+
 /* ---------- AI/İK: departman bazında AI'sız vs AI ile FTE ---------- */
 export function aiDeptOption(d: { dept: string; without: number; with: number }[]): EChartsCoreOption {
   return {

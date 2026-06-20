@@ -1,0 +1,87 @@
+{
+  "id": "ilk-30-gun",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 17,
+  "slug": "ilk-30-gun",
+  "nav": {
+    "num": "17",
+    "label": "Karar"
+  },
+  "background": "bg-end",
+  "title": {
+    "text": "Bugünkü karar: tutar, rol, ilk 30 gün",
+    "accent": "tutar, rol, ilk 30 gün"
+  },
+  "blocks": [
+    {
+      "text": "karar · 17 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Bugünkü karar: tutar, rol, ilk 30 gün.",
+      "accent": "tutar, rol, ilk 30 gün",
+      "type": "heading"
+    },
+    {
+      "ordered": false,
+      "items": [
+        {
+          "title": "Hangi yatırım seçeneğiyle ilerliyoruz?",
+          "body": "Çekirdek, stratejik veya lider.",
+          "num": "01"
+        },
+        {
+          "title": "Yatırımcının rolü ne olacak?",
+          "body": "Erken ortak, lider yatırımcı veya stratejik karar katılımı.",
+          "num": "02"
+        },
+        {
+          "title": "İlk 30 günde hangi işler yapılacak?",
+          "body": "A.Ş. tescili, Söke pilotu, ilk kurucu satıcıların kazanılması.",
+          "num": "03"
+        }
+      ],
+      "type": "list"
+    },
+    {
+      "text": "Karar sizde. Önerimiz: önce kontrollü pilotu başlatmak ve ilk 90 günde satıcı arzı, doğrulanmış ilan ve gelir sinyalini birlikte ölçmek.",
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "items": [
+        {
+          "label": "Görüşmeyi sürdürelim",
+          "action": "contact",
+          "meta": "5 dk",
+          "type": "cta"
+        },
+        {
+          "label": "Doğrudan ara",
+          "action": "phone",
+          "meta": "CPO",
+          "type": "cta"
+        }
+      ],
+      "type": "ctaStack"
+    },
+    {
+      "text": "İsmail · cpo@arsam.net · +90 532 295 10 80",
+      "type": "paragraph"
+    },
+    {
+      "text": "Hazırlık · Haziran 2026 · arsam.net",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "shared": [
+      "brand"
+    ],
+    "metrics": []
+  }
+}

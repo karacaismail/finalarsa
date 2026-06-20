@@ -6,9 +6,11 @@ import { Dd, Dl, Dt, Flex, Grid, H3, P, Stack, Tbl, Tbody, Td, Th, Thead, Tr } f
 import { EChart } from "./EChart";
 import {
   aiDeptOption,
+  basabasWaterfallOption,
   cashHeadcountOption,
   fmt,
   financialComboOption,
+  headcountGrowthOption,
   marginOption,
   marketFunnelOption,
   scenarioLinesOption,
@@ -237,6 +239,83 @@ export function AiFirstPanel() {
   );
 }
 
+/* ---------------- AI verimlilik (departman) ---------------- */
+export function AiEfficiencyView() {
+  const d = getData<{ aiEfficiency: { departments: { dept: string; without: number; with: number }[] } }>("hr-plan");
+  const deps = d.aiEfficiency.departments;
+  return (
+    <EChart
+      height={Math.max(340, deps.length * 34)}
+      ariaLabel="Departman bazında AI'sız ve AI ile gerekli kadro"
+      option={aiDeptOption(deps.map((r) => ({ dept: r.dept, without: r.without, with: r.with })))}
+    />
+  );
+}
+
+/* ---------------- Kadro büyümesi ---------------- */
+export function HeadcountView() {
+  const d = getData<{ headcountGrowth: { year: string; count: number }[] }>("hr-plan");
+  return <EChart height={320} ariaLabel="Kadro büyümesi yıllara göre" option={headcountGrowthOption(d.headcountGrowth)} />;
+}
+
+/* ---------------- Başabaş şelalesi ---------------- */
+export function BasabasWaterfallView() {
+  const d = getData<{ parameters: { initialCapital: number; capexFirstMonth: number } }>("financial-model");
+  const cap = d.parameters.initialCapital;
+  const capex = d.parameters.capexFirstMonth;
+  const beSpend = Number(getMetric("capital.breakeven_spend")?.value ?? 15_000_000);
+  const reserve = cap - beSpend;
+  const opexToBE = beSpend - capex;
+  const steps = [
+    { name: "Sermaye girişi", delta: cap, kind: "start" as const },
+    { name: "Kurulum + ekipman", delta: -capex, kind: "down" as const },
+    { name: "İşletme + personel + pazarlama", delta: -opexToBE, kind: "down" as const },
+    { name: "Başabaş sonrası kasa", delta: reserve, kind: "end" as const },
+  ];
+  return <EChart height={340} ariaLabel="Başabaşa kadar sermaye akışı" option={basabasWaterfallOption(steps)} />;
+}
+
+/* ---------------- İlan güven dosyası mock ---------------- */
+function CheckIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <circle cx="12" cy="12" r="11" fill="#eef5e3" />
+      <path d="M7 12.5l3 3 7-7" fill="none" stroke="#4d7c1f" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+export function PanelMockView() {
+  const rows: [string, string][] = [
+    ["Tapu doğrulama", "EİDS uyumlu"],
+    ["İmar durumu", "konut imarlı"],
+    ["Emsal m² fiyatı", "3.200 – 4.100 ₺"],
+    ["Drone / yerinde keşif", "mevcut"],
+    ["Kapora / emanet ödeme", "tapuya kadar güvende"],
+  ];
+  return (
+    <Box {...card} maxW="560px">
+      <Flex justify="space-between" align="center" mb="3" pb="3" borderBottom="1px solid" borderColor="line" gap="3">
+        <Box>
+          <P fontWeight="bold" color="ink" fontSize="lg">Söke · Arsa · 1.250 m²</P>
+          <P fontSize="md" color="inkMuted">örnek ilan · güven dosyası</P>
+        </Box>
+        <Box as="span" px="2.5" py="1" borderRadius="full" bg="#eef5e3" color="grassInk" fontSize="md" fontWeight="medium" flexShrink="0">
+          Doğrulandı
+        </Box>
+      </Flex>
+      <Stack gap="3">
+        {rows.map(([k, v]) => (
+          <Flex key={k} align="center" gap="3">
+            <CheckIcon />
+            <P color="ink" flex="1">{k}</P>
+            <P color="inkMuted" fontSize="md" textAlign="end">{v}</P>
+          </Flex>
+        ))}
+      </Stack>
+    </Box>
+  );
+}
+
 /* Dispatcher */
 export function ChartBlock({ chartType, highlightYears }: { chartType: string; highlightYears?: string[] }): ReactNode {
   switch (chartType) {
@@ -244,6 +323,14 @@ export function ChartBlock({ chartType, highlightYears }: { chartType: string; h
       return <MarketFunnelView />;
     case "scenarioYears":
       return <ScenarioYearsView />;
+    case "aiEfficiency":
+      return <AiEfficiencyView />;
+    case "headcountGrowth":
+      return <HeadcountView />;
+    case "basabasWaterfall":
+      return <BasabasWaterfallView />;
+    case "panelMock":
+      return <PanelMockView />;
     case "yearlyHighlights":
     case "yearlyTable":
       return <YearlyView highlightYears={highlightYears} />;

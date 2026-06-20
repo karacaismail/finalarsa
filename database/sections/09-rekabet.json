@@ -3,94 +3,88 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 12,
+  "order": 9,
   "slug": "rekabet",
   "nav": {
-    "num": "12",
+    "num": "09",
     "label": "Rekabet"
   },
-  "background": "bg-4",
+  "background": "bg-1",
   "title": {
-    "text": "Sadece biz dikey + küratoryal",
-    "accent": "dikey + küratoryal"
+    "text": "Savunmamız trafik değil; arsa derinliği",
+    "accent": "arsa derinliği"
   },
   "blocks": [
     {
-      "text": "rekabet · 12 / 16",
+      "text": "rekabet ve savunma · 09 / 17",
       "type": "eyebrow"
     },
     {
       "level": 2,
-      "text": "Sadece biz dikey + küratoryal.",
-      "accent": "dikey + küratoryal",
+      "text": "Savunmamız trafik değil; arsa derinliği.",
+      "accent": "arsa derinliği",
       "type": "heading"
     },
     {
-      "text": "Konumlanma haritası. İki eksen: kategori (yatay/dikey), kalite (açık/küratoryal). Tek başına bir kadrandayız.",
-      "type": "lead"
+      "text": "Büyük yatay platformlar trafik avantajına sahiptir. arsam.net'in savunması arsa özelinde doğrulama, veri standardı, bölgesel arz ve satıcı operasyonudur.",
+      "tone": "accent",
+      "type": "note"
     },
     {
       "columns": [
         "Oyuncu",
         "Konum",
-        "Arsa odaklı",
-        "Tapu doğrulama",
-        "Drone tur",
+        "Arsa derinliği",
+        "Doğrulama",
         "Model"
       ],
       "rows": [
         [
           "sahibinden",
           "yatay · açık",
-          "hayır",
+          "düşük",
           "kısmi",
-          "hayır",
           "komisyon + ilan"
         ],
         [
           "hepsiemlak",
           "yatay · açık",
-          "hayır",
-          "hayır",
-          "hayır",
+          "düşük",
+          "yok",
           "ilan + emlakçı"
         ],
         [
           "emlakjet",
           "yatay · küratoryal kısmi",
-          "hayır",
+          "düşük",
           "kısmi",
-          "hayır",
           "ilan"
         ],
         [
           "arsam.net",
           "dikey · küratoryal",
-          "evet",
+          "yüksek",
           "tam · EİDS",
-          "premium dahil",
-          "ilan reklamı"
+          "ilan + hizmet geliri"
         ]
       ],
       "type": "table"
     },
     {
-      "text": "Moat: rakibin bizim kadranımıza geçmesi, kategori-genişliğini ve komisyon ekonomisini bırakması demek. 7 Powers'ın counter-positioning ilkesi: taklit, intihar olur.",
+      "text": "Rakip yarın dikey bir sayfa açabilir; ama saha arzını, doğrulamayı ve satıcı ilişkisini bir günde kuramaz.",
       "tone": "info",
       "type": "note"
     }
   ],
   "refs": {
     "shared": [
-      "brand",
       "sources"
     ],
     "sources": [
-      "helmer-7powers",
       "rekabet-kurulu"
     ],
     "glossary": [
-      "Counter-Positioning"
+      "EİDS"
     ],
     "metrics": []
   }

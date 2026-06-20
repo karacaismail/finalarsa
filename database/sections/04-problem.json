@@ -1,0 +1,70 @@
+{
+  "id": "problem",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 4,
+  "slug": "problem",
+  "nav": {
+    "num": "04",
+    "label": "Problem"
+  },
+  "background": "bg-4",
+  "title": {
+    "text": "Arsa, dijitalde güven maliyeti yüksek bir üründür",
+    "accent": "güven maliyeti yüksek"
+  },
+  "blocks": [
+    {
+      "text": "problem · 04 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Arsa, dijitalde güven maliyeti yüksek bir üründür.",
+      "accent": "güven maliyeti yüksek",
+      "type": "heading"
+    },
+    {
+      "text": "Alıcı yalnızca fotoğrafa değil; tapu, imar, konum, emsal fiyat ve satıcı doğruluğuna bakar. Mevcut yatay platformlar bu bilgileri standart bir güven dosyasına dönüştürmez.",
+      "type": "lead"
+    },
+    {
+      "ordered": false,
+      "items": [
+        {
+          "title": "Aynı parsel, farklı ilanlarda farklı fiyat",
+          "body": "Emsal ve doğrulama standardı olmadığı için fiyat dağınık kalır.",
+          "num": "01"
+        },
+        {
+          "title": "Tapu ve imar bilgisi ilanda standart değil",
+          "body": "Alıcı kritik bilgiyi ilan dışından, dağınık biçimde arar.",
+          "num": "02"
+        },
+        {
+          "title": "Kapora ve sahte ilan riski alıcı güvenini düşürür",
+          "body": "Ön ödeme için güvenli bir protokol yoktur.",
+          "num": "03"
+        },
+        {
+          "title": "EİDS ve ilan doğrulama dönemi eski ilan mantığını zorlar",
+          "body": "İlan doğrulama artık yasal bir gerekliliktir.",
+          "num": "04"
+        }
+      ],
+      "type": "list"
+    },
+    {
+      "text": "Amaç korkutmak değil; arsa için neden dikey uzmanlık gerektiğini göstermek.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "glossary": [
+      "EİDS"
+    ],
+    "metrics": []
+  }
+}

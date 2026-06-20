@@ -1,0 +1,84 @@
+{
+  "id": "model",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 7,
+  "slug": "model",
+  "nav": {
+    "num": "07",
+    "label": "İş modeli"
+  },
+  "background": "bg-3",
+  "title": {
+    "text": "Satıştan pay almayız; hizmetten gelir üretiriz",
+    "accent": "hizmetten gelir"
+  },
+  "blocks": [
+    {
+      "text": "iş modeli · 07 / 17",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Satıştan pay almayız; hizmetten gelir üretiriz.",
+      "accent": "hizmetten gelir",
+      "type": "heading"
+    },
+    {
+      "text": "arsam.net satıştan pay almaz; doğrulanmış ilan, görünürlük, vitrin, veri ve operasyonel hizmetlerden gelir üretir.",
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "cols": 4,
+      "items": [
+        {
+          "label": "Premium yıllık",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "pricing.premium_annual",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "Vitrin",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "pricing.vitrin_monthly",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "Başlangıç paketi",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "pricing.starter_monthly",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "Öne çıkar",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "pricing.doping_per",
+          "tag": "model varsayımı"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "text": "Komisyon baskısı yerine satıcı dostu, tekrarlayan gelir.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "data": [
+      "financial-model"
+    ],
+    "metrics": [
+      "pricing.doping_per",
+      "pricing.premium_annual",
+      "pricing.starter_monthly",
+      "pricing.vitrin_monthly"
+    ]
+  }
+}
