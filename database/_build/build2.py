@@ -256,29 +256,51 @@ section(11, "ik-plani", "11", "İK planı", "bg-3",
         note("Kadro 2026'da 19 kişiyle başlar, 2032'de yaklaşık 149'a ulaşır; her ekleme bir gerekçeye bağlıdır."),
     ], refs={"data": ["hr-plan", "financial-detail"]})
 
-# ============ 12 · Başabaş analizi ============
+# ============ 12 · Finansal plan (kronolojik · grafik+tablo çiftleri) ============
 section(12, "basabas", "12", "Finansal", "dark",
-    {"text": "Para başabaşa kadar kapılara bölünerek harcanır", "accent": "kapılara bölünerek"},
+    {"text": "Para, ilk aydan 2032'ye kronolojik olarak izlenir", "accent": "kronolojik olarak"},
     [
-        eyebrow("finansal plan · başabaş · 12 / " + TOTAL),
-        heading(2, "Para başabaşa kadar kapılara bölünerek harcanır.", accent="kapılara bölünerek"),
-        lead("Yatırımcının en kritik sorusu: ne kadar para girer, ne zaman geri döner?"),
-        chart("basabasWaterfall", "financial-model", caption="Sermaye → gider kalemleri → başabaş → kasa"),
-        statGrid(3, [
-            stat("Yatırımcı cebinden", ref="capital.investor_pocket", tone="accent", tag=VAR),
-            stat("Operasyonel başabaş", ref="fin.breakeven_month", tone="gold", sub="18. ay", tag=HED),
-            stat("Başabaş sonrası kasa", ref="capital.reserve", sub="yedek, dokunulmaz", tag=VAR),
-        ]),
-        heading(3, "Kademeli finansal plan"),
-        lead("İlk üç yıl detaylı, sonrası özet: 2026 aylık, 2027 üç aylık, 2028 yarıyıl, 2029-2032 yıllık."),
-        chart("monthlyEarly", "financial-detail", caption="İlk 36 ay · aylık gelir/gider ve kümülatif nakit (başabaş Oca 2027)"),
-        chart("graduatedFinancial", "financial-detail", caption="Gelir · gider · net · kadro · dönem sonu nakit · kademeli detay · kaynak: finansal model v9-15"),
-        heading(3, "Yıllık özet · 7 yıl"),
-        chart("yearlyCombo", "financial-model", caption="Yıllık gelir, gider ve net kâr"),
-        chart("cashTeam", "financial-model", caption="Yıl sonu nakit ve kadro büyümesi"),
-        chart("ebitda", "financial-model", caption="Net kâr marjı (net ÷ gelir)"),
-        note("Risk belirsiz değil; ölçülmüş ve kapılara bölünmüştür. Her kapı bir ölçümle açılır.", tone="info"),
-    ], refs={"data": ["financial-model", "financial-detail"]})
+        eyebrow("finansal plan · 12 / " + TOTAL),
+        heading(2, "Para, ilk aydan 2032'ye kronolojik olarak izlenir.", accent="kronolojik olarak"),
+        lead("Her görünüm bir grafik ve onun tablosu olarak verilir; sıra zaman çizgisini izler: ilk ay kuruluş yatırımı, aylık işletme gideri, 2026 ve 2027 aylık, başabaş ve 2032 vizyonu."),
+        claimLegend(),
+
+        # --- 1) İlk ay · CAPEX ---
+        heading(3, "İlk ay · kuruluş yatırımı (CAPEX)"),
+        lead("İlk ayda bir kerelik kurulum yatırımı yapılır; sonraki aylar tekrarlayan işletme giderine döner. CAPEX, kuruluş gideridir."),
+        chart("capexBreakdown", "financial-breakdown", caption="Kuruluş yatırımı kategori kırılımı · büyük kısmı ilk ay (Tem 2026) · grafik + tablo"),
+
+        # --- 2) OPEX ---
+        heading(3, "Aylık işletme gideri (OPEX)"),
+        lead("OPEX, her ay tekrar eden işletme gideridir: personel, ofis, dijital altyapı, AI/yazılım araçları ve idari kalemler. Kadro büyüdükçe İK personeli en büyük kaleme döner."),
+        chart("opexComposition", "financial-breakdown", caption="Açılış ayı (Tem 2026) işletme gideri kompozisyonu · grafik + tablo"),
+
+        # --- 3) 2026 aylık ---
+        heading(3, "2026 · aylık finansal (Tem – Ara)"),
+        lead("Soft-launch dönemi. Gider üç bileşene ayrışır: OPEX + Pazarlama + CAPEX. Bu özdeşlik her ay tutar."),
+        chart("monthly2026", "financial-breakdown", caption="2026 aylık: gelir, gider kırılımı (OPEX/Pazarlama/CAPEX) ve kümülatif nakit · grafik + tablo"),
+
+        # --- 4) 2027 aylık ---
+        heading(3, "2027 · aylık finansal (Oca – Ara)"),
+        lead("Gelirin gideri geçtiği yıl. Aylık akış, başabaşın nasıl ve ne zaman geldiğini gösterir."),
+        chart("monthly2027", "financial-breakdown", caption="2027 aylık: gelir, gider kırılımı ve kümülatif nakit · grafik + tablo"),
+
+        # --- 5) Başabaş analizi (eksik olan grafik) ---
+        heading(3, "Başabaş analizi"),
+        lead("Başabaşa kadar yaklaşık 15 milyon ₺ harcanır; kümülatif gelir, kümülatif gideri Mart 2027'de bu seviyede geçer. O noktadan sonra gelir gideri karşılar. 40 milyon ₺ sermaye bunu rahatça finanse eder; kasa hiç 32 milyon ₺ altına inmez."),
+        chart("breakeven", "financial-breakdown", caption="Kümülatif gelir vs kümülatif gider · kesişim (başabaş) ~Mart 2027, ~15 milyon ₺ · grafik + özet tablo"),
+
+        # --- 6) 2032 vizyonu · yıllık (1 grafik + 1 tablo) ---
+        heading(3, "2032 vizyonu · yıllık (2026 → 2032)"),
+        lead("Tek finansal grafik ve tek finansal tablo: yedi yılın geliri, gideri, net kârı, kadrosu ve yıl sonu nakdi."),
+        chart("yearlyTable", "financial-model", caption="Yıllık gelir, gider, net kâr + tablo (kadro, yıl sonu nakit) · net marj ~%90"),
+
+        # --- 7) Teknopark vergi avantajı · interaktif ---
+        heading(3, "Teknopark vergi avantajı · senaryona göre"),
+        lead("Şirket teknopark çatısına alındığında yazılım kazancı kurumlar vergisinden istisna olur. Avantajın ₺ tutarı kazanca bağlıdır: aşağıdaki yatay çubuğu sürükle (Kötümser ↔ Medyan ↔ İyimser); avantaj canlı hesaplanır."),
+        chart("taxSlider", "financial-breakdown", caption="Sürükle: gelir senaryosu → vergi öncesi kâr → KV istisnası + stopaj/SGK avantajı"),
+        note("Risk belirsiz değil; ölçülmüş ve zaman çizgisine yayılmıştır. Vergi avantajının mekanizması yasal-kesindir; ₺ tutarı kazanç düzeyine bağlı model varsayımıdır.", tone="info"),
+    ], refs={"data": ["financial-model", "financial-detail", "financial-breakdown"]})
 
 # ============ 13 · Risk ve kontrol kapıları ============
 section(13, "risk", "13", "Risk", "bg-1",

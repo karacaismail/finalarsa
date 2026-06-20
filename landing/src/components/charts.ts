@@ -331,6 +331,168 @@ export function monthlyEarlyOption(rows: { label: string; gelir: number; gider: 
   };
 }
 
+/* ---------- CAPEX: kategori kırılımı (yatay bar) ---------- */
+export function capexBreakdownOption(items: { kat: string; tutar: number }[]): EChartsCoreOption {
+  const rows = [...items].sort((a, b) => a.tutar - b.tutar); // küçük→büyük (yatay barda yukarı çıkar)
+  const palette = [C.grass, C.grassBright, C.gold, C.warn, "#9ccc65", "#caa84a", "#b9885a", "#8aa86a"];
+  return {
+    aria,
+    textStyle,
+    grid: { left: 8, right: 64, top: 16, bottom: 8, containLabel: true },
+    tooltip: { ...tooltipBase, trigger: "axis", axisPointer: { type: "shadow" }, formatter: (p: any) => `${p[0].name}<br/><b>${fmt(p[0].value)}</b>` },
+    xAxis: { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
+    yAxis: {
+      type: "category",
+      data: rows.map((r) => r.kat),
+      axisLabel: { ...axisLabel, width: 150, overflow: "break", lineHeight: 18 },
+      axisLine: { lineStyle: { color: C.line } },
+      axisTick: { show: false },
+    },
+    series: [
+      {
+        type: "bar",
+        barWidth: "60%",
+        data: rows.map((r, i) => ({ value: r.tutar, itemStyle: { color: palette[(rows.length - 1 - i) % palette.length], borderRadius: [0, 6, 6, 0] } })),
+        label: { show: true, position: "right", formatter: (p: any) => fmt(p.value), color: C.ink, fontFamily: FONT, fontWeight: 600, fontSize: LBL },
+      },
+    ],
+  };
+}
+
+/* ---------- OPEX: kompozisyon (yatay bar) ---------- */
+export function opexCompositionOption(items: { kat: string; tutar: number }[]): EChartsCoreOption {
+  const rows = [...items].sort((a, b) => a.tutar - b.tutar);
+  return {
+    aria,
+    textStyle,
+    grid: { left: 8, right: 64, top: 16, bottom: 8, containLabel: true },
+    tooltip: { ...tooltipBase, trigger: "axis", axisPointer: { type: "shadow" }, formatter: (p: any) => `${p[0].name}<br/><b>${fmt(p[0].value)}</b> / ay` },
+    xAxis: { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
+    yAxis: {
+      type: "category",
+      data: rows.map((r) => r.kat),
+      axisLabel: { ...axisLabel, width: 160, overflow: "break", lineHeight: 18 },
+      axisLine: { lineStyle: { color: C.line } },
+      axisTick: { show: false },
+    },
+    series: [
+      {
+        type: "bar",
+        barWidth: "60%",
+        data: rows.map((r) => r.tutar),
+        itemStyle: { color: C.grass, borderRadius: [0, 6, 6, 0] },
+        label: { show: true, position: "right", formatter: (p: any) => fmt(p.value), color: C.ink, fontFamily: FONT, fontWeight: 600, fontSize: LBL },
+      },
+    ],
+  };
+}
+
+/* ---------- Aylık: gider kırılımı (OPEX+Pazarlama+CAPEX yığılı) + gelir + nakit ---------- */
+export function monthlySplitOption(rows: { label: string; gelir: number; opex: number; pazarlama: number; capex: number; nakit: number }[]): EChartsCoreOption {
+  return {
+    aria,
+    textStyle,
+    grid: { left: 8, right: 8, top: 44, bottom: 8, containLabel: true },
+    legend: { top: 0, type: "scroll", textStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL }, itemWidth: 14, itemHeight: 10 },
+    tooltip: {
+      ...tooltipBase,
+      trigger: "axis",
+      axisPointer: { type: "shadow" },
+      formatter: (ps: any) => `<b>${ps[0].axisValue}</b><br/>` + ps.map((p: any) => `${p.marker} ${p.seriesName}: <b>${fmt(p.value)}</b>`).join("<br/>"),
+    },
+    xAxis: {
+      type: "category",
+      data: rows.map((r) => r.label),
+      axisLabel: { ...axisLabel, rotate: rows.length > 6 ? 30 : 0 },
+      axisLine: { lineStyle: { color: C.line } },
+      axisTick: { show: false },
+    },
+    yAxis: [
+      { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
+      { type: "value", position: "right", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine: { show: false } },
+    ],
+    series: [
+      { name: "Gelir", type: "bar", data: rows.map((r) => r.gelir), itemStyle: { color: C.grassBright, borderRadius: [3, 3, 0, 0] }, barMaxWidth: 18, barGap: "10%" },
+      { name: "OPEX", type: "bar", stack: "gider", data: rows.map((r) => r.opex), itemStyle: { color: C.inkMuted }, barMaxWidth: 18 },
+      { name: "Pazarlama", type: "bar", stack: "gider", data: rows.map((r) => r.pazarlama), itemStyle: { color: C.gold } },
+      { name: "CAPEX", type: "bar", stack: "gider", data: rows.map((r) => r.capex), itemStyle: { color: C.warn, borderRadius: [3, 3, 0, 0] } },
+      {
+        name: "Kümülatif nakit",
+        type: "line",
+        yAxisIndex: 1,
+        data: rows.map((r) => r.nakit),
+        smooth: true,
+        symbol: "circle",
+        symbolSize: 6,
+        lineStyle: { color: C.grass, width: 2.5 },
+        areaStyle: { color: "rgba(77,124,31,0.08)" },
+      },
+    ],
+  };
+}
+
+/* ---------- Başabaş analizi: kümülatif gelir vs kümülatif gider (kesişim) ---------- */
+export function breakevenOption(
+  series: { label: string; cumGelir: number; cumGider: number }[],
+  be: { label: string; value: number },
+): EChartsCoreOption {
+  return {
+    aria,
+    textStyle,
+    grid: { left: 8, right: 16, top: 44, bottom: 8, containLabel: true },
+    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL }, itemWidth: 14, itemHeight: 10 },
+    tooltip: {
+      ...tooltipBase,
+      trigger: "axis",
+      formatter: (ps: any) => `<b>${ps[0].axisValue}</b><br/>` + ps.map((p: any) => `${p.marker} ${p.seriesName}: <b>${fmt(p.value)}</b>`).join("<br/>"),
+    },
+    xAxis: {
+      type: "category",
+      boundaryGap: false,
+      data: series.map((s) => s.label),
+      axisLabel: { ...axisLabel, interval: 1, rotate: 30 },
+      axisLine: { lineStyle: { color: C.line } },
+      axisTick: { show: false },
+    },
+    yAxis: { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
+    series: [
+      {
+        name: "Kümülatif gider",
+        type: "line",
+        data: series.map((s) => s.cumGider),
+        smooth: true,
+        symbol: "none",
+        lineStyle: { color: C.warn, width: 3 },
+        itemStyle: { color: C.warn },
+        areaStyle: { color: "rgba(226,114,58,0.10)" },
+      },
+      {
+        name: "Kümülatif gelir",
+        type: "line",
+        data: series.map((s) => s.cumGelir),
+        smooth: true,
+        symbol: "none",
+        lineStyle: { color: C.grass, width: 3 },
+        itemStyle: { color: C.grass },
+        markLine: {
+          silent: true,
+          symbol: "none",
+          lineStyle: { type: "dashed", color: C.ink, width: 1.5 },
+          label: { formatter: `Başabaş · ${be.label} · ${fmt(be.value)}`, color: C.ink, fontFamily: FONT, fontWeight: 600, fontSize: LBL, position: "insideStartTop" },
+          data: [{ xAxis: be.label }],
+        },
+        markPoint: {
+          symbol: "pin",
+          symbolSize: 52,
+          itemStyle: { color: C.gold },
+          label: { color: "#fff", fontFamily: FONT, fontWeight: 700, fontSize: 13, formatter: () => "BB" },
+          data: [{ coord: [be.label, be.value] }],
+        },
+      },
+    ],
+  };
+}
+
 /* ---------- AI/İK: departman bazında AI'sız vs AI ile FTE ---------- */
 export function aiDeptOption(d: { dept: string; without: number; with: number }[]): EChartsCoreOption {
   return {

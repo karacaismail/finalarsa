@@ -243,17 +243,14 @@
         "num": "12",
         "label": "Finansal"
       },
-      "title": "Para başabaşa kadar kapılara bölünerek harcanır",
+      "title": "Para, ilk aydan 2032'ye kronolojik olarak izlenir",
       "refs": {
         "data": [
           "financial-model",
-          "financial-detail"
+          "financial-detail",
+          "financial-breakdown"
         ],
-        "metrics": [
-          "capital.investor_pocket",
-          "capital.reserve",
-          "fin.breakeven_month"
-        ]
+        "metrics": []
       }
     },
     {

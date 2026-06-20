@@ -7,6 +7,8 @@ import { EChart } from "./EChart";
 import {
   aiDeptOption,
   basabasWaterfallOption,
+  breakevenOption,
+  capexBreakdownOption,
   cashHeadcountOption,
   fmt,
   financialComboOption,
@@ -14,8 +16,11 @@ import {
   marginOption,
   marketFunnelOption,
   monthlyEarlyOption,
+  monthlySplitOption,
+  opexCompositionOption,
   scenarioLinesOption,
 } from "./charts";
+import { TaxSliderView } from "./TaxSlider";
 
 const fmtTRY = (n: number) => fmt(n);
 
@@ -386,6 +391,180 @@ export function GraduatedFinancialView() {
   );
 }
 
+/* ---------------- İlk ay · CAPEX kategori kırılımı (grafik + tablo) ---------------- */
+export function CapexView() {
+  const d = getData<{ capex: { total: number; firstMonthShare: number; byCategory: { kat: string; tutar: number }[]; note: string } }>("financial-breakdown");
+  const c = d.capex;
+  const pct = (v: number) => `%${((v / c.total) * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}`;
+  return (
+    <Stack gap="4">
+      <Box {...card}>
+        <EChart height={Math.max(300, c.byCategory.length * 46)} ariaLabel="İlk ay kuruluş yatırımı (CAPEX) kategori kırılımı" option={capexBreakdownOption(c.byCategory)} />
+      </Box>
+      <Box {...card} p="0" overflowX="auto">
+        <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="420px">
+          <Thead>
+            <Tr>
+              {["Kalem", "Tutar", "Pay"].map((h, i) => (
+                <Th key={h} scope="col" textAlign={i === 0 ? "start" : "end"} p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{h}</Th>
+              ))}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {c.byCategory.map((r) => (
+              <Tr key={r.kat}>
+                <Th scope="row" textAlign="start" p="3" borderBottom="1px solid" borderColor="line" color="ink" fontWeight="medium">{r.kat}</Th>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink" whiteSpace="nowrap">{fmtTRY(r.tutar)}</Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="inkMuted">{pct(r.tutar)}</Td>
+              </Tr>
+            ))}
+            <Tr bg="surface">
+              <Th scope="row" textAlign="start" p="3" color="ink" fontWeight="bold">Toplam kuruluş yatırımı</Th>
+              <Td p="3" textAlign="end" color="ink" fontWeight="bold" whiteSpace="nowrap">{fmtTRY(c.total)}</Td>
+              <Td p="3" textAlign="end" color="inkMuted">%100</Td>
+            </Tr>
+          </Tbody>
+        </Tbl>
+      </Box>
+    </Stack>
+  );
+}
+
+/* ---------------- OPEX · aylık işletme gideri kompozisyonu (grafik + tablo) ---------------- */
+export function OpexView() {
+  const d = getData<{ opex: { month: string; total: number; byCategory: { kat: string; tutar: number }[] } }>("financial-breakdown");
+  const o = d.opex;
+  const pct = (v: number) => `%${((v / o.total) * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}`;
+  return (
+    <Stack gap="4">
+      <Box {...card}>
+        <EChart height={Math.max(320, o.byCategory.length * 44)} ariaLabel="Aylık işletme gideri (OPEX) kompozisyonu" option={opexCompositionOption(o.byCategory)} />
+      </Box>
+      <Box {...card} p="0" overflowX="auto">
+        <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="440px">
+          <Thead>
+            <Tr>
+              {["Gider kalemi", `Tutar · ${o.month}`, "Pay"].map((h, i) => (
+                <Th key={h} scope="col" textAlign={i === 0 ? "start" : "end"} p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{h}</Th>
+              ))}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {o.byCategory.map((r) => (
+              <Tr key={r.kat}>
+                <Th scope="row" textAlign="start" p="3" borderBottom="1px solid" borderColor="line" color="ink" fontWeight="medium">{r.kat}</Th>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink" whiteSpace="nowrap">{fmtTRY(r.tutar)}</Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="inkMuted">{pct(r.tutar)}</Td>
+              </Tr>
+            ))}
+            <Tr bg="surface">
+              <Th scope="row" textAlign="start" p="3" color="ink" fontWeight="bold">Toplam aylık OPEX</Th>
+              <Td p="3" textAlign="end" color="ink" fontWeight="bold" whiteSpace="nowrap">{fmtTRY(o.total)}</Td>
+              <Td p="3" textAlign="end" color="inkMuted">%100</Td>
+            </Tr>
+          </Tbody>
+        </Tbl>
+      </Box>
+    </Stack>
+  );
+}
+
+/* ---------------- Aylık finansal (2026 / 2027): grafik + tablo ---------------- */
+type MonthRow = { label: string; gelir: number; opex: number; pazarlama: number; capex: number; gider: number; net: number; nakit: number };
+function MonthlySplitView({ period }: { period: "monthly2026" | "monthly2027" }) {
+  const d = getData<Record<string, MonthRow[]>>("financial-breakdown");
+  const rows = d[period];
+  return (
+    <Stack gap="4">
+      <Box {...card}>
+        <EChart
+          height={360}
+          ariaLabel={`${period === "monthly2026" ? "2026" : "2027"} aylık gelir, gider kırılımı (OPEX/Pazarlama/CAPEX) ve kümülatif nakit`}
+          option={monthlySplitOption(rows)}
+        />
+      </Box>
+      <Box {...card} p="0" overflowX="auto">
+        <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="720px">
+          <Thead>
+            <Tr>
+              {["Ay", "Gelir", "OPEX", "Pazarlama", "CAPEX", "Gider", "Net", "Dönem sonu nakit"].map((h, i) => (
+                <Th key={h} scope="col" textAlign={i === 0 ? "start" : "end"} p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{h}</Th>
+              ))}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {rows.map((r) => (
+              <Tr key={r.label}>
+                <Th scope="row" textAlign="start" p="3" borderBottom="1px solid" borderColor="line" color="ink" fontWeight="bold" whiteSpace="nowrap">{r.label}</Th>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink">{fmtTRY(r.gelir)}</Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="inkMuted">{fmtTRY(r.opex)}</Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="inkMuted">{fmtTRY(r.pazarlama)}</Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="inkMuted">{fmtTRY(r.capex)}</Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink">{fmtTRY(r.gider)}</Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color={r.net < 0 ? "warn" : "grass"} fontWeight="medium" whiteSpace="nowrap">
+                  {r.net < 0 ? "−" : "+"}{fmtTRY(Math.abs(r.net))}
+                </Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink" whiteSpace="nowrap">{fmtTRY(r.nakit)}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Tbl>
+      </Box>
+    </Stack>
+  );
+}
+
+/* ---------------- Başabaş analizi: kümülatif kesişim grafiği + özet tablo ---------------- */
+export function BreakevenView() {
+  const d = getData<{
+    breakeven: {
+      capital: number; cumSpendToBE: number; beMonthOperational: string; beMonthCumulative: string;
+      cashTrough: number; cashTroughMonth: string; reserve: number;
+      series: { label: string; cumGelir: number; cumGider: number }[];
+    };
+  }>("financial-breakdown");
+  const be = d.breakeven;
+  const summary: [string, string, string?][] = [
+    ["Toplam sermaye", fmtTRY(be.capital), "yatırımcı girişi"],
+    ["Başabaşa kadar harcama", fmtTRY(be.cumSpendToBE), "kümülatif gider, kesişimde"],
+    ["Operasyonel başabaş", be.beMonthOperational, "aylık gelir ≥ gider"],
+    ["Kümülatif başabaş", be.beMonthCumulative, "kümülatif gelir = gider"],
+    ["Kasanın en dibi", fmtTRY(be.cashTrough), be.cashTroughMonth],
+    ["Dokunulmaz yedek", fmtTRY(be.reserve), "başabaş sonrası kasa"],
+  ];
+  return (
+    <Stack gap="4">
+      <Box {...card}>
+        <EChart
+          height={360}
+          ariaLabel={`Başabaş analizi: kümülatif gelir ve kümülatif gider; ${be.beMonthCumulative} ayında ${fmt(be.cumSpendToBE)} seviyesinde kesişir`}
+          option={breakevenOption(be.series, { label: "Mar 27", value: be.cumSpendToBE })}
+        />
+      </Box>
+      <Box {...card} p="0" overflowX="auto">
+        <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="420px">
+          <Thead>
+            <Tr>
+              {["Gösterge", "Değer", "Not"].map((h, i) => (
+                <Th key={h} scope="col" textAlign={i === 1 ? "end" : "start"} p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{h}</Th>
+              ))}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {summary.map(([k, v, n]) => (
+              <Tr key={k}>
+                <Th scope="row" textAlign="start" p="3" borderBottom="1px solid" borderColor="line" color="ink" fontWeight="medium">{k}</Th>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink" fontWeight="bold" whiteSpace="nowrap">{v}</Td>
+                <Td p="3" textAlign="start" borderBottom="1px solid" borderColor="line" color="inkMuted">{n}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Tbl>
+      </Box>
+    </Stack>
+  );
+}
+
 /* Dispatcher */
 export function ChartBlock({ chartType, highlightYears }: { chartType: string; highlightYears?: string[] }): ReactNode {
   switch (chartType) {
@@ -395,6 +574,18 @@ export function ChartBlock({ chartType, highlightYears }: { chartType: string; h
       return <ScenarioYearsView />;
     case "monthlyEarly":
       return <MonthlyEarlyView />;
+    case "capexBreakdown":
+      return <CapexView />;
+    case "opexComposition":
+      return <OpexView />;
+    case "monthly2026":
+      return <MonthlySplitView period="monthly2026" />;
+    case "monthly2027":
+      return <MonthlySplitView period="monthly2027" />;
+    case "breakeven":
+      return <BreakevenView />;
+    case "taxSlider":
+      return <TaxSliderView />;
     case "graduatedFinancial":
       return <GraduatedFinancialView />;
     case "headcountMonthly":
