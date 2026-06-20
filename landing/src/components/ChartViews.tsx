@@ -301,8 +301,15 @@ export function PanelMockView() {
     ["Kapora / emanet ödeme", "tapuya kadar güvende"],
   ];
   return (
-    <Box {...card} maxW="560px">
-      <Flex justify="space-between" align="center" mb="3" pb="3" borderBottom="1px solid" borderColor="line" gap="3">
+    <Box
+      {...card}
+      maxW="560px"
+      bg="#f7faf1"
+      bgImage="linear-gradient(155deg, #ffffff 0%, #eef5e3 100%)"
+      borderColor="#d8e6c4"
+      boxShadow="0 16px 40px rgba(27,26,23,0.10), 0 4px 12px rgba(27,26,23,0.06)"
+    >
+      <Flex justify="space-between" align="center" mb="3" pb="3" borderBottom="1px solid" borderColor="#cfe0b4" gap="3">
         <Box>
           <P fontWeight="bold" color="ink" fontSize="lg">Söke · Arsa · 1.250 m²</P>
           <P fontSize="md" color="inkMuted">örnek ilan · güven dosyası</P>
