@@ -68,7 +68,39 @@
       "tag": "model varsayımı"
     },
     {
-      "text": "Burada 'kesin tasarruf' denmez; uygunluğa bağlı, modelde dikkate alınan avantajdır.",
+      "level": 3,
+      "text": "Avantajın şartları",
+      "accent": null,
+      "type": "heading"
+    },
+    {
+      "ordered": false,
+      "items": [
+        {
+          "title": "Teknoparka kabul",
+          "body": "Yönetici şirkete proje başvurusu ve kabul; kazancın münhasıran onaylı yazılım/Ar-Ge faaliyetinden olması.",
+          "num": "01"
+        },
+        {
+          "title": "Kurumlar vergisi yatırım yükümlülüğü",
+          "body": "İstisna kazanç eşiğin (2025: 2 milyon ₺) üstündeyse bir kısmı (≈%3, yıllık tavan 100 milyon ₺) yıl sonuna kadar girişim sermayesi fonuna veya kuluçka girişimine yatırılmalı; aksi halde istisnanın o kısmı kaybedilir.",
+          "num": "02"
+        },
+        {
+          "title": "Stopaj tavanı ve oranlar",
+          "body": "Kişi başı aylık brüt asgari ücretin 40 katı tavanı (7555 sayılı Kanun, Ağu 2025); destek personeli %10 sınırı; bölge dışı çalışma oranı (BT personeli 2026 sonuna kadar %100).",
+          "num": "03"
+        },
+        {
+          "title": "Süre",
+          "body": "Tüm avantajlar 31/12/2028'e kadar geçerli; tarihsel olarak uzatılmış ama uzaması kesin değildir.",
+          "num": "04"
+        }
+      ],
+      "type": "list"
+    },
+    {
+      "text": "Burada 'kesin tasarruf' denmez; uygunluğa ve yukarıdaki şartlara bağlı, modelde dikkate alınan avantajdır.",
       "tone": "info",
       "type": "note"
     }

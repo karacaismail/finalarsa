@@ -305,7 +305,14 @@ section(14, "teknopark", "14", "Teknopark", "bg-2",
             stat("SGK işveren payı desteği", ref="tax.sgk_employer", tone="gold", tag=DOG),
         ]),
         card("İlk yıl modelde dikkate alınan avantaj", "Uygunluğa bağlıdır; kesin tasarruf değildir. İstisna süresi 31/12/2028.", eyebrow="~2027", tone="gold", valueRef="tax.saving_2027", tag=VAR),
-        note("Burada 'kesin tasarruf' denmez; uygunluğa bağlı, modelde dikkate alınan avantajdır."),
+        heading(3, "Avantajın şartları"),
+        listb([
+            li("Teknoparka kabul", "Yönetici şirkete proje başvurusu ve kabul; kazancın münhasıran onaylı yazılım/Ar-Ge faaliyetinden olması.", num="01"),
+            li("Kurumlar vergisi yatırım yükümlülüğü", "İstisna kazanç eşiğin (2025: 2 milyon ₺) üstündeyse bir kısmı (≈%3, yıllık tavan 100 milyon ₺) yıl sonuna kadar girişim sermayesi fonuna veya kuluçka girişimine yatırılmalı; aksi halde istisnanın o kısmı kaybedilir.", num="02"),
+            li("Stopaj tavanı ve oranlar", "Kişi başı aylık brüt asgari ücretin 40 katı tavanı (7555 sayılı Kanun, Ağu 2025); destek personeli %10 sınırı; bölge dışı çalışma oranı (BT personeli 2026 sonuna kadar %100).", num="03"),
+            li("Süre", "Tüm avantajlar 31/12/2028'e kadar geçerli; tarihsel olarak uzatılmış ama uzaması kesin değildir.", num="04"),
+        ]),
+        note("Burada 'kesin tasarruf' denmez; uygunluğa ve yukarıdaki şartlara bağlı, modelde dikkate alınan avantajdır."),
     ], refs={"shared": ["sources"], "sources": ["kanun-4691"], "data": ["incentives"], "glossary": ["4691"]})
 
 # ============ 15 · CPO çalışma şartları ============
