@@ -27,6 +27,7 @@
     },
     {
       "text": "arsam.net satıştan pay almaz; doğrulanmış ilan, görünürlük, vitrin, veri ve operasyonel hizmetlerden gelir üretir.",
+      "highlight": ["satıştan pay almaz"],
       "tone": "accent",
       "type": "note"
     },

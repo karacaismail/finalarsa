@@ -27,6 +27,7 @@
     },
     {
       "text": "İlan sayfası yalnızca fotoğraf göstermez; parselin güven dosyasını gösterir.",
+      "highlight": ["güven dosyasını"],
       "tone": "accent",
       "type": "note"
     },

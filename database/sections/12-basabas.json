@@ -95,6 +95,7 @@
     },
     {
       "text": "Risk belirsiz değil; ölçülmüş ve zaman çizgisine yayılmıştır. Vergi avantajının mekanizması yasal-kesindir; ₺ tutarı kazanç düzeyine bağlı model varsayımıdır.",
+      "highlight": ["Risk belirsiz değil"],
       "tone": "info",
       "type": "note"
     }

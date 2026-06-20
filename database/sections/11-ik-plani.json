@@ -70,6 +70,7 @@
     },
     {
       "text": "Kadro 2026'da 19 kişiyle başlar, 2032'de yaklaşık 149'a ulaşır; her ekleme bir gerekçeye bağlıdır.",
+      "highlight": ["her ekleme bir gerekçeye bağlıdır"],
       "tone": "info",
       "type": "note"
     }

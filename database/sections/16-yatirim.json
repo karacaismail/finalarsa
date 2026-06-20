@@ -61,6 +61,7 @@
     },
     {
       "text": "Ulusal kampanya sonrası değerleme yeniden ele alınır. Bugünkü teklif, kampanya öncesi riskleri birlikte üstlenme teklifidir.",
+      "highlight": ["riskleri birlikte üstlenme"],
       "tone": "info",
       "type": "note"
     }

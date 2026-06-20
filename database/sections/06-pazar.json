@@ -27,7 +27,7 @@
     },
     {
       "text": "Resmi veriyi, model varsayımını ve hedefi ayrı tutuyoruz; her rakamın türünü etiketliyoruz.",
-      "highlight": ["Resmi veri", "model varsayımı", "hedef"],
+      "highlight": ["her rakamın türünü etiketliyoruz"],
       "type": "lead"
     },
     {

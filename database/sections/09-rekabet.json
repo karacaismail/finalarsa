@@ -72,6 +72,7 @@
     },
     {
       "text": "Rakip yarın dikey bir sayfa açabilir; ama saha arzını, doğrulamayı ve satıcı ilişkisini bir günde kuramaz.",
+      "highlight": ["bir günde kuramaz"],
       "tone": "info",
       "type": "note"
     }

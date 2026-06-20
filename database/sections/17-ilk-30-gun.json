@@ -48,6 +48,7 @@
     },
     {
       "text": "Karar sizde. Önerimiz: önce kontrollü pilotu başlatmak ve ilk 90 günde satıcı arzı, doğrulanmış ilan ve gelir sinyalini birlikte ölçmek.",
+      "highlight": ["kontrollü pilotu başlatmak"],
       "tone": "accent",
       "type": "note"
     },

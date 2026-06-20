@@ -1,9 +1,10 @@
-import { Box, Highlight, Portal, Progress, SegmentGroup, Tabs, Tooltip, VisuallyHidden } from "@chakra-ui/react";
+import { Box, Portal, Progress, SegmentGroup, Tabs, Tooltip, VisuallyHidden } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { brand, getData, getMetric, interpolate } from "../data/resolve";
 import type { Block } from "../data/types";
 import { A, Blockquote, Dd, Dl, Dt, Flex, Grid, H3, Li, Ol, P, Stack, Tbl, Tbody, Td, Th, Thead, Tr, Ul } from "../ui";
 import { RichText } from "./RichText";
+import { markHighlight } from "./MarkHighlight";
 import { ChartBlock } from "./ChartViews";
 import { fmt } from "./charts";
 
@@ -124,14 +125,14 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
     case "lead":
       return (
         <P fontSize={{ base: "lg", md: "xl" }} color={ctx.dark ? D.muted : "inkMuted"} lineHeight="1.55" maxW="62ch">
-          <TextContent text={b.text} highlight={b.highlight as string[] | undefined} dark={ctx.dark} />
+          <TextContent text={b.text} highlight={b.highlight as string[] | undefined} />
         </P>
       );
 
     case "paragraph":
       return (
         <P color={ctx.dark ? D.body : "ink"} maxW="62ch">
-          <TextContent text={b.text} highlight={b.highlight as string[] | undefined} dark={ctx.dark} />
+          <TextContent text={b.text} highlight={b.highlight as string[] | undefined} />
         </P>
       );
 
@@ -360,7 +361,7 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
           color="ink"
           maxW="72ch"
         >
-          <RichText text={b.text} />
+          <TextContent text={b.text} highlight={b.highlight as string[] | undefined} />
         </Box>
       );
 
@@ -605,36 +606,20 @@ function Countdown({ targetRef, label }: { targetRef: string; label: string }) {
   );
 }
 
-/* ---------------- metin: opsiyonel Chakra Highlight ---------------- */
+/* ---------------- metin: opsiyonel fosforlu kalem (marker) vurgusu ---------------- */
 function TextContent({
   text,
   highlight,
   accent,
   accentColor,
-  dark,
 }: {
   text: string;
   highlight?: string[];
   accent?: string;
   accentColor?: string;
-  dark?: boolean;
 }) {
   if (highlight && highlight.length) {
-    return (
-      <Highlight
-        query={highlight}
-        styles={{
-          px: "0.4em",
-          py: "0.08em",
-          borderRadius: "0.25rem",
-          bg: dark ? "rgba(124,179,66,0.30)" : "#eef5e3",
-          color: dark ? "#f4efe6" : "grassInk",
-          fontWeight: "medium",
-        }}
-      >
-        {interpolate(text)}
-      </Highlight>
-    );
+    return <>{markHighlight(interpolate(text), highlight, "hl")}</>;
   }
   return <RichText text={text} accent={accent} accentColor={accentColor} />;
 }

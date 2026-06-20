@@ -69,6 +69,46 @@ button:focus-visible,
   animation: pmFadeIn 0.35s ease both;
 }
 
+/* ----------------------------------------------------------------------------
+   Elle çizilmiş fosforlu kalem (marker) vurgusu — .hl-marker
+   - Organik (dikdörtgen değil) sarı fırça izi: ::before + satır içi SVG (dış görsel yok)
+   - Hafif dönme (-0.9deg), düzensiz kenarlar, hover'da yumuşak animasyon
+   - Metin her zaman okunur: işaretin üstündeki yazı koyu (#1b1a17), her zeminde çalışır
+   - box-decoration-break + isolation: not bg'li kutularda da doğru katman
+---------------------------------------------------------------------------- */
+.hl-marker {
+  position: relative;
+  isolation: isolate; /* ::before(-1) not bg'inin arkasına düşmesin */
+  display: inline;
+  color: #1b1a17; /* sarı iz üzerinde daima koyu, okunur metin */
+  background: transparent; /* tarayıcının varsayılan <mark> sarısını kaldır */
+  padding: 0.02em 0.14em;
+  border-radius: 0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.hl-marker::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -0.14em;
+  right: -0.16em;
+  top: -0.06em;
+  bottom: -0.1em;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 36' preserveAspectRatio='none'><path d='M6 20 C40 11 80 9 124 11 C168 13 210 9 234 14 C239 19 238 25 232 28 C198 33 150 30 110 30 C70 30 36 33 12 29 C3 26 2 24 6 20 Z' fill='%23ffe24a'/><path d='M16 23 C70 17 130 16 188 18 C214 19 226 18 228 21 C226 24 198 25 148 25 C98 25 50 27 20 26 C10 25 11 24 16 23 Z' fill='%23ffcf12' opacity='0.5'/></svg>");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: rotate(-0.9deg);
+  transform-origin: center;
+  transition:
+    transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.28s ease;
+}
+.hl-marker:hover::before {
+  transform: rotate(-0.9deg) scale(1.03, 1.12);
+  filter: saturate(1.18) brightness(1.02);
+}
+
 /* WCAG 2.3.3 — hareket azaltma tercihi */
 @media (prefers-reduced-motion: reduce) {
   *,
