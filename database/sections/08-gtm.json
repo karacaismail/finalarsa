@@ -61,6 +61,48 @@
       "type": "list"
     },
     {
+      "level": 3,
+      "text": "İlk 6 uygulanabilir büyüme hamlesi",
+      "accent": null,
+      "type": "heading"
+    },
+    {
+      "ordered": false,
+      "items": [
+        {
+          "title": "Bölgesel arz toplama",
+          "body": "Sahadaki satıcı ağından ilk doğrulanmış ilanlar.",
+          "num": "01"
+        },
+        {
+          "title": "Kurucu satıcı programı",
+          "body": "İlk satıcılara kalıcı kurucu statüsü ve öncelik.",
+          "num": "02"
+        },
+        {
+          "title": "Programatik bölge sayfaları",
+          "body": "Her il, ilçe ve arsa tipi için aranabilir sayfa.",
+          "num": "03"
+        },
+        {
+          "title": "Drone ve doğrulama ile premium ilan",
+          "body": "Güven dosyası tam dolu, öne çıkan ilan.",
+          "num": "04"
+        },
+        {
+          "title": "Diaspora alıcı kanalı",
+          "body": "Yurt dışındaki Türk alıcıya yönelik satış kanalı.",
+          "num": "05"
+        },
+        {
+          "title": "Emlakçı paneli ve CRM",
+          "body": "Saha emlakçısı için ilan ve müşteri yönetim ekranı.",
+          "num": "06"
+        }
+      ],
+      "type": "list"
+    },
+    {
       "text": "Bu plan 'rakibi nasıl yeneriz' değil, 'nasıl kazanırız' sorusunu cevaplar.",
       "tone": "info",
       "type": "note"

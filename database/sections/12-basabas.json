@@ -83,7 +83,7 @@
     {
       "chartType": "graduatedFinancial",
       "dataRef": "financial-detail",
-      "caption": "Gelir · gider · net · kadro · dönem sonu nakit (kademeli detay)",
+      "caption": "Gelir · gider · net · kadro · dönem sonu nakit · kademeli detay · kaynak: finansal model v9-15",
       "type": "chart"
     },
     {

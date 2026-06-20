@@ -200,6 +200,15 @@ section(8, "gtm", "08", "Pazara giriş", "bg-4",
             li("Alıcı güvenini veriyle artır", "Emsal fiyat, doğrulama ve drone ile güven üret.", num="04"),
             li("Formülü başka bölgelere taşı", "Başarılı bölge modeli adım adım ölçeklenir.", num="05"),
         ]),
+        heading(3, "İlk 6 uygulanabilir büyüme hamlesi"),
+        listb([
+            li("Bölgesel arz toplama", "Sahadaki satıcı ağından ilk doğrulanmış ilanlar.", num="01"),
+            li("Kurucu satıcı programı", "İlk satıcılara kalıcı kurucu statüsü ve öncelik.", num="02"),
+            li("Programatik bölge sayfaları", "Her il, ilçe ve arsa tipi için aranabilir sayfa.", num="03"),
+            li("Drone ve doğrulama ile premium ilan", "Güven dosyası tam dolu, öne çıkan ilan.", num="04"),
+            li("Diaspora alıcı kanalı", "Yurt dışındaki Türk alıcıya yönelik satış kanalı.", num="05"),
+            li("Emlakçı paneli ve CRM", "Saha emlakçısı için ilan ve müşteri yönetim ekranı.", num="06"),
+        ]),
         note("Bu plan 'rakibi nasıl yeneriz' değil, 'nasıl kazanırız' sorusunu cevaplar."),
     ])
 # ============ 09 · Rekabet ve savunma ============
@@ -267,7 +276,7 @@ section(12, "basabas", "12", "Başabaş", "bg-4",
         heading(3, "Kademeli finansal plan"),
         lead("İlk üç yıl detaylı, sonrası özet: 2026 aylık, 2027 üç aylık, 2028 yarıyıl, 2029-2032 yıllık."),
         chart("monthlyEarly", "financial-detail", caption="İlk 36 ay · aylık gelir/gider ve kümülatif nakit (başabaş Oca 2027)"),
-        chart("graduatedFinancial", "financial-detail", caption="Gelir · gider · net · kadro · dönem sonu nakit (kademeli detay)"),
+        chart("graduatedFinancial", "financial-detail", caption="Gelir · gider · net · kadro · dönem sonu nakit · kademeli detay · kaynak: finansal model v9-15"),
         note("Risk belirsiz değil; ölçülmüş ve kapılara bölünmüştür. Her kapı bir ölçümle açılır.", tone="info"),
     ], refs={"data": ["financial-model", "financial-detail"]})
 
