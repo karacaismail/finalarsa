@@ -77,36 +77,27 @@ button:focus-visible,
    - box-decoration-break + isolation: not bg'li kutularda da doğru katman
 ---------------------------------------------------------------------------- */
 .hl-marker {
-  position: relative;
-  isolation: isolate; /* ::before(-1) not bg'inin arkasına düşmesin */
   display: inline;
-  color: #1b1a17; /* sarı iz üzerinde daima koyu, okunur metin */
-  background: transparent; /* tarayıcının varsayılan <mark> sarısını kaldır */
-  padding: 0.02em 0.14em;
-  border-radius: 0.12em;
+  color: #1b1a17; /* sarı iz üzerinde daima koyu, okunur metin (her zeminde) */
+  background-color: transparent; /* tarayıcının varsayılan <mark> sarısını kaldır */
+  /* Organik, hafif eğimli (el çizimi) sarı fırça izi — satır içi SVG, dış görsel yok.
+     İz doğrudan elemanın arka planıdır: satır kaydırmada her parça kendi izini alır
+     (box-decoration-break: clone) ve metin düz/okunur kalır. */
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 40' preserveAspectRatio='none'><path d='M4 30 C44 20 92 15 132 16 C176 17 214 12 236 15 C240 20 237 27 232 31 C196 37 150 34 108 34 C66 34 34 38 10 34 C2 33 1 33 4 30 Z' fill='%23ffe24a'/><path d='M14 31 C74 23 140 20 196 22 C220 23 229 23 231 26 C228 30 196 31 150 31 C104 31 54 33 22 32 C11 31 10 32 14 31 Z' fill='%23ffcf12' opacity='0.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 90%;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-}
-.hl-marker::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: -0.14em;
-  right: -0.16em;
-  top: -0.06em;
-  bottom: -0.1em;
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 36' preserveAspectRatio='none'><path d='M6 20 C40 11 80 9 124 11 C168 13 210 9 234 14 C239 19 238 25 232 28 C198 33 150 30 110 30 C70 30 36 33 12 29 C3 26 2 24 6 20 Z' fill='%23ffe24a'/><path d='M16 23 C70 17 130 16 188 18 C214 19 226 18 228 21 C226 24 198 25 148 25 C98 25 50 27 20 26 C10 25 11 24 16 23 Z' fill='%23ffcf12' opacity='0.5'/></svg>");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  transform: rotate(-0.9deg);
-  transform-origin: center;
+  padding: 0.06em 0.2em 0.12em;
+  border-radius: 0.1em;
   transition:
-    transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
-    filter 0.28s ease;
+    background-size 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.3s ease;
 }
-.hl-marker:hover::before {
-  transform: rotate(-0.9deg) scale(1.03, 1.12);
-  filter: saturate(1.18) brightness(1.02);
+.hl-marker:hover {
+  background-size: 100% 110%; /* hover'da iz tazelenir gibi hafifçe büyür */
+  filter: saturate(1.15);
 }
 
 /* WCAG 2.3.3 — hareket azaltma tercihi */
