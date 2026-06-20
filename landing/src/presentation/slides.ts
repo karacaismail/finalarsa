@@ -26,17 +26,17 @@ export interface PresentationSlide {
   theme: SlideTheme;
 }
 
-/* Arka plan paleti: açık ve koyu renkler dönüşümlü; her komşu slayt farklı zemin alır. */
-const PALETTE: SlideTheme[] = [
-  { bg: "#ffffff", isDark: false }, // kâğıt
-  { bg: "#1f2a17", isDark: true }, // koyu orman yeşili
-  { bg: "#eef4e6", isDark: false }, // açık adaçayı
-  { bg: "#241c16", isDark: true }, // koyu kakao
-  { bg: "#f7f2ea", isDark: false }, // açık krem
-  { bg: "#1b2128", isDark: true }, // koyu arduvaz
-  { bg: "#eef1ee", isDark: false }, // açık sis
-  { bg: "#20201a", isDark: true }, // koyu mürekkep
-];
+/**
+ * Arka plan: her slayt KENDİ BÖLÜMÜNÜN orijinal zeminini korur (yapay palet yok).
+ * Böylece slayttan slayta sürekli açık/koyu yanıp sönme olmaz; site ile aynı kalır.
+ * Orijinalde koyu olan tek bölüm (finansal/başabaş) koyu kalır; gerisi açık (kâğıt).
+ * Açık bölümlerde site ile aynı çift ton (paper/paperWarm) kullanılır — gözle fark
+ * edilmeyecek kadar yakın, dolayısıyla "değişim" hissi vermez.
+ */
+function themeForSection(section: Section, sectionIndex: number): SlideTheme {
+  if (section.background === "dark") return { bg: "#211c16", isDark: true };
+  return { bg: sectionIndex % 2 === 0 ? "#ffffff" : "#faf9f5", isDark: false };
+}
 
 /* Anlatı blokları: bir araya toplanır (büyük blokla aynı slayta bağlam olarak girer). */
 const TEXT_TYPES = new Set(["eyebrow", "heading", "lead", "paragraph", "note", "claimLegend"]);
@@ -89,8 +89,8 @@ function splitSection(section: Section): Block[][] {
 
 function buildSlides(): PresentationSlide[] {
   const slides: PresentationSlide[] = [];
-  let g = 0;
   sections.forEach((sec, si) => {
+    const theme = themeForSection(sec, si);
     const groups = splitSection(sec);
     groups.forEach((blocks, di) => {
       slides.push({
@@ -100,9 +100,8 @@ function buildSlides(): PresentationSlide[] {
         slug: sec.slug,
         isSectionStart: di === 0,
         blocks,
-        theme: PALETTE[g % PALETTE.length],
+        theme,
       });
-      g++;
     });
   });
   return slides;

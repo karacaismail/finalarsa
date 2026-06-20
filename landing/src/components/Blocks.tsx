@@ -748,15 +748,39 @@ function MarketScale({ dark }: { dark?: boolean }) {
       bg={dark ? "rgba(255,255,255,0.03)" : "paper"}
       p={{ base: "5", md: "6" }}
     >
-      <SegmentGroup.Root value={mode} onValueChange={(e) => setMode(e.value ?? "share")} size="sm">
-        <SegmentGroup.Indicator />
-        <SegmentGroup.Items
-          items={[
-            { value: "share", label: "Pazar payı" },
-            { value: "conversion", label: "Aşama dönüşümü" },
-          ]}
-        />
-      </SegmentGroup.Root>
+      <Flex align="center" gap="3" wrap="wrap" mb="5">
+        <P fontWeight="medium" fontSize="md" color={dark ? D.muted : "inkMuted"}>
+          Görünüm:
+        </P>
+        <SegmentGroup.Root
+          value={mode}
+          onValueChange={(e) => setMode(e.value ?? "share")}
+          display="inline-flex"
+          bg={dark ? "rgba(255,255,255,0.10)" : "surface"}
+          border="1px solid"
+          borderColor={dark ? "rgba(255,255,255,0.18)" : "lineStrong"}
+          borderRadius="full"
+          p="1"
+          fontSize="md"
+        >
+          <SegmentGroup.Indicator
+            bg={dark ? "#43361f" : "paper"}
+            borderRadius="full"
+            boxShadow="0 1px 4px rgba(0,0,0,0.22)"
+          />
+          <SegmentGroup.Items
+            items={[
+              { value: "share", label: "Pazar payı" },
+              { value: "conversion", label: "Aşama dönüşümü" },
+            ]}
+            px="4"
+            py="2"
+            fontWeight="medium"
+            cursor="pointer"
+            color={dark ? "#f4efe6" : "ink"}
+          />
+        </SegmentGroup.Root>
+      </Flex>
 
       <Stack gap="4" mt="5">
         {rows.map((r) => (
