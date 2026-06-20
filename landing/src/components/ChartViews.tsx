@@ -337,6 +337,12 @@ export function HeadcountMonthlyView() {
   );
 }
 
+/* ---------------- Yıllık gelir/gider/net (yalnız grafik) ---------------- */
+export function YearlyComboView() {
+  const d = getData<{ yearly: FinancialYear[] }>("financial-model");
+  return <EChart height={360} ariaLabel="Yıllık gelir, gider ve net kâr" option={financialComboOption(d.yearly)} />;
+}
+
 /* ---------------- Kademeli finansal tablo (2026 aylık → 2032 yıllık) ---------------- */
 export function GraduatedFinancialView() {
   const d = getData<{
@@ -399,6 +405,8 @@ export function ChartBlock({ chartType, highlightYears }: { chartType: string; h
       return <HeadcountView />;
     case "basabasWaterfall":
       return <BasabasWaterfallView />;
+    case "yearlyCombo":
+      return <YearlyComboView />;
     case "panelMock":
       return <PanelMockView />;
     case "yearlyHighlights":

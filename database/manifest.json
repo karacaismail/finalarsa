@@ -241,7 +241,7 @@
       "file": "sections/12-basabas.json",
       "nav": {
         "num": "12",
-        "label": "Başabaş"
+        "label": "Finansal"
       },
       "title": "Para başabaşa kadar kapılara bölünerek harcanır",
       "refs": {
@@ -280,7 +280,7 @@
         "num": "14",
         "label": "Teknopark"
       },
-      "title": "Uygunluk halinde teşvik avantajı doğar",
+      "title": "Şartlar sağlandığında vergi avantajı kesindir",
       "refs": {
         "shared": [
           "sources"

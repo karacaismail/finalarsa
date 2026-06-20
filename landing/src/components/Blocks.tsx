@@ -50,7 +50,10 @@ function statValue(b: Block): string {
 
 interface Ctx {
   isHero: boolean;
+  dark?: boolean;
 }
+/* Koyu bölümde ışık metin renkleri (kartlar/grafikler ışık panel kalır) */
+const D = { text: "#f4efe6", muted: "#cdc6b8", eyebrow: "#b3a892", body: "#e8e2d6" };
 
 /* ---------------- tek blok ---------------- */
 export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
@@ -58,7 +61,7 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
   switch (b.type) {
     case "eyebrow":
       return (
-        <P color="inkMuted" fontWeight="bold" textTransform="uppercase" letterSpacing="0.06em" fontSize="md">
+        <P color={ctx.dark ? D.eyebrow : "inkMuted"} fontWeight="bold" textTransform="uppercase" letterSpacing="0.06em" fontSize="md">
           {interpolate(b.text)}
         </P>
       );
@@ -72,22 +75,22 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
             ? { base: "2xl", md: "4xl" }
             : { base: "xl", md: "2xl" };
       return (
-        <H3 as={tag} fontSize={size} fontWeight="bold" color="ink" lineHeight="1.12" letterSpacing="-0.01em" maxW="20ch">
-          <RichText text={b.text} accent={b.accent} accentColor="gold" />
+        <H3 as={tag} fontSize={size} fontWeight="bold" color={ctx.dark ? D.text : "ink"} lineHeight="1.12" letterSpacing="-0.01em" maxW="20ch">
+          <RichText text={b.text} accent={b.accent} accentColor={ctx.dark ? "goldBright" : "gold"} />
         </H3>
       );
     }
 
     case "lead":
       return (
-        <P fontSize={{ base: "lg", md: "xl" }} color="inkMuted" lineHeight="1.55" maxW="62ch">
+        <P fontSize={{ base: "lg", md: "xl" }} color={ctx.dark ? D.muted : "inkMuted"} lineHeight="1.55" maxW="62ch">
           <RichText text={b.text} />
         </P>
       );
 
     case "paragraph":
       return (
-        <P color="ink" maxW="62ch">
+        <P color={ctx.dark ? D.body : "ink"} maxW="62ch">
           <RichText text={b.text} />
         </P>
       );

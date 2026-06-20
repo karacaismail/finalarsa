@@ -7,16 +7,16 @@
   "slug": "basabas",
   "nav": {
     "num": "12",
-    "label": "Başabaş"
+    "label": "Finansal"
   },
-  "background": "bg-4",
+  "background": "dark",
   "title": {
     "text": "Para başabaşa kadar kapılara bölünerek harcanır",
     "accent": "kapılara bölünerek"
   },
   "blocks": [
     {
-      "text": "başabaş analizi · 12 / 17",
+      "text": "finansal plan · başabaş · 12 / 17",
       "type": "eyebrow"
     },
     {
@@ -84,6 +84,30 @@
       "chartType": "graduatedFinancial",
       "dataRef": "financial-detail",
       "caption": "Gelir · gider · net · kadro · dönem sonu nakit · kademeli detay · kaynak: finansal model v9-15",
+      "type": "chart"
+    },
+    {
+      "level": 3,
+      "text": "Yıllık özet · 7 yıl",
+      "accent": null,
+      "type": "heading"
+    },
+    {
+      "chartType": "yearlyCombo",
+      "dataRef": "financial-model",
+      "caption": "Yıllık gelir, gider ve net kâr",
+      "type": "chart"
+    },
+    {
+      "chartType": "cashTeam",
+      "dataRef": "financial-model",
+      "caption": "Yıl sonu nakit ve kadro büyümesi",
+      "type": "chart"
+    },
+    {
+      "chartType": "ebitda",
+      "dataRef": "financial-model",
+      "caption": "Net kâr marjı (net ÷ gelir)",
       "type": "chart"
     },
     {

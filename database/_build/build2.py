@@ -257,10 +257,10 @@ section(11, "ik-plani", "11", "İK planı", "bg-3",
     ], refs={"data": ["hr-plan", "financial-detail"]})
 
 # ============ 12 · Başabaş analizi ============
-section(12, "basabas", "12", "Başabaş", "bg-4",
+section(12, "basabas", "12", "Finansal", "dark",
     {"text": "Para başabaşa kadar kapılara bölünerek harcanır", "accent": "kapılara bölünerek"},
     [
-        eyebrow("başabaş analizi · 12 / " + TOTAL),
+        eyebrow("finansal plan · başabaş · 12 / " + TOTAL),
         heading(2, "Para başabaşa kadar kapılara bölünerek harcanır.", accent="kapılara bölünerek"),
         lead("Yatırımcının en kritik sorusu: ne kadar para girer, ne zaman geri döner?"),
         chart("basabasWaterfall", "financial-model", caption="Sermaye → gider kalemleri → başabaş → kasa"),
@@ -273,6 +273,10 @@ section(12, "basabas", "12", "Başabaş", "bg-4",
         lead("İlk üç yıl detaylı, sonrası özet: 2026 aylık, 2027 üç aylık, 2028 yarıyıl, 2029-2032 yıllık."),
         chart("monthlyEarly", "financial-detail", caption="İlk 36 ay · aylık gelir/gider ve kümülatif nakit (başabaş Oca 2027)"),
         chart("graduatedFinancial", "financial-detail", caption="Gelir · gider · net · kadro · dönem sonu nakit · kademeli detay · kaynak: finansal model v9-15"),
+        heading(3, "Yıllık özet · 7 yıl"),
+        chart("yearlyCombo", "financial-model", caption="Yıllık gelir, gider ve net kâr"),
+        chart("cashTeam", "financial-model", caption="Yıl sonu nakit ve kadro büyümesi"),
+        chart("ebitda", "financial-model", caption="Net kâr marjı (net ÷ gelir)"),
         note("Risk belirsiz değil; ölçülmüş ve kapılara bölünmüştür. Her kapı bir ölçümle açılır.", tone="info"),
     ], refs={"data": ["financial-model", "financial-detail"]})
 
