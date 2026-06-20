@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { brand } from "../data/resolve";
 import { A, Flex } from "../ui";
+import { LogoMark } from "./LogoMark";
 
 const contact = brand.contact as { email: string; phone: string; phoneHref: string; city: string };
 const founder = brand.founder as { name: string; role: string };
@@ -41,14 +42,17 @@ export function Header() {
       borderBottom="1px solid"
       borderColor="line"
     >
-      <Flex maxW="1100px" mx="auto" px={{ base: "5", md: "8" }} h="60px" align="center" justify="space-between" gap="3">
-        <Flex align="baseline" gap="2" minW="0">
-          <Box as="span" fontWeight="bold" color="ink" fontSize="lg">
-            arsam.net
-          </Box>
-          <Box as="span" color="inkMuted" fontSize="md" display={{ base: "none", sm: "block" }} truncate>
-            yatırımcı sunumu
-          </Box>
+      <Flex maxW="1100px" mx="auto" px={{ base: "5", md: "8" }} h="64px" align="center" justify="space-between" gap="3">
+        <Flex align="center" gap="3" minW="0">
+          <LogoMark size={36} />
+          <Flex align="baseline" gap="2" minW="0">
+            <Box as="span" fontWeight="bold" color="ink" fontSize="lg">
+              arsam.net
+            </Box>
+            <Box as="span" color="inkMuted" fontSize="md" display={{ base: "none", sm: "block" }} truncate>
+              yatırımcı sunumu
+            </Box>
+          </Flex>
         </Flex>
         <A
           href={`mailto:${contact.email}`}
