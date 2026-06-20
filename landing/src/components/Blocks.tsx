@@ -192,11 +192,11 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
                 </Box>
               )}
               <Box>
-                <P fontWeight="medium" color="ink">
+                <P fontWeight="medium" color={ctx.dark ? D.text : "ink"}>
                   <RichText text={it.title} />
                 </P>
                 {it.body && (
-                  <P color="inkMuted" fontSize="md" mt="0.5">
+                  <P color={ctx.dark ? D.muted : "inkMuted"} fontSize="md" mt="0.5">
                     <RichText text={it.body} />
                   </P>
                 )}
@@ -209,7 +209,7 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
 
     case "table":
       return (
-        <Box overflowX="auto" border="1px solid" borderColor="line" borderRadius="surface">
+        <Box overflowX="auto" border="1px solid" borderColor="line" borderRadius="surface" bg={ctx.dark ? "paper" : "transparent"}>
           <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="560px">
             <Thead>
               <Tr>
@@ -271,10 +271,10 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
                   {i < b.items.length - 1 && <Box w="2px" flex="1" bg="line" mt="1" />}
                 </Flex>
                 <Box pb="2">
-                  <P color={active ? "grass" : "inkMuted"} fontWeight="bold" fontSize="md">
+                  <P color={active ? (ctx.dark ? "grassBright" : "grass") : ctx.dark ? D.muted : "inkMuted"} fontWeight="bold" fontSize="md">
                     <RichText text={it.when} />
                   </P>
-                  <P color="ink" mt="0.5">
+                  <P color={ctx.dark ? D.body : "ink"} mt="0.5">
                     <RichText text={it.what} />
                   </P>
                 </Box>
@@ -306,13 +306,13 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
           borderColor="grassBright"
           pl="5"
           py="1"
-          color="ink"
+          color={ctx.dark ? D.text : "ink"}
           fontSize={{ base: "lg", md: "xl" }}
           fontStyle="italic"
         >
           <RichText text={b.text} />
           {b.cite && (
-            <P fontStyle="normal" fontSize="md" color="inkMuted" mt="2">
+            <P fontStyle="normal" fontSize="md" color={ctx.dark ? D.muted : "inkMuted"} mt="2">
               — {b.cite}
             </P>
           )}
@@ -336,7 +336,7 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
         <Box as="figure" m="0">
           <ChartBlock chartType={b.chartType} highlightYears={b.highlightYears} />
           {b.caption && (
-            <Box as="figcaption" mt="2" fontSize="md" color="inkMuted">
+            <Box as="figcaption" mt="2" fontSize="md" color={ctx.dark ? D.muted : "inkMuted"}>
               {interpolate(b.caption)}
             </Box>
           )}
@@ -449,7 +449,7 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
     case "claimLegend":
       return (
         <Flex wrap="wrap" gap="2" align="center">
-          <P fontSize="md" color="inkMuted" mr="1">Rakam türleri:</P>
+          <P fontSize="md" color={ctx.dark ? D.muted : "inkMuted"} mr="1">Rakam türleri:</P>
           {["doğrulanmış kaynak", "model varsayımı", "hedef", "şirket tahmini"].map((t) => (
             <TagBadge key={t} tag={t} />
           ))}

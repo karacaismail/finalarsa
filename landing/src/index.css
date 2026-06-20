@@ -30,6 +30,45 @@ button:focus-visible,
   border-radius: 2px;
 }
 
+/* Sunum modu geçişleri: bölümler arası dikey kaydırma, bölüm içi fade */
+@keyframes pmSlideUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(56px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pmSlideDownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-56px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pmFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.pm-enter-next-section {
+  animation: pmSlideUpIn 0.45s ease both;
+}
+.pm-enter-prev-section {
+  animation: pmSlideDownIn 0.45s ease both;
+}
+.pm-enter-fade {
+  animation: pmFadeIn 0.35s ease both;
+}
+
 /* WCAG 2.3.3 — hareket azaltma tercihi */
 @media (prefers-reduced-motion: reduce) {
   *,
