@@ -350,6 +350,22 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
     case "marketScale":
       return <MarketScale dark={ctx.dark} />;
 
+    case "columns": {
+      // Yan yana sütunlar (mobilde alt alta, md+ yan yana). left/right blok dizileri.
+      const groups = [b.left, b.right].filter(Boolean) as Block[][];
+      return (
+        <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={{ base: "8", md: "12" }} alignItems="start">
+          {groups.map((group, gi) => (
+            <Stack key={gi} gap={{ base: "5", md: "6" }} align="stretch">
+              {group.map((cb, i) => (
+                <BlockView key={i} block={cb} ctx={ctx} />
+              ))}
+            </Stack>
+          ))}
+        </Grid>
+      );
+    }
+
     case "note":
       return (
         <Box
