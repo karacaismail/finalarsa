@@ -483,9 +483,9 @@ export function breakevenOption(
         },
         markPoint: {
           symbol: "pin",
-          symbolSize: 52,
+          symbolSize: 30,
           itemStyle: { color: C.gold },
-          label: { color: "#fff", fontFamily: FONT, fontWeight: 700, fontSize: 13, formatter: () => "BB" },
+          label: { show: false },
           data: [{ coord: [be.label, be.value] }],
         },
       },
