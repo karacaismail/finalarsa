@@ -649,15 +649,15 @@ function ChartTabs({ items }: { items: ChartTabItem[] }) {
       boxShadow="0 16px 40px rgba(27,26,23,0.10), 0 4px 12px rgba(27,26,23,0.06)"
       p={{ base: "4", md: "5" }}
     >
-      <Tabs.Root defaultValue={items[0].value} colorPalette="green">
+      <Tabs.Root defaultValue={items[0].value} colorPalette="green" variant="plain">
         <Box overflowX="auto" pb="1">
           <Tabs.List
             display="inline-flex"
             gap="1"
             minW="max-content"
-            bg="surface"
+            bg="rgba(27,40,12,0.06)"
             border="1px solid"
-            borderColor="lineStrong"
+            borderColor="rgba(27,40,12,0.10)"
             borderRadius="full"
             p="1"
           >
@@ -761,9 +761,9 @@ function MarketScale({ dark }: { dark?: boolean }) {
           value={mode}
           onValueChange={(e) => setMode(e.value ?? "share")}
           display="inline-flex"
-          bg={dark ? "rgba(255,255,255,0.10)" : "surface"}
+          bg={dark ? "rgba(255,255,255,0.10)" : "rgba(27,40,12,0.06)"}
           border="1px solid"
-          borderColor={dark ? "rgba(255,255,255,0.18)" : "lineStrong"}
+          borderColor={dark ? "rgba(255,255,255,0.18)" : "rgba(27,40,12,0.10)"}
           borderRadius="full"
           p="1"
           fontSize="md"
