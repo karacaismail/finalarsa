@@ -44,7 +44,7 @@ export function Header() {
     >
       <Flex maxW="1100px" mx="auto" px={{ base: "5", md: "8" }} h="64px" align="center" justify="space-between" gap="3">
         <Flex align="center" gap="3" minW="0">
-          <LogoMark size={36} />
+          <LogoMark size={48} />
           <Flex align="baseline" gap="2" minW="0">
             <Box as="span" fontWeight="bold" color="ink" fontSize="lg">
               arsam.net
