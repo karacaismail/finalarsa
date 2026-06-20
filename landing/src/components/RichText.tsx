@@ -1,17 +1,21 @@
 import { chakra } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 import { getMetric, METRIC_TOKEN } from "../data/resolve";
+import { linkGlossary } from "./GlossaryTerm";
 
 const Strong = chakra("strong");
 const Em = chakra("span");
 
-/** Düz metin parçasında accent ifadesini renkli/koyu vurgular. */
+/**
+ * Düz metin parçasında accent ifadesini renkli/koyu vurgular; geri kalan düz metni
+ * sözlük terimleriyle (linkGlossary) tıklanabilir hale getirir.
+ */
 function emphasizeAccent(text: string, accent: string | undefined, accentColor: string, keyBase: string): ReactNode[] {
-  if (!accent || !text.includes(accent)) return [text];
+  if (!accent || !text.includes(accent)) return linkGlossary(text, keyBase);
   const out: ReactNode[] = [];
   const parts = text.split(accent);
   parts.forEach((p, i) => {
-    if (p) out.push(p);
+    if (p) out.push(...linkGlossary(p, `${keyBase}-p${i}`));
     if (i < parts.length - 1) {
       out.push(
         <Em key={`${keyBase}-a${i}`} color={accentColor} fontWeight="medium">

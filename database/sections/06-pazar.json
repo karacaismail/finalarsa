@@ -27,6 +27,7 @@
     },
     {
       "text": "Resmi veriyi, model varsayımını ve hedefi ayrı tutuyoruz; her rakamın türünü etiketliyoruz.",
+      "highlight": ["Resmi veri", "model varsayımı", "hedef"],
       "type": "lead"
     },
     {
@@ -60,15 +61,12 @@
       "type": "statGrid"
     },
     {
-      "text": "Değer hunisi · Türkçesiyle: TAM = toplam pazar, SAM = dijitale açık pazar, SOM = ulaşılabilir hedef pazar.",
+      "text": "Değer hunisi · Türkçesiyle: TAM = toplam pazar, SAM = dijitale açık pazar, SOM = ulaşılabilir hedef pazar. Aşağıdaki çubuklarda görünümü değiştir.",
       "tone": "info",
       "type": "note"
     },
     {
-      "chartType": "funnel",
-      "dataRef": "market-tam-sam-som",
-      "caption": "Toplam pazar (varsayım) → ulaşılabilir hedef gelir (hedef)",
-      "type": "chart"
+      "type": "marketScale"
     },
     {
       "chartType": "scenarioYears",

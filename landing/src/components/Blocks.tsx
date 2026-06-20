@@ -1,10 +1,11 @@
-import { Box, VisuallyHidden } from "@chakra-ui/react";
+import { Box, Highlight, Portal, Progress, SegmentGroup, Tabs, Tooltip, VisuallyHidden } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { brand, getMetric, interpolate } from "../data/resolve";
+import { brand, getData, getMetric, interpolate } from "../data/resolve";
 import type { Block } from "../data/types";
 import { A, Blockquote, Dd, Dl, Dt, Flex, Grid, H3, Li, Ol, P, Stack, Tbl, Tbody, Td, Th, Thead, Tr, Ul } from "../ui";
 import { RichText } from "./RichText";
 import { ChartBlock } from "./ChartViews";
+import { fmt } from "./charts";
 
 /* --- tone -> AA-uyumlu renk/zemin --- */
 const toneText: Record<string, string> = { accent: "grass", gold: "gold", warn: "warn", info: "inkMuted" };
@@ -19,12 +20,51 @@ const tagMeta: Record<string, { color: string; bg: string }> = {
   hedef: { color: "ink", bg: "#ecebe4" },
   "şirket tahmini": { color: "warn", bg: "#fbeee7" },
 };
+/* İddia etiketlerinin Tooltip açıklamaları (ne anlama geldiği) */
+const tagDesc: Record<string, string> = {
+  "doğrulanmış kaynak": "Resmi veya üçüncü taraf kaynakla doğrulanmış veri.",
+  "model varsayımı": "Finansal modelin girdisi; kaynakla sabitlenmemiş bir varsayım.",
+  hedef: "Şirketin ulaşmayı amaçladığı değer.",
+  "şirket tahmini": "Şirketin öngörüsü; bağımsız doğrulama dışı.",
+};
+
 function TagBadge({ tag }: { tag: string }) {
   const m = tagMeta[tag] ?? tagMeta["hedef"];
-  return (
-    <Box as="span" display="inline-flex" alignItems="center" alignSelf="flex-start" px="2" py="0.5" mb="1" borderRadius="full" bg={m.bg} color={m.color} fontSize="md" fontWeight="medium" lineHeight="1.3" letterSpacing="0.01em">
+  const desc = tagDesc[tag];
+  const badge = (
+    <Box
+      as="span"
+      display="inline-flex"
+      alignItems="center"
+      alignSelf="flex-start"
+      px="2"
+      py="0.5"
+      mb="1"
+      borderRadius="full"
+      bg={m.bg}
+      color={m.color}
+      fontSize="md"
+      fontWeight="medium"
+      lineHeight="1.3"
+      letterSpacing="0.01em"
+      tabIndex={desc ? 0 : undefined}
+      cursor={desc ? "help" : undefined}
+    >
       {tag}
     </Box>
+  );
+  if (!desc) return badge;
+  return (
+    <Tooltip.Root openDelay={120} closeDelay={80} positioning={{ placement: "top" }}>
+      <Tooltip.Trigger asChild>{badge}</Tooltip.Trigger>
+      <Portal>
+        <Tooltip.Positioner>
+          <Tooltip.Content bg="ink" color="white" px="3" py="2" borderRadius="control" fontSize="md" maxW="240px" lineHeight="1.4">
+            {desc}
+          </Tooltip.Content>
+        </Tooltip.Positioner>
+      </Portal>
+    </Tooltip.Root>
   );
 }
 
@@ -84,14 +124,14 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
     case "lead":
       return (
         <P fontSize={{ base: "lg", md: "xl" }} color={ctx.dark ? D.muted : "inkMuted"} lineHeight="1.55" maxW="62ch">
-          <RichText text={b.text} />
+          <TextContent text={b.text} highlight={b.highlight as string[] | undefined} dark={ctx.dark} />
         </P>
       );
 
     case "paragraph":
       return (
         <P color={ctx.dark ? D.body : "ink"} maxW="62ch">
-          <RichText text={b.text} />
+          <TextContent text={b.text} highlight={b.highlight as string[] | undefined} dark={ctx.dark} />
         </P>
       );
 
@@ -302,6 +342,12 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
           )}
         </Box>
       );
+
+    case "chartTabs":
+      return <ChartTabs items={(b.items as ChartTabItem[]) ?? []} dark={ctx.dark} />;
+
+    case "marketScale":
+      return <MarketScale dark={ctx.dark} />;
 
     case "note":
       return (
@@ -555,6 +601,186 @@ function Countdown({ targetRef, label }: { targetRef: string; label: string }) {
         {cell(hours, "saat")}
         {cell(mins, "dk")}
       </Flex>
+    </Box>
+  );
+}
+
+/* ---------------- metin: opsiyonel Chakra Highlight ---------------- */
+function TextContent({
+  text,
+  highlight,
+  accent,
+  accentColor,
+  dark,
+}: {
+  text: string;
+  highlight?: string[];
+  accent?: string;
+  accentColor?: string;
+  dark?: boolean;
+}) {
+  if (highlight && highlight.length) {
+    return (
+      <Highlight
+        query={highlight}
+        styles={{
+          px: "0.4em",
+          py: "0.08em",
+          borderRadius: "0.25rem",
+          bg: dark ? "rgba(124,179,66,0.30)" : "#eef5e3",
+          color: dark ? "#f4efe6" : "grassInk",
+          fontWeight: "medium",
+        }}
+      >
+        {interpolate(text)}
+      </Highlight>
+    );
+  }
+  return <RichText text={text} accent={accent} accentColor={accentColor} />;
+}
+
+/* ---------------- chartTabs: grafikleri sekme ile gezdir ---------------- */
+interface ChartTabItem {
+  value: string;
+  label: string;
+  heading?: string;
+  lead?: string;
+  chartType: string;
+  caption?: string;
+  highlightYears?: string[];
+}
+
+function ChartTabs({ items, dark }: { items: ChartTabItem[]; dark?: boolean }) {
+  if (!items.length) return null;
+  const triggerColor = dark ? D.muted : "inkMuted";
+  const triggerActive = dark ? "#f4efe6" : "ink";
+  return (
+    <Tabs.Root defaultValue={items[0].value} colorPalette="green">
+      <Box overflowX="auto">
+        <Tabs.List display="inline-flex" gap="1" minW="max-content" borderBottom="1px solid" borderColor={dark ? "#3a332a" : "line"}>
+          {items.map((it) => (
+            <Tabs.Trigger
+              key={it.value}
+              value={it.value}
+              px="3"
+              py="2"
+              fontSize="md"
+              fontWeight="medium"
+              color={triggerColor}
+              whiteSpace="nowrap"
+              borderBottom="2px solid"
+              borderColor="transparent"
+              _selected={{ color: triggerActive, borderColor: dark ? "goldBright" : "grass" }}
+            >
+              {it.label}
+            </Tabs.Trigger>
+          ))}
+        </Tabs.List>
+      </Box>
+      {items.map((it) => (
+        <Tabs.Content key={it.value} value={it.value} pt="5">
+          <Stack gap="4">
+            {it.heading && (
+              <H3 fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold" color={dark ? "#f4efe6" : "ink"} lineHeight="1.15">
+                {interpolate(it.heading)}
+              </H3>
+            )}
+            {it.lead && (
+              <P fontSize={{ base: "md", md: "lg" }} color={dark ? D.muted : "inkMuted"} lineHeight="1.55" maxW="62ch">
+                <RichText text={it.lead} />
+              </P>
+            )}
+            <Box as="figure" m="0">
+              <ChartBlock chartType={it.chartType} highlightYears={it.highlightYears} />
+              {it.caption && (
+                <Box as="figcaption" mt="2" fontSize="md" color={dark ? D.muted : "inkMuted"}>
+                  {interpolate(it.caption)}
+                </Box>
+              )}
+            </Box>
+          </Stack>
+        </Tabs.Content>
+      ))}
+    </Tabs.Root>
+  );
+}
+
+/* ---------------- marketScale: SegmentGroup + Progress (TAM/SAM/SOM) ---------------- */
+interface MarketFunnelData {
+  valueFunnel: {
+    tam: { value: number; basis?: string };
+    sam: { value: number; basis?: string };
+    som: { value: number; basis?: string };
+    annualRevenuePotential: { value: number; basis?: string };
+  };
+}
+function pct1(n: number): string {
+  return `%${n.toLocaleString("tr-TR", { maximumFractionDigits: n < 1 ? 2 : 1 })}`;
+}
+function MarketScale({ dark }: { dark?: boolean }) {
+  const [mode, setMode] = useState("share");
+  const d = getData<MarketFunnelData>("market-tam-sam-som");
+  const f = d.valueFunnel;
+  const tam = f.tam.value;
+  const sam = f.sam.value;
+  const som = f.som.value;
+  const rev = f.annualRevenuePotential.value;
+
+  type Row = { label: string; pct: number; right: string; basis?: string; lead?: boolean };
+  const shareRows: Row[] = [
+    { label: "TAM · toplam pazar", pct: 100, right: fmt(tam), basis: f.tam.basis, lead: true },
+    { label: "SAM · dijitale açık pazar", pct: (sam / tam) * 100, right: fmt(sam), basis: f.sam.basis },
+    { label: "SOM · ulaşılabilir hedef", pct: (som / tam) * 100, right: fmt(som), basis: f.som.basis },
+    { label: "Yıllık gelir potansiyeli", pct: (rev / tam) * 100, right: fmt(rev), basis: f.annualRevenuePotential.basis },
+  ];
+  const convRows: Row[] = [
+    { label: "SAM / TAM · online penetrasyon", pct: (sam / tam) * 100, right: pct1((sam / tam) * 100), basis: f.sam.basis },
+    { label: "SOM / SAM · hedef pay", pct: (som / sam) * 100, right: pct1((som / sam) * 100), basis: f.som.basis },
+    { label: "Gelir / SOM · take rate", pct: (rev / som) * 100, right: pct1((rev / som) * 100), basis: f.annualRevenuePotential.basis },
+  ];
+  const rows = mode === "conversion" ? convRows : shareRows;
+
+  return (
+    <Box
+      border="1px solid"
+      borderColor={dark ? "#3a332a" : "line"}
+      borderRadius="surface"
+      bg={dark ? "rgba(255,255,255,0.03)" : "paper"}
+      p={{ base: "5", md: "6" }}
+    >
+      <SegmentGroup.Root value={mode} onValueChange={(e) => setMode(e.value ?? "share")} size="sm">
+        <SegmentGroup.Indicator />
+        <SegmentGroup.Items
+          items={[
+            { value: "share", label: "Pazar payı" },
+            { value: "conversion", label: "Aşama dönüşümü" },
+          ]}
+        />
+      </SegmentGroup.Root>
+
+      <Stack gap="4" mt="5">
+        {rows.map((r) => (
+          <Box key={r.label}>
+            <Flex justify="space-between" align="baseline" gap="3" wrap="wrap" mb="1.5">
+              <P fontWeight="medium" color={dark ? "#f4efe6" : "ink"}>{r.label}</P>
+              <P fontWeight="bold" color={dark ? "#f4efe6" : "ink"} fontSize="md">
+                {r.right}
+                {mode === "share" ? ` · ${pct1(r.pct)}` : ""}
+              </P>
+            </Flex>
+            <Progress.Root value={Math.max(r.pct, 0.8)} max={100} size="md">
+              <Progress.Track bg={dark ? "rgba(255,255,255,0.10)" : "surface"} borderRadius="full">
+                <Progress.Range bg={r.lead ? "grass" : "grassBright"} borderRadius="full" />
+              </Progress.Track>
+            </Progress.Root>
+            {r.basis && (
+              <P fontSize="md" color={dark ? D.muted : "inkMuted"} mt="1">
+                {r.basis}
+              </P>
+            )}
+          </Box>
+        ))}
+      </Stack>
     </Box>
   );
 }

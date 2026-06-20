@@ -26,123 +26,72 @@
       "type": "heading"
     },
     {
-      "text": "Her görünüm bir grafik ve onun tablosu olarak verilir; sıra zaman çizgisini izler: ilk ay kuruluş yatırımı, aylık işletme gideri, 2026 ve 2027 aylık, başabaş ve 2032 vizyonu.",
+      "text": "Her görünüm bir grafik ve onun tablosu olarak verilir; sıra zaman çizgisini izler: ilk ay kuruluş yatırımı, aylık işletme gideri, 2026 ve 2027 aylık, başabaş ve 2032 vizyonu. Aşağıdaki sekmelerden istediğin görünüme geç.",
       "type": "lead"
     },
     {
       "type": "claimLegend"
     },
     {
-      "level": 3,
-      "text": "İlk ay · kuruluş yatırımı (CAPEX)",
-      "accent": null,
-      "type": "heading"
-    },
-    {
-      "text": "İlk ayda bir kerelik kurulum yatırımı yapılır; sonraki aylar tekrarlayan işletme giderine döner. CAPEX, kuruluş gideridir.",
-      "type": "lead"
-    },
-    {
-      "chartType": "capexBreakdown",
-      "dataRef": "financial-breakdown",
-      "caption": "Kuruluş yatırımı kategori kırılımı · büyük kısmı ilk ay (Tem 2026) · grafik + tablo",
-      "type": "chart"
-    },
-    {
-      "level": 3,
-      "text": "Aylık işletme gideri (OPEX)",
-      "accent": null,
-      "type": "heading"
-    },
-    {
-      "text": "OPEX, her ay tekrar eden işletme gideridir: personel, ofis, dijital altyapı, AI/yazılım araçları ve idari kalemler. Kadro büyüdükçe İK personeli en büyük kaleme döner.",
-      "type": "lead"
-    },
-    {
-      "chartType": "opexComposition",
-      "dataRef": "financial-breakdown",
-      "caption": "Açılış ayı (Tem 2026) işletme gideri kompozisyonu · grafik + tablo",
-      "type": "chart"
-    },
-    {
-      "level": 3,
-      "text": "2026 · aylık finansal (Tem – Ara)",
-      "accent": null,
-      "type": "heading"
-    },
-    {
-      "text": "Soft-launch dönemi. Gider üç bileşene ayrışır: OPEX + Pazarlama + CAPEX. Bu özdeşlik her ay tutar.",
-      "type": "lead"
-    },
-    {
-      "chartType": "monthly2026",
-      "dataRef": "financial-breakdown",
-      "caption": "2026 aylık: gelir, gider kırılımı (OPEX/Pazarlama/CAPEX) ve kümülatif nakit · grafik + tablo",
-      "type": "chart"
-    },
-    {
-      "level": 3,
-      "text": "2027 · aylık finansal (Oca – Ara)",
-      "accent": null,
-      "type": "heading"
-    },
-    {
-      "text": "Gelirin gideri geçtiği yıl. Aylık akış, başabaşın nasıl ve ne zaman geldiğini gösterir.",
-      "type": "lead"
-    },
-    {
-      "chartType": "monthly2027",
-      "dataRef": "financial-breakdown",
-      "caption": "2027 aylık: gelir, gider kırılımı ve kümülatif nakit · grafik + tablo",
-      "type": "chart"
-    },
-    {
-      "level": 3,
-      "text": "Başabaş analizi",
-      "accent": null,
-      "type": "heading"
-    },
-    {
-      "text": "Başabaşa kadar yaklaşık 15 milyon ₺ harcanır; kümülatif gelir, kümülatif gideri Mart 2027'de bu seviyede geçer. O noktadan sonra gelir gideri karşılar. 40 milyon ₺ sermaye bunu rahatça finanse eder; kasa hiç 32 milyon ₺ altına inmez.",
-      "type": "lead"
-    },
-    {
-      "chartType": "breakeven",
-      "dataRef": "financial-breakdown",
-      "caption": "Kümülatif gelir vs kümülatif gider · kesişim (başabaş) ~Mart 2027, ~15 milyon ₺ · grafik + özet tablo",
-      "type": "chart"
-    },
-    {
-      "level": 3,
-      "text": "2032 vizyonu · yıllık (2026 → 2032)",
-      "accent": null,
-      "type": "heading"
-    },
-    {
-      "text": "Tek finansal grafik ve tek finansal tablo: yedi yılın geliri, gideri, net kârı, kadrosu ve yıl sonu nakdi.",
-      "type": "lead"
-    },
-    {
-      "chartType": "yearlyTable",
-      "dataRef": "financial-model",
-      "caption": "Yıllık gelir, gider, net kâr + tablo (kadro, yıl sonu nakit) · net marj ~%90",
-      "type": "chart"
-    },
-    {
-      "level": 3,
-      "text": "Teknopark vergi avantajı · senaryona göre",
-      "accent": null,
-      "type": "heading"
-    },
-    {
-      "text": "Şirket teknopark çatısına alındığında yazılım kazancı kurumlar vergisinden istisna olur. Avantajın ₺ tutarı kazanca bağlıdır: aşağıdaki yatay çubuğu sürükle (Kötümser ↔ Medyan ↔ İyimser); avantaj canlı hesaplanır.",
-      "type": "lead"
-    },
-    {
-      "chartType": "taxSlider",
-      "dataRef": "financial-breakdown",
-      "caption": "Sürükle: gelir senaryosu → vergi öncesi kâr → KV istisnası + stopaj/SGK avantajı",
-      "type": "chart"
+      "type": "chartTabs",
+      "items": [
+        {
+          "value": "capex",
+          "label": "Kuruluş (CAPEX)",
+          "heading": "İlk ay · kuruluş yatırımı (CAPEX)",
+          "lead": "İlk ayda bir kerelik kurulum yatırımı yapılır; sonraki aylar tekrarlayan işletme giderine döner. CAPEX, kuruluş gideridir.",
+          "chartType": "capexBreakdown",
+          "caption": "Kuruluş yatırımı kategori kırılımı · büyük kısmı ilk ay (Tem 2026) · grafik + tablo"
+        },
+        {
+          "value": "opex",
+          "label": "İşletme (OPEX)",
+          "heading": "Aylık işletme gideri (OPEX)",
+          "lead": "OPEX, her ay tekrar eden işletme gideridir: personel, ofis, dijital altyapı, AI/yazılım araçları ve idari kalemler. Kadro büyüdükçe İK personeli en büyük kaleme döner.",
+          "chartType": "opexComposition",
+          "caption": "Açılış ayı (Tem 2026) işletme gideri kompozisyonu · grafik + tablo"
+        },
+        {
+          "value": "monthly2026",
+          "label": "2026 aylık",
+          "heading": "2026 · aylık finansal (Tem – Ara)",
+          "lead": "Soft-launch dönemi. Gider üç bileşene ayrışır: OPEX + Pazarlama + CAPEX. Bu özdeşlik her ay tutar.",
+          "chartType": "monthly2026",
+          "caption": "2026 aylık: gelir, gider kırılımı (OPEX/Pazarlama/CAPEX) ve kümülatif nakit · grafik + tablo"
+        },
+        {
+          "value": "monthly2027",
+          "label": "2027 aylık",
+          "heading": "2027 · aylık finansal (Oca – Ara)",
+          "lead": "Gelirin gideri geçtiği yıl. Aylık akış, başabaşın nasıl ve ne zaman geldiğini gösterir.",
+          "chartType": "monthly2027",
+          "caption": "2027 aylık: gelir, gider kırılımı ve kümülatif nakit · grafik + tablo"
+        },
+        {
+          "value": "breakeven",
+          "label": "Başabaş",
+          "heading": "Başabaş analizi",
+          "lead": "Başabaşa kadar yaklaşık 15 milyon ₺ harcanır; kümülatif gelir, kümülatif gideri Mart 2027'de bu seviyede geçer. O noktadan sonra gelir gideri karşılar. 40 milyon ₺ sermaye bunu rahatça finanse eder; kasa hiç 32 milyon ₺ altına inmez.",
+          "chartType": "breakeven",
+          "caption": "Kümülatif gelir vs kümülatif gider · kesişim (başabaş) ~Mart 2027, ~15 milyon ₺ · grafik + özet tablo"
+        },
+        {
+          "value": "yearly",
+          "label": "2032 yıllık",
+          "heading": "2032 vizyonu · yıllık (2026 → 2032)",
+          "lead": "Tek finansal grafik ve tek finansal tablo: yedi yılın geliri, gideri, net kârı, kadrosu ve yıl sonu nakdi.",
+          "chartType": "yearlyTable",
+          "caption": "Yıllık gelir, gider, net kâr + tablo (kadro, yıl sonu nakit) · net marj ~%90"
+        },
+        {
+          "value": "tax",
+          "label": "Vergi avantajı",
+          "heading": "Teknopark vergi avantajı · senaryona göre",
+          "lead": "Şirket teknopark çatısına alındığında yazılım kazancı kurumlar vergisinden istisna olur. Avantajın ₺ tutarı kazanca bağlıdır: aşağıdaki yatay çubuğu sürükle (Kötümser ↔ Medyan ↔ İyimser); avantaj canlı hesaplanır.",
+          "chartType": "taxSlider",
+          "caption": "Sürükle: gelir senaryosu → vergi öncesi kâr → KV istisnası + stopaj/SGK avantajı"
+        }
+      ]
     },
     {
       "text": "Risk belirsiz değil; ölçülmüş ve zaman çizgisine yayılmıştır. Vergi avantajının mekanizması yasal-kesindir; ₺ tutarı kazanç düzeyine bağlı model varsayımıdır.",

@@ -3,6 +3,12 @@ node_modules/
 dist/
 .vite/
 
+# TS artımlı derleme önbelleği (CI yeniden üretir)
+*.tsbuildinfo
+
+# eski/çakışan bölüm dosyalarının yerel arşivi (deploy dışı)
+_archive_old_sections/
+
 # python cache (database/_build)
 __pycache__/
 *.pyc
