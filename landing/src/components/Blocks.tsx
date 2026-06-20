@@ -345,7 +345,7 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
       );
 
     case "chartTabs":
-      return <ChartTabs items={(b.items as ChartTabItem[]) ?? []} dark={ctx.dark} />;
+      return <ChartTabs items={(b.items as ChartTabItem[]) ?? []} />;
 
     case "marketScale":
       return <MarketScale dark={ctx.dark} />;
@@ -635,58 +635,76 @@ interface ChartTabItem {
   highlightYears?: string[];
 }
 
-function ChartTabs({ items, dark }: { items: ChartTabItem[]; dark?: boolean }) {
+function ChartTabs({ items }: { items: ChartTabItem[] }) {
   if (!items.length) return null;
-  const triggerColor = dark ? D.muted : "inkMuted";
-  const triggerActive = dark ? "#f4efe6" : "ink";
+  // Kart her zaman açık zeminli panel (koyu bölümde bile) — marketScale ile aynı.
+  // Sekmeler pill (kapsül) segmented kontrol: açık track + seçili beyaz pill (UI bütünlüğü).
   return (
-    <Tabs.Root defaultValue={items[0].value} colorPalette="green">
-      <Box overflowX="auto">
-        <Tabs.List display="inline-flex" gap="1" minW="max-content" borderBottom="1px solid" borderColor={dark ? "#3a332a" : "line"}>
-          {items.map((it) => (
-            <Tabs.Trigger
-              key={it.value}
-              value={it.value}
-              px="3"
-              py="2"
-              fontSize="md"
-              fontWeight="medium"
-              color={triggerColor}
-              whiteSpace="nowrap"
-              borderBottom="2px solid"
-              borderColor="transparent"
-              _selected={{ color: triggerActive, borderColor: dark ? "goldBright" : "grass" }}
-            >
-              {it.label}
-            </Tabs.Trigger>
-          ))}
-        </Tabs.List>
-      </Box>
-      {items.map((it) => (
-        <Tabs.Content key={it.value} value={it.value} pt="5">
-          <Stack gap="4">
-            {it.heading && (
-              <H3 fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold" color={dark ? "#f4efe6" : "ink"} lineHeight="1.15">
-                {interpolate(it.heading)}
-              </H3>
-            )}
-            {it.lead && (
-              <P fontSize={{ base: "md", md: "lg" }} color={dark ? D.muted : "inkMuted"} lineHeight="1.55" maxW="62ch">
-                <RichText text={it.lead} />
-              </P>
-            )}
-            <Box as="figure" m="0">
-              <ChartBlock chartType={it.chartType} highlightYears={it.highlightYears} />
-              {it.caption && (
-                <Box as="figcaption" mt="2" fontSize="md" color={dark ? D.muted : "inkMuted"}>
-                  {interpolate(it.caption)}
-                </Box>
+    <Box
+      border="1px solid"
+      borderColor="#d6e3c4"
+      borderRadius="surface"
+      bg="#eef3e6"
+      bgImage="linear-gradient(160deg, #f7faf1 0%, #e9f0dd 100%)"
+      boxShadow="0 16px 40px rgba(27,26,23,0.10), 0 4px 12px rgba(27,26,23,0.06)"
+      p={{ base: "4", md: "5" }}
+    >
+      <Tabs.Root defaultValue={items[0].value} colorPalette="green">
+        <Box overflowX="auto" pb="1">
+          <Tabs.List
+            display="inline-flex"
+            gap="1"
+            minW="max-content"
+            bg="surface"
+            border="1px solid"
+            borderColor="lineStrong"
+            borderRadius="full"
+            p="1"
+          >
+            {items.map((it) => (
+              <Tabs.Trigger
+                key={it.value}
+                value={it.value}
+                px="4"
+                py="2"
+                fontSize="md"
+                fontWeight="medium"
+                color="inkMuted"
+                whiteSpace="nowrap"
+                borderRadius="full"
+                _selected={{ bg: "paper", color: "ink", boxShadow: "0 1px 4px rgba(0,0,0,0.18)" }}
+              >
+                {it.label}
+              </Tabs.Trigger>
+            ))}
+          </Tabs.List>
+        </Box>
+        {items.map((it) => (
+          <Tabs.Content key={it.value} value={it.value} pt="5">
+            <Stack gap="4">
+              {it.heading && (
+                <H3 fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold" color="ink" lineHeight="1.15">
+                  {interpolate(it.heading)}
+                </H3>
               )}
-            </Box>
-          </Stack>
-        </Tabs.Content>
-      ))}
-    </Tabs.Root>
+              {it.lead && (
+                <P fontSize={{ base: "md", md: "lg" }} color="inkMuted" lineHeight="1.55" maxW="62ch">
+                  <RichText text={it.lead} />
+                </P>
+              )}
+              <Box as="figure" m="0">
+                <ChartBlock chartType={it.chartType} highlightYears={it.highlightYears} />
+                {it.caption && (
+                  <Box as="figcaption" mt="2" fontSize="md" color="inkMuted">
+                    {interpolate(it.caption)}
+                  </Box>
+                )}
+              </Box>
+            </Stack>
+          </Tabs.Content>
+        ))}
+      </Tabs.Root>
+    </Box>
   );
 }
 
@@ -728,9 +746,11 @@ function MarketScale({ dark }: { dark?: boolean }) {
   return (
     <Box
       border="1px solid"
-      borderColor={dark ? "#3a332a" : "line"}
+      borderColor={dark ? "rgba(255,255,255,0.16)" : "#d6e3c4"}
       borderRadius="surface"
-      bg={dark ? "rgba(255,255,255,0.03)" : "paper"}
+      bg={dark ? "rgba(255,255,255,0.06)" : "#eef3e6"}
+      bgImage={dark ? undefined : "linear-gradient(160deg, #f7faf1 0%, #e9f0dd 100%)"}
+      boxShadow={dark ? "0 16px 40px rgba(0,0,0,0.28)" : "0 16px 40px rgba(27,26,23,0.10), 0 4px 12px rgba(27,26,23,0.06)"}
       p={{ base: "5", md: "6" }}
     >
       <Flex align="center" gap="3" wrap="wrap" mb="5">
