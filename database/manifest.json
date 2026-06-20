@@ -232,7 +232,8 @@
       "title": "Kadro, gelir ve riske göre büyür",
       "refs": {
         "data": [
-          "hr-plan"
+          "hr-plan",
+          "financial-detail"
         ],
         "metrics": []
       }
@@ -248,7 +249,8 @@
       "title": "Para başabaşa kadar kapılara bölünerek harcanır",
       "refs": {
         "data": [
-          "financial-model"
+          "financial-model",
+          "financial-detail"
         ],
         "metrics": [
           "capital.investor_pocket",

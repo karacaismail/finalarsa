@@ -241,6 +241,7 @@ section(11, "ik-plani", "11", "İK planı", "bg-3",
         eyebrow("İK planı · 11 / " + TOTAL),
         heading(2, "Kadro, gelir ve riske göre büyür.", accent="gelir ve riske göre"),
         lead("Hangi rol gelir üretir, hangi rol riski azaltır — kadro buna göre planlanır."),
+        chart("headcountMonthly", "financial-detail", caption="2026 · aylık işe alım (Temmuz 6 → Aralık 19 kişi)"),
         chart("headcountGrowth", "hr-plan", caption="Kadro büyümesi · 2026 (19) → 2032 (149)"),
         cardGrid(3, [
             card("Gelir üreten roller", "Satış/satıcı operasyonu, pazarlama, ürün ve büyüme.", eyebrow="kadro", tone="accent"),
@@ -248,7 +249,7 @@ section(11, "ik-plani", "11", "İK planı", "bg-3",
             card("Operasyon rolleri", "Müşteri deneyimi, moderasyon, içerik.", eyebrow="kadro"),
         ]),
         note("Kadro 2026'da 19 kişiyle başlar, 2032'de yaklaşık 149'a ulaşır; her ekleme bir gerekçeye bağlıdır."),
-    ], refs={"data": ["hr-plan"]})
+    ], refs={"data": ["hr-plan", "financial-detail"]})
 
 # ============ 12 · Başabaş analizi ============
 section(12, "basabas", "12", "Başabaş", "bg-4",
@@ -263,8 +264,12 @@ section(12, "basabas", "12", "Başabaş", "bg-4",
             stat("Operasyonel başabaş", ref="fin.breakeven_month", tone="gold", sub="18. ay", tag=HED),
             stat("Başabaş sonrası kasa", ref="capital.reserve", sub="yedek, dokunulmaz", tag=VAR),
         ]),
-        note("Risk belirsiz değil; ölçülmüş ve kapılara bölünmüştür. Her kapı bir ölçümle açılır."),
-    ], refs={"data": ["financial-model"]})
+        heading(3, "Kademeli finansal plan"),
+        lead("İlk üç yıl detaylı, sonrası özet: 2026 aylık, 2027 üç aylık, 2028 yarıyıl, 2029-2032 yıllık."),
+        chart("monthlyEarly", "financial-detail", caption="İlk 36 ay · aylık gelir/gider ve kümülatif nakit (başabaş Oca 2027)"),
+        chart("graduatedFinancial", "financial-detail", caption="Gelir · gider · net · kadro · dönem sonu nakit (kademeli detay)"),
+        note("Risk belirsiz değil; ölçülmüş ve kapılara bölünmüştür. Her kapı bir ölçümle açılır.", tone="info"),
+    ], refs={"data": ["financial-model", "financial-detail"]})
 
 # ============ 13 · Risk ve kontrol kapıları ============
 section(13, "risk", "13", "Risk", "bg-1",

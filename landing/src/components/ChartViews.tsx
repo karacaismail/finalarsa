@@ -13,8 +13,11 @@ import {
   headcountGrowthOption,
   marginOption,
   marketFunnelOption,
+  monthlyEarlyOption,
   scenarioLinesOption,
 } from "./charts";
+
+const fmtTRY = (n: number) => fmt(n);
 
 const card = {
   border: "1px solid",
@@ -316,6 +319,67 @@ export function PanelMockView() {
   );
 }
 
+/* ---------------- İlk 36 ay · aylık gelir/gider + nakit ---------------- */
+export function MonthlyEarlyView() {
+  const d = getData<{ monthly36: { label: string; gelir: number; gider: number; nakit: number }[] }>("financial-detail");
+  return <EChart height={340} ariaLabel="İlk 36 ay aylık gelir, gider ve kümülatif nakit" option={monthlyEarlyOption(d.monthly36)} />;
+}
+
+/* ---------------- 2026 aylık işe alım ---------------- */
+export function HeadcountMonthlyView() {
+  const d = getData<{ monthly2026: { label: string; kadro: number }[] }>("financial-detail");
+  return (
+    <EChart
+      height={280}
+      ariaLabel="2026 aylık kadro büyümesi"
+      option={headcountGrowthOption(d.monthly2026.map((m) => ({ year: m.label, count: m.kadro })))}
+    />
+  );
+}
+
+/* ---------------- Kademeli finansal tablo (2026 aylık → 2032 yıllık) ---------------- */
+export function GraduatedFinancialView() {
+  const d = getData<{
+    graduated: { period: string; grain: string; gelir: number; gider: number; net: number; kadro: number; nakit: number }[];
+  }>("financial-detail");
+  const grainBg: Record<string, string> = { ay: "paper", çeyrek: "#faf9f5", yarıyıl: "#f6f5ef", yıl: "surface" };
+  return (
+    <Box {...card} p="0" overflowX="auto">
+      <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="680px">
+        <Thead>
+          <Tr>
+            {["Dönem", "Gelir", "Gider", "Net", "Kadro", "Dönem sonu nakit"].map((h, i) => (
+              <Th key={h} scope="col" textAlign={i === 0 ? "start" : "end"} p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">
+                {h}
+              </Th>
+            ))}
+          </Tr>
+        </Thead>
+        <Tbody>
+          {d.graduated.map((r) => {
+            const yearly = r.grain === "yıl";
+            return (
+              <Tr key={r.period} bg={grainBg[r.grain] ?? "paper"}>
+                <Th scope="row" textAlign="start" p="3" borderBottom="1px solid" borderColor="line" color="ink" fontWeight={yearly ? "bold" : "medium"} whiteSpace="nowrap">
+                  {r.period}
+                  <Box as="span" ml="2" fontSize="md" fontWeight="normal" color="inkMuted">{r.grain}</Box>
+                </Th>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink">{fmtTRY(r.gelir)}</Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="inkMuted">{fmtTRY(r.gider)}</Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color={r.net < 0 ? "warn" : "grass"} fontWeight="medium" whiteSpace="nowrap">
+                  {r.net < 0 ? "−" : "+"}{fmtTRY(Math.abs(r.net))}
+                </Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink">{r.kadro}</Td>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink">{fmtTRY(r.nakit)}</Td>
+              </Tr>
+            );
+          })}
+        </Tbody>
+      </Tbl>
+    </Box>
+  );
+}
+
 /* Dispatcher */
 export function ChartBlock({ chartType, highlightYears }: { chartType: string; highlightYears?: string[] }): ReactNode {
   switch (chartType) {
@@ -323,6 +387,12 @@ export function ChartBlock({ chartType, highlightYears }: { chartType: string; h
       return <MarketFunnelView />;
     case "scenarioYears":
       return <ScenarioYearsView />;
+    case "monthlyEarly":
+      return <MonthlyEarlyView />;
+    case "graduatedFinancial":
+      return <GraduatedFinancialView />;
+    case "headcountMonthly":
+      return <HeadcountMonthlyView />;
     case "aiEfficiency":
       return <AiEfficiencyView />;
     case "headcountGrowth":

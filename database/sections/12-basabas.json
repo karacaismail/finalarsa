@@ -65,6 +65,28 @@
       "type": "statGrid"
     },
     {
+      "level": 3,
+      "text": "Kademeli finansal plan",
+      "accent": null,
+      "type": "heading"
+    },
+    {
+      "text": "İlk üç yıl detaylı, sonrası özet: 2026 aylık, 2027 üç aylık, 2028 yarıyıl, 2029-2032 yıllık.",
+      "type": "lead"
+    },
+    {
+      "chartType": "monthlyEarly",
+      "dataRef": "financial-detail",
+      "caption": "İlk 36 ay · aylık gelir/gider ve kümülatif nakit (başabaş Oca 2027)",
+      "type": "chart"
+    },
+    {
+      "chartType": "graduatedFinancial",
+      "dataRef": "financial-detail",
+      "caption": "Gelir · gider · net · kadro · dönem sonu nakit (kademeli detay)",
+      "type": "chart"
+    },
+    {
       "text": "Risk belirsiz değil; ölçülmüş ve kapılara bölünmüştür. Her kapı bir ölçümle açılır.",
       "tone": "info",
       "type": "note"
@@ -72,7 +94,8 @@
   ],
   "refs": {
     "data": [
-      "financial-model"
+      "financial-model",
+      "financial-detail"
     ],
     "metrics": [
       "capital.investor_pocket",

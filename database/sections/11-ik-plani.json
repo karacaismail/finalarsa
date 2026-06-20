@@ -30,6 +30,12 @@
       "type": "lead"
     },
     {
+      "chartType": "headcountMonthly",
+      "dataRef": "financial-detail",
+      "caption": "2026 · aylık işe alım (Temmuz 6 → Aralık 19 kişi)",
+      "type": "chart"
+    },
+    {
       "chartType": "headcountGrowth",
       "dataRef": "hr-plan",
       "caption": "Kadro büyümesi · 2026 (19) → 2032 (149)",
@@ -70,7 +76,8 @@
   ],
   "refs": {
     "data": [
-      "hr-plan"
+      "hr-plan",
+      "financial-detail"
     ],
     "metrics": []
   }

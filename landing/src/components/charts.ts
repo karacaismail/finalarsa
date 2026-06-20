@@ -287,6 +287,46 @@ export function basabasWaterfallOption(steps: { name: string; delta: number; kin
   };
 }
 
+/* ---------- İlk 36 ay · aylık gelir/gider + kümülatif nakit ---------- */
+export function monthlyEarlyOption(rows: { label: string; gelir: number; gider: number; nakit: number }[]): EChartsCoreOption {
+  return {
+    aria,
+    textStyle,
+    grid: { left: 8, right: 8, top: 40, bottom: 8, containLabel: true },
+    legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT }, itemWidth: 14, itemHeight: 10 },
+    tooltip: {
+      ...tooltipBase,
+      trigger: "axis",
+      formatter: (ps: any) => `<b>${ps[0].axisValue}</b><br/>` + ps.map((p: any) => `${p.marker} ${p.seriesName}: <b>${fmt(p.value)}</b>`).join("<br/>"),
+    },
+    xAxis: {
+      type: "category",
+      data: rows.map((r) => r.label),
+      axisLabel: { ...axisLabel, fontSize: 10, interval: 2, rotate: 45 },
+      axisLine: { lineStyle: { color: C.line } },
+      axisTick: { show: false },
+    },
+    yAxis: [
+      { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
+      { type: "value", position: "right", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine: { show: false } },
+    ],
+    series: [
+      { name: "Aylık gelir", type: "bar", data: rows.map((r) => r.gelir), itemStyle: { color: C.grassBright }, barMaxWidth: 12 },
+      { name: "Aylık gider", type: "bar", data: rows.map((r) => r.gider), itemStyle: { color: C.warn }, barMaxWidth: 12 },
+      {
+        name: "Kümülatif nakit",
+        type: "line",
+        yAxisIndex: 1,
+        data: rows.map((r) => r.nakit),
+        smooth: true,
+        symbol: "none",
+        lineStyle: { color: C.gold, width: 2.5 },
+        areaStyle: { color: "rgba(204,153,0,0.10)" },
+      },
+    ],
+  };
+}
+
 /* ---------- AI/İK: departman bazında AI'sız vs AI ile FTE ---------- */
 export function aiDeptOption(d: { dept: string; without: number; with: number }[]): EChartsCoreOption {
   return {
