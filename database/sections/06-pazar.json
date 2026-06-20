@@ -67,30 +67,8 @@
     {
       "chartType": "funnel",
       "dataRef": "market-tam-sam-som",
-      "caption": "Toplam pazardan ulaşılabilir hedefe",
+      "caption": "Toplam pazar (varsayım) → ulaşılabilir hedef gelir (hedef)",
       "type": "chart"
-    },
-    {
-      "cols": 2,
-      "items": [
-        {
-          "label": "Toplam pazar (TAM)",
-          "tone": "gold",
-          "type": "stat",
-          "valueRef": "market.tam_try",
-          "sub": "ortalama işlem değerine dayanır",
-          "tag": "model varsayımı"
-        },
-        {
-          "label": "Ulaşılabilir hedef gelir (medyan)",
-          "tone": "accent",
-          "type": "stat",
-          "valueRef": "revenue.median",
-          "sub": "online arsa payı %10 · take rate {{metric:market.take_rate}}",
-          "tag": "hedef"
-        }
-      ],
-      "type": "statGrid"
     },
     {
       "chartType": "scenarioYears",
@@ -124,10 +102,7 @@
     "metrics": [
       "market.housing_2024",
       "market.land_commercial_2024",
-      "market.take_rate",
-      "market.tam_try",
-      "market.total_realestate_2024",
-      "revenue.median"
+      "market.total_realestate_2024"
     ]
   }
 }

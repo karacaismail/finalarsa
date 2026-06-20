@@ -34,7 +34,7 @@ interface RichTextProps {
  * {{metric:key}} token'larını metrik display değeriyle (koyu/strong) değiştirir;
  * accent ifadesini renkli vurgular. Rakamlar tek kaynaktan (metrics) gelir.
  */
-export function RichText({ text, accent, accentColor = "grass" }: RichTextProps) {
+export function RichText({ text, accent, accentColor = "gold" }: RichTextProps) {
   const nodes: ReactNode[] = [];
   let last = 0;
   let idx = 0;

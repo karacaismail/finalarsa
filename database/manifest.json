@@ -138,10 +138,7 @@
         "metrics": [
           "market.housing_2024",
           "market.land_commercial_2024",
-          "market.take_rate",
-          "market.tam_try",
-          "market.total_realestate_2024",
-          "revenue.median"
+          "market.total_realestate_2024"
         ]
       }
     },

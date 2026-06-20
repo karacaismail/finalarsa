@@ -58,7 +58,7 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
   switch (b.type) {
     case "eyebrow":
       return (
-        <P color="grass" fontWeight="bold" textTransform="uppercase" letterSpacing="0.06em" fontSize="md">
+        <P color="inkMuted" fontWeight="bold" textTransform="uppercase" letterSpacing="0.06em" fontSize="md">
           {interpolate(b.text)}
         </P>
       );
@@ -73,7 +73,7 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
             : { base: "xl", md: "2xl" };
       return (
         <H3 as={tag} fontSize={size} fontWeight="bold" color="ink" lineHeight="1.12" letterSpacing="-0.01em" maxW="20ch">
-          <RichText text={b.text} accent={b.accent} accentColor="grass" />
+          <RichText text={b.text} accent={b.accent} accentColor="gold" />
         </H3>
       );
     }
