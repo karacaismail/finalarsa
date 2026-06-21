@@ -6,6 +6,7 @@ import { A, Blockquote, Dd, Dl, Dt, Flex, Grid, H3, Li, Ol, P, Stack, Tbl, Tbody
 import { RichText } from "./RichText";
 import { markHighlight } from "./MarkHighlight";
 import { ChartBlock } from "./ChartViews";
+import { MobileTableCards } from "./MobileTableCards";
 import { fmt } from "./charts";
 import { claimTag, darkText as D, tone } from "../theme/semantic";
 import { cardBase, interactivePanel, pill } from "../theme/components";
@@ -195,49 +196,73 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
       );
     }
 
-    case "table":
+    case "table": {
+      // Mobilde (≥768px altı) yatay kaydırma yerine kart listesi; masaüstü/tablet tabloya
+      // dokunulmaz (CSS display ile geçiş, flash yok). İlk kolon = satır başlığı.
+      const tblCols = b.columns as string[];
+      const primaryCols = tblCols.map((_, i) => i).filter((i) => i === 1); // 2. kolon birincil
+      const detailCols = tblCols.map((_, i) => i).filter((i) => i >= 2); // 3. kolon ve sonrası detay
       return (
-        <Box overflowX="auto" border="1px solid" borderColor="line" borderRadius="surface" bg={ctx.dark ? "paper" : "transparent"}>
-          <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="560px">
-            <Thead>
-              <Tr>
-                {b.columns.map((c: string, i: number) => (
-                  <Th
-                    key={i}
-                    scope="col"
-                    textAlign="start"
-                    p="3"
-                    bg="surface"
-                    color="ink"
-                    fontWeight="bold"
-                    borderBottom="2px solid"
-                    borderColor="lineStrong"
-                  >
-                    {c}
-                  </Th>
-                ))}
-              </Tr>
-            </Thead>
-            <Tbody>
-              {b.rows.map((row: string[], ri: number) => (
-                <Tr key={ri}>
-                  {row.map((cell: string, ci: number) =>
-                    ci === 0 ? (
-                      <Th key={ci} scope="row" textAlign="start" p="3" color="ink" fontWeight="bold" borderBottom="1px solid" borderColor="line" verticalAlign="top">
-                        <RichText text={cell} />
-                      </Th>
-                    ) : (
-                      <Td key={ci} p="3" color="ink" borderBottom="1px solid" borderColor="line" verticalAlign="top">
-                        <RichText text={cell} />
-                      </Td>
-                    ),
-                  )}
+        <>
+          <Box
+            display={{ base: "none", md: "block" }}
+            overflowX="auto"
+            border="1px solid"
+            borderColor="line"
+            borderRadius="surface"
+            bg={ctx.dark ? "paper" : "transparent"}
+          >
+            <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="560px">
+              <Thead>
+                <Tr>
+                  {tblCols.map((c: string, i: number) => (
+                    <Th
+                      key={i}
+                      scope="col"
+                      textAlign="start"
+                      p="3"
+                      bg="surface"
+                      color="ink"
+                      fontWeight="bold"
+                      borderBottom="2px solid"
+                      borderColor="lineStrong"
+                    >
+                      {c}
+                    </Th>
+                  ))}
                 </Tr>
-              ))}
-            </Tbody>
-          </Tbl>
-        </Box>
+              </Thead>
+              <Tbody>
+                {b.rows.map((row: string[], ri: number) => (
+                  <Tr key={ri}>
+                    {row.map((cell: string, ci: number) =>
+                      ci === 0 ? (
+                        <Th key={ci} scope="row" textAlign="start" p="3" color="ink" fontWeight="bold" borderBottom="1px solid" borderColor="line" verticalAlign="top">
+                          <RichText text={cell} />
+                        </Th>
+                      ) : (
+                        <Td key={ci} p="3" color="ink" borderBottom="1px solid" borderColor="line" verticalAlign="top">
+                          <RichText text={cell} />
+                        </Td>
+                      ),
+                    )}
+                  </Tr>
+                ))}
+              </Tbody>
+            </Tbl>
+          </Box>
+          <Box display={{ base: "block", md: "none" }}>
+            <MobileTableCards
+              columns={tblCols}
+              rows={(b.rows as string[][]).map((row) => row.map((cell) => <RichText text={cell} />))}
+              primary={primaryCols}
+              detail={detailCols}
+              dark={ctx.dark}
+            />
+          </Box>
+        </>
       );
+    }
 
     case "timeline":
       return (

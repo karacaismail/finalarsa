@@ -31,21 +31,24 @@ const config = defineConfig({
         medium: { value: "700" },
         bold: { value: "900" },
       },
-      // Tipografi ölçeği ~1.5–1.7x (okunabilirlik). Spacing (rem) sabit; yalnız yazı büyür.
+      // AKIŞKAN tipografi: her token clamp(mobilMin, akışkan, masaüstüMax).
+      // Kök rem 16px SABİT (spacing/radius değişmez); yalnız YAZI viewport ile ölçeklenir.
+      // 320px'te min'e oturur (okunur, taşmaz), ≥1280px'te max'a ulaşır → masaüstü BİREBİR korunur.
+      // (min→max eşlemesi 320px→1280px aralığında; aşağıda max'lar eski sabit değerlere eşit.)
       fontSizes: {
-        xs: { value: "1rem" },
-        sm: { value: "1.2rem" },
-        md: { value: "1.5rem" },
-        lg: { value: "1.75rem" },
-        xl: { value: "2.125rem" },
-        "2xl": { value: "2.5rem" },
-        "3xl": { value: "3rem" },
-        "4xl": { value: "3.75rem" },
-        "5xl": { value: "5rem" },
-        "6xl": { value: "6.25rem" },
-        "7xl": { value: "7.5rem" },
-        "8xl": { value: "9rem" },
-        "9xl": { value: "11rem" },
+        xs: { value: "1rem" }, // 16px sabit (mikro etiket)
+        sm: { value: "1.2rem" }, // 19.2px sabit
+        md: { value: "clamp(1.0625rem, 0.9167rem + 0.729vw, 1.5rem)" }, // 17 → 24
+        lg: { value: "clamp(1.125rem, 0.9167rem + 1.0417vw, 1.75rem)" }, // 18 → 28
+        xl: { value: "clamp(1.25rem, 0.9583rem + 1.4583vw, 2.125rem)" }, // 20 → 34
+        "2xl": { value: "clamp(1.5rem, 1.1667rem + 1.6667vw, 2.5rem)" }, // 24 → 40
+        "3xl": { value: "clamp(1.5rem, 1rem + 2.5vw, 3rem)" }, // 24 → 48
+        "4xl": { value: "clamp(1.75rem, 1.0833rem + 3.3333vw, 3.75rem)" }, // 28 → 60
+        "5xl": { value: "clamp(2.125rem, 1.1667rem + 4.7917vw, 5rem)" }, // 34 → 80
+        "6xl": { value: "clamp(2.5rem, 1.25rem + 6.25vw, 6.25rem)" }, // 40 → 100
+        "7xl": { value: "clamp(2.75rem, 1.1667rem + 7.9167vw, 7.5rem)" }, // 44 → 120
+        "8xl": { value: "clamp(3.25rem, 1.3333rem + 9.5833vw, 9rem)" }, // 52 → 144
+        "9xl": { value: "clamp(3.75rem, 1.3333rem + 12.0833vw, 11rem)" }, // 60 → 176
       },
       // Renkler TEK KAYNAKTAN (palette.ts). Token adları korunur; değer palette'ten gelir.
       colors: {

@@ -53,8 +53,9 @@
   "typography": {
     "family": "Roboto",
     "weights": [400, 500, 700, 900],
-    "baseSize": "1.5rem (24px); mobilde <768px kök rem 12px ile ~%75",
-    "scale": "md 1.5rem → 2xl 2.5rem → 4xl 3.75rem → 5xl 5rem (hero); kalınlık bir kademe yukarı"
+    "baseSize": "AKIŞKAN: clamp(1rem, …, 1.5rem) → 320px'te 16px, ≥1280px'te 24px. Kök rem 16px SABİT (eski mobil 12px hack KALDIRILDI; spacing/radius artık ölçeklenmez).",
+    "scale": "Her fontSize token clamp(mobilMin, akışkan, masaüstüMax): md 17→24, lg 18→28, 2xl 24→40, 4xl 28→60, 5xl 34→80 (hero). Mobil min'ler 320px hedefli; max'lar eski masaüstü değerleri.",
+    "responsiveSource": "landing/src/theme.ts (fontSizes clamp) + index.css (body clamp). Mobil tier mantığı: landing/src/components/useViewportTier.ts."
   },
-  "note": "ESKİ koyu/sıcak-kahve tema değerleri kaldırıldı; bu dosya artık gerçek aydınlık temayı yansıtır. Yine de RUNTIME KAYNAĞI DEĞİLDİR (bkz _runtimeSource). Renk değişikliği yalnız landing/src/theme/palette.ts'te yapılır."
+  "note": "ESKİ koyu/sıcak-kahve tema değerleri kaldırıldı; bu dosya artık gerçek aydınlık temayı yansıtır. Yine de RUNTIME KAYNAĞI DEĞİLDİR (bkz _runtimeSource). Renk değişikliği yalnız landing/src/theme/palette.ts'te yapılır. Mobil-öncelikli (320px) yeniden kurgu: tablolar mobilde MobileTableCards ile kart olur; tipografi clamp ile akışkandır."
 }

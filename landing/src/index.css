@@ -1,15 +1,9 @@
 :root {
   color-scheme: light;
-  font-size: 16px; /* kök rem SABİT → Chakra spacing (rem) ölçeklenmez, yalnız yazı büyür */
-}
-
-/* Mobilde (<768px) tüm rem-tabanlı yazı ~%25 küçülür (16px→12px); masaüstü 16px sabit kalır.
-   Medya sorgusu px ile; Chakra'nın em-tabanlı kırılımları tarayıcı varsayılanına (16px) bağlı
-   olduğu için 768px kırılım noktası kaymaz. */
-@media (max-width: 767px) {
-  :root {
-    font-size: 12px;
-  }
+  /* Kök rem 16px SABİT — HİÇBİR breakpoint'te değişmez.
+     (Eski mobil 12px hack KALDIRILDI: o hack spacing/radius/padding'i de küçültüp tasarım
+     ritmini bozuyordu. Artık yalnız YAZI ölçeklenir; bunu da theme.ts fontSizes clamp() yapar.) */
+  font-size: 16px;
 }
 
 html,
@@ -18,15 +12,33 @@ body,
   margin: 0;
 }
 
+/* Yatay taşmaya karşı global güvenlik kemeri: 320px'te page-level yatay scroll olmamalı. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body,
 #root {
-  /* Renk (bg/color) artık tema token'larından gelir (theme.ts → globalCss). Burada yalnız tipografi. */
+  /* Renk (bg/color) tema token'larından gelir (theme.ts → globalCss). Burada yalnız tipografi. */
   font-family: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 1.5rem; /* taban okunur metin 24px (~1.5x) */
+  /* AKIŞKAN taban metin: 320px'te 16px (asla altına düşmez) → ≥1280px'te 24px. */
+  font-size: clamp(1rem, 0.8333rem + 0.8333vw, 1.5rem);
   font-weight: 500; /* taban kalınlık bir kademe arttı */
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Başlık ve uzun Türkçe kelimeler 320px'te taşmasın (kelime kırılımı + heceleme). */
+h1,
+h2,
+h3,
+h4 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 /* ::selection ve :focus-visible RENKLERİ artık theme.ts globalCss'te (token bazlı) — merkezi. */

@@ -22,8 +22,17 @@ import {
 } from "./charts";
 import { TaxSliderView } from "./TaxSlider";
 import { chartCard as card, listingCard, verifiedBadge, checkIcon, grainBg } from "../theme/components";
+import { MobileTableCards } from "./MobileTableCards";
 
 const fmtTRY = (n: number) => fmt(n);
+
+/** Net değer hücresi (işaretli + renkli) — mobil kart ve masaüstü tablo ortak biçimi. */
+const netCell = (net: number) => (
+  <Box as="span" color={net < 0 ? "warn" : "grass"} fontWeight="medium" whiteSpace="nowrap">
+    {net < 0 ? "−" : "+"}
+    {fmtTRY(Math.abs(net))}
+  </Box>
+);
 
 /* Söke kartı: panel stili + ayraç rengini ayır (divider, Box prop'u değil). */
 const { divider: listingDivider, ...listingCardBox } = listingCard;
@@ -62,7 +71,7 @@ export function ScenarioYearsView() {
         ariaLabel="Senaryo bazında yıllık gelir patikası; hedef 2028'de tutturulur"
         option={scenarioLinesOption({ years: s.years, targetYear: s.targetYear, scenarios: s.scenarios })}
       />
-      <Box {...card} p="0" overflowX="auto">
+      <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
         <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="620px">
           <Thead>
             <Tr>
@@ -95,6 +104,28 @@ export function ScenarioYearsView() {
           </Tbody>
         </Tbl>
       </Box>
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Yıl", ...s.scenarios.map((sc) => sc.label)]}
+          rows={s.years.map((yr, yi) => [
+            <>
+              {yr}
+              {yr === s.targetYear ? " · hedef" : ""}
+            </>,
+            ...s.scenarios.map((sc, i) => (
+              <Box as="span">
+                <Box as="span" color={toneFor(i)} fontWeight="bold">
+                  {pct(sc.shareOfSam[yi])}
+                </Box>
+                <Box as="span" color="inkMuted">
+                  {" · "}
+                  {fmt(sc.revenue[yi])}
+                </Box>
+              </Box>
+            )),
+          ])}
+        />
+      </Box>
     </Stack>
   );
 }
@@ -110,7 +141,7 @@ export function YearlyView({ highlightYears }: { highlightYears?: string[] }) {
         ariaLabel="Yıllık gelir, gider ve net kâr (2026 H2 – 2032)"
         option={financialComboOption(d.yearly)}
       />
-      <Box {...card} p="0" overflowX="auto">
+      <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
         <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="640px">
           <Thead>
             <Tr>
@@ -136,6 +167,21 @@ export function YearlyView({ highlightYears }: { highlightYears?: string[] }) {
             ))}
           </Tbody>
         </Tbl>
+      </Box>
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Yıl", "Gelir", "Gider", "Net", "Kadro", "Yıl sonu nakit"]}
+          rows={rows.map((y) => [
+            y.year,
+            fmtTRY(y.revenue),
+            <Box as="span" color="inkMuted">{fmtTRY(y.expense)}</Box>,
+            netCell(y.net),
+            `${y.headcount} kişi`,
+            fmtTRY(y.cashEnd),
+          ])}
+          primary={[1, 3]}
+          detail={[2, 4, 5]}
+        />
       </Box>
     </Stack>
   );
@@ -217,7 +263,7 @@ export function AiFirstPanel() {
           ariaLabel={"Departman bazında AI'sız ve AI ile gerekli kadro karşılaştırması"}
           option={aiDeptOption(ai.departments.map((r) => ({ dept: r.dept, without: r.without, with: r.with })))}
         />
-        <Box {...card} p="0" overflowX="auto" mt="4">
+        <Box {...card} p="0" overflowX="auto" mt="4" display={{ base: "none", md: "block" }}>
           <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="520px">
             <Thead>
               <Tr>
@@ -237,6 +283,19 @@ export function AiFirstPanel() {
               ))}
             </Tbody>
           </Tbl>
+        </Box>
+        <Box display={{ base: "block", md: "none" }} mt="4">
+          <MobileTableCards
+            columns={["Departman", "AI'sız", "AI ile", "Araçlar"]}
+            rows={ai.departments.map((r) => [
+              r.dept,
+              <Box as="span" color="inkMuted">{r.without}</Box>,
+              <Box as="span" color="grass" fontWeight="medium">{r.with}</Box>,
+              <Box as="span" color="inkMuted">{r.tools}</Box>,
+            ])}
+            primary={[2, 1]}
+            detail={[3]}
+          />
         </Box>
       </Box>
     </Box>
@@ -351,7 +410,8 @@ export function GraduatedFinancialView() {
   }>("financial-detail");
   // grainBg (dönem zemini) merkezi: src/theme/components.ts
   return (
-    <Box {...card} p="0" overflowX="auto">
+    <>
+    <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
       <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="680px">
         <Thead>
           <Tr>
@@ -384,6 +444,25 @@ export function GraduatedFinancialView() {
         </Tbody>
       </Tbl>
     </Box>
+    <Box display={{ base: "block", md: "none" }}>
+      <MobileTableCards
+        columns={["Dönem", "Gelir", "Gider", "Net", "Kadro", "Dönem sonu nakit"]}
+        rows={d.graduated.map((r) => [
+          <>
+            {r.period}
+            <Box as="span" ml="2" fontSize="md" fontWeight="normal" color="inkMuted">{r.grain}</Box>
+          </>,
+          fmtTRY(r.gelir),
+          <Box as="span" color="inkMuted">{fmtTRY(r.gider)}</Box>,
+          netCell(r.net),
+          `${r.kadro} kişi`,
+          fmtTRY(r.nakit),
+        ])}
+        primary={[1, 3]}
+        detail={[2, 4, 5]}
+      />
+    </Box>
+    </>
   );
 }
 
@@ -397,7 +476,7 @@ export function CapexView() {
       <Box {...card}>
         <EChart height={Math.max(300, c.byCategory.length * 46)} ariaLabel="İlk ay kuruluş yatırımı (CAPEX) kategori kırılımı" option={capexBreakdownOption(c.byCategory)} />
       </Box>
-      <Box {...card} p="0" overflowX="auto">
+      <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
         <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="420px">
           <Thead>
             <Tr>
@@ -422,6 +501,25 @@ export function CapexView() {
           </Tbody>
         </Tbl>
       </Box>
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Kalem", "Tutar", "Pay"]}
+          rows={[
+            ...c.byCategory.map((r) => [
+              r.kat,
+              fmtTRY(r.tutar),
+              <Box as="span" color="inkMuted">{pct(r.tutar)}</Box>,
+            ]),
+            [
+              <Box as="span" fontWeight="bold">Toplam kuruluş yatırımı</Box>,
+              <Box as="span" fontWeight="bold">{fmtTRY(c.total)}</Box>,
+              <Box as="span" color="inkMuted">%100</Box>,
+            ],
+          ]}
+          primary={[1]}
+          detail={[2]}
+        />
+      </Box>
     </Stack>
   );
 }
@@ -436,7 +534,7 @@ export function OpexView() {
       <Box {...card}>
         <EChart height={Math.max(320, o.byCategory.length * 44)} ariaLabel="Aylık işletme gideri (OPEX) kompozisyonu" option={opexCompositionOption(o.byCategory)} />
       </Box>
-      <Box {...card} p="0" overflowX="auto">
+      <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
         <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="440px">
           <Thead>
             <Tr>
@@ -461,6 +559,25 @@ export function OpexView() {
           </Tbody>
         </Tbl>
       </Box>
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Gider kalemi", `Tutar · ${o.month}`, "Pay"]}
+          rows={[
+            ...o.byCategory.map((r) => [
+              r.kat,
+              fmtTRY(r.tutar),
+              <Box as="span" color="inkMuted">{pct(r.tutar)}</Box>,
+            ]),
+            [
+              <Box as="span" fontWeight="bold">Toplam aylık OPEX</Box>,
+              <Box as="span" fontWeight="bold">{fmtTRY(o.total)}</Box>,
+              <Box as="span" color="inkMuted">%100</Box>,
+            ],
+          ]}
+          primary={[1]}
+          detail={[2]}
+        />
+      </Box>
     </Stack>
   );
 }
@@ -479,7 +596,7 @@ function MonthlySplitView({ period }: { period: "monthly2026" | "monthly2027" })
           option={monthlySplitOption(rows)}
         />
       </Box>
-      <Box {...card} p="0" overflowX="auto">
+      <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
         <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="720px">
           <Thead>
             <Tr>
@@ -505,6 +622,23 @@ function MonthlySplitView({ period }: { period: "monthly2026" | "monthly2027" })
             ))}
           </Tbody>
         </Tbl>
+      </Box>
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Ay", "Gelir", "OPEX", "Pazarlama", "CAPEX", "Gider", "Net", "Dönem sonu nakit"]}
+          rows={rows.map((r) => [
+            r.label,
+            fmtTRY(r.gelir),
+            <Box as="span" color="inkMuted">{fmtTRY(r.opex)}</Box>,
+            <Box as="span" color="inkMuted">{fmtTRY(r.pazarlama)}</Box>,
+            <Box as="span" color="inkMuted">{fmtTRY(r.capex)}</Box>,
+            fmtTRY(r.gider),
+            netCell(r.net),
+            fmtTRY(r.nakit),
+          ])}
+          primary={[1, 6]}
+          detail={[2, 3, 4, 5, 7]}
+        />
       </Box>
     </Stack>
   );
@@ -537,7 +671,7 @@ export function BreakevenView() {
           option={breakevenOption(be.series, { label: "Mar 27", value: be.cumSpendToBE })}
         />
       </Box>
-      <Box {...card} p="0" overflowX="auto">
+      <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
         <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="420px">
           <Thead>
             <Tr>
@@ -556,6 +690,18 @@ export function BreakevenView() {
             ))}
           </Tbody>
         </Tbl>
+      </Box>
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Gösterge", "Değer", "Not"]}
+          rows={summary.map(([k, v, n]) => [
+            k,
+            <Box as="span" fontWeight="bold">{v}</Box>,
+            <Box as="span" color="inkMuted">{n ?? ""}</Box>,
+          ])}
+          primary={[1]}
+          detail={[2]}
+        />
       </Box>
     </Stack>
   );
