@@ -50,8 +50,9 @@ const config = defineConfig({
         grass: { value: "#4d7c1f" }, // AA metin yeşili (~5.3:1)
         grassInk: { value: "#2f5512" }, // güçlü yeşil (~8.5:1)
         grassBright: { value: "#7cb342" }, // dekoratif dolgu
-        gold: { value: "#876700" }, // AA metin altın (~5:1)
+        gold: { value: "#876700" }, // AA metin altın (~5:1) — küçük/badge altın metinde kalır
         goldBright: { value: "#cc9900" }, // dekoratif dolgu
+        goldVivid: { value: "#ffaa00" }, // parlak altın — başlık accent (büyük/kalın)
         warn: { value: "#b14d1c" }, // AA metin turuncu (~4.8:1)
         warnBright: { value: "#e2723a" }, // dekoratif dolgu
       },

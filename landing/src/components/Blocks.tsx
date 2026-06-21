@@ -111,13 +111,21 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
       const tag = b.level === 1 ? (ctx.isHero ? "h1" : "h2") : b.level === 2 ? "h2" : "h3";
       const size =
         b.level === 1
-          ? { base: "3xl", md: "5xl" }
+          ? { base: "1.75rem", md: "2.75rem" } // hero: uzun cümle, tam genişlikte ~2 satır
           : b.level === 2
             ? { base: "2xl", md: "4xl" }
             : { base: "xl", md: "2xl" };
       return (
-        <H3 as={tag} fontSize={size} fontWeight="bold" color={ctx.dark ? D.text : "ink"} lineHeight="1.12" letterSpacing="-0.01em" maxW="20ch">
-          <RichText text={b.text} accent={b.accent} accentColor={ctx.dark ? "goldBright" : "gold"} />
+        <H3
+          as={tag}
+          fontSize={size}
+          fontWeight="bold"
+          color={ctx.dark ? D.text : "ink"}
+          lineHeight={b.level === 1 ? "1.18" : "1.12"}
+          letterSpacing="-0.01em"
+          maxW={b.level === 1 ? "none" : "20ch"}
+        >
+          <RichText text={b.text} accent={b.accent} accentColor="goldVivid" />
         </H3>
       );
     }

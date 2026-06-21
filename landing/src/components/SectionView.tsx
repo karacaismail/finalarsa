@@ -28,10 +28,35 @@ export function SectionView({ section, index }: { section: Section; index: numbe
     >
       <Box maxW="1200px" mx="auto" px={{ base: "5", md: "8" }} py={{ base: "12", md: isHero ? "24" : "20" }}>
         {isHero ? (
-          <Grid templateColumns={{ base: "1fr", lg: "1.05fr 0.95fr" }} gap={{ base: "10", lg: "12" }} alignItems="center">
-            {blocks}
-            <HeroArt />
-          </Grid>
+          (() => {
+            // Hero: eyebrow + başlık TAM GENİŞLİKTE üstte (uzun başlık ~2 satıra sığar);
+            // altında lead/not solda, illüstrasyon sağda.
+            const hi = section.blocks.findIndex((b) => b.type === "heading");
+            const head = hi >= 0 ? section.blocks.slice(0, hi + 1) : section.blocks;
+            const rest = hi >= 0 ? section.blocks.slice(hi + 1) : [];
+            return (
+              <>
+                <Stack gap={{ base: "4", md: "5" }} align="stretch">
+                  {head.map((b, i) => (
+                    <BlockView key={i} block={b} ctx={{ isHero, dark }} />
+                  ))}
+                </Stack>
+                <Grid
+                  templateColumns={{ base: "1fr", lg: "1fr 0.82fr" }}
+                  gap={{ base: "8", lg: "12" }}
+                  alignItems="center"
+                  mt={{ base: "8", md: "10" }}
+                >
+                  <Stack gap={{ base: "5", md: "6" }} align="stretch">
+                    {rest.map((b, i) => (
+                      <BlockView key={i} block={b} ctx={{ isHero, dark }} />
+                    ))}
+                  </Stack>
+                  <HeroArt />
+                </Grid>
+              </>
+            );
+          })()
         ) : (
           blocks
         )}
