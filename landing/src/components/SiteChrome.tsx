@@ -2,6 +2,7 @@ import { Box, chakra } from "@chakra-ui/react";
 import { brand } from "../data/resolve";
 import { A, Flex } from "../ui";
 import { LogoMark } from "./LogoMark";
+import { palette, fx } from "../theme/palette";
 
 const PlayBtn = chakra("button");
 
@@ -39,7 +40,7 @@ export function Header({ onPlay }: { onPlay?: () => void }) {
       position="sticky"
       top="0"
       zIndex="100"
-      bg="rgba(255,255,255,0.88)"
+      bg={fx.headerGlass}
       backdropFilter="saturate(180%) blur(8px)"
       borderBottom="1px solid"
       borderColor="line"
@@ -107,7 +108,7 @@ export function Header({ onPlay }: { onPlay?: () => void }) {
 }
 
 export function Footer() {
-  const muted = "#b9b7ad";
+  const muted = palette.footerMuted;
   return (
     <Box as="footer" bg="ink" color="white">
       <Box maxW="1200px" mx="auto" px={{ base: "5", md: "8" }} py={{ base: "10", md: "14" }}>

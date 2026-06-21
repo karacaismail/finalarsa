@@ -1,13 +1,23 @@
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
+import { palette } from "./theme/palette";
 
 /**
- * Aydınlık-minimal tema.
- * - Font: Roboto. Taban font boyutu 1rem (md). Bileşenlerde xs/sm metin KULLANILMAZ.
- * - Renkler WCAG 2.2 AA için iki katmanlı: "ink/text" tonları beyaz üzerinde >= 4.5:1 kontrast
- *   sağlar; "*Bright" tonları yalnız dekoratif dolgu/çubuk içindir (metin değil).
+ * Aydınlık-minimal tema — Chakra birleşimi.
+ * Renk DEĞERLERİ tek kaynaktan gelir: src/theme/palette.ts. Burası yalnız bu paleti
+ * Chakra tokenlarına bağlar + tipografi/radii + global renk stilleri (globalCss).
+ * Global renkler (body/selection/focus) artık index.css'te ham hex değil; token'dan gelir.
  */
-// Global CSS (focus-visible, selection, reduced-motion, taban font) src/index.css'tedir.
 const config = defineConfig({
+  globalCss: {
+    "body, #root": { bg: "paper", color: "ink" },
+    "::selection": { bg: "grassBright", color: "white" },
+    "a:focus-visible, button:focus-visible, [tabindex]:focus-visible, [role='button']:focus-visible": {
+      outline: "3px solid",
+      outlineColor: "grass",
+      outlineOffset: "2px",
+      borderRadius: "2px",
+    },
+  },
   theme: {
     tokens: {
       fonts: {
@@ -21,8 +31,7 @@ const config = defineConfig({
         medium: { value: "700" },
         bold: { value: "900" },
       },
-      // Tipografi ölçeği ~1.5–1.7x büyütüldü (okunabilirlik). Spacing (rem) sabit kaldığından
-      // yalnız yazı büyür; düzen/boşluklar orantısız şişmez. Tüm ölçek monoton tutuldu.
+      // Tipografi ölçeği ~1.5–1.7x (okunabilirlik). Spacing (rem) sabit; yalnız yazı büyür.
       fontSizes: {
         xs: { value: "1rem" },
         sm: { value: "1.2rem" },
@@ -38,23 +47,25 @@ const config = defineConfig({
         "8xl": { value: "9rem" },
         "9xl": { value: "11rem" },
       },
+      // Renkler TEK KAYNAKTAN (palette.ts). Token adları korunur; değer palette'ten gelir.
       colors: {
-        paper: { value: "#ffffff" },
-        paperWarm: { value: "#faf9f5" },
-        surface: { value: "#f4f3ee" },
-        surfaceAlt: { value: "#efeee7" },
-        line: { value: "#e2e1d9" },
-        lineStrong: { value: "#c9c7bb" },
-        ink: { value: "#1b1a17" }, // ~16:1 on white
-        inkMuted: { value: "#56544c" }, // ~7:1 on white
-        grass: { value: "#4d7c1f" }, // AA metin yeşili (~5.3:1)
-        grassInk: { value: "#2f5512" }, // güçlü yeşil (~8.5:1)
-        grassBright: { value: "#7cb342" }, // dekoratif dolgu
-        gold: { value: "#876700" }, // AA metin altın (~5:1) — küçük/badge altın metinde kalır
-        goldBright: { value: "#cc9900" }, // dekoratif dolgu
-        goldVivid: { value: "#ffaa00" }, // parlak altın — başlık accent (büyük/kalın)
-        warn: { value: "#b14d1c" }, // AA metin turuncu (~4.8:1)
-        warnBright: { value: "#e2723a" }, // dekoratif dolgu
+        paper: { value: palette.white },
+        paperWarm: { value: palette.cream },
+        surface: { value: palette.stone100 },
+        surfaceAlt: { value: palette.stone200 },
+        line: { value: palette.stone300 },
+        lineStrong: { value: palette.stone400 },
+        ink: { value: palette.ink }, // ~16:1 on white
+        inkMuted: { value: palette.inkMuted }, // ~7:1 on white
+        grass: { value: palette.green }, // AA metin yeşili
+        grassInk: { value: palette.greenDeep }, // güçlü yeşil
+        grassBright: { value: palette.greenBright }, // dekoratif
+        gold: { value: palette.gold }, // AA metin altın (küçük/badge)
+        goldBright: { value: palette.goldBright }, // dekoratif
+        goldVivid: { value: palette.goldVivid }, // parlak altın — başlık accent
+        warn: { value: palette.clay }, // AA metin turuncu
+        warnBright: { value: palette.clayBright }, // dekoratif
+        sectionDark: { value: palette.darkBg }, // koyu bölüm zemini
       },
       radii: {
         control: { value: "0.5rem" },

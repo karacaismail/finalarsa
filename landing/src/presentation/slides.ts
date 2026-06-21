@@ -1,5 +1,6 @@
 import { sections } from "../data/resolve";
 import type { Block, Section } from "../data/types";
+import { palette } from "../theme/palette";
 
 /**
  * Sunum modu — slayt modeli.
@@ -34,8 +35,11 @@ export interface PresentationSlide {
  * edilmeyecek kadar yakın, dolayısıyla "değişim" hissi vermez.
  */
 function themeForSection(section: Section, sectionIndex: number): SlideTheme {
-  if (section.background === "dark") return { bg: "#211c16", isDark: true };
-  return { bg: sectionIndex % 2 === 0 ? "#ffffff" : "#faf9f5", isDark: false };
+  // Sayfayla aynı: koyu bölümler "dark" (finansal) ve "bg-end" (kapanış); gerisi açık (parite).
+  // Renkler tek kaynaktan (palette).
+  if (section.background === "dark") return { bg: palette.darkBg, isDark: true };
+  if (section.background === "bg-end") return { bg: palette.ink, isDark: true };
+  return { bg: sectionIndex % 2 === 0 ? palette.white : palette.cream, isDark: false };
 }
 
 /* Anlatı blokları: bir araya toplanır (büyük blokla aynı slayta bağlam olarak girer). */

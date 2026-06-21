@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Flex } from "../ui";
 import { presentationSlides } from "./slides";
 import { SlideView } from "./SlideView";
+import { presentation as pres } from "../theme/components";
 
 /**
  * Sunum modu (Keynote/PowerPoint gibi, aynı sayfada, tam ekran).
@@ -155,7 +156,7 @@ export function PresentationMode({ open, onClose }: { open: boolean; onClose: ()
     color: "white",
     border: "none",
     cursor: "pointer",
-    _hover: { bg: "rgba(255,255,255,0.16)" },
+    _hover: { bg: pres.ctrlHover },
     _disabled: { opacity: 0.35, cursor: "default" },
   } as const;
 
@@ -169,8 +170,8 @@ export function PresentationMode({ open, onClose }: { open: boolean; onClose: ()
       {/* Üst: ilerleme + sayaç + çıkış */}
       <Box position="absolute" top="0" left="0" right="0" px="4" pt="3" zIndex="2">
         <Progress.Root value={index + 1} max={total} size="xs" bg="transparent">
-          <Progress.Track bg="rgba(128,128,128,0.25)" borderRadius="full">
-            <Progress.Range bg="#7cb342" borderRadius="full" />
+          <Progress.Track bg={pres.progressTrack} borderRadius="full">
+            <Progress.Range bg={pres.progressRange} borderRadius="full" />
           </Progress.Track>
         </Progress.Root>
         <Flex justify="space-between" align="center" mt="2">
@@ -178,14 +179,14 @@ export function PresentationMode({ open, onClose }: { open: boolean; onClose: ()
             px="3"
             py="1"
             borderRadius="full"
-            bg="rgba(0,0,0,0.45)"
+            bg={pres.badgeBg}
             color="white"
             fontSize="md"
             fontWeight="medium"
           >
             {index + 1} / {total} · {slide.nav.num} {slide.nav.label}
           </Box>
-          <Btn {...ctrlBtn} bg="rgba(0,0,0,0.45)" onClick={close} aria-label="Sunumdan çık (Esc)">
+          <Btn {...ctrlBtn} bg={pres.badgeBg} onClick={close} aria-label="Sunumdan çık (Esc)">
             <Icon path={I.x} />
           </Btn>
         </Flex>
@@ -199,7 +200,7 @@ export function PresentationMode({ open, onClose }: { open: boolean; onClose: ()
           left="50%"
           transform="translateX(-50%)"
           zIndex="3"
-          bg="rgba(20,20,18,0.96)"
+          bg={pres.chooserBg}
           borderRadius="shell"
           p="3"
           gap="2"
@@ -207,7 +208,7 @@ export function PresentationMode({ open, onClose }: { open: boolean; onClose: ()
           wrap="wrap"
           justify="center"
           maxW="92vw"
-          boxShadow="0 12px 32px rgba(0,0,0,0.4)"
+          boxShadow={pres.chooserShadow}
         >
           <Box color="white" fontSize="md" mr="1">
             Süre:
@@ -221,12 +222,12 @@ export function PresentationMode({ open, onClose }: { open: boolean; onClose: ()
               minW="48px"
               borderRadius="control"
               border="1px solid"
-              borderColor={s === interval ? "#7cb342" : "rgba(255,255,255,0.25)"}
-              bg={s === interval ? "#4d7c1f" : "transparent"}
+              borderColor={s === interval ? pres.speedSelBorder : pres.speedUnselBorder}
+              bg={s === interval ? pres.speedSelBg : "transparent"}
               color="white"
               cursor="pointer"
               fontWeight="medium"
-              _hover={{ bg: s === interval ? "#4d7c1f" : "rgba(255,255,255,0.14)" }}
+              _hover={{ bg: s === interval ? pres.speedSelBg : pres.speedUnselHover }}
             >
               {s} sn
             </Btn>
@@ -243,11 +244,11 @@ export function PresentationMode({ open, onClose }: { open: boolean; onClose: ()
         zIndex="2"
         align="center"
         gap="1"
-        bg="rgba(20,20,18,0.82)"
+        bg={pres.barBg}
         borderRadius="full"
         px="2"
         py="1"
-        boxShadow="0 8px 24px rgba(0,0,0,0.35)"
+        boxShadow={pres.barShadow}
       >
         <Btn {...ctrlBtn} onClick={prev} disabled={index === 0} aria-label="Önceki (←)">
           <Icon path={I.left} />

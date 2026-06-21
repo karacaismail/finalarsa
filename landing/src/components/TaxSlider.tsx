@@ -3,6 +3,8 @@ import { useId, useMemo, useState } from "react";
 import { getData } from "../data/resolve";
 import { Flex, Grid, P, Stack } from "../ui";
 import { fmt } from "./charts";
+import { chartCard as card } from "../theme/components";
+import { palette } from "../theme/palette";
 
 /**
  * Teknopark vergi avantajı — interaktif yatay slider.
@@ -19,13 +21,7 @@ type Tax = {
   scenarios: { id: string; label: string; revenue: number }[];
 };
 
-const card = {
-  border: "1px solid",
-  borderColor: "line",
-  borderRadius: "surface",
-  bg: "paper",
-  p: { base: "5", md: "6" },
-} as const;
+/* card merkezi: src/theme/components.ts (chartCard) */
 
 export function TaxSliderView() {
   const { tax } = getData<{ tax: Tax }>("financial-breakdown");
@@ -67,7 +63,7 @@ export function TaxSliderView() {
     <Box {...card}>
       <Stack gap="5">
         <Flex justify="space-between" align="baseline" wrap="wrap" gap="2">
-          <Box as="span" px="2" py="0.5" borderRadius="full" bg="#fbf4df" color="gold" fontSize="md" fontWeight="medium">
+          <Box as="span" px="2" py="0.5" borderRadius="full" bg={palette.tintGold} color="gold" fontSize="md" fontWeight="medium">
             model varsayımı
           </Box>
           <P fontSize="md" color="inkMuted">istisna süresi · {tax.validUntil}</P>
@@ -93,7 +89,7 @@ export function TaxSliderView() {
             onChange={(e) => setT(Number(e.target.value) / 1000)}
             aria-labelledby={labelId}
             aria-valuetext={`${calc.zone}; yıllık gelir ${fmt(calc.revenue)}; vergi avantajı ${fmt(calc.total)}`}
-            style={{ width: "100%", height: "44px", accentColor: "#cc9900", cursor: "pointer", touchAction: "none" }}
+            style={{ width: "100%", height: "44px", accentColor: palette.goldBright, cursor: "pointer", touchAction: "none" }}
           />
           {/* Senaryo durakları (tıkla = ata) */}
           <Flex justify="space-between" mt="1" gap="2">

@@ -29,7 +29,8 @@ export const glossary = getFile<{ terms: Record<string, string> }>("shared/gloss
 export const sources = getFile<{ items: Record<string, { label: string; full: string }> }>(
   "shared/sources.json",
 );
-export const designTokens = getFile<Record<string, unknown>>("shared/design-tokens.json");
+// NOT: shared/design-tokens.json artık LEGACY belge; UI runtime'ı onu tüketmez.
+// Renk/tema tek kaynağı: landing/src/theme/palette.ts (+ semantic/components/charts).
 
 /** data/<name>.json */
 export function getData<T = unknown>(name: string): T {

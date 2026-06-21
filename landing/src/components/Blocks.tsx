@@ -7,31 +7,17 @@ import { RichText } from "./RichText";
 import { markHighlight } from "./MarkHighlight";
 import { ChartBlock } from "./ChartViews";
 import { fmt } from "./charts";
+import { claimTag, darkText as D, tone } from "../theme/semantic";
+import { cardBase, interactivePanel, pill } from "../theme/components";
+import { fx } from "../theme/palette";
 
-/* --- tone -> AA-uyumlu renk/zemin --- */
-const toneText: Record<string, string> = { accent: "grass", gold: "gold", warn: "warn", info: "inkMuted" };
-const toneBg: Record<string, string> = { accent: "#f1f6ea", gold: "#fbf4df", warn: "#fbeee7", info: "surface" };
-const toneBorder: Record<string, string> = { accent: "#cfe0b4", gold: "#ecd9a0", warn: "#f0cdb6", info: "line" };
+/* Renk rolleri TEK KAYNAKTAN: src/theme/semantic.ts (tone, claimTag) + components.ts (cardBase…) */
+const { text: toneText, bg: toneBg } = tone;
 const txt = (t?: string) => (t && toneText[t]) || "ink";
 
-/* İddia etiketleri (claim tag): doğrulanmış kaynak / model varsayımı / hedef / şirket tahmini */
-const tagMeta: Record<string, { color: string; bg: string }> = {
-  "doğrulanmış kaynak": { color: "grassInk", bg: "#eef5e3" },
-  "model varsayımı": { color: "gold", bg: "#fbf4df" },
-  hedef: { color: "ink", bg: "#ecebe4" },
-  "şirket tahmini": { color: "warn", bg: "#fbeee7" },
-};
-/* İddia etiketlerinin Tooltip açıklamaları (ne anlama geldiği) */
-const tagDesc: Record<string, string> = {
-  "doğrulanmış kaynak": "Resmi veya üçüncü taraf kaynakla doğrulanmış veri.",
-  "model varsayımı": "Finansal modelin girdisi; kaynakla sabitlenmemiş bir varsayım.",
-  hedef: "Şirketin ulaşmayı amaçladığı değer.",
-  "şirket tahmini": "Şirketin öngörüsü; bağımsız doğrulama dışı.",
-};
-
 function TagBadge({ tag }: { tag: string }) {
-  const m = tagMeta[tag] ?? tagMeta["hedef"];
-  const desc = tagDesc[tag];
+  const m = claimTag[tag] ?? claimTag["hedef"];
+  const desc = m.desc;
   const badge = (
     <Box
       as="span"
@@ -69,13 +55,7 @@ function TagBadge({ tag }: { tag: string }) {
   );
 }
 
-const cardBase = (tone?: string) => ({
-  border: "1px solid",
-  borderColor: (tone && toneBorder[tone]) || "line",
-  borderRadius: "surface",
-  bg: (tone && toneBg[tone]) || "paper",
-  p: { base: "5", md: "6" } as const,
-});
+/* cardBase artık merkezi: src/theme/components.ts */
 
 function gridCols(cols?: number) {
   if (cols === 4) return { base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" };
@@ -93,8 +73,7 @@ interface Ctx {
   isHero: boolean;
   dark?: boolean;
 }
-/* Koyu bölümde ışık metin renkleri (kartlar/grafikler ışık panel kalır) */
-const D = { text: "#f4efe6", muted: "#cdc6b8", eyebrow: "#b3a892", body: "#e8e2d6" };
+/* Koyu bölüm metin renkleri (D) TEK KAYNAKTAN: src/theme/semantic.ts → darkText (D alias) */
 
 /* ---------------- tek blok ---------------- */
 export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
@@ -664,24 +643,16 @@ function ChartTabs({ items }: { items: ChartTabItem[] }) {
   // Kart her zaman açık zeminli panel (koyu bölümde bile) — marketScale ile aynı.
   // Sekmeler pill (kapsül) segmented kontrol: açık track + seçili beyaz pill (UI bütünlüğü).
   return (
-    <Box
-      border="1px solid"
-      borderColor="#d6e3c4"
-      borderRadius="surface"
-      bg="#eef3e6"
-      bgImage="linear-gradient(160deg, #f7faf1 0%, #e9f0dd 100%)"
-      boxShadow="0 16px 40px rgba(27,26,23,0.10), 0 4px 12px rgba(27,26,23,0.06)"
-      p={{ base: "4", md: "5" }}
-    >
+    <Box {...interactivePanel(false)} p={{ base: "4", md: "5" }}>
       <Tabs.Root defaultValue={items[0].value} colorPalette="green" variant="plain">
         <Box overflowX="auto" pb="1">
           <Tabs.List
             display="inline-flex"
             gap="1"
             minW="max-content"
-            bg="rgba(27,40,12,0.06)"
+            bg={pill.trackBg(false)}
             border="1px solid"
-            borderColor="rgba(27,40,12,0.10)"
+            borderColor={pill.trackBorder(false)}
             borderRadius="full"
             p="1"
           >
@@ -696,7 +667,7 @@ function ChartTabs({ items }: { items: ChartTabItem[] }) {
                 color="inkMuted"
                 whiteSpace="nowrap"
                 borderRadius="full"
-                _selected={{ bg: "paper", color: "ink", boxShadow: "0 1px 4px rgba(0,0,0,0.18)" }}
+                _selected={{ bg: pill.selectedBg(false), color: "ink", boxShadow: pill.selectedShadow }}
               >
                 {it.label}
               </Tabs.Trigger>
@@ -768,15 +739,7 @@ function MarketScale({ dark }: { dark?: boolean }) {
   const rows = mode === "conversion" ? convRows : shareRows;
 
   return (
-    <Box
-      border="1px solid"
-      borderColor={dark ? "rgba(255,255,255,0.16)" : "#d6e3c4"}
-      borderRadius="surface"
-      bg={dark ? "rgba(255,255,255,0.06)" : "#eef3e6"}
-      bgImage={dark ? undefined : "linear-gradient(160deg, #f7faf1 0%, #e9f0dd 100%)"}
-      boxShadow={dark ? "0 16px 40px rgba(0,0,0,0.28)" : "0 16px 40px rgba(27,26,23,0.10), 0 4px 12px rgba(27,26,23,0.06)"}
-      p={{ base: "5", md: "6" }}
-    >
+    <Box {...interactivePanel(dark)} p={{ base: "5", md: "6" }}>
       <Flex align="center" gap="3" wrap="wrap" mb="5">
         <P fontWeight="medium" fontSize="md" color={dark ? D.muted : "inkMuted"}>
           Görünüm:
@@ -785,17 +748,17 @@ function MarketScale({ dark }: { dark?: boolean }) {
           value={mode}
           onValueChange={(e) => setMode(e.value ?? "share")}
           display="inline-flex"
-          bg={dark ? "rgba(255,255,255,0.10)" : "rgba(27,40,12,0.06)"}
+          bg={pill.trackBg(dark)}
           border="1px solid"
-          borderColor={dark ? "rgba(255,255,255,0.18)" : "rgba(27,40,12,0.10)"}
+          borderColor={pill.trackBorder(dark)}
           borderRadius="full"
           p="1"
           fontSize="md"
         >
           <SegmentGroup.Indicator
-            bg={dark ? "#43361f" : "paper"}
+            bg={pill.selectedBg(dark)}
             borderRadius="full"
-            boxShadow="0 1px 4px rgba(0,0,0,0.22)"
+            boxShadow={pill.selectedShadowStrong}
           />
           <SegmentGroup.Items
             items={[
@@ -806,7 +769,7 @@ function MarketScale({ dark }: { dark?: boolean }) {
             py="2"
             fontWeight="medium"
             cursor="pointer"
-            color={dark ? "#f4efe6" : "ink"}
+            color={dark ? D.text : "ink"}
           />
         </SegmentGroup.Root>
       </Flex>
@@ -815,14 +778,14 @@ function MarketScale({ dark }: { dark?: boolean }) {
         {rows.map((r) => (
           <Box key={r.label}>
             <Flex justify="space-between" align="baseline" gap="3" wrap="wrap" mb="1.5">
-              <P fontWeight="medium" color={dark ? "#f4efe6" : "ink"}>{r.label}</P>
-              <P fontWeight="bold" color={dark ? "#f4efe6" : "ink"} fontSize="md">
+              <P fontWeight="medium" color={dark ? D.text : "ink"}>{r.label}</P>
+              <P fontWeight="bold" color={dark ? D.text : "ink"} fontSize="md">
                 {r.right}
                 {mode === "share" ? ` · ${pct1(r.pct)}` : ""}
               </P>
             </Flex>
             <Progress.Root value={Math.max(r.pct, 0.8)} max={100} size="md">
-              <Progress.Track bg={dark ? "rgba(255,255,255,0.10)" : "surface"} borderRadius="full">
+              <Progress.Track bg={dark ? fx.overlayWhite10 : "surface"} borderRadius="full">
                 <Progress.Range bg={r.lead ? "grass" : "grassBright"} borderRadius="full" />
               </Progress.Track>
             </Progress.Root>

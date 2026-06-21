@@ -1,24 +1,9 @@
 import type { EChartsCoreOption } from "echarts";
 import type { FinancialYear } from "../data/types";
-
-/* Aydınlık-minimal palet (site temasıyla uyumlu, AA dostu) */
-const C = {
-  grass: "#4d7c1f",
-  grassBright: "#7cb342",
-  gold: "#cc9900",
-  goldText: "#876700",
-  warn: "#e2723a",
-  warnText: "#b14d1c",
-  ink: "#1b1a17",
-  inkMuted: "#57564f",
-  line: "#e2e1d9",
-  surface: "#f4f3ee",
-};
+import { chartPalette as C, CHART_LABEL as LBL } from "../theme/charts";
 
 const FONT = "'Roboto', system-ui, sans-serif";
-// Ölçüt: tüm grafik metni en az 1rem. Gövde metni büyüdüğü için grafik etiketi de bir miktar
-// büyütüldü (yoğun grafiklerde okunaklılık/denge); gövdedeki 24px kadar değil (yer kısıtı).
-const LBL = 18;
+// LBL (grafik etiket boyutu) ve C (palet) merkezi: src/theme/charts.ts
 const textStyle = { fontFamily: FONT, color: C.ink, fontSize: LBL };
 const axisLabel = { color: C.inkMuted, fontFamily: FONT, fontSize: LBL };
 const nameStyle = { color: C.inkMuted, fontFamily: FONT, fontSize: LBL };

@@ -21,16 +21,12 @@ import {
   scenarioLinesOption,
 } from "./charts";
 import { TaxSliderView } from "./TaxSlider";
+import { chartCard as card, listingCard, verifiedBadge, checkIcon, grainBg } from "../theme/components";
 
 const fmtTRY = (n: number) => fmt(n);
 
-const card = {
-  border: "1px solid",
-  borderColor: "line",
-  borderRadius: "surface",
-  bg: "paper",
-  p: { base: "5", md: "6" },
-} as const;
+/* Söke kartı: panel stili + ayraç rengini ayır (divider, Box prop'u değil). */
+const { divider: listingDivider, ...listingCardBox } = listingCard;
 
 /* ---------------- Pazar: değer hunisi ---------------- */
 export function MarketFunnelView() {
@@ -287,8 +283,8 @@ export function BasabasWaterfallView() {
 function CheckIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style={{ flexShrink: 0 }}>
-      <circle cx="12" cy="12" r="11" fill="#eef5e3" />
-      <path d="M7 12.5l3 3 7-7" fill="none" stroke="#4d7c1f" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="12" cy="12" r="11" fill={checkIcon.circle} />
+      <path d="M7 12.5l3 3 7-7" fill="none" stroke={checkIcon.stroke} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -301,20 +297,13 @@ export function PanelMockView() {
     ["Kapora / emanet ödeme", "tapuya kadar güvende"],
   ];
   return (
-    <Box
-      {...card}
-      maxW="560px"
-      bg="#f7faf1"
-      bgImage="linear-gradient(155deg, #ffffff 0%, #eef5e3 100%)"
-      borderColor="#d8e6c4"
-      boxShadow="0 16px 40px rgba(27,26,23,0.10), 0 4px 12px rgba(27,26,23,0.06)"
-    >
-      <Flex justify="space-between" align="center" mb="3" pb="3" borderBottom="1px solid" borderColor="#cfe0b4" gap="3">
+    <Box {...card} {...listingCardBox} maxW="560px">
+      <Flex justify="space-between" align="center" mb="3" pb="3" borderBottom="1px solid" borderColor={listingDivider} gap="3">
         <Box>
           <P fontWeight="bold" color="ink" fontSize="lg">Söke · Arsa · 1.250 m²</P>
           <P fontSize="md" color="inkMuted">örnek ilan · güven dosyası</P>
         </Box>
-        <Box as="span" px="2.5" py="1" borderRadius="full" bg="#eef5e3" color="grassInk" fontSize="md" fontWeight="medium" flexShrink="0">
+        <Box as="span" px="2.5" py="1" borderRadius="full" bg={verifiedBadge.bg} color={verifiedBadge.color} fontSize="md" fontWeight="medium" flexShrink="0">
           Doğrulandı
         </Box>
       </Flex>
@@ -360,7 +349,7 @@ export function GraduatedFinancialView() {
   const d = getData<{
     graduated: { period: string; grain: string; gelir: number; gider: number; net: number; kadro: number; nakit: number }[];
   }>("financial-detail");
-  const grainBg: Record<string, string> = { ay: "paper", çeyrek: "#faf9f5", yarıyıl: "#f6f5ef", yıl: "surface" };
+  // grainBg (dönem zemini) merkezi: src/theme/components.ts
   return (
     <Box {...card} p="0" overflowX="auto">
       <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="680px">

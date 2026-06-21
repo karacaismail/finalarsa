@@ -2,6 +2,7 @@ import { Box, Popover, Portal, Tooltip } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { sections } from "../data/resolve";
 import { Flex, Stack } from "../ui";
+import { fx } from "../theme/palette";
 
 /**
  * Bölüm navigasyonu (17 bölüm).
@@ -106,7 +107,7 @@ export function SectionNav() {
               borderRadius="full"
               bg="grass"
               color="white"
-              boxShadow="0 6px 20px rgba(0,0,0,0.18)"
+              boxShadow={fx.shadowFab}
               display="flex"
               alignItems="center"
               justifyContent="center"
@@ -121,7 +122,7 @@ export function SectionNav() {
           </Popover.Trigger>
           <Portal>
             <Popover.Positioner>
-              <Popover.Content maxH="70vh" overflowY="auto" w="260px" borderRadius="surface" boxShadow="0 12px 32px rgba(0,0,0,0.18)">
+              <Popover.Content maxH="70vh" overflowY="auto" w="260px" borderRadius="surface" boxShadow={fx.shadowMenu}>
                 <Popover.Body p="2">
                   <Stack gap="0">
                     {sections.map((s) => {

@@ -20,30 +20,16 @@ body,
 
 body,
 #root {
-  background: #ffffff;
-  color: #1b1a17;
+  /* Renk (bg/color) artık tema token'larından gelir (theme.ts → globalCss). Burada yalnız tipografi. */
   font-family: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 1.5rem; /* taban okunur metin 24px (~1.5x büyüdü) */
+  font-size: 1.5rem; /* taban okunur metin 24px (~1.5x) */
   font-weight: 500; /* taban kalınlık bir kademe arttı */
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-*::selection {
-  background: #7cb342;
-  color: #ffffff;
-}
-
-/* WCAG 2.2 (2.4.7 / 2.4.11) — her etkileşimli öğede görünür odak */
-a:focus-visible,
-button:focus-visible,
-[tabindex]:focus-visible,
-[role="button"]:focus-visible {
-  outline: 3px solid #4d7c1f;
-  outline-offset: 2px;
-  border-radius: 2px;
-}
+/* ::selection ve :focus-visible RENKLERİ artık theme.ts globalCss'te (token bazlı) — merkezi. */
 
 /* Sunum modu geçişleri: bölümler arası dikey kaydırma, bölüm içi fade */
 @keyframes pmSlideUpIn {
@@ -93,7 +79,7 @@ button:focus-visible,
 ---------------------------------------------------------------------------- */
 .hl-marker {
   display: inline;
-  color: #1b1a17; /* sarı iz üzerinde daima koyu, okunur metin (her zeminde) */
+  color: var(--chakra-colors-ink, #1b1a17); /* token (ink); sarı iz üzerinde daima koyu, okunur */
   background-color: transparent; /* tarayıcının varsayılan <mark> sarısını kaldır */
   /* Organik, hafif eğimli (el çizimi) sarı fırça izi — satır içi SVG, dış görsel yok.
      İz doğrudan elemanın arka planıdır: satır kaydırmada her parça kendi izini alır

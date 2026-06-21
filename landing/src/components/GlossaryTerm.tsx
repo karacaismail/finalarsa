@@ -1,6 +1,7 @@
 import { Box, chakra, Popover, Portal } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 import { glossary } from "../data/resolve";
+import { fx } from "../theme/palette";
 
 /* Buton primitive'i chakra("button") ile kurulur: as="button" polimorfik tipinde
    "type" gibi buton öznitelikleri görünmediği için (Chakra v3 + React 19). */
@@ -66,7 +67,7 @@ function GlossaryTerm({ term, definition }: { term: string; definition: string }
             borderRadius="surface"
             border="1px solid"
             borderColor="line"
-            boxShadow="0 12px 32px rgba(0,0,0,0.16)"
+            boxShadow={fx.shadowPopover}
           >
             <Popover.Arrow>
               <Popover.ArrowTip />

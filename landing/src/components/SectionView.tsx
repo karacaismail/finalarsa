@@ -1,14 +1,16 @@
 import { Box } from "@chakra-ui/react";
 import type { Section } from "../data/types";
 import { Grid, Stack } from "../ui";
+import { sectionBg, sectionBorder } from "../theme/semantic";
 import { BlockView } from "./Blocks";
 import { HeroArt } from "./HeroArt";
 
-/** Tek bölüm: semantik <section>, aydınlık alternatif zemin, ortalı container. */
+/** Tek bölüm: semantik <section>, zemin JSON'daki `background` değerinden (merkezi sectionBg map). */
 export function SectionView({ section, index }: { section: Section; index: number }) {
   const isHero = section.order === 1;
-  const dark = section.background === "dark";
-  const bg = dark ? "#211c16" : index % 2 === 0 ? "paper" : "paperWarm";
+  // Koyu zeminli bölümler: "dark" (finansal) ve "bg-end" (kapanış/ink) → metin açık render edilir.
+  const dark = section.background === "dark" || section.background === "bg-end";
+  const bg = sectionBg[section.background] ?? (index % 2 === 0 ? "paper" : "paperWarm");
   const blocks = (
     <Stack gap={{ base: "5", md: "6" }} align="stretch">
       {section.blocks.map((b, i) => (
@@ -23,7 +25,7 @@ export function SectionView({ section, index }: { section: Section; index: numbe
       aria-label={section.nav.label}
       bg={bg}
       borderTop={index === 0 ? "none" : "1px solid"}
-      borderColor={dark ? "#3a332a" : "line"}
+      borderColor={dark ? sectionBorder.dark : sectionBorder.default}
       scrollMarginTop="84px"
     >
       <Box maxW="1200px" mx="auto" px={{ base: "5", md: "8" }} py={{ base: "12", md: isHero ? "24" : "20" }}>
