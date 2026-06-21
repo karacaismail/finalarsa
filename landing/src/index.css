@@ -3,6 +3,15 @@
   font-size: 16px; /* kök rem SABİT → Chakra spacing (rem) ölçeklenmez, yalnız yazı büyür */
 }
 
+/* Mobilde (<768px) tüm rem-tabanlı yazı ~%25 küçülür (16px→12px); masaüstü 16px sabit kalır.
+   Medya sorgusu px ile; Chakra'nın em-tabanlı kırılımları tarayıcı varsayılanına (16px) bağlı
+   olduğu için 768px kırılım noktası kaymaz. */
+@media (max-width: 767px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
 html,
 body,
 #root {
