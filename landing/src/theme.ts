@@ -14,11 +14,29 @@ const config = defineConfig({
         heading: { value: "'Roboto', system-ui, -apple-system, Segoe UI, sans-serif" },
         body: { value: "'Roboto', system-ui, -apple-system, Segoe UI, sans-serif" },
       },
+      // Kalınlık bir kademe artırıldı (yüklü Roboto basamakları: 400/500/700/900).
       fontWeights: {
-        light: { value: "300" },
-        normal: { value: "400" },
-        medium: { value: "500" },
-        bold: { value: "700" },
+        light: { value: "400" },
+        normal: { value: "500" },
+        medium: { value: "700" },
+        bold: { value: "900" },
+      },
+      // Tipografi ölçeği ~1.5–1.7x büyütüldü (okunabilirlik). Spacing (rem) sabit kaldığından
+      // yalnız yazı büyür; düzen/boşluklar orantısız şişmez. Tüm ölçek monoton tutuldu.
+      fontSizes: {
+        xs: { value: "1rem" },
+        sm: { value: "1.2rem" },
+        md: { value: "1.5rem" },
+        lg: { value: "1.75rem" },
+        xl: { value: "2.125rem" },
+        "2xl": { value: "2.5rem" },
+        "3xl": { value: "3rem" },
+        "4xl": { value: "3.75rem" },
+        "5xl": { value: "5rem" },
+        "6xl": { value: "6.25rem" },
+        "7xl": { value: "7.5rem" },
+        "8xl": { value: "9rem" },
+        "9xl": { value: "11rem" },
       },
       colors: {
         paper: { value: "#ffffff" },

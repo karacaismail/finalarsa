@@ -24,9 +24,9 @@ export function SectionView({ section, index }: { section: Section; index: numbe
       bg={bg}
       borderTop={index === 0 ? "none" : "1px solid"}
       borderColor={dark ? "#3a332a" : "line"}
-      scrollMarginTop="72px"
+      scrollMarginTop="84px"
     >
-      <Box maxW="1100px" mx="auto" px={{ base: "5", md: "8" }} py={{ base: "12", md: isHero ? "24" : "20" }}>
+      <Box maxW="1200px" mx="auto" px={{ base: "5", md: "8" }} py={{ base: "12", md: isHero ? "24" : "20" }}>
         {isHero ? (
           <Grid templateColumns={{ base: "1fr", lg: "1.05fr 0.95fr" }} gap={{ base: "10", lg: "12" }} alignItems="center">
             {blocks}

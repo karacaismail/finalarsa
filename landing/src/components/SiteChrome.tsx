@@ -44,7 +44,7 @@ export function Header({ onPlay }: { onPlay?: () => void }) {
       borderBottom="1px solid"
       borderColor="line"
     >
-      <Flex maxW="1100px" mx="auto" px={{ base: "5", md: "8" }} h="64px" align="center" justify="space-between" gap="3">
+      <Flex maxW="1200px" mx="auto" px={{ base: "5", md: "8" }} h="72px" align="center" justify="space-between" gap="3">
         <Flex align="center" gap="3" minW="0">
           <LogoMark size={48} />
           <Flex align="baseline" gap="2" minW="0">
@@ -110,7 +110,7 @@ export function Footer() {
   const muted = "#b9b7ad";
   return (
     <Box as="footer" bg="ink" color="white">
-      <Box maxW="1100px" mx="auto" px={{ base: "5", md: "8" }} py={{ base: "10", md: "14" }}>
+      <Box maxW="1200px" mx="auto" px={{ base: "5", md: "8" }} py={{ base: "10", md: "14" }}>
         <Box fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" mb="2">
           Tohum sizden, toprak bizden. Hasat ortak.
         </Box>

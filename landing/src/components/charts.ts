@@ -16,8 +16,9 @@ const C = {
 };
 
 const FONT = "'Roboto', system-ui, sans-serif";
-// Ölçüt: tüm grafik metni en az 1rem (16px). Üstü orantılı, AA-uyumlu.
-const LBL = 16;
+// Ölçüt: tüm grafik metni en az 1rem. Gövde metni büyüdüğü için grafik etiketi de bir miktar
+// büyütüldü (yoğun grafiklerde okunaklılık/denge); gövdedeki 24px kadar değil (yer kısıtı).
+const LBL = 18;
 const textStyle = { fontFamily: FONT, color: C.ink, fontSize: LBL };
 const axisLabel = { color: C.inkMuted, fontFamily: FONT, fontSize: LBL };
 const nameStyle = { color: C.inkMuted, fontFamily: FONT, fontSize: LBL };

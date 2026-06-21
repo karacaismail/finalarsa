@@ -1,16 +1,22 @@
 :root {
   color-scheme: light;
+  font-size: 16px; /* kök rem SABİT → Chakra spacing (rem) ölçeklenmez, yalnız yazı büyür */
 }
 
 html,
 body,
 #root {
   margin: 0;
+}
+
+body,
+#root {
   background: #ffffff;
   color: #1b1a17;
   font-family: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-size: 1rem; /* WCAG: taban metin >= 1rem */
-  line-height: 1.65;
+  font-size: 1.5rem; /* taban okunur metin 24px (~1.5x büyüdü) */
+  font-weight: 500; /* taban kalınlık bir kademe arttı */
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

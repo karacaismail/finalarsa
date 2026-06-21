@@ -21,7 +21,7 @@ export function SlideView({ slide }: { slide: PresentationSlide }) {
       flexDirection="column"
       justifyContent="center"
     >
-      <Box w="100%" maxW="1000px" mx="auto" px={{ base: "6", md: "12" }} py={{ base: "16", md: "16" }}>
+      <Box w="100%" maxW="1100px" mx="auto" px={{ base: "6", md: "12" }} py={{ base: "16", md: "16" }}>
         <Box
           as="p"
           mb={{ base: "6", md: "8" }}
