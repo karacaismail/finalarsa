@@ -5,9 +5,17 @@ arsam.net — section-ux-strateji-elestiri.md çerçevesine göre YENİDEN yazı
 Çıktı: database/sections/ (yeni 17 dosya) + manifest.json güncel. shared/ ve data/ DOKUNULMAZ.
 Sonunda yasaklı kelime taraması yapılır.
 """
-import json, os, re
+import json, os, re, sys
 
-OUT = "/sessions/elegant-funny-archimedes/mnt/database"
+# DEVRE DIŞI (21.06.2026 — 256 master göçü): section JSON'ları elle güncellendi (256/2031,
+# finansal recalc, Ağustos başlangıç). Bu script section'ları yeniden üretir ve o düzeltmeleri
+# GERİ ALIR (satır içi caption literal'leri eski 19/149 taşır). Çalıştırmak için ALLOW_LEGACY_BUILD=1.
+if os.environ.get("ALLOW_LEGACY_BUILD") != "1":
+    sys.exit("build2.py DEVRE DIŞI: section'lar 256 master'a göre elle güncellendi. "
+             "Çalıştırmak değişiklikleri geri alır. Bilerek devam için ALLOW_LEGACY_BUILD=1 verin.")
+
+# database/ (göreli, oturumdan bağımsız)
+OUT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 V = "1.0.0"
 SECTIONS = []
 

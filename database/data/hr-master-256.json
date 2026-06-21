@@ -1,0 +1,520 @@
+{
+  "id": "hr-master-256",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "_source": "IK_PLANI_AI_FIRST_256_v1.xlsx (İK PLANI rol satırları — yetkili)",
+  "_extractedBy": "openpyxl, ✓ işaretli rol sayımı (256 rol)",
+  "target": {
+    "year": "2031",
+    "month": "Ara",
+    "headcount": 256
+  },
+  "previousBaseline": {
+    "source": "model-v9-15",
+    "year": "2032",
+    "headcount": 149,
+    "status": "arşiv-eski-finansal-baz"
+  },
+  "headcountGrowth": [
+    {
+      "year": "2026",
+      "count": 18
+    },
+    {
+      "year": "2027",
+      "count": 69
+    },
+    {
+      "year": "2028",
+      "count": 110
+    },
+    {
+      "year": "2029",
+      "count": 172
+    },
+    {
+      "year": "2030",
+      "count": 222
+    },
+    {
+      "year": "2031",
+      "count": 256
+    }
+  ],
+  "yearEnd": {
+    "2026": {
+      "count": 18,
+      "monthlySalary": 1244628,
+      "annualizedSalary": 14935536
+    },
+    "2027": {
+      "count": 69,
+      "monthlySalary": 5068072,
+      "annualizedSalary": 60816864
+    },
+    "2028": {
+      "count": 110,
+      "monthlySalary": 7823158,
+      "annualizedSalary": 93877896
+    },
+    "2029": {
+      "count": 172,
+      "monthlySalary": 12137779,
+      "annualizedSalary": 145653348
+    },
+    "2030": {
+      "count": 222,
+      "monthlySalary": 15492054,
+      "annualizedSalary": 185904648
+    },
+    "2031": {
+      "count": 256,
+      "monthlySalary": 17569645,
+      "annualizedSalary": 210835740
+    }
+  },
+  "monthly2026": [
+    {
+      "month": "Agu 26",
+      "count": 5
+    },
+    {
+      "month": "Eyl 26",
+      "count": 12
+    },
+    {
+      "month": "Eki 26",
+      "count": 13
+    },
+    {
+      "month": "Kas 26",
+      "count": 15
+    },
+    {
+      "month": "Ara 26",
+      "count": 18
+    }
+  ],
+  "monthlySeries": [
+    {
+      "month": "Agu 26",
+      "count": 5,
+      "salary": 605909
+    },
+    {
+      "month": "Eyl 26",
+      "count": 12,
+      "salary": 977910
+    },
+    {
+      "month": "Eki 26",
+      "count": 13,
+      "salary": 1027042
+    },
+    {
+      "month": "Kas 26",
+      "count": 15,
+      "salary": 1111269
+    },
+    {
+      "month": "Ara 26",
+      "count": 18,
+      "salary": 1244628
+    },
+    {
+      "month": "Oca 27",
+      "count": 20,
+      "salary": 1328855
+    },
+    {
+      "month": "Sub 27",
+      "count": 31,
+      "salary": 2372291
+    },
+    {
+      "month": "Mar 27",
+      "count": 32,
+      "salary": 2421423
+    },
+    {
+      "month": "Nis 27",
+      "count": 36,
+      "salary": 2709198
+    },
+    {
+      "month": "May 27",
+      "count": 38,
+      "salary": 2863614
+    },
+    {
+      "month": "Haz 27",
+      "count": 41,
+      "salary": 2996974
+    },
+    {
+      "month": "Tem 27",
+      "count": 48,
+      "salary": 3722352
+    },
+    {
+      "month": "Agu 27",
+      "count": 54,
+      "salary": 4090995
+    },
+    {
+      "month": "Eyl 27",
+      "count": 57,
+      "salary": 4231372
+    },
+    {
+      "month": "Eki 27",
+      "count": 60,
+      "salary": 4392806
+    },
+    {
+      "month": "Kas 27",
+      "count": 63,
+      "salary": 4603373
+    },
+    {
+      "month": "Ara 27",
+      "count": 69,
+      "salary": 5068072
+    },
+    {
+      "month": "Oca 28",
+      "count": 71,
+      "salary": 5124224
+    },
+    {
+      "month": "Sub 28",
+      "count": 84,
+      "salary": 6165246
+    },
+    {
+      "month": "Mar 28",
+      "count": 84,
+      "salary": 6165246
+    },
+    {
+      "month": "Nis 28",
+      "count": 84,
+      "salary": 6165246
+    },
+    {
+      "month": "May 28",
+      "count": 87,
+      "salary": 6277549
+    },
+    {
+      "month": "Haz 28",
+      "count": 88,
+      "salary": 6387549
+    },
+    {
+      "month": "Tem 28",
+      "count": 89,
+      "salary": 6471776
+    },
+    {
+      "month": "Agu 28",
+      "count": 106,
+      "salary": 7563459
+    },
+    {
+      "month": "Eyl 28",
+      "count": 106,
+      "salary": 7563459
+    },
+    {
+      "month": "Eki 28",
+      "count": 106,
+      "salary": 7563459
+    },
+    {
+      "month": "Kas 28",
+      "count": 109,
+      "salary": 7752969
+    },
+    {
+      "month": "Ara 28",
+      "count": 110,
+      "salary": 7823158
+    },
+    {
+      "month": "Oca 29",
+      "count": 110,
+      "salary": 7823158
+    },
+    {
+      "month": "Sub 29",
+      "count": 145,
+      "salary": 10391320
+    },
+    {
+      "month": "Mar 29",
+      "count": 145,
+      "salary": 10391320
+    },
+    {
+      "month": "Nis 29",
+      "count": 145,
+      "salary": 10391320
+    },
+    {
+      "month": "May 29",
+      "count": 147,
+      "salary": 10482565
+    },
+    {
+      "month": "Haz 29",
+      "count": 147,
+      "salary": 10482565
+    },
+    {
+      "month": "Tem 29",
+      "count": 147,
+      "salary": 10482565
+    },
+    {
+      "month": "Agu 29",
+      "count": 170,
+      "salary": 12053552
+    },
+    {
+      "month": "Eyl 29",
+      "count": 170,
+      "salary": 12053552
+    },
+    {
+      "month": "Eki 29",
+      "count": 170,
+      "salary": 12053552
+    },
+    {
+      "month": "Kas 29",
+      "count": 170,
+      "salary": 12053552
+    },
+    {
+      "month": "Ara 29",
+      "count": 172,
+      "salary": 12137779
+    },
+    {
+      "month": "Oca 30",
+      "count": 172,
+      "salary": 12137779
+    },
+    {
+      "month": "Sub 30",
+      "count": 203,
+      "salary": 14200088
+    },
+    {
+      "month": "Mar 30",
+      "count": 203,
+      "salary": 14200088
+    },
+    {
+      "month": "Nis 30",
+      "count": 203,
+      "salary": 14200088
+    },
+    {
+      "month": "May 30",
+      "count": 204,
+      "salary": 14235182
+    },
+    {
+      "month": "Haz 30",
+      "count": 205,
+      "salary": 14291333
+    },
+    {
+      "month": "Tem 30",
+      "count": 205,
+      "salary": 14291333
+    },
+    {
+      "month": "Agu 30",
+      "count": 221,
+      "salary": 15442922
+    },
+    {
+      "month": "Eyl 30",
+      "count": 222,
+      "salary": 15492054
+    },
+    {
+      "month": "Eki 30",
+      "count": 222,
+      "salary": 15492054
+    },
+    {
+      "month": "Kas 30",
+      "count": 222,
+      "salary": 15492054
+    },
+    {
+      "month": "Ara 30",
+      "count": 222,
+      "salary": 15492054
+    },
+    {
+      "month": "Oca 31",
+      "count": 222,
+      "salary": 15492054
+    },
+    {
+      "month": "Sub 31",
+      "count": 244,
+      "salary": 16839681
+    },
+    {
+      "month": "Mar 31",
+      "count": 244,
+      "salary": 16839681
+    },
+    {
+      "month": "Nis 31",
+      "count": 244,
+      "salary": 16839681
+    },
+    {
+      "month": "May 31",
+      "count": 244,
+      "salary": 16839681
+    },
+    {
+      "month": "Haz 31",
+      "count": 246,
+      "salary": 16944964
+    },
+    {
+      "month": "Tem 31",
+      "count": 246,
+      "salary": 16944964
+    },
+    {
+      "month": "Agu 31",
+      "count": 254,
+      "salary": 17457343
+    },
+    {
+      "month": "Eyl 31",
+      "count": 254,
+      "salary": 17457343
+    },
+    {
+      "month": "Eki 31",
+      "count": 256,
+      "salary": 17569645
+    },
+    {
+      "month": "Kas 31",
+      "count": 256,
+      "salary": 17569645
+    },
+    {
+      "month": "Ara 31",
+      "count": 256,
+      "salary": 17569645
+    }
+  ],
+  "departmentsFinal": [
+    {
+      "dept": "Strateji / C-Level",
+      "count": 5
+    },
+    {
+      "dept": "Headship / Direktörlük",
+      "count": 8
+    },
+    {
+      "dept": "SAFe / Agile",
+      "count": 10
+    },
+    {
+      "dept": "Product & Design",
+      "count": 26
+    },
+    {
+      "dept": "Engineering — Platform",
+      "count": 80
+    },
+    {
+      "dept": "Engineering — AI / Data / GIS",
+      "count": 56
+    },
+    {
+      "dept": "Marketing & Growth",
+      "count": 24
+    },
+    {
+      "dept": "Customer & Seller Ops",
+      "count": 26
+    },
+    {
+      "dept": "Finance & Legal",
+      "count": 11
+    },
+    {
+      "dept": "People / HR",
+      "count": 6
+    },
+    {
+      "dept": "Admin & Office",
+      "count": 4
+    }
+  ],
+  "departmentTotal": 256,
+  "cpo": {
+    "kod": "R-CPO",
+    "rol": "CPO / Strateji",
+    "dept": "Strateji / C-Level",
+    "maas": 339191,
+    "hire": "01.08.2026"
+  },
+  "cLevel": [
+    {
+      "kod": "R-CPO",
+      "rol": "CPO / Strateji",
+      "maas": 339191,
+      "hire": "01.08.2026"
+    },
+    {
+      "kod": "R-CAIO",
+      "rol": "CAIO (Chief AI Officer)",
+      "maas": 280000,
+      "hire": "01.02.2027"
+    },
+    {
+      "kod": "R-CMO",
+      "rol": "CMO / CRO (Chief Revenue Officer)",
+      "maas": 250000,
+      "hire": "01.07.2027"
+    },
+    {
+      "kod": "R-CFO",
+      "rol": "CFO (Chief Financial Officer)",
+      "maas": 200000,
+      "hire": "01.02.2028"
+    }
+  ],
+  "salaryStats": {
+    "count": 256,
+    "avg": 68631,
+    "median": 63170,
+    "min": 28076,
+    "max": 339191,
+    "cumulative6yrPayroll": 636919579
+  },
+  "internalInconsistencies": [
+    "SAFe TAKIMLAR ara yıl toplamları rol satırlarından farklı (yalnız Ara31=256'da birleşir) → rol satırları kanonik.",
+    "AI VERİMLİLİK TOPLAM=265 (kategori bindirmesi) vs resmi hedef 256 → 256 kanonik.",
+    "AI/Data/GIS: GEREKÇE metni '55' der; rol satırları + DEPARTMAN ÖZETİ '56' → 56 kanonik.",
+    "GEREKÇE 'mevcut plan 139 kişi' der; JSON finansal model 149 taşır (ayrı eski bazlar)."
+  ]
+}

@@ -38,7 +38,7 @@
     },
     "model-v9-15": {
       "label": "Finansal model v9-15",
-      "full": "master_plan_arsam_edit-sync-v9-15.xlsx · 78 aylık projeksiyon (Tem 2026 – Ara 2032)"
+      "full": "master_plan_arsam_edit-sync-v9-15.xlsx · 78 aylık projeksiyon (Tem 2026 – Ara 2032) · NOT: kadro için ESKİ baz (149/2032); kanonik kadro artık ik-ai-first-256-v1. Gelir projeksiyonu bu kaynaktan korunur."
     },
     "helmer-7powers": {
       "label": "7 Powers (Hamilton Helmer)",
@@ -55,6 +55,10 @@
     "levinson-1984": {
       "label": "Guerrilla Marketing (Levinson, 1984)",
       "full": "Klasik gerilla pazarlama referansı"
+    },
+    "ik-ai-first-256-v1": {
+      "label": "İK AI-FIRST 256 v1",
+      "full": "IK_PLANI_AI_FIRST_256_v1.xlsx · AI-first İK master planı · Aralık 2031 = 256 kişi (kanonik kadro kaynağı)"
     }
   }
 }

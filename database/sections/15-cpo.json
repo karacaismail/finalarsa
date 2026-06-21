@@ -37,9 +37,9 @@
           "label": "Aylık sabit ücret",
           "tone": "accent",
           "type": "stat",
-          "valueRef": "cpo.salary_usd",
-          "sub": "USD / ay · plan baz",
-          "tag": "model varsayımı"
+          "valueRef": "cpo.salary_try",
+          "sub": "₺ / ay · master İK planı (R-CPO)",
+          "tag": "doğrulanmış kaynak"
         },
         {
           "label": "Mobilite",
@@ -75,7 +75,7 @@
     ],
     "metrics": [
       "cpo.car",
-      "cpo.salary_usd"
+      "cpo.salary_try"
     ]
   }
 }

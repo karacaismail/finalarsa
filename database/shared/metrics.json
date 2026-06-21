@@ -22,17 +22,17 @@
       "source": "model-v9-15"
     },
     "capital.breakeven_spend": {
-      "value": 15000000,
+      "value": 32082112,
       "unit": "TRY",
-      "display": "15 milyon ₺",
+      "display": "~32 milyon ₺",
       "label": "Başabaşa kadar kümülatif gider",
       "source": "model-v9-15"
     },
     "capital.reserve": {
-      "value": 25000000,
+      "value": 27613949,
       "unit": "TRY",
-      "display": "25 milyon ₺",
-      "label": "Başabaş sonrası kasada kalan yedek",
+      "display": "~28 milyon ₺",
+      "label": "Kasa en dip seviyesi (Oca 2027)",
       "source": "model-v9-15"
     },
     "capital.ops_funded": {
@@ -194,12 +194,11 @@
       "verificationNote": "A5 (DOĞRULANAMADI): %55 spesifik değeri Rekabet Kurulu kaynağında redakte; sunum tahmini."
     },
     "tax.saving_2027": {
-      "value": 131000000,
+      "value": 101000000,
       "unit": "TRY",
-      "display": "~131 milyon ₺",
-      "label": "İlk yıl (2027) vergi tasarrufu",
-      "source": "kanun-4691",
-      "note": "arsam-pitch çerçevesi; code2 muhafazakar türevi ~115M (389M net × %25 + personel kalemleri)."
+      "display": "≈101 milyon ₺",
+      "label": "2027 teknopark vergi avantajı (256 model)",
+      "source": "kanun-4691"
     },
     "tax.saving_mature_annual": {
       "value": 120000000,
@@ -318,16 +317,16 @@
       "source": "model-v9-15"
     },
     "fin.net_2027": {
-      "value": 389127572,
+      "value": 341611861,
       "unit": "TRY",
-      "display": "+389M ₺",
+      "display": "+342M ₺",
       "label": "2027 net kâr",
       "source": "model-v9-15"
     },
     "fin.cash_2032": {
-      "value": 4224379820,
+      "value": 3118897335,
       "unit": "TRY",
-      "display": "4,2 milyar ₺",
+      "display": "3,1 milyar ₺",
       "label": "2032 yıl sonu nakit",
       "source": "model-v9-15"
     },
@@ -339,26 +338,25 @@
       "source": "model-v9-15"
     },
     "fin.headcount_2026": {
-      "value": 19,
+      "value": 18,
       "unit": "kişi",
-      "display": "19 kişi",
+      "display": "18 kişi",
       "label": "2026 sonu kadro",
       "source": "model-v9-15"
     },
     "fin.headcount_2027": {
-      "value": 63,
+      "value": 69,
       "unit": "kişi",
-      "display": "63 kişi",
+      "display": "69 kişi",
       "label": "2027 sonu kadro",
       "source": "model-v9-15"
     },
     "fin.headcount_2032": {
-      "value": 149,
+      "value": 256,
       "unit": "kişi",
-      "display": "149 kişi",
-      "label": "2032 sonu kadro",
-      "source": "model-v9-15",
-      "note": "Pitch'in eski s06 yorumundaki '256' modelle uyumsuz; kanonik 149."
+      "display": "256 kişi",
+      "label": "2032 kadro (256 sabit)",
+      "source": "model-v9-15"
     },
     "fin.projection_months": {
       "value": 78,
@@ -498,46 +496,46 @@
       "label": "Ulusal kampanya geri sayım hedefi"
     },
     "team.lean": {
-      "value": 7,
+      "value": 256,
       "unit": "kişi",
-      "display": "7 kişi",
-      "label": "Yalın çekirdek ekip (700 kişinin işini yapar)"
+      "display": "256 kişi",
+      "label": "AI-first kadro (AI'sız ~544 gerekirdi)"
     },
     "team.sahibinden_benchmark": {
-      "value": "750-1000",
+      "value": "≈1185",
       "unit": "kişi",
-      "display": "750-1000 kişi",
-      "label": "sahibinden çalışan sayısı benchmark"
+      "display": "≈1.185 kişi",
+      "label": "sahibinden çalışan benchmark (AI VERİMLİLİK)"
     },
     "team.efficiency_multiple": {
-      "value": "6-7",
+      "value": "~2,1",
       "unit": "x",
-      "display": "6-7×",
-      "label": "Hedef verimlilik çarpanı (2032)"
+      "display": "~2,1×",
+      "label": "AI iç kaldıracı (AI'sız 544 → AI ile 256)"
     },
     "ai.fte_without": {
-      "value": 74,
+      "value": 544,
       "unit": "FTE",
-      "display": "74 FTE",
-      "label": "AI'sız gerekli kadro"
+      "display": "544 FTE",
+      "label": "AI'sız teorik gerekli kadro"
     },
     "ai.fte_with": {
-      "value": 38,
+      "value": 256,
       "unit": "FTE",
-      "display": "38 FTE",
-      "label": "AI ile gerekli kadro"
+      "display": "256 FTE",
+      "label": "AI ile gerçek kadro (2031)"
     },
     "ai.fte_saved": {
-      "value": 36,
+      "value": 288,
       "unit": "FTE",
-      "display": "36 FTE",
+      "display": "288 FTE",
       "label": "AI ile tasarruf edilen kadro"
     },
     "ai.annual_saving": {
-      "value": 21000000,
+      "value": 172800000,
       "unit": "TRY",
-      "display": "21 milyon ₺",
-      "label": "AI verimlilik yıllık tasarruf"
+      "display": "≈173 milyon ₺",
+      "label": "AI verimlilik yıllık tasarruf (model varsayımı)"
     },
     "macro.usdtry_start": {
       "value": 44.5,
@@ -577,17 +575,17 @@
       "verificationNote": "D2 (YANLIŞ): 2026 yasal ek yük %22,75 → ~1,2375; 1,34 işveren maliyetini ~%8 fazla gösterir. Model girdisi, değer korundu."
     },
     "cpo.salary_usd": {
-      "value": 7500,
+      "value": 339191,
       "unit": "USD/ay",
-      "display": "$7.500",
-      "label": "CPO aylık sabit maaş (plan baz)",
+      "display": "≈340.000 ₺/ay",
+      "label": "CPO maaş (master; TL bazlı)",
       "source": "model-v9-15"
     },
     "cpo.salary_try": {
-      "value": 350000,
+      "value": 339191,
       "unit": "TRY/ay",
-      "display": "350.000 ₺/ay",
-      "label": "CPO maaş TL karşılığı (Tem-Ara 2026 sabit)",
+      "display": "339.191 ₺/ay",
+      "label": "CPO aylık maaş (master İK planı)",
       "source": "model-v9-15"
     },
     "cpo.car": {
@@ -609,6 +607,30 @@
       "unit": "TRY",
       "display": "~2,4 milyar ₺",
       "label": "sahibinden'in vazgeçemeyeceği yıllık ilan komisyonu"
+    },
+    "fin.headcount_2028": {
+      "value": 110,
+      "unit": "",
+      "display": "110 kişi",
+      "label": "2028 sonu kadro"
+    },
+    "fin.headcount_2029": {
+      "value": 172,
+      "unit": "",
+      "display": "172 kişi",
+      "label": "2029 sonu kadro"
+    },
+    "fin.headcount_2030": {
+      "value": 222,
+      "unit": "",
+      "display": "222 kişi",
+      "label": "2030 sonu kadro"
+    },
+    "fin.headcount_2031": {
+      "value": 256,
+      "unit": "",
+      "display": "256 kişi",
+      "label": "2031 sonu kadro (İK master hedefi)"
     }
   },
   "_verification": {

@@ -24,7 +24,7 @@
         "arsam-pitch": "~131 milyon ₺",
         "code2": "~115 milyon ₺ (389M net × %25 + personel)"
       },
-      "decision": "131M kanonik başlık; 115M muhafazakar türev olarak not edildi.",
+      "decision": "256 göçü sonrası yeniden hesaplandı: 2027 net ~342M ₺ × %25 KV istisnası ≈ 85M + stopaj/SGK ≈ 16M → ~101M ₺ kanonik. Eski 131M/115M (149 kadro modeli) arşiv.",
       "canonical": [
         "tax.saving_2027"
       ]
@@ -54,12 +54,12 @@
     {
       "topic": "Maksimum kadro",
       "values": {
-        "model 2032": "149 kişi",
-        "eski s06 yorumu": "256"
+        "IK_PLANI_AI_FIRST_256_v1.xlsx": "Aralık 2031 = 256 kişi (yeni master, 256 rol satırı)",
+        "model-v9-15": "2032 = 149 kişi (eski finansal baz)"
       },
-      "decision": "149 kanonik (model DASHBOARD).",
+      "decision": "256 kişi / Aralık 2031 yeni KANONİK İK master (IK_PLANI_AI_FIRST_256_v1.xlsx). 149/2032 eski finansal baz olarak arşivlendi. Finansal model 256 kadroya göre yeniden hesaplandı: gelir korundu, gider/net/marj/başabaş revize edildi (bkz. financial-*.json _recalcNote).",
       "canonical": [
-        "fin.headcount_2032"
+        "fin.headcount_2031"
       ]
     },
     {

@@ -2,7 +2,8 @@
 """arsam.net JSON veritabanı doğrulayıcı: geçerlilik + ref bütünlüğü + tekrar taraması + matematik."""
 import json, os, re, glob
 
-DB = "/sessions/elegant-funny-archimedes/mnt/database"
+# DB = database/ (bu dosya database/_build/ içinde) — göreli, oturumdan bağımsız.
+DB = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 errors, warns, oks = [], [], []
 def E(m): errors.append(m)
 def W(m): warns.append(m)
@@ -126,8 +127,10 @@ else: E(f"SOM×take_rate={mv('market.som_try')*mv('market.take_rate'):.0f} ≠ r
 # tam değer ile yuvarlanmış tutar
 if approx(mv("revenue.potential_exact"), mv("revenue.median"), tol=0.005): OK("revenue.potential_exact ≈ revenue.median ✓")
 else: W("revenue.potential_exact ile revenue.median farkı > %0,5")
-# sermaye çıpası
-if mv("capital.investor_pocket")==15000000 and mv("capital.breakeven_spend")==15000000: OK("investor_pocket = breakeven_spend = 15M ✓ (iki kaynak uyumlu)")
+# sermaye çıpası (256 göçü sonrası: investor_pocket 15M sabit; breakeven_spend ~32M kümülatif)
+if mv("capital.investor_pocket")==15000000: OK("investor_pocket = 15M ✓ (yatırımcı çıpası)")
+if mv("capital.breakeven_spend")>=30000000: OK("breakeven_spend ≥ 30M ✓ (256 model kümülatif gider)")
+else: W("breakeven_spend 256 modeliyle güncel değil olabilir")
 # pricing
 if approx(mv("pricing.premium_annual")/12, mv("pricing.premium_monthly"), tol=0.01): OK("premium_annual/12 ≈ premium_monthly ✓")
 else: W("premium yıllık/aylık tutmuyor")
@@ -136,10 +139,19 @@ fin = docs["data/financial-model.json"]["yearly"]
 bad=[y["year"] for y in fin if y["revenue"]-y["expense"]!=y["net"]]
 if not bad: OK("Finansal model: tüm yıllarda gelir − gider = net ✓")
 else: E(f"Finansal model net tutmuyor: {bad}")
-# headcount metric ile data uyumu
+# headcount metric ile data uyumu (256 master)
 hc2032 = [y for y in fin if y["year"]=="2032"][0]["headcount"]
-if hc2032==mv("fin.headcount_2032"): OK("Kadro 2032: metric == data (149) ✓")
+if hc2032==mv("fin.headcount_2032"): OK(f"Kadro 2032: metric == data ({hc2032}) ✓")
 else: E("Kadro 2032 metric/data farkı")
+# 256 MASTER kuralları (IK_PLANI_AI_FIRST_256_v1)
+hc2031 = [y for y in fin if y["year"]=="2031"][0]["headcount"]
+if hc2031==256 and mv("fin.headcount_2031")==256: OK("Kadro 2031 == 256 (İK master) ✓")
+else: E(f"Kadro 2031 256 değil: data={hc2031}, metric={mv('fin.headcount_2031')}")
+exp2031 = [y for y in fin if y["year"]=="2031"][0]["expense"]
+if exp2031 >= 210835740: OK(f"2031 gider ({exp2031:,}) ≥ master yıllık brüt maaş (210.8M) ✓")
+else: E(f"2031 gider {exp2031:,} master maaşını (210.8M) karşılamıyor — 256 modeli tutarsız")
+if mv("ai.fte_with")==256: OK("ai.fte_with == 256 (resmi hedef) ✓")
+else: E(f"ai.fte_with 256 değil: {mv('ai.fte_with')}")
 # 5b) ÇAPRAZ KAYNAK EŞİTLİĞİ — başlık metric'leri data hücreleriyle birebir aynı mı (sürükleme yok)
 y = {r["year"]: r for r in fin}
 xchecks = [

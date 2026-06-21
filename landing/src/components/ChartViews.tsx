@@ -226,12 +226,11 @@ export function AiFirstPanel() {
   const d = getData<{
     aiEfficiency: {
       fteWithout: number; fteWith: number; fteSaved: number; annualSaving: number;
-      sahibindenBenchmark: string; target2032: string;
+      sahibindenBenchmark: string; target2031: string;
       departments: { dept: string; without: number; with: number; tools: string }[];
     };
   }>("hr-plan");
   const ai = d.aiEfficiency;
-  const lean = getMetric("team.lean");
   const stat = (label: string, value: string, color = "ink") => (
     <Box {...card} flex="1" minW="150px">
       <Dt fontSize="md" color="inkMuted" mb="1">{label}</Dt>
@@ -245,11 +244,11 @@ export function AiFirstPanel() {
           AI-first operasyon
         </P>
         <H3 as="h2" id="ai-first-title" fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" color="ink" lineHeight="1.15" m="0">
-          Aynı işi {ai.fteWith} kişiyle. {lean?.display ?? "7 kişi"} çekirdek, 700 kişinin işi.
+          Aynı işi {ai.fteWith} kişiyle — AI'sız ~{ai.fteWithout} kişi gerekirdi (~2,1× kaldıraç).
         </H3>
         <P color="inkMuted" mt="3" maxW="680px" fontSize="lg">
           Panel, ilan, doğrulama ve operasyonun büyük kısmını AI ajanları yürütür; insan yalnız denetler ve karar verir.
-          sahibinden ölçeği {ai.sahibindenBenchmark}; arsam.net hedefi {ai.target2032}.
+          sahibinden ölçeği {ai.sahibindenBenchmark}; arsam.net hedefi {ai.target2031}.
         </P>
         <Dl display="flex" gap="4" mt="6" mb="8" flexWrap="wrap" m="0">
           {stat("AI'sız gerekli kadro", `${ai.fteWithout} kişi`, "inkMuted")}
@@ -668,7 +667,7 @@ export function BreakevenView() {
         <EChart
           height={360}
           ariaLabel={`Başabaş analizi: kümülatif gelir ve kümülatif gider; ${be.beMonthCumulative} ayında ${fmt(be.cumSpendToBE)} seviyesinde kesişir`}
-          option={breakevenOption(be.series, { label: "Mar 27", value: be.cumSpendToBE })}
+          option={breakevenOption(be.series, { label: "Nis 27", value: be.cumSpendToBE })}
         />
       </Box>
       <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>

@@ -3,35 +3,31 @@
   "kind": "data",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "source": "model-v9-15",
+  "source": "IK_PLANI_AI_FIRST_256_v1 (kadro/maaş) + model-v9-15 (org)",
   "headcountGrowth": [
     {
       "year": "2026 H2",
-      "count": 19
+      "count": 18
     },
     {
       "year": "2027",
-      "count": 63
+      "count": 69
     },
     {
       "year": "2028",
-      "count": 84
+      "count": 110
     },
     {
       "year": "2029",
-      "count": 101
+      "count": 172
     },
     {
       "year": "2030",
-      "count": 117
+      "count": 222
     },
     {
       "year": "2031",
-      "count": 133
-    },
-    {
-      "year": "2032",
-      "count": 149
+      "count": 256
     }
   ],
   "positionsModeled": 152,
@@ -49,7 +45,7 @@
     "netMinWage2026": 28075.5,
     "scale": "1.0×–3.5× asgari ücret",
     "examples": {
-      "CPO": "USD bazlı (≈350.000 ₺/ay)",
+      "CPO": "339.191 ₺/ay (master)",
       "CMO/CRO": 250000,
       "ML Engineer": 70189,
       "Senior (Lead)": 77208,
@@ -87,90 +83,91 @@
     "İnsan eklemek ≠ katman eklemek"
   ],
   "aiEfficiency": {
-    "fteWithout": 74,
-    "fteWith": 38,
-    "fteSaved": 36,
-    "annualSaving": 21000000,
-    "sahibindenBenchmark": "750-1000 çalışan",
-    "target2032": "110-150 kişi → ~6-7× verimlilik",
+    "fteWithout": 544,
+    "fteWith": 256,
+    "fteSaved": 288,
+    "annualSaving": 172800000,
+    "sahibindenBenchmark": "≈1.185 çalışan",
+    "target2031": "256 kişi (AI'sız ~544 gerekirdi → ~2,1× iç kaldıraç)",
+    "_note": "AI VERİMLİLİK sayfası kategori toplamı 265 verir (bindirme); resmi kadro hedefi 256. fteSaved 544−256=288. annualSaving model varsayımıdır (tasarruf edilen ~288 FTE × ortalama yüklü maliyet).",
     "departments": [
       {
-        "dept": "Backend Dev",
-        "without": 8,
-        "with": 3,
-        "tools": "GitHub Copilot, Claude Code, Cursor"
+        "dept": "Engineering (Backend/FE/Mobile/QA/DevOps)",
+        "without": 130,
+        "with": 80,
+        "tools": "GitHub Copilot, Claude Code, Cursor, v0.dev, AI test gen, Terraform AI"
       },
       {
-        "dept": "Frontend Dev",
-        "without": 6,
-        "with": 3,
-        "tools": "v0.dev, Copilot, Bolt.new"
+        "dept": "AI / Data / GIS / ML",
+        "without": 60,
+        "with": 55,
+        "tools": "Native AI talent — verimlilik kazancı YERİNE coverage genişlemesi"
       },
       {
-        "dept": "Mobile Dev",
-        "without": 4,
-        "with": 2,
-        "tools": "Copilot, React Native AI"
+        "dept": "Product / Design / UX",
+        "without": 35,
+        "with": 25,
+        "tools": "Figma AI, AI prototyping, AI user research"
       },
       {
-        "dept": "QA & Test",
-        "without": 6,
-        "with": 3,
-        "tools": "Testim AI, Playwright"
+        "dept": "Marketing / Growth / Content",
+        "without": 60,
+        "with": 24,
+        "tools": "Jasper, ChatGPT, SurferSEO, AI bidding, AI creative"
       },
       {
-        "dept": "DevOps",
-        "without": 4,
-        "with": 2,
-        "tools": "Terraform AI, IaC otomasyon"
+        "dept": "Customer Support / Helpdesk / Çağrı Merkezi",
+        "without": 80,
+        "with": 20,
+        "tools": "Intercom AI, Ada, AI Voice Agent, RAG chatbots"
       },
       {
-        "dept": "Data & AI",
-        "without": 5,
-        "with": 3,
-        "tools": "AutoML, AI-destekli analiz"
+        "dept": "Moderation / Trust",
+        "without": 40,
+        "with": 12,
+        "tools": "AI content filter, computer vision auto-moderation"
       },
       {
-        "dept": "SEO & İçerik",
-        "without": 8,
-        "with": 4,
-        "tools": "SurferSEO, Jasper, ChatGPT"
+        "dept": "Finance / Accounting",
+        "without": 25,
+        "with": 11,
+        "tools": "AI bookkeeping (Brex AI), auto-reconciliation, AI reporting"
       },
       {
-        "dept": "Pazarlama",
-        "without": 6,
-        "with": 3,
-        "tools": "AI creative, auto-bidding"
-      },
-      {
-        "dept": "Müşteri Hizmetleri",
+        "dept": "Legal / Compliance / KVKK",
         "without": 12,
         "with": 5,
-        "tools": "AI chatbot, Intercom AI"
+        "tools": "AI contract review (Harvey, Spellbook), KVKK auto-monitoring"
       },
       {
-        "dept": "Moderasyon",
-        "without": 4,
-        "with": 2,
-        "tools": "AI içerik filtre, oto-moderasyon"
+        "dept": "HR / People / Talent",
+        "without": 15,
+        "with": 6,
+        "tools": "AI recruiter (HireVue AI), onboarding bots, L&D AI"
       },
       {
-        "dept": "Hukuk & Uyum",
-        "without": 4,
-        "with": 3,
-        "tools": "AI sözleşme inceleme, uyum"
+        "dept": "Admin / Office / PR",
+        "without": 12,
+        "with": 4,
+        "tools": "AI scheduling, AI press writer"
       },
       {
-        "dept": "İK & İdari",
-        "without": 4,
-        "with": 3,
-        "tools": "AI recruiter, İK otomasyon"
+        "dept": "Agile / SAFe",
+        "without": 12,
+        "with": 10,
+        "tools": "AI retrospective, AI metrics dashboard"
       },
       {
-        "dept": "Finans",
-        "without": 3,
-        "with": 2,
-        "tools": "AI muhasebe, oto-raporlama"
+        "dept": "C-Level / Heads",
+        "without": 13,
+        "with": 13,
+        "tools": "AI olmamalı — yargı insan kararı"
+      },
+      {
+        "dept": "Çağrı Merkezi (klasik)",
+        "without": 50,
+        "with": 0,
+        "tools": "Tamamen AI Voice Agent — klasik çağrı merkezi YOK"
       }
     ]
   }

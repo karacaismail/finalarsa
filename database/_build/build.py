@@ -10,9 +10,23 @@ Bu script tek kaynaktan (metrics) tutarlı JSON dosyaları üretir.
 Çıktı: database/ altında shared/, sections/, data/, schema/, manifest.json, reconciliation.json
 NOT: Üretilen JSON dosyaları kanoniktir; bu script yalnızca üretim/doğrulama aracıdır.
 """
-import json, os, re, hashlib
+import json, os, re, hashlib, sys
 
-OUT = "/sessions/elegant-funny-archimedes/mnt/database"
+# ============================================================================
+# DEVRE DIŞI (21.06.2026 — 256 MASTER GÖÇÜ):
+# JSON dosyaları artık ELLE BAKIMLI kanonik kaynaktır. Kadro IK_PLANI_AI_FIRST_256_v1
+# (Aralık 2031 = 256), finansal model bu kadroya göre YENİDEN HESAPLANDI (gelir korundu,
+# gider/net/marj/başabaş revize). Bu builder'daki literal'ler ESKİ 149/2032 modelidir.
+# Bu script'i çalıştırmak göçü ve finansal recalc'ı GERİ ALIR.
+# Çalıştırmadan önce: literal'leri (headcount/AI/CPO) ve finansal mantığı master'a taşıyın,
+# hr-master-256.json'u kaynak alın; sonra ALLOW_LEGACY_BUILD=1 ile çalıştırın.
+# ============================================================================
+if os.environ.get("ALLOW_LEGACY_BUILD") != "1":
+    sys.exit("build.py DEVRE DIŞI: JSON kanonik + 256 master + finansal recalc elle bakımlı. "
+             "Çalıştırmak göçü geri alır. Bilerek devam için ALLOW_LEGACY_BUILD=1 verin.")
+
+# database/ (bu dosya database/_build/ içinde) — göreli, oturumdan bağımsız.
+OUT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FILES = {}  # rel_path -> python obj
 
 def reg(rel, obj):
