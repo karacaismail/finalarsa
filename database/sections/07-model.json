@@ -41,6 +41,7 @@
           "tone": null,
           "type": "stat",
           "valueRef": "pricing.premium_annual",
+          "sub": "rakip üst paket bandı",
           "tag": "model varsayımı"
         },
         {
@@ -48,6 +49,7 @@
           "tone": null,
           "type": "stat",
           "valueRef": "pricing.vitrin_monthly",
+          "sub": "rakip kurumsal bandı",
           "tag": "model varsayımı"
         },
         {
@@ -55,6 +57,7 @@
           "tone": null,
           "type": "stat",
           "valueRef": "pricing.starter_monthly",
+          "sub": "rakip giriş paketi seviyesi",
           "tag": "model varsayımı"
         },
         {
@@ -62,10 +65,17 @@
           "tone": null,
           "type": "stat",
           "valueRef": "pricing.doping_per",
+          "sub": "sahibinden Doping muadili",
           "tag": "model varsayımı"
         }
       ],
       "type": "statGrid"
+    },
+    {
+      "text": "Fiyatlar pazarla kıyaslıdır: sahibinden'de bireysel emlak ilanı {{metric:competitor.sahibinden_listing}} iken bizde tekli ilan {{metric:pricing.single_listing}} ve ayda 1 ilan ücretsiz. Emlakçı paketleri rakip kurumsal bandındadır ve her paket ilan hakkıyla gelir. Tam paket karşılaştırması ve rakip tablosu: Bölüm 08.",
+      "highlight": ["pazarla kıyaslıdır"],
+      "tone": "accent",
+      "type": "note"
     },
     {
       "text": "Komisyon baskısı yerine satıcı dostu, tekrarlayan gelir.",
@@ -90,7 +100,9 @@
       "pricing.doping_per",
       "pricing.premium_annual",
       "pricing.starter_monthly",
-      "pricing.vitrin_monthly"
+      "pricing.vitrin_monthly",
+      "pricing.single_listing",
+      "competitor.sahibinden_listing"
     ]
   }
 }
