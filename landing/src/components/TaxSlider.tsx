@@ -3,7 +3,7 @@ import { useId, useMemo, useState } from "react";
 import { getData } from "../data/resolve";
 import { Flex, Grid, P, Stack } from "../ui";
 import { fmt } from "./charts";
-import { chartCard as card } from "../theme/components";
+import { cardBase, interactivePanel } from "../theme/components";
 import { palette } from "../theme/palette";
 
 /**
@@ -50,17 +50,17 @@ export function TaxSliderView() {
 
   const setStop = (v: number) => setT(v);
 
-  const metric = (label: string, value: string, strong?: boolean, color = "ink") => (
-    <Box>
-      <P fontSize="md" color="inkMuted">{label}</P>
-      <P fontSize={strong ? { base: "2xl", md: "3xl" } : "xl"} fontWeight="bold" color={color} lineHeight="1.1" mt="0.5">
+  const metric = (label: string, value: string, toneKey: string | undefined, valColor: string) => (
+    <Box {...cardBase(toneKey)} p={{ base: "4", md: "4" }} display="flex" flexDirection="column" justifyContent="space-between" gap="2">
+      <P fontSize="md" color="inkMuted" lineHeight="1.3">{label}</P>
+      <P fontSize={{ base: "lg", md: "2xl" }} fontWeight="bold" color={valColor} lineHeight="1.05" whiteSpace="nowrap">
         {value}
       </P>
     </Box>
   );
 
   return (
-    <Box {...card}>
+    <Box {...interactivePanel()} p={{ base: "5", md: "6" }}>
       <Stack gap="5">
         <Flex justify="space-between" align="baseline" wrap="wrap" gap="2">
           <Box as="span" px="2" py="0.5" borderRadius="full" bg={palette.tintGold} color="gold" fontSize="md" fontWeight="medium">
@@ -123,11 +123,11 @@ export function TaxSliderView() {
         </Box>
 
         {/* Hesap kırılımı */}
-        <Grid templateColumns={{ base: "1fr 1fr", md: "repeat(4, 1fr)" }} gap="4" pt="1" borderTop="1px solid" borderColor="line">
-          {metric("Vergi öncesi kâr", fmt(calc.profit))}
-          {metric("Kurumlar vergisi istisnası", fmt(calc.kv), false, "grass")}
-          {metric("Stopaj + SGK avantajı", fmt(calc.stopaj), false, "grass")}
-          {metric("Toplam yıllık avantaj", fmt(calc.total), true, "gold")}
+        <Grid templateColumns={{ base: "1fr 1fr", md: "repeat(4, 1fr)" }} gap="3">
+          {metric("Vergi öncesi kâr", fmt(calc.profit), "info", "ink")}
+          {metric("Kurumlar vergisi istisnası", fmt(calc.kv), "accent", "grass")}
+          {metric("Stopaj + SGK avantajı", fmt(calc.stopaj), "accent", "grass")}
+          {metric("Toplam yıllık avantaj", fmt(calc.total), "gold", "gold")}
         </Grid>
 
         <P fontSize="md" color="inkMuted">

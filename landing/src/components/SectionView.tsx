@@ -4,6 +4,7 @@ import { Grid, Stack } from "../ui";
 import { sectionBg, sectionBorder } from "../theme/semantic";
 import { BlockView } from "./Blocks";
 import { HeroArt } from "./HeroArt";
+import { Reveal } from "./Reveal";
 
 /** Tek bölüm: semantik <section>, zemin JSON'daki `background` değerinden (merkezi sectionBg map). */
 export function SectionView({ section, index }: { section: Section; index: number }) {
@@ -14,7 +15,9 @@ export function SectionView({ section, index }: { section: Section; index: numbe
   const blocks = (
     <Stack gap={{ base: "5", md: "6" }} align="stretch">
       {section.blocks.map((b, i) => (
-        <BlockView key={i} block={b} ctx={{ isHero, dark }} />
+        <Reveal key={i} delay={Math.min(i * 0.05, 0.3)}>
+          <BlockView block={b} ctx={{ isHero, dark }} />
+        </Reveal>
       ))}
     </Stack>
   );
@@ -40,7 +43,9 @@ export function SectionView({ section, index }: { section: Section; index: numbe
               <>
                 <Stack gap={{ base: "4", md: "5" }} align="stretch">
                   {head.map((b, i) => (
-                    <BlockView key={i} block={b} ctx={{ isHero, dark }} />
+                    <Reveal key={i} delay={Math.min(i * 0.06, 0.3)}>
+                      <BlockView block={b} ctx={{ isHero, dark }} />
+                    </Reveal>
                   ))}
                 </Stack>
                 <Grid
@@ -51,7 +56,9 @@ export function SectionView({ section, index }: { section: Section; index: numbe
                 >
                   <Stack gap={{ base: "5", md: "6" }} align="stretch">
                     {rest.map((b, i) => (
-                      <BlockView key={i} block={b} ctx={{ isHero, dark }} />
+                      <Reveal key={i} delay={Math.min(i * 0.06, 0.3)}>
+                        <BlockView block={b} ctx={{ isHero, dark }} />
+                      </Reveal>
                     ))}
                   </Stack>
                   <HeroArt />

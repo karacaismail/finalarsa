@@ -1,7 +1,7 @@
-import { Box, Popover, Portal, Tooltip } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Box, Portal, Tooltip } from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
 import { sections } from "../data/resolve";
-import { Flex, Stack } from "../ui";
+import { Stack } from "../ui";
 import { fx } from "../theme/palette";
 
 /**
@@ -16,6 +16,9 @@ import { fx } from "../theme/palette";
 export function SectionNav() {
   const [active, setActive] = useState(sections[0]?.slug ?? "");
   const [open, setOpen] = useState(false);
+  // Chakra Box, as="button" olsa da ref'i HTMLDivElement olarak tipler; uyum için Div.
+  const panelRef = useRef<HTMLDivElement>(null);
+  const fabRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const els = sections
@@ -39,6 +42,24 @@ export function SectionNav() {
     document.getElementById(slug)?.scrollIntoView({ behavior: "smooth", block: "start" });
     setOpen(false);
   };
+
+  // Mobil menü açıkken: body scroll-lock + Esc ile kapama + odak yönetimi.
+  useEffect(() => {
+    if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    panelRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+      // Kapanınca odağı tetikleyen FAB'a geri ver.
+      fabRef.current?.focus();
+    };
+  }, [open]);
 
   return (
     <>
@@ -95,74 +116,151 @@ export function SectionNav() {
         })}
       </Box>
 
-      {/* Mobil/tablet: Popover menü */}
-      <Box display={{ base: "block", xl: "none" }} position="fixed" right="4" bottom="4" zIndex="90">
-        <Popover.Root open={open} onOpenChange={(e) => setOpen(e.open)} positioning={{ placement: "top-end" }}>
-          <Popover.Trigger asChild>
-            <Box
-              as="button"
-              aria-label="Bölüm menüsü"
-              w="52px"
-              h="52px"
-              borderRadius="full"
-              bg="grass"
-              color="white"
-              boxShadow={fx.shadowFab}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              cursor="pointer"
-              border="none"
-            >
-              {/* Phosphor "list" ikonu (SVG, CDN bağımsız) */}
-              <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
-                <path d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16" />
-              </svg>
-            </Box>
-          </Popover.Trigger>
-          <Portal>
-            <Popover.Positioner>
-              <Popover.Content maxH="70vh" overflowY="auto" w="260px" borderRadius="surface" boxShadow={fx.shadowMenu}>
-                <Popover.Body p="2">
-                  <Stack gap="0">
-                    {sections.map((s) => {
-                      const isActive = s.slug === active;
-                      return (
-                        <Box
-                          as="button"
-                          key={s.slug}
-                          onClick={() => go(s.slug)}
-                          aria-current={isActive ? "true" : undefined}
-                          textAlign="start"
-                          display="flex"
-                          alignItems="baseline"
-                          gap="2"
-                          w="100%"
-                          px="3"
-                          py="2"
-                          borderRadius="control"
-                          cursor="pointer"
-                          bg={isActive ? "surface" : "transparent"}
-                          color={isActive ? "grass" : "ink"}
-                          border="none"
-                          _hover={{ bg: "surface" }}
-                        >
-                          <Box as="span" fontSize="md" color="inkMuted" fontWeight="medium" minW="2.2em">
-                            {s.nav.num}
-                          </Box>
-                          <Box as="span" fontSize="md" fontWeight={isActive ? "bold" : "normal"}>
-                            {s.nav.label}
-                          </Box>
-                        </Box>
-                      );
-                    })}
-                  </Stack>
-                </Popover.Body>
-              </Popover.Content>
-            </Popover.Positioner>
-          </Portal>
-        </Popover.Root>
+      {/* Mobil/tablet: hamburger FAB — açıkken gizlenir (panelin KAPAT'ı devralır). */}
+      <Box
+        as="button"
+        ref={fabRef}
+        onClick={() => setOpen(true)}
+        aria-label="Bölüm menüsü"
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        display={{ base: open ? "none" : "flex", xl: "none" }}
+        position="fixed"
+        right="4"
+        bottom="4"
+        zIndex="90"
+        w="52px"
+        h="52px"
+        borderRadius="full"
+        bg="grass"
+        color="white"
+        boxShadow={fx.shadowFab}
+        alignItems="center"
+        justifyContent="center"
+        cursor="pointer"
+        border="none"
+      >
+        {/* Phosphor "list" ikonu (SVG, CDN bağımsız) */}
+        <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+          <path d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8M40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16m176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16" />
+        </svg>
       </Box>
+
+      {/* Mobil/tablet: tam-ekran modal overlay (scrim + OPAK panel). */}
+      {open && (
+        <Portal>
+          <Box display={{ base: "block", xl: "none" }}>
+            {/* Scrim: tüm ekranı kaplayan koyu yarı-saydam zemin; tıklayınca kapatır. */}
+            <Box
+              position="fixed"
+              inset="0"
+              bg={fx.overlayBlack45}
+              zIndex="1000"
+              onClick={() => setOpen(false)}
+              aria-hidden="true"
+            />
+            {/* Panel: OPAK, tam-yükseklik, kaydırılabilir; scrim üstünde (z-index daha yüksek). */}
+            <Box
+              ref={panelRef}
+              tabIndex={-1}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Bölümler"
+              position="fixed"
+              top="0"
+              right="0"
+              bottom="0"
+              zIndex="1001"
+              w="min(86vw, 320px)"
+              bg="paper"
+              color="ink"
+              boxShadow={fx.shadowMenu}
+              display="flex"
+              flexDirection="column"
+              maxH="100dvh"
+              outline="none"
+              css={{
+                paddingTop: "env(safe-area-inset-top)",
+                paddingBottom: "env(safe-area-inset-bottom)",
+                paddingRight: "env(safe-area-inset-right)",
+              }}
+            >
+              {/* Başlık + KAPAT (X) */}
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+                px="4"
+                py="3"
+                borderBottom="1px solid"
+                borderColor="line"
+                flexShrink="0"
+              >
+                <Box as="span" fontSize="md" fontWeight="bold" color="ink">
+                  Bölümler
+                </Box>
+                <Box
+                  as="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Menüyü kapat"
+                  w="40px"
+                  h="40px"
+                  borderRadius="control"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  cursor="pointer"
+                  bg="transparent"
+                  color="ink"
+                  border="none"
+                  _hover={{ bg: "surface" }}
+                >
+                  {/* Phosphor "x" ikonu */}
+                  <svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+                    <path d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128 50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z" />
+                  </svg>
+                </Box>
+              </Box>
+              {/* Kaydırılabilir liste */}
+              <Box flex="1" overflowY="auto" p="2">
+                <Stack gap="0">
+                  {sections.map((s) => {
+                    const isActive = s.slug === active;
+                    return (
+                      <Box
+                        as="button"
+                        key={s.slug}
+                        onClick={() => go(s.slug)}
+                        aria-current={isActive ? "true" : undefined}
+                        textAlign="start"
+                        display="flex"
+                        alignItems="baseline"
+                        gap="2"
+                        w="100%"
+                        px="3"
+                        py="2"
+                        borderRadius="control"
+                        cursor="pointer"
+                        bg={isActive ? "surface" : "transparent"}
+                        color={isActive ? "grass" : "ink"}
+                        border="none"
+                        _hover={{ bg: "surface" }}
+                      >
+                        <Box as="span" fontSize="md" color="inkMuted" fontWeight="medium" minW="2.2em">
+                          {s.nav.num}
+                        </Box>
+                        <Box as="span" fontSize="md" fontWeight={isActive ? "bold" : "normal"}>
+                          {s.nav.label}
+                        </Box>
+                      </Box>
+                    );
+                  })}
+                </Stack>
+              </Box>
+            </Box>
+          </Box>
+        </Portal>
+      )}
     </>
   );
 }

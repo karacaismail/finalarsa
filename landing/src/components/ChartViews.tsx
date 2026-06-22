@@ -391,16 +391,80 @@ export function AiFirstPanel() {
   );
 }
 
-/* ---------------- AI verimlilik (departman) ---------------- */
+/* ---------------- AI verimlilik (departman) — mobile-first ---------------- */
+/**
+ * Mobilde (base, <md) ECharts yatay barı uzun TR departman adlarını kırpıyordu.
+ * Çözüm: base'te grafiği GİZLE, yerine kompakt kart listesi göster — her departman
+ * tam adıyla (wrap'li, kırpılmadan) + AI'sız / AI ile / Tasarruf rakamları ve
+ * iki katmanlı (AI'sız zemin · AI ile dolu) oran çubuğu. md+ tarafında mevcut
+ * grafik aynen kalır (display={{ base, md }} ile JS'siz, flash'sız geçiş).
+ */
+function AiDeptMobileCards({ deps }: { deps: { dept: string; without: number; with: number }[] }) {
+  const maxWithout = Math.max(1, ...deps.map((r) => r.without));
+  return (
+    <Stack gap="3">
+      {deps.map((r) => {
+        const saved = r.without - r.with;
+        // Çubuk: AI'sız tam genişliği maksimuma göre; AI ile o çubuğun içinde dolu kısım.
+        const withoutPct = (r.without / maxWithout) * 100;
+        const withPct = r.without > 0 ? (r.with / r.without) * 100 : 0;
+        return (
+          <Box key={r.dept} as="article" {...card} p="4">
+            <P fontSize="md" fontWeight="bold" color="ink" lineHeight="1.3" m="0">
+              {r.dept}
+            </P>
+            <Flex gap="3" wrap="wrap" mt="2" mb="3" fontSize="md">
+              <Box as="span" color="inkMuted">
+                AI'sız: <Box as="span" fontWeight="bold" color="ink">{r.without}</Box>
+              </Box>
+              <Box as="span" color="inkMuted">·</Box>
+              <Box as="span" color="inkMuted">
+                AI ile: <Box as="span" fontWeight="bold" color="grass">{r.with}</Box>
+              </Box>
+              <Box as="span" color="inkMuted">·</Box>
+              <Box as="span" color="inkMuted">
+                Tasarruf:{" "}
+                <Box as="span" fontWeight="bold" color={saved > 0 ? "gold" : "inkMuted"}>
+                  {saved > 0 ? `−${saved}` : "0"}
+                </Box>
+              </Box>
+            </Flex>
+            {/* Oran çubuğu: dış (AI'sız, gri) maksimuma orantılı; iç (AI ile, yeşil) AI'sızın içinde */}
+            <Box
+              aria-hidden="true"
+              h="8px"
+              borderRadius="full"
+              bg="surface"
+              overflow="hidden"
+              w={`${Math.max(8, withoutPct)}%`}
+            >
+              <Box h="100%" borderRadius="full" bg="grass" w={`${withPct}%`} minW={r.with > 0 ? "4px" : "0"} />
+            </Box>
+          </Box>
+        );
+      })}
+    </Stack>
+  );
+}
+
 export function AiEfficiencyView() {
-  const d = getData<{ aiEfficiency: { departments: { dept: string; without: number; with: number }[] } }>("hr-plan");
+  const d = getData<{ aiEfficiency: { departments: { dept: string; without: number; with: number; tools: string }[] } }>("hr-plan");
   const deps = d.aiEfficiency.departments;
   return (
-    <EChart
-      height={Math.max(340, deps.length * 34)}
-      ariaLabel="Departman bazında AI'sız ve AI ile gerekli kadro"
-      option={aiDeptOption(deps.map((r) => ({ dept: r.dept, without: r.without, with: r.with })))}
-    />
+    <>
+      {/* Mobil: kompakt kart listesi (tam ad, kırpma yok) */}
+      <Box display={{ base: "block", md: "none" }}>
+        <AiDeptMobileCards deps={deps} />
+      </Box>
+      {/* md+: mevcut ECharts grafiği */}
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart
+          height={Math.max(340, deps.length * 34)}
+          ariaLabel="Departman bazında AI'sız ve AI ile gerekli kadro"
+          option={aiDeptOption(deps.map((r) => ({ dept: r.dept, without: r.without, with: r.with })))}
+        />
+      </Box>
+    </>
   );
 }
 

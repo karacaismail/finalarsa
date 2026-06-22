@@ -510,6 +510,9 @@ export function breakevenOption(
 }
 
 /* ---------- AI/İK: departman bazında AI'sız vs AI ile FTE ---------- */
+/* Yatay bar; uzun TR departman etiketleri md+ tarafında KIRPILMAMALI:
+   grid.left bırakılmaz, containLabel ızgarayı etikete göre büyütür ve
+   yAxis.axisLabel width+overflow:'break' uzun adı iki/çok satıra sarar. */
 export function aiDeptOption(d: { dept: string; without: number; with: number }[]): EChartsCoreOption {
   return {
     aria,
@@ -518,7 +521,13 @@ export function aiDeptOption(d: { dept: string; without: number; with: number }[
     legend: { top: 0, textStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL }, itemWidth: 14, itemHeight: 10 },
     tooltip: { ...tooltipBase, trigger: "axis", axisPointer: { type: "shadow" } },
     xAxis: { type: "value", axisLabel, splitLine, name: "kişi (FTE)", nameLocation: "end", nameTextStyle: { color: C.inkMuted, fontFamily: FONT, fontSize: LBL } },
-    yAxis: { type: "category", data: d.map((x) => x.dept), axisLabel: { ...axisLabel }, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
+    yAxis: {
+      type: "category",
+      data: d.map((x) => x.dept),
+      axisLabel: { ...axisLabel, width: 200, overflow: "break", lineHeight: 18 },
+      axisLine: { lineStyle: { color: C.line } },
+      axisTick: { show: false },
+    },
     series: [
       { name: "AI'sız", type: "bar", data: d.map((x) => x.without), itemStyle: { color: C.inkMuted, borderRadius: [0, 4, 4, 0] }, barGap: "10%" },
       { name: "AI ile", type: "bar", data: d.map((x) => x.with), itemStyle: { color: C.grass, borderRadius: [0, 4, 4, 0] } },

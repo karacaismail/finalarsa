@@ -13,6 +13,9 @@ export const cardBase = (toneKey?: string) => ({
   borderRadius: "surface",
   bg: (toneKey && tone.bg[toneKey]) || "paper",
   p: { base: "5", md: "6" } as const,
+  boxShadow: "0 1px 2px rgba(27,26,23,0.05)",
+  transition: "transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease",
+  _hover: { transform: "translateY(-3px)", boxShadow: fx.shadowCard },
 });
 
 /** Grafik/tablo sarmalayıcı (açık kart). (eski ChartViews `card`) */
@@ -22,6 +25,9 @@ export const chartCard = {
   borderRadius: "surface",
   bg: "paper",
   p: { base: "5", md: "6" },
+  boxShadow: "0 1px 2px rgba(27,26,23,0.05)",
+  transition: "box-shadow 0.2s ease",
+  _hover: { boxShadow: fx.shadowCard },
 } as const;
 
 /**
