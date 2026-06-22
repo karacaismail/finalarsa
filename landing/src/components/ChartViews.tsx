@@ -40,17 +40,44 @@ const netCell = (net: number) => (
 const { divider: listingDivider, ...listingCardBox } = listingCard;
 
 /* ---------------- Pazar: değer hunisi ---------------- */
+/**
+ * Mobil fallback satırı: tek bir gösterge (etiket + açıklama + değer), kırpılma yok.
+ * Huni grafiği mobilde dar kalıyordu; base'te kart listesi, md+'ta grafik.
+ */
+const funnelStep = (label: string, sub: string, value: number, color: string) => (
+  <Flex {...card} align="center" justify="space-between" gap="3" p="4">
+    <Box minW="0">
+      <P fontSize="md" fontWeight="bold" color="ink" lineHeight="1.25" m="0">{label}</P>
+      <P fontSize="md" color="inkMuted" m="0">{sub}</P>
+    </Box>
+    <Box as="span" fontSize="lg" fontWeight="bold" color={color} whiteSpace="nowrap">{fmt(value)}</Box>
+  </Flex>
+);
 export function MarketFunnelView() {
   const d = getData<{
     valueFunnel: { tam: { value: number }; sam: { value: number }; som: { value: number }; annualRevenuePotential: { value: number } };
   }>("market-tam-sam-som");
   const f = d.valueFunnel;
   return (
-    <EChart
-      height={340}
-      ariaLabel={`Pazar hunisi: TAM ${fmt(f.tam.value)}, SAM ${fmt(f.sam.value)}, SOM ${fmt(f.som.value)}, yıllık gelir potansiyeli ${fmt(f.annualRevenuePotential.value)}`}
-      option={marketFunnelOption({ tam: f.tam.value, sam: f.sam.value, som: f.som.value, revenue: f.annualRevenuePotential.value })}
-    />
+    <>
+      {/* Mobil: kompakt gösterge listesi (huni yerine) */}
+      <Box display={{ base: "block", md: "none" }}>
+        <Stack gap="3">
+          {funnelStep("TAM · toplam pazar", "ulaşılabilir en geniş pazar", f.tam.value, "grass")}
+          {funnelStep("SAM · dijitale açık", "hizmet verilebilir kısım", f.sam.value, "grass")}
+          {funnelStep("SOM · elde edilebilir", "gerçekçi hedef pay", f.som.value, "goldText")}
+          {funnelStep("Yıllık gelir potansiyeli", "SOM'dan beklenen gelir", f.annualRevenuePotential.value, "gold")}
+        </Stack>
+      </Box>
+      {/* md+: huni grafiği */}
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart
+          height={340}
+          ariaLabel={`Pazar hunisi: TAM ${fmt(f.tam.value)}, SAM ${fmt(f.sam.value)}, SOM ${fmt(f.som.value)}, yıllık gelir potansiyeli ${fmt(f.annualRevenuePotential.value)}`}
+          option={marketFunnelOption({ tam: f.tam.value, sam: f.sam.value, som: f.som.value, revenue: f.annualRevenuePotential.value })}
+        />
+      </Box>
+    </>
   );
 }
 
@@ -68,11 +95,13 @@ export function ScenarioYearsView() {
   const pct = (x: number) => `%${(x * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}`;
   return (
     <Stack gap="4">
-      <EChart
-        height={360}
-        ariaLabel="Senaryo bazında yıllık gelir patikası; hedef 2028'de tutturulur"
-        option={scenarioLinesOption({ years: s.years, targetYear: s.targetYear, scenarios: s.scenarios })}
-      />
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart
+          height={360}
+          ariaLabel="Senaryo bazında yıllık gelir patikası; hedef 2028'de tutturulur"
+          option={scenarioLinesOption({ years: s.years, targetYear: s.targetYear, scenarios: s.scenarios })}
+        />
+      </Box>
       <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
         <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="620px">
           <Thead>
@@ -165,11 +194,13 @@ export function RevenueStreamsView() {
           </Box>
         ))}
       </Flex>
-      <EChart
-        height={Math.max(320, streams.length * 46)}
-        ariaLabel={`Gelir akışlarının 2032 ${scenLabel} hedefleri; ParselQ-RFQ en büyük akış`}
-        option={revenueStreamsOption(streams.map((s) => ({ label: s.label, value: Math.round(s.y2032_medyan * mult), flagship: s.key === "rfq" })))}
-      />
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart
+          height={Math.max(320, streams.length * 46)}
+          ariaLabel={`Gelir akışlarının 2032 ${scenLabel} hedefleri; ParselQ-RFQ en büyük akış`}
+          option={revenueStreamsOption(streams.map((s) => ({ label: s.label, value: Math.round(s.y2032_medyan * mult), flagship: s.key === "rfq" })))}
+        />
+      </Box>
       <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
         <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="640px">
           <Thead>
@@ -226,11 +257,13 @@ export function YearlyView({ highlightYears }: { highlightYears?: string[] }) {
   const rows = highlightYears ? d.yearly.filter((y) => highlightYears.includes(y.year)) : d.yearly;
   return (
     <Stack gap="4">
-      <EChart
-        height={380}
-        ariaLabel="Yıllık gelir, gider ve net kâr (2026 H2 – 2032)"
-        option={financialComboOption(d.yearly)}
-      />
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart
+          height={380}
+          ariaLabel="Yıllık gelir, gider ve net kâr (2026 H2 – 2032)"
+          option={financialComboOption(d.yearly)}
+        />
+      </Box>
       <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
         <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="640px">
           <Thead>
@@ -281,14 +314,49 @@ export function YearlyView({ highlightYears }: { highlightYears?: string[] }) {
 export function CashTeamView() {
   const d = getData<{ yearly: FinancialYear[] }>("financial-model");
   return (
-    <EChart height={340} ariaLabel="Yıl sonu nakit ve kadro büyümesi" option={cashHeadcountOption(d.yearly)} />
+    <>
+      {/* Mobil: yıl bazında nakit + kadro kartları (çift eksenli grafik mobilde okunmaz) */}
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Yıl", "Yıl sonu nakit", "Kadro"]}
+          rows={d.yearly.map((y) => [y.year, fmtTRY(y.cashEnd), `${y.headcount} kişi`])}
+          primary={[1, 2]}
+          detail={[]}
+        />
+      </Box>
+      {/* md+: nakit alanı + kadro (çift eksen) grafiği */}
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart height={340} ariaLabel="Yıl sonu nakit ve kadro büyümesi" option={cashHeadcountOption(d.yearly)} />
+      </Box>
+    </>
   );
 }
 
 /* ---------------- Kâr marjı (EBITDA vekili) ---------------- */
 export function MarginView() {
   const d = getData<{ yearly: FinancialYear[] }>("financial-model");
-  return <EChart height={300} ariaLabel="Net kâr marjı yıllara göre" option={marginOption(d.yearly)} />;
+  const rows = d.yearly.filter((y) => y.revenue > 0);
+  const pct = (y: FinancialYear) => `%${Math.round((y.net / y.revenue) * 100)}`;
+  return (
+    <>
+      {/* Mobil: yıl bazında net marj kartları (çizgi grafik yerine) */}
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Yıl", "Net marj"]}
+          rows={rows.map((y) => [
+            y.year,
+            <Box as="span" fontWeight="bold" color={y.net < 0 ? "warn" : "grass"}>{pct(y)}</Box>,
+          ])}
+          primary={[1]}
+          detail={[]}
+        />
+      </Box>
+      {/* md+: net kâr marjı çizgi grafiği */}
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart height={300} ariaLabel="Net kâr marjı yıllara göre" option={marginOption(d.yearly)} />
+      </Box>
+    </>
+  );
 }
 
 /* ---------------- Cephane: 6 silah kartı ---------------- */
@@ -347,11 +415,14 @@ export function AiFirstPanel() {
           {stat("Yıllık tasarruf", fmt(ai.annualSaving), "gold")}
         </Dl>
         <H3 fontSize="md" color="inkMuted" fontWeight="medium" mb="2">Departman bazında insan kaynağı: AI'sız vs AI ile (FTE)</H3>
-        <EChart
-          height={Math.max(340, ai.departments.length * 34)}
-          ariaLabel={"Departman bazında AI'sız ve AI ile gerekli kadro karşılaştırması"}
-          option={aiDeptOption(ai.departments.map((r) => ({ dept: r.dept, without: r.without, with: r.with })))}
-        />
+        {/* md+: departman karşılaştırma grafiği; mobilde alttaki kart listesi aynı veriyi verir */}
+        <Box display={{ base: "none", md: "block" }}>
+          <EChart
+            height={Math.max(340, ai.departments.length * 34)}
+            ariaLabel={"Departman bazında AI'sız ve AI ile gerekli kadro karşılaştırması"}
+            option={aiDeptOption(ai.departments.map((r) => ({ dept: r.dept, without: r.without, with: r.with })))}
+          />
+        </Box>
         <Box {...card} p="0" overflowX="auto" mt="4" display={{ base: "none", md: "block" }}>
           <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="520px">
             <Thead>
@@ -471,7 +542,23 @@ export function AiEfficiencyView() {
 /* ---------------- Kadro büyümesi ---------------- */
 export function HeadcountView() {
   const d = getData<{ headcountGrowth: { year: string; count: number }[] }>("hr-plan");
-  return <EChart height={320} ariaLabel="Kadro büyümesi yıllara göre" option={headcountGrowthOption(d.headcountGrowth)} />;
+  return (
+    <>
+      {/* Mobil: yıl bazında kadro kartları (bar grafik yerine) */}
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Yıl", "Kadro"]}
+          rows={d.headcountGrowth.map((r) => [r.year, `${r.count} kişi`])}
+          primary={[1]}
+          detail={[]}
+        />
+      </Box>
+      {/* md+: kadro büyümesi bar grafiği */}
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart height={320} ariaLabel="Kadro büyümesi yıllara göre" option={headcountGrowthOption(d.headcountGrowth)} />
+      </Box>
+    </>
+  );
 }
 
 /* ---------------- Başabaş şelalesi ---------------- */
@@ -488,7 +575,30 @@ export function BasabasWaterfallView() {
     { name: "İşletme + personel + pazarlama", delta: -opexToBE, kind: "down" as const },
     { name: "Başabaş sonrası kasa", delta: reserve, kind: "end" as const },
   ];
-  return <EChart height={340} ariaLabel="Başabaşa kadar sermaye akışı" option={basabasWaterfallOption(steps)} />;
+  // Mobil kart için işaretli/renkli delta hücresi (start/end nötr, down negatif).
+  const stepCell = (s: (typeof steps)[number]) => {
+    if (s.kind === "down")
+      return <Box as="span" color="warn" fontWeight="bold" whiteSpace="nowrap">−{fmtTRY(Math.abs(s.delta))}</Box>;
+    const color = s.kind === "end" ? "gold" : "grass";
+    return <Box as="span" color={color} fontWeight="bold" whiteSpace="nowrap">{fmtTRY(s.delta)}</Box>;
+  };
+  return (
+    <>
+      {/* Mobil: şelale adımları kart listesi (waterfall grafik yerine) */}
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Adım", "Tutar"]}
+          rows={steps.map((s) => [s.name, stepCell(s)])}
+          primary={[1]}
+          detail={[]}
+        />
+      </Box>
+      {/* md+: başabaş şelalesi grafiği */}
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart height={340} ariaLabel="Başabaşa kadar sermaye akışı" option={basabasWaterfallOption(steps)} />
+      </Box>
+    </>
+  );
 }
 
 /* ---------------- İlan güven dosyası mock ---------------- */
@@ -535,25 +645,81 @@ export function PanelMockView() {
 /* ---------------- İlk 36 ay · aylık gelir/gider + nakit ---------------- */
 export function MonthlyEarlyView() {
   const d = getData<{ monthly36: { label: string; gelir: number; gider: number; nakit: number }[] }>("financial-detail");
-  return <EChart height={340} ariaLabel="İlk 36 ay aylık gelir, gider ve kümülatif nakit" option={monthlyEarlyOption(d.monthly36)} />;
+  return (
+    <>
+      {/* Mobil: ay bazında gelir/gider/nakit kartları (3 serili grafik yerine) */}
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Ay", "Gelir", "Gider", "Kümülatif nakit"]}
+          rows={d.monthly36.map((m) => [
+            m.label,
+            fmtTRY(m.gelir),
+            <Box as="span" color="inkMuted">{fmtTRY(m.gider)}</Box>,
+            fmtTRY(m.nakit),
+          ])}
+          primary={[1, 2]}
+          detail={[3]}
+        />
+      </Box>
+      {/* md+: aylık gelir/gider + kümülatif nakit grafiği */}
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart height={340} ariaLabel="İlk 36 ay aylık gelir, gider ve kümülatif nakit" option={monthlyEarlyOption(d.monthly36)} />
+      </Box>
+    </>
+  );
 }
 
 /* ---------------- 2026 aylık işe alım ---------------- */
 export function HeadcountMonthlyView() {
   const d = getData<{ monthly2026: { label: string; kadro: number }[] }>("financial-detail");
   return (
-    <EChart
-      height={280}
-      ariaLabel="2026 aylık kadro büyümesi"
-      option={headcountGrowthOption(d.monthly2026.map((m) => ({ year: m.label, count: m.kadro })))}
-    />
+    <>
+      {/* Mobil: ay bazında kadro kartları (bar grafik yerine) */}
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Ay", "Kadro"]}
+          rows={d.monthly2026.map((m) => [m.label, `${m.kadro} kişi`])}
+          primary={[1]}
+          detail={[]}
+        />
+      </Box>
+      {/* md+: 2026 aylık kadro bar grafiği */}
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart
+          height={280}
+          ariaLabel="2026 aylık kadro büyümesi"
+          option={headcountGrowthOption(d.monthly2026.map((m) => ({ year: m.label, count: m.kadro })))}
+        />
+      </Box>
+    </>
   );
 }
 
 /* ---------------- Yıllık gelir/gider/net (yalnız grafik) ---------------- */
 export function YearlyComboView() {
   const d = getData<{ yearly: FinancialYear[] }>("financial-model");
-  return <EChart height={360} ariaLabel="Yıllık gelir, gider ve net kâr" option={financialComboOption(d.yearly)} />;
+  return (
+    <>
+      {/* Mobil: yıl bazında gelir/gider/net kartları (kombine grafik yerine) */}
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Yıl", "Gelir", "Gider", "Net"]}
+          rows={d.yearly.map((y) => [
+            y.year,
+            fmtTRY(y.revenue),
+            <Box as="span" color="inkMuted">{fmtTRY(y.expense)}</Box>,
+            netCell(y.net),
+          ])}
+          primary={[1, 3]}
+          detail={[2]}
+        />
+      </Box>
+      {/* md+: yıllık gelir/gider/net kombine grafiği */}
+      <Box display={{ base: "none", md: "block" }}>
+        <EChart height={360} ariaLabel="Yıllık gelir, gider ve net kâr" option={financialComboOption(d.yearly)} />
+      </Box>
+    </>
+  );
 }
 
 /* ---------------- Kademeli finansal tablo (2026 aylık → 2032 yıllık) ---------------- */
@@ -626,7 +792,7 @@ export function CapexView() {
   const pct = (v: number) => `%${((v / c.total) * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}`;
   return (
     <Stack gap="4">
-      <Box {...card}>
+      <Box {...card} display={{ base: "none", md: "block" }}>
         <EChart height={Math.max(300, c.byCategory.length * 46)} ariaLabel="İlk ay kuruluş yatırımı (CAPEX) kategori kırılımı" option={capexBreakdownOption(c.byCategory)} />
       </Box>
       <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
@@ -684,7 +850,7 @@ export function OpexView() {
   const pct = (v: number) => `%${((v / o.total) * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}`;
   return (
     <Stack gap="4">
-      <Box {...card}>
+      <Box {...card} display={{ base: "none", md: "block" }}>
         <EChart height={Math.max(320, o.byCategory.length * 44)} ariaLabel="Aylık işletme gideri (OPEX) kompozisyonu" option={opexCompositionOption(o.byCategory)} />
       </Box>
       <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
@@ -742,7 +908,7 @@ function MonthlySplitView({ period }: { period: "monthly2026" | "monthly2027" })
   const rows = d[period];
   return (
     <Stack gap="4">
-      <Box {...card}>
+      <Box {...card} display={{ base: "none", md: "block" }}>
         <EChart
           height={360}
           ariaLabel={`${period === "monthly2026" ? "2026" : "2027"} aylık gelir, gider kırılımı (OPEX/Pazarlama/CAPEX) ve kümülatif nakit`}
@@ -811,7 +977,7 @@ export function BreakevenView() {
   ];
   return (
     <Stack gap="4">
-      <Box {...card}>
+      <Box {...card} display={{ base: "none", md: "block" }}>
         <EChart
           height={360}
           ariaLabel={`Başabaş analizi: kümülatif gelir ve kümülatif gider; ${be.beMonthCumulative} ayında ${fmt(be.cumSpendToBE)} seviyesinde kesişir`}

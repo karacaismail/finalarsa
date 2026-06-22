@@ -262,7 +262,7 @@ export function basabasWaterfallOption(steps: { name: string; delta: number; kin
         return `<b>${steps[i].name}</b><br/>${steps[i].kind === "down" ? "−" : ""}${fmt(Math.abs(steps[i].delta || values[i]))}`;
       },
     },
-    xAxis: { type: "category", data: steps.map((s) => s.name), axisLabel: { ...axisLabel, interval: 0, lineHeight: 14 }, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
+    xAxis: { type: "category", data: steps.map((s) => s.name), axisLabel: { ...axisLabel, interval: 0, width: 96, overflow: "break", lineHeight: 14 }, axisLine: { lineStyle: { color: C.line } }, axisTick: { show: false } },
     yAxis: { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
     series: [
       { type: "bar", stack: "wf", itemStyle: { color: "transparent" }, emphasis: { itemStyle: { color: "transparent" } }, data: bases, silent: true, tooltip: { show: false } },
