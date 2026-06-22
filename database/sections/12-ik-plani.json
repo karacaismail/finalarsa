@@ -117,33 +117,18 @@
     },
     {
       "level": 3,
-      "text": "2031 sonu kadro dağılımı (saha ağırlıklı)",
-      "accent": "saha ağırlıklı",
+      "text": "Kadro dağılımı · yıl sekmeleriyle filtrele",
+      "accent": "yıl sekmeleriyle filtrele",
       "type": "heading"
     },
     {
-      "columns": [
-        "Departman",
-        "2031 kişi"
-      ],
-      "rows": [
-        ["Saha Keşif (araçlı)", "48"],
-        ["Saha Satış (araçlı)", "40"],
-        ["ParselQ RFQ / Sosyal moderasyon", "32"],
-        ["Satıcı & Müşteri Ops", "28"],
-        ["Mühendislik", "30"],
-        ["AI / Veri", "18"],
-        ["Pazarlama & Büyüme", "16"],
-        ["Ürün & Tasarım", "14"],
-        ["Finans & Hukuk", "10"],
-        ["İK & İdari", "10"],
-        ["Liderlik / C-Suite", "10"],
-        ["Toplam", "256"]
-      ],
-      "type": "table"
+      "chartType": "deptByYear",
+      "dataRef": "hr-by-year",
+      "caption": "Departman × yıl kadro dağılımı · sekmeye tıklayarak yılı seç (2026 → 2032). Yıl toplamları: 38 · 92 · 140 · 185 · 225 · 256 · 256.",
+      "type": "chart"
     },
     {
-      "text": "Kadronun %34'ü (88 kişi) araçlı saha ekiplerinde, %12,5'i (32 kişi) ParselQ RFQ/sosyal katmanındadır — bu, arsa pazarının saha ve güven işi olduğunu yansıtır.",
+      "text": "2031'de kadronun %34'ü (88 kişi) araçlı saha ekiplerinde, %12,5'i (32 kişi) ParselQ RFQ/sosyal katmanındadır — bu, arsa pazarının saha ve güven işi olduğunu yansıtır. Yıl sekmeleriyle erken yılların saha-önce dağılımını da görebilirsin.",
       "highlight": [
         "%34'ü (88 kişi) araçlı saha"
       ],
@@ -172,7 +157,8 @@
     "data": [
       "hr-plan",
       "hr-master-256",
-      "financial-detail"
+      "financial-detail",
+      "hr-by-year"
     ],
     "metrics": []
   }

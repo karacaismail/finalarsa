@@ -1,0 +1,160 @@
+{
+  "id": "hr-by-year",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "description": "Departman × yıl kadro dağılımı (agresif canon, yıl sonu kümülatif). 2031=256.",
+  "years": [
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+    "2031",
+    "2032"
+  ],
+  "departments": [
+    {
+      "dept": "Saha Keşif (araçlı)",
+      "byYear": [
+        12,
+        26,
+        37,
+        44,
+        48,
+        48,
+        48
+      ]
+    },
+    {
+      "dept": "Saha Satış (araçlı)",
+      "byYear": [
+        2,
+        9,
+        15,
+        22,
+        30,
+        40,
+        40
+      ]
+    },
+    {
+      "dept": "ParselQ RFQ / Sosyal moderasyon",
+      "byYear": [
+        3,
+        10,
+        16,
+        22,
+        28,
+        32,
+        32
+      ]
+    },
+    {
+      "dept": "Satıcı & Müşteri Ops",
+      "byYear": [
+        3,
+        7,
+        12,
+        17,
+        22,
+        28,
+        28
+      ]
+    },
+    {
+      "dept": "Mühendislik",
+      "byYear": [
+        8,
+        16,
+        22,
+        27,
+        30,
+        30,
+        30
+      ]
+    },
+    {
+      "dept": "AI / Veri",
+      "byYear": [
+        4,
+        8,
+        11,
+        15,
+        17,
+        18,
+        18
+      ]
+    },
+    {
+      "dept": "Pazarlama & Büyüme",
+      "byYear": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        16,
+        16
+      ]
+    },
+    {
+      "dept": "Ürün & Tasarım",
+      "byYear": [
+        3,
+        7,
+        9,
+        11,
+        13,
+        14,
+        14
+      ]
+    },
+    {
+      "dept": "Finans & Hukuk",
+      "byYear": [
+        1,
+        2,
+        4,
+        6,
+        8,
+        10,
+        10
+      ]
+    },
+    {
+      "dept": "İK & İdari",
+      "byYear": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        10
+      ]
+    },
+    {
+      "dept": "Liderlik / C-Suite",
+      "byYear": [
+        1,
+        2,
+        4,
+        6,
+        9,
+        10,
+        10
+      ]
+    }
+  ],
+  "totals": [
+    38,
+    92,
+    140,
+    185,
+    225,
+    256,
+    256
+  ],
+  "_note": "Sekmeli tablo: her sekme bir yıl. Toplamlar canon eğriye (38→256) eşittir; 2031 dağılımı departmentsFinal2031 ile birebir."
+}

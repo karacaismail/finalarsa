@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+import { useState } from "react";
 import type { ReactNode } from "react";
 import { getData, getMetric } from "../data/resolve";
 import type { FinancialYear } from "../data/types";
@@ -135,19 +136,39 @@ export function ScenarioYearsView() {
 type RevStream = { key: string; label: string; y2032_medyan: number; byYearMedyan: Record<string, number> };
 export function RevenueStreamsView() {
   const d = getData<{
-    revenueStreams: { streams: RevStream[]; totalByYear: { medyan: Record<string, number> } };
+    revenueStreams: {
+      streams: RevStream[];
+      scenarioMultipliers: { kotumser: number; medyan: number; iyimser: number };
+      totalByYear: { kotumser: Record<string, number>; medyan: Record<string, number>; iyimser: Record<string, number> };
+    };
   }>("financial-breakdown");
   const rs = d.revenueStreams;
+  const SCEN = [
+    { key: "kotumser" as const, label: "Kötümser" },
+    { key: "medyan" as const, label: "Medyan" },
+    { key: "iyimser" as const, label: "İyimser" },
+  ];
+  const [scen, setScen] = useState<"kotumser" | "medyan" | "iyimser">("medyan");
+  const mult = rs.scenarioMultipliers[scen];
+  const scenLabel = (SCEN.find((s) => s.key === scen)?.label ?? "Medyan").toLowerCase();
   const streams = [...rs.streams].sort((a, b) => b.y2032_medyan - a.y2032_medyan);
   const total2032 = rs.totalByYear.medyan["2032"];
   const cols = ["2027", "2029", "2031", "2032"];
   const pct = (x: number) => `%${(x * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}`;
+  const sval = (s: RevStream, c: string) => Math.round((s.byYearMedyan[c] ?? 0) * mult);
   return (
     <Stack gap="4">
+      <Flex gap="2" wrap="wrap" role="tablist" aria-label="Senaryo seç">
+        {SCEN.map((s) => (
+          <Box as="button" key={s.key} role="tab" aria-selected={s.key === scen} onClick={() => setScen(s.key)} px="4" py="2" borderRadius="full" fontWeight="medium" fontSize="md" cursor="pointer" bg={s.key === scen ? "grass" : "surface"} color={s.key === scen ? "white" : "inkMuted"} border="1px solid" borderColor={s.key === scen ? "grass" : "line"}>
+            {s.label}
+          </Box>
+        ))}
+      </Flex>
       <EChart
         height={Math.max(320, streams.length * 46)}
-        ariaLabel="Gelir akışlarının 2032 medyan hedefleri; ParselQ-RFQ en büyük akış"
-        option={revenueStreamsOption(streams.map((s) => ({ label: s.label, value: s.y2032_medyan, flagship: s.key === "rfq" })))}
+        ariaLabel={`Gelir akışlarının 2032 ${scenLabel} hedefleri; ParselQ-RFQ en büyük akış`}
+        option={revenueStreamsOption(streams.map((s) => ({ label: s.label, value: Math.round(s.y2032_medyan * mult), flagship: s.key === "rfq" })))}
       />
       <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
         <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="640px">
@@ -155,7 +176,7 @@ export function RevenueStreamsView() {
             <Tr>
               <Th scope="col" textAlign="start" p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold">Gelir akışı</Th>
               {cols.map((c) => (
-                <Th key={c} scope="col" textAlign="end" p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{c} medyan</Th>
+                <Th key={c} scope="col" textAlign="end" p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{c} {scenLabel}</Th>
               ))}
               <Th scope="col" textAlign="end" p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">2032 pay</Th>
             </Tr>
@@ -169,16 +190,16 @@ export function RevenueStreamsView() {
                     {s.label}{flag ? " · amiral" : ""}
                   </Th>
                   {cols.map((c) => (
-                    <Td key={c} p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink" whiteSpace="nowrap">{fmt(s.byYearMedyan[c] ?? 0)}</Td>
+                    <Td key={c} p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink" whiteSpace="nowrap">{fmt(sval(s, c))}</Td>
                   ))}
                   <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color={flag ? "goldText" : "inkMuted"} fontWeight={flag ? "bold" : "normal"} whiteSpace="nowrap">{pct(s.y2032_medyan / total2032)}</Td>
                 </Tr>
               );
             })}
             <Tr bg="surface">
-              <Th scope="row" textAlign="start" p="3" borderTop="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold">Toplam (medyan)</Th>
+              <Th scope="row" textAlign="start" p="3" borderTop="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold">Toplam ({scenLabel})</Th>
               {cols.map((c) => (
-                <Td key={c} p="3" textAlign="end" borderTop="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{fmt(rs.totalByYear.medyan[c] ?? 0)}</Td>
+                <Td key={c} p="3" textAlign="end" borderTop="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{fmt(rs.totalByYear[scen][c] ?? 0)}</Td>
               ))}
               <Td p="3" textAlign="end" borderTop="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold">%100</Td>
             </Tr>
@@ -187,10 +208,10 @@ export function RevenueStreamsView() {
       </Box>
       <Box display={{ base: "block", md: "none" }}>
         <MobileTableCards
-          columns={["Gelir akışı", ...cols.map((c) => `${c} medyan`), "2032 pay"]}
+          columns={["Gelir akışı", ...cols.map((c) => `${c} ${scenLabel}`), "2032 pay"]}
           rows={streams.map((s) => [
             <>{s.label}{s.key === "rfq" ? " · amiral" : ""}</>,
-            ...cols.map((c) => <>{fmt(s.byYearMedyan[c] ?? 0)}</>),
+            ...cols.map((c) => <>{fmt(sval(s, c))}</>),
             <>{pct(s.y2032_medyan / total2032)}</>,
           ])}
         />
@@ -665,10 +686,10 @@ function MonthlySplitView({ period }: { period: "monthly2026" | "monthly2027" })
         />
       </Box>
       <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
-        <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="720px">
+        <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="480px">
           <Thead>
             <Tr>
-              {["Ay", "Gelir", "OPEX", "Pazarlama", "CAPEX", "Gider", "Net", "Dönem sonu nakit"].map((h, i) => (
+              {["Ay", "Gelir", "Gider", "Net", "Dönem sonu nakit"].map((h, i) => (
                 <Th key={h} scope="col" textAlign={i === 0 ? "start" : "end"} p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{h}</Th>
               ))}
             </Tr>
@@ -678,9 +699,6 @@ function MonthlySplitView({ period }: { period: "monthly2026" | "monthly2027" })
               <Tr key={r.label}>
                 <Th scope="row" textAlign="start" p="3" borderBottom="1px solid" borderColor="line" color="ink" fontWeight="bold" whiteSpace="nowrap">{r.label}</Th>
                 <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink">{fmtTRY(r.gelir)}</Td>
-                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="inkMuted">{fmtTRY(r.opex)}</Td>
-                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="inkMuted">{fmtTRY(r.pazarlama)}</Td>
-                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="inkMuted">{fmtTRY(r.capex)}</Td>
                 <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink">{fmtTRY(r.gider)}</Td>
                 <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color={r.net < 0 ? "warn" : "grass"} fontWeight="medium" whiteSpace="nowrap">
                   {r.net < 0 ? "−" : "+"}{fmtTRY(Math.abs(r.net))}
@@ -693,19 +711,16 @@ function MonthlySplitView({ period }: { period: "monthly2026" | "monthly2027" })
       </Box>
       <Box display={{ base: "block", md: "none" }}>
         <MobileTableCards
-          columns={["Ay", "Gelir", "OPEX", "Pazarlama", "CAPEX", "Gider", "Net", "Dönem sonu nakit"]}
+          columns={["Ay", "Gelir", "Gider", "Net", "Dönem sonu nakit"]}
           rows={rows.map((r) => [
             r.label,
             fmtTRY(r.gelir),
-            <Box as="span" color="inkMuted">{fmtTRY(r.opex)}</Box>,
-            <Box as="span" color="inkMuted">{fmtTRY(r.pazarlama)}</Box>,
-            <Box as="span" color="inkMuted">{fmtTRY(r.capex)}</Box>,
-            fmtTRY(r.gider),
+            <Box as="span" color="inkMuted">{fmtTRY(r.gider)}</Box>,
             netCell(r.net),
             fmtTRY(r.nakit),
           ])}
-          primary={[1, 6]}
-          detail={[2, 3, 4, 5, 7]}
+          primary={[1, 3]}
+          detail={[2, 4]}
         />
       </Box>
     </Stack>
@@ -775,6 +790,70 @@ export function BreakevenView() {
   );
 }
 
+/* ---------------- Departman dağılımı · yıl sekmeleriyle filtrele ---------------- */
+export function DeptByYearView() {
+  const d = getData<{ years: string[]; departments: { dept: string; byYear: number[] }[]; totals: number[] }>("hr-by-year");
+  const [yi, setYi] = useState(d.years.length - 1);
+  const yr = d.years[yi];
+  return (
+    <Stack gap="4">
+      <Flex gap="2" wrap="wrap" role="tablist" aria-label="Yıl seç">
+        {d.years.map((y, i) => (
+          <Box
+            as="button"
+            key={y}
+            role="tab"
+            aria-selected={i === yi}
+            onClick={() => setYi(i)}
+            px="4"
+            py="2"
+            borderRadius="full"
+            fontWeight="medium"
+            fontSize="md"
+            cursor="pointer"
+            bg={i === yi ? "grass" : "surface"}
+            color={i === yi ? "white" : "inkMuted"}
+            border="1px solid"
+            borderColor={i === yi ? "grass" : "line"}
+          >
+            {y}
+          </Box>
+        ))}
+      </Flex>
+      <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
+        <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="420px">
+          <Thead>
+            <Tr>
+              <Th scope="col" textAlign="start" p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold">Departman</Th>
+              <Th scope="col" textAlign="end" p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{yr} · kişi</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {d.departments.map((r) => (
+              <Tr key={r.dept}>
+                <Th scope="row" textAlign="start" p="3" borderBottom="1px solid" borderColor="line" color="ink" fontWeight="medium">{r.dept}</Th>
+                <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink">{r.byYear[yi]}</Td>
+              </Tr>
+            ))}
+            <Tr>
+              <Th scope="row" textAlign="start" p="3" color="ink" fontWeight="bold">Toplam</Th>
+              <Td p="3" textAlign="end" color="ink" fontWeight="bold">{d.totals[yi]}</Td>
+            </Tr>
+          </Tbody>
+        </Tbl>
+      </Box>
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Departman", `${yr} · kişi`]}
+          rows={[...d.departments.map((r) => [r.dept, String(r.byYear[yi])]), ["Toplam", String(d.totals[yi])]]}
+          primary={[1]}
+          detail={[]}
+        />
+      </Box>
+    </Stack>
+  );
+}
+
 /* Dispatcher */
 export function ChartBlock({ chartType, highlightYears }: { chartType: string; highlightYears?: string[] }): ReactNode {
   switch (chartType) {
@@ -806,6 +885,8 @@ export function ChartBlock({ chartType, highlightYears }: { chartType: string; h
       return <AiEfficiencyView />;
     case "headcountGrowth":
       return <HeadcountView />;
+    case "deptByYear":
+      return <DeptByYearView />;
     case "basabasWaterfall":
       return <BasabasWaterfallView />;
     case "yearlyCombo":

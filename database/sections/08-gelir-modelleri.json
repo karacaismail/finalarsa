@@ -100,7 +100,7 @@
     {
       "chartType": "revenueStreams",
       "dataRef": "financial-breakdown",
-      "caption": "Yedi gelir akışı · 2032 medyan hedefleri (ParselQ-RFQ amiral akış) · tablo yıllara göre kırılım verir",
+      "caption": "Yedi gelir akışı · senaryo seç (kötümser / medyan / iyimser) ile değerler değişir · ParselQ-RFQ amiral akış · yıllara göre kırılım",
       "type": "chart"
     },
     {
