@@ -29,10 +29,10 @@
       "source": "model-v9-15"
     },
     "capital.reserve": {
-      "value": 27613949,
+      "value": 32522168,
       "unit": "TRY",
-      "display": "~28 milyon ₺",
-      "label": "Kasa en dip seviyesi (Oca 2027)",
+      "display": "~32,5 milyon ₺",
+      "label": "Kasa en dip seviyesi (Ara 2026, agresif)",
       "source": "model-v9-15"
     },
     "capital.ops_funded": {
@@ -308,44 +308,44 @@
       "source": "model-v9-15"
     },
     "fin.revenue_2027": {
-      "value": 229075000,
+      "value": 309251000,
       "unit": "TRY",
-      "display": "229M ₺",
+      "display": "309M ₺",
       "label": "2027 gelir (medyan)",
       "source": "model-v9-15"
     },
     "fin.net_2027": {
-      "value": 156352675,
+      "value": 222260267,
       "unit": "TRY",
-      "display": "+156M ₺",
+      "display": "+222M ₺",
       "label": "2027 net kâr (medyan)",
       "source": "model-v9-15"
     },
     "fin.cash_2032": {
-      "value": 13870009038,
+      "value": 15076349126,
       "unit": "TRY",
-      "display": "13.87 milyar ₺",
+      "display": "15.08 milyar ₺",
       "label": "2032 yıl sonu nakit (medyan)",
       "source": "model-v9-15"
     },
     "fin.profit_margin_min": {
-      "value": 0.88,
+      "value": 0.72,
       "unit": "ratio",
-      "display": "%88+",
-      "label": "2027'den itibaren kâr marjı",
+      "display": "%72+",
+      "label": "2027 kâr marjı (agresif); olgunlukta ~%90",
       "source": "model-v9-15"
     },
     "fin.headcount_2026": {
-      "value": 30,
+      "value": 38,
       "unit": "kişi",
-      "display": "30 kişi",
+      "display": "38 kişi",
       "label": "2026 sonu kadro",
       "source": "model-v9-15"
     },
     "fin.headcount_2027": {
-      "value": 72,
+      "value": 92,
       "unit": "kişi",
-      "display": "72 kişi",
+      "display": "92 kişi",
       "label": "2027 sonu kadro",
       "source": "model-v9-15"
     },
@@ -607,21 +607,21 @@
       "label": "sahibinden'in vazgeçemeyeceği yıllık ilan komisyonu"
     },
     "fin.headcount_2028": {
-      "value": 116,
+      "value": 140,
       "unit": "",
-      "display": "116 kişi",
+      "display": "140 kişi",
       "label": "2028 sonu kadro"
     },
     "fin.headcount_2029": {
-      "value": 162,
+      "value": 185,
       "unit": "",
-      "display": "162 kişi",
+      "display": "185 kişi",
       "label": "2029 sonu kadro"
     },
     "fin.headcount_2030": {
-      "value": 210,
+      "value": 225,
       "unit": "",
-      "display": "210 kişi",
+      "display": "225 kişi",
       "label": "2030 sonu kadro"
     },
     "fin.headcount_2031": {

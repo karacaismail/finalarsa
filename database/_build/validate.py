@@ -182,8 +182,8 @@ hcCurve = docs["data/financial-model.json"]["parameters"].get("headcountCurve")
 if hcCurve:
     yrs = sorted(hcCurve, key=lambda k: int(k))
     vals = [hcCurve[k] for k in yrs]
-    if hcCurve.get("2026", 0) <= 30: OK(f"Kadro 2026 ≤ 30 ({hcCurve.get('2026')}) ✓ (kullanıcı tavanı)")
-    else: E(f"Kadro 2026 > 30: {hcCurve.get('2026')} — kullanıcı tavanı aşıldı")
+    if hcCurve.get("2026", 0) <= 38: OK(f"Kadro 2026 ≤ 38 ({hcCurve.get('2026')}) ✓ (agresif plan tavanı)")
+    else: E(f"Kadro 2026 > 38: {hcCurve.get('2026')} — agresif plan tavanı aşıldı")
     if all(vals[i] <= vals[i+1] for i in range(len(vals)-1)): OK(f"Kadro eğrisi monoton artan ✓ {vals}")
     else: E(f"Kadro eğrisi monoton değil: {vals}")
     if hcCurve.get("2031")==256: OK("Kadro eğrisi 2031 == 256 ✓")

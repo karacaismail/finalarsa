@@ -7,23 +7,23 @@
   "headcountGrowth": [
     {
       "year": "2026 H2",
-      "count": 30
+      "count": 38
     },
     {
       "year": "2027",
-      "count": 72
+      "count": 92
     },
     {
       "year": "2028",
-      "count": 116
+      "count": 140
     },
     {
       "year": "2029",
-      "count": 162
+      "count": 185
     },
     {
       "year": "2030",
-      "count": 210
+      "count": 225
     },
     {
       "year": "2031",
@@ -217,5 +217,5 @@
       "count": 10
     }
   ],
-  "_revisionNote": "ParselQ revizyonu: saha-ağırlıklı (keşif+satış 88), mühendislik ölçülü (30), SAFe katmanı kaldırıldı; ParselQ rolleri eklendi. Eğri 2026=30→2031=256."
+  "_revisionNote": "ParselQ revizyonu: saha-ağırlıklı (keşif+satış 88), mühendislik ölçülü (30), SAFe katmanı kaldırıldı; ParselQ rolleri eklendi. Eğri 2026=30→2031=256. || AGRESİF: eğri 2026=38→2031=256 (öne-yüklü, sola-kaydır). 2031 departman dağılımı (256) sabit."
 }

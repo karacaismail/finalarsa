@@ -32,13 +32,13 @@
     {
       "chartType": "headcountMonthly",
       "dataRef": "financial-detail",
-      "caption": "2026 · aylık işe alım (Ağustos 5 çekirdek → Aralık 30 kişi)",
+      "caption": "2026 · aylık işe alım (Ağustos 5 çekirdek → Aralık 38 kişi · agresif/öne-yüklü)",
       "type": "chart"
     },
     {
       "chartType": "headcountGrowth",
       "dataRef": "hr-plan",
-      "caption": "Kadro büyümesi · 2026 (30) → 2031 (256); ara yıllar 72 · 116 · 162 · 210",
+      "caption": "Kadro büyümesi · 2026 (38) → 2031 (256); ara yıllar 92 · 140 · 185 · 225 (agresif/öne-yüklü)",
       "type": "chart"
     },
     {
@@ -160,7 +160,7 @@
       "type": "note"
     },
     {
-      "text": "Kadro 2026 Ağustos'ta 5 çekirdek rolle başlar, 2026 sonunda 30'a, sonra 72 · 116 · 162 · 210 ara basamaklarından geçerek 2031 sonunda 256 kişilik AI-first organizasyona ulaşır; her ekleme bir gerekçeye bağlıdır.",
+      "text": "Kadro 2026 Ağustos'ta 5 çekirdek rolle başlar, 2026 sonunda 38'e, sonra 92 · 140 · 185 · 225 ara basamaklarından geçerek 2031 sonunda 256 kişilik AI-first organizasyona ulaşır; agresif/öne-yüklü işe alım (özellikle Saha Keşif) erken saha likiditesini hızlandırır, her ekleme bir gerekçeye bağlıdır.",
       "highlight": [
         "her ekleme bir gerekçeye bağlıdır"
       ],

@@ -71,17 +71,17 @@
           "value": "breakeven",
           "label": "Başabaş",
           "heading": "Başabaş analizi",
-          "lead": "Yatırım dönemi yalnızca 2026 H2'dir (net ~−7,8 milyon ₺). Kümülatif gelir, kümülatif gideri 2027 başında geçer; başabaşa kadar net ~20,5 milyon ₺ harcanır. 40 milyon ₺ sermaye bunu finanse eder; kasa en dipte ~32,2 milyon ₺'ye iner (Aralık 2026). 256 kişilik kadroda işe alım arkaya yüklü olduğundan erken dönem nakit yükü düşük kalır.",
+          "lead": "Yatırım dönemi yalnızca 2026 H2'dir (net ~−7,5 milyon ₺). Kümülatif gelir, kümülatif gideri 2027 başında geçer. 40 milyon ₺ sermaye bunu finanse eder; agresif (öne-yüklü) kadroda bile kasa en dipte ~32,5 milyon ₺'ye iner (Aralık 2026). İşe alım öne yüklü olduğundan erken saha likiditesi hızlanır; erken nakit yükü 40 milyon ₺ içinde rahatça kalır.",
           "chartType": "breakeven",
-          "caption": "Kümülatif gelir vs kümülatif gider · kesişim (başabaş) 2027 başı, net ~20,5 milyon ₺ harcama · grafik + özet tablo"
+          "caption": "Kümülatif gelir vs kümülatif gider · kesişim (başabaş) 2027 başı · grafik + özet tablo"
         },
         {
           "value": "yearly",
           "label": "2032 yıllık",
           "heading": "2032 vizyonu · yıllık (2026 → 2032)",
-          "lead": "Tek finansal grafik ve tek finansal tablo: yedi yılın geliri, gideri, net kârı, kadrosu ve yıl sonu nakdi. Gelir 2032'de 5,5 milyar ₺'ye (medyan) çıktıkça ölçek ekonomisi devreye girer; net marj 2027'de %68'den 2032'de %90'a yükselir — yedi gelir akışı bu kârlılığı taşır.",
+          "lead": "Tek finansal grafik ve tek finansal tablo: yedi yılın geliri, gideri, net kârı, kadrosu ve yıl sonu nakdi. Gelir 2032'de 5,5 milyar ₺'ye (medyan) çıktıkça ölçek ekonomisi devreye girer; net marj 2027'de %72'den (agresif kadro) 2032'de %90'a yükselir — yedi gelir akışı bu kârlılığı taşır.",
           "chartType": "yearlyTable",
-          "caption": "Yıllık gelir, gider, net kâr + tablo (kadro, yıl sonu nakit) · net marj %68 → %90 (gelir 5,5 milyar ₺ medyan, 256 kadro)"
+          "caption": "Yıllık gelir, gider, net kâr + tablo (kadro, yıl sonu nakit) · net marj %72 → %90 (gelir 5,5 milyar ₺ medyan, 256 kadro)"
         },
         {
           "value": "revenueStreams",
