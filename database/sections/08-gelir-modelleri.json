@@ -26,8 +26,8 @@
       "type": "heading"
     },
     {
-      "text": "Küresel gayrimenkul platformlarının gelir modelleri tarandı; aşağıda yalnızca Türkiye'de yasal/lisans engeli OLMAYANLAR yer alır. Lisans veya yetki belgesi gerektirenler (satış komisyonu, emanet/escrow, doğrudan kredi, resmi ekspertiz) kapsam dışı bırakıldı.",
-      "highlight": ["yasal/lisans engeli OLMAYANLAR"],
+      "text": "Küresel gayrimenkul platformlarının gelir modelleri tarandı ve her biri Türkiye mevzuatına göre 2025-2026 itibarıyla doğrulandı. İki grup birlikte sunulur: (1) hiç belge gerektirmeyenler, (2) belgesi/lisansı TÜRKİYE'DE ALINABİLEN modeller. Belge gerekiyorsa alınır; sadece belge alınması yasal olarak imkânsız olanlar hariç tutuldu.",
+      "highlight": ["belgesi/lisansı TÜRKİYE'DE ALINABİLEN"],
       "tone": "accent",
       "type": "note"
     },
@@ -206,8 +206,93 @@
       "type": "cardGrid"
     },
     {
-      "text": "Bu modellerin hepsi satıştan pay almadan, ilan/görünürlük, yazılım, veri ve yönlendirme gelirine dayanır. Liste yasal görüş değildir; lisans/belge ile mümkün olan modeller (satış komisyonu, emanet/escrow, doğrudan kredi, resmi değerleme) bilinçli olarak kapsam dışıdır.",
-      "highlight": ["satıştan pay almadan"],
+      "level": 3,
+      "text": "Aracılık & komisyon — yetki belgesi ile (alınabilir)",
+      "type": "heading"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "eyebrow": "yetki belgesi",
+          "title": "Satış komisyonu / başarı ücreti",
+          "body": "İşlem kapanışında komisyon. Taşınmaz Ticareti Yetki Belgesi ile (ücretsiz, online başvuru; fiziki ofis + MYK Seviye 5 sorumlu danışman). Eylül 2024'ten beri standart.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "yetki belgesi",
+          "title": "Çevrimiçi müzayede / açık artırma",
+          "body": "Gönüllü (icra dışı) gayrimenkul müzayedesi serbesttir; aracılık komisyonu için yetki belgesi yeterli. Ayrı 'müzayede lisansı' yok.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "SPK / serbest",
+          "title": "Değerleme & ekspertiz",
+          "body": "Bilgilendirici değer tahmini serbest; resmî değerleme raporu SPK lisanslı değerleme kuruluşu kurarak veya ortaklıkla.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "SEDDK acente",
+          "title": "Sigorta (DASK / konut)",
+          "body": "Sigortacıya yönlendirme serbest; poliçe satış/komisyonu SEDDK acente belgesi ile (teknoloji şirketi acente olabilir).",
+          "tone": "gold",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "level": 3,
+      "text": "Finansal & ödeme — lisans veya lisanslı ortaklık ile (alınabilir)",
+      "type": "heading"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "eyebrow": "ödeme ortağı",
+          "title": "Güvenli ödeme / emanet (escrow)",
+          "body": "Lisanslı ödeme kuruluşu ile white-label ortaklık üzerinden hemen; veya kendi ödeme lisansı (TCMB, ~30M ₺ özkaynak). Güveni artırır, işlem akışını platformda tutar.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "ortaklık + yönlendirme",
+          "title": "Konut kredisi / finansman",
+          "body": "Lisanslı banka/finansman şirketiyle ortaklık + yönlendirme (lead) serbest; doğrudan kredi için finansman şirketi lisansı (6361, yüksek sermaye).",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "ödeme ortağı",
+          "title": "Kira tahsilatı & depozito",
+          "body": "Başvuru, ön kontrol ve sözleşme ücretleri serbest; kira/depozito tahsilatı lisanslı ödeme ortağı üzerinden.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "SPK GYF",
+          "title": "Fraksiyonel arsa yatırımı (GYF)",
+          "body": "Gayrimenkul Yatırım Fonu (SPK III-52.3) + portföy yönetim şirketi ortaklığıyla küçük paylarla arsa yatırımı (nitelikli yatırımcı). Tokenın yasal alternatifi.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "MPİ izni",
+          "title": "Ödüllü kampanya / çekiliş",
+          "body": "Kullanıcı çekilişi ve hediye kampanyaları Milli Piyango İdaresi izni ile; ~10 bin ₺ altı ödüller izinden muaf.",
+          "tone": "gold",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Bu modellerin tamamı Türkiye'de uygulanabilir: ya hiç belge gerektirmez ya da belgesi/lisansı alınabilir. Belge alınması fiilen imkânsız olan yalnızca iki nokta var, ikisi de iş modelini öldürmez: tapu tescilinin kendisi devlet (TKGM) tekelindedir — platform randevu, evrak, harç ve koordinasyonu yapar, tescili devlet yapar; blok-zincir mülkiyet tokenı için SPK çerçevesi henüz oturmamıştır — yasal alternatif yukarıdaki Gayrimenkul Yatırım Fonu'dur. Bu liste yasal görüş değildir.",
+      "highlight": ["belgesi/lisansı alınabilir"],
       "tone": "info",
       "type": "note"
     }
