@@ -48,9 +48,14 @@
           "num": "03"
         },
         {
-          "title": "EİDS ve ilan doğrulama dönemi eski ilan mantığını zorlar",
-          "body": "İlan doğrulama artık yasal bir gerekliliktir.",
+          "title": "EİDS ile ilan doğrulama artık yasal zorunluluk",
+          "body": "Elektronik ilan doğrulama yürürlüktedir; uyumsuz platformlar idari ceza riski taşır. arsam.net ilk günden EİDS uyumlu kurulur — hazır olmayan rakip için maliyet, bizim için avantaj.",
           "num": "04"
+        },
+        {
+          "title": "Kategori körlüğü: arsa, evin yanına atılmış bir sekme",
+          "body": "Yatay platformlarda imar, kadastro, jeoloji ve drone hiçbiri standart değil; arsaya özgü araç yok.",
+          "num": "05"
         }
       ],
       "type": "list"

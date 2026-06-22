@@ -33,9 +33,10 @@
     {
       "columns": [
         "Oyuncu",
-        "Konum",
+        "Konum (kategori · kalite)",
         "Arsa derinliği",
         "Doğrulama",
+        "Drone/medya",
         "Model"
       ],
       "rows": [
@@ -44,12 +45,14 @@
           "yatay · açık",
           "düşük",
           "kısmi",
+          "yok",
           "komisyon + ilan"
         ],
         [
           "hepsiemlak",
           "yatay · açık",
           "düşük",
+          "yok",
           "yok",
           "ilan + emlakçı"
         ],
@@ -58,6 +61,7 @@
           "yatay · küratoryal kısmi",
           "düşük",
           "kısmi",
+          "yok",
           "ilan"
         ],
         [
@@ -65,10 +69,16 @@
           "dikey · küratoryal",
           "yüksek",
           "tam · EİDS",
+          "premium dahil",
           "ilan + hizmet geliri"
         ]
       ],
       "type": "table"
+    },
+    {
+      "text": "Konumlanma: iki eksen — kategori (yatay/dikey) ve kalite (açık/küratoryal). arsam.net tek başına 'dikey + küratoryal' kadranında; rakipler yatay kalıyor.",
+      "tone": "info",
+      "type": "note"
     },
     {
       "text": "Rakip yarın dikey bir sayfa açabilir; ama saha arzını, doğrulamayı ve satıcı ilişkisini bir günde kuramaz.",
@@ -77,6 +87,20 @@
       ],
       "tone": "info",
       "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "470 modelden en güçlü 15 silah",
+      "type": "heading"
+    },
+    {
+      "text": "Savunma yalnız arsa derinliği değil; asimetrik bir strateji cephanesidir. Klasik gerilla pazarlama küçük bütçe/küçük etkidir; asimetrik komando rakibin büyüklüğünü hızsızlığa çevirir. En güçlüsü Counter-Positioning: sahibinden ilan-reklam modelini kopyalarsa komisyon ekonomisini kırar — kazansa da kaybeder.",
+      "highlight": ["kazansa da kaybeder"],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "type": "strategyArsenal"
     }
   ],
   "refs": {
@@ -88,6 +112,9 @@
     ],
     "glossary": [
       "EİDS"
+    ],
+    "data": [
+      "strategy-md"
     ],
     "metrics": []
   }

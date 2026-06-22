@@ -1,0 +1,2200 @@
+{
+  "id": "strategy-md",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "_source": "Asymmetric Marketing Paradigms for arsam.net.md (470 model, 5 küme)",
+  "totalModels": 470,
+  "top15": [
+    {
+      "rank": 1,
+      "name": "Counter-Positioning (Karşı-Konumlama)",
+      "desc": "Ilan-reklam modeli + dikey küratoryallık + güven katmanı üçgeniyle sahibinden.com'un kopyaladığı takdirde kendi geniş-pazar işini cannibalizing edeceği bir model benimsemek — bu asimetri arsam.net'in rakibe karşı yapısal kalesi ve en savunulabilir başlangıç noktasıdır."
+    },
+    {
+      "rank": 2,
+      "name": "Programmatic SEO (Şablon × Veri Fabrikası)",
+      "desc": "'[İl] [İlçe] [Mahalle] tarla satılık' şablonu × 50.000+ kombinasyonla binlerce sayfa üretmek; sahibinden'in dikey arsa aramasında rakibinin ekonomik olarak kopyalayamayacağı içerik hendeği kurmak ve organik trafiğin çoğunluğunu düşük maliyetle fethetmek."
+    },
+    {
+      "rank": 3,
+      "name": "Atomik Ağ (Atomic Network — Önce Tek İlçe)",
+      "desc": "Türkiye geneline değil, önce Söke/Yalova/Bodrum gibi tek bir ilçede tam alıcı-satıcı likiditesini kurmak; o nokta tutuşunca komşu ilçelere zincirleme geçmek — sahibinden'in hiçbir zaman yapmadığı dikey yoğunlaşma taktik avantajı sağlar."
+    },
+    {
+      "rank": 4,
+      "name": "Memetic Warfare (Toprak Memi Savaşı)",
+      "desc": "'Toprağını Geri Al' / 'Lira yerine arsa' gibi enflasyon ve miras duygularını içeren viral mem içerikleri üretmek; Duolingo-Wendy's modelinde sosyal mecra algoritmalarını sıfır reklam bütçesiyle besleyerek medya satın alımının yerini almak."
+    },
+    {
+      "rank": 5,
+      "name": "Status as a Service (Kurucu Üye Rozeti)",
+      "desc": "İlk 1.000 satıcıya numaralı kurucu üye rozeti, sıralama panoları ve davetli erişim mekaniğiyle ürünü kıt sosyal sermaye biriktirme alanına dönüştürmek; kullanıcı hem ilanını satmak hem platformda statü kazanmak için kalır."
+    },
+    {
+      "rank": 6,
+      "name": "Trojan Horse Araç Stratejisi (Ücretsiz Değerleme & CRM)",
+      "desc": "Sahibinden kullanıcılarına 'ücretsiz arsa değerleme' veya 'ilan yönetim CRM' aracı hediye etmek; tek-oyunculu araç bağımlılığı yarattıktan sonra ilan pazaryerine doğal geçiş sağlamak — Eventbrite/OpenTable'ın uyguladığı Trojan Horse ürün döngüsü."
+    },
+    {
+      "rank": 7,
+      "name": "Kategori Tasarımı (Dikey Arsa Pazaryerinin Babası Olmak)",
+      "desc": "'Dikey arsa pazaryeri' kategorisini icat eden ve bu kategorinin referans markası olarak zihinlere kazınan platform konumu oluşturmak; rakip hâlâ 'geniş gayrimenkul sitesi' olarak tanımlanırken arsam.net tek ve biricik olur."
+    },
+    {
+      "rank": 8,
+      "name": "Yerel SEO Halı Bombardımanı (81 İl × 922 İlçe)",
+      "desc": "Her il ve ilçe için ayrı optimize edilmiş arsa arama sayfaları oluşturmak; sahibinden'in jenerik yapısının hiçbir zaman bu dikey derinliğe inmeyeceği coğrafi uzun-kuyrukta dominant olmak ve yerel arama trafiğini sistematik olarak çalmak."
+    },
+    {
+      "rank": 9,
+      "name": "Diaspora Ağ Aktivasyonu (Hemşeri Derneği + Türkevi)",
+      "desc": "Almanya, Hollanda, Avusturya'daki 6,5 milyon Türk diasporasına hemşeri dernekleri, Türkevi etkinlikleri ve otomatik DE/NL/TR çoklu dil SEO üzerinden ulaşmak; sahibinden'in diasporaya hiç yatırım yapmadığı bu segmentte sıfır rakipli büyüme elde etmek."
+    },
+    {
+      "rank": 10,
+      "name": "Güven Katmanı Kama (Tapu Doğrulama + Sigortalı İlan)",
+      "desc": "Tapu doğrulaması, sahte ilan reddi ve isteğe bağlı tapu sigortasını ücretsiz hizmet olarak sunmak; 'bizde fake ilan yok' kampanyasıyla sahibinden'in kronik güven açığını arsam.net'in en ucuz büyüme silahına dönüştürmek."
+    },
+    {
+      "rank": 11,
+      "name": "Harita & Isı Haritası Pazarlaması (Arsa Fiyat Haritası)",
+      "desc": "Türkiye'nin interaktif arsa fiyat haritasını ve bölgesel fiyat trendi ısı haritalarını herkese ücretsiz açmak; medya yayınları bu görseli her ekonomi haberinde kullanır — arsam.net marka görünürlüğü kazan, doğal backlink ve SEO otoritesi birikir."
+    },
+    {
+      "rank": 12,
+      "name": "Hisseli Mülkiyet Kabilesi (Fractional Ownership Topluluğu)",
+      "desc": "Bir arsayı 100 hisseye bölerek düşük bütçeli yatırımcıyı platforma çekmek ve bu kitleye özel kapalı bir topluluk oluşturmak; Türkiye'nin kooperatif geleneğine dayalı bu yapı sahibinden'in asla kopyalamayacağı bir network effect ve ürün-pazar uyumu yaratır."
+    },
+    {
+      "rank": 13,
+      "name": "AI Arama Optimizasyonu — GEO/AEO (ChatGPT'de İlk Gelmek)",
+      "desc": "ChatGPT, Perplexity ve Google AI Overviews'ta 'Türkiye arsa pazaryeri', 'tarla nasıl satılır' gibi sorularda ilk atıf alan marka olmak için içerik mimarisini ve Wikipedia/Reddit atıf yoğunluğunu sistematik kurmak — 2026'nın en ucuz reklam panosu."
+    },
+    {
+      "rank": 14,
+      "name": "Enflasyon-Korunağı Kimliği (Lira Yerine Toprak Hareketi)",
+      "desc": "'TL'den arsaya kaçanlar' topluluğunu ortak bir kimlik etrafında örgütlemek; enflasyon verilerini içerik motoruna bağlayarak her TL değer kaybı haberinde arsam.net'in 'alternatif güvenli liman' olarak otomatik anılmasını sağlamak."
+    },
+    {
+      "rank": 15,
+      "name": "Miras Anlatısı (Çocuğuna Toprak Bırak)",
+      "desc": "'Çocuğuna toprak bırak, miras kalacak bir şey yap' duygusal anlatısını tüm içerik ve kampanyaların omurgası yapmak; bu nesiller arası miras çerçevesi sahibinden'in ürün-odaklı diline karşı duygusal hendek oluşturur ve Türkiye kültürüyle derin rezonans kurar."
+    }
+  ],
+  "clusters": [
+    {
+      "title": "Asimetrik / Hijack modelleri",
+      "items": [
+        {
+          "name": "Counter-Positioning",
+          "desc": "Rakibin kopyalayamayacağı bir model benimser; sahibinden'in komisyon yapısına karşı ilan reklamı veya dikey odak gibi ayrışan bir konum alır."
+        },
+        {
+          "name": "Judo Stratejisi",
+          "desc": "Rakibin ağırlığını ve gücünü onun aleyhine çevirir; büyük rakibin maliyet yapısı kendi zayıflığı haline gelir."
+        },
+        {
+          "name": "Aikido Marketing",
+          "desc": "Rakibin saldırı enerjisini yönlendirerek kendi ivmene dönüştürür; büyük bütçeli kampanyalar arsam.net'e dikkat çeker."
+        },
+        {
+          "name": "Truva Atı (Araç)",
+          "desc": "Rakibin sahasına hediye gibi giren ücretsiz bir araç (örn. arsa değerleme) ile kullanıcıyı platforma çeker."
+        },
+        {
+          "name": "Truva Atı Ürün Stratejisi",
+          "desc": "Tek-oyunculu SaaS aracı olarak başlayıp zamanla pazaryerine dönüşür; Eventbrite/OpenTable modeli."
+        },
+        {
+          "name": "Newsjacking",
+          "desc": "Güncel haber dalgasına dakikalar içinde binilerek arsam.net markası medyaya taşınır."
+        },
+        {
+          "name": "Brandjacking",
+          "desc": "Sahibinden'in marka aramalarını, karşılaştırma sayfalarını ve yanlış yazımlarını kendi alanına yönlendirir."
+        },
+        {
+          "name": "Ambush Marketing",
+          "desc": "Sponsor olmadan büyük bir etkinliğin (tarım fuarı, şehir festivali) zihinsel alanına marka enjekte edilir."
+        },
+        {
+          "name": "Tersine PR",
+          "desc": "PR firması tutmak yerine gazeteciyi doğrudan arayarak arsam.net hikayesini haberleştirmesini sağlar."
+        },
+        {
+          "name": "Anti-Marketing",
+          "desc": "Reklam yapmamayı reklam haline getirir; Patagonia tarzı dürüst provokasyon ile marka değeri üretir."
+        },
+        {
+          "name": "Subvertising",
+          "desc": "Rakibin reklam dilini parodileyerek kendi mesajına çevirir; ucuz ve dikkat çekici yayın üretir."
+        },
+        {
+          "name": "Kültürel Bozma",
+          "desc": "Mevcut sektör kültürünün sembollerini yeniden kodlayarak 'arsa = karmaşık/dolandırıcılık' ezberini kırar."
+        },
+        {
+          "name": "Kışkırtma Pazarlaması",
+          "desc": "Bilinçli küçük bir skandal üreterek bedava medya alanı kazanır; arsam.net için sektör normlarını sorgulayan açıklamalar işe yarar."
+        },
+        {
+          "name": "Öfke Pazarlaması",
+          "desc": "Sevenler ile karşı çıkanlar arasında saflaşma yaratarak algoritmayı besler ve organik yayılım sağlar."
+        },
+        {
+          "name": "Kutuplaştırma Stratejisi",
+          "desc": "Markanın kasıtlı 'anti' pozisyon almasıyla orta kitleyi eleyip güçlü bir taraftar kitlesi oluşturur."
+        },
+        {
+          "name": "Hate-to-Love Pivot",
+          "desc": "Önce sevilmeyen bir pozisyon alıp sonra bunu tutkulu sahiplenmeye çevirir; Ryanair 'ucuz ve gurursuz' modeli."
+        },
+        {
+          "name": "Gösteri Pazarlaması",
+          "desc": "Yüksek etkili tek seferlik bir medya-baytı eylemiyle kısa sürede büyük kamuoyu ilgisi çeker."
+        },
+        {
+          "name": "Mem Savaşı",
+          "desc": "Sosyal medya mizahını rakibe karşı silah olarak kullanır; Duolingo ve Wendy's gibi viral hesap stratejisi."
+        },
+        {
+          "name": "İronik Marka Sesi",
+          "desc": "Kurumsal olmayan, kendisiyle dalga geçen ses tonu ile sektördeki ciddi rakiplerden ayrışır."
+        },
+        {
+          "name": "Öz-Roast",
+          "desc": "Markanın kendi zayıflıklarını sahiplenip mizaha çevirmesi güven ve özgünlük yaratır."
+        },
+        {
+          "name": "Rakibi Roastlama",
+          "desc": "Adını anmadan rakibe nokta atışı yapan içerik üretir; arsam.net için sahibinden deneyimindeki sorunları ima yoluyla vurgular."
+        },
+        {
+          "name": "Ters Karşılaştırma Sayfaları",
+          "desc": "'X vs sahibinden' formatıyla rakibin SEO trafiğine binerek yeni kullanıcılar kazanır."
+        },
+        {
+          "name": "Alternative-To Sayfaları",
+          "desc": "'Sahibinden alternatifi' formatında açılış sayfaları ile rakip araması yapanları çeker."
+        },
+        {
+          "name": "Karşılaştırma Yemi",
+          "desc": "Rakibi tahrik eden veri noktası yayınlar; sahibinden'deki komisyon oranı veya sahte ilan rakamları gibi."
+        },
+        {
+          "name": "Açık Çatışma",
+          "desc": "CEO düzeyinde X/LinkedIn üzerinden açık polemik ile marka görünürlüğü ve medya ilgisi yaratır."
+        },
+        {
+          "name": "Dava Olarak Pazarlama",
+          "desc": "Hukuki mücadeleyi PR'a çevirir; Spotify-Apple veya Compass-Zillow modeli gibi küçük rakibin sesini yükseltir."
+        },
+        {
+          "name": "Rekabetçi Anlatı",
+          "desc": "'Tekeli kıran küçük çocuk' hikayesini medyalaştırır; arsam.net için sahibinden tekelini sorgulayan söylem işe yarar."
+        },
+        {
+          "name": "David vs Goliath Çerçeveleme",
+          "desc": "Pazarın altında ezilen küçük çiftçiyi ve arsacıyı merkeze koyarak güçlü bir duygusal anlatı inşa eder."
+        },
+        {
+          "name": "Zayıf Konumdan Pazarlama",
+          "desc": "Küçüklüğü bilinçli olarak erdem sayar; büyük olmamak dürüstlük ve müşteri odağı olarak konumlanır."
+        },
+        {
+          "name": "Craigslist Hack",
+          "desc": "Rakibin halka açık ilanlarını veya kitlesini yasal sınırda bir dağıtım kanalına dönüştürür; Airbnb'nin Craigslist modeli."
+        },
+        {
+          "name": "Ters Kazıma Hunisi",
+          "desc": "Rakibin halka açık ilanlarını yasal sınırda toplayıp sahiplerine outbound yaparak arz tarafını kazanır."
+        },
+        {
+          "name": "Talep Yağmalama",
+          "desc": "Rakibin alıcılarını yüksek değerli niş kategorilerde rakipten kopararak kazanır."
+        },
+        {
+          "name": "Arzı Seçici Çekme",
+          "desc": "Rakibin en kaliteli yüzde beş satıcısını ücretsiz hizmetle kendi tarafına çekerek kalite tabanı oluşturur."
+        },
+        {
+          "name": "Anti-Logo Kimliği",
+          "desc": "Rakibin logosunu ve renklerini bilinçli reddeden görsel kimlikle zihinsel ayrışma sağlar."
+        },
+        {
+          "name": "Anti-Estetik Marka",
+          "desc": "Cilalı sektör normuna karşı kasıtlı kaba ve dürüst görünümle özgünlük sinyali verir."
+        },
+        {
+          "name": "Manifesto Bombardımanı",
+          "desc": "95-tezler tarzı kamusal pozisyon ilanıyla sektör gündemini belirler ve medya kapsar."
+        },
+        {
+          "name": "Açık Mektup Pazarlaması",
+          "desc": "Sektöre veya rakibe açık mektupla gündem belirler; arsam.net'in değerlerini kamuya duyurmak için etkilidir."
+        },
+        {
+          "name": "Bilinçli Özür PR",
+          "desc": "Kriz sonrası dürüst özürle güven simyası yapar; KFC 'FCK' kampanyası modeli."
+        },
+        {
+          "name": "İtiraf Pazarlaması",
+          "desc": "Markanın kendi sırlarını kamusallaştırması özgünlük üretir; Buffer'ın şeffaf maaş paylaşımı gibi."
+        },
+        {
+          "name": "Radikal Şeffaflık",
+          "desc": "Komisyon, gelir ve kayıpların canlı dashboard'da yayınlanması ile rakiplerden keskin biçimde ayrışılır."
+        },
+        {
+          "name": "Halka Açık İnşa Hijackı",
+          "desc": "Geliştirme sürecini kamuyla paylaşarak Türkiye startup ekosisteminin dikkatini çalar."
+        },
+        {
+          "name": "Gölge Lansman",
+          "desc": "Rakibin lansman zamanlamasının hemen öncesine karşı-lansman konumlayarak medya alanı çalar."
+        },
+        {
+          "name": "Cenaze Pazarlaması",
+          "desc": "Rakibin veya eski sektör modelinin sembolik 'cenazesini' düzenleyerek kategori değişimini dramatize eder."
+        },
+        {
+          "name": "Tombstone PR",
+          "desc": "'X kategorisi öldü, Y doğdu' tarzı gazete duyurusuyla yeni dönemin başladığını ilan eder."
+        },
+        {
+          "name": "Kategori Öldürme Kampanyası",
+          "desc": "Eski kategori adını gömerek yeni bir kategori adı yerleştirir; Play Bigger metodolojisi."
+        },
+        {
+          "name": "Kategori Tasarımı",
+          "desc": "'Dikey arsa pazaryeri' gibi yeni bir kategorinin baba-markası konumunu alır; Ramadan ve Lochhead metodolojisi."
+        },
+        {
+          "name": "Lightning Strike Lansmanı",
+          "desc": "60-90 gün boyunca koordineli mega-yayım dalgasıyla piyasaya maksimum gürültüyle girer."
+        },
+        {
+          "name": "Bakış Açısı Pazarlaması",
+          "desc": "Ürün yerine dünya görüşü satar; arsam.net için 'adil ve şeffaf arsa piyasası' vizyonu ürünün önüne geçer."
+        },
+        {
+          "name": "Düşman Adlandırma",
+          "desc": "Açık bir ortak düşman yaratır; sahibinden tekeli ve komisyon sömürüsü hedef kitlenin öfkesini odaklar."
+        },
+        {
+          "name": "Korkuluk Karşılaştırma",
+          "desc": "Rakibin en kötü deneyim örneklerini karikatürleştirerek algı farkını dramatize eder."
+        },
+        {
+          "name": "Dark Pattern Teşhiri",
+          "desc": "Rakibin kullanıcı tuzaklarını teşhir eden içerik dizisiyle güven farkı yaratır."
+        },
+        {
+          "name": "Adli Pazarlama",
+          "desc": "Sektördeki gizli verileri raporlaştırıp gazetecilere pas atarak bedava manşet üretir."
+        },
+        {
+          "name": "Anti-Algoritma Manifestosu",
+          "desc": "Algoritmik baskıya karşı insan-merkezli marka pozisyonu alarak farklı bir değer önerisi sunar."
+        },
+        {
+          "name": "Anti-Soylulaştırma PR",
+          "desc": "Köylü, taşra ve küçük üreticiyi koruyan bir dili silahlaştırarak arsam.net'i halk tarafı olarak konumlar."
+        },
+        {
+          "name": "Ters Fiyatlama",
+          "desc": "Rakipten kasıtlı olarak daha pahalı durarak premium algı ve kalite sinyali yaratır."
+        },
+        {
+          "name": "Eksi Fiyat",
+          "desc": "Tanıtım döneminde kullanıcılara para veren kampanya yürütür; Robinhood referral modeli."
+        },
+        {
+          "name": "İndirim Karşıtı Duruş",
+          "desc": "'Biz indirim yapmıyoruz' pozisyonu alarak premium marka değerini korur; Apple ve Aesop modeli."
+        },
+        {
+          "name": "Gemileri Yakma",
+          "desc": "Geriye dönüşü olmayan kamusal taahhütle kararlılık sinyali verir ve medya ilgisi çeker."
+        },
+        {
+          "name": "Pre-Announcement Sabotajı",
+          "desc": "Rakip yeni özellik açıklamadan hemen önce aynı özelliği duyurarak rakibin haberini söndürür."
+        },
+        {
+          "name": "Yol Haritası Sabotajı",
+          "desc": "Açık yol haritası yayınlayıp rakibi tepkisel duruma sokarak inisiyatifi elinde tutar."
+        },
+        {
+          "name": "Açık İhale Pazarlaması",
+          "desc": "İhtiyaçları kamusallaştırıp tedarikçi kitlesini medyalaştırarak ekosistem kurar."
+        },
+        {
+          "name": "Kitle Kaynaklı İsimlendirme",
+          "desc": "Yeni özelliğin veya kampanyanın adını topluma seçtirerek sahiplik ve bağlılık üretir."
+        },
+        {
+          "name": "Ters Programlama",
+          "desc": "Rakibin yoğun dönemlerinde sessiz kalıp ölü dönemlerde patlama yaparak medya dikkatini daha az rekabetle kazanır."
+        },
+        {
+          "name": "Tatil Hijackı",
+          "desc": "Resmi olmayan günleri (Bayram, Hıdırellez) marka takvimine dönüştürerek özgün iletişim fırsatları yaratır."
+        },
+        {
+          "name": "Takvim İşgali",
+          "desc": "'Arsa Günü' gibi yeni bir alışveriş tatili icat ederek kategori sahipliği inşa eder."
+        },
+        {
+          "name": "Önleyici Markalama",
+          "desc": "Rakip henüz kullanmamışken jenerik terimi kendi adına tescilleyerek zihinsel alan rezerve eder."
+        },
+        {
+          "name": "Arama Terimi İşgali",
+          "desc": "'Tarla satılık' gibi jenerik aramalarda dominant olarak organik trafiğin büyük bölümünü çeker."
+        },
+        {
+          "name": "SEO Seyreltme",
+          "desc": "Rakibin sıralandığı uzun-kuyruk kelimeleri binlerce programatik sayfayla doldurarak rakibin görünürlüğünü azaltır."
+        },
+        {
+          "name": "Schema Markup Hijack",
+          "desc": "Rakibin elde edemediği zengin sonuç işaretlemesiyle arama sonuçlarında öne geçer."
+        },
+        {
+          "name": "Yerel SEO Halı Bombardımanı",
+          "desc": "81 il ve 922 ilçe için ayrı sayfa stratejisiyle uzun kuyrukta ülke genelini kaplar."
+        },
+        {
+          "name": "Lokasyon Sayfası Fabrikası",
+          "desc": "'Aydın Söke arsa' veya 'Bodrum Yalıkavak tarla' gibi binlerce hedefli sayfa üretir."
+        },
+        {
+          "name": "Uzun Kuyruk Hakimiyeti",
+          "desc": "Rakibin ihmal ettiği yıllık az aramalı kelimelerin kümülatif fethi ile sessiz trafik biriktirir."
+        },
+        {
+          "name": "Wikipedia Stratejisi",
+          "desc": "İlgili Wikipedia maddelerine atıf ve katkıyla otorite sinyal ve trafik akıtır."
+        },
+        {
+          "name": "Forum Sızma",
+          "desc": "Stack Overflow, Quora ve Ekşi Sözlük gibi sektörel forumlara değer üreterek marka varlığı oluşturur."
+        },
+        {
+          "name": "Reddit Native Marketing",
+          "desc": "Subreddit'lerde reklam değil katılımcı olarak konumlanarak organik güven inşa eder."
+        },
+        {
+          "name": "Forum Çapa Stratejisi",
+          "desc": "Niş forumlarda ve çiftçi bloglarında sponsorlu varlıkla hedef kitleye doğrudan ulaşır."
+        },
+        {
+          "name": "Yorum Bölümü Pazarlaması",
+          "desc": "Büyük yayınların yorum bölümlerinde uzman kimliğiyle görünürlük kazanır."
+        },
+        {
+          "name": "Hacker News / Product Hunt Lansmanı",
+          "desc": "Erken benimseyici dalgayı tek anlık yoğunlaştırarak başlangıç ivmesi yaratır."
+        },
+        {
+          "name": "Telegram-First Dağıtım",
+          "desc": "Türkiye'de Telegram kanallarını dağıtım kemiği yaparak mevcut kitlelere hızla ulaşır."
+        },
+        {
+          "name": "Anti-LinkedIn LinkedIn",
+          "desc": "LinkedIn'de samimi ve kişisel ses tonuyla algoritmanın önüne geçer ve sektörde öne çıkar."
+        },
+        {
+          "name": "WhatsApp Status Pazarlaması",
+          "desc": "Türkiye'ye özel WhatsApp Status üzerinden viral mikro-içerik dağıtımı yapar."
+        },
+        {
+          "name": "Soğuk Outbound Senfonisi",
+          "desc": "Yüksek hedeflenmiş ve kişiye özel zincirleme e-posta dizisiyle satıcı ve alıcı kazanır."
+        },
+        {
+          "name": "El Yazısı Mektup",
+          "desc": "Her premium arsa sahibine gerçek el yazısı mektup göndererek rakiplerin arasından sıyrılır."
+        },
+        {
+          "name": "Ters Satış",
+          "desc": "Lider müşteriyi kazanmak için başlangıçta ücretsiz çalışarak referans ve büyüme ivmesi oluşturur."
+        },
+        {
+          "name": "Concierge MVP",
+          "desc": "İlk kullanıcıların hesaplarını ekip eliyle yönetir; hız yerine kalite ve bağlılık üretir."
+        },
+        {
+          "name": "Wizard of Oz Lansmanı",
+          "desc": "Otomatik gibi görünen ama insan operasyonlu işleyişle ürün öncesi pazar gerçekliğini test eder."
+        },
+        {
+          "name": "Elle Yapılmış Likidite",
+          "desc": "İlk işlemleri elle eşleştirerek pazaryerinde başlangıç likiditesini yapay olarak oluşturur; DoorDash modeli."
+        },
+        {
+          "name": "Balina Avı",
+          "desc": "Tek bir mega-tedarikçiyi kazanmak için tüm kaynakları seferber eder; büyük inşaat şirketi veya kooperatif gibi."
+        },
+        {
+          "name": "Çapa Kiracı Stratejisi",
+          "desc": "Alışveriş merkezi mantığında imza tedarikçi oturtarak diğer satıcıları platforma çeker."
+        },
+        {
+          "name": "Saldırgan İşe Alma",
+          "desc": "Rakibin büyüme ekibini transfer ederek hem rakibi zayıflatır hem kendi kapasitesini artırır."
+        },
+        {
+          "name": "Yetenek Çalma Pazarlaması",
+          "desc": "Rakipten gelen transferleri PR fırsatına çevirerek sektörde güç sinyali verir."
+        },
+        {
+          "name": "Yatırımcı Tiyatrosu",
+          "desc": "Yatırım turu duyurularını B2B satış silahı olarak kullanarak kurumsal güvenilirlik inşa eder."
+        },
+        {
+          "name": "Kurucu Kültü",
+          "desc": "Kurucunun kişisel markasını şirketten önce inşa eder; arsam.net için görünür ve güvenilir bir yüz oluşturur."
+        },
+        {
+          "name": "Kurucu Liderliğinde Satış",
+          "desc": "Kurucunun her büyük müşteriyi şahsen kapatması erken aşamada hız ve kalite garantisi verir."
+        },
+        {
+          "name": "Kamusal Kurucu Rekabeti",
+          "desc": "Kurucunun rakip CEO ile X üzerinden polemik yapması marka görünürlüğünü artırır ve medya ilgisi çeker."
+        },
+        {
+          "name": "Açık Kaynak Dağıtım Hack",
+          "desc": "Açık kaynak bir araç çıkararak geliştiricileri ve proptech şirketlerini dağıtım kanalına dönüştürür."
+        },
+        {
+          "name": "API Pazarlaması",
+          "desc": "Rakibin sunmadığı API'yi kamuya açarak geliştirici ekosistemi ve entegrasyon ağı kurar."
+        },
+        {
+          "name": "Gömülü Widget",
+          "desc": "Emlakçı sitelerine gömülen 'arsa fiyat sorgu' widget'ıyla rakip platformlarda marka varlığı oluşturur."
+        },
+        {
+          "name": "Dağıtım Parazitliği",
+          "desc": "Rakip uygulama veya platformda eklenti olarak konumlanarak mevcut kitlesinden pay alır."
+        },
+        {
+          "name": "Browser Extension Trojan",
+          "desc": "Sahibinden sayfalarında fiyat geçmişi veya tapu sorgulama sunan Chrome eklentisiyle rakibin kullanıcısına doğrudan ulaşır."
+        },
+        {
+          "name": "Marketplace Aggregator",
+          "desc": "Birden çok kaynaktan ilan toplayıp tek noktada göstererek en kapsamlı envanter konumu oluşturur."
+        },
+        {
+          "name": "Data Liberation PR",
+          "desc": "Rakibin gizlediği piyasa verisini halka açarak şeffaflık lideri konumu kazanır."
+        },
+        {
+          "name": "Endeks/Rapor Pazarlaması",
+          "desc": "'arsam.net Türkiye Arsa Endeksi' tarzı mevsimlik raporlarla otorite ve medya atıfı üretir."
+        },
+        {
+          "name": "Yıllık Piyasa Raporu",
+          "desc": "Yıllık ücretsiz rapor yayınlayarak her medya outlet'ının atıf verdiği referans kaynak olur."
+        },
+        {
+          "name": "Veri Gazeteciliği Ortaklığı",
+          "desc": "Veriyi gazeteyle paylaşıp manşet üretir; Habertürk, Sözcü ve Dünya gibi yayınlarla marka görünürlüğü kazanır."
+        },
+        {
+          "name": "Podcast Pusu",
+          "desc": "Rakibin reklamını yapan podcast'lerde daha iyi teklif vererek reklam slotunu çalar."
+        },
+        {
+          "name": "Rakibin Konferansını Sponsorlama",
+          "desc": "Sektör etkinliğine küçük sponsorla girerek rakibin kitlesiyle doğrudan temas kurar."
+        },
+        {
+          "name": "Counter-Conference",
+          "desc": "Rakibin etkinliğinin yanına alternatif sahne kurarak dikkat böler; Salesforce karşısındaki Dreamforce parazitleri modeli."
+        },
+        {
+          "name": "Rakibi Canlı Tweetleme",
+          "desc": "Rakibin konferansını canlı yorumlayarak izleyici kapma ve gündem belirleme fırsatı yaratır."
+        },
+        {
+          "name": "Bitişik Alan Adı",
+          "desc": "'sahibinden-arsa.com' gibi yasal sınırda yan alan adlarıyla rakip trafiğini yakalar."
+        },
+        {
+          "name": "Pop-up Fiziksel Stant",
+          "desc": "Rakibin merkez ofisinin önünde fiziksel bir kurulumla dikkat çekici ve düşük maliyetli PR yapar."
+        },
+        {
+          "name": "Ters Billboard",
+          "desc": "Rakibin reklam panosu yanına on kat daha ucuza satıcı reklamı koyarak kıyaslama fırsatı yaratır."
+        },
+        {
+          "name": "QR Kod Hijack",
+          "desc": "Halka açık duvarlara ve araçlara hedeflenmiş QR kodlar yerleştirerek düşük maliyetle yerel erişim sağlar."
+        },
+        {
+          "name": "Sticker Bombardımanı",
+          "desc": "Çiftçi pazarları ve kahvehanelere yerleştirilen çıkartmalarla hedef kitleye fiziksel dokunuş yapar."
+        },
+        {
+          "name": "Çiftçilere Bedava Kahve",
+          "desc": "Anadolu'da çayhane ve kahvehanelerde hedeflenmiş yerel cömertlikle güven ve ağızdan ağıza yayılım üretir."
+        },
+        {
+          "name": "Anti-PR Kampanyası",
+          "desc": "'PR yapmıyoruz' pozisyonu alarak Tesla'nın ilk yılları gibi paradoks bir dikkat üretir."
+        },
+        {
+          "name": "Stealth Mode Pull",
+          "desc": "Aylarca sessiz kalıp sonra sürpriz bir açılışla maksimum merak ve medya ilgisi yaratır."
+        },
+        {
+          "name": "Rezervasyon Listesi FOMO",
+          "desc": "50 bin kullanıcı listesi yapıp dalgalı açılışla kıtlık algısı ve viral yayılım sağlar; Robinhood ve Superhuman modeli."
+        },
+        {
+          "name": "Kadife Halat Onboarding",
+          "desc": "Davet bazlı erişimle prestij ve ayrıcalık yaratır; dışarıda kalanların merakını artırır."
+        },
+        {
+          "name": "Ters Huni",
+          "desc": "Önce ürünü dene sonra üye ol yapısıyla geleneksel huninin tersine çalışarak sürtüşmeyi ortadan kaldırır."
+        },
+        {
+          "name": "Zarar Açan İlan",
+          "desc": "Premium ilan reklamını ilk yıl zararına vererek pazar payı kazanır ve rakibi fiyat yarışına zorlar."
+        },
+        {
+          "name": "Yıkıcı İndirim",
+          "desc": "Belirli zaman penceresinde rakibin altında fiyatlayarak kritik dönemlerde pazar payı çalar."
+        },
+        {
+          "name": "Geri Ödeme Cesareti",
+          "desc": "'Satılmazsa ücretsiz' garantisiyle hem risk tersine çevirir hem güçlü bir PR mesajı üretir."
+        },
+        {
+          "name": "Risk Tersine Çevirme",
+          "desc": "Tüm satıcı riskini platformun üstlenmesiyle rakiplerden kökten farklı bir güven teklifi sunar."
+        },
+        {
+          "name": "Sigorta-Güven Pazarlaması",
+          "desc": "Tapu garanti sigortasını ürün-pazarlama hibridi olarak konumlandırarak güven sorununu rekabet avantajına çevirir."
+        },
+        {
+          "name": "Doğrulama Kama",
+          "desc": "Rakibin yapmadığı tapu doğrulamasını kamusallaştırarak kalite ve güven standardı belirler."
+        },
+        {
+          "name": "Kalite Tabanı Farklılaştırma",
+          "desc": "İlanların yüzde yirmisini reddederek kalite sinyali verir ve pazar konumunu yükseltir."
+        },
+        {
+          "name": "Küratoryal Pazaryeri",
+          "desc": "Açık pazara karşı seçilmiş envanter konumuyla premium ve güvenilir bir alternatif sunar."
+        },
+        {
+          "name": "Editoryal Pazaryeri",
+          "desc": "Editör notlu ve gazete tadında ilan listeleme ile bilgi değeri yüksek bir deneyim oluşturur."
+        },
+        {
+          "name": "Anti-Spam Manifestosu",
+          "desc": "'Bizde fake ilan yok' kampanyasıyla sahte ilan sorunundan mustarip kullanıcıları doğrudan hedefler."
+        }
+      ]
+    },
+    {
+      "title": "Topluluk / kült / hareket modelleri",
+      "items": [
+        {
+          "name": "Tribe Marketing",
+          "desc": "Aidiyet inşasıyla 'bizim gibi insanlar bunu yapar' formülünü kullanma."
+        },
+        {
+          "name": "Cult Branding",
+          "desc": "İnanca dayalı, ritüelli ve üyelik hisli marka mimarisi kurma."
+        },
+        {
+          "name": "Movement Marketing (Hareket Pazarlaması)",
+          "desc": "Ürün değil dava satma; marka bir harekete dönüştürülür."
+        },
+        {
+          "name": "Belief-Driven Brand",
+          "desc": "Pozisyonu somut bir inanç önermesi üzerine kurma."
+        },
+        {
+          "name": "Manifesto-Led Growth (Manifestoyla Büyüme)",
+          "desc": "Kamusal manifestonun viral bayrak işlevi görmesi."
+        },
+        {
+          "name": "Identity Marketing (Kimlik Pazarlaması)",
+          "desc": "Markayı taşıma kararını sosyal kimlik beyanına dönüştürme."
+        },
+        {
+          "name": "Subculture Marketing (Alt Kültür Pazarlaması)",
+          "desc": "Marjinal alt kültürü ana akıma taşıma."
+        },
+        {
+          "name": "Insider–Outsider Dynamics",
+          "desc": "Tribün üyesi olan ile olmayanı net biçimde ayırma."
+        },
+        {
+          "name": "Status as a Service",
+          "desc": "Ürünü sosyal sermaye biriktirme aracı olarak tasarlama."
+        },
+        {
+          "name": "Proof-of-Work Status (İş İspatı Statüsü)",
+          "desc": "Statünün yalnızca zorlu bir aksiyonla kazanılabilmesi."
+        },
+        {
+          "name": "Velvet Rope Community (Kadife Halat Topluluğu)",
+          "desc": "Davet, başvuru veya küratör onayıyla katılım gerektiren topluluk."
+        },
+        {
+          "name": "Founding Member Badge (Kurucu Üye Rozeti)",
+          "desc": "İlk 1000 satıcıya kalıcı görsel rozet verme."
+        },
+        {
+          "name": "Numbered-Edition Membership",
+          "desc": "Numaralı (1/1000 gibi) limited üyelik sistemi."
+        },
+        {
+          "name": "Public Roster (Halka Açık Üye Listesi)",
+          "desc": "Üye listesinin herkese görünür olması."
+        },
+        {
+          "name": "Hall of Fame (Şöhret Salonu)",
+          "desc": "En değerli ve en uzun süreli satıcıların kalıcı olarak öne çıkarılması."
+        },
+        {
+          "name": "Status Leaderboard (Statü Sıralaması)",
+          "desc": "En iyi satıcı, en hızlı satan ilan gibi dinamik sıralamalar."
+        },
+        {
+          "name": "Achievement Unlocks (Başarı Açılışları)",
+          "desc": "Gamification tarzı milestone bildirimleri."
+        },
+        {
+          "name": "Tier System",
+          "desc": "Rep puanı, rozet ve seviye mekaniğine dayalı katman sistemi."
+        },
+        {
+          "name": "Reputation Capital (İtibar Sermayesi)",
+          "desc": "Çok-seferlik satıcı itibar sistemi (eBay seller rating tarzı)."
+        },
+        {
+          "name": "Referral as Status (Statü Olarak Referans)",
+          "desc": "Davet sayısının rozete dönüşmesi (Clubhouse modeli)."
+        },
+        {
+          "name": "Whitelist Marketing (Beyaz Liste)",
+          "desc": "Onay bekleyen liste mekaniğinin kendisini pazarlama aracına dönüştürme."
+        },
+        {
+          "name": "Waitlist Hype (Bekleme Listesi Hipıs)",
+          "desc": "Erken kayıt, sıra atlama ve davet zinciriyle talep yaratma."
+        },
+        {
+          "name": "FOMO Drop Mechanics",
+          "desc": "Periyodik limited drop'larla yapay kıtlık ve ivedilik yaratma."
+        },
+        {
+          "name": "Time-Bounded Listings (Zamanla Sınırlı İlanlar)",
+          "desc": "Yalnız 72 saat görünen flash ilan formatı."
+        },
+        {
+          "name": "Geographic Drop (Coğrafi Drop)",
+          "desc": "Her hafta yeni bir ilçenin aşamalı biçimde 'açılması'."
+        },
+        {
+          "name": "Cohort-Based Onboarding (Grup Bazlı Onboarding)",
+          "desc": "Sınıf arkadaşlığı hissiyle toplu katılım modeli."
+        },
+        {
+          "name": "Class Cohort Identity (Sınıf Kimliği)",
+          "desc": "'2026 Bahar Sınıfı' gibi mezuniyet hissi yaratan dönem kimliği."
+        },
+        {
+          "name": "Founder's Letter Ritual (Kurucu Mektup Ritüeli)",
+          "desc": "Aylık uzun-form mektubun topluluk ritüeline dönüşmesi."
+        },
+        {
+          "name": "Annual Letter Marketing",
+          "desc": "Buffett tarzı yıllık mektubun beklenen etkinliğe dönüşmesi."
+        },
+        {
+          "name": "Public Town Hall (Halka Açık Belediye Toplantısı)",
+          "desc": "Aylık canlı yayında her soruya açık oturum."
+        },
+        {
+          "name": "Open Office Hours",
+          "desc": "Kurucunun haftalık rastgele kullanıcılarla 1:1 görüşmesi."
+        },
+        {
+          "name": "Customer Advisory Board (Müşteri Danışma Kurulu)",
+          "desc": "Seçili satıcılardan oluşan ürün-yol-haritası oylama kurulu."
+        },
+        {
+          "name": "Co-Creation Marketing (Eş-Yaratım)",
+          "desc": "Yol haritasını kullanıcılarla birlikte yazma."
+        },
+        {
+          "name": "User-Voted Features (Kullanıcı Oylu Özellikler)",
+          "desc": "Herkese açık geliştirme gündeminin oy ile belirlenmesi."
+        },
+        {
+          "name": "Founding Tribe Storytelling (Kurucu Kabile Hikâyeleştirme)",
+          "desc": "İlk 100 satıcının belgeli hikâyelerinin içerik varlığına dönüşmesi."
+        },
+        {
+          "name": "User-Centric Documentary (Kullanıcı Belgeseli)",
+          "desc": "Bir kullanıcının deneyiminin video belgesel formatında anlatılması."
+        },
+        {
+          "name": "Origin Mythology (Köken Mitolojisi)",
+          "desc": "Şirketin doğuş hikâyesinin destanlaştırılması."
+        },
+        {
+          "name": "Contrarian Origin Story (Aykırı Köken Hikâyesi)",
+          "desc": "Kişisel bir hayal kırıklığından doğan spesifik kuruluş hikâyesi."
+        },
+        {
+          "name": "Insider Newsletter (İçeri Bülten)",
+          "desc": "Yalnız üyelere özel haftalık özel bülten."
+        },
+        {
+          "name": "Public Newsletter (Halka Bülten)",
+          "desc": "Sektörel niche bülten ile dağıtım sermayesi oluşturma."
+        },
+        {
+          "name": "Niche Celebrity Strategy (Niş Ünlü Stratejisi)",
+          "desc": "Geniş kitlelere değil, az ama odaklı niş etkililerine ulaşma."
+        },
+        {
+          "name": "Local Influencer Battalion (Yerel Etkili Birliği)",
+          "desc": "Her ilde yerel emlak/inşaat YouTuber'larıyla uzun süreli bağ kurma."
+        },
+        {
+          "name": "Creator Equity Program (İçerik Üreticisi Hisse Programı)",
+          "desc": "Etkileri token/hisse ile ortaklığa katma."
+        },
+        {
+          "name": "Affiliate Empire",
+          "desc": "Komisyonlu satış kuvveti olarak emlakçı/danışman ağı kurma."
+        },
+        {
+          "name": "Ambassador Program (Elçi Programı)",
+          "desc": "Sembolik yetkiyle güçlendirilmiş süper-kullanıcı kıtası oluşturma."
+        },
+        {
+          "name": "Power User Council (Süper Kullanıcı Konseyi)",
+          "desc": "Ürün önceliklerini belirleyen aylık toplanımlı küçük konsey."
+        },
+        {
+          "name": "Insider Discord/Telegram (İçeri Topluluk)",
+          "desc": "Yalnız premium üyelerin bulunduğu kapalı kanal."
+        },
+        {
+          "name": "Discord-First Growth (Discord Öncelikli Büyüme)",
+          "desc": "Web sitesi yerine Discord topluluğunu birincil deneyim noktası yapma."
+        },
+        {
+          "name": "WhatsApp Group Network (WhatsApp Grup Ağı)",
+          "desc": "81 ilde resmi WhatsApp toplulukları ile Türkiye'ye özgü ağ."
+        },
+        {
+          "name": "Telegram Channel Hub",
+          "desc": "Sürekli güncellenen yatırım sinyali tarzı Telegram kanalı."
+        },
+        {
+          "name": "Slack Community (Slack Topluluğu)",
+          "desc": "Profesyonel yatırımcılar için yarı-açık Slack topluluğu."
+        },
+        {
+          "name": "Subreddit Sponsorship (Subreddit Sponsorluğu)",
+          "desc": "İlgili subreddit'lerde iyi-vatandaş varlık oluşturma."
+        },
+        {
+          "name": "Niche Forum Acquisition (Niş Forum Satın Alımı)",
+          "desc": "Mevcut arsacı/çiftçi forumunu satın alıp dönüştürme."
+        },
+        {
+          "name": "Conference-as-Community (Konferans Olarak Topluluk)",
+          "desc": "Yıllık zirveyle topluluğu fiziksel ortamda buluşturma."
+        },
+        {
+          "name": "Local Meetups (Yerel Buluşmalar)",
+          "desc": "Her ilde aylık arsa-yatırımcısı buluşması düzenleme."
+        },
+        {
+          "name": "Pop-up Office (Pop-up Ofis)",
+          "desc": "Sınırlı süre için fiziksel danışmanlık noktası açma."
+        },
+        {
+          "name": "Caravan Tour (Karavan Turu)",
+          "desc": "Markalı karavan ile 81 il turu (Türkiye'ye özgü)."
+        },
+        {
+          "name": "Roadshow Series (Yol Gösteri Serisi)",
+          "desc": "Anadolu illerinde turne formatında yatırım akademisi."
+        },
+        {
+          "name": "Bus Tour Marketing (Otobüs Turu)",
+          "desc": "Premium üyeler için arsa keşif gezileri düzenleme."
+        },
+        {
+          "name": "Festival Activation (Festival Aktivasyonu)",
+          "desc": "Köy ve hasat festivallerinde markalı varlık oluşturma."
+        },
+        {
+          "name": "Religious Holiday Marketing (Dini Bayram Pazarlaması)",
+          "desc": "Kurban Bayramı/Ramazan üzerinden anlamlı kampanyalar kurma."
+        },
+        {
+          "name": "Diaspora Marketing (Diaspora Pazarlaması)",
+          "desc": "Yurt dışındaki Türk derneklerine doğrudan erişim sağlama."
+        },
+        {
+          "name": "Ethnic Network Activation",
+          "desc": "Cami cemaati, hemşeri dernekleri ve göçmen birlikleri üzerinden ağ aktivasyonu."
+        },
+        {
+          "name": "Embassy Channel (Konsolosluk Kanalı)",
+          "desc": "T.C. konsoloslukları üzerinden bilgi etkinlikleri düzenleme."
+        },
+        {
+          "name": "Türkevi Activation",
+          "desc": "Avrupa Türkevleri ile etkinlik ortaklıkları kurma."
+        },
+        {
+          "name": "Hometown Association Strategy (Hemşeri Derneği)",
+          "desc": "Diaspora için hemşeri dernek organizasyonlarına ulaşma."
+        },
+        {
+          "name": "Religious Authority Endorsement (Dini Otorite Onayı)",
+          "desc": "Helal yatırım fıkıh onayıyla diaspora güveni kazanma."
+        },
+        {
+          "name": "Faith-Based Investment Framing (İmanlı Yatırım Konumu)",
+          "desc": "Faizsiz arsa yatırımı söylemiyle dini motivasyona hitap etme."
+        },
+        {
+          "name": "Generational Inheritance Narrative (Miras Anlatısı)",
+          "desc": "'Çocuğuna toprak bırak' anlatısıyla nesiller arası bağ kurma."
+        },
+        {
+          "name": "Patriotic Marketing (Vatansever Pazarlama)",
+          "desc": "'Toprağını al, geri kazan' mesajıyla ulusal kimliğe hitap etme."
+        },
+        {
+          "name": "Anti-Foreign Buyer Stance",
+          "desc": "Yerli yatırımcıya öncelik söylemi üzerinden politik pozisyon alma."
+        },
+        {
+          "name": "Local Pride Marketing (Yerel Gurur)",
+          "desc": "Her şehrin kendi arsasının değerini yücelten yerel içerikler."
+        },
+        {
+          "name": "Regional Identity Loops",
+          "desc": "Bölgesel kimliğe (Karadenizli, Egeli vb.) özel anlatılar kurma."
+        },
+        {
+          "name": "Microculture Marketing (Mikrokültür Pazarlaması)",
+          "desc": "Hobi bahçecileri, tiny house veya off-grid gibi mikro topluluklara ulaşma."
+        },
+        {
+          "name": "Tiny House Tribe",
+          "desc": "Tiny house yaşam felsefesini benimseyenlere özel marka kolu."
+        },
+        {
+          "name": "Permaculture Movement (Permakültür Hareketi)",
+          "desc": "Sürdürülebilirlik topluluğunu pazaryerine çekme."
+        },
+        {
+          "name": "Organic Farming Cohort (Organik Tarım Kohortu)",
+          "desc": "Organik üretim sertifikalı arsa nişi oluşturma."
+        },
+        {
+          "name": "Investor Cult (Yatırımcı Kültü)",
+          "desc": "'TL'den arsaya kaçanlar' enflasyon hedge topluluğu."
+        },
+        {
+          "name": "Inflation-Hedge Identity (Enflasyon-Korunağı Kimliği)",
+          "desc": "Lira değer kaybı kaygısını ortak düşman olarak konumlandırma."
+        },
+        {
+          "name": "Token-Gated Community (Web3)",
+          "desc": "NFT/token sahipliğine bağlı topluluk erişimi."
+        },
+        {
+          "name": "Fractional Ownership Tribe (Hisseli Mülkiyet Kabilesi)",
+          "desc": "Hisseli arsa yatırımcılarına özel topluluk."
+        },
+        {
+          "name": "Co-op Movement Marketing (Kooperatif Hareketi)",
+          "desc": "Türkiye'nin güçlü kooperatif geleneğine bağlanma."
+        },
+        {
+          "name": "Crowdfunded Land Drops (Toplu Fonlanmış Arsa Drop'ları)",
+          "desc": "Her ay topluluğun birlikte aldığı yeni arsa drop'u."
+        },
+        {
+          "name": "DAO-as-Community",
+          "desc": "Yönetişimi tokenli oy hakkına dağıtma."
+        },
+        {
+          "name": "Reverse Influencer (Ters Etkili)",
+          "desc": "Mütevazı mikro-kullanıcının resmi sözcüye dönüşmesi."
+        },
+        {
+          "name": "Real People Spotlight (Gerçek İnsan Spotu)",
+          "desc": "Her ay bir satıcı/alıcının baş hikaye olarak öne çıkarılması."
+        },
+        {
+          "name": "User Stories as Assets (Varlık Olarak Kullanıcı Hikayeleri)",
+          "desc": "Her başarı hikayesini Instagram Reel'i gibi içerik varlığına çevirme."
+        },
+        {
+          "name": "TikTok-First Strategy",
+          "desc": "TikTok'u ana mecra olarak konumlandırma (Duolingo modeli)."
+        },
+        {
+          "name": "Mascot Lore (Maskot Mitolojisi)",
+          "desc": "Markaya hikaye giydiren karakter oluşturma."
+        },
+        {
+          "name": "Mascot Drama (Maskot Dramı)",
+          "desc": "Maskotun 'kayıp olduğu' gibi hikaye yaylarıyla viral içerik."
+        },
+        {
+          "name": "Long-Running Narrative (Uzun Soluklu Anlatı)",
+          "desc": "Aylık/yıllık devam eden marka hikayesi dizisi."
+        },
+        {
+          "name": "Recurring Stunts (Tekrar Eden Stuntlar)",
+          "desc": "Ritüelleşmiş haftalık/aylık etkinlik formatları."
+        },
+        {
+          "name": "Rituals as Loyalty (Sadakat Olarak Ritüel)",
+          "desc": "Markaya bağlı tekrar eden ritüellerle sadakat inşası."
+        },
+        {
+          "name": "Annual Event Marketing (Yıllık Etkinlik)",
+          "desc": "Takvimsel zirve/festival ile marka ritüeli yaratma."
+        },
+        {
+          "name": "Awards as Marketing (Pazarlama Olarak Ödüller)",
+          "desc": "'Yılın Çiftçisi' gibi ödüllerin pazarlama aracına dönüşmesi."
+        },
+        {
+          "name": "Tournament Marketing (Turnuva Pazarlaması)",
+          "desc": "En iyi yatırım veya köy konsepti gibi yarışmalar düzenleme."
+        },
+        {
+          "name": "Public Rankings (Halka Açık Sıralamalar)",
+          "desc": "Yıllık 'Türkiye'nin En Değerli 100 Köyü' gibi listeler yayımlama."
+        },
+        {
+          "name": "Beta Tester Brotherhood (Beta Tester Kardeşliği)",
+          "desc": "Erken testçilere ömür boyu rozet verme."
+        },
+        {
+          "name": "Hidden Champions Marketing (Gizli Şampiyonlar)",
+          "desc": "Niş hakimiyetinin kendisini marka değerine dönüştürme."
+        },
+        {
+          "name": "Bottom-Up Adoption (Tabandan Benimseme)",
+          "desc": "Önce çiftçi, sonra emlakçı, sonra büyük yatırımcı sırasıyla büyüme."
+        },
+        {
+          "name": "Land-and-Expand",
+          "desc": "Dar nişle gir, zamanla genişleyen ürün portföyüyle büyü."
+        },
+        {
+          "name": "Vertical Expansion Loop (Dikey Genişleme Döngüsü)",
+          "desc": "Peş peşe niş fethedilerek dikey büyüme döngüsü."
+        },
+        {
+          "name": "Wedge Strategy (Kama Stratejisi)",
+          "desc": "Tek dar problemle (vergi sorgu gibi) platforma giriş yapma."
+        },
+        {
+          "name": "Beachhead Marketing (Köprübaşı Pazarlama)",
+          "desc": "Tek mikro-pazar tamamen ele geçirilerek büyüme başlatma."
+        },
+        {
+          "name": "Microsegment Domination (Mikrosegment Hakimiyeti)",
+          "desc": "Az kullanıcıyla yüksek pazar payı hedefleme."
+        },
+        {
+          "name": "Atomic Network",
+          "desc": "Her şehirde minimum yaşayabilir likidite şartını ayrı ayrı kurma."
+        },
+        {
+          "name": "Hard Side Capture (Zor Tarafın Yakalanması)",
+          "desc": "Tedarikçi/satıcı tarafını önce ve hata payı bırakmadan kazanma."
+        },
+        {
+          "name": "Single-Player Mode",
+          "desc": "Tek-oyunculu fayda (CRM, ilan yönetimi) ile arz tarafı çekme."
+        },
+        {
+          "name": "Empty Seats Strategy",
+          "desc": "Kullanılmayan stok veya kapasitenin platforma kazandırılması."
+        },
+        {
+          "name": "Both-Sides-Are-One Strategy",
+          "desc": "Alıcı ve satıcının aynı kişi olduğu pazarı hedefleme."
+        },
+        {
+          "name": "Sub-Network Stitching (Alt Ağ Birleştirme)",
+          "desc": "Küçük şehir ağlarının sonradan tek platformda birleştirilmesi."
+        },
+        {
+          "name": "Network Density Metric (Ağ Yoğunluğu Metriği)",
+          "desc": "Kullanıcı sayısından çok başarılı işlem oranını ana hedef olarak alma."
+        },
+        {
+          "name": "Hard-Side Concierge (Zor Taraf Concierge)",
+          "desc": "İlk 1000 satıcıya manuel, bire-bir onboarding hizmeti."
+        },
+        {
+          "name": "Founder-Led Community Manager",
+          "desc": "Kurucunun ilk 6 ay topluluk yöneticiliğini bizzat üstlenmesi."
+        },
+        {
+          "name": "Mentorship Marketing (Mentorluk Pazarlaması)",
+          "desc": "Premium üyelere arsa yatırım mentoru atama."
+        },
+        {
+          "name": "Education-as-Marketing (Eğitim Pazarlaması)",
+          "desc": "Ücretsiz sertifika kursunu büyüme kanalına dönüştürme."
+        },
+        {
+          "name": "Certification Program (Sertifika Programı)",
+          "desc": "'Arsam Onaylı Yatırımcı' gibi akreditasyon programı oluşturma."
+        },
+        {
+          "name": "Academy Marketing",
+          "desc": "HubSpot Academy modelinde online akademi kurma."
+        },
+        {
+          "name": "Knowledge Cult (Bilgi Kültü)",
+          "desc": "'Sadece bizden öğrenebilirsin' özel bilgi pozisyonu."
+        },
+        {
+          "name": "Cohort-Based Course",
+          "desc": "Maven modelinde ücretli grup kursuyla topluluk inşası."
+        },
+        {
+          "name": "Public Curriculum (Halka Açık Müfredat)",
+          "desc": "Kapsamlı eğitim içeriklerinin tamamen ücretsiz açılması."
+        },
+        {
+          "name": "Wikipedia of Vertical (Dikeyin Wikipedia'sı)",
+          "desc": "Sektör ansiklopedisi konumuna gelme (Investopedia modeli)."
+        },
+        {
+          "name": "Glossary SEO",
+          "desc": "Arsa terimleri sözlüğüyle uzun-kuyruk SEO trafiği yaratma."
+        },
+        {
+          "name": "Q&A Repository (Soru-Cevap Deposu)",
+          "desc": "Quora/Stack Overflow tarzı SEO motorlu soru-cevap deposu."
+        },
+        {
+          "name": "Public Database (Halka Açık Veritabanı)",
+          "desc": "İmar planı ve tapu sorgu portalı gibi açık veri servisi."
+        },
+        {
+          "name": "Map-as-Marketing (Harita Pazarlaması)",
+          "desc": "İnteraktif Türkiye arsa fiyat haritasını pazarlama aracına dönüştürme."
+        },
+        {
+          "name": "Heatmap Marketing (Isı Haritası Pazarlaması)",
+          "desc": "Bölgesel fiyat trendi görsellerinin viral yayılması."
+        },
+        {
+          "name": "Public Pricing Database (Halka Açık Fiyat Veritabanı)",
+          "desc": "Geçmiş satış fiyatlarını açık veri olarak sunma (Zillow modeli)."
+        },
+        {
+          "name": "Index Brand (Endeks Markası)",
+          "desc": "'Arsam Endeksi'nin resmi raporlara alıntılanır hale gelmesi."
+        },
+        {
+          "name": "Religious Frame for Investment (İmanlı Yatırım Çerçevesi)",
+          "desc": "Faizsiz, helal, ahiret odaklı toprak yatırımı söylemi."
+        }
+      ]
+    },
+    {
+      "title": "Ürün-içi / dağıtım / AI-native modeller",
+      "items": [
+        {
+          "name": "Product-Led Growth (PLG) Core",
+          "desc": "Ürünün kendisinin satış kanalı haline gelmesi."
+        },
+        {
+          "name": "Bottoms-Up SaaS Adaptasyonu",
+          "desc": "Tek kullanıcı önce başlar, ardından kuruma yayılır."
+        },
+        {
+          "name": "Freemium Mekaniği",
+          "desc": "Sınırlı bedava katmanla geniş kullanıcı tabanı oluşturma."
+        },
+        {
+          "name": "Tersine Deneme (Reverse Trial)",
+          "desc": "Kullanıcı önce ücretliyi deneyimler, sonra bedavaya düşer."
+        },
+        {
+          "name": "Sonsuz Ücretsiz Katman (Free Forever)",
+          "desc": "Premium ürünün temel versiyonunun kalıcı olarak ücretsiz sunulması."
+        },
+        {
+          "name": "Süreli Ücretsiz Deneme Varyantı",
+          "desc": "7/14/30/60 günlük farklı deneme sürelerinin test edilmesi."
+        },
+        {
+          "name": "Kullanıma Bağlı Deneme",
+          "desc": "Belirli sayıda ilan ücretsiz, sonrası ücretli."
+        },
+        {
+          "name": "Self-Serve Onboarding",
+          "desc": "Satış demosu olmadan kayıt → ödeme akışı."
+        },
+        {
+          "name": "Aha Anı Mühendisliği",
+          "desc": "Kullanıcının ilk 5 dakikada değer hissetmesinin tasarlanması."
+        },
+        {
+          "name": "Değere İlk Ulaşma Süresi Optimizasyonu (TTV)",
+          "desc": "Kullanıcının değerle karşılaşma süresinin 30 saniyeye indirilmesi."
+        },
+        {
+          "name": "Aktivasyon Hunisi Mühendisliği",
+          "desc": "Sepet, fotoğraf, doğrulama gibi 4-5 mikro-eylem dizisinin tasarımı."
+        },
+        {
+          "name": "Sihirli An Paylaşımı (Magic Moment Sharing)",
+          "desc": "İlk satıştan hemen sonra kullanıcıyı paylaşıma yönlendirme."
+        },
+        {
+          "name": "Hooked Modeli (Nir Eyal)",
+          "desc": "Tetikleyici → Eylem → Değişken Ödül → Yatırım döngüsü."
+        },
+        {
+          "name": "Değişken Ödül Mühendisliği",
+          "desc": "Yeni ilan keşfinde sürpriz değişken kazanım tasarımı."
+        },
+        {
+          "name": "Yatırım Döngüsü (Investment Loop)",
+          "desc": "Kullanıcı ne kadar veri girerse platforma o kadar bağlanır."
+        },
+        {
+          "name": "Depolanan Değer Bağı (Stored Value Lock-in)",
+          "desc": "Favoriler, geçmiş aramalar ve alarm kayıtlarıyla bağlılık yaratma."
+        },
+        {
+          "name": "Kişiselleştirme Döngüsü",
+          "desc": "Kullanım arttıkça öneriler iyileşir (Pinterest/Spotify modeli)."
+        },
+        {
+          "name": "AI Destekli Öneri Sistemi",
+          "desc": "Yatırım profiline göre kişiselleştirilmiş arsa önerileri."
+        },
+        {
+          "name": "Konuşmalı Pazarlama AI Ajanı",
+          "desc": "Doğal dil sorularını yanıtlayan AI asistan: 'Aydın'da 200K bütçeyle ne alabilirim?'"
+        },
+        {
+          "name": "AI Arama Optimizasyonu (GEO/AEO)",
+          "desc": "ChatGPT/Perplexity'de sektör sorgularında ilk sırada görünme."
+        },
+        {
+          "name": "LLM Atıf Pazarlaması",
+          "desc": "Wikipedia, Reddit ve niş bloglarda atıf yoğunluğu oluşturma."
+        },
+        {
+          "name": "Programatik SEO at Scale",
+          "desc": "Şablon × veri kombinasyonuyla milyonlarca sayfa üretme (Zapier/Zillow modeli)."
+        },
+        {
+          "name": "Uzun Kuyruk Anahtar Kelime Fabrikası",
+          "desc": "'[Şehir] [İlçe] [Mahalle] tarla satılık' şablonuyla 50K+ kombinasyon."
+        },
+        {
+          "name": "Kullanıcı Üretimli SEO (UGC SEO)",
+          "desc": "Her ilanın ayrı bir SEO sayfası olması (G2/Yelp modeli)."
+        },
+        {
+          "name": "Schema-First SEO",
+          "desc": "Real Estate schema.org markup ile zengin arama sonuçlarında dominans."
+        },
+        {
+          "name": "İçerik Hendekleri (Content Moats)",
+          "desc": "Rakibin ekonomik olarak yapamayacağı derin içerik katmanı oluşturma."
+        },
+        {
+          "name": "Sütun İçerik Stratejisi (Pillar Content)",
+          "desc": "100K kelimelik ana rehber + 200 alt sayfa mimarisi."
+        },
+        {
+          "name": "Konu Kümesi Pazarlaması (Topic Cluster)",
+          "desc": "Hub-spoke içerik mimarisiyle SEO otoritesi inşası."
+        },
+        {
+          "name": "Reddit-Yemi Blog (Reddit-Bait Blogging)",
+          "desc": "Reddit'te paylaşılmak üzere tasarlanmış başlıklar ve içerikler."
+        },
+        {
+          "name": "Öfke Optimizeli İçerik",
+          "desc": "Tepki üreten istatistik ve sıralama içerikleri."
+        },
+        {
+          "name": "Liste İçerik SEO (Listicle SEO)",
+          "desc": "'İstanbul'a 1 saat mesafede 10 hobi bahçesi köyü' tarzı liste içerikler."
+        },
+        {
+          "name": "Hesap Makinesi Pazarlaması",
+          "desc": "Arsa değerleme, vergi, KDV ve harç hesaplayıcı araçları."
+        },
+        {
+          "name": "Ücretsiz Araç Demeti (Free Tools Suite)",
+          "desc": "20+ niş arsa aracıyla kullanıcı çekme (HubSpot modeli)."
+        },
+        {
+          "name": "Pazarlama Olarak Mühendislik (Engineering as Marketing)",
+          "desc": "Yazılım ekibinin ürettiği bedava araçların pazarlama kanalı olması."
+        },
+        {
+          "name": "Yan Proje Pazarlaması (Side Project Marketing)",
+          "desc": "Bağımsız küçük araçların ana markaya trafik akıtması."
+        },
+        {
+          "name": "Açık Kaynak Araç Stratejisi",
+          "desc": "GitHub'da açık kaynak arsa-fiyat-tahmin modeli ile geliştirici çekme."
+        },
+        {
+          "name": "API Pazarlama Olarak (API-as-Marketing)",
+          "desc": "Açık API ile geliştirici ekosistemi inşası."
+        },
+        {
+          "name": "Widget Dağıtımı (Embed Widget Distribution)",
+          "desc": "Emlakçı sitelerine yapışan 'arsam.net'te göster' widget'ı."
+        },
+        {
+          "name": "Tarayıcı Eklentisi Dağıtımı",
+          "desc": "Sahibinden sayfasında arsam.net değer karşılaştırması sunan eklenti."
+        },
+        {
+          "name": "Chatbot Cazibesi (Chatbot Lead Magnet)",
+          "desc": "WhatsApp Business chatbot ile sorgular → kayıt dönüşümü."
+        },
+        {
+          "name": "Üretken İlan Fotoğrafları",
+          "desc": "AI ile oluşturulmuş drone simülasyon fotoğrafları."
+        },
+        {
+          "name": "AI İlan Açıklaması Otomatik Üretimi",
+          "desc": "Satıcının 30 saniyede ilan yazabilmesini sağlayan AI."
+        },
+        {
+          "name": "Otomatik Çeviri Döngüsü",
+          "desc": "Türkçe ilanların DE/NL/EN'e otomatik çevirilmesi ile diaspora SEO."
+        },
+        {
+          "name": "Çok Dilli Programatik SEO",
+          "desc": "Aynı ilanın 6 dilde ayrı SEO sayfaları olması."
+        },
+        {
+          "name": "Sesli Arama Optimizasyonu",
+          "desc": "Siri/Alexa/ChatGPT sesli arama uyumlu içerik yapısı."
+        },
+        {
+          "name": "Görsel Arama (Visual Search)",
+          "desc": "Fotoğrafla arsa arama (Pinterest Lens modeli)."
+        },
+        {
+          "name": "AR Mülk Önizleme",
+          "desc": "Mobilde AR ile arsa sınır gösterimi deneyimi."
+        },
+        {
+          "name": "Drone Tur Hizmeti",
+          "desc": "Tüm premium ilanlara ücretsiz drone tur (Airbnb fotoğraf modeli)."
+        },
+        {
+          "name": "Ücretsiz Fotoğrafçılık Hizmeti",
+          "desc": "Profesyonel arsa fotoğrafçılığının satıcıya ücretsiz sunulması."
+        },
+        {
+          "name": "Büyük Satıcılara Bireysel Onboarding",
+          "desc": "Yüksek değerli satıcılara birebir onboarding hizmeti."
+        },
+        {
+          "name": "Self-Serve'den Satışa Geçiş",
+          "desc": "Kullanım eşiğini aşan kullanıcının satış ekibine devri (PLG → Sales)."
+        },
+        {
+          "name": "Satış Destekli PLG (Sales-Assisted PLG)",
+          "desc": "Bireysel ücretsiz kullanım + kurumsal sözleşme hibrit modeli."
+        },
+        {
+          "name": "Doğrudan Ağ Etkisi (Direct Network Effects)",
+          "desc": "Daha çok satıcı = daha çok alıcı = daha çok satıcı döngüsü."
+        },
+        {
+          "name": "Dolaylı Ağ Etkisi (Indirect Network Effects)",
+          "desc": "Üçüncü taraf araçların (emlakçı CRM) platforma bağlanması."
+        },
+        {
+          "name": "İki Taraflı Ağ Etkisi (2-Sided Network Effects)",
+          "desc": "Alıcı-satıcı dengesinin bilinçli tasarlanması."
+        },
+        {
+          "name": "Çapraz Taraf Ağ Etkisi (Cross-Side)",
+          "desc": "Farklı kategori taraflarının birbirini güçlendirmesi (arsa/ev/tarla)."
+        },
+        {
+          "name": "Yerel Ağ Etkisi (Local Network Effects)",
+          "desc": "Bir ilçedeki yoğunlaşmanın diğer ilçeleri çekmesi."
+        },
+        {
+          "name": "Veri Ağ Etkisi (Data Network Effects)",
+          "desc": "Daha çok işlem → daha iyi fiyat tahmini → daha çok kullanıcı."
+        },
+        {
+          "name": "Ağ Köprüsü (Network Bridges)",
+          "desc": "Yatırımcı ile çiftçi gibi iki ayrı ağı köprüleyen ürün katmanı."
+        },
+        {
+          "name": "Kişisel Viral Döngü (Slack Connect Modeli)",
+          "desc": "Davet, kullanıcının verimli çalışmasının doğal sonucu olarak gerçekleşir."
+        },
+        {
+          "name": "Sıradan Temas Döngüsü (Zoom Modeli)",
+          "desc": "Her ilan paylaşımının yeni kullanıcı toplama eylemine dönüşmesi."
+        },
+        {
+          "name": "İçerik Viral Döngüsü (TikTok Modeli)",
+          "desc": "Kullanıcı içerik üretir ve ücretsiz dağıtır."
+        },
+        {
+          "name": "UGC Büyüme Döngüsü",
+          "desc": "Kullanıcı yorumlarının SEO trafiği üretmesi (G2/Yelp modeli)."
+        },
+        {
+          "name": "Teşvikli Referans Sistemi (Dropbox)",
+          "desc": "Davet karşılığında premium süre uzatma."
+        },
+        {
+          "name": "İki Taraflı Referans",
+          "desc": "Davet eden ve davet edilen ikisinin de kazandığı sistem."
+        },
+        {
+          "name": "Token ile Referans Ödüllendirme (Web3)",
+          "desc": "Kripto token ile referans sistemi teşviki."
+        },
+        {
+          "name": "Referans Turnuvası",
+          "desc": "Aylık en çok davet edeni ödüllendiren yarışma."
+        },
+        {
+          "name": "Pazar Likiditesi Sübvansiyonu",
+          "desc": "Erken kullanıcılara ücretsiz/sübvansiyonlu işlem sunma."
+        },
+        {
+          "name": "Negatif CAC ile Başlangıç",
+          "desc": "Yeni kullanıcının getirdiği kullanıcıyla ilk kullanıcı maliyetini karşılama."
+        },
+        {
+          "name": "Bileşik Büyüme Döngüsü (Reforge)",
+          "desc": "Sistemin çıktısının tekrar girdiye yatırılması."
+        },
+        {
+          "name": "Etkileşim Döngüsü (Engagement Loop)",
+          "desc": "Kullanılan ürün → alışkanlık → daha çok kullanım zinciri."
+        },
+        {
+          "name": "Alışkanlık Oluşturan Bildirimler",
+          "desc": "Yeni ilan, fiyat değişikliği ve alarm bildirimleriyle düzenli temas."
+        },
+        {
+          "name": "Kaydedilmiş Arama Uyarıları",
+          "desc": "Aktif kullanıcıyı geri çeken kişiselleştirilmiş arama uyarıları."
+        },
+        {
+          "name": "Günlük E-posta Özeti",
+          "desc": "Yeni ilanların kişiselleştirilmiş günlük özet e-postası."
+        },
+        {
+          "name": "Push Bildirim Mühendisliği",
+          "desc": "Hyper-kişiselleştirilmiş fırsat bildirimleri."
+        },
+        {
+          "name": "Tekrar Etkileşim Kampanyası (Re-engagement)",
+          "desc": "30/60/90 günlük hareketsiz kullanıcıyı kademeli geri çağırma."
+        },
+        {
+          "name": "Geri Kazanma Kampanyası (Win-Back)",
+          "desc": "İptal eden kullanıcılara özel teklif sunma."
+        },
+        {
+          "name": "Onboarding Akışı Optimizasyonu",
+          "desc": "1. günde sağlanan değerin 30. günde bağlılığa dönüşmesi."
+        },
+        {
+          "name": "60 Saniyede İlk Değer",
+          "desc": "İlk dakikada gerçek değer deneyimi sağlama."
+        },
+        {
+          "name": "Boş Sayfa Pazarlaması (Empty State Marketing)",
+          "desc": "Boş ekranlarda bile yönlendirici mesaj ile kullanıcıya rehberlik."
+        },
+        {
+          "name": "Ürün-içi Pazarlama (In-Product Marketing)",
+          "desc": "Ürün içi banner, tooltip ve walkthrough ile dönüşüm artırma."
+        },
+        {
+          "name": "Yapışkan Tooltip'ler",
+          "desc": "Yeni özelliklerin doğru anda ve bağlamda gösterilmesi."
+        },
+        {
+          "name": "Davranışsal Tetikleyiciler",
+          "desc": "Kullanıcı eyleminin başka eylemleri otomatik açması."
+        },
+        {
+          "name": "Damla Kampanya (Drip Campaign)",
+          "desc": "14 günlük otomatik e-posta dizisi."
+        },
+        {
+          "name": "Yaşam Döngüsü Pazarlaması (Lifecycle Marketing)",
+          "desc": "Onboarding/aktif/uyuyan/churn segmentleri için ayrı senaryolar."
+        },
+        {
+          "name": "Tahmine Dayalı Churn Önleme",
+          "desc": "ML ile churn riski yüksek kullanıcıya önceden müdahale."
+        },
+        {
+          "name": "Kazan-Kaybet Analizi Döngüsü",
+          "desc": "Her churn'den öğrenme ve sistemi iyileştirme zinciri."
+        },
+        {
+          "name": "NPS Güdümlü Pazarlama",
+          "desc": "9-10 verenleri referansa, 0-6 verenleri geri kazanma kampanyasına yönlendirme."
+        },
+        {
+          "name": "A/B Test Motoru",
+          "desc": "Haftada 5+ test çalıştıran sistematik deney disiplini."
+        },
+        {
+          "name": "Çok Değişkenli Test (Multivariate Testing)",
+          "desc": "Tek bir butonun 6 farklı varyantla eş zamanlı test edilmesi."
+        },
+        {
+          "name": "Büyüme Deney Ritmi",
+          "desc": "Haftalık tahmin → test → öğrenme döngüsü."
+        },
+        {
+          "name": "Kohort Analizi",
+          "desc": "Hangi haftaki kullanıcıların ne kadar süre kaldığının ölçümü."
+        },
+        {
+          "name": "Bağlılık Eğrisi Mühendisliği",
+          "desc": "Asimptotik retention eğrisi tasarımı ile uzun vadeli bağlılık."
+        },
+        {
+          "name": "Kuzey Yıldızı Metriği Disiplini",
+          "desc": "Tek metriğe odaklanma (örn. haftalık aktif premium ilan)."
+        },
+        {
+          "name": "OMTM – Tek Önemli Metrik",
+          "desc": "Lean Analytics disipliniyle en kritik metriğe odaklanma."
+        },
+        {
+          "name": "AAARRR Korsan Hunisi",
+          "desc": "Farkındalık → Kazanım → Aktivasyon → Bağlılık → Gelir → Referans."
+        },
+        {
+          "name": "Huni Yerine Döngü Disiplini",
+          "desc": "Lineer huni düşüncesinden bileşik büyüme döngüsüne geçiş."
+        },
+        {
+          "name": "Sihirli Sayı Keşfi",
+          "desc": "Slack'in '2000 mesaj = retention' sayısı gibi kritik eşiklerin keşfi."
+        },
+        {
+          "name": "Kohort Bazlı Retention Hedefi",
+          "desc": "Başarı ölçütünün tek bir kohort bağlılığı üzerine kurulması."
+        },
+        {
+          "name": "Aktivasyon Oranı Takıntısı",
+          "desc": "Kayıt → aktivasyon dönüşümünün tek metrik olarak takip edilmesi."
+        },
+        {
+          "name": "Net Gelir Bağlılığı (NRR)",
+          "desc": "Mevcut müşteri büyütmesinin ana büyüme motoru olması."
+        },
+        {
+          "name": "Genişleme Geliri Mühendisliği",
+          "desc": "Premium yükseltme akışı tasarımı."
+        },
+        {
+          "name": "Çapraz Satış Döngüsü (Cross-Sell Loops)",
+          "desc": "Tarla alan müşteriye hisseli arsa öneren çapraz satış."
+        },
+        {
+          "name": "Yükseltme Tetikleyici Haritası",
+          "desc": "Kullanım eşiklerinin upgrade önerilerine dönüştürülmesi."
+        },
+        {
+          "name": "Katman Yükseltme Hunisi (Tier Upsell)",
+          "desc": "Free → Başlangıç → Vitrin → Premium yolculuğunun tasarımı."
+        },
+        {
+          "name": "Fiyat Sayfası Optimizasyonu",
+          "desc": "Fiyat sayfasının ana dönüşüm aracı olarak konumlandırılması."
+        },
+        {
+          "name": "Çapa Fiyatlama (Anchor Pricing)",
+          "desc": "Yüksek fiyatlı paketle alt paketlerin ucuz görünmesini sağlama."
+        },
+        {
+          "name": "Tuzak Fiyatlama (Decoy Pricing)",
+          "desc": "Satılması beklenmeyen orta paketle uç paketleri cazip kılma."
+        },
+        {
+          "name": "İlan Başı Fiyatlama",
+          "desc": "Doping mantığıyla ilan başına ücretlendirme modeli."
+        },
+        {
+          "name": "Yıllık Abonelik İndirimi",
+          "desc": "Yıllık ödeme tercihini teşvik eden indirim modeli."
+        },
+        {
+          "name": "Paket Fiyatlama (Bundle Pricing)",
+          "desc": "Doping + Vitrin + Premium kombinasyon paketleri."
+        },
+        {
+          "name": "Yoğunluk Fiyatlaması (Surge Pricing)",
+          "desc": "Talep yoğunluğuna göre vitrin slot fiyatlarının dinamik ayarlanması."
+        },
+        {
+          "name": "Açık Artırmalı Premium Slotlar",
+          "desc": "En iyi vitrin alanlarının haftalık açık artırmayla satışı."
+        },
+        {
+          "name": "Dinamik Fiyatlama (Dynamic Pricing)",
+          "desc": "AI ile her ilan için özelleştirilmiş fiyatlama."
+        },
+        {
+          "name": "Komisyonu Pazarlama Yapma",
+          "desc": "'0% komisyon' pozisyonuyla rakipten farklılaşma."
+        },
+        {
+          "name": "İşlem Payı Optimizasyonu (Take Rate)",
+          "desc": "Satıcılara düşük komisyon sinyali vererek kazanım artırma."
+        },
+        {
+          "name": "B2B2C Dağıtım",
+          "desc": "Emlakçı/banka/inşaat firmasını dağıtım kanalı olarak kullanma."
+        },
+        {
+          "name": "Kanal Ortağı Programı",
+          "desc": "Emlakçılar için white-label hizmet sunma."
+        },
+        {
+          "name": "API Ortaklığı",
+          "desc": "Banka mortgage uygulamalarına arsam.net entegrasyonu."
+        },
+        {
+          "name": "Altyapı Olarak Pazaryeri",
+          "desc": "Diğer fintech/proptech uygulamalarının alt katmanı olma."
+        },
+        {
+          "name": "Gömülü Pazaryeri (Embedded Marketplace)",
+          "desc": "Bankaların mobil uygulamalarına gömülü arsam.net deneyimi."
+        },
+        {
+          "name": "Süper-Uygulama Ortaklığı",
+          "desc": "Trendyol/Hepsiburada içine 'Arsa' sekmesi (uzun vadeli)."
+        },
+        {
+          "name": "Çapraz Platform Dağıtımı",
+          "desc": "Aynı ilanın 5 farklı kanala otomatik yayılması."
+        },
+        {
+          "name": "Yeniden İlan Otomasyonu (Re-listing)",
+          "desc": "Sahibinden ve hürriyetemlak'ta otomatik karşı-yayın."
+        },
+        {
+          "name": "Ters Toplayıcı Hamlesi (Reverse Aggregator)",
+          "desc": "Kullanıcı için rakip sitelerin ilanlarını tek noktada gösterme."
+        },
+        {
+          "name": "Uygulama Mağazası Optimizasyonu (ASO)",
+          "desc": "App Store ve Google Play SEO ile organik indirme artırma."
+        },
+        {
+          "name": "Uygulama Mağazası Yorumları Pazarlama",
+          "desc": "Erken kullanıcılarla yorum kampanyası düzenleme."
+        },
+        {
+          "name": "Derin Bağlantı Stratejisi (Deep Link)",
+          "desc": "Her ilanın paylaşılabilir kısa URL ile doğrudan ulaşılabilmesi."
+        },
+        {
+          "name": "QR Kod İlan Pazarlaması",
+          "desc": "Her arsanın fiziksel QR koduyla pazarlanması."
+        },
+        {
+          "name": "Üretken AI İçerik Pazarlaması",
+          "desc": "AI ile haftada 200 blog yazısı üretimi."
+        },
+        {
+          "name": "AI Avatar Sözcü",
+          "desc": "Markanın AI ile interaktif konuşan maskotu."
+        },
+        {
+          "name": "AI Müşteri Hizmetleri",
+          "desc": "7/24 niş arsa danışmanlığı sunan AI destek sistemi."
+        },
+        {
+          "name": "Üretken İlan Sayfaları",
+          "desc": "Her ilan için AI üretimli zenginleştirilmiş sayfa içeriği."
+        },
+        {
+          "name": "Uzun-Form AI İçerik",
+          "desc": "5000 kelimelik bölge analizi yazılarının AI ile üretimi."
+        },
+        {
+          "name": "Reddit-Native AI İçerik",
+          "desc": "Niş Reddit dilinde AI üretimli katkılar (etik sınır içinde)."
+        },
+        {
+          "name": "AI Yatırımcı Raporları",
+          "desc": "Her premium üyeye aylık AI üretimli yatırım raporu."
+        },
+        {
+          "name": "AI ile Ters SEO (Reverse SEO via AI)",
+          "desc": "ChatGPT/Perplexity'de markanın 'tek doğru cevap' olarak konumlanması."
+        },
+        {
+          "name": "GEO – Üretken Motor Optimizasyonu",
+          "desc": "AI cevaplarında atıf yapılması için içerik mimarisi kurma."
+        },
+        {
+          "name": "AEO – Cevap Motoru Optimizasyonu",
+          "desc": "Cevap motorları için yapılandırılmış içerik üretimi."
+        },
+        {
+          "name": "AI Satış Ajanı",
+          "desc": "Premium satıcı kazanmak için outbound AI agent kullanımı."
+        },
+        {
+          "name": "Diaspora İçin Sesli AI",
+          "desc": "Almanca/Türkçe sesli AI satış asistanı."
+        },
+        {
+          "name": "Benzer Kitle Hedefleme (Lookalike)",
+          "desc": "Mevcut premium müşterilere benzeyen kitleye reklam."
+        },
+        {
+          "name": "Yeniden Hedefleme Hunisi (Retargeting)",
+          "desc": "Site ziyaretçilerini 7 gün boyunca takip eden reklam akışı."
+        },
+        {
+          "name": "Özel Kitle Katmanlama (Custom Audience)",
+          "desc": "CRM × Meta × Google ortak kitle oluşturma."
+        },
+        {
+          "name": "Coğrafi Çitle Pazarlama (Geofencing)",
+          "desc": "Belirli AVM/havalimanlarında konum bazlı reklam."
+        },
+        {
+          "name": "Konum Bazlı Push Bildirimi",
+          "desc": "Kullanıcının çevresindeki ilanları konum bazlı bildirme."
+        },
+        {
+          "name": "Instagram Reels Öncelikli Strateji",
+          "desc": "Türkiye için TikTok eşdeğeri Reels kanalında öncelikli içerik."
+        },
+        {
+          "name": "YouTube Uzun-Form Stratejisi",
+          "desc": "30 dakikalık derinlemesine saha turu içerikleri."
+        },
+        {
+          "name": "YouTube Shorts Fabrikası",
+          "desc": "Günlük 5 short = haftalık 35 short üretim ritmi."
+        },
+        {
+          "name": "Dikey Video Döngüsü (Vertical Video Loop)",
+          "desc": "Aynı içeriğin 8 farklı kanala adapte edilerek dağıtılması."
+        },
+        {
+          "name": "Canlı Yayın Açık Artırması",
+          "desc": "TikTok Live / Instagram Live'da arsa açık artırması."
+        },
+        {
+          "name": "Twitch Tarzı Arazi Turları",
+          "desc": "Canlı drone keşif yayınları."
+        },
+        {
+          "name": "Podcast Ağı Sponsorlukları",
+          "desc": "20 niş emlak/yatırım podcast'ine düzenli sponsorluk."
+        },
+        {
+          "name": "Markanın Kendi Podcast'i",
+          "desc": "Her hafta bir yatırımcı konuğuyla yayınlanan marka podcast'i."
+        },
+        {
+          "name": "Bülten Sponsor Ağı",
+          "desc": "50 niş bültenin yıllık paket sponsoru olma."
+        },
+        {
+          "name": "Substack Stratejisi",
+          "desc": "Marka ekibinin Substack'leriyle yan dağıtım kanalı oluşturma."
+        },
+        {
+          "name": "Twitter/X Kitle İnşası",
+          "desc": "Founder ve ekibin günlük 10 tweet paylaşım disiplini."
+        },
+        {
+          "name": "LinkedIn Düşünce Liderliği",
+          "desc": "B2B hedef kitle için LinkedIn'de otorite inşası."
+        },
+        {
+          "name": "LinkedIn Doküman Pazarlaması",
+          "desc": "PDF carousel paylaşımlarıyla viralite yaratma."
+        },
+        {
+          "name": "Threads Öncelikli Strateji",
+          "desc": "Türkiye'de yükselen Threads kanalında öncelikli içerik."
+        },
+        {
+          "name": "WhatsApp Business API",
+          "desc": "Ölçekli müşteri iletişim altyapısı kurma."
+        },
+        {
+          "name": "Sohbet Ticaret (Conversational Commerce)",
+          "desc": "WhatsApp üzerinden ilan inceleme ve satış akışı."
+        },
+        {
+          "name": "Kanal Olarak Bildirim (Notification-as-Channel)",
+          "desc": "Push bildirimin ücretsiz pazarlama kanalı olarak kullanılması."
+        },
+        {
+          "name": "Uygulama-içi Mesajlaşma",
+          "desc": "Hedeflenmiş kullanıcılara uygulama içi kişisel mesaj."
+        },
+        {
+          "name": "Bağlılık E-postası Mühendisliği",
+          "desc": "Takvim değil yalnızca davranış tetikleyici bazlı e-postalar."
+        },
+        {
+          "name": "Yeniden Aktive Etme Motoru",
+          "desc": "ML ile uyuyan kullanıcının optimum geri-getirme zamanını belirleme."
+        },
+        {
+          "name": "Pazarlama Olarak Anket",
+          "desc": "Kullanıcı anketinin kendisinin marka temas noktasına dönüşmesi."
+        },
+        {
+          "name": "Quiz Pazarlaması",
+          "desc": "'Hangi tip arsa yatırımcısısın?' sorusuyla segmentasyon + viral paylaşım."
+        },
+        {
+          "name": "Kişilik Testi Pazarlaması",
+          "desc": "Cosmopolitan-quiz mantığında niş kişilik testi."
+        },
+        {
+          "name": "Gömülü Etkileşimli Hesaplayıcılar",
+          "desc": "3. taraf sitelere gömülü hesap araçları ile trafik çekme."
+        },
+        {
+          "name": "Gömülü Isı Haritası",
+          "desc": "Yatırım trendi haritasının medyada paylaşılan görsele dönüşmesi."
+        },
+        {
+          "name": "Özel GPT (OpenAI Store)",
+          "desc": "'arsam.net Yatırım Asistanı' custom GPT oluşturma."
+        },
+        {
+          "name": "MCP/Tool Entegrasyonu",
+          "desc": "Claude/ChatGPT araç ekosisteminde platform olarak yer alma."
+        },
+        {
+          "name": "Slack/Discord Uygulama Entegrasyonu",
+          "desc": "Profesyonel toplulukların Slack workspace'lerine entegre olma."
+        },
+        {
+          "name": "Notion Şablon Pazarlaması",
+          "desc": "'Arsa Yatırım Takip Notion' şablonuyla viral dağıtım."
+        },
+        {
+          "name": "Excel/Sheet Şablon Dağıtımı",
+          "desc": "ROI hesap tablolarının şirketler arasında organik yayılması."
+        },
+        {
+          "name": "Açık Kanban Panosu",
+          "desc": "Herkese açık ürün roadmap'ının SEO kanalına dönüşmesi."
+        },
+        {
+          "name": "Açık Müşteri Veritabanı",
+          "desc": "Premium üyelerin kendi müşterilerini pazaryerinde aramasına izin verme."
+        },
+        {
+          "name": "Pazaryeri + Araçlar Hibridi",
+          "desc": "İlan platformu ile portföy yönetim aracının birleşimi."
+        },
+        {
+          "name": "PLG + Pazaryeri Hibridi",
+          "desc": "Bireysel araç (CRM) → pazaryeri (ilan) dönüşüm modeli."
+        },
+        {
+          "name": "Ters Pazaryeri (Reverse Marketplace)",
+          "desc": "Alıcının ihtiyacını yayınladığı, satıcıların başvurduğu model."
+        },
+        {
+          "name": "Alıcı Başlangıçlı Teklif Talebi (RFQ)",
+          "desc": "'Aydın Söke 5 dönüm istiyorum' ilanının satıcılara dağıtılması."
+        },
+        {
+          "name": "Açık Artırma Formatı",
+          "desc": "Klasik sabit fiyat yerine açık artırma satış modeli."
+        },
+        {
+          "name": "Ters İhale (Reverse Auction)",
+          "desc": "Satıcıların fiyatı düşürerek teklif verdiği format."
+        },
+        {
+          "name": "Hollanda Usulü Açık Artırma (Dutch Auction)",
+          "desc": "Yüksekten başlayıp düşen fiyat formatı."
+        },
+        {
+          "name": "Hisseleştirme Ürün Olarak (Fractionalization)",
+          "desc": "Bir arsanın 100 hisseye bölünmesi."
+        },
+        {
+          "name": "Tokenize Edilmiş Gayrimenkul",
+          "desc": "Blockchain tabanlı hisseli arsa yatırımı."
+        },
+        {
+          "name": "Toplu Fonlama Dağıtımı (Crowdfunding)",
+          "desc": "Topluluğa 'bu arsayı birlikte alalım' teklifiyle dağıtım."
+        },
+        {
+          "name": "Grup Satın Alma Pazaryeri",
+          "desc": "Pinduoduo modelinde topluluk indirimi ile satın alma."
+        },
+        {
+          "name": "Tutucu Pazarlama (Layaway Marketing)",
+          "desc": "Taksitli arsa alımı ile ürün entegrasyonu."
+        },
+        {
+          "name": "BNPL Entegrasyonu",
+          "desc": "Banka taksit sistemleriyle arsa BNPL ürünü."
+        },
+        {
+          "name": "Gömülü Sigorta",
+          "desc": "Tapu sigortasının ürün-içi bir deneyim olarak sunulması."
+        },
+        {
+          "name": "Gömülü Finansman",
+          "desc": "Banka kredi başvurusunun platform içinden yapılması."
+        },
+        {
+          "name": "Mortgage Pazaryeri Katmanı",
+          "desc": "5 bankanın kredi karşılaştırmasının platform içi sunumu."
+        },
+        {
+          "name": "Noter Katmanı Hizmeti",
+          "desc": "Tapu randevu ve notertasyon hizmetinin platforma entegrasyonu."
+        },
+        {
+          "name": "Devlet API Entegrasyonu",
+          "desc": "Tapu Müdürlüğü ve İmar Bilgi sistemleri resmi entegrasyonu."
+        },
+        {
+          "name": "Kamu Verisi Özgürleştirme",
+          "desc": "TÜİK/MERNİS verilerinin tüketici dostu arayüze getirilmesi."
+        },
+        {
+          "name": "Kamu Hizmeti Markası",
+          "desc": "Resmi olmayan ama 'yarı-resmi' hissiyat veren kullanıcı deneyimi."
+        },
+        {
+          "name": "Güven Katmanı Kama (Trust Layer as Wedge)",
+          "desc": "Tapu sahteciliği korumasının ana satış argümanı olarak kullanılması."
+        },
+        {
+          "name": "Sigortalı İlanlar",
+          "desc": "Her ilanın tapu sigortası garantisiyle sunulması."
+        },
+        {
+          "name": "Emanet Hesap Hizmeti (Escrow)",
+          "desc": "Üçüncü taraf emanet ödeme sistemi."
+        },
+        {
+          "name": "Şeffaf Komisyon",
+          "desc": "Sıfır gizli ücret pozisyonuyla güven inşası."
+        },
+        {
+          "name": "Açık Algoritma Sözü",
+          "desc": "İlan sıralama algoritmasının kamuoyuna açıklanması."
+        },
+        {
+          "name": "Anti-Manipülasyon Markalaması",
+          "desc": "'Bizde sıralamada ödeme yapan üste çıkmaz' pozisyonu."
+        },
+        {
+          "name": "Güven Skoru Mühendisliği",
+          "desc": "Satıcı güven skoru sistemi (eBay seller rating modeli)."
+        },
+        {
+          "name": "Doğrulanmış Rozet Katmanı",
+          "desc": "Telefon, kimlik ve tapu doğrulamasıyla çok katmanlı rozet."
+        },
+        {
+          "name": "Doğrulanmış Alıcı Erişimi",
+          "desc": "Yalnızca KYC tamamlamış alıcıların belirli içeriklere erişimi."
+        },
+        {
+          "name": "İki Taraflı Değerlendirme",
+          "desc": "Hem alıcı hem satıcının birbirini değerlendirdiği sistem."
+        },
+        {
+          "name": "Bağlanmış İtibar (Soulbound Reputation)",
+          "desc": "Hesap silinemez, itibar taşınamaz; kalıcı hesap itibarı."
+        },
+        {
+          "name": "Uzun-Form Yatırımcı Hikaye Anlatımı",
+          "desc": "Her premium ilan için 2000 kelimelik yatırımcı anlatısı."
+        }
+      ]
+    },
+    {
+      "title": "arsam.net için önceliklendirilmiş modeller",
+      "items": [
+        {
+          "name": "Counter-Positioning (1)",
+          "desc": "sahibinden.com komisyon almaz ama arsam.net ilan reklam modeli ve dikey küratoryallıkla farklılaşır; devin kopyalayamayacağı model"
+        },
+        {
+          "name": "Category Design (46)",
+          "desc": "'Dikey arsa pazaryeri' kategorisinin kurucusu ve babası olarak konumlanma"
+        },
+        {
+          "name": "Cult Branding (132)",
+          "desc": "Toprak ve miras temalı ritüellik; kullanıcıların markaya değil davaya bağlanması"
+        },
+        {
+          "name": "Movement Marketing (133)",
+          "desc": "'Toprağını Geri Al' hareketi; bir dava etrafında kümelenen topluluk"
+        },
+        {
+          "name": "Generational Inheritance Narrative (199)",
+          "desc": "Nesiller arası miras ve arazi aktarımı anlatısı üzerine kurulu pazarlama"
+        },
+        {
+          "name": "Patriotic Marketing (200)",
+          "desc": "Vatanseverlik ve toprağa bağlılık duygusunu marka söylemine entegre etme"
+        },
+        {
+          "name": "Inflation-Hedge Identity (207)",
+          "desc": "'Lira yerine arsa' söylemiyle enflasyona karşı koruma kimliği oluşturma"
+        },
+        {
+          "name": "Investor Cult (208)",
+          "desc": "Arsa yatırımcısı alt kültürü ve topluluğu inşa etme"
+        },
+        {
+          "name": "Atomic Network — Beachhead (236)",
+          "desc": "Önce Aydın/Bodrum/Söke'de tam doygunluk; Türkiye geneline değil tek ilçeye odaklanma"
+        },
+        {
+          "name": "Beachhead Marketing (234)",
+          "desc": "Tek bir coğrafi niş veya segment üzerinde dominans kurup oradan genişleme"
+        },
+        {
+          "name": "Empty Seats (239)",
+          "desc": "Kullanılmayan satıcı arsası stoğunu platforma çekme stratejisi"
+        },
+        {
+          "name": "Whale Hunting (88)",
+          "desc": "Büyük kooperatifler ve inşaat firmalarını ana satıcı olarak hedefleme"
+        },
+        {
+          "name": "Free Photography Service (309)",
+          "desc": "Airbnb modelinde ücretsiz arazi fotoğrafçılığı hizmetiyle satıcı edinimi"
+        },
+        {
+          "name": "Craigslist Hack (30) / Reverse Scraping (30A)",
+          "desc": "sahibinden.com ilanlarına yasal sınırda outbound erişim; satıcılara ters yönlü ulaşım"
+        },
+        {
+          "name": "Local SEO Carpet Bomb (70-72)",
+          "desc": "Lokasyon sayfaları fabrikası ve long-tail domination ile yerel arama motorunu kapma"
+        },
+        {
+          "name": "Programmatic SEO at Scale (282-283)",
+          "desc": "Binlerce otomatik içerik sayfasıyla arama motorunda ölçekli görünürlük"
+        },
+        {
+          "name": "Map-as-Marketing / Heatmap / Public Pricing Database (256-258)",
+          "desc": "Harita ve fiyat şeffaflığı araçlarını pazarlama kanalına dönüştürme"
+        },
+        {
+          "name": "Index / Annual Market Report (103-104)",
+          "desc": "Yıllık Arsa Piyasası Raporu ve endeks yayınıyla otorite ve medya görünürlüğü"
+        },
+        {
+          "name": "Comparison Bait (24)",
+          "desc": "'sahibinden.com vs arsam.net' karşılaştırma içerikleriyle rakip aramaları yakalama"
+        },
+        {
+          "name": "Diaspora Ağı (192-198)",
+          "desc": "Diaspora dernekleri, Türkevi aktivasyonu ve hemşeri ağlarıyla yurt dışı satıcı ve alıcı edinimi"
+        },
+        {
+          "name": "Founding Member Badge (142)",
+          "desc": "İlk 1000 satıcıya özel kurucu üye rozeti; kıt sosyal sermaye dağıtımı"
+        },
+        {
+          "name": "Waitlist Hype / FOMO Drop Mechanics (152-153)",
+          "desc": "Bekleme listesi ve sınırlı erişim mekanizmasıyla talep ve heyecan yaratma"
+        },
+        {
+          "name": "User-Centric Documentary (166)",
+          "desc": "Çiftçi ve satıcı başarı belgeselleriyle duygusal bağ ve sosyal kanıt oluşturma"
+        },
+        {
+          "name": "Conference-as-Community (184)",
+          "desc": "Yıllık Arsam Zirvesi ile sektör topluluğunu sahiplenerek büyüme"
+        },
+        {
+          "name": "Caravan Tour (187)",
+          "desc": "81 il turu ile Türkiye'ye özgü sahada topluluk ve satıcı büyütme turu"
+        },
+        {
+          "name": "Fractional Ownership / Co-op / Crowdfunded Land Drops (211-213)",
+          "desc": "Hisseli mülkiyet, kooperatif pazarlama ve kitle fonlamalı arsa lansmanları"
+        },
+        {
+          "name": "Freemium (263)",
+          "desc": "Başlangıç paketi 1.500 TL; kullanıcıyı önce değerle çekip sonra ücretlendirme"
+        },
+        {
+          "name": "Usage-Based Trial (267)",
+          "desc": "İlk 5 ilan ücretsiz; deneme yoluyla ürün değerini bizzat hissettirme"
+        },
+        {
+          "name": "Concierge Onboarding for Whales (310)",
+          "desc": "Büyük satıcılara birebir onboarding desteğiyle yüksek değerli hesap edinimi"
+        },
+        {
+          "name": "Viral Loops — Personal / Casual / Content (320-322)",
+          "desc": "Kişisel paylaşım, gündelik kullanım ve içerik üretiminden doğan viral büyüme döngüleri"
+        },
+        {
+          "name": "Two-Sided Referral (324-325)",
+          "desc": "Hem alıcı hem satıcı tarafı ödüllendiren çift yönlü referans programı"
+        },
+        {
+          "name": "Saved Search Alerts / Daily Email Digest (333-334)",
+          "desc": "Kayıtlı arama bildirimleri ve günlük e-posta özeti ile kullanıcı bağlılığı ve retansiyon"
+        },
+        {
+          "name": "AI Search Optimization / GEO / AEO (280, 397-399)",
+          "desc": "ChatGPT, Perplexity ve diğer AI motorlarında 'Türkiye arsa pazaryeri' olarak ilk sırada çıkma"
+        },
+        {
+          "name": "Trust Layer / Insurance-Backed Listings / Escrow (459-461)",
+          "desc": "Sigortalı ilanlar ve emanet ödeme sistemiyle güven katmanını rekabet silahına dönüştürme"
+        },
+        {
+          "name": "Newsjacking / Brandjacking (6-7)",
+          "desc": "Gündem kancalama ve sahibinden marka aramalarını ele geçirme"
+        },
+        {
+          "name": "Competitor Roast (21)",
+          "desc": "Rakibi kibarca ve esprili şekilde eleştiren içeriklerle dikkat ve sempati kazanma"
+        },
+        {
+          "name": "Public Beef / Lawsuit-as-Marketing (25-26)",
+          "desc": "Gerektiğinde kamuoyu tartışması veya hukuki sürecin kendisini medya olarak kullanma"
+        },
+        {
+          "name": "Build-in-Public Hijack (41)",
+          "desc": "Türkiye startup ekosistemine halka açık inşa içerikleriyle sızma ve dikkat çekme"
+        }
+      ]
+    },
+    {
+      "title": "14 temel ilke (manifesto)",
+      "items": [
+        {
+          "name": "Dağıtım Ürünün Kendisidir",
+          "desc": "Notion, Slack, Loom, Calendly modelinde pazarlama ürünün dışında değil içinde başlar; her ilan bir dağıtım düğümü, her satıcı bir kanal, her paylaşılan link bir reklamdır."
+        },
+        {
+          "name": "Müşteri Kanaldır",
+          "desc": "Slack-Connect, Tinder, Zoom modelinde kullanıcının ürünü kullanmak istemesi onu zaten tanıtması anlamına gelir; pazarlama bütçesi zorunlu değil arızi olur."
+        },
+        {
+          "name": "Hareket Markadan Üstündür",
+          "desc": "Patagonia, Liquid Death, Cluely örneğinde bir dava etrafında kümelenmiş insan grubu markaya değil davaya bağlıdır; bu sadakat reklamla satın alınamaz."
+        },
+        {
+          "name": "Karşı-Konumlama Tek Sürdürülebilir Başlangıçtır",
+          "desc": "Helmer'in 7 Powers çerçevesinde startup'ın tek silahı devin kopyalayamayacağı modeldir; arsam.net için bu 'ilan reklamı + dikey küratoryallık + güven katmanı' üçgenidir."
+        },
+        {
+          "name": "Önce Atomik Ağlar",
+          "desc": "Andrew Chen'in temel teoremi: Türkiye geneline değil önce tek ilçeye (Söke), tek niche'e (hisseli arsa), tek diasporaya (Berlin) tam likidite sağlanmalıdır."
+        },
+        {
+          "name": "Mem Savaşı Medya Satın Alımının Yerini Alır",
+          "desc": "Duolingo, Ryanair, Wendy's modelinde 100 TL reklam bütçesinin ötesindeki etkiyi 0 TL ile üreten kültürel hâkimiyet; markanın internet kültürünün konuşulan parçası olmasıdır."
+        },
+        {
+          "name": "Hizmet Olarak Statü",
+          "desc": "Eugene Wei'nin tezi: ürünün kıt sosyal sermaye dağıtım mekanizması olması — rozetler, sıralamalar, kurucu üye numarası ve davetli erişim ile statü kazandırma."
+        },
+        {
+          "name": "İzinsiz Büyüme",
+          "desc": "Linear, Cron, Loom modelinde kullanıcı satış demosu, onaylar veya hesap temsilcileri olmadan kendi başına ürünü deneyimleyebilmeli; satış sürtünmesi sıfıra inmeli."
+        },
+        {
+          "name": "Anti-Pazarlama Olarak Pazarlama",
+          "desc": "Aesop, Patagonia modelinde reklam yapmamak en iyi reklamdır; ancak bu pasiflik değil radikal tutarlılık ve değer merkezli yayınla doldurulan bilinçli bir boşluktur."
+        },
+        {
+          "name": "Hiper-Niş Hâkimiyeti",
+          "desc": "Hermann Simon'un Hidden Champions tezi: dikey küçük pazarın yüzde seksenini almak yatay büyük pazarın yüzde beşini almaktan değerlidir; arsam.net için sahibinden.com'un değil Türkiye dikey arsa pazarının yüzde yetmişi hedeflenir."
+        },
+        {
+          "name": "Halka Açık İnşa ve Kurucu Önderliğinde Dağıtım",
+          "desc": "Buffer, Indie Hackers ekolünde şirketten önce kişisel marka; kişisel marka şirketin ilk satış kuvvetidir."
+        },
+        {
+          "name": "Tersine Huni",
+          "desc": "Klasik AARRR (farkındalık → satış) yerine PLG döngüsü: ürünü dene → değer al → bağlan → öde → davet et; trafik dışarıdan değil içeriden gelir."
+        },
+        {
+          "name": "AI-Doğuştan Dağıtım",
+          "desc": "ChatGPT ve Perplexity gibi AI cevap motorları Google'dan farklı bir oyun kuruyor; programmatic SEO, GEO, AI sözcü ve custom GPT 2026'nın yeni billboard'udur."
+        },
+        {
+          "name": "Mem + Mekanizma = Modern Büyüme Yığını",
+          "desc": "Modern büyümede iki temel vardır: viral kültürel mem (dış katman) ve compounding ürün döngüsü (iç katman). arsam.net'in başarısı 'Toprağını Geri Al' hareketi (mem) ile atomik şehir bazlı likidite döngüsü (mekanizma) ve counter-positioning zırhının füzyonuna bağlıdır."
+        }
+      ]
+    }
+  ]
+}

@@ -71,6 +71,12 @@
       "type": "marketScale"
     },
     {
+      "text": "Köprü — büyük pazarı (TAM) ulaşılabilir hedefe (SOM) bağlayan şey strateji cephanesidir: Counter-Positioning karşı saldırıyı imkânsız kılar, Atomik Ağ illeri tek tek doyurur, Programatik SEO edinme maliyetini sıfıra çeker, Kurucu rozeti tedarikçiyi kilitler, Mem savaşı ulusal kampanya gerektirmeden farkındalık üretir. Ayrıntı: Bölüm 10 · Strateji cephanesi.",
+      "highlight": ["strateji cephanesidir"],
+      "tone": "info",
+      "type": "note"
+    },
+    {
       "chartType": "scenarioYears",
       "dataRef": "market-tam-sam-som",
       "caption": "Senaryo bazında yıllık gelir hedefi · 2028'de tutturulur",

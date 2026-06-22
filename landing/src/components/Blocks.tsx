@@ -7,6 +7,7 @@ import { RichText } from "./RichText";
 import { markHighlight } from "./MarkHighlight";
 import { ChartBlock } from "./ChartViews";
 import { MobileTableCards } from "./MobileTableCards";
+import { StrategyArsenal } from "./StrategyArsenal";
 import { fmt } from "./charts";
 import { claimTag, darkText as D, tone } from "../theme/semantic";
 import { cardBase, interactivePanel, pill } from "../theme/components";
@@ -362,6 +363,9 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
 
     case "marketScale":
       return <MarketScale dark={ctx.dark} />;
+
+    case "strategyArsenal":
+      return <StrategyArsenal dark={ctx.dark} />;
 
     case "columns": {
       // Yan yana sütunlar. Mobil-first: base'de tek sütun, doğal sıra (sol başlık → sol gövde
@@ -807,15 +811,15 @@ function MarketScale({ dark }: { dark?: boolean }) {
         <Stack gap="2">
           <P fontSize="md" color={dark ? D.muted : "inkMuted"} lineHeight="1.5">
             <Box as="span" fontWeight="bold" color={mode === "share" ? "grass" : dark ? D.text : "ink"}>
-              Pazar payı
+              Pazar büyüklüğü
             </Box>
-            {" — TAM, SAM, SOM ve yıllık gelir potansiyelini mutlak ₺ değer ve toplam pazardaki payı (%) olarak gösterir: pazarın yukarıdan aşağıya büyüklüğü."}
+            {" — Büyük resim: toplam pazar, dijitalde ulaşılabilir pazar, hedeflediğimiz pay ve yıllık gelir potansiyelinin ₺ karşılığı. Büyük arazi haritasından bizim alabileceğimiz parsele kadar daraltırız."}
           </P>
           <P fontSize="md" color={dark ? D.muted : "inkMuted"} lineHeight="1.5">
             <Box as="span" fontWeight="bold" color={mode === "conversion" ? "grass" : dark ? D.text : "ink"}>
-              Aşama dönüşümü
+              Hesap oranları
             </Box>
-            {" — Her ardışık aşamanın bir öncekine ORANINI gösterir: SAM/TAM (online penetrasyon), SOM/SAM (hedef pay), Gelir/SOM (take rate); yani hunide her adımın daralma yüzdesi."}
+            {" — Hesabın mutfağı: toplam pazardan hedef pazara, oradan gelire hangi oranlarla indiğimizi gösterir. Elekten geçirir gibi, büyük pazarı adım adım süzeriz."}
           </P>
         </Stack>
       </Box>
@@ -842,8 +846,8 @@ function MarketScale({ dark }: { dark?: boolean }) {
           />
           <SegmentGroup.Items
             items={[
-              { value: "share", label: "Pazar payı" },
-              { value: "conversion", label: "Aşama dönüşümü" },
+              { value: "share", label: "Pazar büyüklüğü" },
+              { value: "conversion", label: "Hesap oranları" },
             ]}
             px="4"
             py="2"
