@@ -11,8 +11,8 @@
   },
   "background": "bg-2",
   "title": {
-    "text": "Pazar büyük; biz ölçülü bir dilim hedefliyoruz",
-    "accent": "ölçülü bir dilim"
+    "text": "Pazar büyük; 2032'de online arsanın %35'ini hedefliyoruz",
+    "accent": "%35'ini"
   },
   "blocks": [
     {
@@ -21,8 +21,8 @@
     },
     {
       "level": 2,
-      "text": "Pazar büyük; biz ölçülü bir dilim hedefliyoruz.",
-      "accent": "ölçülü bir dilim",
+      "text": "Pazar büyük; 2032'de online arsanın %35'ini hedefliyoruz.",
+      "accent": "%35'ini",
       "type": "heading"
     },
     {
@@ -71,6 +71,42 @@
       "type": "marketScale"
     },
     {
+      "cols": 3,
+      "items": [
+        {
+          "label": "2032 hedef online arsa payı",
+          "tone": "accent",
+          "type": "stat",
+          "valueRef": "market.target_share_2032",
+          "tag": "hedef"
+        },
+        {
+          "label": "SOM — ulaşılabilir hedef (SAM × %35)",
+          "tone": "accent",
+          "type": "stat",
+          "valueRef": "market.som_try",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "SAM — dijitale açık arsa pazarı",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "market.sam_try",
+          "tag": "model varsayımı"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "text": "2032 hedefi: online arsa işlem pazarının %35'ine ulaşmak — tek bir ürünün değil, arsam.net'in lider olarak taşıyacağı toplam online arsa dilimi. SOM = SAM × %35. Geliri tek bir komisyon formülü değil, yedi ayrı gelir akışı üretir (ayrıntı: Bölüm 08).",
+      "highlight": [
+        "%35'ine",
+        "yedi ayrı gelir akışı"
+      ],
+      "tone": "info",
+      "type": "note"
+    },
+    {
       "text": "Köprü — büyük pazarı (TAM) ulaşılabilir hedefe (SOM) bağlayan şey strateji cephanesidir: Counter-Positioning karşı saldırıyı imkânsız kılar, Atomik Ağ illeri tek tek doyurur, Programatik SEO edinme maliyetini sıfıra çeker, Kurucu rozeti tedarikçiyi kilitler, Mem savaşı ulusal kampanya gerektirmeden farkındalık üretir. Ayrıntı: Bölüm 10 · Strateji cephanesi.",
       "highlight": ["strateji cephanesidir"],
       "tone": "info",
@@ -79,11 +115,41 @@
     {
       "chartType": "scenarioYears",
       "dataRef": "market-tam-sam-som",
-      "caption": "Senaryo bazında yıllık gelir hedefi · 2028'de tutturulur",
+      "caption": "Senaryo bazında yıllık gelir patikası · 2026 H2 yumuşak başlangıç → 2032 hedef yılı",
       "type": "chart"
     },
     {
-      "text": "TKGM/TÜİK işlem adetleri doğrulanmış kaynaktır; online penetrasyon, ortalama arsa işlem değeri ve pazar payı model varsayımıdır.",
+      "cols": 3,
+      "items": [
+        {
+          "label": "2032 kötümser yıllık gelir",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "revenue.pessimist",
+          "sub": "yavaş benimseme · CAC yüksek",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "2032 medyan yıllık gelir (plan baz)",
+          "tone": "accent",
+          "type": "stat",
+          "valueRef": "revenue.median",
+          "sub": "finansal modelin temeli",
+          "tag": "model varsayımı"
+        },
+        {
+          "label": "2032 iyimser yıllık gelir",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "revenue.optimist",
+          "sub": "viral büyüme · diaspora + kanal",
+          "tag": "model varsayımı"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "text": "TKGM/TÜİK işlem adetleri doğrulanmış kaynaktır; online penetrasyon, ortalama arsa işlem değeri, %35 hedef pay ve senaryo gelir bantları model varsayımıdır. 2032 gelir bandı, benimseme hızına göre 2,48 milyar – 9,07 milyar ₺ arasında değişir; medyan 5,5 milyar ₺.",
       "tone": "info",
       "type": "note"
     }
@@ -108,7 +174,13 @@
     "metrics": [
       "market.housing_2024",
       "market.land_commercial_2024",
-      "market.total_realestate_2024"
+      "market.total_realestate_2024",
+      "market.target_share_2032",
+      "market.som_try",
+      "market.sam_try",
+      "revenue.pessimist",
+      "revenue.median",
+      "revenue.optimist"
     ]
   }
 }

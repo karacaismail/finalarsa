@@ -55,31 +55,29 @@
       "label": "Minimum kazanç (kötümser senaryo geliri)"
     },
     "revenue.pessimist": {
-      "value": 259000000,
+      "value": 2475000000,
       "unit": "TRY",
-      "display": "259 milyon ₺",
-      "label": "Kötümser senaryo yıllık gelir",
-      "note": "Bazı bölümlerde 260M olarak yuvarlanır."
+      "display": "2.48 milyar ₺",
+      "label": "Kötümser 2032 yıllık gelir"
     },
     "revenue.median": {
-      "value": 519000000,
+      "value": 5500000000,
       "unit": "TRY",
-      "display": "519 milyon ₺",
-      "label": "Medyan (plan baz) yıllık gelir",
-      "source": "model-v9-15",
-      "note": "TAM_SAM_SOM tam değer: 518.667.093 ₺."
+      "display": "5.5 milyar ₺",
+      "label": "Medyan 2032 yıllık gelir",
+      "source": "model-v9-15"
     },
     "revenue.optimist": {
-      "value": 823000000,
+      "value": 9075000000,
       "unit": "TRY",
-      "display": "823 milyon ₺",
-      "label": "İyimser senaryo yıllık gelir"
+      "display": "9.07 milyar ₺",
+      "label": "İyimser 2032 yıllık gelir"
     },
     "revenue.potential_exact": {
-      "value": 518667093,
+      "value": 5500000000,
       "unit": "TRY",
-      "display": "518.667.093 ₺",
-      "label": "SOM × take rate tam değer",
+      "display": "5.5 milyar ₺",
+      "label": "Çok-akışlı 2032 gelir (medyan)",
       "source": "model-v9-15"
     },
     "market.total_realestate_2024": {
@@ -133,10 +131,10 @@
       "source": "model-v9-15"
     },
     "market.som_try": {
-      "value": 34600000000,
+      "value": 121100000000,
       "unit": "TRY",
-      "display": "34,6 milyar ₺",
-      "label": "SOM — elde edilebilir pay",
+      "display": "121 milyar ₺",
+      "label": "SOM — %35 hedef pay (2032)",
       "source": "model-v9-15"
     },
     "market.online_penetration": {
@@ -310,24 +308,24 @@
       "source": "model-v9-15"
     },
     "fin.revenue_2027": {
-      "value": 429141625,
+      "value": 229075000,
       "unit": "TRY",
-      "display": "429M ₺",
-      "label": "2027 gelir",
+      "display": "229M ₺",
+      "label": "2027 gelir (medyan)",
       "source": "model-v9-15"
     },
     "fin.net_2027": {
-      "value": 341611861,
+      "value": 156352675,
       "unit": "TRY",
-      "display": "+342M ₺",
-      "label": "2027 net kâr",
+      "display": "+156M ₺",
+      "label": "2027 net kâr (medyan)",
       "source": "model-v9-15"
     },
     "fin.cash_2032": {
-      "value": 3118897335,
+      "value": 13870009038,
       "unit": "TRY",
-      "display": "3,1 milyar ₺",
-      "label": "2032 yıl sonu nakit",
+      "display": "13.87 milyar ₺",
+      "label": "2032 yıl sonu nakit (medyan)",
       "source": "model-v9-15"
     },
     "fin.profit_margin_min": {
@@ -338,16 +336,16 @@
       "source": "model-v9-15"
     },
     "fin.headcount_2026": {
-      "value": 18,
+      "value": 30,
       "unit": "kişi",
-      "display": "18 kişi",
+      "display": "30 kişi",
       "label": "2026 sonu kadro",
       "source": "model-v9-15"
     },
     "fin.headcount_2027": {
-      "value": 69,
+      "value": 72,
       "unit": "kişi",
-      "display": "69 kişi",
+      "display": "72 kişi",
       "label": "2027 sonu kadro",
       "source": "model-v9-15"
     },
@@ -355,7 +353,7 @@
       "value": 256,
       "unit": "kişi",
       "display": "256 kişi",
-      "label": "2032 kadro (256 sabit)",
+      "label": "2032 sonu kadro",
       "source": "model-v9-15"
     },
     "fin.projection_months": {
@@ -609,28 +607,40 @@
       "label": "sahibinden'in vazgeçemeyeceği yıllık ilan komisyonu"
     },
     "fin.headcount_2028": {
-      "value": 110,
+      "value": 116,
       "unit": "",
-      "display": "110 kişi",
+      "display": "116 kişi",
       "label": "2028 sonu kadro"
     },
     "fin.headcount_2029": {
-      "value": 172,
+      "value": 162,
       "unit": "",
-      "display": "172 kişi",
+      "display": "162 kişi",
       "label": "2029 sonu kadro"
     },
     "fin.headcount_2030": {
-      "value": 222,
+      "value": 210,
       "unit": "",
-      "display": "222 kişi",
+      "display": "210 kişi",
       "label": "2030 sonu kadro"
     },
     "fin.headcount_2031": {
       "value": 256,
       "unit": "",
       "display": "256 kişi",
-      "label": "2031 sonu kadro (İK master hedefi)"
+      "label": "2031 sonu kadro"
+    },
+    "fin.revenue_2032_med": {
+      "value": 5500000000,
+      "unit": "",
+      "display": "5.5 milyar ₺",
+      "label": "2032 gelir (medyan)"
+    },
+    "market.target_share_2032": {
+      "value": 0.35,
+      "unit": "",
+      "display": "%35",
+      "label": "2032 hedef pazar payı (online arsa)"
     }
   },
   "_verification": {

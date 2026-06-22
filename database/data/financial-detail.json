@@ -7,373 +7,365 @@
   "description": "Kademeli detay: 2026 aylık, 2027 üç aylık, 2028 yarıyıl, 2029-2032 yıllık.",
   "graduated": [
     {
-      "period": "Tem 26",
-      "grain": "ay",
-      "gelir": 0,
-      "gider": 3042600,
-      "net": -3042600,
-      "nakit": 36957400,
-      "kadro": 0
+      "period": "2026 H2",
+      "grain": "yarıyıl",
+      "gelir": 8057500,
+      "gider": 15851212,
+      "net": -7793712,
+      "nakit": 32206288,
+      "kadro": 30
     },
     {
       "period": "2027 Ç1",
       "grain": "çeyrek",
-      "gelir": 22009900,
-      "gider": 12996328,
-      "net": 9013572,
-      "nakit": 37338020,
-      "kadro": 32
+      "gelir": 46455769,
+      "gider": 14747884,
+      "net": 31707885,
+      "nakit": 63914173,
+      "kadro": 40
     },
     {
       "period": "2027 Ç2",
       "grain": "çeyrek",
-      "gelir": 106748015,
-      "gider": 19112830,
-      "net": 87635185,
-      "nakit": 124973205,
-      "kadro": 41
+      "gelir": 53664423,
+      "gider": 17036349,
+      "net": 36628074,
+      "nakit": 100542247,
+      "kadro": 51
     },
     {
       "period": "2027 Ç3",
       "grain": "çeyrek",
-      "gelir": 148021720,
-      "gider": 25790166,
-      "net": 122231554,
-      "nakit": 247204759,
-      "kadro": 57
+      "gelir": 60873077,
+      "gider": 19324813,
+      "net": 41548264,
+      "nakit": 142090511,
+      "kadro": 62
     },
     {
       "period": "2027 Ç4",
       "grain": "çeyrek",
-      "gelir": 152361990,
-      "gider": 29630440,
-      "net": 122731550,
-      "nakit": 369936309,
-      "kadro": 69
+      "gelir": 68081731,
+      "gider": 21613278,
+      "net": 46468453,
+      "nakit": 188558964,
+      "kadro": 72
     },
     {
       "period": "2028 H1",
       "grain": "yarıyıl",
-      "gelir": 351629055,
-      "gider": 73100198,
-      "net": 278528857,
-      "nakit": 648465166,
-      "kadro": 88
+      "gelir": 303245193,
+      "gider": 63866203,
+      "net": 239378990,
+      "nakit": 427937954,
+      "kadro": 94
     },
     {
       "period": "2028 H2",
       "grain": "yarıyıl",
-      "gelir": 402085840,
-      "gider": 86437911,
-      "net": 315647929,
-      "nakit": 964113095,
-      "kadro": 110
+      "gelir": 390579807,
+      "gider": 82259671,
+      "net": 308320136,
+      "nakit": 736258090,
+      "kadro": 116
     },
     {
       "period": "2029",
       "grain": "yıl",
-      "gelir": 837058287,
-      "gider": 234374914,
-      "net": 602683373,
-      "nakit": 1566796468,
-      "kadro": 172
+      "gelir": 1654675000,
+      "gider": 248328825,
+      "net": 1406346175,
+      "nakit": 2142604263,
+      "kadro": 162
     },
     {
       "period": "2030",
       "grain": "yıl",
-      "gelir": 851808419,
-      "gider": 300920824,
-      "net": 550887595,
-      "nakit": 2117684063,
-      "kadro": 222
+      "gelir": 3080825000,
+      "gider": 364400475,
+      "net": 2716424525,
+      "nakit": 4859028788,
+      "kadro": 210
     },
     {
       "period": "2031",
       "grain": "yıl",
-      "gelir": 862086515,
-      "gider": 346334153,
-      "net": 515752362,
-      "nakit": 2633436425,
+      "gelir": 4527050000,
+      "gider": 475548950,
+      "net": 4051501050,
+      "nakit": 8910529838,
       "kadro": 256
     },
     {
       "period": "2032",
       "grain": "yıl",
-      "gelir": 869655899,
-      "gider": 384194989,
-      "net": 485460910,
-      "nakit": 3118897335,
+      "gelir": 5500000000,
+      "gider": 540520800,
+      "net": 4959479200,
+      "nakit": 13870009038,
       "kadro": 256
     }
   ],
   "monthly2026": [
     {
-      "label": "Tem 26",
-      "gelir": 0,
-      "gider": 3042600,
-      "net": -3042600,
-      "nakit": 36957400,
-      "kadro": 0
-    },
-    {
-      "label": "Agu 26",
-      "gelir": 10285,
-      "gider": 1154466,
-      "net": -1144181,
-      "nakit": 35813219,
+      "label": "Ağu 26",
+      "gelir": 537167,
+      "gider": 900637,
+      "net": -363470,
+      "nakit": 39636530,
       "kadro": 5
     },
     {
       "label": "Eyl 26",
-      "gelir": 41140,
-      "gider": 1849281,
-      "net": -1808141,
-      "nakit": 34005078,
-      "kadro": 12
+      "gelir": 1074333,
+      "gider": 1981402,
+      "net": -907069,
+      "nakit": 38729461,
+      "kadro": 11
     },
     {
       "label": "Eki 26",
-      "gelir": 123420,
-      "gider": 2054315,
-      "net": -1930895,
-      "nakit": 32074183,
-      "kadro": 13
+      "gelir": 1611500,
+      "gider": 3242293,
+      "net": -1630793,
+      "nakit": 37098668,
+      "kadro": 18
     },
     {
       "label": "Kas 26",
-      "gelir": 329120,
-      "gider": 2255632,
-      "net": -1926512,
-      "nakit": 30147671,
-      "kadro": 15
+      "gelir": 2148667,
+      "gider": 4323058,
+      "net": -2174391,
+      "nakit": 34924277,
+      "kadro": 24
     },
     {
       "label": "Ara 26",
-      "gelir": 905080,
-      "gider": 2728303,
-      "net": -1823223,
-      "nakit": 28324448,
-      "kadro": 18
+      "gelir": 2685833,
+      "gider": 5403822,
+      "net": -2717989,
+      "nakit": 32206288,
+      "kadro": 30
     }
   ],
   "monthly36": [
     {
       "label": "Tem 26",
-      "gelir": 0,
-      "gider": 3042600,
-      "nakit": 36957400
+      "gelir": 1033013,
+      "gider": 4528243,
+      "nakit": 36504770
     },
     {
       "label": "Agu 26",
-      "gelir": 10285,
-      "gider": 1154466,
-      "nakit": 35813219
+      "gelir": 1156974,
+      "gider": 1864960,
+      "nakit": 35796784
     },
     {
       "label": "Eyl 26",
-      "gelir": 41140,
-      "gider": 1849281,
-      "nakit": 34005078
+      "gelir": 1280936,
+      "gider": 2064777,
+      "nakit": 35012943
     },
     {
       "label": "Eki 26",
-      "gelir": 123420,
-      "gider": 2054315,
-      "nakit": 32074183
+      "gelir": 1404897,
+      "gider": 2264593,
+      "nakit": 34153247
     },
     {
       "label": "Kas 26",
-      "gelir": 329120,
-      "gider": 2255632,
-      "nakit": 30147671
+      "gelir": 1528859,
+      "gider": 2464411,
+      "nakit": 33217695
     },
     {
       "label": "Ara 26",
-      "gelir": 905080,
-      "gider": 2728303,
-      "nakit": 28324448
+      "gelir": 1652821,
+      "gider": 2664228,
+      "nakit": 32206288
     },
     {
       "label": "Oca 27",
-      "gelir": 2396405,
-      "gider": 3106904,
-      "nakit": 27613949
+      "gelir": 14684295,
+      "gider": 4661687,
+      "nakit": 42228896
     },
     {
       "label": "Sub 27",
-      "gelir": 6016725,
-      "gider": 4856461,
-      "nakit": 28774213
+      "gelir": 15485256,
+      "gider": 4915962,
+      "nakit": 52798190
     },
     {
       "label": "Mar 27",
-      "gelir": 13596770,
-      "gider": 5032963,
-      "nakit": 37338020
+      "gelir": 16286218,
+      "gider": 5170235,
+      "nakit": 63914173
     },
     {
       "label": "Nis 27",
-      "gelir": 25270245,
-      "gider": 6001187,
-      "nakit": 56607078
+      "gelir": 17087179,
+      "gider": 5424509,
+      "nakit": 75576843
     },
     {
       "label": "May 27",
-      "gelir": 36954005,
-      "gider": 6363532,
-      "nakit": 87197551
+      "gelir": 17888141,
+      "gider": 5678783,
+      "nakit": 87786201
     },
     {
       "label": "Haz 27",
-      "gelir": 44523765,
-      "gider": 6748111,
-      "nakit": 124973205
+      "gelir": 18689103,
+      "gider": 5933057,
+      "nakit": 100542247
     },
     {
       "label": "Tem 27",
-      "gelir": 48154370,
-      "gider": 8138227,
-      "nakit": 164989348
+      "gelir": 19490064,
+      "gider": 6187330,
+      "nakit": 113844981
     },
     {
       "label": "Agu 27",
-      "gelir": 49645695,
-      "gider": 8701791,
-      "nakit": 205933252
+      "gelir": 20291026,
+      "gider": 6441605,
+      "nakit": 127694402
     },
     {
       "label": "Eyl 27",
-      "gelir": 50221655,
-      "gider": 8950148,
-      "nakit": 247204759
+      "gelir": 21091987,
+      "gider": 6695878,
+      "nakit": 142090511
     },
     {
       "label": "Eki 27",
-      "gelir": 50427355,
-      "gider": 9318007,
-      "nakit": 288314107
+      "gelir": 21892949,
+      "gider": 6950152,
+      "nakit": 157033308
     },
     {
       "label": "Kas 27",
-      "gelir": 50509635,
-      "gider": 9718819,
-      "nakit": 329104923
+      "gelir": 22693910,
+      "gider": 7204426,
+      "nakit": 172522792
     },
     {
       "label": "Ara 27",
-      "gelir": 51425000,
-      "gider": 10593614,
-      "nakit": 369936309
+      "gelir": 23494872,
+      "gider": 7458700,
+      "nakit": 188558964
     },
     {
       "label": "Oca 28",
-      "gelir": 52967750,
-      "gider": 10736243,
-      "nakit": 412167816
+      "gelir": 44475962,
+      "gider": 9367043,
+      "nakit": 223667883
     },
     {
       "label": "Sub 28",
-      "gelir": 55616138,
-      "gider": 12536234,
-      "nakit": 455247720
+      "gelir": 46901923,
+      "gider": 9877973,
+      "nakit": 260691833
     },
     {
       "label": "Mar 28",
-      "gelir": 57840783,
-      "gider": 12257604,
-      "nakit": 500830899
+      "gelir": 49327885,
+      "gider": 10388902,
+      "nakit": 299630816
     },
     {
       "label": "Nis 28",
-      "gelir": 60152769,
-      "gider": 12292284,
-      "nakit": 548691384
+      "gelir": 51753846,
+      "gider": 10899832,
+      "nakit": 340484830
     },
     {
       "label": "May 28",
-      "gelir": 61736954,
-      "gider": 12575021,
-      "nakit": 597853317
+      "gelir": 54179808,
+      "gider": 11410762,
+      "nakit": 383253876
     },
     {
       "label": "Haz 28",
-      "gelir": 63314661,
-      "gider": 12702812,
-      "nakit": 648465166
+      "gelir": 56605769,
+      "gider": 11921691,
+      "nakit": 427937954
     },
     {
       "label": "Tem 28",
-      "gelir": 64897944,
-      "gider": 12846792,
-      "nakit": 700516318
+      "gelir": 59031731,
+      "gider": 12432621,
+      "nakit": 474537064
     },
     {
       "label": "Agu 28",
-      "gelir": 65839661,
-      "gider": 14867876,
-      "nakit": 751488103
+      "gelir": 61457692,
+      "gider": 12943551,
+      "nakit": 523051205
     },
     {
       "label": "Eyl 28",
-      "gelir": 66827120,
-      "gider": 14474688,
-      "nakit": 803840535
+      "gelir": 63883654,
+      "gider": 13454481,
+      "nakit": 573480378
     },
     {
       "label": "Eki 28",
-      "gelir": 67496491,
-      "gider": 14484728,
-      "nakit": 856852298
+      "gelir": 66309615,
+      "gider": 13965410,
+      "nakit": 625824583
     },
     {
       "label": "Kas 28",
-      "gelir": 68171455,
-      "gider": 14849371,
-      "nakit": 910174382
+      "gelir": 68735577,
+      "gider": 14476339,
+      "nakit": 680083821
     },
     {
       "label": "Ara 28",
-      "gelir": 68853169,
-      "gider": 14914456,
-      "nakit": 964113095
+      "gelir": 71161538,
+      "gider": 14987269,
+      "nakit": 736258090
     },
     {
       "label": "Oca 29",
-      "gelir": 68990876,
-      "gider": 14892521,
-      "nakit": 1018211450
+      "gelir": 212137821,
+      "gider": 31837029,
+      "nakit": 916558882
     },
     {
       "label": "Sub 29",
-      "gelir": 69128858,
-      "gider": 19472691,
-      "nakit": 1067867617
+      "gelir": 237594359,
+      "gider": 35657473,
+      "nakit": 1118495768
     },
     {
       "label": "Mar 29",
-      "gelir": 69267114,
-      "gider": 18634765,
-      "nakit": 1118499966
+      "gelir": 263050897,
+      "gider": 39477917,
+      "nakit": 1342068748
     },
     {
       "label": "Nis 29",
-      "gelir": 69405650,
-      "gider": 18636843,
-      "nakit": 1169268773
+      "gelir": 288507436,
+      "gider": 43298358,
+      "nakit": 1587277826
     },
     {
       "label": "May 29",
-      "gelir": 69544461,
-      "gider": 18831841,
-      "nakit": 1219981393
+      "gelir": 313963974,
+      "gider": 47118802,
+      "nakit": 1854122998
     },
     {
       "label": "Haz 29",
-      "gelir": 69683549,
-      "gider": 18785927,
-      "nakit": 1270879015
+      "gelir": 339420513,
+      "gider": 50939246,
+      "nakit": 2142604265
     }
   ],
   "_verifiedNote": "Aylık değerler modelin KÂR ZARAR/NAKİT AKIŞI sayfalarından; kademeli detay yatırımcı okunabilirliği içindir.",
-  "_recalcNote": "256/2031 İK master (IK_PLANI_AI_FIRST_256_v1) ile yeniden hesap. Gelir ESKİ modelden korundu. Personel = master brüt maaş × 1.2375 (SGK işveren, std TR). Personel-dışı: ofis+idari 10.000₺/kişi/ay, yazılım+AI 6.000₺/kişi/ay, altyapı=gelir×%1.5, pazarlama eski şema, hukuki 16.500₺/ay, ekipman 24.000₺/yeni alım. Ufuk 2032 (kadro 256 sabit, +%10 zam). Tüm tutarlar MODEL VARSAYIMIDIR."
+  "_recalcNote": "ParselQ revize: aylık/kademeli değerler yeni yıllık medyan modeline göre dağıtıldı (toplamlar tutar)."
 }

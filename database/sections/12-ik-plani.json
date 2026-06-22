@@ -32,13 +32,13 @@
     {
       "chartType": "headcountMonthly",
       "dataRef": "financial-detail",
-      "caption": "2026 · aylık işe alım (Ağustos 5 → Aralık 18 kişi)",
+      "caption": "2026 · aylık işe alım (Ağustos 5 çekirdek → Aralık 30 kişi)",
       "type": "chart"
     },
     {
       "chartType": "headcountGrowth",
       "dataRef": "hr-plan",
-      "caption": "Kadro büyümesi · 2026 (18) → 2031 (256)",
+      "caption": "Kadro büyümesi · 2026 (30) → 2031 (256); ara yıllar 72 · 116 · 162 · 210",
       "type": "chart"
     },
     {
@@ -69,7 +69,98 @@
       "type": "cardGrid"
     },
     {
-      "text": "Kadro 2026 Ağustos'ta 5 çekirdek rolle başlar, 2026 sonunda 18'e, 2031 sonunda 256 kişilik AI-first organizasyona ulaşır; her ekleme bir gerekçeye bağlıdır.",
+      "level": 3,
+      "text": "Saha ve ParselQ rolleri",
+      "accent": null,
+      "type": "heading"
+    },
+    {
+      "cols": 1,
+      "items": [
+        {
+          "eyebrow": "saha · araçlı",
+          "title": "Araçlı saha keşif uzmanı",
+          "body": "Bölgeyi keşfeder; boş/satışa hazır arsa envanterini ve satıcı adaylarını yerinde tespit edip ParselQ CRM'e işler. Satış yapmaz.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "eyebrow": "saha · araçlı",
+          "title": "Araçlı saha satış uzmanı",
+          "body": "Keşif ekibinin adaylarını ziyaret eder; AI değerleme sunar, hesap açar, tapuyu alır, ilanı canlıya alır. Hesap açmadan ayrılmaz.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "eyebrow": "ParselQ",
+          "title": "RFQ operasyon & eşleştirme uzmanı",
+          "body": "Talep→teklif→seçim→kapanış akışını uçtan uca yönetir; eşleştirme kurallarını ve SLA'ları işletir, kurumsal RFQ müşterilerine destek verir.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "ParselQ",
+          "title": "Sosyal topluluk & moderasyon uzmanı",
+          "body": "Instagram-Twitter arası enerjik sosyal keşif katmanını büyütür ve sağlıklı tutar; AI destekli içerik moderasyonunu işletir.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "AI / veri",
+          "title": "AI değerleme & veri mühendisi",
+          "body": "Değerleme modelini kalibre eder; TKGM/CBS veri akışını, emsal analizini ve risk skorunu üretir (çıktı bilgilendirme amaçlı).",
+          "tone": null,
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "level": 3,
+      "text": "2031 sonu kadro dağılımı (saha ağırlıklı)",
+      "accent": "saha ağırlıklı",
+      "type": "heading"
+    },
+    {
+      "columns": [
+        "Departman",
+        "2031 kişi"
+      ],
+      "rows": [
+        ["Saha Keşif (araçlı)", "48"],
+        ["Saha Satış (araçlı)", "40"],
+        ["ParselQ RFQ / Sosyal moderasyon", "32"],
+        ["Satıcı & Müşteri Ops", "28"],
+        ["Mühendislik", "30"],
+        ["AI / Veri", "18"],
+        ["Pazarlama & Büyüme", "16"],
+        ["Ürün & Tasarım", "14"],
+        ["Finans & Hukuk", "10"],
+        ["İK & İdari", "10"],
+        ["Liderlik / C-Suite", "10"],
+        ["Toplam", "256"]
+      ],
+      "type": "table"
+    },
+    {
+      "text": "Kadronun %34'ü (88 kişi) araçlı saha ekiplerinde, %12,5'i (32 kişi) ParselQ RFQ/sosyal katmanındadır — bu, arsa pazarının saha ve güven işi olduğunu yansıtır.",
+      "highlight": [
+        "%34'ü (88 kişi) araçlı saha"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "text": "Organizasyon yalın squad yapısındadır: her squad 4-7 kişi, kendi backlog'u ve doğrudan raporlaması olur. Erken aşamada SAFe/ART gibi ağır ölçekleme çerçeveleri kullanılmaz; öncelik bürokrasi değil hızdır.",
+      "highlight": [
+        "yalın squad yapısındadır",
+        "SAFe/ART gibi ağır ölçekleme çerçeveleri kullanılmaz"
+      ],
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "text": "Kadro 2026 Ağustos'ta 5 çekirdek rolle başlar, 2026 sonunda 30'a, sonra 72 · 116 · 162 · 210 ara basamaklarından geçerek 2031 sonunda 256 kişilik AI-first organizasyona ulaşır; her ekleme bir gerekçeye bağlıdır.",
       "highlight": [
         "her ekleme bir gerekçeye bağlıdır"
       ],

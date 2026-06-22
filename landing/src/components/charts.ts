@@ -345,6 +345,36 @@ export function capexBreakdownOption(items: { kat: string; tutar: number }[]): E
   };
 }
 
+/* ---------- Gelir akışları: 2032 medyan kırılımı (yatay bar; RFQ vurgulu) ---------- */
+export function revenueStreamsOption(items: { label: string; value: number; flagship?: boolean }[]): EChartsCoreOption {
+  const rows = [...items].sort((a, b) => a.value - b.value); // küçük→büyük (yatay barda büyük yukarıda)
+  return {
+    aria,
+    textStyle,
+    grid: { left: 8, right: 96, top: 16, bottom: 8, containLabel: true },
+    tooltip: { ...tooltipBase, trigger: "axis", axisPointer: { type: "shadow" }, formatter: (p: any) => `${p[0].name}<br/><b>${fmt(p[0].value)}</b>` },
+    xAxis: { type: "value", axisLabel: { ...axisLabel, formatter: (v: number) => fmt(v) }, splitLine },
+    yAxis: {
+      type: "category",
+      data: rows.map((r) => r.label),
+      axisLabel: { ...axisLabel, width: 168, overflow: "break", lineHeight: 18 },
+      axisLine: { lineStyle: { color: C.line } },
+      axisTick: { show: false },
+    },
+    series: [
+      {
+        type: "bar",
+        barWidth: "62%",
+        data: rows.map((r) => ({
+          value: r.value,
+          itemStyle: { color: r.flagship ? C.gold : C.grass, borderRadius: [0, 6, 6, 0] },
+        })),
+        label: { show: true, position: "right", formatter: (p: any) => fmt(p.value), color: C.ink, fontFamily: FONT, fontWeight: 600, fontSize: LBL },
+      },
+    ],
+  };
+}
+
 /* ---------- OPEX: kompozisyon (yatay bar) ---------- */
 export function opexCompositionOption(items: { kat: string; tutar: number }[]): EChartsCoreOption {
   const rows = [...items].sort((a, b) => a.tutar - b.tutar);

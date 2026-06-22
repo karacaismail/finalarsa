@@ -11,8 +11,8 @@
   },
   "background": "bg-1",
   "title": {
-    "text": "Tek panel, tek güven dosyası",
-    "accent": "güven dosyası"
+    "text": "ParselQ: tek panel, tek güven dosyası",
+    "accent": "ParselQ"
   },
   "blocks": [
     {
@@ -21,8 +21,8 @@
     },
     {
       "level": 2,
-      "text": "Tek panel, tek güven dosyası.",
-      "accent": "güven dosyası",
+      "text": "ParselQ: tek panel, tek güven dosyası.",
+      "accent": "ParselQ",
       "type": "heading"
     },
     {
@@ -69,6 +69,68 @@
         }
       ],
       "type": "list"
+    },
+    {
+      "level": 3,
+      "text": "ParselQ — \"invest yap\" diyebileceğin mobil uygulama",
+      "accent": "invest yap",
+      "type": "heading"
+    },
+    {
+      "text": "ParselQ, arsam.net'in mobil uygulamasıdır; mottosu \"invest yap\". Tapudan ilana, değerlemeden teklife kadar her adımı yapay zeka ile tek akışta birleştirir. Ayrı bir yazılım değil; platformun içinde yaşayan uygulama (app-in-app). Instagram ile Twitter arası, AI-öncelikli ve enerjik bir sosyal keşif deneyimi sunar.",
+      "highlight": [
+        "invest yap",
+        "app-in-app"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "text": "İki giriş kapısı var: (1) Mülk sahibi satışa açar — yapay zeka değerleme yapıp \"ilanını satışa aç\" önerir. (2) Alıcı bir talep (RFQ) açar — satıcılar ve üye emlakçılar teklif sunar. Aşağıdaki akış birinci kapıyı gösterir; talep→teklif gelir modeli Bölüm 08'dedir.",
+      "highlight": [
+        "talep (RFQ)"
+      ],
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "items": [
+        {
+          "when": "01 · Talep aç",
+          "what": "Mülk sahibi ParselQ'da \"satış başlat\" der; parsel no veya adresi girer.",
+          "state": "now"
+        },
+        {
+          "when": "02 · AI değerleme + \"satışa aç\" önerisi",
+          "what": "Yapay zeka konum, imar ve emsal veriyi analiz eder; anlık piyasa değeri aralığını ve \"bu parseli şimdi satışa açmanı öneririz\" kararını gerekçesiyle sunar."
+        },
+        {
+          "when": "03 · Tapu yükle",
+          "what": "Tapu senedi/kaydı fotoğraf veya PDF olarak yüklenir; OCR + AI belge türünü tanır, eksik alanları işaretler."
+        },
+        {
+          "when": "04 · TKGM / EİDS doğrulama",
+          "what": "Sistem, tapu kaydını TKGM ve EİDS ile çapraz doğrular; sahiplik ve ipotek durumu ekranda görünür. (Tapu tescili devlet tekelidir; ParselQ yalnızca doğrular ve yönlendirir.)"
+        },
+        {
+          "when": "05 · İlan yayımla",
+          "what": "Onaylanan parsel otomatik profesyonel başlık, açıklama ve fotoğraf düzeniyle ilana dönüşür; tek tıkla sosyal medyaya taşınır."
+        },
+        {
+          "when": "06 · Teklifler gelir (alıcı + emlakçı bildirimi)",
+          "what": "Gelen her teklif anlık bildirimle sahibine iletilir; alıcılar doğrudan, üye emlakçılar tanımlı modelle teklif verir."
+        },
+        {
+          "when": "07 · En iyi teklif",
+          "what": "Yapay zeka fiyatı, ödeme koşulunu ve alıcı güven skorunu birlikte değerlendirir; \"önerilen teklif\" rozetiyle en avantajlı seçeneği öne çıkarır."
+        }
+      ],
+      "type": "timeline"
+    },
+    {
+      "text": "ParselQ üzerindeki AI değerleme bilgilendirme amaçlıdır; resmi ekspertiz raporunun yerini tutmaz (SPK kapsamı). TKGM doğrulaması anlık API verisiyle yapılır; nihai hukuki kontrol yetkili kurumlar aracılığıyla tamamlanır.",
+      "tone": "info",
+      "type": "note"
     }
   ],
   "refs": {

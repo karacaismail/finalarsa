@@ -42,8 +42,8 @@
           "ordered": false,
           "items": [
             {
-              "title": "Dar bölgede yoğunlaş",
-              "body": "Söke, Bodrum, Aydın — arsa ilgisi yüksek, sahaya yakın bölgeler.",
+              "title": "Yıldız ilçede yoğunlaş",
+              "body": "Bodrum, Çeşme, Urla, Didim, Kuşadası — arsa işlem yoğunluğu ve değeri en yüksek Ege ilçeleri.",
               "num": "01"
             },
             {
@@ -114,6 +114,127 @@
           "type": "list"
         }
       ]
+    },
+    {
+      "level": 3,
+      "text": "İlçe-bazlı satış hedefleri (Ege yıldız ilçeleri)",
+      "accent": null,
+      "type": "heading"
+    },
+    {
+      "text": "Hedefler il değil ilçe bazındadır: her ilçede önce yoğunluk kurulur, sonra komşu ilçeye taşınır. Yoğunluk eşiği ilçe başına ~50 aktif ilandır; eşik aşılınca emsal fiyat oluşur, alıcı ilgisi gelir ve bir sonraki ilçe açılır.",
+      "highlight": [
+        "il değil ilçe bazındadır",
+        "~50 aktif ilan"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "columns": [
+        "İlçe",
+        "İl",
+        "Öncelik",
+        "İlk yıl hedef aktif ilan"
+      ],
+      "rows": [
+        ["Bodrum", "Muğla", "Yıldız", "90"],
+        ["Çeşme", "İzmir", "Yıldız", "70"],
+        ["Urla", "İzmir", "Yıldız", "55"],
+        ["Didim", "Aydın", "Yüksek", "45"],
+        ["Kuşadası", "Aydın", "Yüksek", "40"]
+      ],
+      "type": "table"
+    },
+    {
+      "text": "İlk yıl 5 yıldız ilçede toplam ~300 doğrulanmış aktif ilan hedeflenir. Yayılım mantığı: İlçe → İl → Bölge → Ulusal; yoğunluk eşiği geçilmeden genişleme yapılmaz.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "Araçlı saha ekipleri: önce keşfet, sonra sat",
+      "accent": "önce keşfet, sonra sat",
+      "type": "heading"
+    },
+    {
+      "type": "columns",
+      "left": [
+        {
+          "level": 3,
+          "text": "Araçlı saha KEŞİF ekibi",
+          "accent": null,
+          "type": "heading"
+        },
+        {
+          "ordered": false,
+          "items": [
+            {
+              "title": "Kim?",
+              "body": "Araç başına 2 kişi (sürücü + saha analisti); satış yapmaz.",
+              "num": "01"
+            },
+            {
+              "title": "Bölgeyi keşfeder",
+              "body": "İlçedeki boş/satışa hazır arsa envanterini tapu + saha turuyla yerinde saptar.",
+              "num": "02"
+            },
+            {
+              "title": "Satıcı adayını işler",
+              "body": "Mülk koordinatı, yaklaşık m² ve konum skorunu ParselQ CRM'e \"potansiyel satıcı\" olarak yazar.",
+              "num": "03"
+            },
+            {
+              "title": "Kapasite",
+              "body": "Günde 15-20 arsa tespiti, haftada 60-80 satıcı adayı.",
+              "num": "04"
+            }
+          ],
+          "type": "list"
+        }
+      ],
+      "right": [
+        {
+          "level": 3,
+          "text": "Araçlı saha SATIŞ ekibi",
+          "accent": null,
+          "type": "heading"
+        },
+        {
+          "ordered": false,
+          "items": [
+            {
+              "title": "Kim?",
+              "body": "Araç başına 2 kişi (kıdemli satış + teknik asistan); hesap açmadan ayrılmaz.",
+              "num": "01"
+            },
+            {
+              "title": "Adayı ziyaret eder",
+              "body": "Keşif ekibinin CRM'e düştüğü adayları 24 saat içinde sıralı ziyarete alır.",
+              "num": "02"
+            },
+            {
+              "title": "İlanı birlikte açar",
+              "body": "Sahada AI değerleme raporunu sunar, hesap açar, tapu fotoğrafını alır, ilanı canlıya alır.",
+              "num": "03"
+            },
+            {
+              "title": "Kapasite",
+              "body": "Günde 6-8 ziyaret, %30-40 dönüşüm → günde 2-3 canlı ilan.",
+              "num": "04"
+            }
+          ],
+          "type": "list"
+        }
+      ]
+    },
+    {
+      "text": "El değiştirme protokolü: Keşif ekibi CRM'e satıcı adayı ekler → Satış ekibi 24 saat içinde ziyaret planına alır → ziyarette hesap açılır ve ilan yüklenir → 72 saatte yayına girmezse satış ekibi arama/SMS ile kapanışa iter → iki ekip pazartesi sabahı ilçe haritasını birlikte günceller.",
+      "highlight": [
+        "El değiştirme protokolü"
+      ],
+      "tone": "info",
+      "type": "note"
     },
     {
       "text": "Bu plan 'rakibi nasıl yeneriz' değil, 'nasıl kazanırız' sorusunu cevaplar.",

@@ -120,10 +120,37 @@ def approx(a,b,tol=0.02): return abs(a-b) <= tol*max(abs(a),abs(b),1)
 # huni oranları
 if approx(mv("market.sam_try")/mv("market.tam_try"), 0.187): OK("SAM/TAM ≈ %18,7 ✓")
 else: E("SAM/TAM oranı tutmuyor")
-if approx(mv("market.som_try")/mv("market.sam_try"), 0.10): OK("SOM/SAM ≈ %10 ✓")
-else: E("SOM/SAM oranı tutmuyor")
-if approx(mv("market.som_try")*mv("market.take_rate"), mv("revenue.median"), tol=0.01): OK("SOM × take_rate ≈ revenue.median (519M) ✓")
-else: E(f"SOM×take_rate={mv('market.som_try')*mv('market.take_rate'):.0f} ≠ revenue.median")
+if approx(mv("market.som_try")/mv("market.sam_try"), 0.35): OK("SOM/SAM ≈ %35 ✓ (2032 hedef pay)")
+else: E(f"SOM/SAM oranı %35 tutmuyor: {mv('market.som_try')/mv('market.sam_try'):.3f}")
+# ÇOK-AKIŞLI MODEL: gelir artık SOM×take_rate tek formülüyle değil, 7 gelir akışının toplamıyla doğar.
+# Bu yüzden eski 'SOM×take==median' tek-formül kontrolü kaldırıldı; yerine akış-toplamı = medyan kontrolü konuldu.
+bd = docs["data/financial-breakdown.json"]["revenueStreams"]
+streams_2032 = sum(s["y2032_medyan"] for s in bd["streams"])
+if approx(streams_2032, mv("revenue.median"), tol=0.005): OK(f"Gelir akışları 2032 medyan toplamı ({streams_2032:,}) == revenue.median ✓")
+else: E(f"Gelir akışları toplamı {streams_2032:,} ≠ revenue.median {mv('revenue.median'):,}")
+# totalByYear medyan son yıl == streams toplamı (iç tutarlılık)
+tby = bd["totalByYear"]["medyan"]
+if approx(tby.get("2032", 0), streams_2032, tol=0.01): OK(f"totalByYear medyan 2032 ({tby.get('2032'):,}) == akış toplamı ✓")
+else: E(f"totalByYear medyan 2032={tby.get('2032'):,} ≠ akış toplamı {streams_2032:,}")
+# hedef pay metriği var mı + değeri 0.35
+if "market.target_share_2032" in metrics and approx(mv("market.target_share_2032"), 0.35, tol=0.001):
+    OK("market.target_share_2032 == 0.35 ✓")
+else: E("market.target_share_2032 metriği yok veya 0.35 değil")
+# Her akışın 2032 byYearMedyan == y2032_medyan (iç tutarlılık)
+bad_str = [s["key"] for s in bd["streams"] if s["byYearMedyan"].get("2032") != s["y2032_medyan"]]
+if not bad_str: OK("Gelir akışları: her akışın byYearMedyan[2032] == y2032_medyan ✓")
+else: E(f"Gelir akışı 2032 byYearMedyan tutmuyor: {bad_str}")
+# Senaryo toplamları 2032: kötümser == revenue.pessimist, iyimser == revenue.optimist
+tby_all = bd["totalByYear"]
+if approx(tby_all["kotumser"]["2032"], mv("revenue.pessimist"), tol=0.005): OK("Gelir akışı kötümser 2032 == revenue.pessimist ✓")
+else: E(f"kötümser 2032 {tby_all['kotumser']['2032']:,} ≠ revenue.pessimist {mv('revenue.pessimist'):,}")
+if approx(tby_all["iyimser"]["2032"], mv("revenue.optimist"), tol=0.005): OK("Gelir akışı iyimser 2032 == revenue.optimist ✓")
+else: E(f"iyimser 2032 {tby_all['iyimser']['2032']:,} ≠ revenue.optimist {mv('revenue.optimist'):,}")
+# İK 2031 departman dağılımı toplamı == 256
+deps = docs["data/hr-plan.json"].get("departmentsFinal2031", [])
+dsum = sum(x["count"] for x in deps)
+if dsum == 256: OK(f"İK departman dağılımı toplamı == 256 ✓ ({len(deps)} departman)")
+else: E(f"İK departman toplamı {dsum} ≠ 256 — Bölüm 12 tablosuyla çelişir")
 # tam değer ile yuvarlanmış tutar
 if approx(mv("revenue.potential_exact"), mv("revenue.median"), tol=0.005): OK("revenue.potential_exact ≈ revenue.median ✓")
 else: W("revenue.potential_exact ile revenue.median farkı > %0,5")
@@ -150,6 +177,18 @@ else: E(f"Kadro 2031 256 değil: data={hc2031}, metric={mv('fin.headcount_2031')
 exp2031 = [y for y in fin if y["year"]=="2031"][0]["expense"]
 if exp2031 >= 210835740: OK(f"2031 gider ({exp2031:,}) ≥ master yıllık brüt maaş (210.8M) ✓")
 else: E(f"2031 gider {exp2031:,} master maaşını (210.8M) karşılamıyor — 256 modeli tutarsız")
+# KADRO EĞRİSİ: 2026≤30, monoton artan, 2031=256 (pragmatik büyüme rampası)
+hcCurve = docs["data/financial-model.json"]["parameters"].get("headcountCurve")
+if hcCurve:
+    yrs = sorted(hcCurve, key=lambda k: int(k))
+    vals = [hcCurve[k] for k in yrs]
+    if hcCurve.get("2026", 0) <= 30: OK(f"Kadro 2026 ≤ 30 ({hcCurve.get('2026')}) ✓ (kullanıcı tavanı)")
+    else: E(f"Kadro 2026 > 30: {hcCurve.get('2026')} — kullanıcı tavanı aşıldı")
+    if all(vals[i] <= vals[i+1] for i in range(len(vals)-1)): OK(f"Kadro eğrisi monoton artan ✓ {vals}")
+    else: E(f"Kadro eğrisi monoton değil: {vals}")
+    if hcCurve.get("2031")==256: OK("Kadro eğrisi 2031 == 256 ✓")
+    else: E(f"Kadro eğrisi 2031 ≠ 256: {hcCurve.get('2031')}")
+else: W("parameters.headcountCurve yok — kadro eğrisi kontrol edilemedi")
 if mv("ai.fte_with")==256: OK("ai.fte_with == 256 (resmi hedef) ✓")
 else: E(f"ai.fte_with 256 değil: {mv('ai.fte_with')}")
 # 5b) ÇAPRAZ KAYNAK EŞİTLİĞİ — başlık metric'leri data hücreleriyle birebir aynı mı (sürükleme yok)
@@ -170,6 +209,7 @@ mk = docs["data/market-tam-sam-som.json"]
 xchecks += [("market.total_realestate_2024", mk["transactionView"]["totalRealEstate"]),
             ("market.land_commercial_2024", mk["transactionView"]["landCommercial"]),
             ("market.tam_try", mk["valueFunnel"]["tam"]["value"]),
+            ("market.som_try", mk["valueFunnel"]["som"]["value"]),
             ("revenue.median", mk["scenarios"][1]["revenue"]),
             ("revenue.optimist", mk["scenarios"][2]["revenue"])]
 xbad = [(k, v, mv(k)) for k, v in xchecks if mv(k) != v]

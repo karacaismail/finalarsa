@@ -18,6 +18,7 @@ import {
   monthlyEarlyOption,
   monthlySplitOption,
   opexCompositionOption,
+  revenueStreamsOption,
   scenarioLinesOption,
 } from "./charts";
 import { TaxSliderView } from "./TaxSlider";
@@ -123,6 +124,74 @@ export function ScenarioYearsView() {
                 </Box>
               </Box>
             )),
+          ])}
+        />
+      </Box>
+    </Stack>
+  );
+}
+
+/* ---------------- Gelir akışları: 2032 medyan kırılımı + yıllara göre tablo ---------------- */
+type RevStream = { key: string; label: string; y2032_medyan: number; byYearMedyan: Record<string, number> };
+export function RevenueStreamsView() {
+  const d = getData<{
+    revenueStreams: { streams: RevStream[]; totalByYear: { medyan: Record<string, number> } };
+  }>("financial-breakdown");
+  const rs = d.revenueStreams;
+  const streams = [...rs.streams].sort((a, b) => b.y2032_medyan - a.y2032_medyan);
+  const total2032 = rs.totalByYear.medyan["2032"];
+  const cols = ["2027", "2029", "2031", "2032"];
+  const pct = (x: number) => `%${(x * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}`;
+  return (
+    <Stack gap="4">
+      <EChart
+        height={Math.max(320, streams.length * 46)}
+        ariaLabel="Gelir akışlarının 2032 medyan hedefleri; ParselQ-RFQ en büyük akış"
+        option={revenueStreamsOption(streams.map((s) => ({ label: s.label, value: s.y2032_medyan, flagship: s.key === "rfq" })))}
+      />
+      <Box {...card} p="0" overflowX="auto" display={{ base: "none", md: "block" }}>
+        <Tbl w="100%" borderCollapse="collapse" fontSize="md" minW="640px">
+          <Thead>
+            <Tr>
+              <Th scope="col" textAlign="start" p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold">Gelir akışı</Th>
+              {cols.map((c) => (
+                <Th key={c} scope="col" textAlign="end" p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{c} medyan</Th>
+              ))}
+              <Th scope="col" textAlign="end" p="3" borderBottom="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">2032 pay</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {streams.map((s) => {
+              const flag = s.key === "rfq";
+              return (
+                <Tr key={s.key} {...(flag ? { bg: "surface" } : {})}>
+                  <Th scope="row" textAlign="start" p="3" borderBottom="1px solid" borderColor="line" color={flag ? "goldText" : "ink"} fontWeight="bold" whiteSpace="nowrap">
+                    {s.label}{flag ? " · amiral" : ""}
+                  </Th>
+                  {cols.map((c) => (
+                    <Td key={c} p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color="ink" whiteSpace="nowrap">{fmt(s.byYearMedyan[c] ?? 0)}</Td>
+                  ))}
+                  <Td p="3" textAlign="end" borderBottom="1px solid" borderColor="line" color={flag ? "goldText" : "inkMuted"} fontWeight={flag ? "bold" : "normal"} whiteSpace="nowrap">{pct(s.y2032_medyan / total2032)}</Td>
+                </Tr>
+              );
+            })}
+            <Tr bg="surface">
+              <Th scope="row" textAlign="start" p="3" borderTop="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold">Toplam (medyan)</Th>
+              {cols.map((c) => (
+                <Td key={c} p="3" textAlign="end" borderTop="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold" whiteSpace="nowrap">{fmt(rs.totalByYear.medyan[c] ?? 0)}</Td>
+              ))}
+              <Td p="3" textAlign="end" borderTop="2px solid" borderColor="lineStrong" color="ink" fontWeight="bold">%100</Td>
+            </Tr>
+          </Tbody>
+        </Tbl>
+      </Box>
+      <Box display={{ base: "block", md: "none" }}>
+        <MobileTableCards
+          columns={["Gelir akışı", ...cols.map((c) => `${c} medyan`), "2032 pay"]}
+          rows={streams.map((s) => [
+            <>{s.label}{s.key === "rfq" ? " · amiral" : ""}</>,
+            ...cols.map((c) => <>{fmt(s.byYearMedyan[c] ?? 0)}</>),
+            <>{pct(s.y2032_medyan / total2032)}</>,
           ])}
         />
       </Box>
@@ -713,6 +782,8 @@ export function ChartBlock({ chartType, highlightYears }: { chartType: string; h
       return <MarketFunnelView />;
     case "scenarioYears":
       return <ScenarioYearsView />;
+    case "revenueStreams":
+      return <RevenueStreamsView />;
     case "monthlyEarly":
       return <MonthlyEarlyView />;
     case "capexBreakdown":

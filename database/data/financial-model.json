@@ -3,8 +3,8 @@
   "kind": "data",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "source": "IK_PLANI_AI_FIRST_256_v1 (kadro/maaş) + model-v9-15 (gelir)",
-  "scenario": "Muhafazakar",
+  "source": "ParselQ revize modeli (%35 hedef, çok-akışlı, senaryolu)",
+  "scenario": "Medyan (plan baz)",
   "projection": {
     "months": 78,
     "start": "2026-07",
@@ -14,65 +14,65 @@
   "yearly": [
     {
       "year": "2026 H2",
-      "revenue": 1409045,
-      "expense": 13084597,
-      "net": -11675552,
-      "headcount": 18,
-      "cashEnd": 28324448
+      "revenue": 8057500,
+      "expense": 15851212,
+      "net": -7793712,
+      "headcount": 30,
+      "cashEnd": 32206288
     },
     {
       "year": "2027",
-      "revenue": 429141625,
-      "expense": 87529764,
-      "net": 341611861,
-      "headcount": 69,
-      "cashEnd": 369936309
+      "revenue": 229075000,
+      "expense": 72722325,
+      "net": 156352675,
+      "headcount": 72,
+      "cashEnd": 188558963
     },
     {
       "year": "2028",
-      "revenue": 753714895,
-      "expense": 159538109,
-      "net": 594176786,
-      "headcount": 110,
-      "cashEnd": 964113095
+      "revenue": 693825000,
+      "expense": 146125875,
+      "net": 547699125,
+      "headcount": 116,
+      "cashEnd": 736258088
     },
     {
       "year": "2029",
-      "revenue": 837058287,
-      "expense": 234374914,
-      "net": 602683373,
-      "headcount": 172,
-      "cashEnd": 1566796468
+      "revenue": 1654675000,
+      "expense": 248328825,
+      "net": 1406346175,
+      "headcount": 162,
+      "cashEnd": 2142604263
     },
     {
       "year": "2030",
-      "revenue": 851808419,
-      "expense": 300920824,
-      "net": 550887595,
-      "headcount": 222,
-      "cashEnd": 2117684063
+      "revenue": 3080825000,
+      "expense": 364400475,
+      "net": 2716424525,
+      "headcount": 210,
+      "cashEnd": 4859028788
     },
     {
       "year": "2031",
-      "revenue": 862086515,
-      "expense": 346334153,
-      "net": 515752362,
+      "revenue": 4527050000,
+      "expense": 475548950,
+      "net": 4051501050,
       "headcount": 256,
-      "cashEnd": 2633436425
+      "cashEnd": 8910529838
     },
     {
       "year": "2032",
-      "revenue": 869655899,
-      "expense": 384194989,
-      "net": 485460910,
+      "revenue": 5500000000,
+      "expense": 540520800,
+      "net": 4959479200,
       "headcount": 256,
-      "cashEnd": 3118897335
+      "cashEnd": 13870009038
     }
   ],
   "breakeven": {
-    "operational": "2027-02",
-    "operationalLabel": "Şub 2027",
-    "investmentPayback": "40M ₺ sermaye ile karşılanır; kasa dibi ~27,6M ₺ (Oca 2027)"
+    "operational": "2027-01",
+    "operationalLabel": "2027 başı",
+    "investmentPayback": "40M ₺ sermaye yeterli; kasa dibi ~32M ₺ (2026 H2). 2027'den itibaren güçlü pozitif."
   },
   "parameters": {
     "usdtry": {
@@ -93,14 +93,23 @@
     },
     "cpoSalary": {
       "fixed_2026": 339191,
-      "note": "CPO maaşı master İK planından (R-CPO, 339.191 ₺/ay); personel kütlesine dahildir."
+      "note": "CPO master İK planından; personel kütlesine dahil."
     },
     "officeRent_monthly": 150000,
     "officeDeposit_months": 3,
     "initialCapital": 40000000,
     "welcomePackagePerPerson": 5950,
     "capexFirstMonth": 2863100,
-    "_verifiedNote": "19.06.2026 doğrulama: usdtry başlangıç 44,50 güncel değil (gerçek ~46,36); employerMultiplier 1,34 fazla (gerçek yasal ek yük %22,75 → ~1,2375, muhafazakar yön). Değerler modelin orijinal projeksiyonunu korumak için değiştirilmedi; bkz. verification/dogrulama-raporu.md"
+    "_verifiedNote": "19.06.2026 doğrulama: usdtry başlangıç 44,50 güncel değil (gerçek ~46,36); employerMultiplier 1,34 fazla (gerçek yasal ek yük %22,75 → ~1,2375, muhafazakar yön). Değerler modelin orijinal projeksiyonunu korumak için değiştirilmedi; bkz. verification/dogrulama-raporu.md",
+    "headcountCurve": {
+      "2026": 30,
+      "2027": 72,
+      "2028": 116,
+      "2029": 162,
+      "2030": 210,
+      "2031": 256,
+      "2032": 256
+    }
   },
   "pricing": {
     "premiumAnnual": 90000,
@@ -148,5 +157,5 @@
     "ÇAĞRI MERKEZİ ve YAZILIM EKİBİ sayfalarında #VALUE! hataları; İK doğrulama formülleri (R18, R21-R22) çalışmıyor."
   ],
   "note": "Yıllık tablo DASHBOARD sayfasından birebir. knownIssues rapor2.md analizinden; pitch'te muhafazakar başlık rakamlar kullanıldı.",
-  "_recalcNote": "256/2031 İK master (IK_PLANI_AI_FIRST_256_v1) ile yeniden hesap. Gelir ESKİ modelden korundu. Personel = master brüt maaş × 1.2375 (SGK işveren, std TR). Personel-dışı: ofis+idari 10.000₺/kişi/ay, yazılım+AI 6.000₺/kişi/ay, altyapı=gelir×%1.5, pazarlama eski şema, hukuki 16.500₺/ay, ekipman 24.000₺/yeni alım. Ufuk 2032 (kadro 256 sabit, +%10 zam). Tüm tutarlar MODEL VARSAYIMIDIR."
+  "_recalcNote": "ParselQ revizyonu (22.06.2026): kadro 2026=30→2031=256; 2032 hedef pazar payı %35 (online arsa); gelir ÇOK-AKIŞLI ve SENARYOLU (kötümser×0.45 / medyan / iyimser×1.65). Gelir akışları: ParselQ-RFQ, İlan, Emlakçı ağı, Veri/API, Reklam, SaaS, Hizmet. Gider: yeni kadro × std TR maliyet + araçlı saha operasyonu. Tüm tutarlar MODEL VARSAYIMI/HEDEF."
 }

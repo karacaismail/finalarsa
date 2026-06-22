@@ -33,6 +33,81 @@
     },
     {
       "level": 3,
+      "text": "Yedi gelir akışı · ParselQ-RFQ amiral gemisi",
+      "accent": "ParselQ-RFQ",
+      "type": "heading"
+    },
+    {
+      "text": "Her gelir modeli kendi gelirine sahiptir; toplam tek bir kaleme bağlı değildir. En inovatif ve en büyük akış ParselQ-RFQ'dur (alıcı talep açar → satıcı/emlakçı teklif verir). Aşağıdaki grafik yedi akışın 2027'den 2032'ye medyan hedeflerini gösterir; 2032 medyan toplamı 5,5 milyar ₺'dir (kötümser 2,48 · iyimser 9,07 milyar ₺).",
+      "highlight": [
+        "Her gelir modeli kendi gelirine sahiptir",
+        "ParselQ-RFQ"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "chartType": "revenueStreams",
+      "dataRef": "financial-breakdown",
+      "caption": "Yedi gelir akışı · 2032 medyan hedefleri (ParselQ-RFQ amiral akış) · tablo yıllara göre kırılım verir",
+      "type": "chart"
+    },
+    {
+      "text": "ParselQ-RFQ neden en büyük inovatif akış? Türkiye arsa pazarında alıcı-satıcı eşleşmesi bugün telefon ve tanışıklıkla yürür; RFQ motoru bunu ölçeklendirip kayıt altına alır. TKGM/EİDS doğrulaması rakibin kolay kopyalayamayacağı bir veri kalkanı, AI teklif sıralaması ise komisyona değer gerekçesi katar.",
+      "highlight": [
+        "RFQ motoru"
+      ],
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "cols": 1,
+      "items": [
+        {
+          "eyebrow": "Çekirdek gelir · amiral",
+          "title": "RFQ eşleştirme ücreti (alıcı tarafı)",
+          "body": "Alıcılar ve üye emlakçılar, aktif talebe (RFQ) teklif verebilmek için işlem başına eşleştirme ücreti veya teklif kredisi öder. Satıcı bu ücreti ödemez; ilan tarafı komisyonsuz kalır.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "Emlakçı monetizasyonu",
+          "title": "Teklif & lead paketi",
+          "body": "Emlakçılar aylık abonelik veya lead başına ücretle aktif alıcı taleplerine teklif gönderme hakkı kazanır; nitelikli potansiyel müşteriye doğrudan erişir.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "eyebrow": "Görünürlük",
+          "title": "Öne çıkan teklif",
+          "body": "Emlakçılar tekliflerini listenin üstüne taşımak için ek ödeme yapar; rekabetçi ilanlar arasında göz önü konum dönüşümü doğrudan yükseltir.",
+          "tone": "grass",
+          "type": "card"
+        },
+        {
+          "eyebrow": "AI araçları",
+          "title": "Premium değerleme raporu",
+          "body": "AI destekli anlık piyasa değeri, karşılaştırmalı satış analizi ve fiyat bandı önerisi içeren detaylı rapor; bireysel ve kurumsal lisansla sunulur (bilgilendirme amaçlı).",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "eyebrow": "Sosyal & itibar",
+          "title": "Görünürlük rozeti",
+          "body": "İşlem geçmişi, müşteri puanı ve platform aktivitesine göre kazanılan dijital rozetler emlakçı profilinde öne çıkar; premium rozet paketleri abonelikle yükseltilir.",
+          "tone": "gold",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Aşağıda, yukarıdaki yedi akışı besleyen tüm gelir kalemlerinin tam kataloğu yer alır — küresel platformlardan taranıp Türkiye mevzuatına göre 2025-2026 itibarıyla doğrulanmıştır.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "level": 3,
       "text": "Reklam & sponsorluk",
       "type": "heading"
     },
@@ -298,7 +373,9 @@
     }
   ],
   "refs": {
-    "data": [],
+    "data": [
+      "financial-breakdown"
+    ],
     "metrics": []
   }
 }

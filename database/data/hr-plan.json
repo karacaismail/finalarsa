@@ -7,23 +7,23 @@
   "headcountGrowth": [
     {
       "year": "2026 H2",
-      "count": 18
+      "count": 30
     },
     {
       "year": "2027",
-      "count": 69
+      "count": 72
     },
     {
       "year": "2028",
-      "count": 110
+      "count": 116
     },
     {
       "year": "2029",
-      "count": 172
+      "count": 162
     },
     {
       "year": "2030",
-      "count": 222
+      "count": 210
     },
     {
       "year": "2031",
@@ -170,5 +170,52 @@
         "tools": "Tamamen AI Voice Agent — klasik çağrı merkezi YOK"
       }
     ]
-  }
+  },
+  "departmentsFinal2031": [
+    {
+      "dept": "Saha Keşif (araçlı)",
+      "count": 48
+    },
+    {
+      "dept": "Saha Satış (araçlı)",
+      "count": 40
+    },
+    {
+      "dept": "ParselQ RFQ / Sosyal moderasyon",
+      "count": 32
+    },
+    {
+      "dept": "Satıcı & Müşteri Ops",
+      "count": 28
+    },
+    {
+      "dept": "Mühendislik",
+      "count": 30
+    },
+    {
+      "dept": "AI / Veri",
+      "count": 18
+    },
+    {
+      "dept": "Pazarlama & Büyüme",
+      "count": 16
+    },
+    {
+      "dept": "Ürün & Tasarım",
+      "count": 14
+    },
+    {
+      "dept": "Finans & Hukuk",
+      "count": 10
+    },
+    {
+      "dept": "İK & İdari",
+      "count": 10
+    },
+    {
+      "dept": "Liderlik / C-Suite",
+      "count": 10
+    }
+  ],
+  "_revisionNote": "ParselQ revizyonu: saha-ağırlıklı (keşif+satış 88), mühendislik ölçülü (30), SAFe katmanı kaldırıldı; ParselQ rolleri eklendi. Eğri 2026=30→2031=256."
 }

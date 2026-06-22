@@ -26,7 +26,7 @@
       "type": "heading"
     },
     {
-      "text": "Her görünüm bir grafik ve onun tablosu olarak verilir; sıra zaman çizgisini izler: ilk ay kuruluş yatırımı, aylık işletme gideri, 2026 ve 2027 aylık, başabaş ve 2032 vizyonu. Aşağıdaki sekmelerden istediğin görünüme geç.",
+      "text": "Her görünüm bir grafik ve onun tablosu olarak verilir; sıra zaman çizgisini izler: ilk ay kuruluş yatırımı, aylık işletme gideri, 2026 ve 2027 aylık, başabaş, 2032 vizyonu ve yedi gelir akışı. Aşağıdaki sekmelerden istediğin görünüme geç.",
       "type": "lead"
     },
     {
@@ -47,9 +47,9 @@
           "value": "opex",
           "label": "İşletme (OPEX)",
           "heading": "Aylık işletme gideri (OPEX)",
-          "lead": "OPEX, her ay tekrar eden işletme gideridir: personel, ofis, dijital altyapı, AI/yazılım araçları ve idari kalemler. Kadro büyüdükçe İK personeli en büyük kaleme döner.",
+          "lead": "OPEX, tekrar eden işletme gideridir: personel, pazarlama, saha operasyonu (araçlı keşif/satış ekipleri), dijital altyapı, AI/yazılım araçları ve idari kalemler. Kadro büyüdükçe personel en büyük kaleme döner.",
           "chartType": "opexComposition",
-          "caption": "Temsili ay (Ara 2027 · 69 kişi) işletme gideri kompozisyonu · grafik + tablo"
+          "caption": "Temsili dönem (2031 yıllık · 256 kişi) işletme gideri kompozisyonu · grafik + tablo"
         },
         {
           "value": "monthly2026",
@@ -71,17 +71,25 @@
           "value": "breakeven",
           "label": "Başabaş",
           "heading": "Başabaş analizi",
-          "lead": "Başabaşa kadar yaklaşık 32 milyon ₺ harcanır; kümülatif gelir, kümülatif gideri Nisan 2027'de bu seviyede geçer. O noktadan sonra gelir gideri karşılar. 40 milyon ₺ sermaye bunu finanse eder; kasa en dipte ~27,6 milyon ₺'ye iner (Oca 2027). 256 kişilik kadroda işe alım arkaya yüklü olduğundan erken dönem yükü düşük kalır.",
+          "lead": "Yatırım dönemi yalnızca 2026 H2'dir (net ~−7,8 milyon ₺). Kümülatif gelir, kümülatif gideri 2027 başında geçer; başabaşa kadar net ~20,5 milyon ₺ harcanır. 40 milyon ₺ sermaye bunu finanse eder; kasa en dipte ~32,2 milyon ₺'ye iner (Aralık 2026). 256 kişilik kadroda işe alım arkaya yüklü olduğundan erken dönem nakit yükü düşük kalır.",
           "chartType": "breakeven",
-          "caption": "Kümülatif gelir vs kümülatif gider · kesişim (başabaş) ~Nisan 2027, ~32 milyon ₺ · grafik + özet tablo"
+          "caption": "Kümülatif gelir vs kümülatif gider · kesişim (başabaş) 2027 başı, net ~20,5 milyon ₺ harcama · grafik + özet tablo"
         },
         {
           "value": "yearly",
           "label": "2032 yıllık",
           "heading": "2032 vizyonu · yıllık (2026 → 2032)",
-          "lead": "Tek finansal grafik ve tek finansal tablo: yedi yılın geliri, gideri, net kârı, kadrosu ve yıl sonu nakdi. Kadro 256 kişiye çıktıkça gider büyür; gelir korunduğu için net marj %90'dan %56–80 bandına iner — model hâlâ güçlü kârlı kalır.",
+          "lead": "Tek finansal grafik ve tek finansal tablo: yedi yılın geliri, gideri, net kârı, kadrosu ve yıl sonu nakdi. Gelir 2032'de 5,5 milyar ₺'ye (medyan) çıktıkça ölçek ekonomisi devreye girer; net marj 2027'de %68'den 2032'de %90'a yükselir — yedi gelir akışı bu kârlılığı taşır.",
           "chartType": "yearlyTable",
-          "caption": "Yıllık gelir, gider, net kâr + tablo (kadro, yıl sonu nakit) · net marj %56–80 (256 kadro)"
+          "caption": "Yıllık gelir, gider, net kâr + tablo (kadro, yıl sonu nakit) · net marj %68 → %90 (gelir 5,5 milyar ₺ medyan, 256 kadro)"
+        },
+        {
+          "value": "revenueStreams",
+          "label": "Gelir akışları",
+          "heading": "Yedi gelir akışı · 2032 medyan kırılımı",
+          "lead": "Gelir tek kaleme bağlı değildir: yedi akış birlikte 2032'de medyan 5,5 milyar ₺ üretir. En büyük ve en inovatif akış ParselQ-RFQ'dur (talep→teklif). Tablo her akışın 2027 → 2032 medyan patikasını verir.",
+          "chartType": "revenueStreams",
+          "caption": "Gelir akışlarının 2032 medyan hedefleri (ParselQ-RFQ amiral) · grafik + yıllara göre tablo"
         },
         {
           "value": "tax",

@@ -27,17 +27,18 @@
       "basis": "TAM × %18,7 online penetrasyon"
     },
     "som": {
-      "value": 34600000000,
-      "basis": "SAM × %10 hedef pay"
+      "value": 121100000000,
+      "basis": "SAM × %35 hedef pay (2032 vizyonu)"
     },
     "annualRevenuePotential": {
-      "value": 518667093,
-      "basis": "SOM × %1,5 take rate"
+      "value": 5500000000,
+      "basis": "Çok-akışlı yıllık gelir (medyan, 2032)"
     },
     "onlinePenetration": 0.187,
     "takeRate": 0.015,
     "emlakTam": 5500000000000,
-    "emlakTargetShare": 0.01
+    "emlakTargetShare": 0.01,
+    "targetShare2032": 0.35
   },
   "competitorShares": {
     "sahibinden_land": 0.68,
@@ -50,24 +51,23 @@
     {
       "id": "pessimist",
       "label": "Kötümser",
-      "revenue": 259000000,
-      "revenueRounded": 260000000,
-      "shareLabel": "%5 (online arsa) / %0,75 (toplam)",
-      "note": "CAC 2× · 2027 baz"
+      "revenue": 2475000000,
+      "shareLabel": "%18 (online arsa)",
+      "note": "yavaş benimseme · CAC yüksek"
     },
     {
       "id": "median",
       "label": "Medyan",
-      "revenue": 519000000,
-      "shareLabel": "%10 (online arsa) / %1,5 (take rate)",
+      "revenue": 5500000000,
+      "shareLabel": "%35 (online arsa) — 2032 hedef",
       "note": "plan baz · finansal modelin temeli"
     },
     {
       "id": "optimist",
       "label": "İyimser",
-      "revenue": 823000000,
-      "shareLabel": "%2,4 (toplam)",
-      "note": "diaspora dahil · kanal ortaklıkları aktif"
+      "revenue": 9075000000,
+      "shareLabel": "%42 (online arsa)",
+      "note": "viral büyüme · diaspora + kanal ortaklıkları"
     }
   ],
   "trafficMix": {
@@ -95,78 +95,77 @@
       "2031",
       "2032"
     ],
-    "targetYear": "2028",
+    "targetYear": "2032",
     "samBase": 346000000000,
-    "takeRate": 0.015,
-    "note": "Gelir = SAM payı × SAM (346 milyar ₺) × take rate (%1,5). 2026 H2 soft-launch (senaryodan bağımsız); hedef 2028'de tutturulur, sonrası plato.",
+    "note": "Gelir çok-akışlıdır (yalnız take rate değil). Pay = online arsa pazarındaki hedef pazar payı; 2032 medyan %35. 2026 H2 soft-launch.",
     "scenarios": [
       {
         "label": "Kötümser",
-        "steadyRevenue": 259000000,
-        "steadyShare": 0.05,
+        "steadyRevenue": 2475000000,
+        "steadyShare": 0.18,
         "revenue": [
-          1409045,
-          130000000,
-          259000000,
-          259000000,
-          259000000,
-          259000000,
-          259000000
+          3625875,
+          103083750,
+          312221250,
+          744603750,
+          1386371250,
+          2037172500,
+          2475000000
         ],
         "shareOfSam": [
-          0.0003,
-          0.025,
-          0.0499,
-          0.0499,
-          0.0499,
-          0.0499,
-          0.0499
+          0.0025,
+          0.015,
+          0.04,
+          0.08,
+          0.125,
+          0.155,
+          0.175
         ]
       },
       {
         "label": "Medyan",
-        "steadyRevenue": 519000000,
-        "steadyShare": 0.1,
+        "steadyRevenue": 5500000000,
+        "steadyShare": 0.35,
         "revenue": [
-          1409045,
-          259000000,
-          519000000,
-          519000000,
-          519000000,
-          519000000,
-          519000000
+          8057500,
+          229075000,
+          693825000,
+          1654675000,
+          3080825000,
+          4527050000,
+          5500000000
         ],
         "shareOfSam": [
-          0.0003,
-          0.0499,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
+          0.005,
+          0.03,
+          0.08,
+          0.16,
+          0.25,
+          0.31,
+          0.35
         ]
       },
       {
         "label": "İyimser",
-        "steadyRevenue": 823000000,
-        "steadyShare": 0.159,
+        "steadyRevenue": 9075000000,
+        "steadyShare": 0.42,
         "revenue": [
-          1409045,
-          415000000,
-          823000000,
-          823000000,
-          823000000,
-          823000000,
-          823000000
+          13294875,
+          377973750,
+          1144811250,
+          2730213750,
+          5083361250,
+          7469632500,
+          9075000000
         ],
         "shareOfSam": [
-          0.0003,
-          0.08,
-          0.1586,
-          0.1586,
-          0.1586,
-          0.1586,
-          0.1586
+          0.006,
+          0.036,
+          0.096,
+          0.192,
+          0.3,
+          0.372,
+          0.42
         ]
       }
     ]

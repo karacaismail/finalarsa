@@ -3,7 +3,7 @@
   "kind": "data",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "source": "IK_PLANI_AI_FIRST_256_v1 (kadro/maaş) + model-v9-15 (gelir) — yeniden hesap",
+  "source": "ParselQ revize (%35, çok-akışlı, senaryolu)",
   "description": "Kronolojik finansal kırılım: ilk-ay CAPEX, OPEX kompozisyonu, 2026/2027 aylık (gelir/opex/pazarlama/capex/gider/net/nakit), başabaş kümülatif kesişimi (~15M), teknopark vergi senaryoları.",
   "identity": "Her ay: gider = OPEX + Pazarlama + CAPEX (KÂR ZARAR ile birebir).",
   "capex": {
@@ -46,316 +46,324 @@
     "note": "Bir kerelik kuruluş yatırımı (ofis, ekipman, marka, hukuk); büyük kısmı ilk ay (Tem 2026). Sonraki aylarda her yeni işe alım için ~24.000 ₺ ekipman aylık CAPEX'e eklenir (256 kişiye kadar)."
   },
   "opex": {
-    "month": "Ara 27",
-    "total": 8163614,
+    "month": "2031 (yıllık, temsili)",
+    "total": 475548950,
     "byCategory": [
       {
-        "kat": "Personel (SGK işveren dahil)",
-        "tutar": 6271739
+        "kat": "Personel (SGK dahil)",
+        "tutar": 221443200
       },
       {
-        "kat": "Ofis & idari",
-        "tutar": 706500
+        "kat": "Pazarlama",
+        "tutar": 110000000
       },
       {
-        "kat": "Yazılım & AI araçları",
-        "tutar": 414000
+        "kat": "Saha operasyonu (araç/yakıt/ekipman)",
+        "tutar": 27360000
       },
       {
         "kat": "Dijital altyapı & platform AI",
-        "tutar": 771375
+        "tutar": 67905750
+      },
+      {
+        "kat": "Ofis & idari",
+        "tutar": 30960000
+      },
+      {
+        "kat": "Yazılım & AI araçları",
+        "tutar": 16776000
       }
     ],
-    "note": "Temsili ay (Ara 2027, 69 kişi) işletme gideri kompozisyonu. Kadro büyüdükçe personel kalemi baskın hale gelir (AI-first ile diğer kalemler düşük tutulur)."
+    "note": "2031 yıllık işletme gideri kompozisyonu (256 kişi). Saha operasyonu = araçlı keşif/satış ekipleri. AI-first ile personel-dışı kalemler düşük tutulur."
   },
   "monthly2026": [
     {
       "label": "Tem 26",
-      "gelir": 0,
-      "opex": 16500,
-      "pazarlama": 163000,
-      "capex": 2863100,
-      "gider": 3042600,
-      "net": -3042600,
-      "nakit": 36957400
+      "gelir": 1033013,
+      "opex": 1444630,
+      "pazarlama": 128205,
+      "capex": 2955408,
+      "gider": 4528243,
+      "net": -3495230,
+      "nakit": 36504770
     },
     {
       "label": "Agu 26",
-      "gelir": 10285,
-      "opex": 846466,
-      "pazarlama": 188000,
-      "capex": 120000,
-      "gider": 1154466,
-      "net": -1144181,
-      "nakit": 35813219
+      "gelir": 1156974,
+      "opex": 1617985,
+      "pazarlama": 143590,
+      "capex": 103385,
+      "gider": 1864960,
+      "net": -707986,
+      "nakit": 35796784
     },
     {
       "label": "Eyl 26",
-      "gelir": 41140,
-      "opex": 1419281,
-      "pazarlama": 262000,
-      "capex": 168000,
-      "gider": 1849281,
-      "net": -1808141,
-      "nakit": 34005078
+      "gelir": 1280936,
+      "opex": 1791341,
+      "pazarlama": 158974,
+      "capex": 114462,
+      "gider": 2064777,
+      "net": -783841,
+      "nakit": 35012943
     },
     {
       "label": "Eki 26",
-      "gelir": 123420,
-      "opex": 1497315,
-      "pazarlama": 533000,
-      "capex": 24000,
-      "gider": 2054315,
-      "net": -1930895,
-      "nakit": 32074183
+      "gelir": 1404897,
+      "opex": 1964696,
+      "pazarlama": 174359,
+      "capex": 125538,
+      "gider": 2264593,
+      "net": -859696,
+      "nakit": 34153247
     },
     {
       "label": "Kas 26",
-      "gelir": 329120,
-      "opex": 1636632,
-      "pazarlama": 571000,
-      "capex": 48000,
-      "gider": 2255632,
-      "net": -1926512,
-      "nakit": 30147671
+      "gelir": 1528859,
+      "opex": 2138052,
+      "pazarlama": 189744,
+      "capex": 136615,
+      "gider": 2464411,
+      "net": -935552,
+      "nakit": 33217695
     },
     {
       "label": "Ara 26",
-      "gelir": 905080,
-      "opex": 1858303,
-      "pazarlama": 798000,
-      "capex": 72000,
-      "gider": 2728303,
-      "net": -1823223,
-      "nakit": 28324448
+      "gelir": 1652821,
+      "opex": 2311408,
+      "pazarlama": 205128,
+      "capex": 147692,
+      "gider": 2664228,
+      "net": -1011407,
+      "nakit": 32206288
     }
   ],
   "monthly2027": [
     {
       "label": "Oca 27",
-      "gelir": 2396405,
-      "opex": 2016904,
-      "pazarlama": 1042000,
-      "capex": 48000,
-      "gider": 3106904,
-      "net": -710499,
-      "nakit": 27613949
+      "gelir": 14684295,
+      "opex": 3827841,
+      "pazarlama": 769231,
+      "capex": 64615,
+      "gider": 4661687,
+      "net": 10022608,
+      "nakit": 42228896
     },
     {
       "label": "Sub 27",
-      "gelir": 6016725,
-      "opex": 3538461,
-      "pazarlama": 1054000,
-      "capex": 264000,
-      "gider": 4856461,
-      "net": 1160264,
-      "nakit": 28774213
+      "gelir": 15485256,
+      "opex": 4036633,
+      "pazarlama": 811189,
+      "capex": 68140,
+      "gider": 4915962,
+      "net": 10569294,
+      "nakit": 52798190
     },
     {
       "label": "Mar 27",
-      "gelir": 13596770,
-      "opex": 3728963,
-      "pazarlama": 1280000,
-      "capex": 24000,
-      "gider": 5032963,
-      "net": 8563807,
-      "nakit": 37338020
+      "gelir": 16286218,
+      "opex": 4245424,
+      "pazarlama": 853147,
+      "capex": 71664,
+      "gider": 5170235,
+      "net": 11115983,
+      "nakit": 63914173
     },
     {
       "label": "Nis 27",
-      "gelir": 25270245,
-      "opex": 4324187,
-      "pazarlama": 1581000,
-      "capex": 96000,
-      "gider": 6001187,
-      "net": 19269058,
-      "nakit": 56607078
+      "gelir": 17087179,
+      "opex": 4454215,
+      "pazarlama": 895105,
+      "capex": 75189,
+      "gider": 5424509,
+      "net": 11662670,
+      "nakit": 75576843
     },
     {
       "label": "May 27",
-      "gelir": 36954005,
-      "opex": 4722532,
-      "pazarlama": 1593000,
-      "capex": 48000,
-      "gider": 6363532,
-      "net": 30590473,
-      "nakit": 87197551
+      "gelir": 17888141,
+      "opex": 4663007,
+      "pazarlama": 937063,
+      "capex": 78713,
+      "gider": 5678783,
+      "net": 12209358,
+      "nakit": 87786201
     },
     {
       "label": "Haz 27",
-      "gelir": 44523765,
-      "opex": 5049111,
-      "pazarlama": 1627000,
-      "capex": 72000,
-      "gider": 6748111,
-      "net": 37775654,
-      "nakit": 124973205
+      "gelir": 18689103,
+      "opex": 4871798,
+      "pazarlama": 979021,
+      "capex": 82238,
+      "gider": 5933057,
+      "net": 12756046,
+      "nakit": 100542247
     },
     {
       "label": "Tem 27",
-      "gelir": 48154370,
-      "opex": 6113227,
-      "pazarlama": 1857000,
-      "capex": 168000,
-      "gider": 8138227,
-      "net": 40016143,
-      "nakit": 164989348
+      "gelir": 19490064,
+      "opex": 5080589,
+      "pazarlama": 1020979,
+      "capex": 85762,
+      "gider": 6187330,
+      "net": 13302734,
+      "nakit": 113844981
     },
     {
       "label": "Agu 27",
-      "gelir": 49645695,
-      "opex": 6687791,
-      "pazarlama": 1870000,
-      "capex": 144000,
-      "gider": 8701791,
-      "net": 40943904,
-      "nakit": 205933252
+      "gelir": 20291026,
+      "opex": 5289381,
+      "pazarlama": 1062937,
+      "capex": 89287,
+      "gider": 6441605,
+      "net": 13849421,
+      "nakit": 127694402
     },
     {
       "label": "Eyl 27",
-      "gelir": 50221655,
-      "opex": 6918148,
-      "pazarlama": 1960000,
-      "capex": 72000,
-      "gider": 8950148,
-      "net": 41271507,
-      "nakit": 247204759
+      "gelir": 21091987,
+      "opex": 5498172,
+      "pazarlama": 1104895,
+      "capex": 92811,
+      "gider": 6695878,
+      "net": 14396109,
+      "nakit": 142090511
     },
     {
       "label": "Eki 27",
-      "gelir": 50427355,
-      "opex": 7169007,
-      "pazarlama": 2077000,
-      "capex": 72000,
-      "gider": 9318007,
-      "net": 41109348,
-      "nakit": 288314107
+      "gelir": 21892949,
+      "opex": 5706963,
+      "pazarlama": 1146853,
+      "capex": 96336,
+      "gider": 6950152,
+      "net": 14942797,
+      "nakit": 157033308
     },
     {
       "label": "Kas 27",
-      "gelir": 50509635,
-      "opex": 7478819,
-      "pazarlama": 2168000,
-      "capex": 72000,
-      "gider": 9718819,
-      "net": 40790816,
-      "nakit": 329104923
+      "gelir": 22693910,
+      "opex": 5915755,
+      "pazarlama": 1188811,
+      "capex": 99860,
+      "gider": 7204426,
+      "net": 15489484,
+      "nakit": 172522792
     },
     {
       "label": "Ara 27",
-      "gelir": 51425000,
-      "opex": 8163614,
-      "pazarlama": 2286000,
-      "capex": 144000,
-      "gider": 10593614,
-      "net": 40831386,
-      "nakit": 369936309
+      "gelir": 23494872,
+      "opex": 6124546,
+      "pazarlama": 1230769,
+      "capex": 103385,
+      "gider": 7458700,
+      "net": 16036172,
+      "nakit": 188558964
     }
   ],
   "breakeven": {
     "capital": 40000000,
-    "cumSpendToBE": 32082112,
-    "beMonthOperational": "Şub 2027",
-    "beMonthCumulative": "Nis 2027",
-    "cashTrough": 27613949,
-    "cashTroughMonth": "Oca 27",
-    "reserve": 27613949,
+    "cumSpendToBE": 20512899,
+    "beMonthOperational": "2027 başı",
+    "beMonthCumulative": "2027",
+    "cashTrough": 32206288,
+    "cashTroughMonth": "2026 H2",
+    "reserve": 32206288,
+    "note": "2026 H2 yatırım dönemi (net ~-8M ₺); 40M ₺ sermaye bunu karşılar, kasa ~32M ₺'ye iner. 2027'den itibaren gelir gideri güçlü biçimde aşar (net marj ~%70→%90); başabaş 2027 başı.",
     "series": [
       {
         "label": "Tem 26",
-        "cumGelir": 0,
-        "cumGider": 3042600
+        "cumGelir": 1033013,
+        "cumGider": 4528243
       },
       {
         "label": "Agu 26",
-        "cumGelir": 10285,
-        "cumGider": 4197066
+        "cumGelir": 2189987,
+        "cumGider": 6393203
       },
       {
         "label": "Eyl 26",
-        "cumGelir": 51425,
-        "cumGider": 6046347
+        "cumGelir": 3470923,
+        "cumGider": 8457980
       },
       {
         "label": "Eki 26",
-        "cumGelir": 174845,
-        "cumGider": 8100662
+        "cumGelir": 4875820,
+        "cumGider": 10722573
       },
       {
         "label": "Kas 26",
-        "cumGelir": 503965,
-        "cumGider": 10356294
+        "cumGelir": 6404679,
+        "cumGider": 13186984
       },
       {
         "label": "Ara 26",
-        "cumGelir": 1409045,
-        "cumGider": 13084597
+        "cumGelir": 8057500,
+        "cumGider": 15851212
       },
       {
         "label": "Oca 27",
-        "cumGelir": 3805450,
-        "cumGider": 16191501
+        "cumGelir": 22741795,
+        "cumGider": 20512899
       },
       {
         "label": "Sub 27",
-        "cumGelir": 9822175,
-        "cumGider": 21047962
+        "cumGelir": 38227051,
+        "cumGider": 25428861
       },
       {
         "label": "Mar 27",
-        "cumGelir": 23418945,
-        "cumGider": 26080925
+        "cumGelir": 54513269,
+        "cumGider": 30599096
       },
       {
         "label": "Nis 27",
-        "cumGelir": 48689190,
-        "cumGider": 32082112
+        "cumGelir": 71600448,
+        "cumGider": 36023605
       },
       {
         "label": "May 27",
-        "cumGelir": 85643195,
-        "cumGider": 38445644
+        "cumGelir": 89488589,
+        "cumGider": 41702388
       },
       {
         "label": "Haz 27",
-        "cumGelir": 130166960,
-        "cumGider": 45193755
+        "cumGelir": 108177692,
+        "cumGider": 47635445
       },
       {
         "label": "Tem 27",
-        "cumGelir": 178321330,
-        "cumGider": 53331982
+        "cumGelir": 127667756,
+        "cumGider": 53822775
       },
       {
         "label": "Agu 27",
-        "cumGelir": 227967025,
-        "cumGider": 62033773
+        "cumGelir": 147958782,
+        "cumGider": 60264380
       },
       {
         "label": "Eyl 27",
-        "cumGelir": 278188680,
-        "cumGider": 70983921
+        "cumGelir": 169050769,
+        "cumGider": 66960258
       },
       {
         "label": "Eki 27",
-        "cumGelir": 328616035,
-        "cumGider": 80301928
+        "cumGelir": 190943718,
+        "cumGider": 73910410
       },
       {
         "label": "Kas 27",
-        "cumGelir": 379125670,
-        "cumGider": 90020747
+        "cumGelir": 213637628,
+        "cumGider": 81114836
       },
       {
         "label": "Ara 27",
-        "cumGelir": 430550670,
-        "cumGider": 100614361
+        "cumGelir": 237132500,
+        "cumGider": 88573536
       }
-    ],
-    "note": "Kümülatif gelir, kümülatif gideri ~Nisan 2027'de geçer. Kasa en dibinde ~27,6M ₺'ye iner (Oca 2027); 40M ₺ sermaye bunu karşılar. 256 kişilik kadroda işe alım arkaya yüklü olduğundan erken dönem yükü düşüktür."
+    ]
   },
   "tax": {
-    "opexSteady": 159538109,
+    "opexSteady": 146125875,
     "kvRate": 0.25,
     "stopajSgkFixed": 15500000,
     "validUntil": "31/12/2028",
@@ -376,7 +384,144 @@
         "revenue": 823000000
       }
     ],
-    "note": "Teknopark 4691 kapsamında yazılım kazancı kurumlar vergisinden istisna (KV avantajı = %25 × vergi öncesi kâr) + stopaj/SGK avantajı. Mekanizma yasal-kesin; ₺ tutarı kazanç düzeyine bağlı model varsayımıdır. Gider tabanı 2028 (~160M ₺, 256 kadro); medyan senaryoda KV avantajı ≈ 90M ₺."
+    "note": "Teknopark 4691: yazılım kazancı kurumlar vergisinden istisna (KV avantajı = %25 × vergi öncesi kâr). Gider tabanı 2028 (256'ya giden kadro). Tutar kazanca bağlı model varsayımıdır."
   },
-  "_recalcNote": "256/2031 İK master (IK_PLANI_AI_FIRST_256_v1) ile yeniden hesap. Gelir ESKİ modelden korundu. Personel = master brüt maaş × 1.2375 (SGK işveren, std TR). Personel-dışı: ofis+idari 10.000₺/kişi/ay, yazılım+AI 6.000₺/kişi/ay, altyapı=gelir×%1.5, pazarlama eski şema, hukuki 16.500₺/ay, ekipman 24.000₺/yeni alım. Ufuk 2032 (kadro 256 sabit, +%10 zam). Tüm tutarlar MODEL VARSAYIMIDIR."
+  "_recalcNote": "ParselQ revizyonu (22.06.2026): kadro 2026=30→2031=256; 2032 hedef pazar payı %35 (online arsa); gelir ÇOK-AKIŞLI ve SENARYOLU (kötümser×0.45 / medyan / iyimser×1.65). Gelir akışları: ParselQ-RFQ, İlan, Emlakçı ağı, Veri/API, Reklam, SaaS, Hizmet. Gider: yeni kadro × std TR maliyet + araçlı saha operasyonu. Tüm tutarlar MODEL VARSAYIMI/HEDEF.",
+  "revenueStreams": {
+    "note": "Gelir, gelir-modeli başına ayrı izlenir; her akış kendi gerçekçi hedefine sahiptir. Senaryolar tüm akışlara aynı çarpanla uygulanır (kötümser×0.45 / medyan / iyimser×1.65).",
+    "scenarioMultipliers": {
+      "kotumser": 0.45,
+      "medyan": 1.0,
+      "iyimser": 1.65
+    },
+    "streams": [
+      {
+        "key": "rfq",
+        "label": "ParselQ · RFQ (talep→teklif)",
+        "y2032_medyan": 1650000000,
+        "byYearMedyan": {
+          "2026 H2": 1320000,
+          "2027": 46200000,
+          "2028": 156750000,
+          "2029": 420750000,
+          "2030": 849750000,
+          "2031": 1320000000,
+          "2032": 1650000000
+        }
+      },
+      {
+        "key": "ilan",
+        "label": "İlan & görünürlük",
+        "y2032_medyan": 1100000000,
+        "byYearMedyan": {
+          "2026 H2": 1650000,
+          "2027": 49500000,
+          "2028": 148500000,
+          "2029": 346500000,
+          "2030": 632500000,
+          "2031": 913000000,
+          "2032": 1100000000
+        }
+      },
+      {
+        "key": "emlakci",
+        "label": "Emlakçı ağı (teklif/lead)",
+        "y2032_medyan": 770000000,
+        "byYearMedyan": {
+          "2026 H2": 1155000,
+          "2027": 34650000,
+          "2028": 103950000,
+          "2029": 242550000,
+          "2030": 442750000,
+          "2031": 639100000,
+          "2032": 770000000
+        }
+      },
+      {
+        "key": "veri",
+        "label": "Veri & API & rapor",
+        "y2032_medyan": 880000000,
+        "byYearMedyan": {
+          "2026 H2": 1320000,
+          "2027": 39600000,
+          "2028": 118800000,
+          "2029": 277200000,
+          "2030": 506000000,
+          "2031": 730400000,
+          "2032": 880000000
+        }
+      },
+      {
+        "key": "reklam",
+        "label": "Reklam & sponsorluk",
+        "y2032_medyan": 440000000,
+        "byYearMedyan": {
+          "2026 H2": 660000,
+          "2027": 19800000,
+          "2028": 59400000,
+          "2029": 138600000,
+          "2030": 253000000,
+          "2031": 365200000,
+          "2032": 440000000
+        }
+      },
+      {
+        "key": "saas",
+        "label": "Profesyonel SaaS (emlakçı OS)",
+        "y2032_medyan": 385000000,
+        "byYearMedyan": {
+          "2026 H2": 1540000,
+          "2027": 26950000,
+          "2028": 69300000,
+          "2029": 142450000,
+          "2030": 238700000,
+          "2031": 331100000,
+          "2032": 385000000
+        }
+      },
+      {
+        "key": "hizmet",
+        "label": "Hizmet (drone/değerleme/foto)",
+        "y2032_medyan": 275000000,
+        "byYearMedyan": {
+          "2026 H2": 412500,
+          "2027": 12375000,
+          "2028": 37125000,
+          "2029": 86625000,
+          "2030": 158125000,
+          "2031": 228250000,
+          "2032": 275000000
+        }
+      }
+    ],
+    "totalByYear": {
+      "kotumser": {
+        "2026 H2": 3625875,
+        "2027": 103083750,
+        "2028": 312221250,
+        "2029": 744603750,
+        "2030": 1386371250,
+        "2031": 2037172500,
+        "2032": 2475000000
+      },
+      "medyan": {
+        "2026 H2": 8057500,
+        "2027": 229075000,
+        "2028": 693825000,
+        "2029": 1654675000,
+        "2030": 3080825000,
+        "2031": 4527050000,
+        "2032": 5500000000
+      },
+      "iyimser": {
+        "2026 H2": 13294875,
+        "2027": 377973750,
+        "2028": 1144811250,
+        "2029": 2730213750,
+        "2030": 5083361250,
+        "2031": 7469632500,
+        "2032": 9075000000
+      }
+    }
+  }
 }
