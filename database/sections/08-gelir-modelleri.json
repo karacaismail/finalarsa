@@ -33,6 +33,57 @@
     },
     {
       "level": 3,
+      "text": "Hizmet paketleri · satıcı-dostu, pazar-kıyaslı",
+      "accent": "satıcı-dostu",
+      "type": "heading"
+    },
+    {
+      "text": "Gelirimiz komisyondan değil, tekrarlayan abonelik ve ek modüllerden gelir. Satıcı tarafı bilinçli olarak ucuzdur: sahibinden'de bireysel emlak ilanı {{metric:competitor.sahibinden_listing}} iken bizde ayda 1 ilan ücretsiz, tekli ilan {{metric:pricing.single_listing}} (yaklaşık yarısı). Emlakçı paketleri pazar bandındadır ({{metric:pricing.starter_monthly}} – {{metric:pricing.premium_monthly}}) ve her paket ilan hakkıyla birlikte gelir.",
+      "highlight": ["komisyondan değil", "tekrarlayan abonelik"],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "columns": ["Paket", "Kime", "İlan hakkı", "Fiyat"],
+      "rows": [
+        ["Ücretsiz", "Satıcı (bireysel)", "Ayda 1 ilan", "0 ₺"],
+        ["Tekli ilan", "Satıcı", "1 ilan", "{{metric:pricing.single_listing}}"],
+        ["Başlangıç", "Emlakçı", "25 ilan + 5 öne çıkarma", "{{metric:pricing.starter_monthly}}"],
+        ["Vitrin / Pro", "Emlakçı", "75 ilan + vitrin", "{{metric:pricing.vitrin_monthly}}"],
+        ["Premium", "Emlakçı / kurumsal", "200 ilan + API/veri", "{{metric:pricing.premium_annual}} ({{metric:pricing.premium_monthly}})"],
+        ["Öne çıkar", "Herkes", "tekil görünürlük", "{{metric:pricing.doping_per}}"]
+      ],
+      "type": "table"
+    },
+    {
+      "text": "Paket gelirleri tek başına değildir; aşağıdaki yedi ek gelir modülü — ParselQ-RFQ, veri & API, emlakçı lead ağı, reklam & sponsorluk, profesyonel SaaS, saha hizmetleri, ilan & görünürlük — toplam {{metric:revenue.median}} medyan geliri (2032, %35 pay) birlikte taşır.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "Rakip fiyatlandırma (2026)",
+      "type": "heading"
+    },
+    {
+      "text": "Rakiplerin kurumsal/emlakçı paket fiyatları çoğunlukla kamuya kapalıdır — bölgeye ve ilan sayısına göre müşteri temsilcisiyle belirlenir. Kamuya açık tek net rakam bireysel ilan başı ücrettir; bu yüzden tabloda kurumsal satırlar 'teklifle' diye işaretlidir.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "columns": ["Platform", "Birim / paket", "Fiyat (2026)", "Not"],
+      "rows": [
+        ["Sahibinden", "Bireysel emlak ilanı", "{{metric:competitor.sahibinden_listing}}", "ilk ilan 1.659 ₺ · resmî, güncel"],
+        ["Sahibinden", "Kurumsal mağaza", "teklifle", "ilan sayısına göre"],
+        ["Emlakjet", "Kurumsal paket", "~300–1.000 ₺/ay", "bölgeye göre · bireysel 2/yıl bedava"],
+        ["Hürriyet / Milliyet", "Kurumsal paket", "teklifle", "ilan-sayısı kademeli (50→1000)"],
+        ["Hepsiemlak", "150 / 400 ilan paketi", "teklifle", "yıllık"],
+        ["ParselQ (biz)", "Tekli ilan / abonelik", "{{metric:pricing.single_listing}} / {{metric:pricing.starter_monthly}}+", "komisyon yok · satıcı-dostu"]
+      ],
+      "type": "table"
+    },
+    {
+      "level": 3,
       "text": "Yedi gelir akışı · ParselQ-RFQ amiral gemisi",
       "accent": "ParselQ-RFQ",
       "type": "heading"
@@ -376,6 +427,15 @@
     "data": [
       "financial-breakdown"
     ],
-    "metrics": []
+    "metrics": [
+      "pricing.single_listing",
+      "pricing.starter_monthly",
+      "pricing.vitrin_monthly",
+      "pricing.premium_annual",
+      "pricing.premium_monthly",
+      "pricing.doping_per",
+      "competitor.sahibinden_listing",
+      "revenue.median"
+    ]
   }
 }

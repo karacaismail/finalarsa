@@ -4,7 +4,7 @@
   "schemaVersion": "1.0.0",
   "lang": "tr",
   "description": "Tüm kanonik rakamların tek kaynağı. Bölümler {{metric:<key>}} ile referans verir; sayı asla bölüm içinde elle tekrarlanmaz.",
-  "count": 89,
+  "count": 97,
   "metrics": {
     "capital.investor_pocket": {
       "value": 15000000,
@@ -641,6 +641,21 @@
       "unit": "",
       "display": "%35",
       "label": "2032 hedef pazar payı (online arsa)"
+    },
+    "pricing.single_listing": {
+      "value": 999,
+      "unit": "TRY",
+      "display": "999 ₺/ilan",
+      "label": "Tekli ilan (satıcı; sahibinden'in ~yarısı)",
+      "note": "Satıcı-dostu konum: sahibinden bireysel emlak ilanı 1.999 ₺ iken bizde tekli ilan 999 ₺."
+    },
+    "competitor.sahibinden_listing": {
+      "value": 1999,
+      "unit": "TRY",
+      "display": "1.999 ₺/ilan",
+      "label": "sahibinden bireysel emlak ilan ücreti (2026, resmî)",
+      "source": "sahibinden-yardim-2026",
+      "note": "yardim.sahibinden.com — ilk ücretli ilan indirimli 1.659 ₺; ikinciden itibaren 1.999 ₺."
     }
   },
   "_verification": {
