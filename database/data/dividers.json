@@ -1,0 +1,94 @@
+{
+  "id": "dividers",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "_note": "Bölümler arası geçiş bantları: strateji yazarları, Rus klasikleri ve pazarlama duayenlerinden doğrulanmış özlü sözler (App.tsx her bölüm sonrasına yerleştirir; son bölüm hariç).",
+  "bySlug": {
+    "karar-notu": {
+      "quote": "İşte yol! Ve insan ilerler.",
+      "author": "Nikolay Gogol · Ölü Canlar",
+      "theme": "grass"
+    },
+    "toplanti-ozeti": {
+      "quote": "Kısa olmak, yeteneğin kardeşidir.",
+      "author": "Anton Çehov",
+      "theme": "ink"
+    },
+    "neden-ortak": {
+      "quote": "İlke, sana paraya mal olmadan önce ilke değildir.",
+      "author": "Bill Bernbach",
+      "theme": "gold"
+    },
+    "problem": {
+      "quote": "Düşmanı ve kendini bil; yüz savaşta tehlikeye düşmezsin.",
+      "author": "Sun Tzu · Savaş Sanatı",
+      "theme": "clay"
+    },
+    "cozum": {
+      "quote": "Savaşta her şey çok basittir; ama en basit şey bile zordur.",
+      "author": "Carl von Clausewitz · Savaş Üzerine",
+      "theme": "grass"
+    },
+    "pazar": {
+      "quote": "Pazarda ilk olmak, zihinde ilk olmaktan daha az değerlidir.",
+      "author": "Ries & Trout · Konumlandırma",
+      "theme": "gold"
+    },
+    "model": {
+      "quote": "Pazarlamanın amacı satışı gereksiz kılmaktır.",
+      "author": "Peter Drucker",
+      "theme": "ink"
+    },
+    "gelir-modelleri": {
+      "quote": "Pazarlama, gerçek müşteri değeri yaratma sanatıdır.",
+      "author": "Philip Kotler",
+      "theme": "grass"
+    },
+    "gtm": {
+      "quote": "Tek şeyden on bin şeyi bil.",
+      "author": "Miyamoto Musashi · Beş Çember",
+      "theme": "ink"
+    },
+    "rekabet": {
+      "quote": "En yüce zafer, savaşmadan kazanmaktır.",
+      "author": "Sun Tzu · Savaş Sanatı",
+      "theme": "ink"
+    },
+    "ai-operasyon": {
+      "quote": "Aslan tuzağı görmez, tilki kurda güç yetiremez; ikisi birden ol.",
+      "author": "Machiavelli · Hükümdar",
+      "theme": "gold"
+    },
+    "ik-plani": {
+      "quote": "İnsan — ne gurur verici bir sözcük!",
+      "author": "Maksim Gorki · Ayak Takımı",
+      "theme": "grass"
+    },
+    "basabas": {
+      "quote": "En güçlü iki savaşçı: sabır ve zaman.",
+      "author": "Lev Tolstoy · Savaş ve Barış",
+      "theme": "ink"
+    },
+    "risk": {
+      "quote": "Güvende olmak, en büyük risktir.",
+      "author": "Seth Godin",
+      "theme": "clay"
+    },
+    "teknopark": {
+      "quote": "En etkili yaklaşım, doğrudan değil dolaylı olandır.",
+      "author": "B. H. Liddell Hart · Strateji",
+      "theme": "gold"
+    },
+    "cpo": {
+      "quote": "Gerçek insan, ilkelere körü körüne boyun eğmez.",
+      "author": "İvan Turgenyev · Babalar ve Oğullar",
+      "theme": "ink"
+    },
+    "yatirim": {
+      "quote": "İşletmenin amacı müşteri yaratmaktır.",
+      "author": "Peter Drucker",
+      "theme": "gold"
+    }
+  }
+}
