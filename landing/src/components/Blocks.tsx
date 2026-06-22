@@ -795,6 +795,31 @@ function MarketScale({ dark }: { dark?: boolean }) {
 
   return (
     <Box {...interactivePanel(dark)} p={{ base: "5", md: "6" }}>
+      {/* Kalıcı açıklama: iki görünümün farkı — sekme değişse de değişmese de görünür kalır. */}
+      <Box
+        mb="5"
+        p={{ base: "3", md: "4" }}
+        bg={dark ? fx.overlayWhite06 : "surface"}
+        border="1px solid"
+        borderColor={dark ? fx.overlayWhite10 : "line"}
+        borderRadius="surface"
+      >
+        <Stack gap="2">
+          <P fontSize="md" color={dark ? D.muted : "inkMuted"} lineHeight="1.5">
+            <Box as="span" fontWeight="bold" color={mode === "share" ? "grass" : dark ? D.text : "ink"}>
+              Pazar payı
+            </Box>
+            {" — TAM, SAM, SOM ve yıllık gelir potansiyelini mutlak ₺ değer ve toplam pazardaki payı (%) olarak gösterir: pazarın yukarıdan aşağıya büyüklüğü."}
+          </P>
+          <P fontSize="md" color={dark ? D.muted : "inkMuted"} lineHeight="1.5">
+            <Box as="span" fontWeight="bold" color={mode === "conversion" ? "grass" : dark ? D.text : "ink"}>
+              Aşama dönüşümü
+            </Box>
+            {" — Her ardışık aşamanın bir öncekine ORANINI gösterir: SAM/TAM (online penetrasyon), SOM/SAM (hedef pay), Gelir/SOM (take rate); yani hunide her adımın daralma yüzdesi."}
+          </P>
+        </Stack>
+      </Box>
+
       <Flex align="center" gap="3" wrap="wrap" mb="5">
         <P fontWeight="medium" fontSize="md" color={dark ? D.muted : "inkMuted"}>
           Görünüm:
