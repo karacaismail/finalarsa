@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 15,
+  "order": 16,
   "slug": "cpo",
   "nav": {
-    "num": "15",
+    "num": "16",
     "label": "CPO"
   },
   "background": "bg-3",
@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "CPO çalışma şartları · 15 / 17",
+      "text": "CPO çalışma şartları · 16 / 18",
       "type": "eyebrow"
     },
     {

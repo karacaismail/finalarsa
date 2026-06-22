@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 10,
+  "order": 11,
   "slug": "ai-operasyon",
   "nav": {
-    "num": "10",
+    "num": "11",
     "label": "AI operasyon"
   },
   "background": "bg-2",
@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "AI destekli operasyon · 10 / 17",
+      "text": "AI destekli operasyon · 11 / 18",
       "type": "eyebrow"
     },
     {

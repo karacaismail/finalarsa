@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 11,
+  "order": 12,
   "slug": "ik-plani",
   "nav": {
-    "num": "11",
+    "num": "12",
     "label": "İK planı"
   },
   "background": "bg-3",
@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "İK planı · 11 / 17",
+      "text": "İK planı · 12 / 18",
       "type": "eyebrow"
     },
     {
@@ -70,7 +70,9 @@
     },
     {
       "text": "Kadro 2026 Ağustos'ta 5 çekirdek rolle başlar, 2026 sonunda 18'e, 2031 sonunda 256 kişilik AI-first organizasyona ulaşır; her ekleme bir gerekçeye bağlıdır.",
-      "highlight": ["her ekleme bir gerekçeye bağlıdır"],
+      "highlight": [
+        "her ekleme bir gerekçeye bağlıdır"
+      ],
       "tone": "info",
       "type": "note"
     }

@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 16,
+  "order": 17,
   "slug": "yatirim",
   "nav": {
-    "num": "16",
+    "num": "17",
     "label": "Yatırım"
   },
   "background": "bg-4",
@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "yatırım seçenekleri · 16 / 17",
+      "text": "yatırım seçenekleri · 17 / 18",
       "type": "eyebrow"
     },
     {
@@ -61,7 +61,9 @@
     },
     {
       "text": "Ulusal kampanya sonrası değerleme yeniden ele alınır. Bugünkü teklif, kampanya öncesi riskleri birlikte üstlenme teklifidir.",
-      "highlight": ["riskleri birlikte üstlenme"],
+      "highlight": [
+        "riskleri birlikte üstlenme"
+      ],
       "tone": "info",
       "type": "note"
     }

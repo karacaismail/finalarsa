@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "iş modeli · 07 / 17",
+      "text": "iş modeli · 07 / 18",
       "type": "eyebrow"
     },
     {
@@ -27,7 +27,9 @@
     },
     {
       "text": "arsam.net satıştan pay almaz; doğrulanmış ilan, görünürlük, vitrin, veri ve operasyonel hizmetlerden gelir üretir.",
-      "highlight": ["satıştan pay almaz"],
+      "highlight": [
+        "satıştan pay almaz"
+      ],
       "tone": "accent",
       "type": "note"
     },

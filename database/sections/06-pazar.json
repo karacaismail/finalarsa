@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "pazar ve varsayımlar · 06 / 17",
+      "text": "pazar ve varsayımlar · 06 / 18",
       "type": "eyebrow"
     },
     {
@@ -27,7 +27,9 @@
     },
     {
       "text": "Resmi veriyi, model varsayımını ve hedefi ayrı tutuyoruz; her rakamın türünü etiketliyoruz.",
-      "highlight": ["her rakamın türünü etiketliyoruz"],
+      "highlight": [
+        "her rakamın türünü etiketliyoruz"
+      ],
       "type": "lead"
     },
     {

@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "çözüm · 05 / 17",
+      "text": "çözüm · 05 / 18",
       "type": "eyebrow"
     },
     {
@@ -27,7 +27,9 @@
     },
     {
       "text": "İlan sayfası yalnızca fotoğraf göstermez; parselin güven dosyasını gösterir.",
-      "highlight": ["güven dosyasını"],
+      "highlight": [
+        "güven dosyasını"
+      ],
       "tone": "accent",
       "type": "note"
     },

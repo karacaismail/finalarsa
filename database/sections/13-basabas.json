@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 12,
+  "order": 13,
   "slug": "basabas",
   "nav": {
-    "num": "12",
+    "num": "13",
     "label": "Finansal"
   },
   "background": "dark",
@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "finansal plan · 12 / 17",
+      "text": "finansal plan · 13 / 18",
       "type": "eyebrow"
     },
     {
@@ -95,7 +95,9 @@
     },
     {
       "text": "Risk belirsiz değil; ölçülmüş ve zaman çizgisine yayılmıştır. Vergi avantajının mekanizması yasal-kesindir; ₺ tutarı kazanç düzeyine bağlı model varsayımıdır.",
-      "highlight": ["Risk belirsiz değil"],
+      "highlight": [
+        "Risk belirsiz değil"
+      ],
       "tone": "info",
       "type": "note"
     }

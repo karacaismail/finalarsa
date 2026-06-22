@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 8,
+  "order": 9,
   "slug": "gtm",
   "nav": {
-    "num": "08",
+    "num": "09",
     "label": "Pazara giriş"
   },
   "background": "bg-4",
@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "pazara giriş planı · 08 / 17",
+      "text": "pazara giriş planı · 09 / 18",
       "type": "eyebrow"
     },
     {

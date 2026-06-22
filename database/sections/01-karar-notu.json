@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "arsam.net · karar notu · 01 / 17",
+      "text": "arsam.net · karar notu · 01 / 18",
       "type": "eyebrow"
     },
     {
@@ -31,7 +31,9 @@
     },
     {
       "text": "arsam.net bir web sitesi değildir. Arsa satışında güven, doğrulama, ilan, veri, pazarlama ve operasyonu tek panele toplayan dikey bir pazar işletmesidir.",
-      "highlight": ["dikey bir pazar işletmesi"],
+      "highlight": [
+        "dikey bir pazar işletmesi"
+      ],
       "tone": "accent",
       "type": "note"
     },

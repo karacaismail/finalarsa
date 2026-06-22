@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 14,
+  "order": 15,
   "slug": "teknopark",
   "nav": {
-    "num": "14",
+    "num": "15",
     "label": "Teknopark"
   },
   "background": "bg-2",
@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "teknopark ve teşvik · 14 / 17",
+      "text": "teknopark ve teşvik · 15 / 18",
       "type": "eyebrow"
     },
     {
@@ -27,7 +27,9 @@
     },
     {
       "text": "Şirket teknopark çatısına alınıp aşağıdaki şartları sağladığında, yazılım gelirlerinde 4691 kapsamlı vergi avantajı yasal olarak doğar. Avantajın mekanizması kesindir; değişen tek şey kazanç düzeyine bağlı tutardır.",
-      "highlight": ["4691 kapsamlı vergi avantajı"],
+      "highlight": [
+        "4691 kapsamlı vergi avantajı"
+      ],
       "tone": "accent",
       "type": "note"
     },

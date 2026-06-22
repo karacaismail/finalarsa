@@ -1,0 +1,219 @@
+{
+  "id": "gelir-modelleri",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 8,
+  "slug": "gelir-modelleri",
+  "nav": {
+    "num": "08",
+    "label": "Gelir modelleri"
+  },
+  "background": "bg-1",
+  "title": {
+    "text": "Tek gelire bağlı değiliz; Türkiye'de engelsiz çoklu kalem",
+    "accent": "engelsiz çoklu kalem"
+  },
+  "blocks": [
+    {
+      "text": "gelir mimarisi · 08 / 18",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Tek gelire bağlı değiliz; Türkiye'de engelsiz çoklu kalem.",
+      "accent": "engelsiz çoklu kalem",
+      "type": "heading"
+    },
+    {
+      "text": "Küresel gayrimenkul platformlarının gelir modelleri tarandı; aşağıda yalnızca Türkiye'de yasal/lisans engeli OLMAYANLAR yer alır. Lisans veya yetki belgesi gerektirenler (satış komisyonu, emanet/escrow, doğrudan kredi, resmi ekspertiz) kapsam dışı bırakıldı.",
+      "highlight": ["yasal/lisans engeli OLMAYANLAR"],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "Reklam & sponsorluk",
+      "type": "heading"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "reklam",
+          "title": "Görüntülü reklam",
+          "body": "Banner ve tıklama/gösterim (CPC/CPM) bazlı reklam; marka ve hizmet sağlayıcılar için.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "eyebrow": "sponsorluk",
+          "title": "Kategori & bölge sponsorluğu",
+          "body": "İlçe, il veya arsa kategorisi sayfalarında öne çıkan sponsorlu konum.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "eyebrow": "geliştirici",
+          "title": "Yeni proje lansman paketi",
+          "body": "Geliştiriciye proje sayfası, talep toplama, CRM ve medya ile pazarlama; ilan/reklam hizmeti.",
+          "tone": "accent",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "level": 3,
+      "text": "Profesyonel SaaS",
+      "type": "heading"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "saas",
+          "title": "Emlakçı OS (CRM)",
+          "body": "CRM, lead kutusu, işlem takibi, belge paylaşımı ve WhatsApp entegrasyonu — aylık abonelik.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "saas",
+          "title": "Portföy & işlem yönetimi",
+          "body": "Profesyonel satıcı ve geliştirici için portföy, gösterim ve iş akışı yazılımı.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "karar destek",
+          "title": "Fiyat & kira öneri motoru",
+          "body": "Piyasa verisinden satış/kira fiyat önerisi; bilgilendirme amaçlı B2B karar-destek aracı.",
+          "tone": "gold",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "level": 3,
+      "text": "Veri & zekâ",
+      "type": "heading"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "eyebrow": "abonelik",
+          "title": "Parsel zekâ aboneliği",
+          "body": "Parsel sınırı, malik, imar, emsal ve risk katmanları tek abonelikte (KVKK uyumlu).",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "eyebrow": "B2B lisans",
+          "title": "Veri & API lisanslama",
+          "body": "Anonimleştirilmiş trend, emsal ve talep verisi feed'i; banka, sigorta ve fonlara satılır.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "eyebrow": "rapor",
+          "title": "Arsa bilgi (due-diligence) raporu",
+          "body": "Satın alma öncesi tek dosya: eğim, taşkın, erişim, emsal, sahiplik özeti — bilgi notu olarak.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "eyebrow": "API",
+          "title": "Deprem/sel risk skoru",
+          "body": "Afet ve iklim risk skoru API'si; ilan, kredi ve sigorta tarafına bilgi hizmeti.",
+          "tone": "accent",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "level": 3,
+      "text": "Lead & eşleştirme (aracısız)",
+      "type": "heading"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "eyebrow": "lead",
+          "title": "Doğrulanmış satıcı/alıcı lead'i",
+          "body": "Yüksek niyetli kullanıcı eşleştirmesi; ilan sahibine veya hizmet sağlayıcıya lead satışı.",
+          "tone": "grass",
+          "type": "card"
+        },
+        {
+          "eyebrow": "başarıya bağlı",
+          "title": "Kapanışta ödenen premium lead",
+          "body": "Doğrulanmış alıcı niyeti; ücret işlem kapandığında tahsil edilir (reklam/lead, aracılık değil).",
+          "tone": "grass",
+          "type": "card"
+        },
+        {
+          "eyebrow": "yönlendirme",
+          "title": "Kredi/sigorta/değerleme yönlendirme",
+          "body": "Lisanslı banka, sigortacı ve değerleme firmasına lead yönlendirme; platform reklam/lead rolünde.",
+          "tone": "grass",
+          "type": "card"
+        },
+        {
+          "eyebrow": "sektörel",
+          "title": "Enerji & veri merkezi saha eşleştirme",
+          "body": "Güneş, rüzgâr, depolama ve veri merkezi uygunluk filtresiyle arsa-yatırımcı lead pazaryeri.",
+          "tone": "grass",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "level": 3,
+      "text": "Satış sonrası & operasyon",
+      "type": "heading"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "koordinasyon",
+          "title": "Tapu/kapanış yönlendirme paketi",
+          "body": "Eksper, banka, hukuk ve sigorta yönlendirmesi; evrak checklist ve e-imza koordinasyonu (tapu TKGM'de).",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "satış sonrası",
+          "title": "Ev sahibi cüzdanı",
+          "body": "Tapu sonrası bakım hatırlatmaları, değer takibi ve hizmet yönlendirmeleri — SaaS/bilgilendirme.",
+          "tone": "gold",
+          "type": "card"
+        },
+        {
+          "eyebrow": "off-market",
+          "title": "Satılık niyet ağı",
+          "body": "Henüz ilan edilmemiş sahiplerden niyet sinyali; kurumsal yatırımcıya lead (KVKK rızasıyla).",
+          "tone": "gold",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Bu modellerin hepsi satıştan pay almadan, ilan/görünürlük, yazılım, veri ve yönlendirme gelirine dayanır. Liste yasal görüş değildir; lisans/belge ile mümkün olan modeller (satış komisyonu, emanet/escrow, doğrudan kredi, resmi değerleme) bilinçli olarak kapsam dışıdır.",
+      "highlight": ["satıştan pay almadan"],
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "data": [],
+    "metrics": []
+  }
+}

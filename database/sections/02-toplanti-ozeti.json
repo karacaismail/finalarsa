@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "süreç · 02 / 17",
+      "text": "süreç · 02 / 18",
       "type": "eyebrow"
     },
     {
@@ -27,7 +27,9 @@
     },
     {
       "text": "Üç görüşmede ürün, strateji ve finansal plan konuşuldu. Bugün karar adımındayız.",
-      "highlight": ["karar adımındayız"],
+      "highlight": [
+        "karar adımındayız"
+      ],
       "type": "lead"
     },
     {

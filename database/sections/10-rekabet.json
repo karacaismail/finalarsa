@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 9,
+  "order": 10,
   "slug": "rekabet",
   "nav": {
-    "num": "09",
+    "num": "10",
     "label": "Rekabet"
   },
   "background": "bg-1",
@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "rekabet ve savunma · 09 / 17",
+      "text": "rekabet ve savunma · 10 / 18",
       "type": "eyebrow"
     },
     {
@@ -72,7 +72,9 @@
     },
     {
       "text": "Rakip yarın dikey bir sayfa açabilir; ama saha arzını, doğrulamayı ve satıcı ilişkisini bir günde kuramaz.",
-      "highlight": ["bir günde kuramaz"],
+      "highlight": [
+        "bir günde kuramaz"
+      ],
       "tone": "info",
       "type": "note"
     }

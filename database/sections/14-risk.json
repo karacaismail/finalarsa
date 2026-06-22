@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 13,
+  "order": 14,
   "slug": "risk",
   "nav": {
-    "num": "13",
+    "num": "14",
     "label": "Risk"
   },
   "background": "bg-1",
@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "risk ve kontrol kapıları · 13 / 17",
+      "text": "risk ve kontrol kapıları · 14 / 18",
       "type": "eyebrow"
     },
     {

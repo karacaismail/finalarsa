@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 17,
+  "order": 18,
   "slug": "ilk-30-gun",
   "nav": {
-    "num": "17",
+    "num": "18",
     "label": "Karar"
   },
   "background": "bg-end",
@@ -16,7 +16,7 @@
   },
   "blocks": [
     {
-      "text": "karar · 17 / 17",
+      "text": "karar · 18 / 18",
       "type": "eyebrow"
     },
     {
@@ -48,7 +48,9 @@
     },
     {
       "text": "Karar sizde. Önerimiz: önce kontrollü pilotu başlatmak ve ilk 90 günde satıcı arzı, doğrulanmış ilan ve gelir sinyalini birlikte ölçmek.",
-      "highlight": ["kontrollü pilotu başlatmak"],
+      "highlight": [
+        "kontrollü pilotu başlatmak"
+      ],
       "tone": "accent",
       "type": "note"
     },
