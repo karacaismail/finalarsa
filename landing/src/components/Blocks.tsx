@@ -59,6 +59,7 @@ function TagBadge({ tag }: { tag: string }) {
 /* cardBase artık merkezi: src/theme/components.ts */
 
 function gridCols(cols?: number) {
+  if (cols === 1) return { base: "1fr" }; // her ekranda tek sütun (alt alta, tam genişlik)
   if (cols === 4) return { base: "1fr", sm: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" };
   if (cols === 3) return { base: "1fr", md: "repeat(3, 1fr)" };
   return { base: "1fr", md: "repeat(2, 1fr)" };

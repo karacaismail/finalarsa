@@ -37,7 +37,7 @@
       "type": "heading"
     },
     {
-      "cols": 3,
+      "cols": 1,
       "items": [
         {
           "eyebrow": "reklam",
@@ -69,7 +69,7 @@
       "type": "heading"
     },
     {
-      "cols": 3,
+      "cols": 1,
       "items": [
         {
           "eyebrow": "saas",
@@ -101,7 +101,7 @@
       "type": "heading"
     },
     {
-      "cols": 2,
+      "cols": 1,
       "items": [
         {
           "eyebrow": "abonelik",
@@ -140,7 +140,7 @@
       "type": "heading"
     },
     {
-      "cols": 2,
+      "cols": 1,
       "items": [
         {
           "eyebrow": "lead",
@@ -179,7 +179,7 @@
       "type": "heading"
     },
     {
-      "cols": 3,
+      "cols": 1,
       "items": [
         {
           "eyebrow": "koordinasyon",
@@ -211,7 +211,7 @@
       "type": "heading"
     },
     {
-      "cols": 2,
+      "cols": 1,
       "items": [
         {
           "eyebrow": "yetki belgesi",
@@ -250,7 +250,7 @@
       "type": "heading"
     },
     {
-      "cols": 2,
+      "cols": 1,
       "items": [
         {
           "eyebrow": "ödeme ortağı",
