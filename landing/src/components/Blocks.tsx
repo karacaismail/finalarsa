@@ -140,6 +140,45 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
         </Grid>
       );
 
+    case "statEquation": {
+      // Denklem yerleşimi: kart [op] kart [op] kart. Operatörler items arasına girer
+      // (operators[i] = items[i]'den SONRA). Masaüstü: yatay; mobil: alt alta, çipler ortalı.
+      const eqItems = b.items as Block[];
+      const ops = (b.operators as string[]) ?? [];
+      return (
+        <Flex direction={{ base: "column", md: "row" }} align="stretch" gap="4">
+          {eqItems.flatMap((it: Block, i: number) => {
+            const cardEl = (
+              <Box key={`c-${i}`} {...cardBase(it.tone as string)} flex={{ md: "1" }} w={{ base: "100%", md: "auto" }}>
+                <StatCard b={it} bare />
+              </Box>
+            );
+            if (i >= eqItems.length - 1 || !ops[i]) return [cardEl];
+            const opEl = (
+              <Flex
+                key={`o-${i}`}
+                flexShrink="0"
+                alignSelf="center"
+                align="center"
+                justify="center"
+                w={{ base: "44px", md: "56px" }}
+                h={{ base: "44px", md: "56px" }}
+                borderRadius="control"
+                bg="ink"
+                color="grassBright"
+                fontSize={{ base: "2xl", md: "3xl" }}
+                fontWeight="bold"
+                aria-hidden="true"
+              >
+                {ops[i]}
+              </Flex>
+            );
+            return [cardEl, opEl];
+          })}
+        </Flex>
+      );
+    }
+
     case "card":
       return (
         <Box {...cardBase(b.tone as string)}>

@@ -36,15 +36,12 @@
       "type": "claimLegend"
     },
     {
-      "cols": 3,
+      "type": "statEquation",
+      "operators": [
+        "+",
+        "="
+      ],
       "items": [
-        {
-          "label": "2024 toplam taşınmaz satışı",
-          "tone": null,
-          "type": "stat",
-          "valueRef": "market.total_realestate_2024",
-          "tag": "doğrulanmış kaynak"
-        },
         {
           "label": "Arsa + tarla + ticari",
           "tone": "accent",
@@ -58,9 +55,15 @@
           "type": "stat",
           "valueRef": "market.housing_2024",
           "tag": "doğrulanmış kaynak"
+        },
+        {
+          "label": "2024 toplam taşınmaz satışı",
+          "tone": null,
+          "type": "stat",
+          "valueRef": "market.total_realestate_2024",
+          "tag": "doğrulanmış kaynak"
         }
-      ],
-      "type": "statGrid"
+      ]
     },
     {
       "text": "Değer hunisi · Türkçesiyle: TAM = toplam pazar, SAM = dijitale açık pazar, SOM = ulaşılabilir hedef pazar. Aşağıdaki çubuklarda görünümü değiştir.",
