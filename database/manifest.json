@@ -165,10 +165,24 @@
     },
     {
       "order": 8,
-      "slug": "gtm",
-      "file": "sections/08-gtm.json",
+      "slug": "gelir-modelleri",
+      "file": "sections/08-gelir-modelleri.json",
       "nav": {
         "num": "08",
+        "label": "Gelir modelleri"
+      },
+      "title": "Tek gelire bağlı değiliz; Türkiye'de engelsiz çoklu kalem",
+      "refs": {
+        "data": [],
+        "metrics": []
+      }
+    },
+    {
+      "order": 9,
+      "slug": "gtm",
+      "file": "sections/09-gtm.json",
+      "nav": {
+        "num": "09",
         "label": "Pazara giriş"
       },
       "title": "Önce Ege'de dar bir bölgede yoğunlaşıyoruz",
@@ -177,11 +191,11 @@
       }
     },
     {
-      "order": 9,
+      "order": 10,
       "slug": "rekabet",
-      "file": "sections/09-rekabet.json",
+      "file": "sections/10-rekabet.json",
       "nav": {
-        "num": "09",
+        "num": "10",
         "label": "Rekabet"
       },
       "title": "Savunmamız trafik değil; arsa derinliği",
@@ -199,11 +213,11 @@
       }
     },
     {
-      "order": 10,
+      "order": 11,
       "slug": "ai-operasyon",
-      "file": "sections/10-ai-operasyon.json",
+      "file": "sections/11-ai-operasyon.json",
       "nav": {
-        "num": "10",
+        "num": "11",
         "label": "AI operasyon"
       },
       "title": "AI, insanı değil maliyeti azaltır",
@@ -219,28 +233,29 @@
       }
     },
     {
-      "order": 11,
+      "order": 12,
       "slug": "ik-plani",
-      "file": "sections/11-ik-plani.json",
+      "file": "sections/12-ik-plani.json",
       "nav": {
-        "num": "11",
+        "num": "12",
         "label": "İK planı"
       },
       "title": "Kadro, gelir ve riske göre büyür",
       "refs": {
         "data": [
           "hr-plan",
+          "hr-master-256",
           "financial-detail"
         ],
         "metrics": []
       }
     },
     {
-      "order": 12,
+      "order": 13,
       "slug": "basabas",
-      "file": "sections/12-basabas.json",
+      "file": "sections/13-basabas.json",
       "nav": {
-        "num": "12",
+        "num": "13",
         "label": "Finansal"
       },
       "title": "Para, ilk aydan 2032'ye kronolojik olarak izlenir",
@@ -254,11 +269,11 @@
       }
     },
     {
-      "order": 13,
+      "order": 14,
       "slug": "risk",
-      "file": "sections/13-risk.json",
+      "file": "sections/14-risk.json",
       "nav": {
-        "num": "13",
+        "num": "14",
         "label": "Risk"
       },
       "title": "Her riskin bir ölçümü ve bir kararı var",
@@ -270,11 +285,11 @@
       }
     },
     {
-      "order": 14,
+      "order": 15,
       "slug": "teknopark",
-      "file": "sections/14-teknopark.json",
+      "file": "sections/15-teknopark.json",
       "nav": {
-        "num": "14",
+        "num": "15",
         "label": "Teknopark"
       },
       "title": "Şartlar sağlandığında vergi avantajı kesindir",
@@ -300,11 +315,11 @@
       }
     },
     {
-      "order": 15,
+      "order": 16,
       "slug": "cpo",
-      "file": "sections/15-cpo.json",
+      "file": "sections/16-cpo.json",
       "nav": {
-        "num": "15",
+        "num": "16",
         "label": "CPO"
       },
       "title": "Tam zamanlı odak çalışma varsayımı",
@@ -317,16 +332,16 @@
         ],
         "metrics": [
           "cpo.car",
-          "cpo.salary_usd"
+          "cpo.salary_try"
         ]
       }
     },
     {
-      "order": 16,
+      "order": 17,
       "slug": "yatirim",
-      "file": "sections/16-yatirim.json",
+      "file": "sections/17-yatirim.json",
       "nav": {
-        "num": "16",
+        "num": "17",
         "label": "Yatırım"
       },
       "title": "Üç seçenek, tek karar çerçevesi",
@@ -347,11 +362,11 @@
       }
     },
     {
-      "order": 17,
+      "order": 18,
       "slug": "ilk-30-gun",
-      "file": "sections/17-ilk-30-gun.json",
+      "file": "sections/18-ilk-30-gun.json",
       "nav": {
-        "num": "17",
+        "num": "18",
         "label": "Karar"
       },
       "title": "Bugünkü karar: tutar, rol, ilk 30 gün",
