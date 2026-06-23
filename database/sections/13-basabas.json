@@ -26,7 +26,7 @@
       "type": "heading"
     },
     {
-      "text": "Her görünüm bir grafik ve onun tablosu olarak verilir; sıra zaman çizgisini izler: ilk ay kuruluş yatırımı, aylık işletme gideri, 2026 ve 2027 aylık, başabaş, 2032 vizyonu ve yedi gelir akışı. Aşağıdaki sekmelerden istediğin görünüme geç.",
+      "text": "Her görünüm bir grafik ve onun tablosu olarak verilir. Üstteki sekme grubu vergi avantajını ve maliyet/başabaş görünümlerini toplar; alttaki grup 2026–2027 aylık, 2032 yıllık ve yedi gelir akışını verir. Aşağıdaki sekmelerden istediğin görünüme geç.",
       "type": "lead"
     },
     {
@@ -68,6 +68,14 @@
       "type": "chartTabs",
       "items": [
         {
+          "value": "tax",
+          "label": "Vergi avantajı",
+          "heading": "Teknopark vergi avantajı · senaryona göre",
+          "lead": "Şirket teknopark çatısına alındığında yazılım kazancı kurumlar vergisinden istisna olur. Avantajın ₺ tutarı kazanca bağlıdır: aşağıdaki yatay çubuğu sürükle (Kötümser ↔ Medyan ↔ İyimser); avantaj canlı hesaplanır.",
+          "chartType": "taxSlider",
+          "caption": "Sürükle: gelir senaryosu → vergi öncesi kâr → KV istisnası + stopaj/SGK avantajı"
+        },
+        {
           "value": "capex",
           "label": "Kuruluş (CAPEX)",
           "heading": "İlk ay · kuruluş yatırımı (CAPEX)",
@@ -83,6 +91,19 @@
           "chartType": "opexComposition",
           "caption": "Temsili dönem (2031 yıllık · 256 kişi) işletme gideri kompozisyonu · grafik + tablo"
         },
+        {
+          "value": "breakeven",
+          "label": "Başabaş",
+          "heading": "Başabaş analizi",
+          "lead": "Yatırım dönemi yalnızca 2026 H2'dir (net ~−7,5 milyon ₺). Kümülatif gelir, kümülatif gideri 2027 başında geçer. 40 milyon ₺ sermaye bunu finanse eder; agresif (öne-yüklü) kadroda bile kasa en dipte ~32,5 milyon ₺'ye iner (Aralık 2026). İşe alım öne yüklü olduğundan erken saha likiditesi hızlanır; erken nakit yükü 40 milyon ₺ içinde rahatça kalır.",
+          "chartType": "breakeven",
+          "caption": "Kümülatif gelir vs kümülatif gider · kesişim (başabaş) 2027 başı · grafik + özet tablo"
+        }
+      ]
+    },
+    {
+      "type": "chartTabs",
+      "items": [
         {
           "value": "monthly2026",
           "label": "2026 aylık",
@@ -100,14 +121,6 @@
           "caption": "2027 aylık: gelir, gider kırılımı ve kümülatif nakit · grafik + tablo"
         },
         {
-          "value": "breakeven",
-          "label": "Başabaş",
-          "heading": "Başabaş analizi",
-          "lead": "Yatırım dönemi yalnızca 2026 H2'dir (net ~−7,5 milyon ₺). Kümülatif gelir, kümülatif gideri 2027 başında geçer. 40 milyon ₺ sermaye bunu finanse eder; agresif (öne-yüklü) kadroda bile kasa en dipte ~32,5 milyon ₺'ye iner (Aralık 2026). İşe alım öne yüklü olduğundan erken saha likiditesi hızlanır; erken nakit yükü 40 milyon ₺ içinde rahatça kalır.",
-          "chartType": "breakeven",
-          "caption": "Kümülatif gelir vs kümülatif gider · kesişim (başabaş) 2027 başı · grafik + özet tablo"
-        },
-        {
           "value": "yearly",
           "label": "2032 yıllık",
           "heading": "2032 vizyonu · yıllık (2026 → 2032)",
@@ -122,14 +135,6 @@
           "lead": "Gelir tek kaleme bağlı değildir: yedi akış birlikte 2032'de medyan 5,5 milyar ₺ üretir. En büyük ve en inovatif akış ParselQ-RFQ'dur (talep→teklif). Tablo her akışın 2027 → 2032 medyan patikasını verir.",
           "chartType": "revenueStreams",
           "caption": "Gelir akışlarının 2032 medyan hedefleri (ParselQ-RFQ amiral) · grafik + yıllara göre tablo"
-        },
-        {
-          "value": "tax",
-          "label": "Vergi avantajı",
-          "heading": "Teknopark vergi avantajı · senaryona göre",
-          "lead": "Şirket teknopark çatısına alındığında yazılım kazancı kurumlar vergisinden istisna olur. Avantajın ₺ tutarı kazanca bağlıdır: aşağıdaki yatay çubuğu sürükle (Kötümser ↔ Medyan ↔ İyimser); avantaj canlı hesaplanır.",
-          "chartType": "taxSlider",
-          "caption": "Sürükle: gelir senaryosu → vergi öncesi kâr → KV istisnası + stopaj/SGK avantajı"
         }
       ]
     },
