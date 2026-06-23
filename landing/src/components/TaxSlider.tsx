@@ -123,7 +123,7 @@ export function TaxSliderView() {
         </Box>
 
         {/* Hesap kırılımı */}
-        <Grid templateColumns={{ base: "1fr 1fr", md: "repeat(4, 1fr)" }} gap="3">
+        <Grid templateColumns={{ base: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" }} gap="3">
           {metric("Vergi öncesi kâr", fmt(calc.profit), "info", "ink")}
           {metric("Kurumlar vergisi istisnası", fmt(calc.kv), "accent", "grass")}
           {metric("Stopaj + SGK avantajı", fmt(calc.stopaj), "accent", "grass")}
