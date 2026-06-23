@@ -873,6 +873,8 @@ function MarketScale({ dark }: { dark?: boolean }) {
           onValueChange={(e) => setMode(e.value ?? "share")}
           display={{ base: "flex", sm: "inline-flex" }}
           width={{ base: "100%", sm: "auto" }}
+          flexDirection={{ base: "column", sm: "row" }}
+          alignItems={{ base: "stretch", sm: "center" }}
           bg={pill.trackBg(dark)}
           border="1px solid"
           borderColor={pill.trackBorder(dark)}
@@ -892,7 +894,7 @@ function MarketScale({ dark }: { dark?: boolean }) {
             ]}
             px={{ base: "2.5", md: "4" }}
             py="2"
-            flex={{ base: "1", sm: "initial" }}
+            width={{ base: "100%", sm: "auto" }}
             textAlign="center"
             fontWeight="medium"
             cursor="pointer"
