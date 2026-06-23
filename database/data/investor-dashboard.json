@@ -1,0 +1,206 @@
+{
+  "id": "investor-dashboard",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "Yatırımcı karar panosu — KPI seti",
+  "description": "Her KPI'nın türü (sınıf) etiketli: doğrulanmış kaynak / model varsayımı / hedef / şirket teklifi.",
+  "groups": {
+    "decision": [
+      {
+        "label": "Önerilen yatırım",
+        "value": "Stratejik seçenek",
+        "class": "offer",
+        "owner": "Yönetim"
+      },
+      {
+        "label": "Yatırım tutarı",
+        "valueRef": "invest.strategic_amount",
+        "class": "offer"
+      },
+      {
+        "label": "Hisse",
+        "valueRef": "invest.strategic_equity",
+        "class": "offer"
+      },
+      {
+        "label": "Değerleme",
+        "valueRef": "invest.strategic_valuation",
+        "class": "offer"
+      },
+      {
+        "label": "Operasyonel başabaş",
+        "value": "2027 başı",
+        "class": "assumption",
+        "owner": "Finans",
+        "redFlag": "aylık gelir hedefin %70 altıysa yeniden hesapla"
+      },
+      {
+        "label": "En dip kasa",
+        "value": "~32,5 milyon ₺",
+        "class": "assumption",
+        "owner": "Finans"
+      },
+      {
+        "label": "İlk 90 gün kanıtı",
+        "value": "Doğrulanmış ilan + satıcı görüşmesi + ilk gelir",
+        "class": "target",
+        "cadence": "weekly"
+      }
+    ],
+    "market": [
+      {
+        "label": "2024 toplam taşınmaz satışı",
+        "value": "3.065.872",
+        "class": "verified",
+        "source": "tkgm-2024"
+      },
+      {
+        "label": "2024 arsa + ticari satışı",
+        "value": "1.587.847",
+        "class": "verified",
+        "source": "tkgm-2024"
+      },
+      {
+        "label": "TAM — arsa toplam pazar",
+        "value": "1,85 trilyon ₺",
+        "class": "assumption"
+      },
+      {
+        "label": "SAM — dijitale açık pay",
+        "value": "346 milyar ₺",
+        "class": "assumption"
+      },
+      {
+        "label": "SOM — hedef pay",
+        "value": "121,1 milyar ₺",
+        "class": "assumption"
+      },
+      {
+        "label": "Online penetrasyon",
+        "value": "%18,7",
+        "class": "assumption"
+      },
+      {
+        "label": "2032 hedef online arsa payı",
+        "value": "%35",
+        "class": "target",
+        "redFlag": "90 günde arz sinyali zayıfsa revize"
+      },
+      {
+        "label": "2032 medyan gelir",
+        "value": "5,5 milyar ₺",
+        "class": "target"
+      }
+    ],
+    "field": [
+      {
+        "label": "Kurucu satıcı adayı",
+        "class": "target",
+        "cadence": "weekly",
+        "owner": "Saha",
+        "redFlag": "hedef altıysa bölge daralt"
+      },
+      {
+        "label": "Sıcak satıcı görüşmesi",
+        "class": "target",
+        "cadence": "weekly",
+        "owner": "Saha"
+      },
+      {
+        "label": "Emlakçı partner",
+        "class": "target",
+        "cadence": "weekly",
+        "owner": "Saha"
+      },
+      {
+        "label": "Doğrulanmış aktif ilan",
+        "class": "target",
+        "cadence": "weekly",
+        "owner": "Saha",
+        "redFlag": "ilçe aç/kapat kararı"
+      },
+      {
+        "label": "Alıcı talebi",
+        "class": "target",
+        "cadence": "weekly",
+        "owner": "Saha"
+      },
+      {
+        "label": "Teklif görüşmesi",
+        "class": "target",
+        "cadence": "weekly",
+        "owner": "Saha"
+      },
+      {
+        "label": "İlk ücretli paket",
+        "class": "target",
+        "cadence": "weekly",
+        "owner": "Saha",
+        "redFlag": "gelir sinyali yoksa GTM revize"
+      }
+    ],
+    "finance": [
+      {
+        "label": "Aylık gelir",
+        "class": "assumption",
+        "cadence": "monthly",
+        "owner": "Finans"
+      },
+      {
+        "label": "Aylık OPEX",
+        "class": "assumption",
+        "cadence": "monthly",
+        "owner": "Finans",
+        "redFlag": "sapma kırmızı eşik"
+      },
+      {
+        "label": "Nakit yakımı",
+        "value": "Pilot sonrası ölçülecek",
+        "class": "assumption",
+        "owner": "Finans"
+      },
+      {
+        "label": "Runway",
+        "value": "Pilot sonrası ölçülecek",
+        "class": "assumption",
+        "owner": "Finans"
+      },
+      {
+        "label": "Kasa dip noktası",
+        "value": "~32,5 milyon ₺",
+        "class": "assumption",
+        "owner": "Finans"
+      },
+      {
+        "label": "Başabaş",
+        "value": "2027 başı",
+        "class": "assumption",
+        "owner": "Finans"
+      }
+    ],
+    "control": [
+      {
+        "label": "İtibar olayı",
+        "value": "0 tolerans",
+        "class": "verified",
+        "redFlag": "ciddi olayda yayın durdur"
+      },
+      {
+        "label": "Sahte/yanlış ilan",
+        "value": "Tespitte yayın durdurma",
+        "class": "target"
+      },
+      {
+        "label": "EİDS/KVKK uyum",
+        "value": "Açıkta iş akışı durdur",
+        "class": "target"
+      },
+      {
+        "label": "OPEX sapması",
+        "value": "İşe alım/pazarlama yavaşlat",
+        "class": "target"
+      }
+    ]
+  }
+}

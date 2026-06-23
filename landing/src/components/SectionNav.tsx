@@ -1,3 +1,8 @@
+/**
+ * ⚠️ ARTIK KULLANILMIYOR (2026-06) — App.tsx accordion sunumuna (AccordionPresentation) geçti;
+ * bu bileşen şu an hiçbir yerden import EDİLMİYOR. İleride accordion-içi navigasyon/ayraç için
+ * referans olarak duruyor. Silmeden önce landing/src genelinde import kullanımını kontrol et.
+ */
 import { Box, Portal, Tooltip } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { sections } from "../data/resolve";

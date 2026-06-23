@@ -36,7 +36,7 @@
       "num": "01",
       "label": "Karar Özeti",
       "summary": "Bugün hangi tutar, hangi rol ve hangi ilk 90 gün çerçevesinde karar veriyoruz — kararın özeti ve bugüne kadarki süreç.",
-      "sections": ["karar-notu", "toplanti-ozeti", "ilk-30-gun"]
+      "sections": ["karar-notu", "yatirimci-panosu", "toplanti-ozeti", "ilk-30-gun"]
     },
     {
       "id": "neden-ortaklik",

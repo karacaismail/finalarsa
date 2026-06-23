@@ -8,6 +8,7 @@ import { markHighlight } from "./MarkHighlight";
 import { ChartBlock } from "./ChartViews";
 import { MobileTableCards } from "./MobileTableCards";
 import { StrategyArsenal } from "./StrategyArsenal";
+import { KpiBoard, type KpiItem } from "./KpiBoard";
 import { fmt } from "./charts";
 import { claimTag, darkText as D, tone } from "../theme/semantic";
 import { cardBase, interactivePanel, pill } from "../theme/components";
@@ -196,6 +197,15 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
           ))}
         </Grid>
       );
+
+    case "kpiBoard": {
+      // Yatırımcı KPI panosu: veri database/data/investor-dashboard.json'dan, seçili gruptan gelir.
+      const kpiDoc = getData<{ groups: Record<string, KpiItem[]> }>(
+        (b.dataRef as string) ?? "investor-dashboard",
+      );
+      const kpiItems = kpiDoc.groups?.[b.group as string] ?? [];
+      return <KpiBoard items={kpiItems} columns={(b.columns as 2 | 3) ?? 3} />;
+    }
 
     case "list": {
       const ListEl = b.ordered ? Ol : Ul;

@@ -1,0 +1,93 @@
+{
+  "id": "yatirimci-panosu",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 1.2,
+  "slug": "yatirimci-panosu",
+  "nav": {
+    "num": "01b",
+    "label": "Yatırımcı panosu"
+  },
+  "background": "bg-1",
+  "title": {
+    "text": "Yatırımcı panosu — her sayının yanında türü var"
+  },
+  "blocks": [
+    {
+      "text": "yatırımcı panosu · kanıt etiketli KPI",
+      "type": "eyebrow"
+    },
+    {
+      "level": 3,
+      "text": "Her rakamın türü belli: doğrulanmış mı, varsayım mı, hedef mi?",
+      "type": "heading"
+    },
+    {
+      "text": "Aşağıdaki kartlarda her KPI'nın yanında türü etiketlidir: hangi sayı doğrulanmış kaynaktan gelir, hangisi model varsayımıdır, hangisi 2032 hedefidir, hangisi yatırım teklifidir — tek bakışta görünür.",
+      "type": "lead"
+    },
+    {
+      "type": "claimLegend"
+    },
+    {
+      "level": 3,
+      "text": "Karar",
+      "type": "heading"
+    },
+    {
+      "dataRef": "investor-dashboard",
+      "group": "decision",
+      "type": "kpiBoard"
+    },
+    {
+      "level": 3,
+      "text": "Pazar",
+      "type": "heading"
+    },
+    {
+      "dataRef": "investor-dashboard",
+      "group": "market",
+      "type": "kpiBoard"
+    },
+    {
+      "level": 3,
+      "text": "Saha · ilk 90 gün (haftalık takip)",
+      "type": "heading"
+    },
+    {
+      "dataRef": "investor-dashboard",
+      "group": "field",
+      "type": "kpiBoard"
+    },
+    {
+      "level": 3,
+      "text": "Finans",
+      "type": "heading"
+    },
+    {
+      "dataRef": "investor-dashboard",
+      "group": "finance",
+      "type": "kpiBoard"
+    },
+    {
+      "level": 3,
+      "text": "Kontrol ve risk eşikleri",
+      "type": "heading"
+    },
+    {
+      "dataRef": "investor-dashboard",
+      "group": "control",
+      "type": "kpiBoard"
+    },
+    {
+      "text": "Saha ve finans KPI'larının çoğu pilot döneminde ölçülecek hedef/varsayımlardır; ilk 90 günde gerçekleşen değerlerle güncellenir. Kırmızı eşikler, hangi durumda karar gerektiğini gösterir.",
+      "tone": "info",
+      "type": "note"
+    }
+  ],
+  "refs": {
+    "data": ["investor-dashboard"],
+    "metrics": []
+  }
+}

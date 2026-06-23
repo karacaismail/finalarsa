@@ -114,6 +114,40 @@ else:
 unused = mkeys - used_metrics
 if unused: W(f"{len(unused)} metric hiçbir bölümde ref edilmemiş (veri dosyalarında kullanılıyor olabilir): {sorted(unused)[:12]}{'...' if len(unused)>12 else ''}")
 
+# 4b) ACCORDION GRUPLAMA KAPISI — gelecekte SESSİZ kırılmayı önler.
+#     accordion-groups.json VARSA: grupların 'sections' slug listeleri ile bölümlerin
+#     gerçek 'slug' alanları BİREBİR örtüşmeli. Dosya YOKSA bu kontrol tamamen atlanır.
+if "data/accordion-groups.json" in docs:
+    ag = docs["data/accordion-groups.json"]
+    grouped = []                      # gruplarda geçen slug'lar (tekrar dahil)
+    for g in ag.get("groups", []):
+        for sl in g.get("sections", []):
+            if isinstance(sl, str): grouped.append(sl)
+    real_slugs = set()                # bölüm dosyalarındaki gerçek slug'lar
+    for rel in sec_files:
+        sl = docs[rel].get("slug")
+        if isinstance(sl, str): real_slugs.add(sl)
+    grouped_set = set(grouped)
+    # (a) accordion-groups'ta olup gerçek bölümü olmayan slug
+    for sl in sorted(grouped_set - real_slugs):
+        E(f"accordion-groups: '{sl}' grupta var ama gerçek bölüm (slug) YOK")
+    # (b) gerçek bölüm olup hiçbir grupta yer almayan slug (render edilmeyen bölüm)
+    for sl in sorted(real_slugs - grouped_set):
+        E(f"accordion-groups: bölüm '{sl}' HİÇBİR grupta yok — render EDİLMEZ")
+    # (c) birden çok grupta tekrar eden slug
+    for sl in sorted(k for k in grouped_set if grouped.count(k) > 1):
+        E(f"accordion-groups: '{sl}' birden çok grupta TEKRAR ediyor ({grouped.count(sl)}×)")
+    # decisionBox.items valueRef'leri metrics'te var mı (varsa)
+    for it in ag.get("decisionBox", {}).get("items", []):
+        vr = it.get("valueRef")
+        if isinstance(vr, str) and vr not in mkeys:
+            W(f"accordion-groups: decisionBox valueRef '{vr}' metrics.json'da YOK")
+    if not (grouped_set - real_slugs) and not (real_slugs - grouped_set) and \
+       not [k for k in grouped_set if grouped.count(k) > 1]:
+        OK(f"Accordion gruplama: {len(grouped)} slug ↔ {len(real_slugs)} bölüm BİREBİR örtüşüyor ✓ (eksik/fazla/tekrar yok)")
+else:
+    OK("Accordion gruplama kapısı atlandı (accordion-groups.json yok)")
+
 # 5) MATEMATİK / TUTARLILIK
 def mv(k): return metrics[k]["value"]
 def approx(a,b,tol=0.02): return abs(a-b) <= tol*max(abs(a),abs(b),1)
