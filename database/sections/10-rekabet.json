@@ -89,12 +89,20 @@
       "type": "note"
     },
     {
+      "text": "Rakibin gücü trafiktir; bizim savunmamız arsa derinliği, doğrulanmış portföy, yerel saha ilişkisi ve güven dosyasıdır. Trafik satın alınabilir; güvenilir arsa stoğu ve satıcı ilişkisi bir günde kurulamaz.",
+      "highlight": [
+        "güvenilir arsa stoğu"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
       "level": 3,
-      "text": "470 modelden en güçlü 15 silah",
+      "text": "470 modelden en güçlü 15 hamle",
       "type": "heading"
     },
     {
-      "text": "Savunma yalnız arsa derinliği değil; asimetrik bir strateji cephanesidir. Klasik gerilla pazarlama küçük bütçe/küçük etkidir; asimetrik komando rakibin büyüklüğünü hızsızlığa çevirir. En güçlüsü Counter-Positioning: sahibinden ilan-reklam modelini kopyalarsa komisyon ekonomisini kırar — kazansa da kaybeder.",
+      "text": "Savunma yalnız arsa derinliği değil; asimetrik bir büyüme playbook'udur. Klasik gerilla pazarlama küçük bütçe/küçük etkidir; asimetrik saha ekibi rakibin büyüklüğünü hızsızlığa çevirir. En güçlüsü Counter-Positioning: sahibinden ilan-reklam modelini kopyalarsa komisyon ekonomisini kırar — kazansa da kaybeder.",
       "highlight": ["kazansa da kaybeder"],
       "tone": "accent",
       "type": "note"

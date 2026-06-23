@@ -1,0 +1,119 @@
+{
+  "id": "paranin-kullanimi",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 16.3,
+  "slug": "paranin-kullanimi",
+  "nav": {
+    "num": "16a",
+    "label": "Para kontrolü"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "Para tek seferde yakılmaz; kapı kapı kullanılır",
+    "accent": "kapı kapı"
+  },
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "text": "sermaye · kontrol kapıları"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Para tek seferde yakılmaz; kapı kapı kullanılır",
+      "accent": "kapı kapı"
+    },
+    {
+      "type": "note",
+      "tone": "accent",
+      "text": "Yatırım tutarı peşin harcanacak bir bütçe değil, kontrol kapılarına bağlı işletme sermayesidir. Her harcama; ürün, saha ve gelir sinyaliyle birlikte açılır. Satıcı arzı oluşmazsa bölge daraltılır; gelir sinyali gelmezse işe alım yavaşlatılır.",
+      "highlight": [
+        "kontrol kapılarına bağlı"
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "İnşaatta bütün parayı ilk gün harcamazsınız; temel, kaba inşaat, ince iş ve teslim kapı kapı ilerler. Bu yatırım da aynı disiplinle yürür."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Para nereye gider"
+    },
+    {
+      "type": "cardGrid",
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "ürün",
+          "title": "Ürün geliştirme",
+          "body": "Yazılım, AI, altyapı.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "saha",
+          "title": "Saha ekibi",
+          "body": "Araçlı keşif ve satış.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "pazarlama",
+          "title": "Pazarlama",
+          "body": "Bölgesel, ölçülü.",
+          "tone": null
+        },
+        {
+          "eyebrow": "hukuk",
+          "title": "Hukuk / uyum",
+          "body": "Belge, lisans, KVKK.",
+          "tone": null
+        },
+        {
+          "eyebrow": "operasyon",
+          "title": "Ofis / operasyon",
+          "body": "Kuruluş ve işletme.",
+          "tone": null
+        },
+        {
+          "eyebrow": "yedek",
+          "title": "Yedek akçe",
+          "body": "Kasa güven marjı.",
+          "tone": "gold"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Harcama kapıları"
+    },
+    {
+      "type": "timeline",
+      "items": [
+        {
+          "when": "30 gün",
+          "what": "Şirket + ürün planı + pilot ilçe listesi"
+        },
+        {
+          "when": "60 gün",
+          "what": "İlk satıcı sözleşmeleri"
+        },
+        {
+          "when": "90 gün",
+          "what": "Doğrulanmış ilan + alıcı talebi"
+        },
+        {
+          "when": "180 gün",
+          "what": "Ücretli paket / ilk giriş geliri"
+        }
+      ]
+    }
+  ],
+  "refs": {
+    "data": [],
+    "metrics": []
+  }
+}

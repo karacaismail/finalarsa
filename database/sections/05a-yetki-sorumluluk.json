@@ -1,0 +1,61 @@
+{
+  "id": "yetki-sorumluluk",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 5.5,
+  "slug": "yetki-sorumluluk",
+  "nav": {
+    "num": "5a",
+    "label": "Yetki & sınır"
+  },
+  "background": "bg-1",
+  "title": {
+    "text": "Platform ne yapar, neyi devlet ve lisanslı kurum yapar?",
+    "accent": "devlet ve lisanslı kurum"
+  },
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "text": "yetki · sorumluluk · güven"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Platform ne yapar, neyi devlet ve lisanslı kurum yapar?",
+      "accent": "devlet ve lisanslı kurum"
+    },
+    {
+      "type": "note",
+      "tone": "accent",
+      "text": "arsam.net tapu tescili yapmaz; tapu devri yine devletin sisteminde tamamlanır. Platformun görevi ilanı, satıcıyı, belgeyi, imarı, konumu ve alıcı talebini düzenli hale getirmektir. Lisans gereken alanlarda kendi başına hareket edilmez; ödeme, değerleme, sigorta ve finansman tarafında lisanslı kurumlarla çalışılır.",
+      "highlight": [
+        "tapu tescili yapmaz"
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "Biz tapu dairesi değiliz; tapuya gitmeden önce dosyayı hazırlayan, eksikleri gösteren ve tarafları doğru masaya oturtan dijital koordinasyon ofisiyiz."
+    },
+    {
+      "type": "table",
+      "columns": [
+        "Alan",
+        "arsam.net yapar",
+        "Yetkili kurum / ortak yapar"
+      ],
+      "rows": [
+        ["İlan doğrulama", "EİDS-uyumlu ilan kontrolü", "Resmi kayıt altyapısı"],
+        ["Tapu bilgisi", "Belge / konum ön kontrolü", "Tapu tescili (TKGM)"],
+        ["Değerleme", "Bilgilendirici fiyat bandı", "Resmi ekspertiz (SPK)"],
+        ["Güvenli ödeme", "Süreci yönlendirir", "Lisanslı ödeme kuruluşu"],
+        ["Finansman", "Lead / yönlendirme", "Banka / finansman şirketi"]
+      ]
+    }
+  ],
+  "refs": {
+    "data": [],
+    "metrics": []
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "id": "satici-emlakci-agi",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 9.6,
+  "slug": "satici-emlakci-agi",
+  "nav": {
+    "num": "9b",
+    "label": "Satıcı ağı"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "Platformun ilk yakıtı satıcı ve emlakçı ağıdır",
+    "accent": "satıcı ve emlakçı ağıdır"
+  },
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "text": "arz · portföy · ilk yakıt"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Platformun ilk yakıtı satıcı ve emlakçı ağıdır",
+      "accent": "satıcı ve emlakçı ağıdır"
+    },
+    {
+      "type": "note",
+      "tone": "accent",
+      "text": "arsam.net önce alıcıya reklam vererek başlamaz. Önce satıcının işini kolaylaştırır: ilan dosyasını hazırlar, tapu/imar kontrolünü görünür yapar, alıcı talebini toplar ve emlakçıya nitelikli müşteri akışı verir.",
+      "highlight": [
+        "önce satıcının işini kolaylaştırır"
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "Bir pazar yerinde önce tezgâhlar dolmalıdır; müşteri kalabalığı dolu pazara gelir."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Satıcı edinim hunisi"
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "num": 1,
+          "title": "Hedef ilçe listesi",
+          "body": "5 yıldız Ege ilçesi önce"
+        },
+        {
+          "num": 2,
+          "title": "Satıcı/emlakçı ziyaret listesi",
+          "body": "Araçlı saha keşfi"
+        },
+        {
+          "num": 3,
+          "title": "Ücretsiz güven dosyası teklifi",
+          "body": "Belge+imar+konum ön kontrolü"
+        },
+        {
+          "num": 4,
+          "title": "İlk ilan yükleme",
+          "body": "Doğrulanmış aktif ilan"
+        },
+        {
+          "num": 5,
+          "title": "Premium / vitrin / lead paketi",
+          "body": "Tekrarlayan gelir"
+        },
+        {
+          "num": 6,
+          "title": "Referansla yeni satıcı",
+          "body": "Ağ kendini büyütür"
+        }
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "cols": 2,
+      "items": [
+        {
+          "eyebrow": "kurucu satıcı programı",
+          "title": "İlk satıcılara ayrıcalık",
+          "body": "İlk dönem satıcılarına ücretsiz güven dosyası, öne çıkarma kredisi ve öncelikli destek; bölgede referans etkisi yaratır.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "emlakçı ortağı",
+          "title": "Emlakçıya nitelikli müşteri akışı",
+          "body": "Üye emlakçı bölgedeki alıcı taleplerine teklif verir, portföyünü yönetir; komisyonla değil, talebe erişimle kazanır platform.",
+          "tone": "gold"
+        }
+      ]
+    }
+  ],
+  "refs": {
+    "data": [],
+    "metrics": []
+  }
+}

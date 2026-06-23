@@ -1,0 +1,123 @@
+{
+  "id": "ilk-90-gun",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 9.3,
+  "slug": "ilk-90-gun",
+  "nav": {
+    "num": "9a",
+    "label": "İlk 90 gün"
+  },
+  "background": "bg-1",
+  "title": {
+    "text": "İlk 90 gün: önce sahada portföy, sonra dijitalde talep",
+    "accent": "önce sahada portföy"
+  },
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "text": "pilot · saha operasyonu"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "İlk 90 gün: önce sahada portföy, sonra dijitalde talep",
+      "accent": "önce sahada portföy"
+    },
+    {
+      "type": "note",
+      "tone": "accent",
+      "text": "İlk hedef ulusal reklam değildir. İlk hedef, seçili ilçelerde doğrulanmış arsa stoğu çıkarmaktır. 90 gün sonunda yatırımcıya gösterilecek ana kanıt; kaç satıcıyla görüşüldüğü, kaç doğrulanmış ilan açıldığı, kaç alıcı talebi geldiği ve kaç teklif görüşmesine dönüldüğüdür.",
+      "highlight": [
+        "doğrulanmış arsa stoğu"
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "Önce tarlaya tohum atılır, sonra hasat beklenir. Bizim tohumumuz doğrulanmış ilan stoğudur."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Haftalık saha ritmi"
+    },
+    {
+      "type": "timeline",
+      "items": [
+        {
+          "when": "Pazartesi",
+          "what": "Hedef ilçe ve satıcı ziyaret listesi"
+        },
+        {
+          "when": "Salı–Çarşamba",
+          "what": "Saha ziyareti, keşif, satıcı görüşmesi"
+        },
+        {
+          "when": "Perşembe",
+          "what": "İlan dosyası, foto/drone, doğrulama"
+        },
+        {
+          "when": "Cuma",
+          "what": "Rapor ve kapanış takibi"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Saha KPI panosu"
+    },
+    {
+      "type": "statGrid",
+      "cols": 4,
+      "items": [
+        {
+          "label": "Görüşülen satıcı",
+          "value": "≥150",
+          "tone": "accent"
+        },
+        {
+          "label": "Açılan satıcı hesabı",
+          "value": "≥120"
+        },
+        {
+          "label": "Doğrulanmış aktif ilan",
+          "value": "300",
+          "tone": "gold"
+        },
+        {
+          "label": "Keşif/foto/drone tamamlanan",
+          "value": "≥200"
+        },
+        {
+          "label": "Gelen alıcı talebi",
+          "value": "≥80",
+          "tone": "accent"
+        },
+        {
+          "label": "RFQ / teklif görüşmesi",
+          "value": "≥40"
+        },
+        {
+          "label": "İlk ücretli paket",
+          "value": "ilk gelir"
+        },
+        {
+          "label": "Haftalık saha raporu",
+          "value": "12 hafta"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "gold",
+      "text": "90 gün başarı kriteri: 5 yıldız ilçede 300 doğrulanmış aktif ilan, ilk ücretli satıcı paketi, ilk RFQ teklif trafiği ve haftalık raporlanabilir saha verisi."
+    }
+  ],
+  "refs": {
+    "data": [],
+    "metrics": []
+  }
+}

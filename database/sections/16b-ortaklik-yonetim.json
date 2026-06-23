@@ -1,0 +1,87 @@
+{
+  "id": "ortaklik-yonetim",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 16.6,
+  "slug": "ortaklik-yonetim",
+  "nav": {
+    "num": "16b",
+    "label": "Ortaklık"
+  },
+  "background": "bg-1",
+  "title": {
+    "text": "Karar yetkisi ve raporlama baştan belli olmalı",
+    "accent": "baştan belli olmalı"
+  },
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "text": "ortaklık · yönetim · raporlama"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Karar yetkisi ve raporlama baştan belli olmalı",
+      "accent": "baştan belli olmalı"
+    },
+    {
+      "type": "note",
+      "tone": "accent",
+      "text": "Bu işte hız gerekir; ama kontrolsüz hız risk üretir. Bu nedenle ürün ve operasyon günlük olarak CPO yönetiminde yürür; yatırımcı tarafı bütçe, stratejik yön ve kritik ortaklık kararlarında düzenli rapor alır. İlk 6 ayda haftalık kısa rapor, ayda bir karar toplantısı önerilir.",
+      "highlight": [
+        "düzenli rapor alır"
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "Saha ekibi yolda hızlı gider; ama rota, yakıt ve hedef her hafta kontrol edilir."
+    },
+    {
+      "type": "table",
+      "columns": [
+        "Konu",
+        "CPO",
+        "Yatırımcı",
+        "Ortak karar"
+      ],
+      "rows": [
+        [
+          "Ürün yol haritası",
+          "Sorumlu",
+          "Bilgilendirilir",
+          "Kritik değişiklikte"
+        ],
+        [
+          "Bütçe",
+          "Hazırlar",
+          "Onaylar",
+          "Evet"
+        ],
+        [
+          "Saha bölgesi",
+          "Önerir",
+          "Saha bilgisi verir",
+          "Evet"
+        ],
+        [
+          "İşe alım",
+          "Yürütür",
+          "Limit onayı",
+          "Eşik üstü"
+        ],
+        [
+          "Stratejik ortaklık",
+          "Hazırlar",
+          "Değerlendirir",
+          "Evet"
+        ]
+      ]
+    }
+  ],
+  "refs": {
+    "data": [],
+    "metrics": []
+  }
+}

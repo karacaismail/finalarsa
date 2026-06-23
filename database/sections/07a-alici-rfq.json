@@ -1,0 +1,82 @@
+{
+  "id": "alici-rfq",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 7.5,
+  "slug": "alici-rfq",
+  "nav": {
+    "num": "7a",
+    "label": "Alıcı talebi"
+  },
+  "background": "bg-3",
+  "title": {
+    "text": "Alıcı ilan aramaz; talebini açar, uygun parseller ona gelir",
+    "accent": "talebini açar"
+  },
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "text": "alıcı talebi · teklif akışı"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Alıcı ilan aramaz; talebini açar, uygun parseller ona gelir",
+      "accent": "talebini açar"
+    },
+    {
+      "type": "note",
+      "tone": "accent",
+      "text": "Bugün alıcı arsa ararken onlarca ilan arasında kaybolur. ParselQ'da alıcı ne istediğini söyler: ilçe, bütçe, imar, metrekare, ödeme tercihi. Sistem bu talebi satıcılara ve üye emlakçılara ulaştırır; uygun taraflar teklif verir, platform doğru teklifleri sıralar.",
+      "highlight": [
+        "alıcı ne istediğini söyler"
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "Klasik modelde alıcı pazarı gezer. Yeni modelde alıcı istediği arsayı tarif eder, uygun tezgâhlar onun önüne gelir."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "num": 1,
+          "title": "Alıcı talep açar",
+          "body": "İlçe, bütçe, imar, m², ödeme tercihi"
+        },
+        {
+          "num": 2,
+          "title": "Sistem uygun parselleri bulur",
+          "body": "Doğrulanmış stoktan eşleştirme"
+        },
+        {
+          "num": 3,
+          "title": "Satıcı/emlakçı teklif verir",
+          "body": "Nitelikli talebe doğrudan teklif"
+        },
+        {
+          "num": 4,
+          "title": "AI teklifleri sıralar",
+          "body": "Uygunluk ve güvene göre"
+        },
+        {
+          "num": 5,
+          "title": "Alıcı güven dosyasıyla karar verir",
+          "body": "Belge, konum, emsal tek dosyada"
+        },
+        {
+          "num": 6,
+          "title": "Tapu/ödeme lisanslı kurumlarla yürür",
+          "body": "Platform koordine eder, tescil devlette"
+        }
+      ]
+    }
+  ],
+  "refs": {
+    "data": [],
+    "metrics": []
+  }
+}
