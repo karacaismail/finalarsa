@@ -134,6 +134,11 @@ export function PresentationMode({ open, onClose }: { open: boolean; onClose: ()
     : "pm-enter-fade";
   prevIndexRef.current = index;
 
+  // Kalan süre: (toplam slayt − geçen slayt) × slayt başına saniye ("seçilen sn").
+  // geçen slayt = index (tamamlanan slayt sayısı). Slayt veya seçilen süre değişince yeniden hesaplanır.
+  const remainingSec = (total - index) * interval;
+  const remainingLabel = `${Math.floor(remainingSec / 60)}:${String(remainingSec % 60).padStart(2, "0")}`;
+
   const pickSpeed = (v: number) => {
     setIntervalSec(v);
     try {
@@ -174,7 +179,7 @@ export function PresentationMode({ open, onClose }: { open: boolean; onClose: ()
             <Progress.Range bg={pres.progressRange} borderRadius="full" />
           </Progress.Track>
         </Progress.Root>
-        <Flex justify="space-between" align="center" mt="2">
+        <Flex justify="space-between" align="center" mt="2" gap="2">
           <Box
             px="3"
             py="1"
@@ -183,10 +188,37 @@ export function PresentationMode({ open, onClose }: { open: boolean; onClose: ()
             color="white"
             fontSize="md"
             fontWeight="medium"
+            whiteSpace="nowrap"
+            minW="0"
+            flexShrink="1"
+            overflow="hidden"
+            textOverflow="ellipsis"
           >
-            {index + 1} / {total} · {slide.nav.num} {slide.nav.label}
+            {index + 1} / {total}
+            <Box as="span" display={{ base: "none", sm: "inline" }}>
+              {" "}· {slide.nav.num} {slide.nav.label}
+            </Box>
           </Box>
-          <Btn {...ctrlBtn} bg={pres.badgeBg} onClick={close} aria-label="Sunumdan çık (Esc)">
+          <Flex
+            align="center"
+            gap="1.5"
+            px="3"
+            py="1"
+            borderRadius="full"
+            bg={pres.badgeBg}
+            color="white"
+            flexShrink="0"
+            aria-label={`Kalan süre yaklaşık ${remainingLabel}`}
+          >
+            <Icon path={I.clock} size={16} />
+            <Box as="span" fontSize="md" fontWeight="medium" whiteSpace="nowrap">
+              {remainingLabel}
+              <Box as="span" display={{ base: "none", sm: "inline" }}>
+                {" "}kaldı
+              </Box>
+            </Box>
+          </Flex>
+          <Btn {...ctrlBtn} bg={pres.badgeBg} onClick={close} flexShrink="0" aria-label="Sunumdan çık (Esc)">
             <Icon path={I.x} />
           </Btn>
         </Flex>
