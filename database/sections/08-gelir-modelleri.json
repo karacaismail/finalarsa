@@ -84,6 +84,37 @@
     },
     {
       "level": 3,
+      "text": "Gelir üç ailede toplanır",
+      "type": "heading"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "1",
+          "title": "İlan ve görünürlük",
+          "body": "İlan, vitrin, öne çıkarma — temel ve erken gelir."
+        },
+        {
+          "eyebrow": "2",
+          "title": "Talep ve eşleştirme",
+          "body": "ParselQ-RFQ: alıcı talebi, teklif, lead — amiral büyüme."
+        },
+        {
+          "eyebrow": "3",
+          "title": "Veri, SaaS ve hizmet",
+          "body": "Veri/API, emlakçı yazılımı, saha hizmetleri — olgunlukta büyür."
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Gelir modeli dağınık değildir; üç aileye ayrılır. Önce ilan ve görünürlük, sonra talep/eşleştirme, olgunlaştıkça veri ve SaaS gelirleri büyür.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "level": 3,
       "text": "Yedi gelir akışı · ParselQ-RFQ amiral gemisi",
       "accent": "ParselQ-RFQ",
       "type": "heading"

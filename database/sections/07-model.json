@@ -90,6 +90,29 @@
       ],
       "tone": "accent",
       "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "Kim, neden öder?",
+      "type": "heading"
+    },
+    {
+      "columns": ["Taraf", "Neden öder"],
+      "rows": [
+        ["Satıcı", "İlan, görünürlük, güven dosyası"],
+        ["Alıcı", "Talep/teklif erişimi, rapor"],
+        ["Emlakçı", "Nitelikli lead, teklif hakkı, CRM"],
+        ["Kurumsal", "Veri/API, reklam, bölge sponsorluğu"]
+      ],
+      "type": "table"
+    },
+    {
+      "text": "Satıcı mülkünü sattığında platforma satış payı ödemez. Ücret, satışın kendisinden değil; görünürlük, güven dosyası, talep erişimi, veri ve iş akışı hizmetlerinden doğar.",
+      "highlight": [
+        "satış payı ödemez"
+      ],
+      "tone": "accent",
+      "type": "note"
     }
   ],
   "refs": {

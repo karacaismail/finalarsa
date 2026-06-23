@@ -66,6 +66,46 @@
       ],
       "tone": "info",
       "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "Önerimiz: stratejik seçenek",
+      "type": "heading"
+    },
+    {
+      "text": "Önerimiz stratejik seçenektir. Çünkü sadece yazılımı değil, pilot saha operasyonunu ve ilk gelir sinyalini de finanse eder. Çekirdek seçenek ürünü başlatır ama saha ispatını zayıf bırakır; lider seçenek ölçek için güçlüdür fakat ilk karar için daha ağır olabilir.",
+      "highlight": [
+        "stratejik seçenektir"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "Yatırımcının kontrol hakları",
+          "title": "Bütçe onayı",
+          "body": "Harcama planı yatırımcı onayından geçer.",
+          "tone": null,
+          "type": "card"
+        },
+        {
+          "eyebrow": "Yatırımcının kontrol hakları",
+          "title": "Saha bölgesi",
+          "body": "İlk pilot ilçe birlikte seçilir.",
+          "tone": null,
+          "type": "card"
+        },
+        {
+          "eyebrow": "Yatırımcının kontrol hakları",
+          "title": "Düzenli rapor",
+          "body": "İlk 6 ay haftalık kısa rapor, ayda bir karar toplantısı.",
+          "tone": null,
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
     }
   ],
   "refs": {

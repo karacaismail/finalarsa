@@ -30,6 +30,38 @@
       "type": "lead"
     },
     {
+      "level": 3,
+      "text": "Önce kasa güveni, sonra kâr",
+      "type": "heading"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "label": "Başlangıç sermayesi",
+          "value": "40 milyon ₺",
+          "type": "card"
+        },
+        {
+          "label": "Operasyonel başabaş",
+          "value": "2027 başı",
+          "type": "card"
+        },
+        {
+          "label": "Kasa güven marjı (en dip)",
+          "value": "~32,5 milyon ₺",
+          "tone": "gold",
+          "type": "card"
+        }
+      ],
+      "type": "statGrid"
+    },
+    {
+      "text": "Finansal modelin ilk sorusu kâr değil, kasa güvenidir: para ne kadar dayanır, hangi ay başabaş gelir, hangi kapıda harcama yavaşlatılır?",
+      "tone": "info",
+      "type": "note"
+    },
+    {
       "type": "claimLegend"
     },
     {

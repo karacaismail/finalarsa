@@ -64,6 +64,42 @@
       "text": "Amaç korkutmak değil; arsa için neden dikey uzmanlık gerektiğini göstermek.",
       "tone": "info",
       "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "Sahanın günlük sürtünmesi",
+      "type": "heading"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "title": "Alıcı kör arıyor",
+          "body": "Alıcı parseli anlamadan onlarca ilan arasında kayboluyor.",
+          "type": "card"
+        },
+        {
+          "title": "Fiyat kulaktan",
+          "body": "Satıcı fiyatı komşudan duyduğu rakama göre koyuyor.",
+          "type": "card"
+        },
+        {
+          "title": "Dağınık ilan",
+          "body": "Aynı yer üç farklı ilanda üç farklı görünüyor.",
+          "type": "card"
+        },
+        {
+          "title": "Geç çıkan belge",
+          "body": "Tapu ve imar bilgisi konuşmanın sonunda ortaya çıkıyor.",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Bu sorunlar teknoloji sorunu değil, arsa işinin günlük sürtünmesidir. Teknoloji yalnız bu sürtünmeyi görünür ve yönetilebilir hale getirir.",
+      "tone": "info",
+      "type": "note"
     }
   ],
   "refs": {

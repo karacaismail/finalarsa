@@ -40,6 +40,58 @@
     {
       "text": "İsmail · CPO · Haziran 2026",
       "type": "paragraph"
+    },
+    {
+      "level": 3,
+      "text": "Tek bakışta yatırım özeti",
+      "type": "heading"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "ne",
+          "title": "Ne kuruyoruz?",
+          "body": "Arsa/arazi için dijital pazaryeri ve kontrollü saha operasyonu.",
+          "type": "card"
+        },
+        {
+          "eyebrow": "kim",
+          "title": "Kim için?",
+          "body": "Satıcı, alıcı ve emlakçıyı aynı güven dosyasında buluşturur.",
+          "type": "card"
+        },
+        {
+          "eyebrow": "neden",
+          "title": "Neden şimdi?",
+          "body": "Arsa işi hâlâ dijitalleşmedi; ilk doğrulanmış arz ağını kuran kazanır.",
+          "type": "card"
+        },
+        {
+          "eyebrow": "talep",
+          "title": "Ne istiyoruz?",
+          "body": "Kontrollü pilot için yatırım, rol ve ilk 90 gün kararı.",
+          "type": "card"
+        },
+        {
+          "eyebrow": "kanıt",
+          "title": "İlk 90 günde ne göstereceğiz?",
+          "body": "Seçili ilçelerde doğrulanmış ilan, satıcı görüşmesi, alıcı talebi ve ilk gelir sinyali.",
+          "type": "card"
+        },
+        {
+          "eyebrow": "rol",
+          "title": "Yatırımcının rolü?",
+          "body": "Saha bilgisi, ilk satıcılar ve bütçe/strateji kararlarında düzenli rapor.",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Bugünkü hedef bütün vizyonu tekrar anlatmak değil; kontrollü pilot için tutar, rol ve ilk 90 gün kararını netleştirmektir.",
+      "tone": "info",
+      "type": "note"
     }
   ],
   "refs": {

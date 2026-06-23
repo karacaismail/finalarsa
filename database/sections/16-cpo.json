@@ -64,6 +64,45 @@
       "text": "Bu kalemlerin nihai biçimi ortak kararınızla netleşebilir; fakat model bu maliyeti baştan içerir.",
       "tone": "info",
       "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "Paket değil, teslimat sözü",
+      "type": "heading"
+    },
+    {
+      "ordered": true,
+      "items": [
+        {
+          "num": "1",
+          "title": "30 gün",
+          "body": "Ürün planı ve teknik mimari hazır."
+        },
+        {
+          "num": "2",
+          "title": "60 gün",
+          "body": "Pilot saha operasyonu sahada çalışıyor."
+        },
+        {
+          "num": "3",
+          "title": "90 gün",
+          "body": "Doğrulanmış ilan ve ilk RFQ teklif sinyali."
+        },
+        {
+          "num": "4",
+          "title": "Aylık",
+          "body": "Yatırımcıya düzenli ilerleme raporu."
+        }
+      ],
+      "type": "list"
+    },
+    {
+      "text": "Bu paket kişisel konfor kalemi değil, tam zamanlı sorumluluk modelidir. Karşılığı ürün teslimi, ekip kurulumu, saha pilotu, yatırımcı raporlaması ve ilk gelir sinyalidir.",
+      "highlight": [
+        "tam zamanlı sorumluluk modelidir"
+      ],
+      "tone": "accent",
+      "type": "note"
     }
   ],
   "refs": {

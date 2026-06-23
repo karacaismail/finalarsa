@@ -53,6 +53,61 @@
         }
       ],
       "type": "cardGrid"
+    },
+    {
+      "level": 3,
+      "text": "Sizin özgül gücünüz",
+      "type": "heading"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "title": "Saha itibarı",
+          "body": "Bölgede tanınırlık ve sözün ağırlığı.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "title": "Arsa tecrübesi",
+          "body": "Doğru parseli, doğru fiyatı ve riski okuma.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "title": "Satıcı dili",
+          "body": "Satıcıyla pazarlık ve güven kurma refleksi.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "title": "Bölgesel ilişki",
+          "body": "İlçe ilçe portföy ve satıcı ağı.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "title": "Nakit ve karar hızı",
+          "body": "Fırsatta hızlı hareket edebilme.",
+          "tone": "accent",
+          "type": "card"
+        },
+        {
+          "title": "İlk kurucu satıcılar",
+          "body": "Platformun ilk arzını açacak sosyal sermaye.",
+          "tone": "accent",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Bu işte en pahalı şey yazılım değil, güvenilir ilk arzı toplamaktır. Sizin avantajınız burada başlar: satıcıyı, arsayı, bölgeyi ve pazarlık dilini bilmeniz.",
+      "highlight": [
+        "güvenilir ilk arzı toplamaktır"
+      ],
+      "tone": "accent",
+      "type": "note"
     }
   ],
   "refs": {

@@ -30,6 +30,40 @@
       "type": "lead"
     },
     {
+      "level": 3,
+      "text": "Yatırımcıyı koruyan ek riskler",
+      "type": "heading"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "title": "İtibar riski",
+          "body": "Sahte ilan/yanlış değerleme yatırımcının itibarını yıpratabilir. İlk ciddi olayda: manuel inceleme, hukuk onayı, yayın durdurma.",
+          "tone": "warn",
+          "type": "card"
+        },
+        {
+          "title": "Ortaklık karar çatışması",
+          "body": "Kritik karar 7 günü aşarsa: yetki matrisi devreye girer, yönetim toplantısı yapılır.",
+          "tone": "warn",
+          "type": "card"
+        },
+        {
+          "title": "Yanlış değerleme beklentisi",
+          "body": "Değerleme itirazı eşiği aşarsa: 'bilgilendirme amaçlı' etiket ve eksper ortaklığı.",
+          "tone": "warn",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Riskler belirsiz değil; ölçülü ve karar kapısına bağlı. Her risk bir eşik ve bir aksiyona bağlanır.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
       "columns": [
         "Risk",
         "Ölçüm",

@@ -64,6 +64,38 @@
       "type": "chart"
     },
     {
+      "level": 3,
+      "text": "AI yapar, insan karar verir",
+      "accent": null,
+      "type": "heading"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "eyebrow": "AI yapar",
+          "title": "Hızlandırır",
+          "body": "Belgeleri okur, eksikleri işaretler, fiyat bandı önerir, talepleri sıralar.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "İnsan karar verir",
+          "title": "Sorumluluk insanda",
+          "body": "Son karar, onay ve sorumluluk insandadır; AI patron değildir.",
+          "tone": "gold"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "AI burada patron değil, kalfa gibi çalışır. Usta kararı verir; kalfa işi hızlandırır.",
+      "highlight": [
+        "kalfa gibi çalışır"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
       "text": "Hedef, insanı azaltmak değil; aynı işi daha düşük maliyet ve daha hızlı denetim döngüsüyle yapmaktır.",
       "tone": "info",
       "type": "note"

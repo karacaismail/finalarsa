@@ -155,6 +155,19 @@
       "text": "TKGM/TÜİK işlem adetleri doğrulanmış kaynaktır; online penetrasyon, ortalama arsa işlem değeri, %35 hedef pay ve senaryo gelir bantları model varsayımıdır. 2032 gelir bandı, benimseme hızına göre 2,48 milyar – 9,07 milyar ₺ arasında değişir; medyan 5,5 milyar ₺.",
       "tone": "info",
       "type": "note"
+    },
+    {
+      "text": "Önce bütün arazi haritasına bakıyoruz. Sonra dijitalde ulaşabileceğimiz bölgeyi ayırıyoruz. Sonra ilk hedeflediğimiz parselleri seçiyoruz. En sonunda bu hedefin yıllık gelir karşılığını hesaplıyoruz.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "text": "Sade metafor: büyük harita → seçilen bölge → alınacak parsel → beklenen hasat.",
+      "highlight": [
+        "beklenen hasat"
+      ],
+      "tone": "accent",
+      "type": "note"
     }
   ],
   "refs": {

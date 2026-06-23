@@ -151,6 +151,39 @@
       ],
       "tone": "info",
       "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "256 kişi ilk gün değil; kapı kapı",
+      "accent": null,
+      "type": "heading"
+    },
+    {
+      "cols": 2,
+      "items": [
+        {
+          "title": "İlan stoğu kapısı",
+          "body": "Doğrulanmış arz oluştukça saha kadrosu açılır."
+        },
+        {
+          "title": "Talep kapısı",
+          "body": "Alıcı talebi büyüdükçe satış/RFQ ekibi büyür."
+        },
+        {
+          "title": "Gelir sinyali kapısı",
+          "body": "Ücretli dönüşüm geldikçe işe alım hızlanır."
+        },
+        {
+          "title": "Operasyon yükü kapısı",
+          "body": "İş hacmi gerektirdikçe destek/ops eklenir."
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "256 kişi ilk gün alınacak ekip değildir. Her işe alım bir kapıya bağlıdır: ilan stoğu, talep sayısı, gelir sinyali, operasyon yükü.",
+      "tone": "info",
+      "type": "note"
     }
   ],
   "refs": {

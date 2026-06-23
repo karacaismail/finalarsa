@@ -237,6 +237,38 @@
       "type": "note"
     },
     {
+      "level": 3,
+      "text": "Saha ekibinin günlük döngüsü",
+      "accent": null,
+      "type": "heading"
+    },
+    {
+      "type": "timeline",
+      "items": [
+        {
+          "when": "Pazartesi",
+          "what": "Hedef ilçe ve satıcı ziyaret listesi"
+        },
+        {
+          "when": "Salı–Çarşamba",
+          "what": "Saha ziyareti, portföy ve satıcı görüşmesi"
+        },
+        {
+          "when": "Perşembe",
+          "what": "İlan dosyası, foto/keşif ve doğrulama"
+        },
+        {
+          "when": "Cuma",
+          "what": "Rapor ve kapanış takibi"
+        }
+      ]
+    },
+    {
+      "text": "Her hafta aynı ritim çalışır; saha disiplini reklamdan önce gelir.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
       "text": "Bu plan 'rakibi nasıl yeneriz' değil, 'nasıl kazanırız' sorusunu cevaplar.",
       "tone": "info",
       "type": "note"

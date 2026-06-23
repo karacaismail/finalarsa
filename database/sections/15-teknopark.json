@@ -39,6 +39,19 @@
       "type": "note"
     },
     {
+      "text": "Teknopark, yazılım gelirinden doğan vergi yükünü azaltır. Bu, işin gelirini artırmaz; ama aynı gelirden şirkette daha fazla nakit kalmasını sağlar.",
+      "highlight": [
+        "aynı gelirden daha fazla nakit"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "text": "Sade metafor: aynı cirodan daha az fire vererek kasaya daha çok ürün bırakmak.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
       "cols": 3,
       "items": [
         {

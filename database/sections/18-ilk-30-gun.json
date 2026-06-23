@@ -55,6 +55,66 @@
       "type": "note"
     },
     {
+      "level": 3,
+      "text": "İlk 30 gün, sonra ilk 90 gün",
+      "type": "heading"
+    },
+    {
+      "items": [
+        {
+          "when": "İlk 30 gün",
+          "what": "Şirket, ürün ve pilot hazırlığı"
+        },
+        {
+          "when": "İlk 90 gün",
+          "what": "Sahada kanıt: doğrulanmış ilan, satıcı görüşmesi, alıcı talebi, ilk gelir sinyali",
+          "state": "now"
+        }
+      ],
+      "type": "timeline"
+    },
+    {
+      "level": 3,
+      "text": "Sonraki toplantı karar listesi",
+      "type": "heading"
+    },
+    {
+      "ordered": true,
+      "items": [
+        {
+          "num": "1",
+          "title": "Yatırım seçeneği",
+          "body": "Hangi seçenekle ilerliyoruz?"
+        },
+        {
+          "num": "2",
+          "title": "Pilot ilçe",
+          "body": "İlk pilot ilçeyi birlikte mi seçiyoruz?"
+        },
+        {
+          "num": "3",
+          "title": "Yatırımcı rolü",
+          "body": "Pasif ortak mı, stratejik ortak mı?"
+        },
+        {
+          "num": "4",
+          "title": "Harcama limiti",
+          "body": "İlk 30 gün için harcama limiti nedir?"
+        },
+        {
+          "num": "5",
+          "title": "Beklenen rapor",
+          "body": "Bir sonraki toplantıda hangi raporu görmek istersiniz?"
+        }
+      ],
+      "type": "list"
+    },
+    {
+      "text": "Bugünkü karar evetse, ilk 30 gün hazırlık; ilk 90 gün sahada kanıt üretme dönemidir.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
       "items": [
         {
           "label": "Görüşmeyi sürdürelim",

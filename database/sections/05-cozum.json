@@ -131,6 +131,40 @@
       "text": "ParselQ üzerindeki AI değerleme bilgilendirme amaçlıdır; resmi ekspertiz raporunun yerini tutmaz (SPK kapsamı). TKGM doğrulaması anlık API verisiyle yapılır; nihai hukuki kontrol yetkili kurumlar aracılığıyla tamamlanır.",
       "tone": "info",
       "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "Üç taraf, tek güven dosyası",
+      "type": "heading"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "satıcı",
+          "title": "Satıcı",
+          "body": "Parselini yükler, güven dosyası oluşur, gelen teklifleri görür."
+        },
+        {
+          "eyebrow": "alıcı",
+          "title": "Alıcı",
+          "body": "Ne istediğini tarif eder (talep açar), uygun teklifleri karşılaştırır."
+        },
+        {
+          "eyebrow": "emlakçı",
+          "title": "Emlakçı",
+          "body": "Bölgedeki taleplere teklif verir, portföyünü tek yerden yönetir."
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "ParselQ tek taraflı bir ilan uygulaması değil; satıcı, alıcı ve emlakçıyı aynı güven dosyasında buluşturan işlem öncesi hazırlık sistemidir.",
+      "highlight": [
+        "işlem öncesi hazırlık sistemidir"
+      ],
+      "tone": "accent",
+      "type": "note"
     }
   ],
   "refs": {
