@@ -95,20 +95,6 @@
       ],
       "tone": "accent",
       "type": "note"
-    },
-    {
-      "level": 3,
-      "text": "470 modelden en güçlü 15 hamle",
-      "type": "heading"
-    },
-    {
-      "text": "Savunma yalnız arsa derinliği değil; asimetrik bir büyüme playbook'udur. Klasik gerilla pazarlama küçük bütçe/küçük etkidir; asimetrik saha ekibi rakibin büyüklüğünü hızsızlığa çevirir. En güçlüsü Counter-Positioning: sahibinden ilan-reklam modelini kopyalarsa komisyon ekonomisini kırar — kazansa da kaybeder.",
-      "highlight": ["kazansa da kaybeder"],
-      "tone": "accent",
-      "type": "note"
-    },
-    {
-      "type": "strategyArsenal"
     }
   ],
   "refs": {
@@ -121,9 +107,7 @@
     "glossary": [
       "EİDS"
     ],
-    "data": [
-      "strategy-md"
-    ],
+    "data": [],
     "metrics": []
   }
 }

@@ -1,0 +1,58 @@
+{
+  "id": "ek-playbook",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 98,
+  "slug": "ek-playbook",
+  "nav": {
+    "num": "Ek",
+    "label": "Büyüme playbook'u"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "Ek · Büyüme playbook'u",
+    "accent": "Büyüme playbook'u"
+  },
+  "blocks": [
+    {
+      "text": "ek · detay",
+      "type": "eyebrow"
+    },
+    {
+      "level": 2,
+      "text": "Büyüme playbook'u (470 model)",
+      "accent": "470 model",
+      "type": "heading"
+    },
+    {
+      "text": "Bu, ana sunumun akışını yormamak için eke alınan detay katmanıdır; toplantıda istenirse açılır. Rekabet ve savunma özeti ana Rekabet bölümündedir.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "470 modelden en güçlü 15 hamle",
+      "type": "heading"
+    },
+    {
+      "text": "Savunma yalnız arsa derinliği değil; asimetrik bir büyüme playbook'udur. Klasik gerilla pazarlama küçük bütçe/küçük etkidir; asimetrik saha ekibi rakibin büyüklüğünü hızsızlığa çevirir. En güçlüsü Counter-Positioning: sahibinden ilan-reklam modelini kopyalarsa komisyon ekonomisini kırar — kazansa da kaybeder.",
+      "highlight": [
+        "kazansa da kaybeder"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "type": "strategyArsenal"
+    }
+  ],
+  "refs": {
+    "data": [
+      "strategy-md",
+      "strategy-arsenal",
+      "strategy-frameworks"
+    ],
+    "metrics": []
+  }
+}

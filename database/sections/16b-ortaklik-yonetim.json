@@ -3,10 +3,10 @@
   "kind": "section",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "order": 16.6,
+  "order": 17.6,
   "slug": "ortaklik-yonetim",
   "nav": {
-    "num": "16b",
+    "num": "17b",
     "label": "Ortaklık"
   },
   "background": "bg-1",
