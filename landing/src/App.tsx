@@ -1,16 +1,15 @@
 import { Box } from "@chakra-ui/react";
-import { Fragment, useState } from "react";
-import { sections, getData } from "./data/resolve";
-import { SectionView } from "./components/SectionView";
-import { SectionDivider } from "./components/SectionDivider";
+import { useState } from "react";
 import { Footer, Header, SkipLink } from "./components/SiteChrome";
 import { ReadingProgress } from "./components/ReadingProgress";
-import { SectionNav } from "./components/SectionNav";
+import { AccordionPresentation } from "./components/AccordionPresentation";
 import { PresentationMode } from "./presentation/PresentationMode";
 
-type DividerInfo = { quote: string; author: string; theme?: "grass" | "ink" | "gold" | "clay" };
-const dividers = getData<{ bySlug: Record<string, DividerInfo> }>("dividers").bySlug;
-
+/**
+ * Tek sayfa. İçerik 8 ana accordion grubu altında toplanır (AccordionPresentation):
+ * en üstte sabit Karar Kutusu, altında gruplar. Sunum modu (PresentationMode) bölümleri
+ * global `sections` dizisinden türetir; accordion gruplamasından bağımsızdır.
+ */
 export function App() {
   const [presenting, setPresenting] = useState(false);
   return (
@@ -19,19 +18,9 @@ export function App() {
       <ReadingProgress />
       <Header onPlay={() => setPresenting(true)} />
       <Box as="main" id="main">
-        {sections.map((s, i) => {
-          const dv = dividers[s.slug];
-          const isLast = i === sections.length - 1;
-          return (
-            <Fragment key={s.id}>
-              <SectionView section={s} index={i} />
-              {dv && !isLast && <SectionDivider quote={dv.quote} author={dv.author} theme={dv.theme} />}
-            </Fragment>
-          );
-        })}
+        <AccordionPresentation />
       </Box>
       <Footer />
-      <SectionNav />
       <PresentationMode open={presenting} onClose={() => setPresenting(false)} />
     </Box>
   );

@@ -8,13 +8,13 @@
   "top15": [
     {
       "rank": 1,
-      "name": "Counter-Positioning (Karşı-Konumlama)",
-      "desc": "Ilan-reklam modeli + dikey küratoryallık + güven katmanı üçgeniyle sahibinden.com'un kopyaladığı takdirde kendi geniş-pazar işini cannibalizing edeceği bir model benimsemek — bu asimetri arsam.net'in rakibe karşı yapısal kalesi ve en savunulabilir başlangıç noktasıdır."
+      "name": "Rakibin Kopyalayamayacağı Konumlanma",
+      "desc": "Ilan-reklam modeli + dikey küratörlük + güven katmanı üçgeniyle sahibinden.com'un kopyalaması durumunda kendi geniş-pazar işini olumsuz etkileyeceği bir model benimsemek — bu asimetri arsam.net'in rakibe karşı yapısal avantajı ve en savunulabilir başlangıç noktasıdır."
     },
     {
       "rank": 2,
       "name": "Programmatic SEO (Şablon × Veri Fabrikası)",
-      "desc": "'[İl] [İlçe] [Mahalle] tarla satılık' şablonu × 50.000+ kombinasyonla binlerce sayfa üretmek; sahibinden'in dikey arsa aramasında rakibinin ekonomik olarak kopyalayamayacağı içerik hendeği kurmak ve organik trafiğin çoğunluğunu düşük maliyetle fethetmek."
+      "desc": "'[İl] [İlçe] [Mahalle] tarla satılık' şablonu × 50.000+ kombinasyonla binlerce sayfa üretmek; sahibinden'in dikey arsa aramasında rakibinin ekonomik olarak kopyalayamayacağı içerik avantajı kurmak ve organik trafiğin çoğunluğunu düşük maliyetle kazanmak."
     },
     {
       "rank": 3,
@@ -23,8 +23,8 @@
     },
     {
       "rank": 4,
-      "name": "Memetic Warfare (Toprak Memi Savaşı)",
-      "desc": "'Toprağını Geri Al' / 'Lira yerine arsa' gibi enflasyon ve miras duygularını içeren viral mem içerikleri üretmek; Duolingo-Wendy's modelinde sosyal mecra algoritmalarını sıfır reklam bütçesiyle besleyerek medya satın alımının yerini almak."
+      "name": "Organik Görünürlük ve Yerel Hikâye",
+      "desc": "'Toprağını Geri Al' / 'Lira yerine arsa' gibi enflasyon ve miras duygularını içeren paylaşılabilir içerikler üretmek; Duolingo-Wendy's modelinde sosyal mecra algoritmalarını düşük reklam bütçesiyle besleyerek ücretli medya alımının yerini almak."
     },
     {
       "rank": 5,
@@ -43,8 +43,8 @@
     },
     {
       "rank": 8,
-      "name": "Yerel SEO Halı Bombardımanı (81 İl × 922 İlçe)",
-      "desc": "Her il ve ilçe için ayrı optimize edilmiş arsa arama sayfaları oluşturmak; sahibinden'in jenerik yapısının hiçbir zaman bu dikey derinliğe inmeyeceği coğrafi uzun-kuyrukta dominant olmak ve yerel arama trafiğini sistematik olarak çalmak."
+      "name": "Yerel SEO Kapsama Stratejisi (81 İl × 922 İlçe)",
+      "desc": "Her il ve ilçe için ayrı optimize edilmiş arsa arama sayfaları oluşturmak; sahibinden'in jenerik yapısının hiçbir zaman bu dikey derinliğe inmeyeceği coğrafi uzun-kuyrukta öne çıkmak ve yerel arama trafiğini sistematik olarak kazanmak."
     },
     {
       "rank": 9,
@@ -53,8 +53,8 @@
     },
     {
       "rank": 10,
-      "name": "Güven Katmanı Kama (Tapu Doğrulama + Sigortalı İlan)",
-      "desc": "Tapu doğrulaması, sahte ilan reddi ve isteğe bağlı tapu sigortasını ücretsiz hizmet olarak sunmak; 'bizde fake ilan yok' kampanyasıyla sahibinden'in kronik güven açığını arsam.net'in en ucuz büyüme silahına dönüştürmek."
+      "name": "Güven Katmanı Avantajı (Tapu Doğrulama + Sigortalı İlan)",
+      "desc": "Tapu doğrulaması, sahte ilan reddi ve isteğe bağlı tapu sigortasını ücretsiz hizmet olarak sunmak; 'bizde sahte ilan yok' kampanyasıyla sahibinden'in kronik güven açığını arsam.net'in en düşük maliyetli büyüme avantajına dönüştürmek."
     },
     {
       "rank": 11,
@@ -79,7 +79,7 @@
     {
       "rank": 15,
       "name": "Miras Anlatısı (Çocuğuna Toprak Bırak)",
-      "desc": "'Çocuğuna toprak bırak, miras kalacak bir şey yap' duygusal anlatısını tüm içerik ve kampanyaların omurgası yapmak; bu nesiller arası miras çerçevesi sahibinden'in ürün-odaklı diline karşı duygusal hendek oluşturur ve Türkiye kültürüyle derin rezonans kurar."
+      "desc": "'Çocuğuna toprak bırak, miras kalacak bir şey yap' duygusal anlatısını tüm içerik ve kampanyaların omurgası yapmak; bu nesiller arası miras çerçevesi sahibinden'in ürün-odaklı diline karşı güçlü bir duygusal bağ oluşturur ve Türkiye kültürüyle derin rezonans kurar."
     }
   ],
   "clusters": [

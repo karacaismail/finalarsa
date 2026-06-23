@@ -7,7 +7,15 @@ import { HeroArt } from "./HeroArt";
 import { Reveal } from "./Reveal";
 
 /** Tek bölüm: semantik <section>, zemin JSON'daki `background` değerinden (merkezi sectionBg map). */
-export function SectionView({ section, index }: { section: Section; index: number }) {
+export function SectionView({
+  section,
+  index,
+  as = "section",
+}: {
+  section: Section;
+  index: number;
+  as?: "section" | "div";
+}) {
   const isHero = section.order === 1;
   // Koyu zeminli bölümler: "dark" (finansal) ve "bg-end" (kapanış/ink) → metin açık render edilir.
   const dark = section.background === "dark" || section.background === "bg-end";
@@ -23,7 +31,7 @@ export function SectionView({ section, index }: { section: Section; index: numbe
   );
   return (
     <Box
-      as="section"
+      as={as}
       id={section.slug}
       aria-label={section.nav.label}
       bg={bg}

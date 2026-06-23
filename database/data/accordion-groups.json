@@ -1,0 +1,91 @@
+{
+  "id": "accordion-groups",
+  "kind": "config",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "Accordion sunum gruplaması — 8 ana grup",
+  "description": "Tek sayfa korunur. 27 bölüm, 8 ana accordion grubu altında toplanır. Bölüm içerikleri ve sıraları database/sections'tan gelir; bu dosya yalnızca gruplama (hangi bölüm hangi grupta), grup başlığı + kısa özet cümlesi ve en üstteki karar kutusu metnini taşır. Rakamlar metrics.json'dan token ile gelir.",
+  "decisionBox": {
+    "question": "Bugün neye karar veriyoruz?",
+    "items": [
+      {
+        "label": "Başlangıç bütçesi",
+        "valueRef": "capital.total_raised",
+        "detail": "Kontrollü pilot için ayrılan başlangıç sermayesi; tek seferde değil, kapı kapı kullanılır."
+      },
+      {
+        "label": "Yatırımcı rolü",
+        "value": "Lider / stratejik ortak",
+        "detail": "Dış gözlemci değil; bütçe ve strateji onayı, saha bölgesi seçimi ve düzenli rapor hakkı olan ortak."
+      },
+      {
+        "label": "İlk 90 gün saha hedefleri",
+        "value": "Doğrulanmış ilan + ilk gelir",
+        "detail": "Seçili ilçelerde doğrulanmış aktif ilan, satıcı görüşmesi, alıcı talebi ve ilk ücretli paket."
+      },
+      {
+        "label": "Yönetim ve raporlama sınırı",
+        "value": "CPO günlük · yatırımcı haftalık",
+        "detail": "Günlük operasyonu CPO yürütür; yatırımcıya haftalık saha raporu, ayda bir karar toplantısı."
+      }
+    ]
+  },
+  "groups": [
+    {
+      "id": "karar-ozeti",
+      "num": "01",
+      "label": "Karar Özeti",
+      "summary": "Bugün hangi tutar, hangi rol ve hangi ilk 90 gün çerçevesinde karar veriyoruz — kararın özeti ve bugüne kadarki süreç.",
+      "sections": ["karar-notu", "toplanti-ozeti", "ilk-30-gun"]
+    },
+    {
+      "id": "neden-ortaklik",
+      "num": "02",
+      "label": "Neden Bu Ortaklık?",
+      "summary": "Bu iş, sizin bildiğiniz emlak işinin dijital şubesidir; saha, portföy, itibar ve bölge bilginiz projenin temelidir.",
+      "sections": ["neden-ortak", "emlak-dijital-sube"]
+    },
+    {
+      "id": "problem-cozum",
+      "num": "03",
+      "label": "Problem ve Çözüm",
+      "summary": "Arsada güven maliyeti yüksektir; ParselQ tek panelde güven dosyası kurar, platform ile yetkili kurumun sınırı baştan bellidir.",
+      "sections": ["problem", "cozum", "yetki-sorumluluk"]
+    },
+    {
+      "id": "pazar-rekabet",
+      "num": "04",
+      "label": "Pazar ve Rekabet",
+      "summary": "Pazar büyük; savunmamız genel ilan trafiği değil, arsa derinliği ve doğrulanmış dosyadır.",
+      "sections": ["pazar", "rekabet", "ek-playbook"]
+    },
+    {
+      "id": "model-gelir",
+      "num": "05",
+      "label": "İş Modeli ve Gelirler",
+      "summary": "Satıştan pay almayız; hizmetten ve alıcı talebiyle teklif alma modelinden çok kalemli gelir üretiriz.",
+      "sections": ["model", "alici-rfq", "gelir-modelleri"]
+    },
+    {
+      "id": "saha-90gun",
+      "num": "06",
+      "label": "Saha Planı ve İlk 90 Gün",
+      "summary": "Önce Ege'de dar bir bölgede portföy ve satıcı/emlakçı ağı; ilk 90 gün haftalık raporlanan saha kanıtı.",
+      "sections": ["gtm", "ilk-90-gun", "satici-emlakci-agi"]
+    },
+    {
+      "id": "operasyon-kadro",
+      "num": "07",
+      "label": "Operasyon ve Kadro",
+      "summary": "Yapay zeka işi hızlandırır, kararı insan verir; kadro gelir ve saha sinyaline göre kapı kapı büyür.",
+      "sections": ["ai-operasyon", "ik-plani", "cpo"]
+    },
+    {
+      "id": "finans-risk-yatirim",
+      "num": "08",
+      "label": "Finansal Plan, Risk ve Yatırım",
+      "summary": "Para kapı kapı kullanılır; risk ölçülür, teşvik nettir, yatırım seçenekleri ile getiri ve yönetim sınırı açıktır.",
+      "sections": ["basabas", "paranin-kullanimi", "risk", "teknopark", "yatirim", "yatirimci-getiri", "ortaklik-yonetim"]
+    }
+  ]
+}

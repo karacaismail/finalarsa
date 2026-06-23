@@ -86,9 +86,9 @@
       "type": "note"
     },
     {
-      "text": "İki giriş kapısı var: (1) Mülk sahibi satışa açar — yapay zeka değerleme yapıp \"ilanını satışa aç\" önerir. (2) Alıcı bir talep (RFQ) açar — satıcılar ve üye emlakçılar teklif sunar. Aşağıdaki akış birinci kapıyı gösterir; talep→teklif gelir modeli Bölüm 08'dedir.",
+      "text": "İki giriş kapısı var: (1) Mülk sahibi satışa açar — yapay zeka değerleme yapıp \"ilanını satışa aç\" önerir. (2) Alıcı, alıcı talebiyle teklif alma modeli (RFQ) ile bir talep açar — satıcılar ve üye emlakçılar teklif sunar. Aşağıdaki akış birinci kapıyı gösterir; talep→teklif gelir modeli Bölüm 08'dedir.",
       "highlight": [
-        "talep (RFQ)"
+        "alıcı talebiyle teklif alma modeli (RFQ)"
       ],
       "tone": "info",
       "type": "note"
