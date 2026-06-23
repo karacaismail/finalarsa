@@ -56,7 +56,7 @@
       "type": "table"
     },
     {
-      "text": "Paket gelirleri tek başına değildir; aşağıdaki yedi ek gelir modülü — ParselQ-RFQ, veri & API, emlakçı lead ağı, reklam & sponsorluk, profesyonel SaaS, saha hizmetleri, ilan & görünürlük — toplam {{metric:revenue.median}} medyan geliri (2032, %35 pay) birlikte taşır.",
+      "text": "Paket gelirleri tek başına değildir; aşağıdaki yedi ek gelir modülü — ParselQ-RFQ, veri & API, emlakçı talep ağı, reklam & sponsorluk, profesyonel SaaS, saha hizmetleri, ilan & görünürlük — toplam {{metric:revenue.median}} medyan geliri (2032, %35 pay) birlikte taşır.",
       "tone": "info",
       "type": "note"
     },
@@ -98,7 +98,7 @@
         {
           "eyebrow": "2",
           "title": "Talep ve eşleştirme",
-          "body": "ParselQ-RFQ: alıcı talebi, teklif, lead — amiral büyüme."
+          "body": "ParselQ-RFQ: alıcı talebi, teklif, nitelikli müşteri — amiral büyüme."
         },
         {
           "eyebrow": "3",
@@ -154,8 +154,8 @@
         },
         {
           "eyebrow": "Emlakçı monetizasyonu",
-          "title": "Teklif & lead paketi",
-          "body": "Emlakçılar aylık abonelik veya lead başına ücretle aktif alıcı taleplerine teklif gönderme hakkı kazanır; nitelikli potansiyel müşteriye doğrudan erişir.",
+          "title": "Teklif & talep paketi",
+          "body": "Emlakçılar aylık abonelik veya talep başına ücretle aktif alıcı taleplerine teklif gönderme hakkı kazanır; nitelikli potansiyel müşteriye doğrudan erişir.",
           "tone": "accent",
           "type": "card"
         },
@@ -231,7 +231,7 @@
         {
           "eyebrow": "saas",
           "title": "Emlakçı OS (CRM)",
-          "body": "CRM, lead kutusu, işlem takibi, belge paylaşımı ve WhatsApp entegrasyonu — aylık abonelik.",
+          "body": "CRM, talep kutusu, işlem takibi, belge paylaşımı ve WhatsApp entegrasyonu — aylık abonelik.",
           "tone": "gold",
           "type": "card"
         },
@@ -293,37 +293,37 @@
     },
     {
       "level": 3,
-      "text": "Lead & eşleştirme (aracısız)",
+      "text": "Talep yönlendirme & eşleştirme (aracısız)",
       "type": "heading"
     },
     {
       "cols": 1,
       "items": [
         {
-          "eyebrow": "lead",
-          "title": "Doğrulanmış satıcı/alıcı lead'i",
-          "body": "Yüksek niyetli kullanıcı eşleştirmesi; ilan sahibine veya hizmet sağlayıcıya lead satışı.",
+          "eyebrow": "talep",
+          "title": "Doğrulanmış satıcı/alıcı talebi",
+          "body": "Yüksek niyetli kullanıcı eşleştirmesi; ilan sahibine veya hizmet sağlayıcıya talep yönlendirme.",
           "tone": "grass",
           "type": "card"
         },
         {
           "eyebrow": "başarıya bağlı",
-          "title": "Kapanışta ödenen premium lead",
-          "body": "Doğrulanmış alıcı niyeti; ücret işlem kapandığında tahsil edilir (reklam/lead, aracılık değil).",
+          "title": "Kapanışta ödenen öncelikli nitelikli müşteri",
+          "body": "Doğrulanmış alıcı niyeti; ücret işlem kapandığında tahsil edilir (reklam/talep yönlendirme, aracılık değil).",
           "tone": "grass",
           "type": "card"
         },
         {
           "eyebrow": "yönlendirme",
           "title": "Kredi/sigorta/değerleme yönlendirme",
-          "body": "Lisanslı banka, sigortacı ve değerleme firmasına lead yönlendirme; platform reklam/lead rolünde.",
+          "body": "Lisanslı banka, sigortacı ve değerleme firmasına talep yönlendirme; platform reklam/talep yönlendirme rolünde.",
           "tone": "grass",
           "type": "card"
         },
         {
           "eyebrow": "sektörel",
           "title": "Enerji & veri merkezi saha eşleştirme",
-          "body": "Güneş, rüzgâr, depolama ve veri merkezi uygunluk filtresiyle arsa-yatırımcı lead pazaryeri.",
+          "body": "Güneş, rüzgâr, depolama ve veri merkezi uygunluk filtresiyle arsa-yatırımcı talep pazaryeri.",
           "tone": "grass",
           "type": "card"
         }
@@ -355,7 +355,7 @@
         {
           "eyebrow": "off-market",
           "title": "Satılık niyet ağı",
-          "body": "Henüz ilan edilmemiş sahiplerden niyet sinyali; kurumsal yatırımcıya lead (KVKK rızasıyla).",
+          "body": "Henüz ilan edilmemiş sahiplerden niyet sinyali; kurumsal yatırımcıya nitelikli müşteri (KVKK rızasıyla).",
           "tone": "gold",
           "type": "card"
         }
@@ -419,7 +419,7 @@
         {
           "eyebrow": "ortaklık + yönlendirme",
           "title": "Konut kredisi / finansman",
-          "body": "Lisanslı banka/finansman şirketiyle ortaklık + yönlendirme (lead) serbest; doğrudan kredi için finansman şirketi lisansı (6361, yüksek sermaye).",
+          "body": "Lisanslı banka/finansman şirketiyle ortaklık + yönlendirme (talep yönlendirme) serbest; doğrudan kredi için finansman şirketi lisansı (6361, yüksek sermaye).",
           "tone": "gold",
           "type": "card"
         },

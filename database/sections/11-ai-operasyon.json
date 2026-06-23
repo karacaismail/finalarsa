@@ -60,7 +60,7 @@
     {
       "chartType": "aiEfficiency",
       "dataRef": "hr-plan",
-      "caption": "Departman bazında AI'sız (~544) ve AI ile (~256) gerekli kadro · AI-first ~2,1× iç kaldıraç",
+      "caption": "Departman bazında AI'sız (~544) ve AI ile (~256) gerekli kadro · yapay zeka destekli ~2,1× iç kaldıraç",
       "type": "chart"
     },
     {

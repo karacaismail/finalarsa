@@ -1,5 +1,4 @@
 import { Box, chakra } from "@chakra-ui/react";
-import { useState } from "react";
 import type { Section } from "../data/types";
 import { SectionView } from "./SectionView";
 import { P } from "../ui";
@@ -9,10 +8,12 @@ import { P } from "../ui";
  * açılır/kapanır, 0 JS bağımlılığı). Stil Chakra token'larıyla verilir. Mobile-first:
  * 320px'te başlık tek satıra sığar, içerik tek sütun.
  *
- * Davranış: summary (başlık) tıklanınca/Enter-Space ile grup açılır-kapanır. open durumu
- * yerel state ile kontrol edilir (her grup bağımsız; birden çok grup aynı anda açık olabilir).
+ * Açık/kapalı durumu CONTROLLED'dır: üst bileşen (AccordionPresentation) tek bir openId
+ * tutar ve isOpen ile buraya geçirir. Tek-açık (akordeon) davranış: bir grup açılınca
+ * üst bileşen openId'yi günceller, böylece açık olan diğer grup otomatik kapanır.
+ *
  * İçerikte önce grubun kısa özet cümlesi, sonra o gruba ait bölümler (SectionView, as="div")
- * gelir — böylece tek bir <section> yerine accordion içinde div kullanılır (nested section yok).
+ * gelir — accordion içinde tek <section> yerine div kullanılır (nested section yok).
  */
 const Details = chakra("details");
 const Summary = chakra("summary");
@@ -22,21 +23,28 @@ type Group = { id: string; num: string; label: string; summary: string; sections
 export function AccordionGroup({
   group,
   sections,
-  defaultOpen,
+  isOpen,
+  onOpen,
+  onClose,
 }: {
   group: Group;
   sections: Section[];
-  defaultOpen?: boolean;
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
 }) {
-  const [open, setOpen] = useState(Boolean(defaultOpen));
   const groupSections = group.sections
     .map((slug) => sections.find((s) => s.slug === slug))
     .filter((s): s is Section => Boolean(s));
 
   return (
     <Details
-      open={open}
-      onToggle={(e: { currentTarget: HTMLDetailsElement }) => setOpen(e.currentTarget.open)}
+      open={isOpen}
+      onToggle={(e: { currentTarget: HTMLDetailsElement }) => {
+        const nowOpen = e.currentTarget.open;
+        if (nowOpen && !isOpen) onOpen();
+        else if (!nowOpen && isOpen) onClose();
+      }}
       css={{ "&[open] .acc-ind": { transform: "rotate(90deg)" } }}
       border="1px solid"
       borderColor="line"
