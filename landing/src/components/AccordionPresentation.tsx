@@ -25,7 +25,7 @@ export function AccordionPresentation() {
   const doc = getData<GroupsDoc>("accordion-groups");
   const [openId, setOpenId] = useState<string | null>(doc.groups[0]?.id ?? null);
   return (
-    <Box maxW="1140px" mx="auto" px={{ base: "4", md: "8" }} py={{ base: "8", md: "12" }}>
+    <Box maxW="1264px" mx="auto" px={{ base: "4", md: "8" }} py={{ base: "8", md: "12" }}>
       <DecisionSummaryBox box={doc.decisionBox} />
       <Stack gap={{ base: "3", md: "4" }} mt={{ base: "8", md: "10" }} align="stretch">
         {doc.groups.map((g) => (
