@@ -743,22 +743,23 @@ function ChartTabs({ items }: { items: ChartTabItem[] }) {
   return (
     <Box {...interactivePanel(false)} p={{ base: "4", md: "5" }}>
       <Tabs.Root defaultValue={items[0].value} colorPalette="green" variant="plain">
-        <Box overflowX="auto" pb="1">
+        <Box overflowX={{ base: "visible", md: "auto" }} pb="1">
           <Tabs.List
-            display="inline-flex"
+            display="flex"
+            flexWrap={{ base: "wrap", md: "nowrap" }}
             gap="1"
-            minW="max-content"
+            minW={{ base: "0", md: "max-content" }}
             bg={pill.trackBg(false)}
             border="1px solid"
             borderColor={pill.trackBorder(false)}
-            borderRadius="full"
+            borderRadius={{ base: "2xl", md: "full" }}
             p="1"
           >
             {items.map((it) => (
               <Tabs.Trigger
                 key={it.value}
                 value={it.value}
-                px="4"
+                px={{ base: "3", md: "4" }}
                 py="2"
                 fontSize="md"
                 fontWeight="medium"
@@ -863,14 +864,15 @@ function MarketScale({ dark }: { dark?: boolean }) {
         </Stack>
       </Box>
 
-      <Flex align="center" gap="3" wrap="wrap" mb="5">
+      <Flex direction={{ base: "column", sm: "row" }} align={{ base: "stretch", sm: "center" }} gap="3" wrap="wrap" mb="5">
         <P fontWeight="medium" fontSize="md" color={dark ? D.muted : "inkMuted"}>
           Görünüm:
         </P>
         <SegmentGroup.Root
           value={mode}
           onValueChange={(e) => setMode(e.value ?? "share")}
-          display="inline-flex"
+          display={{ base: "flex", sm: "inline-flex" }}
+          width={{ base: "100%", sm: "auto" }}
           bg={pill.trackBg(dark)}
           border="1px solid"
           borderColor={pill.trackBorder(dark)}
@@ -888,8 +890,10 @@ function MarketScale({ dark }: { dark?: boolean }) {
               { value: "share", label: "Pazar büyüklüğü" },
               { value: "conversion", label: "Hesap oranları" },
             ]}
-            px="4"
+            px={{ base: "2.5", md: "4" }}
             py="2"
+            flex={{ base: "1", sm: "initial" }}
+            textAlign="center"
             fontWeight="medium"
             cursor="pointer"
             color={dark ? D.text : "ink"}
