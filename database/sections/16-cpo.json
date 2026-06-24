@@ -87,9 +87,9 @@
     {
       "columns": ["Dönem", "Araç segmenti"],
       "rows": [
-        ["2026–2027 başlangıç", "Škoda Superb · Toyota Camry · VW Passat · Mercedes-Benz C · Audi A5"],
-        ["2027 Haziran", "Bir üst segmente yükseltme"],
-        ["2028", "BMW 520+ · Audi A6 · Volvo S90"]
+        ["2026–2027 başlangıç", "Škoda Superb · Toyota Camry · VW Passat · Audi A5"],
+        ["2027 Haziran", "Volvo S60 — bir üst segmente yükseltme"],
+        ["2028", "BMW 520+ · Mercedes-Benz E 220+ · Audi A6 · Volvo S90"]
       ],
       "type": "table"
     },
