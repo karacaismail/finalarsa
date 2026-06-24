@@ -75,24 +75,7 @@
       "type": "note"
     },
     {
-      "items": [
-        {
-          "label": "Görüşmeyi sürdürelim",
-          "action": "contact",
-          "meta": "5 dk",
-          "type": "cta"
-        },
-        {
-          "label": "Doğrudan ara",
-          "action": "phone",
-          "meta": "CPO",
-          "type": "cta"
-        }
-      ],
-      "type": "ctaStack"
-    },
-    {
-      "text": "İsmail · cpo@arsam.net · +90 532 295 10 80",
+      "text": "İsmail · +90 532 295 10 80",
       "type": "paragraph"
     },
     {

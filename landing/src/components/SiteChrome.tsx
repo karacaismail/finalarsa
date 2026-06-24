@@ -85,7 +85,7 @@ export function Header({ onPlay }: { onPlay?: () => void }) {
             </Box>
           </PlayBtn>
           <A
-            href={`mailto:${contact.email}`}
+            href={contact.phoneHref}
             display="inline-flex"
             alignItems="center"
             minH="40px"
@@ -113,7 +113,7 @@ export function Footer() {
     <Box as="footer" bg="ink" color="white">
       <Box maxW="1200px" mx="auto" px={{ base: "5", md: "8" }} py={{ base: "10", md: "14" }}>
         <Box fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" mb="2">
-          Tohum sizden, toprak bizden. Hasat ortak.
+          Tohum sizden + Toprak bizden = Hasat
         </Box>
         <Box color={muted} maxW="56ch" mb="6">
           {brand.tagline as string}
@@ -121,9 +121,6 @@ export function Footer() {
         <Flex gap={{ base: "4", md: "10" }} wrap="wrap" fontSize="md">
           <Box>
             <Box color={muted} mb="1">İletişim</Box>
-            <A href={`mailto:${contact.email}`} color="white" textDecoration="underline" display="block">
-              {contact.email}
-            </A>
             <A href={contact.phoneHref} color="white" textDecoration="underline" display="block">
               {contact.phone}
             </A>

@@ -38,8 +38,9 @@
       "cols": 3,
       "items": [
         {
-          "label": "Başlangıç sermayesi",
-          "valueRef": "capital.total_raised",
+          "label": "Toplam sermaye / harcama",
+          "valueRef": "capital.lifetime_spend",
+          "sub": "15M yatırımcı + 34M cirodan (ömür boyu)",
           "type": "card"
         },
         {
@@ -164,6 +165,7 @@
     ],
     "metrics": [
       "capital.total_raised",
+      "capital.lifetime_spend",
       "fin.breakeven_month",
       "fin.cash_trough",
       "fin.cum_spend_to_be",

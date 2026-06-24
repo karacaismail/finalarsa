@@ -317,16 +317,16 @@
       "source": "model-v9-15"
     },
     "fin.net_2027": {
-      "value": 248767496,
+      "value": 244147496,
       "unit": "TRY",
-      "display": "+249M ₺",
+      "display": "+244M ₺",
       "label": "2027 net kâr (medyan)",
       "source": "model-v9-15"
     },
     "fin.cash_2032": {
-      "value": 16532565842,
+      "value": 16481335842,
       "unit": "TRY",
-      "display": "16,53 milyar ₺",
+      "display": "16.48 milyar ₺",
       "label": "2032 yıl sonu nakit (medyan)",
       "source": "model-v9-15"
     },

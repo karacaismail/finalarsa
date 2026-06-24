@@ -34,19 +34,19 @@
       "cols": 3,
       "items": [
         {
-          "label": "Aylık sabit ücret",
+          "label": "Aylık ücret · USD-endeksli",
           "tone": "accent",
           "type": "stat",
-          "valueRef": "cpo.salary_try",
-          "sub": "₺ / ay · master İK planı (R-CPO)",
-          "tag": "doğrulanmış kaynak"
+          "value": "10.000 → 15.000 USD",
+          "sub": "kademeli; ay-sonu USD/TL kuru ile TL ödenir",
+          "tag": "model varsayımı"
         },
         {
-          "label": "Mobilite",
+          "label": "Araç (kademeli)",
           "tone": "gold",
           "type": "stat",
-          "valueRef": "cpo.car",
-          "sub": "araç tahsisi veya eşdeğer çözüm",
+          "value": "Üst segment",
+          "sub": "başlangıç D-segment → 2028 E-segment + yakıt",
           "tag": "model varsayımı"
         },
         {
@@ -59,6 +59,45 @@
         }
       ],
       "type": "statGrid"
+    },
+    {
+      "level": 3,
+      "text": "Ücret — USD-endeksli ve kademeli",
+      "type": "heading"
+    },
+    {
+      "text": "Ücret USD-endekslidir; her ay ay-sonu USD/TL kuru ile hesaplanıp TL olarak ödenir.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "columns": ["Dönem", "Aylık ücret"],
+      "rows": [
+        ["2026 (mevcut taban)", "{{metric:cpo.salary_try}}"],
+        ["2027 başı (yıl başı · zam)", "10.000 USD / ay"],
+        ["1 Haziran 2027", "15.000 USD / ay"]
+      ],
+      "type": "table"
+    },
+    {
+      "level": 3,
+      "text": "Araç ve yakıt",
+      "type": "heading"
+    },
+    {
+      "columns": ["Dönem", "Araç segmenti"],
+      "rows": [
+        ["2026–2027 başlangıç", "Toyota Camry · VW Passat · Mercedes-Benz C · Audi A5"],
+        ["2027 Haziran", "Bir üst segmente yükseltme"],
+        ["2028", "BMW 520+ · Audi A6 · Volvo S90"]
+      ],
+      "type": "table"
+    },
+    {
+      "text": "Yakıt: yılda 25.000 km'ye kadar şirket karşılar; şirkete ait yakıt kartıyla anlaşmalı akaryakıt istasyonlarında ücret ödemeden alınır.",
+      "tone": "accent",
+      "type": "note",
+      "highlight": ["25.000 km'ye kadar şirket karşılar"]
     },
     {
       "text": "Bu kalemlerin nihai biçimi ortak kararınızla netleşebilir; fakat model bu maliyeti baştan içerir.",
@@ -98,6 +137,17 @@
       "text": "Bu esneklik kişisel ayrıcalık değil, sonuç-odaklı çalışma düzeninin parçasıdır: yer ve saat esner, teslimat ve rapor sabit kalır.",
       "tone": "info",
       "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "İzin ve tatil",
+      "type": "heading"
+    },
+    {
+      "text": "Yıllık senelik izne ek olarak 1 hafta kış tatili verilir. Hem senelik izin hem kış tatili için aile dahil bir tatil bütçesi planlanır.",
+      "tone": "info",
+      "type": "note",
+      "highlight": ["1 hafta kış tatili"]
     },
     {
       "level": 3,
@@ -147,7 +197,6 @@
       "financial-model"
     ],
     "metrics": [
-      "cpo.car",
       "cpo.salary_try"
     ]
   }

@@ -23,50 +23,50 @@
     {
       "year": "2027",
       "revenue": 335758229,
-      "expense": 86990733,
-      "net": 248767496,
+      "expense": 91610733,
+      "net": 244147496,
       "headcount": 92,
-      "cashEnd": 282152979
+      "cashEnd": 277532979
     },
     {
       "year": "2028",
       "revenue": 979283886,
-      "expense": 168547659,
-      "net": 810736227,
+      "expense": 175717659,
+      "net": 803566227,
       "headcount": 140,
-      "cashEnd": 1092889206
+      "cashEnd": 1081099206
     },
     {
       "year": "2029",
       "revenue": 2191734686,
-      "expense": 272279367,
-      "net": 1919455319,
+      "expense": 280394367,
+      "net": 1911340319,
       "headcount": 185,
-      "cashEnd": 3012344525
+      "cashEnd": 2992439525
     },
     {
       "year": "2030",
       "revenue": 3746283200,
-      "expense": 383764743,
-      "net": 3362518457,
+      "expense": 393009743,
+      "net": 3353273457,
       "headcount": 225,
-      "cashEnd": 6374862982
+      "cashEnd": 6345712982
     },
     {
       "year": "2031",
       "revenue": 5209987829,
-      "expense": 483192740,
-      "net": 4726795089,
+      "expense": 493572740,
+      "net": 4716415089,
       "headcount": 256,
-      "cashEnd": 11101658071
+      "cashEnd": 11062128071
     },
     {
       "year": "2032",
       "revenue": 5971428571,
-      "expense": 540520800,
-      "net": 5430907771,
+      "expense": 552220800,
+      "net": 5419207771,
       "headcount": 256,
-      "cashEnd": 16532565842
+      "cashEnd": 16481335842
     }
   ],
   "breakeven": {
@@ -78,7 +78,13 @@
     "usdtry": {
       "start_2026_07": 44.5,
       "end_2026": 51.09,
-      "end_2027": 56.0
+      "end_2027": 56.0,
+      "end_2028": 60.0,
+      "end_2029": 65.0,
+      "end_2030": 71.0,
+      "end_2031": 77.0,
+      "end_2032": 84.0,
+      "note_2028plus": "2028+ kurları model varsayımıdır (~+9%/yıl); CPO USD maaşının TL karşılığı için kullanılır."
     },
     "inflation_monthly": {
       "2026_h2": 0.013,
@@ -92,8 +98,15 @@
       "employerMultiplier": 1.2375
     },
     "cpoSalary": {
-      "fixed_2026": 339191,
-      "note": "CPO master İK planından; personel kütlesine dahil."
+      "base_2026_try": 339191,
+      "usd_indexed": true,
+      "schedule_usd_month": {
+        "2027_01": 10000,
+        "2027_06": 15000
+      },
+      "payment": "ay-sonu USD/TL kuru ile hesaplanıp TL ödenir",
+      "fuel_km_year": 25000,
+      "note": "CPO ücreti 2027 başında 10.000 USD/ay, 1 Haziran 2027'de 15.000 USD/ay'a yükselir; 2026 tabanı 339.191 TL/ay (kasa dibi/başabaş bu tabandan, değişmedi). Üst-segment araç + 25.000 km yakıt + kış tatili/aile bütçesi giderlere dahil."
     },
     "officeRent_monthly": 150000,
     "officeDeposit_months": 3,
@@ -157,5 +170,5 @@
     "ÇAĞRI MERKEZİ ve YAZILIM EKİBİ sayfalarında #VALUE! hataları; İK doğrulama formülleri (R18, R21-R22) çalışmıyor."
   ],
   "note": "Yıllık tablo DASHBOARD sayfasından birebir. knownIssues rapor2.md analizinden; pitch'te muhafazakar başlık rakamlar kullanıldı.",
-  "_recalcNote": "ParselQ revizyonu (22.06.2026): kadro 2026=30→2031=256; 2032 hedef pazar payı %38 (online arsa); gelir ÇOK-AKIŞLI ve SENARYOLU (kötümser×0.45 / medyan / iyimser×1.65). Gelir akışları: ParselQ-RFQ, İlan, Emlakçı ağı, Veri/API, Reklam, SaaS, Hizmet. Gider: yeni kadro × std TR maliyet + araçlı saha operasyonu. Tüm tutarlar MODEL VARSAYIMI/HEDEF. || AGRESİF (22.06.2026): kadro 38→256 (sola-kaydır); 2032 uçları SABİT (5,97 mlr/%38); ara yıl gelir erken büyür (×1.25→×1.06), gider yeni kadroya göre +ek personel; net/nakit yeniden zincirlendi."
+  "_recalcNote": "ParselQ revizyonu (22.06.2026): kadro 2026=30→2031=256; 2032 hedef pazar payı %38 (online arsa); gelir ÇOK-AKIŞLI ve SENARYOLU (kötümser×0.45 / medyan / iyimser×1.65). Gelir akışları: ParselQ-RFQ, İlan, Emlakçı ağı, Veri/API, Reklam, SaaS, Hizmet. Gider: yeni kadro × std TR maliyet + araçlı saha operasyonu. Tüm tutarlar MODEL VARSAYIMI/HEDEF. || AGRESİF (22.06.2026): kadro 38→256 (sola-kaydır); 2032 uçları SABİT (5,97 mlr/%38); ara yıl gelir erken büyür (×1.25→×1.06), gider yeni kadroya göre +ek personel; net/nakit yeniden zincirlendi. || CPO comp (24.06.2026): maaş USD-endeksli (2027 başı 10k → Haz 2027 15k USD/ay) + üst-segment araç + 25.000 km yakıt + kış tatili/aile bütçesi. CPO gider deltası 2027-2032 gidere eklendi (2027≈53,5; 2028-32≈60/65/71/77/84 TL/USD varsayımı). 2026 H2/operasyonel başabaş/kasa dibi DEĞİŞMEDİ; net/nakit yeniden zincirlendi."
 }
