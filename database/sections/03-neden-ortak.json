@@ -7,22 +7,22 @@
   "slug": "neden-ortak",
   "nav": {
     "num": "03",
-    "label": "Ortaklık"
+    "label": "Neden biz"
   },
   "background": "bg-3",
   "title": {
-    "text": "Neden doğru ortak sizsiniz?",
-    "accent": "doğru ortak"
+    "text": "Neden doğru noktadayız?",
+    "accent": "doğru noktadayız"
   },
   "blocks": [
     {
-      "text": "stratejik ortaklık · 03 / 18",
+      "text": "stratejik konum · 03 / 18",
       "type": "eyebrow"
     },
     {
       "level": 2,
-      "text": "Neden doğru ortak sizsiniz?",
-      "accent": "doğru ortak",
+      "text": "Neden doğru noktadayız?",
+      "accent": "doğru noktadayız",
       "type": "heading"
     },
     {
@@ -41,15 +41,13 @@
           "title": "Siz: saha ve güven",
           "tone": "gold",
           "type": "card",
-          "body": "Lokasyon bilgisi, satıcı ağı, tapu ve satış refleksi, bölgesel itibar.",
-          "eyebrow": "ortaklık"
+          "body": "Lokasyon bilgisi, satıcı ağı, tapu ve satış refleksi, bölgesel itibar."
         },
         {
           "title": "Biz: yazılım ve operasyon",
           "tone": "accent",
           "type": "card",
-          "body": "Doğrulama altyapısı, veri standardı, panel ve AI destekli operasyon disiplini.",
-          "eyebrow": "ortaklık"
+          "body": "Doğrulama altyapısı, veri standardı, panel ve AI destekli operasyon disiplini."
         }
       ],
       "type": "cardGrid"
@@ -108,6 +106,49 @@
       ],
       "tone": "accent",
       "type": "note"
+    },
+    {
+      "type": "eyebrow",
+      "text": "mental model · emlak işinin dijital şubesi"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Bu iş sizin bildiğiniz emlak işinin dijital şubesidir",
+      "accent": "dijital şubesidir"
+    },
+    {
+      "type": "note",
+      "tone": "accent",
+      "text": "Arsa işinde para yalnız ilandan kazanılmaz; portföyden, güvenden, doğru alıcıdan, doğru evraktan ve doğru zamanda yapılan takipten kazanılır. arsam.net bu refleksi dijitale taşır: portföy dijital ilan dosyasına, ofis müşteri listesi alıcı talep ağına, saha keşfi doğrulanmış güven dosyasına dönüşür.",
+      "highlight": [
+        "bu refleksi dijitale taşır"
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "Bugün iyi bir arsa ofisi nasıl mahalle mahalle portföy topluyorsa, arsam.net aynı işi ilçe ilçe dijitalde yapar."
+    },
+    {
+      "type": "table",
+      "columns": [
+        "Klasik emlak işi",
+        "Dijital karşılığı"
+      ],
+      "rows": [
+        ["Portföy", "Doğrulanmış ilan stoğu"],
+        ["Tapu/imar kontrolü", "Güven dosyası"],
+        ["Müşteri defteri", "Alıcı talep ağı"],
+        ["Saha gezisi", "Drone/keşif/konum katmanı"],
+        ["Referans", "Doğrulanmış satıcı puanı"],
+        ["Ofis vitrini", "Bölgesel arsa pazaryeri"]
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "Kısacası bu bir teknoloji işi değil; emlak işinin ölçeklenmiş, daha kontrollü ve daha büyük halidir."
     }
   ],
   "refs": {

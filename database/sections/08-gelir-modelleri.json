@@ -396,7 +396,7 @@
         {
           "eyebrow": "SPK / serbest",
           "title": "Değerleme & ekspertiz",
-          "body": "Bilgilendirici değer tahmini serbest; resmî değerleme raporu SPK lisanslı değerleme kuruluşu kurarak veya ortaklıkla.",
+          "body": "Bilgilendirici değer tahmini serbest; resmî değerleme raporu SPK lisanslı değerleme kuruluşu kurarak veya işbirliğiyle.",
           "tone": "gold",
           "type": "card"
         },
@@ -412,7 +412,7 @@
     },
     {
       "level": 3,
-      "text": "Finansal & ödeme — lisans veya lisanslı ortaklık ile (alınabilir)",
+      "text": "Finansal & ödeme — lisans veya lisanslı işbirliği ile (alınabilir)",
       "type": "heading"
     },
     {
@@ -421,14 +421,14 @@
         {
           "eyebrow": "ödeme ortağı",
           "title": "Güvenli ödeme / emanet (escrow)",
-          "body": "Lisanslı ödeme kuruluşu ile white-label ortaklık üzerinden hemen; veya kendi ödeme lisansı (TCMB, ~30M ₺ özkaynak). Güveni artırır, işlem akışını platformda tutar.",
+          "body": "Lisanslı ödeme kuruluşu ile white-label işbirliği üzerinden hemen; veya kendi ödeme lisansı (TCMB, ~30M ₺ özkaynak). Güveni artırır, işlem akışını platformda tutar.",
           "tone": "gold",
           "type": "card"
         },
         {
-          "eyebrow": "ortaklık + yönlendirme",
+          "eyebrow": "işbirliği + yönlendirme",
           "title": "Konut kredisi / finansman",
-          "body": "Lisanslı banka/finansman şirketiyle ortaklık + yönlendirme (talep yönlendirme) serbest; doğrudan kredi için finansman şirketi lisansı (6361, yüksek sermaye).",
+          "body": "Lisanslı banka/finansman şirketiyle işbirliği + yönlendirme (talep yönlendirme) serbest; doğrudan kredi için finansman şirketi lisansı (6361, yüksek sermaye).",
           "tone": "gold",
           "type": "card"
         },
@@ -442,7 +442,7 @@
         {
           "eyebrow": "SPK GYF",
           "title": "Fraksiyonel arsa yatırımı (GYF)",
-          "body": "Gayrimenkul Yatırım Fonu (SPK III-52.3) + portföy yönetim şirketi ortaklığıyla küçük paylarla arsa yatırımı (nitelikli yatırımcı). Tokenın yasal alternatifi.",
+          "body": "Gayrimenkul Yatırım Fonu (SPK III-52.3) + portföy yönetim şirketi işbirliğiyle küçük paylarla arsa yatırımı (nitelikli yatırımcı). Tokenın yasal alternatifi.",
           "tone": "gold",
           "type": "card"
         },

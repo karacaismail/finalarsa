@@ -53,14 +53,14 @@
           "type": "card"
         },
         {
-          "title": "Ortaklık karar çatışması",
+          "title": "İşbirliği karar çatışması",
           "body": "Kritik karar 7 günü aşarsa: yetki matrisi devreye girer, yönetim toplantısı yapılır.",
           "tone": "warn",
           "type": "card"
         },
         {
           "title": "Yanlış değerleme beklentisi",
-          "body": "Değerleme itirazı eşiği aşarsa: 'bilgilendirme amaçlı' etiket ve eksper ortaklığı.",
+          "body": "Değerleme itirazı eşiği aşarsa: 'bilgilendirme amaçlı' etiket ve eksper işbirliği.",
           "tone": "warn",
           "type": "card"
         }

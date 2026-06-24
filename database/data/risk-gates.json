@@ -14,7 +14,7 @@
       "owner": "Yönetim / Hukuk"
     },
     {
-      "risk": "Ortaklık karar çatışması — kritik kararlar tıkanır",
+      "risk": "İşbirliği karar çatışması — kritik kararlar tıkanır",
       "severity": "high",
       "metric": "Kritik kararın karara bağlanma süresi",
       "trigger": "Kritik karar 7 günü aşarsa",
@@ -26,7 +26,7 @@
       "severity": "high",
       "metric": "Değerleme itirazı oranı",
       "trigger": "Değerleme itirazı eşiği aşarsa",
-      "action": "'Bilgilendirme amaçlı' etiket · eksper ortaklığı",
+      "action": "'Bilgilendirme amaçlı' etiket · eksper işbirliği",
       "owner": "Ürün / Değerleme"
     },
     {

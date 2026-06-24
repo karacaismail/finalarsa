@@ -15,8 +15,8 @@
       },
       {
         "label": "Yatırımcı rolü",
-        "value": "Lider / stratejik ortak",
-        "detail": "Dış gözlemci değil; bütçe ve strateji onayı, saha bölgesi seçimi ve düzenli rapor hakkı olan ortak."
+        "value": "Lider / stratejik işbirliği",
+        "detail": "Dış gözlemci değil; bütçe ve strateji onayı, saha bölgesi seçimi ve düzenli rapor hakkıyla aktif işbirliği."
       },
       {
         "label": "İlk 90 gün saha hedefleri",
@@ -41,9 +41,9 @@
     {
       "id": "neden-ortaklik",
       "num": "02",
-      "label": "Neden Bu Ortaklık?",
+      "label": "Neden Bu İşbirliği?",
       "summary": "Bu iş, sizin bildiğiniz emlak işinin dijital şubesidir; saha, portföy, itibar ve bölge bilginiz projenin temelidir.",
-      "sections": ["neden-ortak", "emlak-dijital-sube"]
+      "sections": ["neden-ortak"]
     },
     {
       "id": "problem-cozum",

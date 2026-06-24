@@ -45,7 +45,7 @@
           "title": "Çekirdek",
           "tone": null,
           "type": "card",
-          "body": "Ne finanse eder: 2 yazılımcı + 1 tasarımcı, 6 ay nakit çalışma süresi, Söke + Bodrum pilotu. Kapattığı risk: ürün-pazar uyumu. Rol: erken ortak.",
+          "body": "Ne finanse eder: 2 yazılımcı + 1 tasarımcı, 6 ay nakit çalışma süresi, Söke + Bodrum pilotu. Kapattığı risk: ürün-pazar uyumu. Rol: erken işbirliği.",
           "eyebrow": "{{metric:invest.seed_equity}} hisse · {{metric:invest.seed_valuation}} değerleme",
           "valueRef": "invest.seed_amount"
         },

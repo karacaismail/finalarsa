@@ -7,7 +7,7 @@
   "slug": "ortaklik-yonetim",
   "nav": {
     "num": "17b",
-    "label": "Ortaklık"
+    "label": "İşbirliği"
   },
   "background": "bg-1",
   "title": {
@@ -17,7 +17,7 @@
   "blocks": [
     {
       "type": "eyebrow",
-      "text": "ortaklık · yönetim · raporlama"
+      "text": "işbirliği · yönetim · raporlama"
     },
     {
       "type": "heading",
@@ -37,7 +37,7 @@
     {
       "type": "note",
       "tone": "accent",
-      "text": "Bu işte hız gerekir; ama kontrolsüz hız risk üretir. Bu nedenle ürün ve operasyon günlük olarak CPO yönetiminde yürür; yatırımcı tarafı bütçe, stratejik yön ve kritik ortaklık kararlarında düzenli rapor alır. İlk 6 ayda haftalık kısa rapor, ayda bir karar toplantısı önerilir.",
+      "text": "Bu işte hız gerekir; ama kontrolsüz hız risk üretir. Bu nedenle ürün ve operasyon günlük olarak CPO yönetiminde yürür; yatırımcı tarafı bütçe, stratejik yön ve kritik işbirliği kararlarında düzenli rapor alır. İlk 6 ayda haftalık kısa rapor, ayda bir karar toplantısı önerilir.",
       "highlight": [
         "düzenli rapor alır"
       ]
@@ -81,7 +81,7 @@
           "Eşik üstü"
         ],
         [
-          "Stratejik ortaklık",
+          "Stratejik işbirliği",
           "Hazırlar",
           "Değerlendirir",
           "Evet"
