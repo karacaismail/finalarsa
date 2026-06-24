@@ -89,14 +89,6 @@
       "type": "note"
     },
     {
-      "text": "Rakibin gücü trafiktir; bizim savunmamız arsa derinliği, doğrulanmış portföy, yerel saha ilişkisi ve güven dosyasıdır. Trafik satın alınabilir; güvenilir arsa stoğu ve satıcı ilişkisi bir günde kurulamaz.",
-      "highlight": [
-        "güvenilir arsa stoğu"
-      ],
-      "tone": "accent",
-      "type": "note"
-    },
-    {
       "text": "Doğrulanmış veri kalkanı: Yetki doğrulaması (EİDS — Elektronik İlan Doğrulama Sistemi; ilan verenin yetkisini resmi kayıtla teyit eder), parsel tanımlayıcı veri (ada/parsel üzerinden TKGM — Tapu ve Kadastro Genel Müdürlüğü kaydıyla eşleştirme) ve her dosyanın belge geçmişi ile değişmezliğini kanıtlayan içerik özeti (hash) birlikte tek bir doğrulama standardı kurar. Bu üç katman dosya dosya, yıl yıl biriken bir veri yığını olduğu için rakip aynı standardı kısa sürede yeniden üretemez.",
       "highlight": [
         "doğrulama standardı"

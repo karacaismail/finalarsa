@@ -110,7 +110,7 @@
       "type": "note"
     },
     {
-      "text": "Köprü — büyük pazarı (TAM) ulaşılabilir hedefe (SOM) bağlayan şey büyüme ve savunma planıdır: rakibin kolay kopyalayamayacağı konumlanma karşılığı zorlaştırır, Atomik Ağ illeri tek tek doyurur, Programatik SEO edinme maliyetini ciddi düşürür, Kurucu rozeti tedarikçi sadakatini güçlendirir, organik görünürlük ve yerel hikâye, ulusal reklam gerektirmeden farkındalık üretir. Ayrıntı: Bölüm 10 · Büyüme ve savunma planı.",
+      "text": "Köprü — büyük pazarı (TAM) ulaşılabilir hedefe (SOM) bağlayan şey büyüme ve savunma planıdır. Bu planın nasıl işlediği Bölüm 10'da ayrıntılandırılır.",
       "highlight": ["büyüme ve savunma planıdır"],
       "tone": "info",
       "type": "note"
@@ -157,12 +157,7 @@
       "type": "note"
     },
     {
-      "text": "Önce bütün arazi haritasına bakıyoruz. Sonra dijitalde ulaşabileceğimiz bölgeyi ayırıyoruz. Sonra ilk hedeflediğimiz parselleri seçiyoruz. En sonunda bu hedefin yıllık gelir karşılığını hesaplıyoruz.",
-      "tone": "info",
-      "type": "note"
-    },
-    {
-      "text": "Sade metafor: büyük harita → seçilen bölge → alınacak parsel → beklenen hasat.",
+      "text": "Sade metafor: önce büyük araziye bakıyoruz, sonra dijitalde ulaşabileceğimiz bölgeyi ayırıyoruz, sonra ilk hedef parselleri seçiyoruz, en sonunda beklenen hasadı hesaplıyoruz. Yani: büyük harita → seçilen bölge → alınacak parsel → beklenen hasat.",
       "highlight": [
         "beklenen hasat"
       ],

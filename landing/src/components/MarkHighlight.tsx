@@ -1,5 +1,6 @@
 import { chakra } from "@chakra-ui/react";
 import type { ReactNode } from "react";
+import { escapeRegExp } from "../lib/regex";
 
 /**
  * Elle çizilmiş fosforlu kalem (marker) vurgusu.
@@ -10,10 +11,6 @@ import type { ReactNode } from "react";
  * harfe DUYARLI (ifadeler JSON'daki metinle birebir verilir; Türkçe harf sorunları olmaz).
  */
 const Mark = chakra("mark");
-
-function escapeRegExp(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
 
 export function markHighlight(text: string, queries: string[] | undefined, keyBase: string): ReactNode[] {
   const qs = (queries ?? []).filter(Boolean);

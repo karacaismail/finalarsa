@@ -2,6 +2,7 @@ import { Box, chakra, Popover, Portal } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 import { glossary } from "../data/resolve";
 import { fx } from "../theme/palette";
+import { escapeRegExp } from "../lib/regex";
 
 /* Buton primitive'i chakra("button") ile kurulur: as="button" polimorfik tipinde
    "type" gibi buton öznitelikleri görünmediği için (Chakra v3 + React 19). */
@@ -20,10 +21,6 @@ const terms: Record<string, string> = glossary.terms;
 
 // Uzun terimleri önce eşle ("Status as a Service" < "service" gibi yanlış eşleşmeyi önler).
 const sortedKeys = Object.keys(terms).sort((a, b) => b.length - a.length);
-
-function escapeRegExp(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
 
 /**
  * Sınır: terimden önce/sonra harf veya rakam OLMAMALI (Türkçe harfler dahil, \p{L}).

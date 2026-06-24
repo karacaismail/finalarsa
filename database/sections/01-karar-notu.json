@@ -47,7 +47,7 @@
       "type": "heading"
     },
     {
-      "cols": 3,
+      "cols": 2,
       "items": [
         {
           "eyebrow": "ne",
@@ -69,20 +69,8 @@
         },
         {
           "eyebrow": "talep",
-          "title": "Ne istiyoruz?",
-          "body": "Kontrollü pilot için yatırım, rol ve ilk 90 gün kararı.",
-          "type": "card"
-        },
-        {
-          "eyebrow": "kanıt",
-          "title": "İlk 90 günde ne göstereceğiz?",
-          "body": "Seçili ilçelerde doğrulanmış ilan, satıcı görüşmesi, alıcı talebi ve ilk gelir sinyali.",
-          "type": "card"
-        },
-        {
-          "eyebrow": "rol",
-          "title": "Yatırımcının rolü?",
-          "body": "Saha bilgisi, ilk satıcılar ve bütçe/strateji kararlarında düzenli rapor.",
+          "title": "Bugün ne karar veriyoruz?",
+          "body": "Tutar, yatırımcı rolü ve ilk 90 gün çerçevesi; ayrıntı sayfa başındaki karar kutusunda.",
           "type": "card"
         }
       ],

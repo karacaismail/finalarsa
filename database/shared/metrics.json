@@ -374,10 +374,10 @@
       "source": "model-v9-15"
     },
     "fin.breakeven_months": {
-      "value": 18,
+      "value": 6,
       "unit": "ay",
-      "display": "18 ay",
-      "label": "Yatırım geri dönüş penceresi (kümülatif net'in turu geri kazanması)",
+      "display": "~6 ay",
+      "label": "Operasyonel başabaşa kadar süre (Tem 2026 → Oca 2027)",
       "note": "Operasyonel başabaş AYI ile karıştırma. Operasyonel başabaş ~6 ay (Oca 2027). Bu 18 ay AYRI bir kavramdır: kümülatif net'in yatırım turunu geri kazandığı muhafazakâr geri dönüş penceresi (model başından ~Ara 2027). Değer model varsayımıdır."
     },
     "fin.cum_spend_to_be": {

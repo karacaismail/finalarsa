@@ -39,17 +39,17 @@
       "items": [
         {
           "label": "Başlangıç sermayesi",
-          "value": "40 milyon ₺",
+          "valueRef": "capital.total_raised",
           "type": "card"
         },
         {
           "label": "Operasyonel başabaş ayı",
-          "value": "Ocak 2027",
+          "valueRef": "fin.breakeven_month",
           "type": "card"
         },
         {
           "label": "Kasa dibi (en düşük nakit)",
-          "value": "~33,4 milyon ₺",
+          "valueRef": "fin.cash_trough",
           "tone": "gold",
           "type": "card"
         }
@@ -57,7 +57,7 @@
       "type": "statGrid"
     },
     {
-      "text": "Bu bölümde dört ayrı kavram karıştırılmadan kullanılır. (1) Operasyonel başabaş ayı: aylık gelirin aylık gideri ilk kez geçtiği ay — Ocak 2027 (model Temmuz 2026 başlar, yaklaşık 6 ay operasyonel). (2) Başabaşa kadar kümülatif gider: o ana dek toplam harcanan, yaklaşık 23,4 milyon ₺. (3) Kasa dibi: nakdin gördüğü en düşük seviye, yaklaşık 33,4 milyon ₺ (2026 ikinci yarı sonu). (4) Yatırım geri dönüş süresi: kümülatif net kârın yatırım turunu geri kazandığı pencere — operasyonel başabaştan daha uzundur ve ayrı raporlanır.",
+      "text": "Bu bölümde dört ayrı kavram karıştırılmadan kullanılır. (1) Operasyonel başabaş ayı: aylık gelirin aylık gideri ilk kez geçtiği ay — Ocak 2027 (model Temmuz 2026 başlar, yaklaşık 6 ay operasyonel). (2) Başabaşa kadar kümülatif gider: o ana dek toplam harcanan, {{metric:fin.cum_spend_to_be}}. (3) Kasa dibi: nakdin gördüğü en düşük seviye, {{metric:fin.cash_trough}} (2026 ikinci yarı sonu). (4) Yatırım geri dönüş süresi: kümülatif net kârın yatırım turunu geri kazandığı pencere — operasyonel başabaştan daha uzundur ve ayrı raporlanır.",
       "tone": "info",
       "type": "note"
     },
@@ -109,7 +109,7 @@
           "value": "breakeven",
           "label": "Başabaş",
           "heading": "Başabaş, kasa dibi ve geri dönüş — ayrı ayrı",
-          "lead": "Bu grafikte üç kavram ayrı izlenir. Operasyonel başabaş ayı: aylık gelirin aylık gideri ilk kez geçtiği ay, Ocak 2027 (model Temmuz 2026 başlar, yaklaşık 6 ay operasyonel). Başabaşa kadar kümülatif gider: o ana dek harcanan, yaklaşık 23,4 milyon ₺. Kasa dibi: nakdin gördüğü en düşük seviye, yaklaşık 33,4 milyon ₺ (2026 ikinci yarı sonu); 40 milyon ₺ sermayenin içinde kalır. Yatırım dönemi yalnızca 2026 ikinci yarısıdır; sonra nakit hızla yükselir. Yatırım geri dönüş süresi bundan ayrı bir kavramdır: kümülatif net kârın yatırım turunu geri kazandığı, operasyonel başabaştan daha uzun penceredir.",
+          "lead": "Bu grafikte üç kavram ayrı izlenir. Operasyonel başabaş ayı: aylık gelirin aylık gideri ilk kez geçtiği ay, Ocak 2027 (model Temmuz 2026 başlar, yaklaşık 6 ay operasyonel). Başabaşa kadar kümülatif gider: o ana dek harcanan, {{metric:fin.cum_spend_to_be}}. Kasa dibi: nakdin gördüğü en düşük seviye, {{metric:fin.cash_trough}} (2026 ikinci yarı sonu); {{metric:capital.total_raised}} sermayenin içinde kalır. Yatırım dönemi yalnızca 2026 ikinci yarısıdır; sonra nakit hızla yükselir. Yatırım geri dönüş süresi bundan ayrı bir kavramdır: kümülatif net kârın yatırım turunu geri kazandığı, operasyonel başabaştan daha uzun penceredir.",
           "chartType": "breakeven",
           "caption": "Kümülatif gelir ile kümülatif giderin kesişimi · operasyonel başabaş Ocak 2027 · kasa dibi ayrı ölçülür"
         }
@@ -138,15 +138,15 @@
           "value": "yearly",
           "label": "2032 yıllık",
           "heading": "2032 vizyonu · yıllık (2026 → 2032)",
-          "lead": "Tek finansal grafik ve tek finansal tablo: yedi yılın geliri, gideri, net kârı, kadrosu ve yıl sonu nakdi. Gelir 2032'de 5,97 milyar ₺'ye (medyan) çıktıkça ölçek ekonomisi devreye girer; net marj 2027'de %74'ten (agresif kadro) 2032'de %91'e yükselir — yedi gelir akışı bu kârlılığı taşır.",
+          "lead": "Tek finansal grafik ve tek finansal tablo: yedi yılın geliri, gideri, net kârı, kadrosu ve yıl sonu nakdi. Gelir 2032'de {{metric:revenue.median}}'ye (medyan) çıktıkça ölçek ekonomisi devreye girer; net marj 2027'de %74'ten (agresif kadro) 2032'de %91'e yükselir — yedi gelir akışı bu kârlılığı taşır.",
           "chartType": "yearlyTable",
-          "caption": "Yıllık gelir, gider, net kâr + tablo (kadro, yıl sonu nakit) · net marj %74 → %91 (gelir 5,97 milyar ₺ medyan, 256 kadro)"
+          "caption": "Yıllık gelir, gider, net kâr + tablo (kadro, yıl sonu nakit) · net marj %74 → %91 (gelir {{metric:revenue.median}} medyan, 256 kadro)"
         },
         {
           "value": "revenueStreams",
           "label": "Gelir akışları",
           "heading": "Yedi gelir akışı · 2032 medyan kırılımı",
-          "lead": "Gelir tek kaleme bağlı değildir: yedi akış birlikte 2032'de medyan 5,97 milyar ₺ üretir. En büyük ve en inovatif akış ParselQ-RFQ'dur (talep→teklif). Tablo her akışın 2027 → 2032 medyan patikasını verir.",
+          "lead": "Gelir tek kaleme bağlı değildir: yedi akış birlikte 2032'de medyan {{metric:revenue.median}} üretir. En büyük ve en inovatif akış ParselQ-RFQ'dur (talep→teklif). Tablo her akışın 2027 → 2032 medyan patikasını verir.",
           "chartType": "revenueStreams",
           "caption": "Gelir akışlarının 2032 medyan hedefleri (ParselQ-RFQ amiral) · grafik + yıllara göre tablo"
         }
@@ -167,6 +167,12 @@
       "financial-detail",
       "financial-breakdown"
     ],
-    "metrics": []
+    "metrics": [
+      "capital.total_raised",
+      "fin.breakeven_month",
+      "fin.cash_trough",
+      "fin.cum_spend_to_be",
+      "revenue.median"
+    ]
   }
 }

@@ -26,10 +26,7 @@
       "type": "heading"
     },
     {
-      "text": "arsam.net satıştan pay almaz; doğrulanmış ilan, görünürlük, vitrin, veri ve operasyonel hizmetlerden gelir üretir.",
-      "highlight": [
-        "satıştan pay almaz"
-      ],
+      "text": "Gelirimiz doğrulanmış ilan, görünürlük, vitrin, veri ve operasyonel hizmetlerden gelir. Aşağıdaki fiyatlar bu hizmet katmanının paketleridir.",
       "tone": "accent",
       "type": "note"
     },
@@ -78,15 +75,9 @@
       "type": "note"
     },
     {
-      "text": "Komisyon baskısı yerine satıcı dostu, tekrarlayan gelir.",
-      "tone": "info",
-      "type": "note"
-    },
-    {
-      "text": "Peki ParselQ-RFQ neden bununla çelişmez? İlan tarafı komisyonsuz kalır: satıcı, mülkünü satınca platforma satış payı ödemez. RFQ, alıcı tarafında ayrı bir değer katmanıdır — talebe teklif verebilmek için alıcılar ve üye emlakçılar abonelik veya teklif kredisi alır. Yani ücreti satıştan değil, talebe erişimden alırız. Ayrıntı: Bölüm 08.",
+      "text": "ParselQ-RFQ (RFQ = alıcının talebini açıp teklif aldığı akış) de bu ilkeyi bozmaz: ilan tarafı komisyonsuz kalır; ücret satıştan değil, alıcı tarafında talebe erişimden doğar. Akışın nasıl işlediği Bölüm 7a'da, gelir kalemleri Bölüm 08'dedir.",
       "highlight": [
-        "İlan tarafı komisyonsuz kalır",
-        "talebe erişimden"
+        "ilan tarafı komisyonsuz kalır"
       ],
       "tone": "accent",
       "type": "note"
@@ -107,7 +98,7 @@
       "type": "table"
     },
     {
-      "text": "Satıcı mülkünü sattığında platforma satış payı ödemez. Ücret, satışın kendisinden değil; görünürlük, güven dosyası, talep erişimi, veri ve iş akışı hizmetlerinden doğar.",
+      "text": "Tek cümleyle ilkemiz: satıcı mülkünü sattığında platforma satış payı ödemez. Ücret satışın kendisinden değil; görünürlük, güven dosyası, talep erişimi, veri ve iş akışı hizmetlerinden doğar. Bu hizmetlerin tam gelir kırılımı Bölüm 08'dedir.",
       "highlight": [
         "satış payı ödemez"
       ],

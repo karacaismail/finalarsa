@@ -310,6 +310,27 @@ if not dvr_bad: OK("Data dosyası valueRef'leri metrics'te mevcut ✓")
 else:
     for rel, k in dvr_bad: E(f"{rel}: KIRIK data valueRef '{k}'")
 
+# 9) STATİK TABLO TEKRARI — dataRef component'i olan bölüm ayrıca statik 'table' bloğu taşıyor mu (P0 #2 regresyon kapısı)
+# Yalnız statik tablonun YERİNE geçen component'ler (P0 #2). revenueDriverMatrix/kpiBoard hariç:
+# o bölümler (08/01b) meşru biçimde ayrı tablolar da taşıyabilir.
+COMPONENT_TYPES = {"riskGateMatrix", "capitalReleasePlan", "governanceMatrix", "investorReturnModel",
+                   "investmentOptionsCompare"}
+def block_types(x, acc):
+    if isinstance(x, dict):
+        if isinstance(x.get("type"), str): acc.add(x["type"])
+        for v in x.values(): block_types(v, acc)
+    elif isinstance(x, list):
+        for v in x: block_types(v, acc)
+stat_dup = []
+for rel in sec_files:
+    types = set(); block_types(docs[rel].get("blocks", []), types)
+    comp = types & COMPONENT_TYPES
+    if comp and "table" in types:
+        stat_dup.append((rel, sorted(comp)))
+if not stat_dup: OK("dataRef component'li bölümlerde statik 'table' tekrarı YOK ✓ (P0 #2 korunuyor)")
+else:
+    for rel, comp in stat_dup: W(f"OLASI STATİK TABLO TEKRARI: {rel} hem {comp} component'i hem 'table' bloğu taşıyor")
+
 # RAPOR
 print("="*60)
 print("DOĞRULAMA RAPORU")

@@ -26,56 +26,13 @@
       "type": "heading"
     },
     {
-      "ordered": false,
-      "items": [
-        {
-          "title": "Hangi yatırım seçeneğiyle ilerliyoruz?",
-          "body": "Çekirdek, stratejik veya lider.",
-          "num": "01"
-        },
-        {
-          "title": "Yatırımcının rolü ne olacak?",
-          "body": "Erken işbirliği, lider yatırımcı veya stratejik karar katılımı.",
-          "num": "02"
-        },
-        {
-          "title": "İlk 30 günde hangi işler yapılacak?",
-          "body": "A.Ş. tescili, Söke pilotu, ilk kurucu satıcıların kazanılması.",
-          "num": "03"
-        }
-      ],
-      "type": "list"
-    },
-    {
-      "text": "Karar sizde. Önerimiz: önce kontrollü pilotu başlatmak ve ilk 90 günde satıcı arzı, doğrulanmış ilan ve gelir sinyalini birlikte ölçmek.",
-      "highlight": [
-        "kontrollü pilotu başlatmak"
-      ],
-      "tone": "accent",
+      "text": "Tutar, yatırımcı rolü ve ilk 90 gün kararı karar notunda netleştirildi. Bu bölüm, imza sonrası ilk 30 günde sahada fiilen ne yapacağımızı gösterir.",
+      "tone": "info",
       "type": "note"
     },
     {
       "level": 3,
-      "text": "İlk 30 gün, sonra ilk 90 gün",
-      "type": "heading"
-    },
-    {
-      "items": [
-        {
-          "when": "İlk 30 gün",
-          "what": "Şirket, ürün ve pilot hazırlığı"
-        },
-        {
-          "when": "İlk 90 gün",
-          "what": "Sahada kanıt: doğrulanmış ilan, satıcı görüşmesi, alıcı talebi, ilk gelir sinyali",
-          "state": "now"
-        }
-      ],
-      "type": "timeline"
-    },
-    {
-      "level": 3,
-      "text": "Sonraki toplantı karar listesi",
+      "text": "İmza sonrası ilk 30 günde atılacak somut adımlar",
       "type": "heading"
     },
     {
@@ -83,35 +40,38 @@
       "items": [
         {
           "num": "1",
-          "title": "Yatırım seçeneği",
-          "body": "Hangi seçenekle ilerliyoruz?"
+          "title": "Gün 1-7: Şirket ve kasa kurulumu",
+          "body": "Anonim şirketin (A.Ş.) tescili, banka hesabı ve harcama limitinin açılması, raporlama düzeninin kurulması."
         },
         {
           "num": "2",
-          "title": "Pilot ilçe",
-          "body": "İlk pilot ilçeyi birlikte mi seçiyoruz?"
+          "title": "Gün 5-15: Pilot ilçenin kesinleştirilmesi",
+          "body": "Söke önceliğiyle pilot ilçenin birlikte seçilmesi ve saha takviminin çıkarılması."
         },
         {
           "num": "3",
-          "title": "Yatırımcı rolü",
-          "body": "Pasif işbirliği mi, stratejik işbirliği mi?"
+          "title": "Gün 10-25: İlk kurucu satıcıların kazanılması",
+          "body": "Seçili ilçede ilk satıcı görüşmeleri ve doğrulanmış ilan dosyalarının (tapu ve konum teyidi yapılmış ilanlar) hazırlanması."
         },
         {
           "num": "4",
-          "title": "Harcama limiti",
-          "body": "İlk 30 gün için harcama limiti nedir?"
-        },
-        {
-          "num": "5",
-          "title": "Beklenen rapor",
-          "body": "Bir sonraki toplantıda hangi raporu görmek istersiniz?"
+          "title": "Gün 20-30: Ürünün sahaya açılması",
+          "body": "Pilot panelin canlıya alınması ve ilk alıcı talebinin ölçülmeye başlanması."
         }
       ],
       "type": "list"
     },
     {
-      "text": "Bugünkü karar evetse, ilk 30 gün hazırlık; ilk 90 gün sahada kanıt üretme dönemidir.",
+      "text": "Bu 30 gün hazırlık dönemidir; sahadaki gelir kanıtı ise ilk 90 günde toplanır. İlk 90 gün hedefleri için karar notuna bakınız.",
       "tone": "info",
+      "type": "note"
+    },
+    {
+      "text": "Karar evet ise, ilk 30 günün takvimi imza gününde başlar. Önerimiz: bugün yatırım seçeneğini ve pilot ilçeyi netleştirip kontrollü pilotu hemen başlatmak.",
+      "highlight": [
+        "kontrollü pilotu hemen başlatmak"
+      ],
+      "tone": "accent",
       "type": "note"
     },
     {

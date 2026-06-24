@@ -145,7 +145,7 @@
       "type": "note"
     },
     {
-      "text": "Kadro 2026 Ağustos'ta 5 çekirdek rolle başlar, 2026 sonunda 38'e, sonra 92 · 140 · 185 · 225 ara basamaklarından geçerek 2031 sonunda 256 kişilik yapay zeka destekli organizasyona ulaşır; agresif/öne-yüklü işe alım (özellikle Saha Keşif) erken saha likiditesini hızlandırır, her ekleme bir gerekçeye bağlıdır.",
+      "text": "Kadro 2026 Ağustos'ta 5 çekirdek rolle başlar; yıllık basamaklar yukarıdaki kadro eğrisi grafiğinde verilmiştir. Agresif/öne-yüklü işe alım (özellikle Saha Keşif) erken saha likiditesini hızlandırır ve her ekleme bir gerekçeye bağlıdır.",
       "highlight": [
         "her ekleme bir gerekçeye bağlıdır"
       ],
@@ -181,7 +181,7 @@
       "type": "cardGrid"
     },
     {
-      "text": "256 kişi ilk gün alınacak ekip değildir. Her işe alım bir kapıya bağlıdır: ilan stoğu, talep sayısı, gelir sinyali, operasyon yükü.",
+      "text": "256 kişi ilk gün alınacak ekip değildir; kadro yukarıdaki kapılar açıldıkça büyür ve her işe alım açılan bir kapıya bağlıdır.",
       "tone": "info",
       "type": "note"
     }

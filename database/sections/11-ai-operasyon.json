@@ -70,19 +70,25 @@
       "type": "heading"
     },
     {
-      "cols": 2,
+      "cols": 3,
       "items": [
         {
-          "eyebrow": "AI yapar",
-          "title": "Hızlandırır",
-          "body": "Belgeleri okur, eksikleri işaretler, fiyat bandı önerir, talepleri sıralar.",
+          "eyebrow": "AI hızlandırır",
+          "title": "Hangi iş hızlanır",
+          "body": "Belgeleri okur, eksikleri işaretler, fiyat bandı önerir, talepleri sıralar; tekrarlı işi dakikalara indirir.",
           "tone": "accent"
         },
         {
-          "eyebrow": "İnsan karar verir",
-          "title": "Sorumluluk insanda",
-          "body": "Son karar, onay ve sorumluluk insandadır; AI patron değildir.",
+          "eyebrow": "İnsan onaylar",
+          "title": "Hangi karar insanda",
+          "body": "Değerleme onayı, fiyat kararı ve müşteriye verilen taahhüt insandadır; son karar ve sorumluluk insandadır.",
           "tone": "gold"
+        },
+        {
+          "eyebrow": "Hukuk sınırlar",
+          "title": "Hangi risk kontrol edilir",
+          "body": "Kişisel veri, tapu/uyum ve yanıltıcı ilan riski hukuk ve uyum çerçevesinde tutulur; AI bu sınırların dışına çıkamaz.",
+          "tone": null
         }
       ],
       "type": "cardGrid"

@@ -24,7 +24,7 @@
       "type": "heading"
     },
     {
-      "text": "Aşağıdaki kartlarda her KPI'nın yanında türü etiketlidir: hangi sayı doğrulanmış kaynaktan gelir, hangisi model varsayımıdır, hangisi 2032 hedefidir, hangisi yatırım teklifidir — tek bakışta görünür.",
+      "text": "KPI: işin gidişatını ölçen anahtar performans göstergesi. Renkli etiketlerin anlamı şudur: doğrulanmış, resmî bir kaynaktan gelen kesin veridir; varsayım, finansal modelin girdisidir; hedef, pilot döneminde ölçülecek beklentidir; teklif ise bu turda sunulan yatırım koşuludur.",
       "type": "lead"
     },
     {

@@ -26,7 +26,7 @@
       "type": "heading"
     },
     {
-      "text": "Bu rol, mevcut işlerden ayrılarak tam zamanlı odak gerektirir. Bu nedenle modelde CPO için sabit ücret, mobilite ve aile dahil tam kapsamlı özel sağlık sigortası çalışma varsayımı olarak tanımlanmıştır.",
+      "text": "Bu rol, mevcut işlerden ayrılarak tam zamanlı odak gerektirir. Aşağıdaki kalemler kişisel konfor değil, bu tam zamanlı odağı mümkün kılan çalışma varsayımıdır.",
       "tone": "accent",
       "type": "note"
     },
@@ -97,9 +97,9 @@
       "type": "list"
     },
     {
-      "text": "Bu paket kişisel konfor kalemi değil, tam zamanlı sorumluluk modelidir. Karşılığı ürün teslimi, ekip kurulumu, saha pilotu, yatırımcı raporlaması ve ilk gelir sinyalidir.",
+      "text": "Karşılığı somut: ürün teslimi, ekip kurulumu, saha pilotu, yatırımcı raporlaması ve ilk gelir sinyali. Modelin beklediği çıktı budur.",
       "highlight": [
-        "tam zamanlı sorumluluk modelidir"
+        "Modelin beklediği çıktı budur"
       ],
       "tone": "accent",
       "type": "note"

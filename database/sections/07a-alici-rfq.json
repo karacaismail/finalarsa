@@ -73,6 +73,14 @@
           "body": "Platform koordine eder, tescil devlette"
         }
       ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "Bu akış alıcı tarafında değer üretir; platform ücreti satıştan değil, talebe erişimden alır. Bu akışın nasıl gelire döndüğü (eşleştirme ücreti, emlakçı teklif paketi) Bölüm 08'de anlatılır.",
+      "highlight": [
+        "talebe erişimden"
+      ]
     }
   ],
   "refs": {
