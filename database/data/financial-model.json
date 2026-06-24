@@ -98,15 +98,17 @@
       "employerMultiplier": 1.2375
     },
     "cpoSalary": {
+      "base_2026_usd": 7500,
       "base_2026_try": 339191,
       "usd_indexed": true,
       "schedule_usd_month": {
+        "2026_h2": 7500,
         "2027_01": 10000,
         "2027_06": 15000
       },
       "payment": "ay-sonu USD/TL kuru ile hesaplanıp TL ödenir",
       "fuel_km_year": 25000,
-      "note": "CPO ücreti 2027 başında 10.000 USD/ay, 1 Haziran 2027'de 15.000 USD/ay'a yükselir; 2026 tabanı 339.191 TL/ay (kasa dibi/başabaş bu tabandan, değişmedi). Üst-segment araç + 25.000 km yakıt + kış tatili/aile bütçesi giderlere dahil."
+      "note": "CPO ücreti USD-endekslidir: 2026 tabanı 7.500 USD/ay (≈339.191 TL, ~45 kur), 2027 başında 10.000, 1 Haziran 2027'de 15.000 USD/ay. Kasa dibi/başabaş 2026 TL tabanından hesaplanır (değişmedi). Üst-segment araç + 25.000 km yakıt + kış tatili/aile bütçesi giderlere dahil."
     },
     "officeRent_monthly": 150000,
     "officeDeposit_months": 3,
