@@ -100,6 +100,62 @@
       "text": "Bu sorunlar teknoloji sorunu değil, arsa işinin günlük sürtünmesidir. Teknoloji yalnız bu sürtünmeyi görünür ve yönetilebilir hale getirir.",
       "tone": "info",
       "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "Güven maliyetini büyüten üç boyut",
+      "type": "heading"
+    },
+    {
+      "text": "Arsa çoğu zaman uzaktan, parsel yerinde görülmeden incelenir. Bu nedenle alıcının cevaplamakta zorlandığı üç soru güven maliyetinin asıl kaynağıdır: İlan gerçek mi, gösterilen parsel doğru parsel mi ve karşıdaki kişi satışa gerçekten yetkili mi?",
+      "type": "lead"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "title": "Sahte ve yanıltıcı ilan",
+          "body": "Alıcı parseli çoğu zaman görmeden inceler; ilanın gerçek mi yoksa yanıltıcı mı olduğunu kendi başına ayırt etmesi zordur.",
+          "type": "card"
+        },
+        {
+          "title": "Yetkisiz emlakçılık",
+          "body": "İlanı koyan kişinin o arsayı satmaya yetkili olup olmadığı çoğu zaman belirsizdir; bu belirsizlik alıcı için doğrudan bir risk oluşturur.",
+          "type": "card"
+        },
+        {
+          "title": "Parsel ve konum belirsizliği",
+          "body": "Yanlış pin, ilanda yazan ile tapudaki metrekarenin uyuşmaması ve mükerrer ilanlar, aynı yerin farklı görünmesine ve kafa karışıklığına yol açar.",
+          "type": "card"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "EİDS (Elektronik İlan Doğrulama Sistemi) yetki doğrulaması 1 Ocak 2025 itibarıyla zorunlu hale geldi. Bu, yetkisiz ilanı artık yalnızca bir güven sorunu olmaktan çıkarıp yasal bir uyum sorununa dönüştürür; piyasanın bu doğrulamayı çözmesi bir tercih değil, bir gerekliliktir.",
+      "tone": "warn",
+      "type": "note"
+    },
+    {
+      "ordered": false,
+      "items": [
+        {
+          "title": "Mükerrer ilan",
+          "body": "Aynı parsel birden çok ilanda farklı bilgilerle yer alınca alıcı hangisinin doğru olduğunu bilemez.",
+          "num": "01"
+        },
+        {
+          "title": "Metrekare uyuşmazlığı",
+          "body": "İlanda yazan alan ile tapudaki alanın tutmaması, fiyatı ve değerlemeyi yanıltır.",
+          "num": "02"
+        },
+        {
+          "title": "Belge tekrarı riski",
+          "body": "Aynı tapu belgesinin farklı ilanlarda tekrar kullanılması, belgenin doğruluğunu sorgulanır kılar.",
+          "num": "03"
+        }
+      ],
+      "type": "list"
     }
   ],
   "refs": {

@@ -42,6 +42,61 @@
       "text": "Riskler belirsiz değil; ölçülü ve karar kapısına bağlı. Her risk bir eşik ve bir aksiyona bağlanır, sürpriz değil senaryo üretir.",
       "tone": "info",
       "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "İtibarı koruyan operasyonel doğrulama önlemleri",
+      "accent": "operasyonel doğrulama",
+      "type": "heading"
+    },
+    {
+      "text": "İtibar riskinin en büyük tetikleyicisi sahte ilan ve yanlış evraktır; bu yüzden risk yalnız bir karar kapısına bırakılmaz, ilan yayına girmeden önce platformun otomatik doğrulama kontrolleriyle elenir. Aşağıdaki önlemler yatırımcı risk kapılarından farklıdır; günlük işleyişte ilanı denetleyen somut teknik kontrollerdir.",
+      "tone": "accent",
+      "highlight": [
+        "platformun otomatik doğrulama kontrolleriyle"
+      ],
+      "type": "note"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "Belge bütünlüğü",
+          "title": "Belge hash kaydı",
+          "body": "Her yüklenen tapu belgesinin özet (hash: belgenin sayısal parmak izi) değeri kaydedilir; aynı belge farklı ilanlarda yeniden kullanılırsa sistem tekrarı otomatik yakalar.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "Tekrar denetimi",
+          "title": "Mükerrer parsel tespiti",
+          "body": "Aynı ada/parsel numarası için birden fazla veya çelişkili ilan açıldığında sistem bunları eşleştirir ve çakışmayı işaretler.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "Konum tutarlılığı",
+          "title": "Yanlış konum/pin tespiti",
+          "body": "Haritadaki pin ile belgedeki parselin koordinatları karşılaştırılır; uyuşmazlık varsa ilan yayına alınmadan uyarı üretilir.",
+          "tone": "gold"
+        },
+        {
+          "eyebrow": "Kişisel veri koruması",
+          "title": "KVKK maskeleme",
+          "body": "Belge üzerindeki kimlik numarası, adres ve hisse gibi kişisel veriler (KVKK: Kişisel Verilerin Korunması Kanunu) otomatik karartılır; yayında yalnız doğrulamaya yeten alanlar görünür.",
+          "tone": "gold"
+        },
+        {
+          "eyebrow": "İnsan denetimi",
+          "title": "Manuel doğrulama kuyruğu",
+          "body": "Otomatik kontrollerden riskli işaretiyle geçen belgeler doğrudan müşteri temsilcisinin doğrulama kuyruğuna düşer; insan onayı olmadan yayına çıkmaz.",
+          "tone": "accent"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Bu önlemler tek bir amaca hizmet eder: sahte ilan ve yanlış evrak yatırımcı itibarına ulaşmadan, ilan daha yayına girmeden elensin. Otomatik kontrol şüpheyi yakalar, manuel kuyruk son kararı insana bırakır.",
+      "tone": "info",
+      "type": "note"
     }
   ],
   "refs": {

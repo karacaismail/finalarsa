@@ -95,6 +95,44 @@
       ],
       "tone": "accent",
       "type": "note"
+    },
+    {
+      "text": "Doğrulanmış veri kalkanı: Yetki doğrulaması (EİDS — Elektronik İlan Doğrulama Sistemi; ilan verenin yetkisini resmi kayıtla teyit eder), parsel tanımlayıcı veri (ada/parsel üzerinden TKGM — Tapu ve Kadastro Genel Müdürlüğü kaydıyla eşleştirme) ve her dosyanın belge geçmişi ile değişmezliğini kanıtlayan içerik özeti (hash) birlikte tek bir doğrulama standardı kurar. Bu üç katman dosya dosya, yıl yıl biriken bir veri yığını olduğu için rakip aynı standardı kısa sürede yeniden üretemez.",
+      "highlight": [
+        "doğrulama standardı"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "title": "Taklit maliyeti neden yükselir",
+      "items": [
+        {
+          "title": "Yetki",
+          "text": "EİDS ile ilan verenin satış/temsil yetkisi resmi kayıttan teyit edilir; sahte veya yetkisiz ilan eleme kapısından geçemez."
+        },
+        {
+          "title": "Parsel",
+          "text": "İlan, ada/parsel tanımlayıcısı üzerinden TKGM kaydıyla eşleştirilir; konum, yüzölçümü ve nitelik beyanı resmi veriyle örtüştürülür."
+        },
+        {
+          "title": "Belge + hash",
+          "text": "Tapu, imar durumu gibi belgeler dosyaya bağlanır; her belgenin içerik özeti (hash) saklanarak sonradan değiştirilmediği kanıtlanabilir."
+        },
+        {
+          "title": "Saha doğrulaması",
+          "text": "Drone/medya ve yerinde teyit, beyanı fiziksel gerçekle karşılaştırır. Dört katman üst üste binince taklit, tek bir özelliği değil tüm doğrulama zincirini ve birikmiş veriyi yeniden kurmayı gerektirir; maliyet bu yüzden artar."
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Karşı-konumlanma (counter-positioning): Genel ilan sitesi her kategoride trafik hacmine oynar ve gelirini geniş ilan akışından alır. Biz arsa/arazi dikeyinde doğrulanmış dosyaya oynarız. Lider, bu modeli kopyalamak için kendi geniş ve standartsız ilan yapısını bozmak zorunda kalır; mevcut hacim gelirini riske atmadan dikey doğrulama disiplinini benimseyemez. Savunmamız bu yüzden trafik değil, arsa derinliğidir.",
+      "highlight": [
+        "arsa derinliğidir"
+      ],
+      "tone": "accent",
+      "type": "note"
     }
   ],
   "refs": {

@@ -49,8 +49,8 @@
       "id": "problem-cozum",
       "num": "03",
       "label": "Problem ve Çözüm",
-      "summary": "Arsada güven maliyeti yüksektir; ParselQ tek panelde güven dosyası kurar, platform ile yetkili kurumun sınırı baştan bellidir.",
-      "sections": ["problem", "cozum", "yetki-sorumluluk"]
+      "summary": "Arsada güven maliyeti yüksektir; ParselQ tek panelde güven dosyası kurar, platform ile yetkili kurumun sınırı baştan bellidir; doğrulama TKGM/EİDS entegrasyonuna bağlanır.",
+      "sections": ["problem", "cozum", "yetki-sorumluluk", "tkgm-entegrasyon"]
     },
     {
       "id": "pazar-rekabet",

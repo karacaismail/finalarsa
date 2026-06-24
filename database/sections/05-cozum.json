@@ -40,6 +40,64 @@
       "type": "chart"
     },
     {
+      "level": 3,
+      "text": "Güven dosyası şöyle kurulur: beş doğrulama katmanı, tek panel",
+      "accent": "beş doğrulama katmanı",
+      "type": "heading"
+    },
+    {
+      "text": "Güven dosyası tek bir onay kutusu değil; ilanı adım adım doğrulayan katmanların üst üste binmesiyle oluşur. Her katman ilan sayfasında ayrı bir kart olarak görünür ve kullanıcı hangi bilginin nasıl doğrulandığını tek panelde görür. Aşağıdaki katmanlar ürün tarafını anlatır; yasal çerçeve ve kurum protokolleri Bölüm 05b'de, kapsam sınırı Bölüm 05a'dadır.",
+      "highlight": [
+        "tek panelde"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "ordered": false,
+      "items": [
+        {
+          "title": "İlan yetki doğrulama (EİDS uyumlu)",
+          "body": "İlanı verenin gerçekten malik, malik yakını ya da yetkili emlak işletmesi olup olmadığı EİDS (Emlak İlan Doğrulama Sistemi — ilan veren tarafın yetkisini doğrulayan resmî altyapı) ile uyumlu biçimde kontrol edilir. Böylece ilanın arkasında yetkisiz bir tarafın olup olmadığı baştan ayrışır.",
+          "num": "01"
+        },
+        {
+          "title": "Taşınmaz numarasıyla ilan açma",
+          "body": "İlan, taşınmazın resmî kimliği olan taşınmaz numarası üzerinden açılır. Numara, ilanı serbest metin yerine kayıtlı bir taşınmaza bağlar; aynı taşınmaza ait bilgiler tek dosyada toplanır.",
+          "num": "02"
+        },
+        {
+          "title": "Tapu yükle, OCR ile oku, ilan-belge uyumunu eşle",
+          "body": "Yüklenen tapu belgesi OCR (optik karakter tanıma — belgedeki yazıyı makinenin okuyabileceği veriye çevirme) ile okunur; belgedeki metrekare, nitelik ve konum bilgileri ilanda girilen değerlerle karşılaştırılır. Uyuşmayan alanlar işaretlenerek ilan-belge tutarlılığı görünür kılınır.",
+          "num": "03"
+        },
+        {
+          "title": "Ada/parsel kimliği ve harita konum doğrulama",
+          "body": "Ada ve parsel kimliği ile taşınmazın haritadaki yeri eşleştirilir; konum pini doğru parsele oturuyor mu kontrol edilir. Böylece ilandaki konum iddiası harita üzerinde somut bir noktayla teyit edilir.",
+          "num": "04"
+        },
+        {
+          "title": "Doğrulanmış ilan rozeti",
+          "body": "Yukarıdaki katmanları geçen ilan, kullanıcıya tek bakışta güven veren doğrulanmış ilan rozetiyle işaretlenir. Rozet, dosyanın hangi adımlardan geçtiğinin özetidir; kullanıcı detayını aynı panelden açıp inceleyebilir.",
+          "num": "05"
+        }
+      ],
+      "type": "list"
+    },
+    {
+      "text": "Bu beş katman ilan sayfasında dağınık sekmeler halinde değil, tek panelde tek güven dosyası olarak birleşir: yetki, taşınmaz kimliği, belge uyumu, harita konumu ve rozet aynı ekranda sıralanır. Doğrulanmış ilan, alıcı talebiyle teklif alma akışına (RFQ = alıcının talep açıp teklif topladığı akış) yalnızca doğrulanmış dosyaların girebildiği ürün kapısıdır; bu akışın gelir tarafı Bölüm 08'dedir.",
+      "highlight": [
+        "tek panelde tek güven dosyası"
+      ],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
+      "level": 3,
+      "text": "Güven dosyasının panel özeti",
+      "type": "heading"
+    },
+    {
       "ordered": false,
       "items": [
         {

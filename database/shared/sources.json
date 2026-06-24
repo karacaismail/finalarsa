@@ -8,6 +8,22 @@
       "label": "TKGM 2024",
       "full": "Tapu ve Kadastro Genel Müdürlüğü 2024 yılı taşınmaz satış istatistikleri"
     },
+    "eids-ticaret": {
+      "label": "EİDS / Ticaret Bakanlığı",
+      "full": "T.C. Ticaret Bakanlığı — Elektronik İlan Doğrulama Sistemi (EİDS) duyuruları; ilan platformlarında kimlik/yetki doğrulama 1 Ocak 2025'te zorunlu."
+    },
+    "tkgm-protokol": {
+      "label": "TKGM Veri Paylaşımı Yönetmeliği",
+      "full": "TKGM tapu-kadastro verilerinin paylaşımı yönetmeliği ve protokol süreci (TAKPAS): veri paylaşımı talep formu, güvenlik/gizlilik taahhütnameleri, alt/üst komisyon değerlendirmesi."
+    },
+    "tkgm-tarife-2026": {
+      "label": "TKGM 2026 Tarife",
+      "full": "TKGM 2026 döner sermaye tarifesi — elektronik ortamda veri paylaşımı hizmetleri (günlük 10 sorgu ücretsiz; aylık kontör paketleri; sınırsız sorgu modeli)."
+    },
+    "parsel-sorgu-kosullar": {
+      "label": "TKGM Parsel Sorgu Koşulları",
+      "full": "TKGM Parsel Sorgu kullanım koşulları — sonuçlar bilgilendirme amaçlıdır; izinsiz web servis/scrape ile ticari kullanım kapsam dışıdır."
+    },
     "tuik-2024": {
       "label": "TÜİK 2024",
       "full": "TÜİK Konut Satış İstatistikleri 2024"

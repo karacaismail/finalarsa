@@ -7,7 +7,7 @@
   "description": "Landing page üretimi için parçalanmış, tekrarsız JSON içerik kümesi. 1 bölüm = 1 dosya; tüm rakamlar shared/metrics.json tek kaynak. Envanter (sectionOrder/sections/data/counts) GENERATED ve validate.py tarafından gerçek dosyalara karşı doğrulanır; başlık/refs gibi alanlar tek kaynak olarak section dosyalarında kalır (manifest tekrar etmez).",
   "clusters": {
     "shared": "Çapraz kesen tek kaynaklar (brand, metrics, sources, glossary, design-tokens)",
-    "sections": "Sunum birimleri — her bölüm için 1 dosya (28 adet)",
+    "sections": "Sunum birimleri — her bölüm için 1 dosya (29 adet)",
     "data": "Analitik veri kümeleri (finansal model, pazar, İK/AI, strateji cephanesi, çerçeveler, teşvikler)",
     "meta": "manifest + reconciliation + schema"
   },
@@ -20,6 +20,7 @@
     "problem",
     "cozum",
     "yetki-sorumluluk",
+    "tkgm-entegrasyon",
     "pazar",
     "model",
     "alici-rfq",
@@ -112,6 +113,15 @@
       "nav": {
         "num": "5a",
         "label": "Yetki & sınır"
+      }
+    },
+    {
+      "order": 5.6,
+      "slug": "tkgm-entegrasyon",
+      "file": "sections/05b-tkgm-entegrasyon.json",
+      "nav": {
+        "num": "5b",
+        "label": "TKGM entegrasyonu"
       }
     },
     {
@@ -333,11 +343,11 @@
     "schema/section.schema.json"
   ],
   "counts": {
-    "sections": 28,
+    "sections": 29,
     "metrics": 99,
     "dataFiles": 22,
     "sharedFiles": 5,
-    "totalFiles": 57
+    "totalFiles": 58
   },
   "renderHints": {
     "uiLibrary": "Flowbite (mevcut pitch zaten Flowbite kullanıyor)",
@@ -372,6 +382,6 @@
   },
   "_revision": {
     "at": "2026-06-24",
-    "note": "%38 hedef pay + gelir ölçekleme; envanter generated (28 bölüm, 22 data, 99 metrik). Manifest artık başlık/refs tekrar etmez; validate.py drift kontrolü ekli."
+    "note": "%38 + TKGM/EİDS doğrulama turu: yeni 05b-tkgm-entegrasyon bölümü; envanter generated (29 bölüm, 22 data, 99 metrik)."
   }
 }

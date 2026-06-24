@@ -96,10 +96,45 @@
           "tone": "gold"
         }
       ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "EİDS yetki akışı ağa güven katar"
+    },
+    {
+      "type": "note",
+      "tone": "accent",
+      "text": "Kurumsal ilanda taşınmaz sahibi, ilanı yükleyecek emlak işletmesini e-Devlet üzerinden EİDS (Elektronik İlan Doğrulama Sistemi) ile yetkilendirir. Emlak işletmesinin taşınmaz ticareti yetki belgesi bulunmalı ve verilen yetki süresi üç aydan kısa olamaz. Böylece her kurumsal ilan, resmî kayıtla eşleşen gerçek bir yetkiye dayanır.",
+      "highlight": [
+        "e-Devlet üzerinden EİDS",
+        "taşınmaz ticareti yetki belgesi"
+      ]
+    },
+    {
+      "type": "cardGrid",
+      "cols": 2,
+      "items": [
+        {
+          "eyebrow": "doğrulanmış emlakçı / danışman",
+          "title": "Yetki belgesi, eşleştirme ve güven skoru",
+          "body": "Bir emlakçı; yetki belgeli işletmeye bağlı olması, ofis-danışman eşleştirmesinin doğrulanması ve güven skoru (doğrulanmış ilan oranı ile şikâyet oranından üretilen puan) ile öne çıkar. Alıcı, kiminle muhatap olduğunu net görür.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "doğrulanmış satıcı arzı",
+          "title": "Sahte ilan baştan elenir",
+          "body": "EİDS yetki akışı ile saha keşfinden gelen güven dosyası birleşince ağ, doğrulanmış satıcı arzı üretir: yetkisiz veya sahte ilan daha yüklenirken elenir, alıcıya yalnızca kaynağı belli portföy ulaşır.",
+          "tone": "gold"
+        }
+      ]
     }
   ],
   "refs": {
     "data": [],
-    "metrics": []
+    "metrics": [],
+    "glossary": [
+      "EİDS"
+    ]
   }
 }

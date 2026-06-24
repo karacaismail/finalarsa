@@ -1,0 +1,248 @@
+{
+  "id": "tkgm-entegrasyon",
+  "kind": "section",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "order": 5.6,
+  "slug": "tkgm-entegrasyon",
+  "nav": {
+    "num": "5b",
+    "label": "TKGM entegrasyonu"
+  },
+  "background": "bg-2",
+  "title": {
+    "text": "TKGM'ye neden ve hangi koşullarla entegre oluruz?",
+    "accent": "neden ve hangi koşullarla"
+  },
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "text": "doğrulama altyapısı · yetki & veri · 5b / 18"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "TKGM'ye neden ve hangi koşullarla entegre oluruz?",
+      "accent": "neden ve hangi koşullarla"
+    },
+    {
+      "type": "lead",
+      "text": "Güven dosyasının arkasındaki motor resmî doğrulamadır. Burada iki soruyu ayrı ayrı yanıtlıyoruz: neden entegre oluyoruz ve hangi yasal/teknik koşullarla. Aktörleri net tutuyoruz: platform neyi yapar, devlet (TKGM/Ticaret Bakanlığı) neyi yapar, kullanıcı neyi onaylar.",
+      "highlight": [
+        "neden entegre oluyoruz ve hangi yasal/teknik koşullarla"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Neden entegre olmalıyız? Üç gerekçe"
+    },
+    {
+      "type": "cardGrid",
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "1 · yasal zorunluluk",
+          "title": "EİDS yetki doğrulama",
+          "body": "EİDS (Elektronik İlan Doğrulama Sistemi), Ticaret Bakanlığı'nın ilan platformlarına getirdiği kimlik/yetki doğrulama şartıdır; 1 Ocak 2025'te yetki doğrulaması yapılmadan ilan verilemeyecek şekilde zorunlu oldu. Yani bu bir premium özellik değil, ilan açmanın ön şartıdır.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "2 · ürün farkı",
+          "title": "Parsel ve belge doğrulama",
+          "body": "Arsa/arazi alıcısının en büyük korkusu nettir: gerçek mi, doğru parsel mi, yetkili kişi mi, fiyat şişirilmiş mi, imar var mı? Ada/parsel kimliği + tapu belgesi doğrulaması bu korkuyu azaltır — genel ilan sitelerinde olmayan bir derinlik.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "3 · savunma",
+          "title": "Doğrulanmış veri kalkanı",
+          "body": "EİDS yetkisi, parsel tanımlayıcı verisi ve belge geçmişi birlikte, rakibin kolay kopyalayamayacağı bir doğrulama standardı kurar. Değerimiz ilan trafiği değil, doğrulanmış dosyadır.",
+          "tone": "gold"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "Kısacası entegrasyon, 'güven dosyası' vaadini sözden çıkarıp resmî doğrulamaya bağlar: ilanı veren kişi, taşınmaz, parsel konumu ve belge tutarlılığı kontrol edilir."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Üç entegrasyon yolu — 'TKGM entegrasyonu' tek bir şey değildir"
+    },
+    {
+      "type": "table",
+      "columns": [
+        "Yol",
+        "Ne doğrular?",
+        "Muhatap",
+        "Zorluk"
+      ],
+      "rows": [
+        ["EİDS", "İlanı verenin yetkisi (malik / yakını / yetkili emlak işletmesi)", "Ticaret Bakanlığı", "Zorunlu"],
+        ["TAKPAS protokolü", "Tapu / kadastro / parsel verisine servisle erişim", "TKGM", "Zor (protokol)"],
+        ["Kullanıcı onaylı belge + OCR", "Yüklenen tapu / Web Tapu çıktısı; ilan-belge uyumu", "Kullanıcı + platform", "Kolay / orta"]
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "accent",
+      "text": "Doğru sıra: önce EİDS ve kullanıcı onaylı belge/OCR ile ürünü çıkar, TAKPAS protokolünü paralel yürüt. Parsel Sorgu verisini izinsiz çekmek (scrape) doğru yol değildir; kullanım koşulları sonuçların bilgilendirme amaçlı olduğunu, izin/protokol olmadan ticari kullanılamayacağını söyler.",
+      "highlight": [
+        "izinsiz çekmek (scrape) doğru yol değildir"
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Koşullar — TKGM/TAKPAS veri paylaşımı protokolü"
+    },
+    {
+      "type": "lead",
+      "text": "TAKPAS'tan (Tapu ve Kadastro Paylaşım Sistemi) veri için 'biz ilan sitesiyiz' demek yetmez. Amaç, yasal dayanak, veri minimizasyonu, KVKK altyapısı ve güvenlik taahhüdü gerekir; süreç komisyon onayına tabidir."
+    },
+    {
+      "type": "list",
+      "ordered": true,
+      "items": [
+        {
+          "num": "01",
+          "title": "Kullanım senaryosu + veri minimizasyonu",
+          "body": "Hangi veriyi neden istediğin somut yazılır. 'Tüm tapu verisi' değil; yalnız ilan doğrulamayla sınırlı veri talep edilir."
+        },
+        {
+          "num": "02",
+          "title": "Talep formu + güvenlik/gizlilik taahhütnamesi",
+          "body": "Veri Paylaşımı Talep Formu, KVKK aydınlatma ve açık rıza, saklama-imha politikası ve erişim logları sunulur."
+        },
+        {
+          "num": "03",
+          "title": "Alt Komisyon incelemesi",
+          "body": "Başvuru en geç 1 ay içinde Veri Paylaşımı Alt Komisyonu'nda incelenir ve görüşle Üst Komisyon'a sunulur."
+        },
+        {
+          "num": "04",
+          "title": "Üst Komisyon kararı",
+          "body": "Üst Komisyon (genelde Ocak/Nisan/Temmuz/Ekim) paylaşılacak veriyi, yöntemi, kapsamı, ücreti ve sınırları belirler."
+        },
+        {
+          "num": "05",
+          "title": "Güvenlik + teknik bağlantı",
+          "body": "Sabit IP, özel şifreli bağlantı ve audit log kurulur. Güvenlik eksikleri bildirimden sonra 60 gün içinde tamamlanmazsa başvuru reddedilir."
+        }
+      ]
+    },
+    {
+      "type": "statGrid",
+      "cols": 3,
+      "items": [
+        {
+          "label": "Gerçekçi onay süresi",
+          "value": "~3–6 ay",
+          "sub": "komisyon takvimine bağlı",
+          "tag": "model varsayımı",
+          "type": "card"
+        },
+        {
+          "label": "TKGM sorgu maliyeti (2026)",
+          "value": "günlük 10 ücretsiz",
+          "sub": "sonrası aylık kontör paketi",
+          "tag": "doğrulanmış kaynak",
+          "type": "card"
+        },
+        {
+          "label": "Asıl maliyet kalemi",
+          "value": "KVKK + güvenlik + operasyon",
+          "sub": "sorgu ücretinden büyüktür",
+          "tag": "model varsayımı",
+          "type": "card"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Teknik ve hukuki şartlar"
+    },
+    {
+      "type": "cardGrid",
+      "cols": 2,
+      "items": [
+        {
+          "eyebrow": "teknik",
+          "title": "Güvenli bağlantı + denetlenebilirlik",
+          "body": "Sabit IP, firewall ve özel şifreli bağlantı; her sorgunun audit log'u (kim, ne zaman, hangi taşınmaz); geri izleme kayıtları korunarak uzun süre (8 yıl) saklanır."
+        },
+        {
+          "eyebrow": "hukuki / KVKK",
+          "title": "Amaç-bağlı, minimum veri",
+          "body": "Açık rıza ve aydınlatma, veri minimizasyonu, saklama-imha politikası; her yıl sonunda güvenlik taahhüdü yenilenir ve TKGM gerektiğinde denetler."
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "info",
+      "text": "Hassas veri sınırı: malik, hisse, şerh, haciz, ipotek gibi hak/kısıtlama bilgileri ilk fazda istenmez; bunlar 'ilgisini inanılır kılma' ve özel yetki gerektirir, başvurunun reddini de riske atar. İlk başvuruda yalnız parsel tanımlayıcı bilgi, taslak geometri ve m²/nitelik istenir."
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "text": "Fazlı yol haritası — risksiz başla, kademeli derinleş"
+    },
+    {
+      "type": "cardGrid",
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "Faz 1 · şimdi",
+          "title": "EİDS + belge/OCR",
+          "body": "EİDS yetki doğrulama, taşınmaz numarası ile ilan açma, tapu OCR ile ilan-belge uyumu ve manuel doğrulama kuyruğu. Protokol beklemeden ürün çıkar.",
+          "tone": "gold"
+        },
+        {
+          "eyebrow": "Faz 2 · sınırlı veri",
+          "title": "Parsel tanımlayıcı veri",
+          "body": "TKGM'den yalnız parsel tanımlayıcı bilgi + taslak geometri + m²/nitelik. Harita pini, yüzölçümü ve mükerrer ilan doğrulaması güçlenir.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "Faz 3 · yetki/işlem",
+          "title": "Web Tapu + protokol",
+          "body": "EİDS + kullanıcı onayı + Web Tapu yönlendirmesi + TKGM protokolü birlikte; malik/yetki/işlem doğrulamasına geçilir.",
+          "tone": "accent"
+        }
+      ]
+    },
+    {
+      "type": "note",
+      "tone": "accent",
+      "text": "Konumlanma: platform tapu tescili yapmaz; doğrulama, koordinasyon ve risk raporu üretir (ayrıntı: Bölüm 5a). Bu yaklaşım 'ticari veri çekme' değil; sahte ilanı azaltan, veri minimizasyonu yapan, kamu düzeniyle uyumlu bir doğrulama altyapısı olarak konumlanır.",
+      "highlight": [
+        "doğrulama, koordinasyon ve risk raporu üretir"
+      ]
+    }
+  ],
+  "refs": {
+    "shared": [
+      "sources",
+      "glossary"
+    ],
+    "sources": [
+      "eids-ticaret",
+      "tkgm-protokol",
+      "tkgm-tarife-2026",
+      "parsel-sorgu-kosullar"
+    ],
+    "glossary": [
+      "EİDS",
+      "TAKBİS",
+      "TAKPAS",
+      "MEGSİS",
+      "Web Tapu"
+    ],
+    "data": [],
+    "metrics": []
+  }
+}
