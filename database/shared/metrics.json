@@ -116,24 +116,24 @@
       "source": "tkgm-2024"
     },
     "market.tam_try": {
-      "value": 1850000000000,
+      "value": 2096000000000,
       "unit": "TRY",
-      "display": "1,85 trilyon ₺",
+      "display": "2,1 trilyon ₺",
       "label": "TAM — arsa toplam pazar",
-      "source": "model-v9-15",
-      "note": "1,4M işlem × ~1,32M ₺ ort. değer"
+      "source": "tkgm-2024 + model-v9-15",
+      "note": "1,59M işlem (2024 doğrulanmış) × ~1,32M ₺ ort. değer"
     },
     "market.sam_try": {
-      "value": 346000000000,
+      "value": 392000000000,
       "unit": "TRY",
-      "display": "346 milyar ₺",
+      "display": "392 milyar ₺",
       "label": "SAM — dijitale açık pay",
       "source": "model-v9-15"
     },
     "market.som_try": {
-      "value": 121100000000,
+      "value": 137200000000,
       "unit": "TRY",
-      "display": "121 milyar ₺",
+      "display": "137,2 milyar ₺",
       "label": "SOM — %35 hedef pay (2032)",
       "source": "model-v9-15"
     },
@@ -153,9 +153,9 @@
       "source": "model-v9-15"
     },
     "market.land_tx_annual": {
-      "value": 1400000,
+      "value": 1587847,
       "unit": "adet",
-      "display": "1,4 milyon",
+      "display": "1,59 milyon",
       "label": "Yıllık arsa işlemi",
       "source": "model-v9-15"
     },

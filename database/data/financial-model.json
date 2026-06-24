@@ -151,7 +151,7 @@
   },
   "knownIssues": [
     "GELİR SENARYOSU 'Arsa Gerçekleşen Pay' Haz 27'den 1.0+, Ara 30'da 2.0 — üretilen gelir SOM'u ~2× aşıyor (SOM tanım gereği aşılamaz).",
-    "Plateau 5.000 arsa ilanı, sahibinden'in ~100K+ aktif ilanına göre düşük; akış (1,4M işlem) ile stok (aktif ilan) karışmış.",
+    "Plateau 5.000 arsa ilanı, sahibinden'in ~100K+ aktif ilanına göre düşük; akış (1,59M işlem · 2024 doğrulanmış) ile stok (aktif ilan) karışmış.",
     "Plateau ilan başı gelir ~14.200 ₺/ay/ilan; premium 7.500 ₺/ay ile çelişir → 519M SOM'un modelde 800-870M'ye çıkma nedeni.",
     "DASHBOARD B8 (Arsa TAM)=0, B9 (Arsa SOM) boş — TAM_SAM_SOM referansı kopuk.",
     "ÇAĞRI MERKEZİ ve YAZILIM EKİBİ sayfalarında #VALUE! hataları; İK doğrulama formülleri (R18, R21-R22) çalışmıyor."

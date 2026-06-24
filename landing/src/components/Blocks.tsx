@@ -868,36 +868,40 @@ interface MarketFunnelData {
     som: { value: number; basis?: string };
     annualRevenuePotential: { value: number; basis?: string };
   };
+  scenariosByYear?: {
+    scenarios: { label: string; steadyRevenue: number; steadyShare: number }[];
+  };
 }
 function pct1(n: number): string {
   return `%${n.toLocaleString("tr-TR", { maximumFractionDigits: n < 1 ? 2 : 1 })}`;
 }
 function MarketScale({ dark }: { dark?: boolean }) {
-  const [mode, setMode] = useState("share");
   const d = getData<MarketFunnelData>("market-tam-sam-som");
   const f = d.valueFunnel;
   const tam = f.tam.value;
   const sam = f.sam.value;
-  const som = f.som.value;
-  const rev = f.annualRevenuePotential.value;
+
+  // Senaryo: kötümser / medyan / iyimser. TAM ve SAM sabit; SOM ve gelir senaryoya göre değişir.
+  const scenarios = d.scenariosByYear?.scenarios ?? [];
+  const medianIdx = scenarios.findIndex((s) => /medyan/i.test(s.label));
+  const [scIdx, setScIdx] = useState(medianIdx < 0 ? 0 : medianIdx);
+  const sc = scenarios[scIdx] ?? scenarios[0];
+  const share = sc?.steadyShare ?? 0.35;
+  const som = sam * share;
+  const rev = sc?.steadyRevenue ?? f.annualRevenuePotential.value;
+  const scLabel = sc?.label ?? "Medyan";
 
   type Row = { label: string; pct: number; right: string; basis?: string; lead?: boolean };
-  const shareRows: Row[] = [
-    { label: "TAM · toplam pazar", pct: 100, right: fmt(tam), basis: f.tam.basis, lead: true },
-    { label: "SAM · dijitale açık pazar", pct: (sam / tam) * 100, right: fmt(sam), basis: f.sam.basis },
-    { label: "SOM · ulaşılabilir hedef", pct: (som / tam) * 100, right: fmt(som), basis: f.som.basis },
-    { label: "Yıllık gelir potansiyeli", pct: (rev / tam) * 100, right: fmt(rev), basis: f.annualRevenuePotential.basis },
+  const rows: Row[] = [
+    { label: "Toplam pazar (TAM)", pct: 100, right: fmt(tam), basis: f.tam.basis, lead: true },
+    { label: "Dijitalde ulaşılabilir (SAM)", pct: (sam / tam) * 100, right: fmt(sam), basis: "TAM × %18,7 online satış" },
+    { label: `Hedef payımız (SOM · ${scLabel})`, pct: (som / tam) * 100, right: fmt(som), basis: `SAM × ${pct1(share * 100)} hedef pay` },
+    { label: "Beklenen yıllık gelir", pct: (rev / tam) * 100, right: fmt(rev), basis: `${scLabel} senaryo · 2032 · çok-akışlı` },
   ];
-  const convRows: Row[] = [
-    { label: "SAM / TAM · online penetrasyon", pct: (sam / tam) * 100, right: pct1((sam / tam) * 100), basis: f.sam.basis },
-    { label: "SOM / SAM · hedef pay", pct: (som / sam) * 100, right: pct1((som / sam) * 100), basis: f.som.basis },
-    { label: "Gelir / SOM · take rate", pct: (rev / som) * 100, right: pct1((rev / som) * 100), basis: f.annualRevenuePotential.basis },
-  ];
-  const rows = mode === "conversion" ? convRows : shareRows;
 
   return (
     <Box {...interactivePanel(dark)} p={{ base: "5", md: "6" }}>
-      {/* Kalıcı açıklama: iki görünümün farkı — sekme değişse de değişmese de görünür kalır. */}
+      {/* Sade açıklama: huni metaforu (harita → bölge → parsel → hasat) */}
       <Box
         mb="5"
         p={{ base: "3", md: "4" }}
@@ -906,60 +910,51 @@ function MarketScale({ dark }: { dark?: boolean }) {
         borderColor={dark ? fx.overlayWhite10 : "line"}
         borderRadius="surface"
       >
-        <Stack gap="2">
-          <P fontSize="md" color={dark ? D.muted : "inkMuted"} lineHeight="1.5">
-            <Box as="span" fontWeight="bold" color={mode === "share" ? "grass" : dark ? D.text : "ink"}>
-              Pazar büyüklüğü
-            </Box>
-            {" — Büyük resim: toplam pazar, dijitalde ulaşılabilir pazar, hedeflediğimiz pay ve yıllık gelir potansiyelinin ₺ karşılığı. Büyük arazi haritasından bizim alabileceğimiz parsele kadar daraltırız."}
-          </P>
-          <P fontSize="md" color={dark ? D.muted : "inkMuted"} lineHeight="1.5">
-            <Box as="span" fontWeight="bold" color={mode === "conversion" ? "grass" : dark ? D.text : "ink"}>
-              Hesap oranları
-            </Box>
-            {" — Hesabın mutfağı: toplam pazardan hedef pazara, oradan gelire hangi oranlarla indiğimizi gösterir. Elekten geçirir gibi, büyük pazarı adım adım süzeriz."}
-          </P>
-        </Stack>
+        <P fontSize="md" color={dark ? D.muted : "inkMuted"} lineHeight="1.55">
+          Büyük arazi haritasından kendi parselimize kadar daraltırız:{" "}
+          <Box as="span" fontWeight="bold" color={dark ? D.text : "ink"}>toplam pazar</Box> → dijitalde
+          satılabilen kısım → hedeflediğimiz pay → beklenen yıllık gelir. Aşağıdan senaryo seç; pay ve gelir buna göre değişir.
+        </P>
       </Box>
 
-      <Flex direction={{ base: "column", sm: "row" }} align={{ base: "stretch", sm: "center" }} gap="3" wrap="wrap" mb="5">
-        <P fontWeight="medium" fontSize="md" color={dark ? D.muted : "inkMuted"}>
-          Görünüm:
-        </P>
-        <SegmentGroup.Root
-          value={mode}
-          onValueChange={(e) => setMode(e.value ?? "share")}
-          display={{ base: "flex", sm: "inline-flex" }}
-          width={{ base: "100%", sm: "auto" }}
-          flexDirection={{ base: "column", sm: "row" }}
-          alignItems={{ base: "stretch", sm: "center" }}
-          bg={pill.trackBg(dark)}
-          border="1px solid"
-          borderColor={pill.trackBorder(dark)}
-          borderRadius="full"
-          p="1"
-          fontSize="md"
-        >
-          <SegmentGroup.Indicator
-            bg={pill.selectedBg(dark)}
-            borderRadius="full"
-            boxShadow={pill.selectedShadowStrong}
-          />
-          <SegmentGroup.Items
-            items={[
-              { value: "share", label: "Pazar büyüklüğü" },
-              { value: "conversion", label: "Hesap oranları" },
-            ]}
-            px={{ base: "2.5", md: "4" }}
-            py="2"
+      {/* Senaryo seçici: kötümser / medyan / iyimser */}
+      {scenarios.length > 0 && (
+        <Flex direction={{ base: "column", sm: "row" }} align={{ base: "stretch", sm: "center" }} gap="3" wrap="wrap" mb="5">
+          <P fontWeight="medium" fontSize="md" color={dark ? D.muted : "inkMuted"}>
+            Senaryo:
+          </P>
+          <SegmentGroup.Root
+            value={String(scIdx)}
+            onValueChange={(e) => setScIdx(Number(e.value ?? medianIdx))}
+            display={{ base: "flex", sm: "inline-flex" }}
             width={{ base: "100%", sm: "auto" }}
-            textAlign="center"
-            fontWeight="medium"
-            cursor="pointer"
-            color={dark ? D.text : "ink"}
-          />
-        </SegmentGroup.Root>
-      </Flex>
+            flexDirection={{ base: "column", sm: "row" }}
+            alignItems={{ base: "stretch", sm: "center" }}
+            bg={pill.trackBg(dark)}
+            border="1px solid"
+            borderColor={pill.trackBorder(dark)}
+            borderRadius="full"
+            p="1"
+            fontSize="md"
+          >
+            <SegmentGroup.Indicator
+              bg={pill.selectedBg(dark)}
+              borderRadius="full"
+              boxShadow={pill.selectedShadowStrong}
+            />
+            <SegmentGroup.Items
+              items={scenarios.map((s, i) => ({ value: String(i), label: s.label }))}
+              px={{ base: "2.5", md: "4" }}
+              py="2"
+              width={{ base: "100%", sm: "auto" }}
+              textAlign="center"
+              fontWeight="medium"
+              cursor="pointer"
+              color={dark ? D.text : "ink"}
+            />
+          </SegmentGroup.Root>
+        </Flex>
+      )}
 
       <Stack gap="4" mt="5">
         {rows.map((r) => (
@@ -967,8 +962,7 @@ function MarketScale({ dark }: { dark?: boolean }) {
             <Flex justify="space-between" align="baseline" gap="3" wrap="wrap" mb="1.5">
               <P fontWeight="medium" color={dark ? D.text : "ink"}>{r.label}</P>
               <P fontWeight="bold" color={dark ? D.text : "ink"} fontSize="md">
-                {r.right}
-                {mode === "share" ? ` · ${pct1(r.pct)}` : ""}
+                {r.right} · {pct1(r.pct)}
               </P>
             </Flex>
             <Progress.Root value={Math.max(r.pct, 0.8)} max={100} size="md">

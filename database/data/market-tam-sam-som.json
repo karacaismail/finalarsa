@@ -16,18 +16,18 @@
     "monthlyTransfers": 255490
   },
   "valueFunnel": {
-    "year": 2025,
-    "source": "model-v9-15",
+    "year": 2024,
+    "source": "tkgm-2024 + model-v9-15",
     "tam": {
-      "value": 1850000000000,
-      "basis": "1,4M işlem × ~1,32M ₺ ort. değer"
+      "value": 2096000000000,
+      "basis": "1,59M işlem (2024 doğrulanmış) × ~1,32M ₺ ort. değer"
     },
     "sam": {
-      "value": 346000000000,
+      "value": 392000000000,
       "basis": "TAM × %18,7 online penetrasyon"
     },
     "som": {
-      "value": 121100000000,
+      "value": 137200000000,
       "basis": "SAM × %35 hedef pay (2032 vizyonu)"
     },
     "annualRevenuePotential": {
@@ -96,7 +96,7 @@
       "2032"
     ],
     "targetYear": "2032",
-    "samBase": 346000000000,
+    "samBase": 392000000000,
     "note": "Gelir çok-akışlıdır (yalnız take rate değil). Pay = online arsa pazarındaki hedef pazar payı; 2032 medyan %35. 2026 H2 soft-launch. [AGRESİF/sola-kaydır: ara yıllar erken; 2032 uçları sabit.]",
     "scenarios": [
       {
