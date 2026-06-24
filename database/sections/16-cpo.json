@@ -67,6 +67,40 @@
     },
     {
       "level": 3,
+      "text": "Çalışma düzeni: yer ve saat esnek, teslimat sabit",
+      "type": "heading"
+    },
+    {
+      "cols": 3,
+      "items": [
+        {
+          "eyebrow": "yer esnekliği",
+          "title": "Esnek devam",
+          "body": "Her gün fiziksel ofiste bulunma zorunluluğu yoktur; önceden bilgilendirmeyle uzaktan veya esnek gün kullanılabilir. Ölçü mevcudiyet değil, teslimat ve KPI'dır.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "saat esnekliği",
+          "title": "Esnek mesai",
+          "body": "Çalışma saatleri sabit değildir; yoğun odak gerektiren işler için gece dahil esnek saat serbesttir.",
+          "tone": "accent"
+        },
+        {
+          "eyebrow": "bayram esnekliği",
+          "title": "Tatil esnekliği",
+          "body": "Resmi tatillerde bir gün erken çıkış ve iki gün geç dönüş hakkı tanınır; takvim ekiple önceden paylaşılır.",
+          "tone": "gold"
+        }
+      ],
+      "type": "cardGrid"
+    },
+    {
+      "text": "Bu esneklik kişisel ayrıcalık değil, sonuç-odaklı çalışma düzeninin parçasıdır: yer ve saat esner, teslimat ve rapor sabit kalır.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
+      "level": 3,
       "text": "Paket değil, teslimat sözü",
       "type": "heading"
     },
