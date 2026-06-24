@@ -41,6 +41,15 @@
     {
       "type": "heading",
       "level": 3,
+      "text": "İlk 90 gün · hedef ve karar kapıları"
+    },
+    {
+      "type": "first90DaysPlan",
+      "dataRef": "first-90-days"
+    },
+    {
+      "type": "heading",
+      "level": 3,
       "text": "Haftalık saha ritmi"
     },
     {

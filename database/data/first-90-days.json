@@ -1,0 +1,52 @@
+{
+  "id": "first-90-days",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "İlk 90 gün — önerilen pilot KPI taslağı ve karar kapıları",
+  "note": "Bu hedefler modelde kesinleşmiş değildir; önerilen pilot KPI taslağıdır. İlk 90 günde gerçekleşen değerlerle güncellenir.",
+  "milestones": [
+    {
+      "kpi": "Kurucu satıcı adayı",
+      "d30": "50",
+      "d60": "150",
+      "d90": "300",
+      "decision": "Hedef altıysa bölge daralt"
+    },
+    {
+      "kpi": "Sıcak satıcı görüşmesi",
+      "d30": "20",
+      "d60": "60",
+      "d90": "120",
+      "decision": "Saha mesajını revize et"
+    },
+    {
+      "kpi": "Emlakçı partner",
+      "d30": "10",
+      "d60": "25",
+      "d90": "50",
+      "decision": "Partner teklifini değiştir"
+    },
+    {
+      "kpi": "Doğrulanmış aktif ilan",
+      "d30": "30",
+      "d60": "120",
+      "d90": "300",
+      "decision": "İlçe aç/kapat kararı"
+    },
+    {
+      "kpi": "Alıcı talebi",
+      "d30": "10",
+      "d60": "50",
+      "d90": "150",
+      "decision": "Talep kanalını güçlendir"
+    },
+    {
+      "kpi": "İlk ücretli paket",
+      "d30": "0–1",
+      "d60": "3–5",
+      "d90": "10+",
+      "decision": "Gelir sinyali var/yok"
+    }
+  ]
+}

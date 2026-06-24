@@ -41,6 +41,15 @@
     {
       "type": "heading",
       "level": 3,
+      "text": "Bütçe kapıları · hangi para hangi kanıtla açılır, hangi durumda durur"
+    },
+    {
+      "type": "capitalReleasePlan",
+      "dataRef": "capital-gates"
+    },
+    {
+      "type": "heading",
+      "level": 3,
       "text": "Para nereye gider"
     },
     {

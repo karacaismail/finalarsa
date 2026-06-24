@@ -31,6 +31,15 @@
     },
     {
       "level": 3,
+      "text": "Risk kapıları · ölçüm, eşik ve aksiyon",
+      "type": "heading"
+    },
+    {
+      "type": "riskGateMatrix",
+      "dataRef": "risk-gates"
+    },
+    {
+      "level": 3,
       "text": "Yatırımcıyı koruyan ek riskler",
       "type": "heading"
     },

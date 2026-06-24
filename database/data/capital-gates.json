@@ -1,0 +1,38 @@
+{
+  "id": "capital-gates",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "Bütçe kapıları — para kapı kapı açılır",
+  "description": "Her bütçe dilimi bir KANITA bağlı açılır; kanıt yoksa harcama açılmaz. Yatırımcıya 'para kontrolsüz yakılmıyor' güvencesi.",
+  "gates": [
+    {
+      "period": "0–30 gün",
+      "scope": "Şirket kuruluşu + ürün planı + ilk çekirdek ekip",
+      "opensWhen": "Pilot ilçe listesi onaylandığında",
+      "stopsWhen": "Plan onaylanmadan harcama açılmaz",
+      "owner": "CPO"
+    },
+    {
+      "period": "31–60 gün",
+      "scope": "Saha operasyonu + ürün MVP",
+      "opensWhen": "İlk satıcı sözleşmeleri başladığında",
+      "stopsWhen": "Satıcı görüşmesi zayıfsa bölge daraltılır",
+      "owner": "CPO / Saha"
+    },
+    {
+      "period": "61–90 gün",
+      "scope": "Doğrulama + ilan + talep katmanı",
+      "opensWhen": "Doğrulanmış ilan + alıcı talebi (RFQ) sinyali geldiğinde",
+      "stopsWhen": "Gelir sinyali yoksa büyüme yavaşlatılır",
+      "owner": "Yönetim"
+    },
+    {
+      "period": "90–180 gün",
+      "scope": "Ücretli paket + ölçek",
+      "opensWhen": "İlk giriş geliri oluştuğunda",
+      "stopsWhen": "Ücretli dönüşüm düşükse plan revize edilir",
+      "owner": "Yönetim"
+    }
+  ]
+}

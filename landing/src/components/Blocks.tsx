@@ -9,6 +9,9 @@ import { ChartBlock } from "./ChartViews";
 import { MobileTableCards } from "./MobileTableCards";
 import { StrategyArsenal } from "./StrategyArsenal";
 import { KpiBoard, type KpiItem } from "./KpiBoard";
+import { CapitalReleasePlan, type CapitalGate } from "./CapitalReleasePlan";
+import { RiskGateMatrix, type RiskGateData } from "./RiskGateMatrix";
+import { First90DaysPlan, type First90Data } from "./First90DaysPlan";
 import { fmt } from "./charts";
 import { claimTag, darkText as D, tone } from "../theme/semantic";
 import { cardBase, interactivePanel, pill } from "../theme/components";
@@ -205,6 +208,21 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
       );
       const kpiItems = kpiDoc.groups?.[b.group as string] ?? [];
       return <KpiBoard items={kpiItems} columns={(b.columns as 2 | 3) ?? 3} />;
+    }
+
+    case "capitalReleasePlan": {
+      const cg = getData<{ gates: CapitalGate[] }>((b.dataRef as string) ?? "capital-gates");
+      return <CapitalReleasePlan gates={cg.gates ?? []} />;
+    }
+
+    case "riskGateMatrix": {
+      const rg = getData<RiskGateData>((b.dataRef as string) ?? "risk-gates");
+      return <RiskGateMatrix data={rg} />;
+    }
+
+    case "first90DaysPlan": {
+      const f9 = getData<First90Data>((b.dataRef as string) ?? "first-90-days");
+      return <First90DaysPlan data={f9} />;
     }
 
     case "list": {

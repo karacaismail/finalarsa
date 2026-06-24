@@ -1,0 +1,91 @@
+{
+  "id": "risk-gates",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "Risk kapıları — her riskin bir ölçümü, eşiği ve aksiyonu var",
+  "risks": [
+    {
+      "risk": "İtibar riski — sahte ilan / yanlış değerleme yatırımcı itibarını yıpratır",
+      "severity": "critical",
+      "metric": "Sahte ilan ve yanlış değerleme kaynaklı ciddi olay sayısı",
+      "trigger": "İlk ciddi olay gerçekleştiğinde",
+      "action": "Manuel inceleme · hukuk onayı · yayın durdurma",
+      "owner": "Yönetim / Hukuk"
+    },
+    {
+      "risk": "Ortaklık karar çatışması — kritik kararlar tıkanır",
+      "severity": "high",
+      "metric": "Kritik kararın karara bağlanma süresi",
+      "trigger": "Kritik karar 7 günü aşarsa",
+      "action": "Yetki matrisi devreye girer · yönetim toplantısı yapılır",
+      "owner": "Yönetim"
+    },
+    {
+      "risk": "Yanlış değerleme beklentisi — kullanıcı değerleme itirazları artar",
+      "severity": "high",
+      "metric": "Değerleme itirazı oranı",
+      "trigger": "Değerleme itirazı eşiği aşarsa",
+      "action": "'Bilgilendirme amaçlı' etiket · eksper ortaklığı",
+      "owner": "Ürün / Değerleme"
+    },
+    {
+      "risk": "Regülasyon (EİDS/SPK) sıkılaşır",
+      "severity": "high",
+      "metric": "Uyum açığı",
+      "trigger": "Yeni şart geldiğinde",
+      "action": "İlk günden EİDS-uyumlu altyapı avantaja döner",
+      "owner": "Hukuk / Uyum"
+    },
+    {
+      "risk": "Satıcı arzı beklenenden yavaş oluşur",
+      "severity": "medium",
+      "metric": "İlk 90 günde aktif doğrulanmış ilan sayısı",
+      "trigger": "Hedefin altındaysa",
+      "action": "Bölge daraltma · kurucu satıcı teşviki · saha satış desteği",
+      "owner": "Saha / Büyüme"
+    },
+    {
+      "risk": "Alıcı güveni düşük kalır",
+      "severity": "medium",
+      "metric": "İlan başına iletişim ve dönüşüm",
+      "trigger": "Eşik altındaysa",
+      "action": "Doğrulama katmanını ve emsal veriyi güçlendir",
+      "owner": "Ürün"
+    },
+    {
+      "risk": "Kur oynaklığı maliyeti artırır",
+      "severity": "medium",
+      "metric": "USD bazlı gider payı (OPEX)",
+      "trigger": "%20 üstüne çıkarsa",
+      "action": "Hibrit altyapı · harcama kısıtı",
+      "owner": "Finans / CFO"
+    },
+    {
+      "risk": "Sahibinden agresif karşılık verir",
+      "severity": "medium",
+      "metric": "Rakibin arsa kategorisinde ücretsiz ilan kampanyası",
+      "trigger": "Kampanya açılırsa",
+      "action": "Rakibin kolay kopyalayamayacağı konumlanma: arsa derinliği ve kurucu satıcı sadakatiyle korun",
+      "owner": "Pazarlama / Strateji"
+    },
+    {
+      "risk": "Avrupa diasporası rakibe sadık kalır",
+      "severity": "medium",
+      "metric": "Diaspora kanalı dönüşümü",
+      "trigger": "Beklenenin altındaysa",
+      "action": "'Toprağını geri al' anlatısı + dil katmanları (DE/NL/FR) + SEPA/IBAN ödeme",
+      "owner": "Pazarlama / Büyüme"
+    }
+  ],
+  "reputationGuardrail": {
+    "title": "İtibar riski — ilk günden kırmızı çizgi",
+    "text": "Yanlış ilan yalnız müşteri şikayeti yaratmaz; yatırımcı itibarını da yıpratır. Bu yüzden sahte ilan, yanlış evrak, hatalı değerleme ve agresif satış dili ilk günden kırmızı çizgidir.",
+    "items": [
+      "Sahte ilan → yayın durdurma",
+      "Yanlış evrak → hukuk kontrolü",
+      "Hatalı değerleme → bilgilendirme etiketi + eksper",
+      "Agresif satış dili → saha eğitimi ve denetim"
+    ]
+  }
+}
