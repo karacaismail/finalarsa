@@ -59,37 +59,37 @@
         {
           "eyebrow": "ürün",
           "title": "Ürün geliştirme",
-          "body": "Yazılım, AI, altyapı.",
+          "body": "Pilot panel, güven dosyası, AI destekli ilan hazırlama ve raporlama altyapısı kurulur.",
           "tone": "accent"
         },
         {
           "eyebrow": "saha",
           "title": "Saha ekibi",
-          "body": "Araçlı keşif ve satış.",
+          "body": "Araçlı keşif, satıcı görüşmesi, foto/drone içerik ve ilan doğrulama operasyonu finanse edilir.",
           "tone": "accent"
         },
         {
           "eyebrow": "pazarlama",
           "title": "Pazarlama",
-          "body": "Bölgesel, ölçülü.",
+          "body": "Ulusal kampanya değil; seçili ilçede satıcı ve alıcı talebi üreten bölgesel denemeler yapılır.",
           "tone": null
         },
         {
           "eyebrow": "hukuk",
           "title": "Hukuk / uyum",
-          "body": "Belge, lisans, KVKK.",
+          "body": "EİDS, KVKK, sözleşme, lisans ve kurum protokolü hazırlıkları karşılanır.",
           "tone": null
         },
         {
           "eyebrow": "operasyon",
           "title": "Ofis / operasyon",
-          "body": "Kuruluş ve işletme.",
+          "body": "Şirket kuruluşu, ekipman, muhasebe ve günlük operasyon giderleri yönetilir.",
           "tone": null
         },
         {
           "eyebrow": "yedek",
           "title": "Yedek akçe",
-          "body": "Kasa güven marjı.",
+          "body": "Kasa dibi korunur; hedef tutmazsa harcama kapıları yavaşlatılır.",
           "tone": "gold"
         }
       ]

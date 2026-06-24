@@ -46,7 +46,7 @@
       "type": "heading"
     },
     {
-      "text": "Güven dosyası tek bir onay kutusu değil; ilanı adım adım doğrulayan katmanların üst üste binmesiyle oluşur. Her katman ilan sayfasında ayrı bir kart olarak görünür ve kullanıcı hangi bilginin nasıl doğrulandığını tek panelde görür. Aşağıdaki katmanlar ürün tarafını anlatır; yasal çerçeve ve kurum protokolleri Bölüm 05b'de, kapsam sınırı Bölüm 05a'dadır.",
+      "text": "Güven dosyası, ilanın yetki, belge, konum ve emsal kontrolünü tek ekranda toplar. Yasal kapsam ve kurum protokolleri ayrı bölümde açıklanır.",
       "highlight": [
         "tek panelde"
       ],
@@ -58,7 +58,7 @@
       "items": [
         {
           "title": "İlan yetki doğrulama (EİDS uyumlu)",
-          "body": "İlanı verenin gerçekten malik, malik yakını ya da yetkili emlak işletmesi olup olmadığı EİDS (Emlak İlan Doğrulama Sistemi — ilan veren tarafın yetkisini doğrulayan resmî altyapı) ile uyumlu biçimde kontrol edilir. Böylece ilanın arkasında yetkisiz bir tarafın olup olmadığı baştan ayrışır.",
+          "body": "EİDS (Emlak İlan Doğrulama Sistemi — ilan veren tarafın yetkisini doğrulayan resmî altyapı) uyumlu yetki kontrolü, ilanı yetkisiz kişi riskinden ayırır.",
           "num": "01"
         },
         {
@@ -68,7 +68,7 @@
         },
         {
           "title": "Tapu yükle, OCR ile oku, ilan-belge uyumunu eşle",
-          "body": "Yüklenen tapu belgesi OCR (optik karakter tanıma — belgedeki yazıyı makinenin okuyabileceği veriye çevirme) ile okunur; belgedeki metrekare, nitelik ve konum bilgileri ilanda girilen değerlerle karşılaştırılır. Uyuşmayan alanlar işaretlenerek ilan-belge tutarlılığı görünür kılınır.",
+          "body": "Tapu belgesi OCR (optik karakter tanıma — belgedeki yazıyı makinenin okuyabileceği veriye çevirme) ile okunur; m², nitelik ve konum bilgisi ilandaki beyanla karşılaştırılır.",
           "num": "03"
         },
         {
@@ -135,10 +135,9 @@
       "type": "heading"
     },
     {
-      "text": "ParselQ, arsam.net'in mobil uygulamasıdır; mottosu \"invest yap\". Tapudan ilana, değerlemeden teklife kadar her adımı yapay zeka ile tek akışta birleştirir. Ayrı bir yazılım değil; platformun içinde yaşayan uygulama (app-in-app). Instagram ile Twitter arası, AI-öncelikli ve enerjik bir sosyal keşif deneyimi sunar.",
+      "text": "ParselQ, arsa ilanını hazırlayan, doğrulayan ve alıcı talebiyle eşleştiren mobil çalışma panelidir. Satıcı, alıcı ve emlakçı aynı dosya üzerinden ilerler.",
       "highlight": [
-        "invest yap",
-        "app-in-app"
+        "mobil çalışma panelidir"
       ],
       "tone": "accent",
       "type": "note"

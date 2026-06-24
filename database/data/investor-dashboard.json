@@ -33,7 +33,7 @@
         "valueRef": "fin.breakeven_month",
         "class": "assumption",
         "owner": "Finans",
-        "redFlag": "aylık gelir hedefin %70 altıysa yeniden hesapla"
+        "redFlag": "Aylık gelir hedefin %70 altında kalırsa başabaş varsayımını yeniden hesaplar ve gider planını sıkılaştırırız."
       },
       {
         "label": "En dip kasa",
@@ -85,7 +85,7 @@
         "label": "2032 hedef online arsa payı",
         "valueRef": "market.target_share_2032",
         "class": "target",
-        "redFlag": "90 günde arz sinyali zayıfsa revize"
+        "redFlag": "90 gün sonunda arz sinyali zayıf kalırsa hedef online arsa payını ve büyüme planını revize ederiz."
       },
       {
         "label": "2032 medyan gelir",
@@ -99,7 +99,7 @@
         "class": "target",
         "cadence": "weekly",
         "owner": "Saha",
-        "redFlag": "hedef altıysa bölge daralt"
+        "redFlag": "Kurucu satıcı adayı hedefin altında kalırsa yeni bölge açmaz, mevcut bölgede satıcı kazanımına yoğunlaşırız."
       },
       {
         "label": "Sıcak satıcı görüşmesi",
@@ -118,7 +118,7 @@
         "class": "target",
         "cadence": "weekly",
         "owner": "Saha",
-        "redFlag": "ilçe aç/kapat kararı"
+        "redFlag": "90 gün sonunda doğrulanmış ilan hedefi tutmazsa yeni ilçe açmayız; mevcut ilçede satıcı kazanımına döneriz."
       },
       {
         "label": "Alıcı talebi",
@@ -137,7 +137,7 @@
         "class": "target",
         "cadence": "weekly",
         "owner": "Saha",
-        "redFlag": "gelir sinyali yoksa GTM revize"
+        "redFlag": "İlk ücretli pakette gelir sinyali oluşmazsa pazara giriş stratejisini revize ederiz."
       }
     ],
     "finance": [
@@ -152,7 +152,7 @@
         "class": "assumption",
         "cadence": "monthly",
         "owner": "Finans",
-        "redFlag": "sapma kırmızı eşik"
+        "redFlag": "Aylık OPEX planı %15 aşarsa işe alım ve pazarlama harcaması onaya döner."
       },
       {
         "label": "Nakit yakımı",
@@ -184,7 +184,7 @@
         "label": "İtibar olayı",
         "value": "0 tolerans",
         "class": "verified",
-        "redFlag": "ciddi olayda yayın durdur"
+        "redFlag": "Ciddi bir itibar olayı yaşanırsa ilgili yayını durdurur ve inceleme tamamlanana kadar açmayız."
       },
       {
         "label": "Sahte/yanlış ilan",

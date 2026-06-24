@@ -50,7 +50,7 @@
         {
           "num": 2,
           "title": "Sistem uygun parselleri bulur",
-          "body": "Doğrulanmış stoktan eşleştirme"
+          "body": "Sistem yalnız doğrulanmış ilan stoğundan uygun parselleri seçer."
         },
         {
           "num": 3,
@@ -60,7 +60,7 @@
         {
           "num": 4,
           "title": "AI teklifleri sıralar",
-          "body": "Uygunluk ve güvene göre"
+          "body": "Teklifler bütçe, imar, konum ve güven dosyası kalitesine göre sıralanır."
         },
         {
           "num": 5,

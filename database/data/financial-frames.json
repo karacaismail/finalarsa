@@ -12,8 +12,8 @@
       "lookAt": "Kümülatif gelir ile kümülatif giderin kesişimi; kasa dibi (en düşük nakit) ayrıca izlenir",
       "goodResult": "Operasyonel başabaş 2027 başında; kasa dibi 40 milyon ₺ sermaye tamponunun içinde kalır",
       "redFlags": [
-        "Kesişim 2027 sonrasına kayarsa",
-        "Kasa dibi sermaye tamponunu aşıp negatife yaklaşırsa"
+        "Kesişim 2027 sonrasına kayarsa başabaş gecikiyor demektir ve nakit planı yeniden gözden geçirilir.",
+        "Kasa dibi sermaye tamponunu aşıp negatife yaklaşırsa nakit tükenme riski doğar ve harcamalar acilen kısılır."
       ],
       "dependsOn": "gelir senaryosu (model varsayımı)"
     },
@@ -33,16 +33,16 @@
       "lookAt": "Net marjın 2027'den 2032'ye seyri",
       "goodResult": "Gelir büyürken net marj da artar",
       "redFlags": [
-        "Marj artmıyorsa gider yapısı sorunlu"
+        "Gelir büyürken net marj artmıyorsa gider yapısı sorunludur ve maliyet kalemleri gözden geçirilir."
       ]
     },
     {
       "title": "Gelir akışları",
       "decisionQuestion": "Gelir tek kaleme mi bağlı?",
       "lookAt": "Yedi akışın dağılımı; ParselQ-RFQ amiral payı",
-      "goodResult": "Dengeli çoklu akış",
+      "goodResult": "Gelir tek kaleme yaslanmaz; RFQ lider kalsa da ilan, veri ve hizmet gelirleri birlikte büyür.",
       "redFlags": [
-        "Tek akış toplam gelirin yarısını geçerse konsantrasyon riski"
+        "Tek akış toplam gelirin yarısını geçerse konsantrasyon riski doğar ve gelir tek kaleme bağımlı hale gelir."
       ]
     },
     {

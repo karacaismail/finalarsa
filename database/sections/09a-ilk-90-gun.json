@@ -57,11 +57,11 @@
       "items": [
         {
           "when": "Pazartesi",
-          "what": "Hedef ilçe ve satıcı ziyaret listesi"
+          "what": "Hedef ilçe, satıcı listesi ve haftalık ziyaret planı netleşir."
         },
         {
           "when": "Salı–Çarşamba",
-          "what": "Saha ziyareti, keşif, satıcı görüşmesi"
+          "what": "Saha keşfi yapılır; satıcı adayı, konum ve parsel bilgisi CRM'e girilir."
         },
         {
           "when": "Perşembe",
@@ -69,7 +69,7 @@
         },
         {
           "when": "Cuma",
-          "what": "Rapor ve kapanış takibi"
+          "what": "Haftalık raporda görüşme, doğrulanmış ilan, alıcı talebi ve risk sapması sunulur."
         }
       ]
     },

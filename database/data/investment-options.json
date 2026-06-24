@@ -7,9 +7,9 @@
   "modelCapital": {
     "label": "Model işletme sermayesi",
     "value": "40 milyon ₺",
-    "note": "Model 40 milyon ₺ başlangıç sermayesi üzerine kuruludur ve kasa en dip ~32,5 milyon ₺ seviyesine iner; ancak bu 40 milyonun tamamı tek seferde yatırımcıdan istenmez. Seçenek tutarları (5M / 15M / 25M ₺) yalnızca kampanya öncesi riski birlikte üstlenen erken dilimdir — kalan kısım operasyonun kendi cirosu (~34 milyon ₺) ve ulusal kampanya sonrası açılacak sonraki tur ile tamamlanır."
+    "note": "Model toplam 40M TL işletme sermayesiyle kuruludur. Bugünkü stratejik teklif 15M TL'dir; kalan ihtiyaç ciro ve sonraki turla tamamlanır."
   },
-  "bridgeNote": "Model 40 milyon ₺ derken bunu tek bir yatırımcıdan istemiyoruz. Stratejik seçenekte cebinizden çıkan 15 milyon ₺'dir; bu tutar başabaşa kadar tam yüklemeyi (kümülatif ~32 milyon ₺ gider) ve ilk gelir sinyalini finanse etmeye yetecek köprüyü kurar. Gerisi iki kaynaktan gelir: operasyonun Oca 2027'den itibaren kendi cirosundan finanse ettiği ~34 milyon ₺ ve Aralık 2026 ulusal kampanya sonrası değerlemenin yeniden ele alındığı bir sonraki tur. Yani bugünkü teklif tüm 40 milyonu kapatma değil, kampanya öncesi riski birlikte üstlenip şirketi başabaşa taşıyacak ilk dilimi koyma teklifidir.",
+  "bridgeNote": "Detay: 15M TL ilk riski ve başabaşa kadar köprü sermayesini taşır; ulusal kampanya sonrası değerleme yeniden ele alınır.",
   "options": [
     {
       "name": "Çekirdek",

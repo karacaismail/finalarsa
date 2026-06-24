@@ -81,17 +81,17 @@
       "type": "note"
     },
     {
-      "text": "Rakip yarın dikey bir sayfa açabilir; ama saha arzını, doğrulamayı ve satıcı ilişkisini bir günde kuramaz.",
+      "text": "Rakip dikey bir sayfa açabilir; fakat doğrulanmış stok, saha ilişkisi ve satıcı güveni zaman içinde birikir.",
       "highlight": [
-        "bir günde kuramaz"
+        "zaman içinde birikir"
       ],
       "tone": "info",
       "type": "note"
     },
     {
-      "text": "Doğrulanmış veri kalkanı: Yetki doğrulaması (EİDS — Elektronik İlan Doğrulama Sistemi; ilan verenin yetkisini resmi kayıtla teyit eder), parsel tanımlayıcı veri (ada/parsel üzerinden TKGM — Tapu ve Kadastro Genel Müdürlüğü kaydıyla eşleştirme) ve her dosyanın belge geçmişi ile değişmezliğini kanıtlayan içerik özeti (hash) birlikte tek bir doğrulama standardı kurar. Bu üç katman dosya dosya, yıl yıl biriken bir veri yığını olduğu için rakip aynı standardı kısa sürede yeniden üretemez.",
+      "text": "Savunma, tek bir özellikten değil, biriken doğrulama standardından gelir: yetki, parsel, belge geçmişi ve saha teyidi aynı dosyada birleşir.",
       "highlight": [
-        "doğrulama standardı"
+        "doğrulama standardından"
       ],
       "tone": "accent",
       "type": "note"
@@ -119,9 +119,9 @@
       "type": "cardGrid"
     },
     {
-      "text": "Karşı-konumlanma (counter-positioning): Genel ilan sitesi her kategoride trafik hacmine oynar ve gelirini geniş ilan akışından alır. Biz arsa/arazi dikeyinde doğrulanmış dosyaya oynarız. Lider, bu modeli kopyalamak için kendi geniş ve standartsız ilan yapısını bozmak zorunda kalır; mevcut hacim gelirini riske atmadan dikey doğrulama disiplinini benimseyemez. Savunmamız bu yüzden trafik değil, arsa derinliğidir.",
+      "text": "Büyük platformun işi geniş ilan hacmidir. Bizim işimiz arsa dosyasını doğrulamaktır. Bu yüzden rakibin aynısını yapması kendi mevcut modelini değiştirmesini gerektirir.",
       "highlight": [
-        "arsa derinliğidir"
+        "arsa dosyasını doğrulamaktır"
       ],
       "tone": "accent",
       "type": "note"

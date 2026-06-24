@@ -10,7 +10,7 @@
       "severity": "critical",
       "metric": "Sahte ilan ve yanlış değerleme kaynaklı ciddi olay sayısı",
       "trigger": "İlk ciddi olay gerçekleştiğinde",
-      "action": "Manuel inceleme · hukuk onayı · yayın durdurma",
+      "action": "İlgili ilan manuel incelemeye alınır, hukuk onayı beklenir ve gerekirse yayın durdurulur.",
       "owner": "Yönetim / Hukuk"
     },
     {
@@ -26,13 +26,13 @@
       "severity": "high",
       "metric": "Değerleme itirazı oranı",
       "trigger": "Değerleme itirazı eşiği aşarsa",
-      "action": "'Bilgilendirme amaçlı' etiket · eksper işbirliği",
+      "action": "Değerleme ekranına 'bilgilendirme amaçlı' etiketi eklenir ve lisanslı eksperlerle işbirliği kurulur.",
       "owner": "Ürün / Değerleme"
     },
     {
       "risk": "Regülasyon (EİDS/SPK) sıkılaşır",
       "severity": "high",
-      "metric": "Uyum açığı",
+      "metric": "Yeni EİDS/SPK şartına uyumsuz kalan süreç veya ekran sayısı",
       "trigger": "Yeni şart geldiğinde",
       "action": "İlk günden EİDS-uyumlu altyapı avantaja döner",
       "owner": "Hukuk / Uyum"
@@ -42,7 +42,7 @@
       "severity": "medium",
       "metric": "İlk 90 günde aktif doğrulanmış ilan sayısı",
       "trigger": "Hedefin altındaysa",
-      "action": "Bölge daraltma · kurucu satıcı teşviki · saha satış desteği",
+      "action": "Faaliyet bölgesi daraltılır, kurucu satıcılara teşvik verilir ve saha satış ekibiyle arz toplama desteklenir.",
       "owner": "Saha / Büyüme"
     },
     {
@@ -58,7 +58,7 @@
       "severity": "medium",
       "metric": "USD bazlı gider payı (OPEX)",
       "trigger": "%20 üstüne çıkarsa",
-      "action": "Hibrit altyapı · harcama kısıtı",
+      "action": "USD bazlı yazılım/altyapı gideri sınırlandırılır; TL bazlı alternatif veya yıllık sabit fiyatlı paket seçilir.",
       "owner": "Finans / CFO"
     },
     {

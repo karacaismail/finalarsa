@@ -26,7 +26,7 @@
       "type": "heading"
     },
     {
-      "text": "Her görünüm bir grafik ve onun tablosu olarak verilir. Üstteki sekme grubu vergi avantajını ve maliyet/başabaş görünümlerini toplar; alttaki grup 2026–2027 aylık, 2032 yıllık ve yedi gelir akışını verir. Aşağıdaki sekmelerden istediğin görünüme geç.",
+      "text": "Bu bölüm paranın ne zaman yettiğini, ne zaman kendini döndürdüğünü ve 2032'de hangi gelir akışlarıyla büyüdüğünü gösterir.",
       "type": "lead"
     },
     {
@@ -57,12 +57,7 @@
       "type": "statGrid"
     },
     {
-      "text": "Bu bölümde dört ayrı kavram karıştırılmadan kullanılır. (1) Operasyonel başabaş ayı: aylık gelirin aylık gideri ilk kez geçtiği ay — Ocak 2027 (model Temmuz 2026 başlar, yaklaşık 6 ay operasyonel). (2) Başabaşa kadar kümülatif gider: o ana dek toplam harcanan, {{metric:fin.cum_spend_to_be}}. (3) Kasa dibi: nakdin gördüğü en düşük seviye, {{metric:fin.cash_trough}} (2026 ikinci yarı sonu). (4) Yatırım geri dönüş süresi: kümülatif net kârın yatırım turunu geri kazandığı pencere — operasyonel başabaştan daha uzundur ve ayrı raporlanır.",
-      "tone": "info",
-      "type": "note"
-    },
-    {
-      "text": "Finansal modelin ilk sorusu kâr değil, kasa güvenidir: para ne kadar dayanır (kasa dibi), hangi ay aylık net pozitife döner (operasyonel başabaş), o ana kadar ne harcanır (kümülatif gider) ve yatırım kendini ne zaman geri öder (geri dönüş süresi)?",
+      "text": "Dört metrik ayrı okunur: operasyonel başabaş, başabaşa kadar harcanan tutar, kasa dibi ve yatırım geri dönüş süresi. Birbirinin yerine kullanılmaz.",
       "tone": "info",
       "type": "note"
     },
@@ -101,7 +96,7 @@
           "value": "opex",
           "label": "İşletme (OPEX)",
           "heading": "Aylık işletme gideri (OPEX)",
-          "lead": "OPEX, tekrar eden işletme gideridir: personel, pazarlama, saha operasyonu (araçlı keşif/satış ekipleri), dijital altyapı, AI/yazılım araçları ve idari kalemler. Kadro büyüdükçe personel en büyük kaleme döner.",
+          "lead": "OPEX aylık tekrar eden giderdir. Kadro büyüdükçe en büyük kalem personel ve saha operasyonu olur.",
           "chartType": "opexComposition",
           "caption": "Temsili dönem (2031 yıllık · 256 kişi) işletme gideri kompozisyonu"
         },
@@ -109,7 +104,7 @@
           "value": "breakeven",
           "label": "Başabaş",
           "heading": "Başabaş, kasa dibi ve geri dönüş — ayrı ayrı",
-          "lead": "Bu grafikte üç kavram ayrı izlenir. Operasyonel başabaş ayı: aylık gelirin aylık gideri ilk kez geçtiği ay, Ocak 2027 (model Temmuz 2026 başlar, yaklaşık 6 ay operasyonel). Başabaşa kadar kümülatif gider: o ana dek harcanan, {{metric:fin.cum_spend_to_be}}. Kasa dibi: nakdin gördüğü en düşük seviye, {{metric:fin.cash_trough}} (2026 ikinci yarı sonu); {{metric:capital.total_raised}} sermayenin içinde kalır. Yatırım dönemi yalnızca 2026 ikinci yarısıdır; sonra nakit hızla yükselir. Yatırım geri dönüş süresi bundan ayrı bir kavramdır: kümülatif net kârın yatırım turunu geri kazandığı, operasyonel başabaştan daha uzun penceredir.",
+          "lead": "Operasyonel başabaş Ocak 2027'dir; o ana dek harcanan kümülatif gider {{metric:fin.cum_spend_to_be}} ve kasa dibi {{metric:fin.cash_trough}} olup {{metric:capital.total_raised}} sermayenin içinde kalır. Yatırım geri dönüş süresi bundan ayrıdır ve operasyonel başabaştan daha uzundur.",
           "chartType": "breakeven",
           "caption": "Kümülatif gelir ile kümülatif giderin kesişimi · operasyonel başabaş Ocak 2027 · kasa dibi ayrı ölçülür"
         }

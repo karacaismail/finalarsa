@@ -27,9 +27,9 @@
     },
     {
       "type": "lead",
-      "text": "Güven dosyasının arkasındaki motor resmî doğrulamadır. Burada iki soruyu ayrı ayrı yanıtlıyoruz: neden entegre oluyoruz ve hangi yasal/teknik koşullarla. Aktörleri net tutuyoruz: platform neyi yapar, devlet (TKGM/Ticaret Bakanlığı) neyi yapar, kullanıcı neyi onaylar.",
+      "text": "TKGM/TAKPAS hedefi, güven dosyasını resmî doğrulamaya bağlamaktır. İlk fazda EİDS ve kullanıcı onaylı belgeyle ürün çıkar; protokol süreci paralel yürür.",
       "highlight": [
-        "neden entegre oluyoruz ve hangi yasal/teknik koşullarla"
+        "güven dosyasını resmî doğrulamaya bağlamaktır"
       ]
     },
     {
@@ -44,13 +44,13 @@
         {
           "eyebrow": "1 · yasal zorunluluk",
           "title": "EİDS yetki doğrulama",
-          "body": "EİDS (Elektronik İlan Doğrulama Sistemi), Ticaret Bakanlığı'nın ilan platformlarına getirdiği kimlik/yetki doğrulama şartıdır; 1 Ocak 2025'te yetki doğrulaması yapılmadan ilan verilemeyecek şekilde zorunlu oldu. Yani bu bir premium özellik değil, ilan açmanın ön şartıdır.",
+          "body": "EİDS (Elektronik İlan Doğrulama Sistemi), 1 Ocak 2025'ten beri yetki doğrulaması olmadan ilan verilmesini engelleyen yasal ön şarttır; premium özellik değil, ilan açmanın koşuludur.",
           "tone": "accent"
         },
         {
           "eyebrow": "2 · ürün farkı",
           "title": "Parsel ve belge doğrulama",
-          "body": "Arsa/arazi alıcısının en büyük korkusu nettir: gerçek mi, doğru parsel mi, yetkili kişi mi, fiyat şişirilmiş mi, imar var mı? Ada/parsel kimliği + tapu belgesi doğrulaması bu korkuyu azaltır — genel ilan sitelerinde olmayan bir derinlik.",
+          "body": "Ada/parsel kimliği ve tapu belgesi doğrulaması, alıcının gerçeklik, doğru parsel, yetki, fiyat ve imar kaygısını azaltır; genel ilan sitelerinde olmayan bir derinliktir.",
           "tone": "accent"
         },
         {
@@ -64,7 +64,7 @@
     {
       "type": "note",
       "tone": "info",
-      "text": "Kısacası entegrasyon, 'güven dosyası' vaadini sözden çıkarıp resmî doğrulamaya bağlar: ilanı veren kişi, taşınmaz, parsel konumu ve belge tutarlılığı kontrol edilir."
+      "text": "Entegrasyon, ilanı veren kişiyi, taşınmazı, parsel konumunu ve belge tutarlılığını kontrol ederek güven dosyasını resmî doğrulamaya bağlar."
     },
     {
       "type": "heading",
@@ -88,7 +88,7 @@
     {
       "type": "note",
       "tone": "accent",
-      "text": "Doğru sıra: önce EİDS ve kullanıcı onaylı belge/OCR ile ürünü çıkar, TAKPAS protokolünü paralel yürüt. Parsel Sorgu verisini izinsiz çekmek (scrape) doğru yol değildir; kullanım koşulları sonuçların bilgilendirme amaçlı olduğunu, izin/protokol olmadan ticari kullanılamayacağını söyler.",
+      "text": "Doğru sıra: önce EİDS ve kullanıcı onaylı belge/OCR ile ürün çıkar, TAKPAS protokolü paralel yürür. Parsel Sorgu verisini izinsiz çekmek (scrape) doğru yol değildir; kullanım koşulları bu sonuçların izin/protokol olmadan ticari kullanılamayacağını belirtir.",
       "highlight": [
         "izinsiz çekmek (scrape) doğru yol değildir"
       ]
@@ -100,7 +100,7 @@
     },
     {
       "type": "lead",
-      "text": "TAKPAS'tan (Tapu ve Kadastro Paylaşım Sistemi) veri için 'biz ilan sitesiyiz' demek yetmez. Amaç, yasal dayanak, veri minimizasyonu, KVKK altyapısı ve güvenlik taahhüdü gerekir; süreç komisyon onayına tabidir."
+      "text": "TAKPAS'tan (Tapu ve Kadastro Paylaşım Sistemi) veri almak; amaç, yasal dayanak, veri minimizasyonu, KVKK altyapısı ve güvenlik taahhüdü gerektirir ve komisyon onayına tabidir."
     },
     {
       "type": "list",
@@ -172,19 +172,19 @@
         {
           "eyebrow": "teknik",
           "title": "Güvenli bağlantı + denetlenebilirlik",
-          "body": "Sabit IP, firewall ve özel şifreli bağlantı; her sorgunun audit log'u (kim, ne zaman, hangi taşınmaz); geri izleme kayıtları korunarak uzun süre (8 yıl) saklanır."
+          "body": "Sabit IP, firewall ve özel şifreli bağlantı kurulur; her sorgunun audit log'u (kim, ne zaman, hangi taşınmaz) 8 yıl saklanır."
         },
         {
           "eyebrow": "hukuki / KVKK",
           "title": "Amaç-bağlı, minimum veri",
-          "body": "Açık rıza ve aydınlatma, veri minimizasyonu, saklama-imha politikası; her yıl sonunda güvenlik taahhüdü yenilenir ve TKGM gerektiğinde denetler."
+          "body": "Açık rıza, aydınlatma, veri minimizasyonu ve saklama-imha politikası uygulanır; güvenlik taahhüdü her yıl yenilenir ve TKGM gerektiğinde denetler."
         }
       ]
     },
     {
       "type": "note",
       "tone": "info",
-      "text": "Hassas veri sınırı: malik, hisse, şerh, haciz, ipotek gibi hak/kısıtlama bilgileri ilk fazda istenmez; bunlar 'ilgisini inanılır kılma' ve özel yetki gerektirir, başvurunun reddini de riske atar. İlk başvuruda yalnız parsel tanımlayıcı bilgi, taslak geometri ve m²/nitelik istenir."
+      "text": "Hassas veri sınırı: malik, hisse, şerh, haciz, ipotek gibi hak/kısıtlama bilgileri özel yetki gerektirdiği ve başvuruyu riske attığı için ilk fazda istenmez; ilk başvuruda yalnız parsel tanımlayıcı bilgi, taslak geometri ve m²/nitelik talep edilir."
     },
     {
       "type": "heading",
@@ -198,7 +198,7 @@
         {
           "eyebrow": "Faz 1 · şimdi",
           "title": "EİDS + belge/OCR",
-          "body": "EİDS yetki doğrulama, taşınmaz numarası ile ilan açma, tapu OCR ile ilan-belge uyumu ve manuel doğrulama kuyruğu. Protokol beklemeden ürün çıkar.",
+          "body": "EİDS yetki doğrulama, taşınmaz numarasıyla ilan açma, tapu OCR ile ilan-belge uyumu ve manuel doğrulama kuyruğu ile protokol beklemeden ürün çıkar.",
           "tone": "gold"
         },
         {
@@ -218,7 +218,7 @@
     {
       "type": "note",
       "tone": "accent",
-      "text": "Konumlanma: platform tapu tescili yapmaz; doğrulama, koordinasyon ve risk raporu üretir (ayrıntı: Bölüm 5a). Bu yaklaşım 'ticari veri çekme' değil; sahte ilanı azaltan, veri minimizasyonu yapan, kamu düzeniyle uyumlu bir doğrulama altyapısı olarak konumlanır.",
+      "text": "Platform tapu tescili yapmaz; doğrulama, koordinasyon ve risk raporu üretir (ayrıntı: Bölüm 5a). Bu yaklaşım ticari veri çekme değil; sahte ilanı azaltan, veri minimizasyonu yapan, kamu düzeniyle uyumlu bir doğrulama altyapısıdır.",
       "highlight": [
         "doğrulama, koordinasyon ve risk raporu üretir"
       ]

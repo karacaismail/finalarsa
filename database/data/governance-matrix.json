@@ -10,56 +10,56 @@
       "cpo": "responsible",
       "investor": "informed",
       "joint": false,
-      "note": "hız için"
+      "note": "CPO günlük ürünü ve operasyonu yürütür; yatırımcı haftalık sonuçla bilgilendirilir."
     },
     {
       "decision": "Bütçe kapısı ve harcama onayı",
       "cpo": "consulted",
       "investor": "approves",
       "joint": true,
-      "note": "kontrol için"
+      "note": "Bütçe kapıları yatırımcı onayıyla açılır; harcama kanıt gelmeden büyümez."
     },
     {
       "decision": "Yeni pilot ilçe açma",
       "cpo": "consulted",
       "investor": "approves",
       "joint": true,
-      "note": "saha bilgisi için"
+      "note": "Yeni pilot ilçe, sahadan gelen talep ve doğrulanmış arz sinyaliyle yatırımcı onayına gelir."
     },
     {
       "decision": "Büyük harcama eşiği",
       "cpo": "consulted",
       "investor": "approves",
       "joint": true,
-      "note": "nakit disiplini"
+      "note": "Belirlenen eşiği aşan harcamalar nakit disiplini gereği yatırımcı onayı olmadan yapılmaz."
     },
     {
       "decision": "Hukuki veya itibar kaynaklı yayın durdurma",
       "cpo": "responsible",
       "investor": "informed",
       "joint": false,
-      "note": "itibar koruma · gerekirse ortak"
+      "note": "İtibarı korumak için CPO yayını tek başına durdurabilir; sonuç doğuran durumlarda karar yatırımcıyla ortak alınır."
     },
     {
       "decision": "İşe alım onayı",
       "cpo": "consulted",
       "investor": "approves",
       "joint": true,
-      "note": "kademeli"
+      "note": "Yeni işe alım, ilan stoğu ve gelir sinyali oluştukça onaya gelir."
     },
     {
       "decision": "Stratejik işbirliği",
       "cpo": "consulted",
       "investor": "approves",
       "joint": true,
-      "note": "ortak değerlendirme"
+      "note": "Stratejik işbirlikleri CPO ile yatırımcı tarafından birlikte değerlendirilir ve yatırımcı onayıyla bağlanır."
     },
     {
       "decision": "Aylık yönetim raporu ve karar toplantısı",
       "cpo": "responsible",
       "investor": "consulted",
       "joint": true,
-      "note": "karar toplantısı"
+      "note": "CPO aylık yönetim raporunu hazırlar; kararlar bu toplantıda yatırımcıyla birlikte alınır."
     }
   ],
   "legend": {
