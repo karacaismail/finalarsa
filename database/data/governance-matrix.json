@@ -1,0 +1,64 @@
+{
+  "id": "governance-matrix",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "Yönetim ve kontrol matrisi — kim neye karar verir",
+  "rows": [
+    {
+      "decision": "Günlük ürün ve operasyon yönetimi",
+      "cpo": "responsible",
+      "investor": "informed",
+      "joint": false,
+      "note": "hız için"
+    },
+    {
+      "decision": "Bütçe kapısı ve harcama onayı",
+      "cpo": "consulted",
+      "investor": "approves",
+      "joint": true,
+      "note": "kontrol için"
+    },
+    {
+      "decision": "Yeni pilot ilçe açma",
+      "cpo": "consulted",
+      "investor": "approves",
+      "joint": true,
+      "note": "saha bilgisi için"
+    },
+    {
+      "decision": "Büyük harcama eşiği",
+      "cpo": "consulted",
+      "investor": "approves",
+      "joint": true,
+      "note": "nakit disiplini"
+    },
+    {
+      "decision": "Hukuki veya itibar kaynaklı yayın durdurma",
+      "cpo": "responsible",
+      "investor": "informed",
+      "joint": false,
+      "note": "itibar koruma · gerekirse ortak"
+    },
+    {
+      "decision": "İşe alım onayı",
+      "cpo": "consulted",
+      "investor": "approves",
+      "joint": true,
+      "note": "kademeli"
+    },
+    {
+      "decision": "Aylık yönetim raporu ve karar toplantısı",
+      "cpo": "responsible",
+      "investor": "consulted",
+      "joint": true,
+      "note": "karar toplantısı"
+    }
+  ],
+  "legend": {
+    "responsible": "yürütür",
+    "consulted": "önerir/görüşülür",
+    "informed": "bilgilendirilir",
+    "approves": "onaylar"
+  }
+}

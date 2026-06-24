@@ -26,6 +26,15 @@
       "accent": "üç yoldan oluşur"
     },
     {
+      "type": "heading",
+      "level": 3,
+      "text": "Getiri senaryoları ve yolları"
+    },
+    {
+      "type": "investorReturnModel",
+      "dataRef": "investor-return-scenarios"
+    },
+    {
       "type": "note",
       "tone": "accent",
       "text": "Bu yatırım kısa vadeli arsa al-sat yatırımı değildir; platform yatırımıdır. Getiri; şirket değerinin artması, işin nakit üretmeye başlaması ve ileride stratejik yatırımcıya ya da daha büyük platforma satış ihtimaliyle oluşur.",

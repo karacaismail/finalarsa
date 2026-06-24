@@ -1,0 +1,46 @@
+{
+  "id": "investor-return-scenarios",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "Yatırımcı getiri modeli — senaryolar ve yollar",
+  "scenarios": [
+    {
+      "name": "Kötümser",
+      "revenue2032": "2,48 milyar ₺",
+      "multiple": "örn. 2×–3× gelir (model varsayımı)",
+      "companyValue": "örn. ~5–7 milyar ₺ aralığı (model varsayımı)",
+      "note": "Çarpan ve şirket değeri model varsayımı/örnektir; kesin değer değildir. Yavaş benimseme · CAC yüksek senaryosu."
+    },
+    {
+      "name": "Medyan",
+      "revenue2032": "5,5 milyar ₺",
+      "multiple": "örn. 3×–4× gelir (model varsayımı)",
+      "companyValue": "örn. ~16–22 milyar ₺ aralığı (model varsayımı)",
+      "note": "Plan baz senaryosu; finansal modelin temeli. Çarpan ve şirket değeri model varsayımı/örnektir, garanti değildir."
+    },
+    {
+      "name": "İyimser",
+      "revenue2032": "9,07 milyar ₺",
+      "multiple": "örn. 4×–5× gelir (model varsayımı)",
+      "companyValue": "örn. ~36–45 milyar ₺ aralığı (model varsayımı)",
+      "note": "Viral büyüme · diaspora + kanal ortaklıkları senaryosu. Çarpan ve şirket değeri model varsayımı/örnektir."
+    }
+  ],
+  "paths": [
+    {
+      "title": "Değer artışı — şirket değeri büyür",
+      "desc": "Gelir ve pazar payı arttıkça şirketin değeri yükselir; yeni turlarda şirket değerlemesi etkisiyle yatırımcının payının değeri büyür."
+    },
+    {
+      "title": "Nakit üretimi — iş nakit üretmeye başlar",
+      "desc": "Operasyonel başabaş sonrası iş kendi nakdini üretir; büyüme dışa bağımlı olmaktan çıkar ve nakit akışı yatırımcıya geri dönüş potansiyeli yaratır."
+    },
+    {
+      "title": "Stratejik çıkış — ileride satış ihtimali",
+      "desc": "Stratejik yatırımcıya ya da daha büyük bir platforma satış senaryosu; pazar payı ve gelir oluştuğunda alıcı ilgisi getiriyi gerçekleştirir."
+    }
+  ],
+  "dilutionNote": "Yeni yatırım turlarında mevcut payların sulanması (dilution) olabilir; pro-rata katılım, ön alım (pre-emption) ve anti-dilution gibi koruma hakları sözleşmeyle tanımlanır.",
+  "disclaimer": "Bu getiriler garanti değildir; pazar payı, gelir, kâr ve stratejik alıcı ilgisi oluşursa anlam kazanır."
+}

@@ -1,0 +1,70 @@
+{
+  "id": "investment-options",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "Yatırım seçenekleri — tutar, hisse, değerleme ve kapattığı risk",
+  "modelCapital": {
+    "label": "Model işletme sermayesi",
+    "value": "40 milyon ₺",
+    "note": "Model 40 milyon ₺ başlangıç sermayesi üzerine kuruludur ve kasa en dip ~32,5 milyon ₺ seviyesine iner; ancak bu 40 milyonun tamamı tek seferde yatırımcıdan istenmez. Seçenek tutarları (5M / 15M / 25M ₺) yalnızca kampanya öncesi riski birlikte üstlenen erken dilimdir — kalan kısım operasyonun kendi cirosu (~34 milyon ₺) ve ulusal kampanya sonrası açılacak sonraki tur ile tamamlanır."
+  },
+  "bridgeNote": "Model 40 milyon ₺ derken bunu tek bir yatırımcıdan istemiyoruz. Stratejik seçenekte cebinizden çıkan 15 milyon ₺'dir; bu tutar başabaşa kadar tam yüklemeyi (kümülatif ~32 milyon ₺ gider) ve ilk gelir sinyalini finanse etmeye yetecek köprüyü kurar. Gerisi iki kaynaktan gelir: operasyonun Oca 2027'den itibaren kendi cirosundan finanse ettiği ~34 milyon ₺ ve Aralık 2026 ulusal kampanya sonrası değerlemenin yeniden ele alındığı bir sonraki tur. Yani bugünkü teklif tüm 40 milyonu kapatma değil, kampanya öncesi riski birlikte üstlenip şirketi başabaşa taşıyacak ilk dilimi koyma teklifidir.",
+  "options": [
+    {
+      "name": "Çekirdek",
+      "amount": "5M ₺",
+      "amountRef": "invest.seed_amount",
+      "equity": "%2,5",
+      "equityRef": "invest.seed_equity",
+      "valuation": "200M ₺",
+      "valuationRef": "invest.seed_valuation",
+      "funds": [
+        "2 yazılımcı + 1 tasarımcı",
+        "6 ay nakit çalışma süresi",
+        "Söke + Bodrum pilotu"
+      ],
+      "closesRisk": [
+        "Ürün-pazar uyumu"
+      ],
+      "investorRole": "Erken ortak",
+      "recommended": false
+    },
+    {
+      "name": "Stratejik",
+      "amount": "15M ₺",
+      "amountRef": "invest.strategic_amount",
+      "equity": "%7",
+      "equityRef": "invest.strategic_equity",
+      "valuation": "215M ₺",
+      "valuationRef": "invest.strategic_valuation",
+      "funds": [
+        "Başabaşa tam yükleme",
+        "Pilot + pazara giriş",
+        "Kurucu satıcı programı"
+      ],
+      "closesRisk": [
+        "Arz ve gelir sinyali"
+      ],
+      "investorRole": "Lider yatırımcı",
+      "recommended": true
+    },
+    {
+      "name": "Lider",
+      "amount": "25M ₺",
+      "amountRef": "invest.lead_amount",
+      "equity": "%10",
+      "equityRef": "invest.lead_equity",
+      "valuation": "Ulusal kampanya sonrası yeniden ele alınır",
+      "funds": [
+        "Stratejik + yedek",
+        "Ulusal kampanya hazırlığı"
+      ],
+      "closesRisk": [
+        "Ölçek finansmanı"
+      ],
+      "investorRole": "Yönetim kurulunda temsil ve stratejik karar katılımı",
+      "recommended": false
+    }
+  ]
+}

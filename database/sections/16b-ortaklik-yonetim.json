@@ -26,6 +26,15 @@
       "accent": "baştan belli olmalı"
     },
     {
+      "type": "heading",
+      "level": 3,
+      "text": "Yönetim ve kontrol matrisi · kim neye karar verir"
+    },
+    {
+      "type": "governanceMatrix",
+      "dataRef": "governance-matrix"
+    },
+    {
       "type": "note",
       "tone": "accent",
       "text": "Bu işte hız gerekir; ama kontrolsüz hız risk üretir. Bu nedenle ürün ve operasyon günlük olarak CPO yönetiminde yürür; yatırımcı tarafı bütçe, stratejik yön ve kritik ortaklık kararlarında düzenli rapor alır. İlk 6 ayda haftalık kısa rapor, ayda bir karar toplantısı önerilir.",

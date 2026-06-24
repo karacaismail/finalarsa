@@ -30,6 +30,15 @@
       "type": "lead"
     },
     {
+      "level": 3,
+      "text": "Seçenek karşılaştırması · tutar, hisse, değerleme, kapattığı risk",
+      "type": "heading"
+    },
+    {
+      "type": "investmentOptionsCompare",
+      "dataRef": "investment-options"
+    },
+    {
       "cols": 3,
       "items": [
         {

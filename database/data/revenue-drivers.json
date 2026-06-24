@@ -1,0 +1,52 @@
+{
+  "id": "revenue-drivers",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "Gelir akışı sürücüleri — hangi küçük gösterge geliri büyütür",
+  "intro": "Yatırımcıya sadece '5,5 milyar ₺ medyan gelir' denmez; bu geliri büyütecek küçük operasyonel göstergeler gösterilir.",
+  "drivers": [
+    {
+      "stream": "ParselQ · RFQ (talep→teklif)",
+      "driver": "alıcı talebi · teklif adedi · teklif kredisi",
+      "firstEvidence": "ilk RFQ + teklif görüşmesi",
+      "relation2032": "en büyük ve en inovatif akış (amiral)"
+    },
+    {
+      "stream": "İlan & görünürlük",
+      "driver": "doğrulanmış ilan · premium dönüşüm",
+      "firstEvidence": "ilk ücretli paket",
+      "relation2032": "erken gelir"
+    },
+    {
+      "stream": "Emlakçı ağı (teklif/lead)",
+      "driver": "partner emlakçı · teklif hakkı",
+      "firstEvidence": "partner aboneliği",
+      "relation2032": "bölgesel büyüme"
+    },
+    {
+      "stream": "Veri & API & rapor",
+      "driver": "rapor satışı · API müşteri",
+      "firstEvidence": "ilk rapor satışı",
+      "relation2032": "olgunluk geliri"
+    },
+    {
+      "stream": "Reklam & sponsorluk",
+      "driver": "sponsorlu konum doluluk",
+      "firstEvidence": "ilk bölge sponsoru",
+      "relation2032": "trafik sonrası"
+    },
+    {
+      "stream": "Profesyonel SaaS (emlakçı OS)",
+      "driver": "ücretli emlakçı hesabı",
+      "firstEvidence": "ilk abonelik",
+      "relation2032": "profesyonel segment"
+    },
+    {
+      "stream": "Hizmet (drone/değerleme/foto)",
+      "driver": "drone/foto/değerleme siparişi",
+      "firstEvidence": "ilk hizmet siparişi",
+      "relation2032": "saha katkısı"
+    }
+  ]
+}

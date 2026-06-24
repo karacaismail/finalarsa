@@ -26,6 +26,15 @@
       "type": "heading"
     },
     {
+      "level": 3,
+      "text": "Gelir akışı sürücüleri · hangi gösterge geliri büyütür",
+      "type": "heading"
+    },
+    {
+      "type": "revenueDriverMatrix",
+      "dataRef": "revenue-drivers"
+    },
+    {
       "text": "Küresel gayrimenkul platformlarının gelir modelleri tarandı ve her biri Türkiye mevzuatına göre 2025-2026 itibarıyla doğrulandı. İki grup birlikte sunulur: (1) hiç belge gerektirmeyenler, (2) belgesi/lisansı TÜRKİYE'DE ALINABİLEN modeller. Belge gerekiyorsa alınır; sadece belge alınması yasal olarak imkânsız olanlar hariç tutuldu.",
       "highlight": ["belgesi/lisansı TÜRKİYE'DE ALINABİLEN"],
       "tone": "accent",

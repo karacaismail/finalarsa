@@ -12,6 +12,10 @@ import { KpiBoard, type KpiItem } from "./KpiBoard";
 import { CapitalReleasePlan, type CapitalGate } from "./CapitalReleasePlan";
 import { RiskGateMatrix, type RiskGateData } from "./RiskGateMatrix";
 import { First90DaysPlan, type First90Data } from "./First90DaysPlan";
+import { InvestmentOptionsCompare, type InvestmentOptionsData } from "./InvestmentOptionsCompare";
+import { InvestorReturnModel, type InvestorReturnData } from "./InvestorReturnModel";
+import { GovernanceMatrix, type GovernanceData } from "./GovernanceMatrix";
+import { RevenueDriverMatrix, type RevenueDriverData } from "./RevenueDriverMatrix";
 import { fmt } from "./charts";
 import { claimTag, darkText as D, tone } from "../theme/semantic";
 import { cardBase, interactivePanel, pill } from "../theme/components";
@@ -223,6 +227,26 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
     case "first90DaysPlan": {
       const f9 = getData<First90Data>((b.dataRef as string) ?? "first-90-days");
       return <First90DaysPlan data={f9} />;
+    }
+
+    case "investmentOptionsCompare": {
+      const io = getData<InvestmentOptionsData>((b.dataRef as string) ?? "investment-options");
+      return <InvestmentOptionsCompare data={io} />;
+    }
+
+    case "investorReturnModel": {
+      const ir = getData<InvestorReturnData>((b.dataRef as string) ?? "investor-return-scenarios");
+      return <InvestorReturnModel data={ir} />;
+    }
+
+    case "governanceMatrix": {
+      const gm = getData<GovernanceData>((b.dataRef as string) ?? "governance-matrix");
+      return <GovernanceMatrix data={gm} />;
+    }
+
+    case "revenueDriverMatrix": {
+      const rd = getData<RevenueDriverData>((b.dataRef as string) ?? "revenue-drivers");
+      return <RevenueDriverMatrix data={rd} />;
     }
 
     case "list": {
