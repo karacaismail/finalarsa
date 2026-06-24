@@ -182,7 +182,7 @@ export function RevenueStreamsView() {
   const scenLabel = (SCEN.find((s) => s.key === scen)?.label ?? "Medyan").toLowerCase();
   const streams = [...rs.streams].sort((a, b) => b.y2032_medyan - a.y2032_medyan);
   const total2032 = rs.totalByYear.medyan["2032"];
-  const cols = ["2027", "2029", "2031", "2032"];
+  const cols = ["2026 H2", "2027", "2028", "2029", "2030", "2031", "2032"];
   const pct = (x: number) => `%${(x * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}`;
   const sval = (s: RevStream, c: string) => Math.round((s.byYearMedyan[c] ?? 0) * mult);
   return (
