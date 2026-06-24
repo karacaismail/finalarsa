@@ -65,7 +65,7 @@
       "type": "table"
     },
     {
-      "text": "Paket gelirleri tek başına değildir; aşağıdaki yedi ek gelir modülü — ParselQ-RFQ, veri & API, emlakçı talep ağı, reklam & sponsorluk, profesyonel SaaS, saha hizmetleri, ilan & görünürlük — toplam {{metric:revenue.median}} medyan geliri (2032, %35 pay) birlikte taşır.",
+      "text": "Paket gelirleri tek başına değildir; aşağıdaki yedi ek gelir modülü — ParselQ-RFQ, veri & API, emlakçı talep ağı, reklam & sponsorluk, profesyonel SaaS, saha hizmetleri, ilan & görünürlük — toplam {{metric:revenue.median}} medyan geliri (2032, %38 pay) birlikte taşır.",
       "tone": "info",
       "type": "note"
     },
@@ -129,7 +129,7 @@
       "type": "heading"
     },
     {
-      "text": "Her gelir modeli kendi gelirine sahiptir; toplam tek bir kaleme bağlı değildir. En inovatif ve en büyük akış ParselQ-RFQ'dur (alıcı talep açar → satıcı/emlakçı teklif verir). Aşağıdaki grafik yedi akışın 2027'den 2032'ye medyan hedeflerini gösterir; 2032 medyan toplamı 5,5 milyar ₺'dir (kötümser 2,48 · iyimser 9,07 milyar ₺).",
+      "text": "Her gelir modeli kendi gelirine sahiptir; toplam tek bir kaleme bağlı değildir. En inovatif ve en büyük akış ParselQ-RFQ'dur (alıcı talep açar → satıcı/emlakçı teklif verir). Aşağıdaki grafik yedi akışın 2027'den 2032'ye medyan hedeflerini gösterir; 2032 medyan toplamı {{metric:revenue.median}}'dir (kötümser {{metric:revenue.pessimist}} · iyimser {{metric:revenue.optimist}}).",
       "highlight": [
         "Her gelir modeli kendi gelirine sahiptir",
         "ParselQ-RFQ"
@@ -193,13 +193,20 @@
       "type": "cardGrid"
     },
     {
-      "text": "Aşağıda, yukarıdaki yedi akışı besleyen tüm gelir kalemlerinin tam kataloğu yer alır — küresel platformlardan taranıp Türkiye mevzuatına göre 2025-2026 itibarıyla doğrulanmıştır.",
+      "level": 3,
+      "text": "Ek: gelir kalemleri kataloğu (ileri detay)",
+      "accent": "Ek",
+      "type": "heading"
+    },
+    {
+      "text": "Buradan sonrası ana anlatının dışında kalan EK bölümdür. Yukarıdaki yedi akışı besleyen tüm gelir kalemlerinin tam kataloğunu, yatırımcı detay istediğinde incelemek üzere derinlemesine listeler. Kalemler küresel platformlardan taranmış ve Türkiye mevzuatına göre 2025-2026 itibarıyla doğrulanmıştır; bir kısmı bugün uygulanabilir, bir kısmı ise belge/lisans alındığında devreye giren gelecek opsiyonudur.",
+      "highlight": ["ana anlatının dışında kalan EK bölümdür"],
       "tone": "info",
       "type": "note"
     },
     {
       "level": 3,
-      "text": "Reklam & sponsorluk",
+      "text": "Ek · Reklam & sponsorluk",
       "type": "heading"
     },
     {
@@ -231,7 +238,7 @@
     },
     {
       "level": 3,
-      "text": "Profesyonel SaaS",
+      "text": "Ek · Profesyonel SaaS",
       "type": "heading"
     },
     {
@@ -263,7 +270,7 @@
     },
     {
       "level": 3,
-      "text": "Veri & zekâ",
+      "text": "Ek · Veri & zekâ",
       "type": "heading"
     },
     {
@@ -302,7 +309,7 @@
     },
     {
       "level": 3,
-      "text": "Talep yönlendirme & eşleştirme (aracısız)",
+      "text": "Ek · Talep yönlendirme & eşleştirme (aracısız)",
       "type": "heading"
     },
     {
@@ -341,7 +348,7 @@
     },
     {
       "level": 3,
-      "text": "Satış sonrası & operasyon",
+      "text": "Ek · Satış sonrası & operasyon",
       "type": "heading"
     },
     {
@@ -372,8 +379,14 @@
       "type": "cardGrid"
     },
     {
+      "text": "Önemli ayrım: ana iş modelimiz komisyonsuzdur — ilan ve satıcı tarafından işlem payı almayız, gelirimiz abonelik, modül ve hizmetlerden gelir. Aşağıdaki başlıktaki komisyon/aracılık kalemleri ana akışın parçası DEĞİLDİR; yalnızca ilgili yetki belgesi alındığında devreye girebilecek ayrı, isteğe bağlı gelecek opsiyonlarıdır. Bu opsiyonlar açıldığında bile satıcının ilan tarafı komisyonsuz kalır.",
+      "highlight": ["ana iş modelimiz komisyonsuzdur", "ana akışın parçası DEĞİLDİR"],
+      "tone": "accent",
+      "type": "note"
+    },
+    {
       "level": 3,
-      "text": "Aracılık & komisyon — yetki belgesi ile (alınabilir)",
+      "text": "Ek · Aracılık & komisyon — yetki belgesi ile (alınabilir, gelecek opsiyonu)",
       "type": "heading"
     },
     {
@@ -412,7 +425,7 @@
     },
     {
       "level": 3,
-      "text": "Finansal & ödeme — lisans veya lisanslı işbirliği ile (alınabilir)",
+      "text": "Ek · Finansal & ödeme — lisans veya lisanslı işbirliği ile (alınabilir, gelecek opsiyonu)",
       "type": "heading"
     },
     {
@@ -457,7 +470,7 @@
       "type": "cardGrid"
     },
     {
-      "text": "Bu modellerin tamamı Türkiye'de uygulanabilir: ya hiç belge gerektirmez ya da belgesi/lisansı alınabilir. Belge alınması fiilen imkânsız olan yalnızca iki nokta var, ikisi de iş modelini öldürmez: tapu tescilinin kendisi devlet (TKGM) tekelindedir — platform randevu, evrak, harç ve koordinasyonu yapar, tescili devlet yapar; blok-zincir mülkiyet tokenı için SPK çerçevesi henüz oturmamıştır — yasal alternatif yukarıdaki Gayrimenkul Yatırım Fonu'dur. Bu liste yasal görüş değildir.",
+      "text": "Ek bölümün özeti: yukarıdaki kalemlerin tamamı Türkiye'de uygulanabilir; ya hiç belge gerektirmez ya da belgesi/lisansı alınabilir. Belge alınması fiilen imkânsız olan yalnızca iki nokta vardır ve ikisi de iş modelini engellemez: tapu tescilinin kendisi devlet (TKGM) tekelindedir — platform randevu, evrak, harç ve koordinasyonu yapar, tescili devlet yapar; blok-zincir mülkiyet tokenı için SPK çerçevesi henüz oturmamıştır — yasal alternatif yukarıdaki Gayrimenkul Yatırım Fonu'dur. Bu liste bir yasal görüş değildir.",
       "highlight": ["belgesi/lisansı alınabilir"],
       "tone": "info",
       "type": "note"
@@ -475,7 +488,9 @@
       "pricing.premium_monthly",
       "pricing.doping_per",
       "competitor.sahibinden_listing",
-      "revenue.median"
+      "revenue.median",
+      "revenue.pessimist",
+      "revenue.optimist"
     ]
   }
 }

@@ -154,8 +154,8 @@ def approx(a,b,tol=0.02): return abs(a-b) <= tol*max(abs(a),abs(b),1)
 # huni oranları
 if approx(mv("market.sam_try")/mv("market.tam_try"), 0.187): OK("SAM/TAM ≈ %18,7 ✓")
 else: E("SAM/TAM oranı tutmuyor")
-if approx(mv("market.som_try")/mv("market.sam_try"), 0.35): OK("SOM/SAM ≈ %35 ✓ (2032 hedef pay)")
-else: E(f"SOM/SAM oranı %35 tutmuyor: {mv('market.som_try')/mv('market.sam_try'):.3f}")
+if approx(mv("market.som_try")/mv("market.sam_try"), 0.38): OK("SOM/SAM ≈ %38 ✓ (2032 hedef pay)")
+else: E(f"SOM/SAM oranı %38 tutmuyor: {mv('market.som_try')/mv('market.sam_try'):.3f}")
 # ÇOK-AKIŞLI MODEL: gelir artık SOM×take_rate tek formülüyle değil, 7 gelir akışının toplamıyla doğar.
 # Bu yüzden eski 'SOM×take==median' tek-formül kontrolü kaldırıldı; yerine akış-toplamı = medyan kontrolü konuldu.
 bd = docs["data/financial-breakdown.json"]["revenueStreams"]
@@ -166,10 +166,10 @@ else: E(f"Gelir akışları toplamı {streams_2032:,} ≠ revenue.median {mv('re
 tby = bd["totalByYear"]["medyan"]
 if approx(tby.get("2032", 0), streams_2032, tol=0.01): OK(f"totalByYear medyan 2032 ({tby.get('2032'):,}) == akış toplamı ✓")
 else: E(f"totalByYear medyan 2032={tby.get('2032'):,} ≠ akış toplamı {streams_2032:,}")
-# hedef pay metriği var mı + değeri 0.35
-if "market.target_share_2032" in metrics and approx(mv("market.target_share_2032"), 0.35, tol=0.001):
-    OK("market.target_share_2032 == 0.35 ✓")
-else: E("market.target_share_2032 metriği yok veya 0.35 değil")
+# hedef pay metriği var mı + değeri 0.38
+if "market.target_share_2032" in metrics and approx(mv("market.target_share_2032"), 0.38, tol=0.001):
+    OK("market.target_share_2032 == 0.38 ✓")
+else: E("market.target_share_2032 metriği yok veya 0.38 değil")
 # Her akışın 2032 byYearMedyan == y2032_medyan (iç tutarlılık)
 bad_str = [s["key"] for s in bd["streams"] if s["byYearMedyan"].get("2032") != s["y2032_medyan"]]
 if not bad_str: OK("Gelir akışları: her akışın byYearMedyan[2032] == y2032_medyan ✓")
@@ -256,6 +256,59 @@ for it in docs["reconciliation.json"]["items"]:
     for k in it.get("canonical", []):
         if k not in mkeys: E(f"reconciliation kanonik anahtar yok: {k}")
 OK("Reconciliation kanonik anahtarları metrics'te mevcut")
+
+# 6) MANIFEST ENVANTER DRIFT — generated envanter gerçek dosyalarla tutarlı mı (elle-yönetilen indeks riskini önler)
+man = docs.get("manifest.json", {})
+real_sec_files = sorted(os.path.basename(p) for p in glob.glob(DB + "/sections/*.json"))
+real_data_files = sorted(os.path.basename(p) for p in glob.glob(DB + "/data/*.json"))
+ordered_slugs = []
+for p in sorted(glob.glob(DB + "/sections/*.json"), key=lambda x: os.path.basename(x)):
+    try: sl = json.load(open(p, encoding="utf-8")).get("slug")
+    except Exception: sl = None
+    if sl: ordered_slugs.append(sl)
+mc = man.get("counts", {})
+if mc.get("sections") == len(real_sec_files): OK(f"Manifest counts.sections == gerçek ({len(real_sec_files)}) ✓")
+else: E(f"Manifest counts.sections={mc.get('sections')} ≠ gerçek {len(real_sec_files)} (envanter drift)")
+if mc.get("dataFiles") == len(real_data_files): OK(f"Manifest counts.dataFiles == gerçek ({len(real_data_files)}) ✓")
+else: E(f"Manifest counts.dataFiles={mc.get('dataFiles')} ≠ gerçek {len(real_data_files)} (envanter drift)")
+if man.get("sectionOrder") == ordered_slugs: OK(f"Manifest sectionOrder gerçek bölüm sırasıyla bire bir ✓ ({len(ordered_slugs)} slug)")
+else: E("Manifest sectionOrder gerçek slug sırasıyla uyuşmuyor (envanter drift)")
+if mc.get("metrics") == len(metrics): OK(f"Manifest counts.metrics == gerçek ({len(metrics)}) ✓")
+else: W(f"Manifest counts.metrics={mc.get('metrics')} ≠ gerçek {len(metrics)}")
+
+# 7) dataRef BÜTÜNLÜĞÜ — bloklardaki her dataRef gerçek bir data/ veya shared/ dosyası mı (sessiz render kopması önlenir)
+shared_slugs = set(r.split("/")[1].replace(".json", "") for r in docs if r.startswith("shared/"))
+valid_refs = data_files | shared_slugs
+def datarefs_of(x, acc):
+    if isinstance(x, dict):
+        if isinstance(x.get("dataRef"), str): acc.append(x["dataRef"])
+        for v in x.values(): datarefs_of(v, acc)
+    elif isinstance(x, list):
+        for v in x: datarefs_of(v, acc)
+dref_bad = []
+for rel in sec_files:
+    drs = []; datarefs_of(docs[rel].get("blocks", []), drs)
+    for dr in drs:
+        if dr not in valid_refs: dref_bad.append((rel, dr))
+if not dref_bad: OK("Tüm section dataRef'leri gerçek data/shared dosyalarına işaret ediyor ✓")
+else:
+    for rel, dr in dref_bad: E(f"{rel}: KIRIK dataRef '{dr}'")
+
+# 8) DATA DOSYASI valueRef BÜTÜNLÜĞÜ — investor-dashboard/accordion valueRef'leri metrics'te mi (düz string yerine tek kaynak)
+def valuerefs_only(x, acc):
+    if isinstance(x, dict):
+        if isinstance(x.get("valueRef"), str): acc.append(x["valueRef"])
+        for v in x.values(): valuerefs_only(v, acc)
+    elif isinstance(x, list):
+        for v in x: valuerefs_only(v, acc)
+dvr_bad = []
+for rel in [r for r in docs if r.startswith("data/")]:
+    vr = []; valuerefs_only(docs[rel], vr)
+    for k in vr:
+        if k not in mkeys: dvr_bad.append((rel, k))
+if not dvr_bad: OK("Data dosyası valueRef'leri metrics'te mevcut ✓")
+else:
+    for rel, k in dvr_bad: E(f"{rel}: KIRIK data valueRef '{k}'")
 
 # RAPOR
 print("="*60)

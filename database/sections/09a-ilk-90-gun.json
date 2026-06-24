@@ -74,55 +74,9 @@
       ]
     },
     {
-      "type": "heading",
-      "level": 3,
-      "text": "Saha KPI panosu"
-    },
-    {
-      "type": "statGrid",
-      "cols": 4,
-      "items": [
-        {
-          "label": "Görüşülen satıcı",
-          "value": "≥150",
-          "tone": "accent"
-        },
-        {
-          "label": "Açılan satıcı hesabı",
-          "value": "≥120"
-        },
-        {
-          "label": "Doğrulanmış aktif ilan",
-          "value": "300",
-          "tone": "gold"
-        },
-        {
-          "label": "Keşif/foto/drone tamamlanan",
-          "value": "≥200"
-        },
-        {
-          "label": "Gelen alıcı talebi",
-          "value": "≥80",
-          "tone": "accent"
-        },
-        {
-          "label": "RFQ / teklif görüşmesi",
-          "value": "≥40"
-        },
-        {
-          "label": "İlk ücretli paket",
-          "value": "ilk gelir"
-        },
-        {
-          "label": "Haftalık saha raporu",
-          "value": "12 hafta"
-        }
-      ]
-    },
-    {
       "type": "note",
       "tone": "gold",
-      "text": "90 gün başarı kriteri: 5 yıldız ilçede 300 doğrulanmış aktif ilan, ilk ücretli satıcı paketi, ilk RFQ teklif trafiği ve haftalık raporlanabilir saha verisi."
+      "text": "90 gün başarı kriteri: yukarıdaki funnel hedeflerine ulaşmak — seçili ilçelerde doğrulanmış aktif ilan stoğu, ilk ücretli satıcı paketi, ilk alıcı talebi trafiği (RFQ = alıcı talebiyle teklif alma akışı) ve 12 hafta boyunca haftalık raporlanabilir saha verisi."
     }
   ],
   "refs": {

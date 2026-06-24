@@ -39,36 +39,6 @@
       "dataRef": "investment-options"
     },
     {
-      "cols": 3,
-      "items": [
-        {
-          "title": "Çekirdek",
-          "tone": null,
-          "type": "card",
-          "body": "Ne finanse eder: 2 yazılımcı + 1 tasarımcı, 6 ay nakit çalışma süresi, Söke + Bodrum pilotu. Kapattığı risk: ürün-pazar uyumu. Rol: erken işbirliği.",
-          "eyebrow": "{{metric:invest.seed_equity}} hisse · {{metric:invest.seed_valuation}} değerleme",
-          "valueRef": "invest.seed_amount"
-        },
-        {
-          "title": "Stratejik · önerilen",
-          "tone": "gold",
-          "type": "card",
-          "body": "Ne finanse eder: başabaşa tam yükleme, pilot + pazara giriş, kurucu satıcı programı. Kapattığı risk: arz ve gelir sinyali. Rol: lider yatırımcı.",
-          "eyebrow": "{{metric:invest.strategic_equity}} hisse · {{metric:invest.strategic_valuation}} değerleme",
-          "valueRef": "invest.strategic_amount"
-        },
-        {
-          "title": "Lider",
-          "tone": null,
-          "type": "card",
-          "body": "Ne finanse eder: stratejik + yedek, ulusal kampanya hazırlığı. Kapattığı risk: ölçek finansmanı. Rol: yönetim kurulunda temsil ve stratejik karar katılımı.",
-          "eyebrow": "{{metric:invest.lead_equity}} hisse · yönetim kurulunda temsil",
-          "valueRef": "invest.lead_amount"
-        }
-      ],
-      "type": "cardGrid"
-    },
-    {
       "text": "Ulusal kampanya sonrası değerleme yeniden ele alınır. Bugünkü teklif, kampanya öncesi riskleri birlikte üstlenme teklifidir.",
       "highlight": [
         "riskleri birlikte üstlenme"
@@ -90,24 +60,26 @@
       "type": "note"
     },
     {
+      "level": 3,
+      "text": "Yatırımcının kontrol hakları",
+      "type": "heading"
+    },
+    {
       "cols": 3,
       "items": [
         {
-          "eyebrow": "Yatırımcının kontrol hakları",
           "title": "Bütçe onayı",
           "body": "Harcama planı yatırımcı onayından geçer.",
           "tone": null,
           "type": "card"
         },
         {
-          "eyebrow": "Yatırımcının kontrol hakları",
           "title": "Saha bölgesi",
           "body": "İlk pilot ilçe birlikte seçilir.",
           "tone": null,
           "type": "card"
         },
         {
-          "eyebrow": "Yatırımcının kontrol hakları",
           "title": "Düzenli rapor",
           "body": "İlk 6 ay haftalık kısa rapor, ayda bir karar toplantısı.",
           "tone": null,

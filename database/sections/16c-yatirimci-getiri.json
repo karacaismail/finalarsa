@@ -48,30 +48,6 @@
       "text": "Bir arsayı alıp beklemek başka, o arsanın üstüne gelir üreten bir iş merkezi kurmak başkadır. Burada amaç yalnız arsa ilanı değil, arsa piyasasının iş merkezini kurmaktır."
     },
     {
-      "type": "cardGrid",
-      "cols": 3,
-      "items": [
-        {
-          "eyebrow": "1 · değer artışı",
-          "title": "Şirket değeri büyür",
-          "body": "Gelir ve pazar payı arttıkça şirketin değeri yükselir; yeni turlarda şirket değerlemesi etkisi.",
-          "tone": "gold"
-        },
-        {
-          "eyebrow": "2 · nakit üretimi",
-          "title": "İş nakit üretmeye başlar",
-          "body": "Başabaş sonrası operasyon kendi nakdini üretir.",
-          "tone": "accent"
-        },
-        {
-          "eyebrow": "3 · stratejik çıkış",
-          "title": "İleride satış ihtimali",
-          "body": "Stratejik yatırımcı veya daha büyük platforma satış senaryosu.",
-          "tone": "accent"
-        }
-      ]
-    },
-    {
       "type": "note",
       "tone": "warn",
       "text": "Bu bir garanti getiri değildir. Tüm rakamlar senaryo ve varsayımdır; 'değer artışı potansiyeli' olarak okunmalıdır."

@@ -11,8 +11,8 @@
   },
   "background": "bg-2",
   "title": {
-    "text": "Şartlar sağlandığında vergi avantajı kesindir",
-    "accent": "kesindir"
+    "text": "Şartlar sağlandığında yazılım gelirinde vergi avantajı oluşur",
+    "accent": "vergi avantajı oluşur"
   },
   "blocks": [
     {
@@ -21,12 +21,12 @@
     },
     {
       "level": 2,
-      "text": "Şartlar sağlandığında vergi avantajı kesindir.",
-      "accent": "kesindir",
+      "text": "Şartlar sağlandığında yazılım gelirinde vergi avantajı oluşur.",
+      "accent": "vergi avantajı oluşur",
       "type": "heading"
     },
     {
-      "text": "Şirket teknopark çatısına alınıp aşağıdaki şartları sağladığında, yazılım gelirlerinde 4691 kapsamlı vergi avantajı yasal olarak doğar. Avantajın mekanizması kesindir; değişen tek şey kazanç düzeyine bağlı tutardır.",
+      "text": "Şirket teknopark çatısına alınıp aşağıdaki şartları sağladığında, yazılım gelirlerinde 4691 sayılı kanun (teknoloji geliştirme bölgeleri yasası) kapsamında vergi avantajı oluşur. Mekanizma mevzuata bağlıdır; ₺ tutarı kazanç düzeyine ve dönemsel şartlara göre modelde hesaplanır.",
       "highlight": [
         "4691 kapsamlı vergi avantajı"
       ],
@@ -83,7 +83,7 @@
       "title": "İlk yıl avantajı (model tahmini)",
       "tone": "gold",
       "type": "card",
-      "body": "Mekanizma yasal ve kesin; ₺ tutarı kazanç düzeyine bağlı olduğu için model tahminidir. İstisna süresi 31/12/2028.",
+      "body": "Mekanizma mevzuata bağlıdır; ₺ tutarı kazanç düzeyine bağlı olduğu için model varsayımıdır. İstisna süresi 31/12/2028.",
       "eyebrow": "~2027",
       "valueRef": "tax.saving_2027",
       "tag": "model varsayımı"
@@ -121,7 +121,7 @@
       "type": "list"
     },
     {
-      "text": "Vergi avantajının mekanizması yasal ve kesindir. Yandaki ₺ tutarı kazanç düzeyine bağlı bir model tahminidir; şartlar sağlandığında avantajın kendisi kesin doğar.",
+      "text": "Vergi avantajının mekanizması mevzuata bağlıdır. Yandaki ₺ tutarı kazanç düzeyine bağlı bir model varsayımıdır; şartlar sağlandığında avantaj oluşur.",
       "tone": "info",
       "type": "note"
     }

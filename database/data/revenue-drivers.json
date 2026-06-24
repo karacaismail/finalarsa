@@ -4,7 +4,7 @@
   "schemaVersion": "1.0.0",
   "lang": "tr",
   "title": "Gelir akışı sürücüleri — hangi küçük gösterge geliri büyütür",
-  "intro": "Yatırımcıya sadece '5,5 milyar ₺ medyan gelir' denmez; bu geliri büyütecek küçük operasyonel göstergeler gösterilir.",
+  "intro": "Yatırımcıya sadece '5,97 milyar ₺ medyan gelir' denmez; bu geliri büyütecek küçük operasyonel göstergeler gösterilir.",
   "drivers": [
     {
       "stream": "ParselQ · RFQ (talep→teklif)",

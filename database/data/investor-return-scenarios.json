@@ -7,21 +7,21 @@
   "scenarios": [
     {
       "name": "Kötümser",
-      "revenue2032": "2,48 milyar ₺",
+      "revenue2032": "2,69 milyar ₺",
       "multiple": "örn. 2×–3× gelir (model varsayımı)",
       "companyValue": "örn. ~5–7 milyar ₺ aralığı (model varsayımı)",
       "note": "Çarpan ve şirket değeri model varsayımı/örnektir; kesin değer değildir. Yavaş benimseme · CAC yüksek senaryosu."
     },
     {
       "name": "Medyan",
-      "revenue2032": "5,5 milyar ₺",
+      "revenue2032": "5,97 milyar ₺",
       "multiple": "örn. 3×–4× gelir (model varsayımı)",
       "companyValue": "örn. ~16–22 milyar ₺ aralığı (model varsayımı)",
       "note": "Plan baz senaryosu; finansal modelin temeli. Çarpan ve şirket değeri model varsayımı/örnektir, garanti değildir."
     },
     {
       "name": "İyimser",
-      "revenue2032": "9,07 milyar ₺",
+      "revenue2032": "9,85 milyar ₺",
       "multiple": "örn. 4×–5× gelir (model varsayımı)",
       "companyValue": "örn. ~36–45 milyar ₺ aralığı (model varsayımı)",
       "note": "Viral büyüme · diaspora + kanal işbirlikleri senaryosu. Çarpan ve şirket değeri model varsayımı/örnektir."

@@ -3,7 +3,7 @@
   "kind": "data",
   "schemaVersion": "1.0.0",
   "lang": "tr",
-  "source": "ParselQ revize modeli (%35 hedef, çok-akışlı, senaryolu)",
+  "source": "ParselQ revize modeli (%38 hedef, çok-akışlı, senaryolu)",
   "scenario": "Medyan (agresif/sola-kaydır)",
   "projection": {
     "months": 78,
@@ -14,65 +14,65 @@
   "yearly": [
     {
       "year": "2026 H2",
-      "revenue": 10072000,
+      "revenue": 10935315,
       "expense": 17549832,
-      "net": -7477832,
+      "net": -6614517,
       "headcount": 38,
-      "cashEnd": 32522168
+      "cashEnd": 33385483
     },
     {
       "year": "2027",
-      "revenue": 309251000,
+      "revenue": 335758229,
       "expense": 86990733,
-      "net": 222260267,
+      "net": 248767496,
       "headcount": 92,
-      "cashEnd": 254782435
+      "cashEnd": 282152979
     },
     {
       "year": "2028",
-      "revenue": 901972000,
+      "revenue": 979283886,
       "expense": 168547659,
-      "net": 733424341,
+      "net": 810736227,
       "headcount": 140,
-      "cashEnd": 988206776
+      "cashEnd": 1092889206
     },
     {
       "year": "2029",
-      "revenue": 2018703000,
+      "revenue": 2191734686,
       "expense": 272279367,
-      "net": 1746423633,
+      "net": 1919455319,
       "headcount": 185,
-      "cashEnd": 2734630409
+      "cashEnd": 3012344525
     },
     {
       "year": "2030",
-      "revenue": 3450524000,
+      "revenue": 3746283200,
       "expense": 383764743,
-      "net": 3066759257,
+      "net": 3362518457,
       "headcount": 225,
-      "cashEnd": 5801389666
+      "cashEnd": 6374862982
     },
     {
       "year": "2031",
-      "revenue": 4798673000,
+      "revenue": 5209987829,
       "expense": 483192740,
-      "net": 4315480260,
+      "net": 4726795089,
       "headcount": 256,
-      "cashEnd": 10116869926
+      "cashEnd": 11101658071
     },
     {
       "year": "2032",
-      "revenue": 5500000000,
+      "revenue": 5971428571,
       "expense": 540520800,
-      "net": 4959479200,
+      "net": 5430907771,
       "headcount": 256,
-      "cashEnd": 15076349126
+      "cashEnd": 16532565842
     }
   ],
   "breakeven": {
     "operational": "2027-01",
     "operationalLabel": "2027 başı",
-    "investmentPayback": "40M ₺ sermaye yeterli; agresif kadroda 2026 H2 kasa dibi ~32.522.168 ₺. 2027'den güçlü pozitif."
+    "investmentPayback": "40M TL sermaye yeterli; agresif kadroda 2026 H2 kasa dibi ~33,385,483 TL. 2027'den guclu pozitif."
   },
   "parameters": {
     "usdtry": {
@@ -157,5 +157,5 @@
     "ÇAĞRI MERKEZİ ve YAZILIM EKİBİ sayfalarında #VALUE! hataları; İK doğrulama formülleri (R18, R21-R22) çalışmıyor."
   ],
   "note": "Yıllık tablo DASHBOARD sayfasından birebir. knownIssues rapor2.md analizinden; pitch'te muhafazakar başlık rakamlar kullanıldı.",
-  "_recalcNote": "ParselQ revizyonu (22.06.2026): kadro 2026=30→2031=256; 2032 hedef pazar payı %35 (online arsa); gelir ÇOK-AKIŞLI ve SENARYOLU (kötümser×0.45 / medyan / iyimser×1.65). Gelir akışları: ParselQ-RFQ, İlan, Emlakçı ağı, Veri/API, Reklam, SaaS, Hizmet. Gider: yeni kadro × std TR maliyet + araçlı saha operasyonu. Tüm tutarlar MODEL VARSAYIMI/HEDEF. || AGRESİF (22.06.2026): kadro 38→256 (sola-kaydır); 2032 uçları SABİT (5,5 mlr/%35); ara yıl gelir erken büyür (×1.25→×1.06), gider yeni kadroya göre +ek personel; net/nakit yeniden zincirlendi."
+  "_recalcNote": "ParselQ revizyonu (22.06.2026): kadro 2026=30→2031=256; 2032 hedef pazar payı %38 (online arsa); gelir ÇOK-AKIŞLI ve SENARYOLU (kötümser×0.45 / medyan / iyimser×1.65). Gelir akışları: ParselQ-RFQ, İlan, Emlakçı ağı, Veri/API, Reklam, SaaS, Hizmet. Gider: yeni kadro × std TR maliyet + araçlı saha operasyonu. Tüm tutarlar MODEL VARSAYIMI/HEDEF. || AGRESİF (22.06.2026): kadro 38→256 (sola-kaydır); 2032 uçları SABİT (5,97 mlr/%38); ara yıl gelir erken büyür (×1.25→×1.06), gider yeni kadroya göre +ek personel; net/nakit yeniden zincirlendi."
 }

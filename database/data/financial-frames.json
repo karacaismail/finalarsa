@@ -4,34 +4,34 @@
   "schemaVersion": "1.0.0",
   "lang": "tr",
   "title": "Finansal karar çerçeveleri — grafiklere bakmadan önce",
-  "intro": "Finans grafiklerinde önce kasa güvenine, sonra kârlılığa bakılır: para ne zaman kendini döndürür, vergi avantajı ne kadar, marj ölçekle birlikte artıyor mu ve gelir tek kaleme mi bağlı? Aşağıdaki çerçeveler her grafiğe bakarken hangi soruyu sorman ve neyin iyi, neyin uyarı işareti olduğunu söyler.",
+  "intro": "Finans grafiklerinde önce kasa güvenine, sonra kârlılığa bakılır: para ne zaman kendini döndürür, vergi avantajı ne kadar, marj ölçekle birlikte artıyor mu ve gelir tek kaleme mi bağlı? Bu çerçeveler sayısal kanon değildir; her grafiğe bakarken hangi soruyu sorman ve neyin iyi, neyin uyarı işareti olduğunu söyler. Rakamların kaynağı finansal model ve gelir kırılımıdır (model varsayımı).",
   "frames": [
     {
       "title": "Başabaş",
       "decisionQuestion": "Para ne zaman kendini döndürmeye başlar?",
-      "lookAt": "Kümülatif gelir ile kümülatif giderin kesişimi",
-      "goodResult": "2027 başında kesişim; kasa en dipte ~32,5 milyon ₺",
+      "lookAt": "Kümülatif gelir ile kümülatif giderin kesişimi; kasa dibi (en düşük nakit) ayrıca izlenir",
+      "goodResult": "Operasyonel başabaş 2027 başında; kasa dibi 40 milyon ₺ sermaye tamponunun içinde kalır",
       "redFlags": [
         "Kesişim 2027 sonrasına kayarsa",
-        "Kasa dibi ~32,5 milyon ₺ altına inerse"
+        "Kasa dibi sermaye tamponunu aşıp negatife yaklaşırsa"
       ],
-      "dependsOn": "gelir senaryosu"
+      "dependsOn": "gelir senaryosu (model varsayımı)"
     },
     {
       "title": "Vergi avantajı",
       "decisionQuestion": "Teknopark avantajı kazanca göre ne kadar?",
-      "lookAt": "Senaryoya göre KV istisnası + stopaj/SGK avantajı",
-      "goodResult": "Medyan ~109 milyon ₺ yıllık avantaj",
+      "lookAt": "Senaryoya göre KV (kurumlar vergisi) istisnası + stopaj/SGK avantajı",
+      "goodResult": "Şartlar sağlanırsa kazançla orantılı yıllık avantaj oluşur",
       "redFlags": [
-        "Teknopark şartları sağlanmazsa avantaj sıfır"
+        "Teknopark şartları sağlanmazsa avantaj oluşmaz"
       ],
-      "dependsOn": "kazanç düzeyi (model varsayımı)"
+      "dependsOn": "kazanç düzeyi ve mevzuat (model varsayımı)"
     },
     {
       "title": "2032 yıllık",
       "decisionQuestion": "Ölçek kârlılığı taşıyor mu?",
-      "lookAt": "Net marj: 2027 %72 → 2032 %90",
-      "goodResult": "Gelir büyürken marj artıyor (5,5 milyar ₺ medyan)",
+      "lookAt": "Net marjın 2027'den 2032'ye seyri",
+      "goodResult": "Gelir büyürken net marj da artar",
       "redFlags": [
         "Marj artmıyorsa gider yapısı sorunlu"
       ]
@@ -48,7 +48,7 @@
     {
       "title": "Kuruluş (CAPEX) & İşletme (OPEX)",
       "decisionQuestion": "İlk yatırım ve sabit gider ne kadar?",
-      "lookAt": "CAPEX bir kerelik kuruluş; OPEX tekrar eden aylık gider",
+      "lookAt": "CAPEX bir kerelik kuruluş gideri; OPEX tekrar eden aylık işletme gideri",
       "goodResult": "CAPEX ilk ayda biter; OPEX kadroyla kademeli artar",
       "redFlags": [
         "OPEX hedefin üstüne çıkarsa işe alım/pazarlama yavaşlatılır"

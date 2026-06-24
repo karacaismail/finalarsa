@@ -43,7 +43,7 @@
       "num": "02",
       "label": "Neden Bu İşbirliği?",
       "summary": "Bu iş, sizin bildiğiniz emlak işinin dijital şubesidir; saha, portföy, itibar ve bölge bilginiz projenin temelidir.",
-      "sections": ["neden-ortak"]
+      "sections": ["neden-ortak", "emlak-dijital-sube"]
     },
     {
       "id": "problem-cozum",

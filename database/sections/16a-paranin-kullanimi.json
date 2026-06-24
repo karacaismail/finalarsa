@@ -93,32 +93,6 @@
           "tone": "gold"
         }
       ]
-    },
-    {
-      "type": "heading",
-      "level": 3,
-      "text": "Harcama kapıları"
-    },
-    {
-      "type": "timeline",
-      "items": [
-        {
-          "when": "30 gün",
-          "what": "Şirket + ürün planı + pilot ilçe listesi"
-        },
-        {
-          "when": "60 gün",
-          "what": "İlk satıcı sözleşmeleri"
-        },
-        {
-          "when": "90 gün",
-          "what": "Doğrulanmış ilan + alıcı talebi"
-        },
-        {
-          "when": "180 gün",
-          "what": "Ücretli paket / ilk giriş geliri"
-        }
-      ]
     }
   ],
   "refs": {

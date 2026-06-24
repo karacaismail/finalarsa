@@ -15,17 +15,17 @@
     },
     {
       "kpi": "Sıcak satıcı görüşmesi",
-      "d30": "20",
-      "d60": "60",
-      "d90": "120",
+      "d30": "30",
+      "d60": "90",
+      "d90": "180",
       "decision": "Saha mesajını revize et"
     },
     {
-      "kpi": "Emlakçı partner",
-      "d30": "10",
-      "d60": "25",
-      "d90": "50",
-      "decision": "Partner teklifini değiştir"
+      "kpi": "Açılan satıcı hesabı",
+      "d30": "20",
+      "d60": "70",
+      "d90": "150",
+      "decision": "Hesap açma akışını sadeleştir"
     },
     {
       "kpi": "Doğrulanmış aktif ilan",
@@ -38,7 +38,7 @@
       "kpi": "Alıcı talebi",
       "d30": "10",
       "d60": "50",
-      "d90": "150",
+      "d90": "120",
       "decision": "Talep kanalını güçlendir"
     },
     {

@@ -27,8 +27,8 @@
       "basis": "TAM × %18,7 online penetrasyon"
     },
     "som": {
-      "value": 137200000000,
-      "basis": "SAM × %35 hedef pay (2032 vizyonu)"
+      "value": 148960000000,
+      "basis": "SAM × %38 hedef pay (2032 vizyonu)"
     },
     "annualRevenuePotential": {
       "value": 5500000000,
@@ -38,7 +38,7 @@
     "takeRate": 0.015,
     "emlakTam": 5500000000000,
     "emlakTargetShare": 0.01,
-    "targetShare2032": 0.35
+    "targetShare2032": 0.38
   },
   "competitorShares": {
     "sahibinden_land": 0.68,
@@ -51,21 +51,21 @@
     {
       "id": "pessimist",
       "label": "Kötümser",
-      "revenue": 2475000000,
+      "revenue": 2687142857,
       "shareLabel": "%18 (online arsa)",
       "note": "yavaş benimseme · CAC yüksek"
     },
     {
       "id": "median",
       "label": "Medyan",
-      "revenue": 5500000000,
-      "shareLabel": "%35 (online arsa) — 2032 hedef",
+      "revenue": 5971428571,
+      "shareLabel": "%38 (online arsa) — 2032 hedef",
       "note": "plan baz · finansal modelin temeli"
     },
     {
       "id": "optimist",
       "label": "İyimser",
-      "revenue": 9075000000,
+      "revenue": 9852857143,
       "shareLabel": "%42 (online arsa)",
       "note": "viral büyüme · diaspora + kanal işbirlikleri"
     }
@@ -97,20 +97,20 @@
     ],
     "targetYear": "2032",
     "samBase": 392000000000,
-    "note": "Gelir çok-akışlıdır (yalnız take rate değil). Pay = online arsa pazarındaki hedef pazar payı; 2032 medyan %35. 2026 H2 soft-launch. [AGRESİF/sola-kaydır: ara yıllar erken; 2032 uçları sabit.]",
+    "note": "Gelir çok-akışlıdır (yalnız take rate değil). Pay = online arsa pazarındaki hedef pazar payı; 2032 medyan %38. 2026 H2 soft-launch. [AGRESİF/sola-kaydır: ara yıllar erken; 2032 uçları sabit.]",
     "scenarios": [
       {
         "label": "Kötümser",
-        "steadyRevenue": 2475000000,
+        "steadyRevenue": 2687142857,
         "steadyShare": 0.18,
         "revenue": [
-          4532000,
-          139163000,
-          405887000,
-          908416000,
-          1552736000,
-          2159403000,
-          2475000000
+          4920457,
+          151091257,
+          440677314,
+          986280229,
+          1685827657,
+          2344494686,
+          2687142857
         ],
         "shareOfSam": [
           0.0031,
@@ -124,39 +124,39 @@
       },
       {
         "label": "Medyan",
-        "steadyRevenue": 5500000000,
-        "steadyShare": 0.35,
+        "steadyRevenue": 5971428571,
+        "steadyShare": 0.38,
         "revenue": [
-          10072000,
-          309251000,
-          901972000,
-          2018703000,
-          3450524000,
-          4798673000,
-          5500000000
+          10935314,
+          335758229,
+          979283886,
+          2191734686,
+          3746283200,
+          5209987829,
+          5971428571
         ],
         "shareOfSam": [
-          0.0063,
-          0.0405,
-          0.104,
-          0.1952,
-          0.28,
-          0.3286,
-          0.35
+          0.0068,
+          0.044,
+          0.1129,
+          0.2119,
+          0.304,
+          0.3568,
+          0.38
         ]
       },
       {
         "label": "İyimser",
-        "steadyRevenue": 9075000000,
+        "steadyRevenue": 9852857143,
         "steadyShare": 0.42,
         "revenue": [
-          16619000,
-          510264000,
-          1488254000,
-          3330860000,
-          5693365000,
-          7917810000,
-          9075000000
+          18043486,
+          554000914,
+          1615818629,
+          3616362286,
+          6181367714,
+          8596479429,
+          9852857143
         ],
         "shareOfSam": [
           0.0075,

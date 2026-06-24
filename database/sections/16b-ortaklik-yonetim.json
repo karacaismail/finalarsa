@@ -46,47 +46,6 @@
       "type": "note",
       "tone": "info",
       "text": "Saha ekibi yolda hızlı gider; ama rota, yakıt ve hedef her hafta kontrol edilir."
-    },
-    {
-      "type": "table",
-      "columns": [
-        "Konu",
-        "CPO",
-        "Yatırımcı",
-        "Ortak karar"
-      ],
-      "rows": [
-        [
-          "Ürün yol haritası",
-          "Sorumlu",
-          "Bilgilendirilir",
-          "Kritik değişiklikte"
-        ],
-        [
-          "Bütçe",
-          "Hazırlar",
-          "Onaylar",
-          "Evet"
-        ],
-        [
-          "Saha bölgesi",
-          "Önerir",
-          "Saha bilgisi verir",
-          "Evet"
-        ],
-        [
-          "İşe alım",
-          "Yürütür",
-          "Limit onayı",
-          "Eşik üstü"
-        ],
-        [
-          "Stratejik işbirliği",
-          "Hazırlar",
-          "Değerlendirir",
-          "Evet"
-        ]
-      ]
     }
   ],
   "refs": {

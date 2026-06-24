@@ -152,6 +152,11 @@
       "type": "note"
     },
     {
+      "text": "Bu bölüm saha ritmine ve ilçe yayılımına odaklanır; ölçülebilir ilk 90 gün hedefleri ve karar kapıları Bölüm 09a'da verilmiştir.",
+      "tone": "info",
+      "type": "note"
+    },
+    {
       "level": 3,
       "text": "Araçlı saha ekipleri: önce keşfet, sonra sat",
       "accent": "önce keşfet, sonra sat",

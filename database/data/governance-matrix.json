@@ -48,6 +48,13 @@
       "note": "kademeli"
     },
     {
+      "decision": "Stratejik işbirliği",
+      "cpo": "consulted",
+      "investor": "approves",
+      "joint": true,
+      "note": "ortak değerlendirme"
+    },
+    {
       "decision": "Aylık yönetim raporu ve karar toplantısı",
       "cpo": "responsible",
       "investor": "consulted",

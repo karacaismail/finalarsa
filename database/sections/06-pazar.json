@@ -11,8 +11,8 @@
   },
   "background": "bg-2",
   "title": {
-    "text": "Pazar büyük; 2032'de online arsanın %35'ini hedefliyoruz",
-    "accent": "%35'ini"
+    "text": "Pazar büyük; 2032'de online arsanın %38'ini hedefliyoruz",
+    "accent": "%38'ini"
   },
   "blocks": [
     {
@@ -21,8 +21,8 @@
     },
     {
       "level": 2,
-      "text": "Pazar büyük; 2032'de online arsanın %35'ini hedefliyoruz.",
-      "accent": "%35'ini",
+      "text": "Pazar büyük; 2032'de online arsanın %38'ini hedefliyoruz.",
+      "accent": "%38'ini",
       "type": "heading"
     },
     {
@@ -84,7 +84,7 @@
           "tag": "hedef"
         },
         {
-          "label": "SOM — ulaşılabilir hedef (SAM × %35)",
+          "label": "SOM — ulaşılabilir hedef (SAM × %38)",
           "tone": "accent",
           "type": "stat",
           "valueRef": "market.som_try",
@@ -101,9 +101,9 @@
       "type": "statGrid"
     },
     {
-      "text": "2032 hedefi: online arsa işlem pazarının %35'ine ulaşmak — tek bir ürünün değil, arsam.net'in lider olarak taşıyacağı toplam online arsa dilimi. SOM = SAM × %35. Geliri tek bir komisyon formülü değil, yedi ayrı gelir akışı üretir (ayrıntı: Bölüm 08).",
+      "text": "2032 hedefi: online arsa işlem pazarının %38'ine ulaşmak — tek bir ürünün değil, arsam.net'in lider olarak taşıyacağı toplam online arsa dilimi. SOM = SAM × %38. Geliri tek bir komisyon formülü değil, yedi ayrı gelir akışı üretir (ayrıntı: Bölüm 08).",
       "highlight": [
-        "%35'ine",
+        "%38'ine",
         "yedi ayrı gelir akışı"
       ],
       "tone": "info",
@@ -152,7 +152,7 @@
       "type": "statGrid"
     },
     {
-      "text": "TKGM/TÜİK işlem adetleri doğrulanmış kaynaktır; online penetrasyon, ortalama arsa işlem değeri, %35 hedef pay ve senaryo gelir bantları model varsayımıdır. 2032 gelir bandı, benimseme hızına göre 2,48 milyar – 9,07 milyar ₺ arasında değişir; medyan 5,5 milyar ₺.",
+      "text": "TKGM/TÜİK işlem adetleri doğrulanmış kaynaktır; online penetrasyon, ortalama arsa işlem değeri, {{metric:market.target_share_2032}} hedef pay ve senaryo gelir bantları model varsayımıdır. 2032 gelir bandı, benimseme hızına göre {{metric:revenue.pessimist}} – {{metric:revenue.optimist}} arasında değişir; medyan {{metric:revenue.median}}.",
       "tone": "info",
       "type": "note"
     },

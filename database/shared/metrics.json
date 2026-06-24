@@ -4,7 +4,7 @@
   "schemaVersion": "1.0.0",
   "lang": "tr",
   "description": "Tüm kanonik rakamların tek kaynağı. Bölümler {{metric:<key>}} ile referans verir; sayı asla bölüm içinde elle tekrarlanmaz.",
-  "count": 97,
+  "count": 99,
   "metrics": {
     "capital.investor_pocket": {
       "value": 15000000,
@@ -25,14 +25,16 @@
       "value": 32082112,
       "unit": "TRY",
       "display": "~32 milyon ₺",
-      "label": "Başabaşa kadar kümülatif gider",
+      "label": "Kümülatif gider tabanı (256 modeli; başabaş hizalı)",
+      "note": "256 kişilik olgun model için kümülatif gider referansı. Operasyonel başabaşa kadar fiilen harcanan tutar AYRI bir metriktir: fin.cum_spend_to_be (~23,4M ₺). İkisini karıştırma.",
       "source": "model-v9-15"
     },
     "capital.reserve": {
-      "value": 32522168,
+      "value": 33385483,
       "unit": "TRY",
-      "display": "~32,5 milyon ₺",
-      "label": "Kasa en dip seviyesi (Ara 2026, agresif)",
+      "display": "~33,4 milyon ₺",
+      "label": "Kasa dibi — en düşük nakit seviyesi (Ara 2026)",
+      "note": "cashTrough ile aynı: 2026 H2 sonunda nakit bu seviyeye iner, sonra yükselir. 40M sermayenin içinde kalır.",
       "source": "model-v9-15"
     },
     "capital.ops_funded": {
@@ -55,28 +57,28 @@
       "label": "Minimum kazanç (kötümser senaryo geliri)"
     },
     "revenue.pessimist": {
-      "value": 2475000000,
+      "value": 2687142857,
       "unit": "TRY",
-      "display": "2.48 milyar ₺",
+      "display": "2,69 milyar ₺",
       "label": "Kötümser 2032 yıllık gelir"
     },
     "revenue.median": {
-      "value": 5500000000,
+      "value": 5971428571,
       "unit": "TRY",
-      "display": "5.5 milyar ₺",
+      "display": "5,97 milyar ₺",
       "label": "Medyan 2032 yıllık gelir",
       "source": "model-v9-15"
     },
     "revenue.optimist": {
-      "value": 9075000000,
+      "value": 9852857143,
       "unit": "TRY",
-      "display": "9.07 milyar ₺",
+      "display": "9,85 milyar ₺",
       "label": "İyimser 2032 yıllık gelir"
     },
     "revenue.potential_exact": {
-      "value": 5500000000,
+      "value": 5971428571,
       "unit": "TRY",
-      "display": "5.5 milyar ₺",
+      "display": "5,97 milyar ₺",
       "label": "Çok-akışlı 2032 gelir (medyan)",
       "source": "model-v9-15"
     },
@@ -131,10 +133,10 @@
       "source": "model-v9-15"
     },
     "market.som_try": {
-      "value": 137200000000,
+      "value": 148960000000,
       "unit": "TRY",
-      "display": "137,2 milyar ₺",
-      "label": "SOM — %35 hedef pay (2032)",
+      "display": "149 milyar ₺",
+      "label": "SOM — %38 hedef pay (2032)",
       "source": "model-v9-15"
     },
     "market.online_penetration": {
@@ -308,23 +310,23 @@
       "source": "model-v9-15"
     },
     "fin.revenue_2027": {
-      "value": 309251000,
+      "value": 335758229,
       "unit": "TRY",
-      "display": "309M ₺",
+      "display": "336M ₺",
       "label": "2027 gelir (medyan)",
       "source": "model-v9-15"
     },
     "fin.net_2027": {
-      "value": 222260267,
+      "value": 248767496,
       "unit": "TRY",
-      "display": "+222M ₺",
+      "display": "+249M ₺",
       "label": "2027 net kâr (medyan)",
       "source": "model-v9-15"
     },
     "fin.cash_2032": {
-      "value": 15076349126,
+      "value": 16532565842,
       "unit": "TRY",
-      "display": "15.08 milyar ₺",
+      "display": "16,53 milyar ₺",
       "label": "2032 yıl sonu nakit (medyan)",
       "source": "model-v9-15"
     },
@@ -367,14 +369,32 @@
       "value": "2027-01",
       "unit": "month",
       "display": "Oca 2027",
-      "label": "Operasyonel başabaş ayı",
+      "label": "Operasyonel başabaş ayı (aylık net pozitife döner)",
+      "note": "Aylık gelirin aylık gideri ilk kez geçtiği ay. Model Tem 2026 başlar → ~6 ay operasyonel. cumSpendToBE bu ana kadar harcanan kümülatif giderdir (~23,4M ₺).",
       "source": "model-v9-15"
     },
     "fin.breakeven_months": {
       "value": 18,
       "unit": "ay",
       "display": "18 ay",
-      "label": "Başabaşa kalan süre"
+      "label": "Yatırım geri dönüş penceresi (kümülatif net'in turu geri kazanması)",
+      "note": "Operasyonel başabaş AYI ile karıştırma. Operasyonel başabaş ~6 ay (Oca 2027). Bu 18 ay AYRI bir kavramdır: kümülatif net'in yatırım turunu geri kazandığı muhafazakâr geri dönüş penceresi (model başından ~Ara 2027). Değer model varsayımıdır."
+    },
+    "fin.cum_spend_to_be": {
+      "value": 23400551,
+      "unit": "TRY",
+      "display": "~23,4 milyon ₺",
+      "label": "Operasyonel başabaşa kadar kümülatif gider",
+      "note": "Tem 2026 → Oca 2027 arası fiilen harcanan kümülatif gider (financial-breakdown.breakeven.cumSpendToBE). Kasa dibinden (fin.cash_trough) ve 256-modeli gider tabanından (capital.breakeven_spend) ayrı bir kavramdır.",
+      "source": "model-v9-15"
+    },
+    "fin.cash_trough": {
+      "value": 33385483,
+      "unit": "TRY",
+      "display": "~33,4 milyon ₺",
+      "label": "Kasa dibi (en düşük nakit, Ara 2026)",
+      "note": "Projeksiyon boyunca nakdin gördüğü en düşük seviye; 2026 H2 sonunda. 40M sermayenin içinde kalır, sonra hızla yükselir. capital.reserve ile aynı değer; başabaşa kadar kümülatif gider (~23,4M) ile karıştırma.",
+      "source": "model-v9-15"
     },
     "strategy.total_models": {
       "value": 470,
@@ -631,15 +651,15 @@
       "label": "2031 sonu kadro"
     },
     "fin.revenue_2032_med": {
-      "value": 5500000000,
+      "value": 5971428571,
       "unit": "",
-      "display": "5.5 milyar ₺",
+      "display": "5,97 milyar ₺",
       "label": "2032 gelir (medyan)"
     },
     "market.target_share_2032": {
-      "value": 0.35,
+      "value": 0.38,
       "unit": "",
-      "display": "%35",
+      "display": "%38",
       "label": "2032 hedef pazar payı (online arsa)"
     },
     "pricing.single_listing": {
