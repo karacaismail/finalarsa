@@ -1,0 +1,58 @@
+{
+  "id": "financial-frames",
+  "kind": "data",
+  "schemaVersion": "1.0.0",
+  "lang": "tr",
+  "title": "Finansal karar çerçeveleri — grafiklere bakmadan önce",
+  "intro": "Finans grafiklerinde önce kasa güvenine, sonra kârlılığa bakılır: para ne zaman kendini döndürür, vergi avantajı ne kadar, marj ölçekle birlikte artıyor mu ve gelir tek kaleme mi bağlı? Aşağıdaki çerçeveler her grafiğe bakarken hangi soruyu sorman ve neyin iyi, neyin uyarı işareti olduğunu söyler.",
+  "frames": [
+    {
+      "title": "Başabaş",
+      "decisionQuestion": "Para ne zaman kendini döndürmeye başlar?",
+      "lookAt": "Kümülatif gelir ile kümülatif giderin kesişimi",
+      "goodResult": "2027 başında kesişim; kasa en dipte ~32,5 milyon ₺",
+      "redFlags": [
+        "Kesişim 2027 sonrasına kayarsa",
+        "Kasa dibi ~32,5 milyon ₺ altına inerse"
+      ],
+      "dependsOn": "gelir senaryosu"
+    },
+    {
+      "title": "Vergi avantajı",
+      "decisionQuestion": "Teknopark avantajı kazanca göre ne kadar?",
+      "lookAt": "Senaryoya göre KV istisnası + stopaj/SGK avantajı",
+      "goodResult": "Medyan ~109 milyon ₺ yıllık avantaj",
+      "redFlags": [
+        "Teknopark şartları sağlanmazsa avantaj sıfır"
+      ],
+      "dependsOn": "kazanç düzeyi (model varsayımı)"
+    },
+    {
+      "title": "2032 yıllık",
+      "decisionQuestion": "Ölçek kârlılığı taşıyor mu?",
+      "lookAt": "Net marj: 2027 %72 → 2032 %90",
+      "goodResult": "Gelir büyürken marj artıyor (5,5 milyar ₺ medyan)",
+      "redFlags": [
+        "Marj artmıyorsa gider yapısı sorunlu"
+      ]
+    },
+    {
+      "title": "Gelir akışları",
+      "decisionQuestion": "Gelir tek kaleme mi bağlı?",
+      "lookAt": "Yedi akışın dağılımı; ParselQ-RFQ amiral payı",
+      "goodResult": "Dengeli çoklu akış",
+      "redFlags": [
+        "Tek akış toplam gelirin yarısını geçerse konsantrasyon riski"
+      ]
+    },
+    {
+      "title": "Kuruluş (CAPEX) & İşletme (OPEX)",
+      "decisionQuestion": "İlk yatırım ve sabit gider ne kadar?",
+      "lookAt": "CAPEX bir kerelik kuruluş; OPEX tekrar eden aylık gider",
+      "goodResult": "CAPEX ilk ayda biter; OPEX kadroyla kademeli artar",
+      "redFlags": [
+        "OPEX hedefin üstüne çıkarsa işe alım/pazarlama yavaşlatılır"
+      ]
+    }
+  ]
+}

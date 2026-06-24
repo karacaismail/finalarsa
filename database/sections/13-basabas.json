@@ -65,6 +65,15 @@
       "type": "claimLegend"
     },
     {
+      "level": 3,
+      "text": "Bu grafiklerde neye bakacaksınız?",
+      "type": "heading"
+    },
+    {
+      "type": "financialDecisionFrame",
+      "dataRef": "financial-frames"
+    },
+    {
       "type": "chartTabs",
       "items": [
         {

@@ -16,6 +16,7 @@ import { InvestmentOptionsCompare, type InvestmentOptionsData } from "./Investme
 import { InvestorReturnModel, type InvestorReturnData } from "./InvestorReturnModel";
 import { GovernanceMatrix, type GovernanceData } from "./GovernanceMatrix";
 import { RevenueDriverMatrix, type RevenueDriverData } from "./RevenueDriverMatrix";
+import { FinancialDecisionFrame, type FinancialFramesData } from "./FinancialDecisionFrame";
 import { fmt } from "./charts";
 import { claimTag, darkText as D, tone } from "../theme/semantic";
 import { cardBase, interactivePanel, pill } from "../theme/components";
@@ -247,6 +248,11 @@ export function BlockView({ block, ctx }: { block: Block; ctx: Ctx }) {
     case "revenueDriverMatrix": {
       const rd = getData<RevenueDriverData>((b.dataRef as string) ?? "revenue-drivers");
       return <RevenueDriverMatrix data={rd} />;
+    }
+
+    case "financialDecisionFrame": {
+      const ff = getData<FinancialFramesData>((b.dataRef as string) ?? "financial-frames");
+      return <FinancialDecisionFrame data={ff} />;
     }
 
     case "list": {

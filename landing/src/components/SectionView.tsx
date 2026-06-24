@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import type { Section } from "../data/types";
 import { Grid, Stack } from "../ui";
+import { CONTENT_MAX } from "../theme/layout";
 import { sectionBg, sectionBorder } from "../theme/semantic";
 import { BlockView } from "./Blocks";
 import { HeroArt } from "./HeroArt";
@@ -39,7 +40,7 @@ export function SectionView({
       borderColor={dark ? sectionBorder.dark : sectionBorder.default}
       scrollMarginTop="84px"
     >
-      <Box maxW="1200px" mx="auto" px={{ base: "5", md: "8" }} py={{ base: "12", md: isHero ? "24" : "20" }}>
+      <Box maxW={CONTENT_MAX} mx="auto" px={{ base: "5", md: "8" }} py={{ base: "12", md: isHero ? "24" : "20" }}>
         {isHero ? (
           (() => {
             // Hero düzeni — üç katman:
