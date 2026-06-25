@@ -73,7 +73,7 @@ describe("personel kümesi (bordro zinciri)", () => {
 
 describe("CAPEX & ofis (ilk ay özel)", () => {
   it("ilk yatırım SADECE item 1'de; aylık CAPEX yalnız yeni işe alım ekipmanı (çift CAPEX yok)", () => {
-    expect(H.capex.toplamTl).toBe(2804200);              // item 1: bir kerelik kuruluş yatırımı
+    expect(H.capex.toplamTl).toBe(3134200);              // item 1: kuruluş yatırımı + 5 yeni kalem (Obsbot/mic/toplantı PC/tahta/hava)
     const c0 = H.aylar[0].kumeler.find((k) => k.key === "capex")!;
     expect(c0.tl).toBe(7 * 24000);                       // Eyl 2026: 7 yeni × 24.000 = 168.000 (büyük yatırım YOK)
     expect(c0.tl).toBeLessThan(2800000);
@@ -103,6 +103,6 @@ describe("store v4", () => {
     expect(() => fromJSON("{bozuk")).toThrow();
   });
   it("load default (localStorage yok)", () => {
-    expect(load().meta.schemaVersion).toBe("5.1.0");
+    expect(load().meta.schemaVersion).toBe("5.2.0");
   });
 });

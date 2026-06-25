@@ -54,7 +54,7 @@ export interface FinansalData {
   pazarlama: { ym: string; tl: number }[]; // aya göre pazarlama (reklam) harcaması
 }
 
-export const SCHEMA_VERSION = "5.1.0";
+export const SCHEMA_VERSION = "5.2.0";
 export const MATURE_HC = 256;
 
 const AYLAR = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
@@ -105,6 +105,11 @@ export const DEFAULT_DATA: FinansalData = {
     { ad: "Diğer (donanım/sarf)", tl: 86200 },
     { ad: "Şirket kuruluş & hukuk", tl: 50000 },
     { ad: "İlk kampanya materyali", tl: 20000 },
+    { ad: "Obsbot Tail Air 4K PTZ Webcam (3 toplantı odası · tahmini)", tl: 60000 },
+    { ad: "Yaka mikrofonu seti", tl: 25000 },
+    { ad: "Toplantı bilgisayarı (1 masaüstü + 2 laptop)", tl: 150000 },
+    { ad: "Beyaz tahtalar", tl: 20000 },
+    { ad: "Hava temizleyici", tl: 75000 },
   ],
   olgun: { kira: 150000, depozito: 450000, utilities: 2430000, yazilim: 7056813, saha: 2280000, profesyonel: 200000, isgAylik: 8000 },
   utilSplit: { internet: 0.10, elektrik: 0.22, su: 0.06, dogalgaz: 0.10, mutfak: 0.24, sarf: 0.12, kirtasiye: 0.06, temizlik: 0.10 },
