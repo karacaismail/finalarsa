@@ -29,6 +29,11 @@ jobs:
           cache-dependency-path: landing/package-lock.json
       - run: npm ci
       - run: npm run build
+      - name: Finansal aracı derle (arsafinal → /finansal)
+        working-directory: arsafinal
+        run: npm ci && npm run build
+      - name: Finansal aracı dist/finansal altına koy
+        run: cp -r ../arsafinal/dist dist/finansal
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
