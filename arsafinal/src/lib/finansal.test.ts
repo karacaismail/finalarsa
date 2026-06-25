@@ -70,9 +70,11 @@ describe("personel kümesi (bordro zinciri)", () => {
 });
 
 describe("CAPEX & ofis (ilk ay özel)", () => {
-  it("ilk ay CAPEX büyük yatırımı içerir (>2,8M)", () => {
-    const c = H.aylar[0].kumeler.find((k) => k.key === "capex")!;
-    expect(c.tl).toBeGreaterThan(2800000);
+  it("ilk yatırım SADECE item 1'de; aylık CAPEX yalnız yeni işe alım ekipmanı (çift CAPEX yok)", () => {
+    expect(H.capex.toplamTl).toBe(2804200);              // item 1: bir kerelik kuruluş yatırımı
+    const c0 = H.aylar[0].kumeler.find((k) => k.key === "capex")!;
+    expect(c0.tl).toBe(7 * 24000);                       // Eyl 2026: 7 yeni × 24.000 = 168.000 (büyük yatırım YOK)
+    expect(c0.tl).toBeLessThan(2800000);
   });
   it("ilk ay ofis = kira + depozito; sonraki ay sadece kira", () => {
     const o0 = H.aylar[0].kumeler.find((k) => k.key === "ofis")!;

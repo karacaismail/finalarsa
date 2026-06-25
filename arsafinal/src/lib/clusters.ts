@@ -82,9 +82,9 @@ export function hesapla(d: FinansalData): Hesap {
       ],
     };
 
-    // --- CAPEX (yatırım) ---
+    // --- CAPEX (yatırım) — SADECE o ayın yeni işe alım ekipmanı.
+    // İlk-ay büyük kuruluş yatırımı (item 1) burada TEKRAR sayılmaz (çift CAPEX olmasın).
     const capexKalem: Kalem[] = [];
-    if (ym === ilk) for (const c of d.capex) capexKalem.push({ ad: c.ad, tl: c.tl });
     if (yeni > 0) capexKalem.push({ ad: `Yeni işe alım ekipmanı (${yeni} kişi)`, tl: yeni * p.perHireCapex });
     const capex: Kume = { key: "capex", ad: "Yatırım (CAPEX)", renk: KUME_RENK.capex, tl: capexKalem.reduce((s, k) => s + k.tl, 0), kalemler: capexKalem };
 
