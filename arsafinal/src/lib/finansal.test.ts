@@ -103,6 +103,6 @@ describe("store v4", () => {
     expect(() => fromJSON("{bozuk")).toThrow();
   });
   it("load default (localStorage yok)", () => {
-    expect(load().meta.schemaVersion).toBe("5.0.0");
+    expect(load().meta.schemaVersion).toBe("5.1.0");
   });
 });
