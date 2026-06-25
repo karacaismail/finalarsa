@@ -136,23 +136,11 @@ export function App() {
         </section>
 
         <section className="acc">
-          {dd.a === 0 && (
-            <div className="acc-item" ref={(el) => { itemRefs.current["capex"] = el; }}>
-              <Head k="capex" no={1} title="İlk ay yatırımı — CAPEX" sub="bir kerelik" tl={H.capex.toplamTl} />
-              {open === "capex" && (
-                <div className="acc-body">
-                  {H.capex.kalemler.map((k, i) => <div className="kalem-row" key={i}><span>{k.ad}</span><NumView n={conv(k.tl)} sym={sym} /></div>)}
-                  <div className="kalem-row sum"><span>Toplam</span><NumView n={conv(H.capex.toplamTl)} sym={sym} /></div>
-                </div>
-              )}
-            </div>
-          )}
-
           {gosterilen.map((ay, j) => {
             const i = dd.a + j;
             return (
               <div className="acc-item" key={ay.ym} ref={(el) => { itemRefs.current[ay.ym] = el; }}>
-                <Head k={ay.ym} no={i + 2} title={ayLabel(ay.ym)} sub={`${ay.kisi} kişi${ay.yeni ? ` · +${ay.yeni} yeni` : ""}`} tl={ay.toplamTl} />
+                <Head k={ay.ym} no={i + 1} title={ayLabel(ay.ym)} sub={`${ay.kisi} kişi${ay.yeni ? ` · +${ay.yeni} yeni` : ""}`} tl={ay.toplamTl} />
                 {open === ay.ym && (
                   <div className="acc-body">
                     {ay.kumeler.map((k) => (
