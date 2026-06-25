@@ -3,11 +3,11 @@
 import type { Role } from "./finansal";
 
 export const ROLES: Role[] = [
-  { sira: 1, kod: "R-CPO", ad: "CPO / Strateji", departman: "1. Strateji / C-Level", kademe: "C-Level", unvan: "C-Level", brutMaas: 339191, istihdamYm: "2026-08" },
-  { sira: 2, kod: "R-GRF-1", ad: "Grafik Tasarımcı #1", departman: "4. Product & Design", kademe: "Kreatif", unvan: "Mid", brutMaas: 49132, istihdamYm: "2026-08" },
-  { sira: 3, kod: "R-PO-1", ad: "Product Owner #1", departman: "4. Product & Design", kademe: "Ürün", unvan: "Senior", brutMaas: 77208, istihdamYm: "2026-08" },
-  { sira: 4, kod: "R-GIS", ad: "GIS / Harita Entegrasyon Uzmanı", departman: "6. Engineering — AI / Data / GIS", kademe: "Teknik", unvan: "Mid", brutMaas: 56151, istihdamYm: "2026-08" },
-  { sira: 5, kod: "R-AST", ad: "Asistan / MT (CX Lead Pipeline)", departman: "8. Customer & Seller Ops", kademe: "Operasyonel", unvan: "Team Lead", brutMaas: 84227, istihdamYm: "2026-08" },
+  { sira: 1, kod: "R-CPO", ad: "CPO / Strateji", departman: "1. Strateji / C-Level", kademe: "C-Level", unvan: "C-Level", brutMaas: 339191, istihdamYm: "2026-09" },
+  { sira: 2, kod: "R-GRF-1", ad: "Grafik Tasarımcı #1", departman: "4. Product & Design", kademe: "Kreatif", unvan: "Mid", brutMaas: 49132, istihdamYm: "2026-09" },
+  { sira: 3, kod: "R-PO-1", ad: "Product Owner #1", departman: "4. Product & Design", kademe: "Ürün", unvan: "Senior", brutMaas: 77208, istihdamYm: "2026-09" },
+  { sira: 4, kod: "R-GIS", ad: "GIS / Harita Entegrasyon Uzmanı", departman: "6. Engineering — AI / Data / GIS", kademe: "Teknik", unvan: "Mid", brutMaas: 56151, istihdamYm: "2026-09" },
+  { sira: 5, kod: "R-AST", ad: "Asistan / MT (CX Lead Pipeline)", departman: "8. Customer & Seller Ops", kademe: "Operasyonel", unvan: "Team Lead", brutMaas: 84227, istihdamYm: "2026-09" },
   { sira: 6, kod: "R-VID-1", ad: "Videographer #1", departman: "4. Product & Design", kademe: "Kreatif", unvan: "Mid", brutMaas: 49132, istihdamYm: "2026-09" },
   { sira: 7, kod: "R-DEV-1", ad: "Backend Dev #1", departman: "5. Engineering — Platform", kademe: "Teknik", unvan: "Mid", brutMaas: 56151, istihdamYm: "2026-09" },
   { sira: 8, kod: "R-DEV-2", ad: "Backend Dev #2", departman: "5. Engineering — Platform", kademe: "Teknik", unvan: "Mid", brutMaas: 56151, istihdamYm: "2026-09" },

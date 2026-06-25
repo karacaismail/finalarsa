@@ -140,8 +140,19 @@ export function App() {
 
         <section className="acc">
           {dd.a === 0 && (
+            <div className="acc-item" key="temmuz" ref={(el) => { itemRefs.current["temmuz"] = el; }}>
+              <Head k="temmuz" no={1} title="Tem 2026" sub="yazılım geliştirme avansı · 2 taksit" tl={H.yazilimDev.toplamTl} />
+              {open === "temmuz" && (
+                <div className="acc-body">
+                  {H.yazilimDev.kalemler.map((k, m) => <div className="kalem-row" key={m}><span>{k.ad}</span><NumView n={conv(k.tl)} sym={sym} /></div>)}
+                  <div className="kalem-row sum big"><span>Tem 2026 — yazılım geliştirme toplam</span><NumView n={conv(H.yazilimDev.toplamTl)} sym={sym} /></div>
+                </div>
+              )}
+            </div>
+          )}
+          {dd.a === 0 && (
             <div className="acc-item" key="agustos" ref={(el) => { itemRefs.current["agustos"] = el; }}>
-              <Head k="agustos" no={1} title="Ağu 2026" sub="kuruluş yatırımı · sadece CAPEX" tl={H.capex.toplamTl} />
+              <Head k="agustos" no={2} title="Ağu 2026" sub="kuruluş yatırımı · sadece CAPEX" tl={H.capex.toplamTl} />
               {open === "agustos" && (
                 <div className="acc-body">
                   {H.capex.kalemler.map((k, m) => <div className="kalem-row" key={m}><span>{k.ad}</span><NumView n={conv(k.tl)} sym={sym} /></div>)}
@@ -154,7 +165,7 @@ export function App() {
             const i = dd.a + j;
             return (
               <div className="acc-item" key={ay.ym} ref={(el) => { itemRefs.current[ay.ym] = el; }}>
-                <Head k={ay.ym} no={i + 2} title={ayLabel(ay.ym)} sub={`${ay.kisi} kişi${ay.yeni ? ` · +${ay.yeni} yeni` : ""}`} tl={ay.toplamTl} />
+                <Head k={ay.ym} no={i + 3} title={ayLabel(ay.ym)} sub={`${ay.kisi} kişi${ay.yeni ? ` · +${ay.yeni} yeni` : ""}`} tl={ay.toplamTl} />
                 {open === ay.ym && (
                   <div className="acc-body">
                     {ay.kumeler.map((k) => (

@@ -19,15 +19,33 @@ describe("takvim ve roller", () => {
 describe("hesapla — yapı", () => {
   it("24 ay + capex özeti", () => {
     expect(H.aylar).toHaveLength(24);
-    expect(H.capex.toplamTl).toBe(3134200 + 18000 * 46.52); // 7 kuruluş + 5 yeni kalem
+    expect(H.capex.toplamTl).toBe(3134200); // Ağustos = yalnız kuruluş/donanım (yazılım dev Temmuz'a taşındı)
   });
-  it("ilk ay (Eyl 2026 ÖDEME) = Ağustos kadrosu: 5 kişi (nakit bazlı, önceki ay maaşı)", () => {
+  it("Temmuz yazılım geliştirme avansı = 18.000 USD, 2 eşit taksit (5 Tem + 5 Ağu)", () => {
+    expect(H.yazilimDev.toplamTl).toBeCloseTo(18000 * 46.52, 2);
+    expect(H.yazilimDev.kalemler).toHaveLength(2);
+    expect(H.yazilimDev.kalemler[0].tl).toBeCloseTo(9000 * 46.52, 2);
+    expect(H.yazilimDev.kalemler[1].tl).toBeCloseTo(9000 * 46.52, 2);
+    expect(H.yazilimDev.kalemler[0].ad).toContain("5 Temmuz");
+    expect(H.yazilimDev.kalemler[1].ad).toContain("5 Ağustos");
+  });
+  it("ilk ay (Eyl 2026) = işbaşı kadrosu, CARİ ay headcount (Ağustos kadrosuz)", () => {
     expect(H.aylar[0].ym).toBe("2026-09");
-    expect(H.aylar[0].kisi).toBe(5);   // Ağu 2026'da işe alınan 5 kurucu kadro
-    expect(H.aylar[0].yeni).toBe(5);
+    const ilk = ROLES.filter((r) => r.istihdamYm <= "2026-09").length;
+    expect(H.aylar[0].kisi).toBe(ilk);
+    expect(H.aylar[0].kisi).toBe(12);  // 1 Eylül işbaşı: 12 kurucu kadro
+    expect(H.aylar[0].yeni).toBe(ROLES.filter((r) => r.istihdamYm === "2026-09").length);
   });
-  it("son ay (Ağu 2028 ÖDEME) = Tem 2028 kadrosu: 89 kişi", () => {
-    expect(H.aylar[23].kisi).toBe(89);
+  it("son ay (Ağu 2028) = cari ay headcount = aktif rol sayısı", () => {
+    const son = ROLES.filter((r) => r.istihdamYm <= "2028-08").length;
+    expect(H.aylar[23].kisi).toBe(son);
+  });
+  it("NAKİT ZAMANLAMA: Eylül'de maaş yok (ilk bordro 5 Ekim); Aralık maaşı Oca 2027'ye kayar", () => {
+    const net = (i: number) => H.aylar[i].kumeler.find((k) => k.key === "personel")!.kalemler[0].tl;
+    expect(net(0)).toBe(0);            // Eyl 2026: Ağustos kadrosuz → bordro yok
+    expect(net(1)).toBeGreaterThan(0); // Eki 2026: ilk gerçek bordro (Eylül işi, 5 Ekim ödeme)
+    expect(H.aylar[4].ym).toBe("2027-01");
+    expect(net(4)).toBeGreaterThan(0); // Oca 2027: Aralık maaşı burada (5 Ocak ödeme) → 2026'ya girmez
   });
 });
 
@@ -58,13 +76,13 @@ describe("personel kümesi (bordro zinciri)", () => {
     expect(arac0.ad).not.toContain("Insignia");
     expect(arac0.ad).toContain("Mercedes C (W206)");
     expect(arac0.ad).toContain("VW Passat B9");
-    // nakit bazlı: BMW segmenti hak-ediş 2028-01 → ÖDEME Şub 2028 (2028-02)
-    const sub28 = H.aylar.find((a) => a.ym === "2028-02")!;
-    const arac28 = sub28.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
+    // araç CARİ ay: BMW segmenti Oca 2028'de (2028-01) devreye girer
+    const oca28 = H.aylar.find((a) => a.ym === "2028-01")!;
+    const arac28 = oca28.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
     expect(arac28.tl).toBe(160000);
   });
-  it("personel en büyük kümedir (ilk ay)", () => {
-    const ay = H.aylar[0];
+  it("personel en büyük kümedir (Eki 2026 — ilk bordro aktıkça)", () => {
+    const ay = H.aylar[1]; // Eki 2026: ilk gerçek bordro (kurucu net dahil)
     const p = ay.kumeler.find((k) => k.key === "personel")!;
     for (const k of ay.kumeler) if (k.key !== "personel" && k.key !== "capex") expect(p.tl).toBeGreaterThanOrEqual(k.tl);
   });
@@ -82,21 +100,24 @@ describe("personel kümesi (bordro zinciri)", () => {
     expect(ara.tl).toBeGreaterThan(500000);
   });
   it("yemek KADEMELİ: C-level 15.000, Team Lead 10.000, baz 9.000", () => {
-    // Eyl 2026 ödeme = Ağu kadrosu 5 = 1 C-Level (CPO) + 1 Team Lead (AST) + 3 baz
-    const yemek = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad === "Yemek")!;
-    expect(yemek.tl).toBe(15000 + 10000 + 3 * 9000); // 52.000
+    // Eki 2026 bordrosu = Eyl kadrosu 12 = 1 C-Level (CPO) + 1 Team Lead (AST) + 10 baz
+    const yemek = H.aylar[1].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad === "Yemek")!;
+    expect(yemek.tl).toBe(15000 + 10000 + 10 * 9000); // 115.000
   });
   it("kurucu net-hedef personele dahil (net maaşlar büyük)", () => {
-    const net = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler[0].tl;
+    // Eki 2026: Eylül kadrosunun maaşı (kurucu dahil) burada ödenir
+    const net = H.aylar[1].kumeler.find((k) => k.key === "personel")!.kalemler[0].tl;
     expect(net).toBeGreaterThan(348900); // en az kurucu net'i kadar
   });
 });
 
 describe("CAPEX & ofis (ilk ay özel)", () => {
   it("CAPEX yalnız Ağustos'ta (H.capex); operasyonel aylarda CAPEX kümesi YOK", () => {
-    expect(H.capex.toplamTl).toBe(3134200 + 18000 * 46.52);                          // Ağustos = kuruluş yatırımı
+    expect(H.capex.toplamTl).toBe(3134200);                          // Ağustos = kuruluş yatırımı (yazılım dev hariç)
     expect(H.aylar[0].kumeler.find((k) => k.key === "capex")).toBeUndefined(); // Eyl'de CAPEX yok
     expect(H.aylar.some((a) => a.kumeler.some((k) => k.key === "capex"))).toBe(false); // hiçbir ayda yok
+    expect(H.aylar.some((a) => a.ym === "2026-08")).toBe(false);                // Ağustos operasyonel aylarda değil
+    expect(H.capex.kalemler.some((k) => k.ad.includes("Yazılım"))).toBe(false); // yazılım dev ücreti CAPEX'e sızmamalı
   });
   it("ilk ay ofis = kira + depozito; sonraki ay sadece kira", () => {
     const o0 = H.aylar[0].kumeler.find((k) => k.key === "ofis")!;
@@ -107,9 +128,9 @@ describe("CAPEX & ofis (ilk ay özel)", () => {
 });
 
 describe("sürekli giderler (headcount-ölçekli)", () => {
-  it("ilk ay utilities = 2.430.000 × 12/256; 8 kalem", () => {
+  it("ilk ay utilities = 2.430.000 × 12/256 (cari ay headcount); 8 kalem", () => {
     const s = H.aylar[0].kumeler.find((k) => k.key === "surekli")!;
-    expect(s.tl).toBeCloseTo(2430000 * 5 / 256, 2); // Eyl ödeme = Ağu kadrosu 5 kişi
+    expect(s.tl).toBeCloseTo(2430000 * 12 / 256, 2); // Eyl cari ay = 12 kişi
     expect(s.kalemler).toHaveLength(8);
   });
 });
@@ -123,6 +144,6 @@ describe("store v4", () => {
     expect(() => fromJSON("{bozuk")).toThrow();
   });
   it("load default (localStorage yok)", () => {
-    expect(load().meta.schemaVersion).toBe("5.7.0");
+    expect(load().meta.schemaVersion).toBe("5.8.0");
   });
 });

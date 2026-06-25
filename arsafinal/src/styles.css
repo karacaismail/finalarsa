@@ -44,7 +44,7 @@ body {
 .btn:active { transform: translateY(1px); }
 
 /* ---------- ana ---------- */
-.main { padding: 16px 14px 64px; max-width: 1080px; margin: 0 auto; }
+.main { padding: 16px 14px 64px; max-width: 720px; margin: 0 auto; }
 
 .cards { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 18px; }
 .card { position: relative; overflow: hidden; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
@@ -131,10 +131,10 @@ body {
   .cur button { min-height: 40px; padding: 0 14px; }
   .btn { flex: none; padding: 0 16px; }
   .main { padding: 24px; }
-  .cards { grid-template-columns: repeat(3, 1fr); }
-  .cards4 { grid-template-columns: repeat(4, 1fr); }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .cards4 { grid-template-columns: repeat(2, 1fr); }
   .card .v { font-size: 1.8rem; }
-  .params { grid-template-columns: repeat(3, 1fr); }
+  .params { grid-template-columns: repeat(2, 1fr); }
   .acc-item { scroll-margin-top: 86px; }
 }
 @media (min-width: 1000px) { .block { padding: 20px 24px; } }
