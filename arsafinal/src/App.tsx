@@ -14,7 +14,7 @@ const CHEV = "M184.49 136.49l-80 80a12 12 0 0 1-17-17L159 128 87.51 56.49a12 12 
 
 const DONEMLER = [
   { key: "ilk6", ad: "İlk 6 ay", a: 0, b: 6 },
-  { key: "sonraki6", ad: "Sonraki 6 ay", a: 6, b: 12 },
+  { key: "ilk12", ad: "İlk 12 ay", a: 0, b: 12 },
   { key: "ikinci", ad: "İkinci sene", a: 12, b: 24 },
   { key: "tumu", ad: "TÜMÜ · 24 ay", a: 0, b: 24 },
 ];
@@ -48,11 +48,11 @@ export function App() {
     if (aciliyor) requestAnimationFrame(() => itemRefs.current[key]?.scrollIntoView({ behavior: "smooth", block: "start" }));
   };
 
-  const toplam24 = H.aylar.reduce((s, a) => s + a.toplamTl, 0);
-  const enYuksek = H.aylar.reduce((a, b) => (b.toplamTl > a.toplamTl ? b : a), H.aylar[0]);
+  const ilkNToplam = (n: number) => H.aylar.slice(0, n).reduce((s, a) => s + a.toplamTl, 0);
+  const ilk6 = ilkNToplam(6), ilk12 = ilkNToplam(12), ilk24 = ilkNToplam(24);
 
-  const kumeAnahtar = ["personel", "capex", "ofis", "surekli", "pazarlama", "yazilim", "profesyonel", "saha"];
-  const kumeAd: Record<string, string> = { personel: "Personel", capex: "CAPEX", ofis: "Ofis & kira", surekli: "Sürekli", pazarlama: "Pazarlama", yazilim: "Yazılım/SaaS", profesyonel: "Profesyonel", saha: "Saha" };
+  const kumeAnahtar = ["personel", "ofis", "surekli", "pazarlama", "yazilim", "profesyonel", "saha"];
+  const kumeAd: Record<string, string> = { personel: "Personel", ofis: "Ofis & kira", surekli: "Sürekli", pazarlama: "Pazarlama", yazilim: "Yazılım/SaaS", profesyonel: "Profesyonel", saha: "Saha" };
   const chart: EChartsOption = useMemo(() => ({
     grid: { left: 52, right: 10, top: 30, bottom: 64 },
     tooltip: { trigger: "axis", valueFormatter: (v) => Number(v).toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + " " + sym },
@@ -98,10 +98,11 @@ export function App() {
       </header>
 
       <main className="main">
-        <section className="cards">
-          <Card k="1) İlk ay yatırımı (CAPEX)" n={conv(H.capex.toplamTl)} sym={sym} accent />
-          <Card k="2) 24 ay toplam gider" n={conv(toplam24)} sym={sym} />
-          <Card k={`En yüksek ay — ${ayLabel(enYuksek.ym)}`} n={conv(enYuksek.toplamTl)} sym={sym} />
+        <section className="cards cards4">
+          <Card k="CAPEX (Ağustos 2026)" n={conv(H.capex.toplamTl)} sym={sym} accent />
+          <Card k="İlk 6 ay toplamı" n={conv(ilk6)} sym={sym} />
+          <Card k="İlk 12 ay toplamı" n={conv(ilk12)} sym={sym} />
+          <Card k="İlk 24 ay toplamı" n={conv(ilk24)} sym={sym} />
         </section>
 
         {/* zaman filtresi */}
@@ -137,11 +138,22 @@ export function App() {
         </section>
 
         <section className="acc">
+          {dd.a === 0 && (
+            <div className="acc-item" key="agustos" ref={(el) => { itemRefs.current["agustos"] = el; }}>
+              <Head k="agustos" no={1} title="Ağu 2026" sub="kuruluş yatırımı · sadece CAPEX" tl={H.capex.toplamTl} />
+              {open === "agustos" && (
+                <div className="acc-body">
+                  {H.capex.kalemler.map((k, m) => <div className="kalem-row" key={m}><span>{k.ad}</span><NumView n={conv(k.tl)} sym={sym} /></div>)}
+                  <div className="kalem-row sum big"><span>Ağu 2026 — CAPEX toplam</span><NumView n={conv(H.capex.toplamTl)} sym={sym} /></div>
+                </div>
+              )}
+            </div>
+          )}
           {gosterilen.map((ay, j) => {
             const i = dd.a + j;
             return (
               <div className="acc-item" key={ay.ym} ref={(el) => { itemRefs.current[ay.ym] = el; }}>
-                <Head k={ay.ym} no={i + 1} title={ayLabel(ay.ym)} sub={`${ay.kisi} kişi${ay.yeni ? ` · +${ay.yeni} yeni` : ""}`} tl={ay.toplamTl} />
+                <Head k={ay.ym} no={i + 2} title={ayLabel(ay.ym)} sub={`${ay.kisi} kişi${ay.yeni ? ` · +${ay.yeni} yeni` : ""}`} tl={ay.toplamTl} />
                 {open === ay.ym && (
                   <div className="acc-body">
                     {ay.kumeler.map((k) => (

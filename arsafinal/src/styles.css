@@ -132,6 +132,7 @@ body {
   .btn { flex: none; padding: 0 16px; }
   .main { padding: 24px; }
   .cards { grid-template-columns: repeat(3, 1fr); }
+  .cards4 { grid-template-columns: repeat(4, 1fr); }
   .card .v { font-size: 1.8rem; }
   .params { grid-template-columns: repeat(3, 1fr); }
   .acc-item { scroll-margin-top: 86px; }

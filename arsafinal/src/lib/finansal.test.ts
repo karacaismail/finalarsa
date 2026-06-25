@@ -92,10 +92,10 @@ describe("personel kümesi (bordro zinciri)", () => {
 });
 
 describe("CAPEX & ofis (ilk ay özel)", () => {
-  it("Eylül CAPEX'i kuruluş yatırımı + yeni ekipmanı içerir; ayrı CAPEX item yok (çift değil)", () => {
-    expect(H.capex.toplamTl).toBe(3134200);              // özet/KPI: kuruluş yatırımı + 5 yeni kalem
-    const c0 = H.aylar[0].kumeler.find((k) => k.key === "capex")!;
-    expect(c0.tl).toBe(3134200 + 7 * 24000);             // Eyl 2026 = ilk yatırım 3.134.200 + 7 yeni ekipman 168.000
+  it("CAPEX yalnız Ağustos'ta (H.capex); operasyonel aylarda CAPEX kümesi YOK", () => {
+    expect(H.capex.toplamTl).toBe(3134200);                          // Ağustos = kuruluş yatırımı
+    expect(H.aylar[0].kumeler.find((k) => k.key === "capex")).toBeUndefined(); // Eyl'de CAPEX yok
+    expect(H.aylar.some((a) => a.kumeler.some((k) => k.key === "capex"))).toBe(false); // hiçbir ayda yok
   });
   it("ilk ay ofis = kira + depozito; sonraki ay sadece kira", () => {
     const o0 = H.aylar[0].kumeler.find((k) => k.key === "ofis")!;
