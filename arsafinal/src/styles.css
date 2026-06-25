@@ -121,18 +121,19 @@ body {
 /* ===========================================================================
    ≥ 600px — tablet/masaüstü zenginleştirme
    =========================================================================== */
-@media (min-width: 600px) {
+@media (min-width: 560px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .params { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 820px) {
   .bar { flex-direction: row; align-items: center; justify-content: space-between; padding: 14px 24px; }
   .tools { flex-direction: row; align-items: center; gap: 10px; }
   .cur button { min-height: 40px; padding: 0 14px; }
-  .btn { flex: none; padding: 0 15px; }
+  .btn { flex: none; padding: 0 16px; }
   .main { padding: 24px; }
   .cards { grid-template-columns: repeat(3, 1fr); }
-  .card .v { font-size: 1.85rem; }
-  .params { grid-template-columns: repeat(2, 1fr); }
+  .card .v { font-size: 1.8rem; }
+  .params { grid-template-columns: repeat(3, 1fr); }
   .acc-item { scroll-margin-top: 86px; }
 }
-@media (min-width: 900px) {
-  .params { grid-template-columns: repeat(3, 1fr); }
-  .block { padding: 20px 24px; }
-}
+@media (min-width: 1000px) { .block { padding: 20px 24px; } }
