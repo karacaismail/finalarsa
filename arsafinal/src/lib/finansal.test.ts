@@ -21,13 +21,13 @@ describe("hesapla — yapı", () => {
     expect(H.aylar).toHaveLength(24);
     expect(H.capex.toplamTl).toBe(3134200 + 18000 * 46.52); // 7 kuruluş + 5 yeni kalem
   });
-  it("ilk ay (Eyl 2026): 12 kişi, 7 yeni işe alım", () => {
+  it("ilk ay (Eyl 2026 ÖDEME) = Ağustos kadrosu: 5 kişi (nakit bazlı, önceki ay maaşı)", () => {
     expect(H.aylar[0].ym).toBe("2026-09");
-    expect(H.aylar[0].kisi).toBe(12);
-    expect(H.aylar[0].yeni).toBe(7);
+    expect(H.aylar[0].kisi).toBe(5);   // Ağu 2026'da işe alınan 5 kurucu kadro
+    expect(H.aylar[0].yeni).toBe(5);
   });
-  it("son ay (Ağu 2028): 106 kişi", () => {
-    expect(H.aylar[23].kisi).toBe(106);
+  it("son ay (Ağu 2028 ÖDEME) = Tem 2028 kadrosu: 89 kişi", () => {
+    expect(H.aylar[23].kisi).toBe(89);
   });
 });
 
@@ -58,8 +58,9 @@ describe("personel kümesi (bordro zinciri)", () => {
     expect(arac0.ad).not.toContain("Insignia");
     expect(arac0.ad).toContain("Mercedes C (W206)");
     expect(arac0.ad).toContain("VW Passat B9");
-    const oca28 = H.aylar.find((a) => a.ym === "2028-01")!;
-    const arac28 = oca28.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
+    // nakit bazlı: BMW segmenti hak-ediş 2028-01 → ÖDEME Şub 2028 (2028-02)
+    const sub28 = H.aylar.find((a) => a.ym === "2028-02")!;
+    const arac28 = sub28.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
     expect(arac28.tl).toBe(160000);
   });
   it("personel en büyük kümedir (ilk ay)", () => {
@@ -81,9 +82,9 @@ describe("personel kümesi (bordro zinciri)", () => {
     expect(ara.tl).toBeGreaterThan(500000);
   });
   it("yemek KADEMELİ: C-level 15.000, Team Lead 10.000, baz 9.000", () => {
-    // Eyl 2026: 12 aktif = 1 C-Level (CPO) + 1 Team Lead (AST) + 10 baz
+    // Eyl 2026 ödeme = Ağu kadrosu 5 = 1 C-Level (CPO) + 1 Team Lead (AST) + 3 baz
     const yemek = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad === "Yemek")!;
-    expect(yemek.tl).toBe(15000 + 10000 + 10 * 9000); // 115.000
+    expect(yemek.tl).toBe(15000 + 10000 + 3 * 9000); // 52.000
   });
   it("kurucu net-hedef personele dahil (net maaşlar büyük)", () => {
     const net = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler[0].tl;
@@ -108,7 +109,7 @@ describe("CAPEX & ofis (ilk ay özel)", () => {
 describe("sürekli giderler (headcount-ölçekli)", () => {
   it("ilk ay utilities = 2.430.000 × 12/256; 8 kalem", () => {
     const s = H.aylar[0].kumeler.find((k) => k.key === "surekli")!;
-    expect(s.tl).toBeCloseTo(2430000 * 12 / 256, 2);
+    expect(s.tl).toBeCloseTo(2430000 * 5 / 256, 2); // Eyl ödeme = Ağu kadrosu 5 kişi
     expect(s.kalemler).toHaveLength(8);
   });
 });
@@ -122,6 +123,6 @@ describe("store v4", () => {
     expect(() => fromJSON("{bozuk")).toThrow();
   });
   it("load default (localStorage yok)", () => {
-    expect(load().meta.schemaVersion).toBe("5.6.0");
+    expect(load().meta.schemaVersion).toBe("5.7.0");
   });
 });

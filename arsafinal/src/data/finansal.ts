@@ -59,7 +59,7 @@ export interface FinansalData {
   pazarlama: { ym: string; tl: number }[]; // aya göre pazarlama (reklam) harcaması
 }
 
-export const SCHEMA_VERSION = "5.6.0";
+export const SCHEMA_VERSION = "5.7.0";
 export const MATURE_HC = 256;
 
 const AYLAR = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
@@ -90,14 +90,14 @@ export const DEFAULT_DATA: FinansalData = {
   },
   bordro: PARAMS_2026,
   founder: [
-    { fromYm: "2026-09", netUsd: 7500 },
+    { fromYm: "2026-08", netUsd: 7500 },
     { fromYm: "2027-01", netUsd: 10000 },
     { fromYm: "2027-06", netUsd: 15000 },
   ],
   // CPO araç tahsisi — operasyonel kiralama (aylık ödeme). Segment ~yılda bir yükselir (eski proje verisi).
   // Aylık kira KDV hariç temsilî; 2026'da kiranın yalnız 46.000 ₺'lik kısmı gider yazılabilir (kalanı KKEG).
   arac: [
-    { fromYm: "2026-09", segment: "Škoda Superb / Camry / VW Passat B9 / Audi A5 / Mercedes C (W206)", aylikTl: 95000 },
+    { fromYm: "2026-08", segment: "Škoda Superb / Camry / VW Passat B9 / Audi A5 / Mercedes C (W206)", aylikTl: 95000 },
     { fromYm: "2027-06", segment: "Volvo S60 (üst segment)", aylikTl: 110000 },
     { fromYm: "2028-01", segment: "BMW 520+ / Mercedes E 220+ / Audi A6 / Volvo S90", aylikTl: 160000 },
   ],

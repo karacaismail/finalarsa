@@ -13,7 +13,7 @@ const CURS: Currency[] = ["TRY", "USD", "EUR"];
 const CHEV = "M184.49 136.49l-80 80a12 12 0 0 1-17-17L159 128 87.51 56.49a12 12 0 1 1 17-17l80 80a12 12 0 0 1 0 17Z";
 
 const DONEMLER = [
-  { key: "ilk6", ad: "İlk 6 ay", a: 0, b: 6 },
+  { key: "y2026", ad: "2026 sonu (Eyl–Ara)", a: 0, b: 4 },
   { key: "ilk12", ad: "İlk 12 ay", a: 0, b: 12 },
   { key: "ikinci", ad: "İkinci sene", a: 12, b: 24 },
   { key: "tumu", ad: "TÜMÜ · 24 ay", a: 0, b: 24 },
@@ -25,7 +25,7 @@ export function App() {
   const [open, setOpen] = useState<string>("");     // "", "capex" veya ym
   const [openK, setOpenK] = useState<string>("");
   const [ayar, setAyar] = useState(false);
-  const [donem, setDonem] = useState("ilk6");
+  const [donem, setDonem] = useState("y2026");
   const fileRef = useRef<HTMLInputElement>(null);
   const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
 

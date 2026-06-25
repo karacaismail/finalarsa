@@ -1,4 +1,6 @@
-// Aylık küme hesaplayıcı. Her ay → kümeler → kalemler. Personel: bordro motoru (kurucu net-hedef, YTD kümülatif).
+// Aylık küme hesaplayıcı — NAKİT BAZLI: her ay, o ay ÖDENEN gideri gösterir.
+// Maaşlar ayın 1'inde, BİR ÖNCEKİ ayın hak edilen maaşı olarak ödenir (Aralık maaşı 5 Ocak).
+// Bu yüzden görünen ay M = hak-ediş ayı (M-1) hesabıdır. İkramiye bayram öncesi ÖDENEN ayda kalır.
 import { bordroAy, brutCozHedefNet } from "./payroll";
 import { ymList, MATURE_HC } from "../data/finansal";
 import type { FinansalData, FounderStep } from "../data/finansal";
@@ -20,64 +22,66 @@ function founderNetUsd(founder: FounderStep[], ym: string): number {
   return v;
 }
 const aktif = (istihdamYm: string, ym: string) => istihdamYm <= ym;
+// bir önceki ay (maaş hak-ediş ayı)
+function prevYm(ym: string): string {
+  let [y, m] = ym.split("-").map(Number);
+  m -= 1; if (m < 1) { m = 12; y -= 1; }
+  return `${y}-${String(m).padStart(2, "0")}`;
+}
 
-// Tüm pencereyi tek geçişte hesapla (personel YTD kümülatif olduğu için sıralı).
 export function hesapla(d: FinansalData): Hesap {
-  const yms = ymList();
-  const ilk = yms[0];
+  const paidYms = ymList();          // görünen (ödeme) ayları: Eyl 2026 … Ağu 2028
   const p = d.params;
   const bp = { ...d.bordro, isverenSgkOran: p.isverenSgkOran };
+  const pazMap = new Map(d.pazarlama.map((x) => [x.ym, x.tl]));
 
-  // YTD (yıl-içi kümülatif) — yıl değişince sıfırlanır.
+  // YTD (yıl-içi kümülatif) — hak-ediş ayının yılına göre sıfırlanır.
   const ytd: Record<number, { matrah: number; asgari: number }> = {};
   let fytd = { matrah: 0, asgari: 0 };
   let oncekiYil = "";
-  const pazMap = new Map(d.pazarlama.map((x) => [x.ym, x.tl]));
 
-  const aylar: AyKirilim[] = yms.map((ym) => {
-    const yil = ym.slice(0, 4);
+  const aylar: AyKirilim[] = paidYms.map((ym, idx) => {
+    const eym = prevYm(ym);            // bu ay ÖDENEN maaş eym ayında HAK EDİLDİ (nakit bazlı)
+    const yil = eym.slice(0, 4);
     if (yil !== oncekiYil) { for (const k in ytd) delete ytd[Number(k)]; fytd = { matrah: 0, asgari: 0 }; oncekiYil = yil; }
 
-    const aktifler = d.roles.filter((r) => aktif(r.istihdamYm, ym));
+    const aktifler = d.roles.filter((r) => aktif(r.istihdamYm, eym));  // hak-ediş ayında aktif olanlar
     const kisi = aktifler.length;
-    const yeni = d.roles.filter((r) => r.istihdamYm === ym).length;
+    const yeni = d.roles.filter((r) => r.istihdamYm === eym).length;
     const fac = kisi / MATURE_HC;
 
-    // --- PERSONEL (bordro) ---
+    // --- PERSONEL (hak-ediş ayı eym; bordro YTD) ---
     let net = 0, vergi = 0, sgk = 0, brutTop = 0;
     for (const r of aktifler) {
-      if (r.kod === p.kuruculKod) continue; // kurucu ayrı (net-hedef)
+      if (r.kod === p.kuruculKod) continue;
       const y = ytd[r.sira] || (ytd[r.sira] = { matrah: 0, asgari: 0 });
       const b = bordroAy(r.brutMaas, y.matrah, y.asgari, bp);
       net += b.net; vergi += b.gelirVergisi; sgk += b.calisanSgk + b.isverenSgk; brutTop += b.brut;
       y.matrah += b.gvMatrah; y.asgari += bp.asgariGvMatrah;
     }
-    // kurucu: net-hedef → gerekli brüt (kümülatif)
     const kurucu = aktifler.find((r) => r.kod === p.kuruculKod);
     if (kurucu) {
-      const hedefNet = founderNetUsd(d.founder, ym) * p.usd;
+      const hedefNet = founderNetUsd(d.founder, eym) * p.usd;
       const brut = brutCozHedefNet(hedefNet, fytd.matrah, fytd.asgari, bp);
       const b = bordroAy(brut, fytd.matrah, fytd.asgari, bp);
       net += b.net; vergi += b.gelirVergisi; sgk += b.calisanSgk + b.isverenSgk; brutTop += b.brut;
       fytd.matrah += b.gvMatrah; fytd.asgari += bp.asgariGvMatrah;
     }
-    // Yemek KADEMELİ: C-level / Team Lead / baz (her ay aktif rollerin ünvanına göre toplanır; kurucu dahil)
     let yemek = 0;
     for (const rr of aktifler) yemek += rr.unvan === "C-Level" ? p.yemekClevel : rr.unvan === "Team Lead" ? p.yemekTeamLead : p.yemekAylik;
     const yol = kisi * p.yolAylik;
     const hosgeldin = yeni * p.hosgeldinKisi;
-    // İkramiye KADEMELİ/TARİHE BAĞLI: o ayki prim olaylarının yüzdesi × aktif brüt toplam (zamana bağlı maaş)
+    // İkramiye — ÖDENDİĞİ ay (paid ym, bayram öncesi); tutar o işgücünün brüt toplamına oranlı.
     const ikramiyeOlaylar = d.ikramiye.filter((e) => e.ym === ym);
     const ikramiyePct = ikramiyeOlaylar.reduce((s, e) => s + e.pct, 0);
     const ikramiye = ikramiyePct * brutTop;
     const ikramiyeAd = ikramiyeOlaylar.length
       ? "İkramiye — " + ikramiyeOlaylar.map((e) => `${e.ad} %${Math.round(e.pct * 100)}`).join(" + ")
       : "İkramiye (bu ay yok)";
-    // CPO araç kiralama (o ay geçerli segment)
     let aracSeg = "", aracTl = 0;
-    for (const a of d.arac) if (a.fromYm <= ym) { aracSeg = a.segment; aracTl = a.aylikTl; }
+    for (const a of d.arac) if (a.fromYm <= eym) { aracSeg = a.segment; aracTl = a.aylikTl; }
     const personel: Kume = {
-      key: "personel", ad: "Personel giderleri", renk: KUME_RENK.personel,
+      key: "personel", ad: "Personel giderleri (önceki ay maaşı)", renk: KUME_RENK.personel,
       tl: net + vergi + sgk + yemek + yol + hosgeldin + ikramiye + aracTl,
       kalemler: [
         { ad: "Net maaşlar", tl: net },
@@ -95,10 +99,10 @@ export function hesapla(d: FinansalData): Hesap {
 
     // --- OFİS & KİRA ---
     const ofisKalem: Kalem[] = [{ ad: "Ofis kirası", tl: d.olgun.kira }];
-    if (ym === ilk) ofisKalem.push({ ad: "Depozito (3 ay)", tl: d.olgun.depozito });
+    if (idx === 0) ofisKalem.push({ ad: "Depozito (3 ay)", tl: d.olgun.depozito });
     const ofis: Kume = { key: "ofis", ad: "Ofis & kira", renk: KUME_RENK.ofis, tl: ofisKalem.reduce((s, k) => s + k.tl, 0), kalemler: ofisKalem };
 
-    // --- SÜREKLİ GİDERLER (utilities, headcount-ölçekli) ---
+    // --- SÜREKLİ GİDERLER (headcount-ölçekli) ---
     const u = d.olgun.utilities * fac; const s = d.utilSplit;
     const surekliKalem: Kalem[] = [
       { ad: "İnternet", tl: u * s.internet }, { ad: "Elektrik", tl: u * s.elektrik },
@@ -109,7 +113,7 @@ export function hesapla(d: FinansalData): Hesap {
     const surekli: Kume = { key: "surekli", ad: "Sürekli giderler", renk: KUME_RENK.surekli, tl: u, kalemler: surekliKalem };
 
     // --- PAZARLAMA ---
-    const pazTl = pazMap.get(ym) ?? 0;
+    const pazTl = pazMap.get(eym) ?? 0;
     const pazarlama: Kume = { key: "pazarlama", ad: "Pazarlama", renk: KUME_RENK.pazarlama, tl: pazTl, kalemler: [{ ad: "Dijital reklam / medya", tl: pazTl }] };
 
     // --- YAZILIM / SaaS & AI ---
