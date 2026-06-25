@@ -44,12 +44,19 @@ describe("toplam kimliği (her ay)", () => {
 });
 
 describe("personel kümesi (bordro zinciri)", () => {
-  it("personel kalemleri: net+vergi+sgk+yemek+yol+hoşgeldin+ikramiye = küme toplamı", () => {
+  it("personel kalemleri (net/vergi/sgk/yemek/yol/hoşgeldin/ikramiye/araç) = küme toplamı", () => {
     const p = H.aylar[0].kumeler.find((k) => k.key === "personel")!;
     expect(p).toBeTruthy();
-    expect(p.kalemler).toHaveLength(7);
+    expect(p.kalemler).toHaveLength(8); // 7 + CPO araç
     expect(p.tl).toBeCloseTo(p.kalemler.reduce((s, x) => s + x.tl, 0), 2);
     expect(p.tl).toBeGreaterThan(0);
+  });
+  it("CPO araç kiralama: ilk ay 95.000; 2028 segment yükselir 160.000", () => {
+    const arac0 = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.startsWith("CPO araç"))!;
+    expect(arac0.tl).toBe(95000);
+    const oca28 = H.aylar.find((a) => a.ym === "2028-01")!;
+    const arac28 = oca28.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.startsWith("CPO araç"))!;
+    expect(arac28.tl).toBe(160000);
   });
   it("personel en büyük kümedir (ilk ay)", () => {
     const ay = H.aylar[0];
@@ -92,6 +99,6 @@ describe("store v4", () => {
     expect(() => fromJSON("{bozuk")).toThrow();
   });
   it("load default (localStorage yok)", () => {
-    expect(load().meta.schemaVersion).toBe("4.0.0");
+    expect(load().meta.schemaVersion).toBe("5.0.0");
   });
 });

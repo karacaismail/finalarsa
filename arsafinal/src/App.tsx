@@ -12,14 +12,22 @@ const SYM: Record<Currency, string> = { TRY: "₺", USD: "$", EUR: "€" };
 const CURS: Currency[] = ["TRY", "USD", "EUR"];
 const CHEV = "M184.49 136.49l-80 80a12 12 0 0 1-17-17L159 128 87.51 56.49a12 12 0 1 1 17-17l80 80a12 12 0 0 1 0 17Z";
 
+const DONEMLER = [
+  { key: "ilk6", ad: "İlk 6 ay", a: 0, b: 6 },
+  { key: "sonraki6", ad: "Sonraki 6 ay", a: 6, b: 12 },
+  { key: "ikinci", ad: "İkinci sene", a: 12, b: 24 },
+  { key: "tumu", ad: "TÜMÜ · 24 ay", a: 0, b: 24 },
+];
+
 export function App() {
   const [data, setData] = useState<FinansalData>(() => load());
   const [disp, setDisp] = useState<Currency>("TRY");
-  const [open, setOpen] = useState<number>(-1);      // -1 yok, 0 capex, 1..24 aylar
-  const [openK, setOpenK] = useState<string>("");    // açık küme (ay içinde)
-  const [ayar, setAyar] = useState(false);           // varsayımlar paneli
+  const [open, setOpen] = useState<string>("");     // "", "capex" veya ym
+  const [openK, setOpenK] = useState<string>("");
+  const [ayar, setAyar] = useState(false);
+  const [donem, setDonem] = useState("ilk6");
   const fileRef = useRef<HTMLInputElement>(null);
-  const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => { save(data); }, [data]);
   const H = useMemo(() => hesapla(data), [data]);
@@ -27,57 +35,64 @@ export function App() {
   const conv = (tl: number) => tl / r;
   const sym = SYM[disp];
 
+  const dd = DONEMLER.find((d) => d.key === donem)!;
+  const gosterilen = H.aylar.slice(dd.a, dd.b);
+  const donemToplam = gosterilen.reduce((s, a) => s + a.toplamTl, 0);
+
   const edit = (fn: (d: FinansalData) => void) => setData((p) => { const n = structuredClone(p); fn(n); return n; });
   const setParam = (k: keyof Params, v: number) => edit((d) => { (d.params as unknown as Record<string, number>)[k] = v; });
 
-  const toggle = (i: number) => {
-    const aciliyor = open !== i;
-    setOpen(aciliyor ? i : -1); setOpenK("");
-    if (aciliyor) requestAnimationFrame(() => itemRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "start" }));
+  const toggle = (key: string) => {
+    const aciliyor = open !== key;
+    setOpen(aciliyor ? key : ""); setOpenK("");
+    if (aciliyor) requestAnimationFrame(() => itemRefs.current[key]?.scrollIntoView({ behavior: "smooth", block: "start" }));
   };
 
   const toplam24 = H.aylar.reduce((s, a) => s + a.toplamTl, 0);
-  const ortalama = toplam24 / H.aylar.length;
   const enYuksek = H.aylar.reduce((a, b) => (b.toplamTl > a.toplamTl ? b : a), H.aylar[0]);
 
   const kumeAnahtar = ["personel", "capex", "ofis", "surekli", "pazarlama", "yazilim", "profesyonel", "saha"];
   const kumeAd: Record<string, string> = { personel: "Personel", capex: "CAPEX", ofis: "Ofis & kira", surekli: "Sürekli", pazarlama: "Pazarlama", yazilim: "Yazılım/SaaS", profesyonel: "Profesyonel", saha: "Saha" };
   const chart: EChartsOption = useMemo(() => ({
-    grid: { left: 64, right: 16, top: 34, bottom: 70 },
+    grid: { left: 52, right: 10, top: 30, bottom: 64 },
     tooltip: { trigger: "axis", valueFormatter: (v) => Number(v).toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + " " + sym },
-    legend: { top: 0, type: "scroll", textStyle: { fontSize: 13 } },
-    xAxis: { type: "category", data: H.aylar.map((a) => ayLabel(a.ym)), axisLabel: { rotate: 50, fontSize: 12 } },
-    yAxis: { type: "value", axisLabel: { fontSize: 12, formatter: (v: number) => (Math.abs(v) >= 1e6 ? (v / 1e6).toLocaleString("tr-TR", { maximumFractionDigits: 1 }) + " M" : (v / 1e3).toFixed(0) + " B") } },
-    series: kumeAnahtar.map((key) => ({
-      name: kumeAd[key], type: "bar", stack: "g", color: KUME_RENK[key],
-      data: H.aylar.map((a) => Math.round(conv(a.kumeler.find((k) => k.key === key)?.tl ?? 0))),
-    })),
-  }), [data, disp]);
+    legend: { top: 0, type: "scroll", textStyle: { fontSize: 12 } },
+    xAxis: { type: "category", data: gosterilen.map((a) => ayLabel(a.ym)), axisLabel: { rotate: 48, fontSize: 11 } },
+    yAxis: { type: "value", axisLabel: { fontSize: 11, formatter: (v: number) => (Math.abs(v) >= 1e6 ? (v / 1e6).toLocaleString("tr-TR", { maximumFractionDigits: 1 }) + "M" : (v / 1e3).toFixed(0) + "B") } },
+    series: kumeAnahtar.map((key) => ({ name: kumeAd[key], type: "bar", stack: "g", color: KUME_RENK[key], data: gosterilen.map((a) => Math.round(conv(a.kumeler.find((k) => k.key === key)?.tl ?? 0))) })),
+  }), [data, disp, donem]);
 
-  const exportJSON = () => {
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([toJSON(data)], { type: "application/json" }));
-    a.download = `arsam-gider-${data.meta.updatedAt}.json`; a.click();
-  };
-  const importJSON = (e: ChangeEvent<HTMLInputElement>) => {
-    const f = e.target.files?.[0]; if (!f) return;
-    const rd = new FileReader();
-    rd.onload = () => { try { setData(fromJSON(String(rd.result))); setOpen(-1); } catch { alert("Geçersiz veya uyumsuz JSON."); } };
-    rd.readAsText(f); e.target.value = "";
-  };
-  const reset = () => { if (confirm("Tüm değişiklikler silinip varsayılana dönülecek. Emin misin?")) { clearStorage(); setData(structuredClone(DEFAULT_DATA)); setOpen(-1); } };
+  const exportJSON = () => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([toJSON(data)], { type: "application/json" })); a.download = `arsam-gider-${data.meta.updatedAt}.json`; a.click(); };
+  const importJSON = (e: ChangeEvent<HTMLInputElement>) => { const f = e.target.files?.[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => { try { setData(fromJSON(String(rd.result))); setOpen(""); } catch { alert("Geçersiz veya uyumsuz JSON."); } }; rd.readAsText(f); e.target.value = ""; };
+  const reset = () => { if (confirm("Tüm değişiklikler silinip varsayılana dönülecek. Emin misin?")) { clearStorage(); setData(structuredClone(DEFAULT_DATA)); setOpen(""); } };
+
+  const Head = ({ k, no, title, sub, tl }: { k: string; no: number; title: string; sub: string; tl: number }) => (
+    <button className={"acc-head" + (open === k ? " open" : "")} onClick={() => toggle(k)}>
+      <span className="ah-top">
+        <span className={"chev" + (open === k ? " on" : "")}><Svg d={CHEV} size={18} /></span>
+        <span className="acc-no">{no}</span>
+        <span className="acc-title">{title}</span>
+      </span>
+      <span className="ah-bot">
+        <span className="acc-sub">{sub}</span>
+        <span className="acc-tot"><NumView n={conv(tl)} sym={sym} /></span>
+      </span>
+    </button>
+  );
 
   return (
     <div className="page">
       <header className="bar">
-        <div className="brand"><span className="logo">arsam.net</span><span className="sep">·</span><span className="ttl">Aylık Gider Planı</span></div>
+        <div className="brand"><span className="logo">arsam.net</span><span className="ttl">Aylık Gider Planı</span></div>
         <div className="tools">
           <div className="cur" role="tablist" aria-label="Para birimi">
             {CURS.map((c) => <button key={c} role="tab" aria-selected={c === disp} className={c === disp ? "on" : ""} onClick={() => setDisp(c)}><span className="cs">{SYM[c]}</span> {c}</button>)}
           </div>
-          <button className="btn" onClick={() => fileRef.current?.click()}><Svg d={Icon.up} /> İçe</button>
-          <button className="btn primary" onClick={exportJSON}><Svg d={Icon.down} /> Dışa</button>
-          <button className="btn ghost" onClick={reset}>Sıfırla</button>
+          <div className="io">
+            <button className="btn" onClick={() => fileRef.current?.click()}><Svg d={Icon.up} /> İçe</button>
+            <button className="btn primary" onClick={exportJSON}><Svg d={Icon.down} /> Dışa</button>
+            <button className="btn ghost" onClick={reset}>Sıfırla</button>
+          </div>
           <input ref={fileRef} type="file" accept="application/json,.json" hidden onChange={importJSON} />
         </div>
       </header>
@@ -86,65 +101,59 @@ export function App() {
         <section className="cards">
           <Card k="1) İlk ay yatırımı (CAPEX)" n={conv(H.capex.toplamTl)} sym={sym} accent />
           <Card k="2) 24 ay toplam gider" n={conv(toplam24)} sym={sym} />
-          <Card k="Aylık ortalama" n={conv(ortalama)} sym={sym} />
           <Card k={`En yüksek ay — ${ayLabel(enYuksek.ym)}`} n={conv(enYuksek.toplamTl)} sym={sym} />
         </section>
 
-        <section className="block">
+        {/* zaman filtresi */}
+        <div className="filtre" role="tablist" aria-label="Zaman aralığı">
+          {DONEMLER.map((d) => <button key={d.key} role="tab" aria-selected={d.key === donem} className={"chip" + (d.key === donem ? " on" : "")} onClick={() => { setDonem(d.key); setOpen(""); }}>{d.ad}</button>)}
+        </div>
+        <div className="donem-ozet"><span>{dd.ad} · {gosterilen.length} ay</span><span className="dt">Dönem toplamı: <NumView n={conv(donemToplam)} sym={sym} /></span></div>
+
+        <section className="block chartblock">
           <h2>Aya göre gider (küme bazında)</h2>
-          <EChart option={chart} height={340} />
+          <EChart option={chart} height={300} />
         </section>
 
-        {/* Varsayımlar (düzenlenebilir) */}
         <section className="block">
           <button className="ayar-head" onClick={() => setAyar(!ayar)}>
             <span className={"chev" + (ayar ? " on" : "")}><Svg d={CHEV} size={16} /></span>
-            <b>Varsayımlar (düzenle)</b><span className="note inline">USD kuru, SGK oranı, yan haklar, kira…</span>
+            <b>Varsayımlar (düzenle)</b>
           </button>
           {ayar && (
             <div className="params">
-              <PRow label="USD/TRY kuru" v={data.params.usd} onC={(v) => setParam("usd", v)} hint="kurucu net-hedefi bunu kullanır" />
+              <PRow label="USD/TRY kuru" v={data.params.usd} onC={(v) => setParam("usd", v)} hint="kurucu net-hedefi" />
               <PRow label="EUR/TRY kuru" v={data.params.eur} onC={(v) => setParam("eur", v)} />
-              <PRow label="İşveren SGK oranı" v={data.params.isverenSgkOran} onC={(v) => setParam("isverenSgkOran", v)} hint="0,2375 teşviksiz · 0,2175 teşvikli" />
+              <PRow label="İşveren SGK oranı" v={data.params.isverenSgkOran} onC={(v) => setParam("isverenSgkOran", v)} hint="0,2375 · 0,2175" />
               <PRow label="Yemek (₺/ay/kişi)" v={data.params.yemekAylik} onC={(v) => setParam("yemekAylik", v)} />
               <PRow label="Yol (₺/ay/kişi)" v={data.params.yolAylik} onC={(v) => setParam("yolAylik", v)} />
               <PRow label="İkramiye (yıl/maaş)" v={data.params.ikramiyeMaasYil} onC={(v) => setParam("ikramiyeMaasYil", v)} />
+              <PRow label="CPO araç (1. dönem ₺/ay)" v={data.arac[0].aylikTl} onC={(v) => edit((d) => { d.arac[0].aylikTl = v; })} hint="segment yükselince artar" />
               <PRow label="Ofis kirası (₺/ay)" v={data.olgun.kira} onC={(v) => edit((d) => { d.olgun.kira = v; })} />
-              <PRow label="Sürekli gider (256 kişi, ₺/ay)" v={data.olgun.utilities} onC={(v) => edit((d) => { d.olgun.utilities = v; })} hint="headcount ile ölçeklenir" />
-              <PRow label="Yeni işe alım ekipmanı (₺)" v={data.params.perHireCapex} onC={(v) => setParam("perHireCapex", v)} />
+              <PRow label="Sürekli gider (256 kişi ₺/ay)" v={data.olgun.utilities} onC={(v) => edit((d) => { d.olgun.utilities = v; })} hint="headcount-ölçekli" />
             </div>
           )}
         </section>
 
-        {/* Accordion liste */}
         <section className="acc">
-          <div className="acc-item" ref={(el) => { itemRefs.current[0] = el; }}>
-            <button className={"acc-head capex-head" + (open === 0 ? " open" : "")} onClick={() => toggle(0)}>
-              <span className={"chev" + (open === 0 ? " on" : "")}><Svg d={CHEV} size={18} /></span>
-              <span className="acc-no">1</span>
-              <span className="acc-title">İlk ay yatırımı — CAPEX</span>
-              <span className="acc-tot"><NumView n={conv(H.capex.toplamTl)} sym={sym} /></span>
-            </button>
-            {open === 0 && (
-              <div className="acc-body">
-                {H.capex.kalemler.map((k, i) => <div className="kalem-row" key={i}><span>{k.ad}</span><NumView n={conv(k.tl)} sym={sym} /></div>)}
-                <div className="kalem-row sum"><span>Toplam</span><NumView n={conv(H.capex.toplamTl)} sym={sym} /></div>
-              </div>
-            )}
-          </div>
+          {dd.a === 0 && (
+            <div className="acc-item" ref={(el) => { itemRefs.current["capex"] = el; }}>
+              <Head k="capex" no={1} title="İlk ay yatırımı — CAPEX" sub="bir kerelik" tl={H.capex.toplamTl} />
+              {open === "capex" && (
+                <div className="acc-body">
+                  {H.capex.kalemler.map((k, i) => <div className="kalem-row" key={i}><span>{k.ad}</span><NumView n={conv(k.tl)} sym={sym} /></div>)}
+                  <div className="kalem-row sum"><span>Toplam</span><NumView n={conv(H.capex.toplamTl)} sym={sym} /></div>
+                </div>
+              )}
+            </div>
+          )}
 
-          {H.aylar.map((ay, i) => {
-            const idx = i + 1;
+          {gosterilen.map((ay, j) => {
+            const i = dd.a + j;
             return (
-              <div className="acc-item" key={ay.ym} ref={(el) => { itemRefs.current[idx] = el; }}>
-                <button className={"acc-head" + (open === idx ? " open" : "")} onClick={() => toggle(idx)}>
-                  <span className={"chev" + (open === idx ? " on" : "")}><Svg d={CHEV} size={18} /></span>
-                  <span className="acc-no">{idx + 1}</span>
-                  <span className="acc-title">{ayLabel(ay.ym)}</span>
-                  <span className="acc-sub">{ay.kisi} kişi{ay.yeni ? ` · +${ay.yeni}` : ""}</span>
-                  <span className="acc-tot"><NumView n={conv(ay.toplamTl)} sym={sym} /></span>
-                </button>
-                {open === idx && (
+              <div className="acc-item" key={ay.ym} ref={(el) => { itemRefs.current[ay.ym] = el; }}>
+                <Head k={ay.ym} no={i + 2} title={ayLabel(ay.ym)} sub={`${ay.kisi} kişi${ay.yeni ? ` · +${ay.yeni} yeni` : ""}`} tl={ay.toplamTl} />
+                {open === ay.ym && (
                   <div className="acc-body">
                     {ay.kumeler.map((k) => (
                       <div className="kume" key={k.key}>
@@ -153,11 +162,11 @@ export function App() {
                           <span className="kume-ad">{k.ad}</span>
                           <span className="kume-pay">%{Math.round((k.tl / ay.toplamTl) * 100)}</span>
                           <span className="kume-tot"><NumView n={conv(k.tl)} sym={sym} /></span>
-                          <span className={"chev sm" + (openK === k.key ? " on" : "")}><Svg d={CHEV} size={14} /></span>
+                          <span className={"chev sm" + (openK === k.key ? " on" : "")}><Svg d={CHEV} size={13} /></span>
                         </button>
                         {openK === k.key && (
                           <div className="kume-body">
-                            {k.kalemler.map((x, j) => <div className="kalem-row" key={j}><span>{x.ad}</span><NumView n={conv(x.tl)} sym={sym} /></div>)}
+                            {k.kalemler.map((x, m) => <div className="kalem-row" key={m}><span>{x.ad}</span><NumView n={conv(x.tl)} sym={sym} /></div>)}
                           </div>
                         )}
                       </div>
@@ -171,7 +180,7 @@ export function App() {
         </section>
 
         <footer className="foot">
-          Personel = 256 rol + bordro motoru (kurucu: 7.500$ net-hedef, kümülatif vergi) · diğer kümeler geçmiş veriden, düzenlenebilir · <b>{SYM[disp]} {disp}</b> · veri tarayıcıda saklanır · arsam.net
+          Personel = 256 rol + 2026 bordro motoru (kurucu 7.500$ net-hedef) + CPO araç kiralama · diğer kümeler geçmiş veriden, düzenlenebilir · <b>{SYM[disp]} {disp}</b> · veri tarayıcıda · arsam.net
         </footer>
       </main>
     </div>
@@ -185,8 +194,7 @@ function PRow({ label, v, onC, hint }: { label: string; v: number; onC: (v: numb
   return (
     <label className="param">
       <span className="p-lbl">{label}</span>
-      <input type="text" inputMode="decimal" defaultValue={grouped(v)} key={String(v)}
-        onBlur={(e) => { const x = parseTR(e.target.value); if (x !== null && x >= 0) onC(x); }} />
+      <input type="text" inputMode="decimal" defaultValue={grouped(v)} key={String(v)} onBlur={(e) => { const x = parseTR(e.target.value); if (x !== null && x >= 0) onC(x); }} />
       {hint && <span className="p-hint">{hint}</span>}
     </label>
   );

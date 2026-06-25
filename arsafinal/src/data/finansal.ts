@@ -27,6 +27,7 @@ export interface Params {
 }
 
 export interface FounderStep { fromYm: string; netUsd: number; }
+export interface AracStep { fromYm: string; segment: string; aylikTl: number; } // CPO araç kiralama (operasyonel, aylık)
 
 // Olgun (256 kişi) aylık küme değerleri — headcount ile ölçeklenir. Hepsi düzenlenebilir.
 export interface OlgunDegerler {
@@ -45,6 +46,7 @@ export interface FinansalData {
   params: Params;
   bordro: BordroParams;
   founder: FounderStep[];
+  arac: AracStep[];
   roles: Role[];
   capex: CapexKalem[];                 // ilk-ay yatırım kalemleri
   olgun: OlgunDegerler;
@@ -52,7 +54,7 @@ export interface FinansalData {
   pazarlama: { ym: string; tl: number }[]; // aya göre pazarlama (reklam) harcaması
 }
 
-export const SCHEMA_VERSION = "4.0.0";
+export const SCHEMA_VERSION = "5.0.0";
 export const MATURE_HC = 256;
 
 const AYLAR = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
@@ -86,6 +88,13 @@ export const DEFAULT_DATA: FinansalData = {
     { fromYm: "2026-09", netUsd: 7500 },
     { fromYm: "2027-01", netUsd: 10000 },
     { fromYm: "2027-06", netUsd: 15000 },
+  ],
+  // CPO araç tahsisi — operasyonel kiralama (aylık ödeme). Segment ~yılda bir yükselir (eski proje verisi).
+  // Aylık kira KDV hariç temsilî; 2026'da kiranın yalnız 46.000 ₺'lik kısmı gider yazılabilir (kalanı KKEG).
+  arac: [
+    { fromYm: "2026-09", segment: "Škoda Superb / Camry / Passat / Audi A5", aylikTl: 95000 },
+    { fromYm: "2027-06", segment: "Volvo S60 (üst segment)", aylikTl: 110000 },
+    { fromYm: "2028-01", segment: "BMW 520+ / Mercedes E 220+ / Audi A6 / Volvo S90", aylikTl: 160000 },
   ],
   roles: ROLES,
   capex: [

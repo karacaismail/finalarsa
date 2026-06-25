@@ -2,7 +2,7 @@
 import { DEFAULT_DATA, SCHEMA_VERSION } from "../data/finansal";
 import type { FinansalData } from "../data/finansal";
 
-export const LS_KEY = "arsafinal:v4";
+export const LS_KEY = "arsafinal:v5";
 
 export function isValid(d: unknown): d is FinansalData {
   if (!d || typeof d !== "object") return false;
@@ -11,7 +11,7 @@ export function isValid(d: unknown): d is FinansalData {
   if (!x.bordro || !Array.isArray(x.bordro.dilimler)) return false;
   if (!Array.isArray(x.roles) || x.roles.length === 0) return false;
   if (!Array.isArray(x.capex) || !x.olgun || !x.utilSplit) return false;
-  if (!Array.isArray(x.founder) || !Array.isArray(x.pazarlama)) return false;
+  if (!Array.isArray(x.founder) || !Array.isArray(x.pazarlama) || !Array.isArray(x.arac)) return false;
   return typeof x.roles[0]?.brutMaas === "number";
 }
 

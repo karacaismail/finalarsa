@@ -64,9 +64,12 @@ export function hesapla(d: FinansalData): Hesap {
     const yemek = kisi * p.yemekAylik, yol = kisi * p.yolAylik;
     const hosgeldin = yeni * p.hosgeldinKisi;
     const ikramiye = brutTop * p.ikramiyeMaasYil / 12;
+    // CPO araç kiralama (o ay geçerli segment)
+    let aracSeg = "", aracTl = 0;
+    for (const a of d.arac) if (a.fromYm <= ym) { aracSeg = a.segment; aracTl = a.aylikTl; }
     const personel: Kume = {
       key: "personel", ad: "Personel giderleri", renk: KUME_RENK.personel,
-      tl: net + vergi + sgk + yemek + yol + hosgeldin + ikramiye,
+      tl: net + vergi + sgk + yemek + yol + hosgeldin + ikramiye + aracTl,
       kalemler: [
         { ad: "Net maaşlar", tl: net },
         { ad: "Gelir vergisi (stopaj)", tl: vergi },
@@ -75,6 +78,7 @@ export function hesapla(d: FinansalData): Hesap {
         { ad: "Yol ücreti", tl: yol },
         { ad: "Hoşgeldin paketi (yeni işe alım)", tl: hosgeldin },
         { ad: "İkramiye (yılda " + p.ikramiyeMaasYil + " maaş)", tl: ikramiye },
+        { ad: "CPO araç — " + aracSeg + " (kiralama)", tl: aracTl },
       ],
     };
 
