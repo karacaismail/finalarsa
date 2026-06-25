@@ -55,7 +55,9 @@ describe("personel kümesi (bordro zinciri)", () => {
     const arac0 = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
     expect(arac0.tl).toBe(95000);
     expect(arac0.ad).toContain("2025+ model:");
-    expect(arac0.ad).toContain("Insignia");
+    expect(arac0.ad).not.toContain("Insignia");
+    expect(arac0.ad).toContain("Mercedes C (W206)");
+    expect(arac0.ad).toContain("VW Passat B9");
     const oca28 = H.aylar.find((a) => a.ym === "2028-01")!;
     const arac28 = oca28.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
     expect(arac28.tl).toBe(160000);
@@ -103,6 +105,6 @@ describe("store v4", () => {
     expect(() => fromJSON("{bozuk")).toThrow();
   });
   it("load default (localStorage yok)", () => {
-    expect(load().meta.schemaVersion).toBe("5.2.0");
+    expect(load().meta.schemaVersion).toBe("5.3.0");
   });
 });
