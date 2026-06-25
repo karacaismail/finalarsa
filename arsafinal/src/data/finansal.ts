@@ -1,28 +1,39 @@
-// arsam.net — Finansal gider takibi (v2) — TEK KAYNAK.
-// Mimari: aylık girişler (months) tek doğru kaynaktır; tüm toplam/grafikler bundan türetilir.
-// Para değerleri TL (TRY) tabanında saklanır; ekranda seçilen para birimine çevrilir.
+// arsam.net — Finansal gider takibi (v3) — TEK KAYNAK.
+// ZİNCİR: Kadro (roller) → aylık personel gideri (o ay aktif rollerin yüklü maliyeti)
+//          → aylık toplam (+ 6 manuel kalem) → Özet/grafik.
+// Personel kalemi ARTIK rollerden TÜRETİLİR (Giriş'te salt-okunur). Diğer 6 kalem elle düzenlenir.
+// Para değerleri TL tabanında saklanır; ekranda seçilen para birimine çevrilir.
+
+import { ROLES } from "./roles";
 
 export type Currency = "TRY" | "USD" | "EUR";
 
-// 7 sabit kategori (giriş formu satırları). group: hangi üst kaleme ait.
-export type CatKey = "personel" | "pazarlama" | "saha" | "dijital" | "ofis" | "yazilim" | "capex";
-
-export interface Category {
-  key: CatKey;
-  label: string;
-  group: "opex" | "pazarlama" | "capex";
+// Kadro rolü (Kaynak: İK PLANI tablosu). brutMaas = aylık brüt ₺; istihdamYm = "2026-08".
+export interface Role {
+  sira: number;
+  kod: string;
+  ad: string;
+  departman: string;
+  kademe: string;
+  unvan: string;
+  brutMaas: number;
+  istihdamYm: string;
 }
 
-export interface MonthEntry {
-  ym: string; // "2026-07"
-  values: Record<CatKey, number>; // TL
+// Maaş→toplam personel maliyeti modeli (düzenlenebilir politika parametreleri).
+export interface CostParams {
+  isverenSgkCarpan: number; // brüt × bu = brüt + işveren SGK/vergi (ör. 1.225 ≈ %22.5 işveren payı)
+  yemekAylik: number;       // ₺/ay/kişi yemek
+  yanHaklarAylik: number;   // ₺/ay/kişi yan haklar (ulaşım, sağlık vb.)
+  ikramiyeMaasYil: number;  // yılda kaç maaş ikramiye (aylığa /12 yansır)
 }
 
-export interface Rates {
-  TRY: number;
-  USD: number;
-  EUR: number;
-}
+// 6 manuel (personel-dışı) kategori.
+export type ManualCatKey = "pazarlama" | "saha" | "dijital" | "ofis" | "yazilim" | "capex";
+export interface ManualCategory { key: ManualCatKey; label: string; }
+export interface MonthEntry { ym: string; values: Record<ManualCatKey, number>; } // TL
+
+export interface Rates { TRY: number; USD: number; EUR: number; }
 
 export interface Benchmarks {
   editable: false;
@@ -32,57 +43,40 @@ export interface Benchmarks {
   professions: { role: string; min: number; max: number; region: string }[];
   cLevel: { company: string; min: number; max: number; note: string }[];
 }
-
 export interface Cpo {
   editable: boolean;
   title: string;
   note: string;
   salary: { period: string; payUsd: number }[];
   car: { period: string; segment: string }[];
-  fuel: string;
-  health: string;
-  leave: string;
+  fuel: string; health: string; leave: string;
 }
 
 export interface FinansalData {
-  meta: {
-    schemaVersion: string;
-    updatedAt: string;
-    baseCurrency: Currency;
-    rates: Rates; // 1 birim = kaç TRY
-  };
-  categories: Category[];
+  meta: { schemaVersion: string; updatedAt: string; baseCurrency: Currency; rates: Rates };
+  costParams: CostParams;
+  roles: Role[];
+  categories: ManualCategory[];
   months: MonthEntry[];
   benchmarks: Benchmarks;
   cpo: Cpo;
 }
 
-export const SCHEMA_VERSION = "2.0.0";
+export const SCHEMA_VERSION = "3.0.0";
 
-export const CATEGORIES: Category[] = [
-  { key: "personel", label: "Personel (SGK dahil)", group: "opex" },
-  { key: "pazarlama", label: "Pazarlama", group: "pazarlama" },
-  { key: "saha", label: "Saha operasyonu", group: "opex" },
-  { key: "dijital", label: "Dijital altyapı & AI", group: "opex" },
-  { key: "ofis", label: "Ofis & idari", group: "opex" },
-  { key: "yazilim", label: "Yazılım & AI araçları", group: "opex" },
-  { key: "capex", label: "CAPEX (yatırım)", group: "capex" },
+export const MANUAL_CATEGORIES: ManualCategory[] = [
+  { key: "pazarlama", label: "Pazarlama (reklam/medya harcaması)" },
+  { key: "saha", label: "Saha operasyonu" },
+  { key: "dijital", label: "Dijital altyapı & AI" },
+  { key: "ofis", label: "Ofis & idari" },
+  { key: "yazilim", label: "Yazılım & AI araçları" },
+  { key: "capex", label: "CAPEX (yatırım)" },
 ];
 
-// OPEX toplamını 5 alt kaleme bölen oranlar (olgun-dönem 2031 kompozisyonu, pazarlama hariç).
-export const OPEX_RATIOS: Record<"personel" | "saha" | "dijital" | "ofis" | "yazilim", number> = (() => {
-  const base = { personel: 18453600, saha: 2280000, dijital: 5658813, ofis: 2580000, yazilim: 1398000 };
-  const sum = base.personel + base.saha + base.dijital + base.ofis + base.yazilim;
-  return {
-    personel: base.personel / sum,
-    saha: base.saha / sum,
-    dijital: base.dijital / sum,
-    ofis: base.ofis / sum,
-    yazilim: base.yazilim / sum,
-  };
-})();
+// Personel-dışı kalemler için oranlar (eski OPEX kompozisyonu; tahmini, düzenlenebilir).
+export const OPEX_RATIOS = { saha: 0.0751, dijital: 0.1863, ofis: 0.0850, yazilim: 0.0460 };
 
-// Kaynak aylık model (gerçek): 18 ay (Tem 2026 → Ara 2027). opex = pazarlama hariç OPEX toplamı.
+// Personel-dışı aylık kaynak (gerçek modelden; pazarlama+capex birebir, diğerleri OPEX oranı).
 const SOURCE_18: { opex: number; pazarlama: number; capex: number }[] = [
   { opex: 1727733, pazarlama: 128205, capex: 2955408 },
   { opex: 1901088, pazarlama: 143590, capex: 103385 },
@@ -106,63 +100,44 @@ const SOURCE_18: { opex: number; pazarlama: number; capex: number }[] = [
 
 export const DEFAULT_MONTH_COUNT = 24;
 const START_YEAR = 2026;
-const START_MONTH = 7; // Temmuz
+const START_MONTH = 9; // Eylül 2026 (kullanıcı kararı)
+const SRC_OFFSET = 2;  // SOURCE_18[0]=Tem2026 → Eyl2026 = index 2
 
 const AYLAR = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 
-// "2026-07" -> "Tem 2026"
 export function ayLabel(ym: string): string {
   const [y, m] = ym.split("-").map(Number);
   return `${AYLAR[(m - 1 + 12) % 12]} ${y}`;
 }
-
-// Başlangıç ayından itibaren n ay üret: ["2026-07", ...]
 export function ymList(n: number = DEFAULT_MONTH_COUNT): string[] {
   const out: string[] = [];
-  let y = START_YEAR;
-  let m = START_MONTH;
+  let y = START_YEAR, m = START_MONTH;
   for (let i = 0; i < n; i++) {
     out.push(`${y}-${String(m).padStart(2, "0")}`);
-    m++;
-    if (m > 12) { m = 1; y++; }
+    m++; if (m > 12) { m = 1; y++; }
   }
   return out;
 }
 
-// OPEX toplamını 5 alt kaleme böl; yuvarlama kalanı en büyük kaleme (personel) eklenir → toplam birebir korunur.
-export function dagitOpex(opexToplam: number): Record<"personel" | "saha" | "dijital" | "ofis" | "yazilim", number> {
-  const o = Math.round(opexToplam);
-  const saha = Math.round(o * OPEX_RATIOS.saha);
-  const dijital = Math.round(o * OPEX_RATIOS.dijital);
-  const ofis = Math.round(o * OPEX_RATIOS.ofis);
-  const yazilim = Math.round(o * OPEX_RATIOS.yazilim);
-  const personel = o - saha - dijital - ofis - yazilim; // kalan en büyük kaleme
-  return { personel, saha, dijital, ofis, yazilim };
-}
-
-// 24 aylık default veriyi gerçek modelden üret (19-24. ay son artış hızıyla uzatılır).
-export function seedDefault(): MonthEntry[] {
+// 6 manuel kalemin 24 aylık tohumu (Eyl2026→Ağu2028). Tahmini; kullanıcı düzenler.
+export function seedManual(): MonthEntry[] {
   const src = SOURCE_18.slice();
-  const dOpex = src[17].opex - src[16].opex;
-  const dPaz = src[17].pazarlama - src[16].pazarlama;
-  const dCap = src[17].capex - src[16].capex;
-  for (let i = 18; i < DEFAULT_MONTH_COUNT; i++) {
-    const prev = src[i - 1];
-    src.push({ opex: prev.opex + dOpex, pazarlama: prev.pazarlama + dPaz, capex: prev.capex + dCap });
+  const dO = src[17].opex - src[16].opex, dP = src[17].pazarlama - src[16].pazarlama, dC = src[17].capex - src[16].capex;
+  while (src.length < DEFAULT_MONTH_COUNT + SRC_OFFSET) {
+    const p = src[src.length - 1];
+    src.push({ opex: p.opex + dO, pazarlama: p.pazarlama + dP, capex: p.capex + dC });
   }
-  const yms = ymList(DEFAULT_MONTH_COUNT);
-  return src.map((row, i) => {
-    const sub = dagitOpex(row.opex);
+  return ymList(DEFAULT_MONTH_COUNT).map((ym, i) => {
+    const s = src[i + SRC_OFFSET];
     return {
-      ym: yms[i],
+      ym,
       values: {
-        personel: sub.personel,
-        saha: sub.saha,
-        dijital: sub.dijital,
-        ofis: sub.ofis,
-        yazilim: sub.yazilim,
-        pazarlama: Math.round(row.pazarlama),
-        capex: Math.round(row.capex),
+        pazarlama: Math.round(s.pazarlama),
+        saha: Math.round(s.opex * OPEX_RATIOS.saha),
+        dijital: Math.round(s.opex * OPEX_RATIOS.dijital),
+        ofis: Math.round(s.opex * OPEX_RATIOS.ofis),
+        yazilim: Math.round(s.opex * OPEX_RATIOS.yazilim),
+        capex: Math.round(s.capex),
       },
     };
   });
@@ -172,7 +147,7 @@ const BENCHMARKS: Benchmarks = {
   editable: false,
   title: "Piyasa istatistikleri (referans · KİLİTLİ)",
   disclaimer:
-    "Aşağıdaki rakamlar bağlam içindir; piyasa tahminidir, resmî/kesin değildir (C-level ücretleri kamuya kapalıdır). Bu bölüm düzenlenemez. Değerler aylık ve seçilen para biriminde gösterilir.",
+    "Bağlam içindir; piyasa tahminidir, resmî/kesin değildir (C-level ücretleri kamuya kapalıdır). Düzenlenemez. Değerler aylık ve seçilen para biriminde.",
   softwareSalaries: [
     { role: "Yazılımcı — Junior", min: 35000, max: 65000, region: "Türkiye · aylık net (tahmini)" },
     { role: "Yazılımcı — Mid", min: 65000, max: 120000, region: "Türkiye · aylık net (tahmini)" },
@@ -186,40 +161,37 @@ const BENCHMARKS: Benchmarks = {
     { role: "Uzman doktor (özel)", min: 100000, max: 300000, region: "Türkiye · aylık (tahmini)" },
   ],
   cLevel: [
-    { company: "sahibinden.com — C-level", min: 600000, max: 1500000, note: "aylık brüt + hisse (tahmini · kamuya kapalı)" },
-    { company: "Trendyol — C-level", min: 800000, max: 2500000, note: "aylık brüt + hisse/opsiyon (tahmini · kamuya kapalı)" },
-    { company: "amazon.com.tr (Amazon TR) — C-level", min: 700000, max: 2000000, note: "aylık brüt + RSU (tahmini · kamuya kapalı)" },
+    { company: "sahibinden.com — C-level", min: 600000, max: 1500000, note: "aylık brüt + hisse (tahmini)" },
+    { company: "Trendyol — C-level", min: 800000, max: 2500000, note: "aylık brüt + hisse/opsiyon (tahmini)" },
+    { company: "amazon.com.tr — C-level", min: 700000, max: 2000000, note: "aylık brüt + RSU (tahmini)" },
   ],
 };
 
 const CPO: Cpo = {
   editable: true,
-  title: "CPO — özel/sosyal haklar ve yan haklar",
-  note: "Maaş USD-endekslidir; ay-sonu USD/TL kuru ile TL ödenir. Diğer kalemler model varsayımıdır.",
+  title: "CPO — özel/sosyal haklar (referans)",
+  note: "Maaş USD-endekslidir; ay-sonu kuru ile TL ödenir. Model varsayımı.",
   salary: [
-    { period: "2026 (mevcut taban)", payUsd: 7500 },
-    { period: "2027 başı (zam)", payUsd: 10000 },
+    { period: "2026 (taban)", payUsd: 7500 },
+    { period: "2027 başı", payUsd: 10000 },
     { period: "1 Haziran 2027", payUsd: 15000 },
   ],
   car: [
-    { period: "2026–2027 başlangıç", segment: "Škoda Superb · Toyota Camry · VW Passat · Audi A5" },
+    { period: "2026–2027", segment: "Škoda Superb · Toyota Camry · VW Passat · Audi A5" },
     { period: "2027 Haziran", segment: "Volvo S60 — bir üst segment" },
     { period: "2028", segment: "BMW 520+ · Mercedes-Benz E 220+ · Audi A6 · Volvo S90" },
   ],
-  fuel: "Yılda 25.000 km'ye kadar yakıt şirketçe karşılanır; şirket yakıt kartıyla anlaşmalı istasyonlarda ücretsiz.",
-  health: "Aile dahil, genel ve tam kapsamlı özel sağlık sigortası.",
-  leave: "Yıllık senelik izne ek 1 hafta kış tatili; senelik izin ve kış tatili için aile dahil tatil bütçesi.",
+  fuel: "Yılda 25.000 km'ye kadar yakıt şirketçe (anlaşmalı istasyon, yakıt kartı).",
+  health: "Aile dahil, tam kapsamlı özel sağlık sigortası.",
+  leave: "Senelik izne ek 1 hafta kış tatili; izin ve kış tatili için aile dahil tatil bütçesi.",
 };
 
 export const DEFAULT_DATA: FinansalData = {
-  meta: {
-    schemaVersion: SCHEMA_VERSION,
-    updatedAt: "2026-06-25",
-    baseCurrency: "TRY",
-    rates: { TRY: 1, USD: 45.2, EUR: 49.0 },
-  },
-  categories: CATEGORIES,
-  months: seedDefault(),
+  meta: { schemaVersion: SCHEMA_VERSION, updatedAt: "2026-06-25", baseCurrency: "TRY", rates: { TRY: 1, USD: 45.2, EUR: 49.0 } },
+  costParams: { isverenSgkCarpan: 1.225, yemekAylik: 6000, yanHaklarAylik: 4000, ikramiyeMaasYil: 1 },
+  roles: ROLES,
+  categories: MANUAL_CATEGORIES,
+  months: seedManual(),
   benchmarks: BENCHMARKS,
   cpo: CPO,
 };

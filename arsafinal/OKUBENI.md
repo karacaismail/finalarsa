@@ -1,51 +1,42 @@
-# arsam.net — Gider Takibi (v2)
+# arsam.net — Kadro & Gider (v3)
 
-Ay ay gider girip, başka bir sayfada otomatik toplayıp grafikleyen sade araç. Amaç: Üzeyir Bey karmaşık Excel yerine "hangi ay, hangi kategori, ne kadar"ı okuyabilsin.
+Gerçek İK planını (256 rol, brüt maaş, işe alım tarihi) finansal modele **zincirleme** bağlayan araç. Amaç: Üzeyir Bey "kim, ne zaman, ne kadar" akışını ve aylık toplam gideri tek yerde görsün; sen de düzenleyebilesin.
 
 - **Canlı:** https://karacaismail.github.io/finalarsa/finansal/
 - **Yerel:** `/Users/karaca/Documents/sonbirarsa/arsafinal/`
-- **Teknoloji:** Vite + React + TypeScript + ECharts (grafik) + Vitest (test). Tek sayfa, iki sekme.
+- **Teknoloji:** Vite + React + TypeScript + ECharts + Vitest. Tek sayfa, üç sekme.
 
-## İki sekme
+## Zincir (en önemli kavram)
 
-**Giriş:** Yıl/ay seç (veya Önceki/Sonraki ay), o ayın giderlerini 7 kategoride gir. Grup alt toplamı ve "bu ay toplam" anında hesaplanır. Ay ay ilerlersin.
+Kadro (roller + maliyet parametreleri) → her ayın **personel gideri** = o ay aktif rollerin yüklü maliyeti → **aylık toplam** (+ 6 manuel kalem) → Özet kartları, tablo ve grafikler. Bir rolün brüt maaşını veya işe alım ayını ya da bir maliyet parametresini değiştirince **tüm zincir** anında güncellenir.
 
-**Özet & grafikler:** Tüm ayları kategori kategori toplar. Üç özet kart (24 ay toplamı, aylık ortalama, en yüksek ay), 4 dinamik ECharts grafik (aylık gider, kümülatif gider, aya göre yığılmış kategori, kategori pastası) ve ay×kategori tablosu (alt toplam + genel toplam). Sen Giriş'te değer değiştirdikçe burası otomatik güncellenir.
+## Üç sekme
 
-## 7 kategori
+**Kadro:** Maaş maliyet modeli (4 düzenlenebilir parametre) + 256 rolün tablosu. Her rolün brüt maaşı ve işe alım ayı düzenlenebilir; "yüklü maliyet/ay" otomatik hesaplanır. Arama + "sadece pencere (≤ Ağu 2028)" filtresi + rol ekle/sil.
 
-Personel, Pazarlama, Saha operasyonu, Dijital altyapı & AI, Ofis & idari, Yazılım & AI araçları, CAPEX. Giriş formundaki satırlar bunlardır.
+**Giriş:** Yıl/ay seç. **Personel kalemi salt-okunur** (Kadro'dan otomatik, o ay kaç rol aktifse). Diğer 6 kalemi (Pazarlama reklam, Saha, Dijital altyapı, Ofis, Yazılım, CAPEX) elle girersin. "Bu ay toplam" anında.
 
-## Veri ve kalıcılık
+**Özet & grafikler:** Özet kartlar (24 ay toplam, aylık ortalama, en yüksek ay, personel payı), 5 dinamik ECharts (aylık gider, aktif rol sayısı, aya göre yığılmış kategori, kümülatif gider, kategori pastası), ay×kategori tablosu ve benchmark referansı.
 
-- **Tarayıcıda otomatik kayıt (localStorage):** Yenileyince/kapatınca girişler durur. "Sıfırla" → varsayılan 24 aya döner.
-- **JSON içe/dışa aktar:** Veriyi yedekle veya başka cihaza taşı. İçe aktarımda şema doğrulanır; bozuk dosya reddedilir.
-- **24 ay default:** Tem 2026 → Haz 2028. Değerler mevcut finansal modelden — Pazarlama ve CAPEX birebir; OPEX toplamı olgun-dönem oranlarıyla 5 alt kaleme bölünür (toplam birebir korunur); 19-24. aylar son artış hızıyla uzatılır (model varsayımı).
-- **Para birimi:** ₺/$/€ switcher üstte; tüm değer/grafik seçilen birimde. Kurlar (1$, 1€) düzenlenebilir. Değerler TL tabanında saklanır.
-- **Benchmark + CPO:** Özet'te referans olarak kalır (kilitli/salt-okunur). Benchmark maaşları tahminîdir, resmî değildir.
+## Maaş maliyet modeli
 
-## Veri modeli (kısaca)
+Aylık personel gideri (rol başına) = **brüt × işveren SGK çarpanı × (1 + ikramiye/12) + yemek + yan haklar**. Varsayılanlar (düzenlenebilir): SGK çarpanı 1,225 (≈ %22,5 işveren payı), yemek 6.000 ₺/ay/kişi, yan haklar 4.000 ₺/ay/kişi, ikramiye 1 maaş/yıl (Kurban + Ramazan + yılbaşı + yıl-sonu primi). Bu rakamlar senin politikan; sayfada yoktu, parametre yaptım — kendi değerlerinle değiştir.
 
-Tek kaynak: `months: MonthEntry[]` (her ay `{ ym, values: {7 kategori} }`, TL). Tüm toplam/grafik bundan türetilir (`src/lib/calc.ts`). Depolama/şema: `src/lib/store.ts`. Sabit veri (benchmark) `editable:false`. Dosyalar: `data/finansal.ts` (model+seed), `pages/Giris.tsx`, `pages/Ozet.tsx`, `components/num.tsx` (stilli sayı/tıkla-düzenle), `components/Chart.tsx` (ECharts sarmalayıcı).
+## Zaman ve veri
+
+- **Pencere:** Eyl 2026 → Ağu 2028 (24 ay). Bu pencerede 106 rol aktif olur; plan 2031'e kadar 256 rol içerir (hepsi Kadro'da, pencere dışı roller 24 aylık görünümü etkilemez).
+- **Maaşlar brüt** (İK PLANI tablosundan birebir). Aktiflik = işe alım ayı ≤ o ay (sayfadaki ✓ matrisiyle 16.640 hücrede %100 tutarlı — boşluk/çıkış yok).
+- **Kalıcılık:** localStorage otomatik kayıt + JSON içe/dışa aktar. "Sıfırla" → varsayılana döner.
+- **Para birimi:** ₺/$/€ switcher; kurlar düzenlenebilir.
 
 ## Çalıştırma / test / yayın
 
 - Yerel: `cd arsafinal && npm install && npm run dev`
-- Test: `npm run test` (Vitest — seed/dağıtım/toplam kimliği/çevirme/JSON-şema, 19 test).
-- Yayın: `main`'e push → GitHub Actions **önce testleri çalıştırır** (test geçmezse deploy yok), sonra derler ve `/finalarsa/finansal/` altına koyar.
+- Test: `npm run test` (Vitest — 19 test: roller, aktiflik, maliyet formülü, zincir toplam kimlikleri, JSON/şema).
+- Yayın: `main`'e push → GitHub Actions **önce testleri çalıştırır** (geçmezse deploy yok), sonra derler ve `/finalarsa/finansal/` altına koyar.
 
-## Sayı biçimi
+## Notlar / sıradaki
 
-Binlik ayraçlı; en yüksek rakam grubu **kalın**, kalan normal, ondalık *italik* (örn. USD'de `64.409,29$`). Tüm metin en az 1rem.
-
----
-
-## Sıradaki öneriler (opsiyonel)
-
-1. **Yıllık özet (2026/2027/2028):** 24 ay detayına ek, yıl-bazlı tek tablo.
-2. **Gelir tarafı:** Gider + gelir = net/kâr ve marj (şimdilik yalnız gider).
-3. **Senaryo seçici (kötümser/medyan/iyimser):** Aynı forma çoklu senaryo.
-4. **Kategori ekle/çıkar/yeniden adlandır:** Şu an 7 kategori sabit.
-5. **Ay aralığını uzat:** 24 ay sabit; dinamik ay ekleme.
-6. **PDF/yazdır:** Üzeyir'in çıktı alması için temiz baskı.
-7. **ECharts tree-shake:** Paket boyutunu ~1,2MB'tan ~400KB'a indirmek için yalnız kullanılan grafik modüllerini import etmek.
+- Personel-dışı 6 kalem hâlâ tahmini tohumla gelir; gerçek reklam/altyapı bütçeni Giriş'ten gir.
+- Roller `src/data/roles.ts` — İK PLANI CSV'sinden programatik üretildi (elle yazılmadı).
+- Sıradaki opsiyonlar: yıllık özet, gelir tarafı (net/kâr), departman bazlı maliyet kırılımı, ECharts tree-shake (paket boyutu ~1,2MB→~400KB).

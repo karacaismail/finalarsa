@@ -278,3 +278,37 @@ input.txt:focus { outline: none; border-color: var(--edit); box-shadow: 0 0 0 3p
 .chart-box h3 { margin: 0 0 6px; font-size: 1.1rem; color: var(--grass-ink); font-weight: 700; }
 
 .badge.live { background: #e7f1ff; color: var(--edit); border: 1px solid var(--edit-line); }
+
+/* ---------- zincirli personel satırı (Giriş) ---------- */
+.form-row.chained { background: var(--grass-soft); border-radius: 10px; padding: 12px 16px; border-bottom: none; margin-bottom: 6px; }
+.form-row .sub { display: block; font-size: 1rem; color: var(--muted); margin-top: 2px; font-weight: 400; }
+.chained-val { display: flex; align-items: center; gap: 14px; }
+.chained-val .num b { color: var(--grass-ink); }
+.link-btn { display: inline-flex; align-items: center; gap: 5px; background: none; border: none; color: var(--grass-ink); font: inherit; font-size: 1rem; cursor: pointer; text-decoration: underline; }
+.link-btn:hover { color: var(--grass); }
+
+/* ---------- maliyet parametreleri (Kadro) ---------- */
+.params { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.param { display: flex; flex-direction: column; gap: 5px; }
+.p-lbl { font-weight: 500; font-size: 1.05rem; }
+.param input { font: inherit; font-weight: 700; color: var(--edit); text-align: right; border: 1px solid var(--edit-line); background: var(--edit-bg); border-radius: 8px; padding: 9px 11px; }
+.param input:focus { outline: none; border-color: var(--edit); box-shadow: 0 0 0 3px rgba(31, 111, 235, .15); }
+.p-hint { font-size: 1rem; color: var(--muted); }
+
+/* ---------- kadro araç çubuğu + tablo ---------- */
+.kadro-tools { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 14px; }
+.ara { flex: 1; min-width: 240px; font: inherit; font-size: 1rem; padding: 10px 13px; border: 1px solid var(--line); border-radius: 10px; }
+.ara:focus { outline: none; border-color: var(--grass); box-shadow: 0 0 0 3px rgba(47, 107, 52, .15); }
+.cb { display: inline-flex; align-items: center; gap: 8px; font-size: 1rem; color: var(--ink); cursor: pointer; }
+.cb input { width: 17px; height: 17px; }
+.say { color: var(--muted); font-size: 1rem; }
+.kadro-scroll { max-height: 72vh; overflow: auto; }
+.kadro-tbl th, .kadro-tbl td { white-space: nowrap; }
+.kadro-tbl thead th { position: sticky; top: 0; z-index: 2; }
+.c-sira { color: var(--faint); text-align: right; }
+.c-kod { font-weight: 500; }
+.c-dep { color: var(--muted); }
+.kadro-tbl input.txt.sm { min-width: 150px; width: 170px; font-size: 1rem; padding: 6px 9px; }
+.month-in { font: inherit; font-size: 1rem; border: 1px solid var(--edit-line); background: var(--edit-bg); border-radius: 8px; padding: 6px 8px; color: var(--edit); font-weight: 600; }
+.x-btn { background: none; border: none; color: #be123c; font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 8px; border-radius: 6px; }
+.x-btn:hover { background: #fde8ec; }
