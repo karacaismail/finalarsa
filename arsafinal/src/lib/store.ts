@@ -11,7 +11,7 @@ export function isValid(d: unknown): d is FinansalData {
   if (!x.bordro || !Array.isArray(x.bordro.dilimler)) return false;
   if (!Array.isArray(x.roles) || x.roles.length === 0) return false;
   if (!Array.isArray(x.capex) || !x.olgun || !x.utilSplit) return false;
-  if (!Array.isArray(x.founder) || !Array.isArray(x.pazarlama) || !Array.isArray(x.arac)) return false;
+  if (!Array.isArray(x.founder) || !Array.isArray(x.pazarlama) || !Array.isArray(x.arac) || !Array.isArray(x.ikramiye)) return false;
   return typeof x.roles[0]?.brutMaas === "number";
 }
 

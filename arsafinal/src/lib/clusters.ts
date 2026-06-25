@@ -66,7 +66,13 @@ export function hesapla(d: FinansalData): Hesap {
     for (const rr of aktifler) yemek += rr.unvan === "C-Level" ? p.yemekClevel : rr.unvan === "Team Lead" ? p.yemekTeamLead : p.yemekAylik;
     const yol = kisi * p.yolAylik;
     const hosgeldin = yeni * p.hosgeldinKisi;
-    const ikramiye = brutTop * p.ikramiyeMaasYil / 12;
+    // İkramiye KADEMELİ/TARİHE BAĞLI: o ayki prim olaylarının yüzdesi × aktif brüt toplam (zamana bağlı maaş)
+    const ikramiyeOlaylar = d.ikramiye.filter((e) => e.ym === ym);
+    const ikramiyePct = ikramiyeOlaylar.reduce((s, e) => s + e.pct, 0);
+    const ikramiye = ikramiyePct * brutTop;
+    const ikramiyeAd = ikramiyeOlaylar.length
+      ? "İkramiye — " + ikramiyeOlaylar.map((e) => `${e.ad} %${Math.round(e.pct * 100)}`).join(" + ")
+      : "İkramiye (bu ay yok)";
     // CPO araç kiralama (o ay geçerli segment)
     let aracSeg = "", aracTl = 0;
     for (const a of d.arac) if (a.fromYm <= ym) { aracSeg = a.segment; aracTl = a.aylikTl; }
@@ -80,7 +86,7 @@ export function hesapla(d: FinansalData): Hesap {
         { ad: "Yemek", tl: yemek },
         { ad: "Yol ücreti", tl: yol },
         { ad: "Hoşgeldin paketi (yeni işe alım)", tl: hosgeldin },
-        { ad: "İkramiye (yılda " + p.ikramiyeMaasYil + " maaş)", tl: ikramiye },
+        { ad: ikramiyeAd, tl: ikramiye },
         { ad: "2025+ model: CPO araç — " + aracSeg + " (kiralama)", tl: aracTl },
       ],
     };

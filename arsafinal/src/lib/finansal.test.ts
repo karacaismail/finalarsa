@@ -67,6 +67,19 @@ describe("personel kümesi (bordro zinciri)", () => {
     const p = ay.kumeler.find((k) => k.key === "personel")!;
     for (const k of ay.kumeler) if (k.key !== "personel" && k.key !== "capex") expect(p.tl).toBeGreaterThanOrEqual(k.tl);
   });
+  it("ikramiye TARİHE BAĞLI: bayram/yıl-sonu aylarında prim, diğer aylarda 0", () => {
+    const ik = (ym: string) => H.aylar.find((a) => a.ym === ym)!.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.startsWith("İkramiye"))!;
+    expect(ik("2026-09").tl).toBe(0);                 // Eyl: prim yok
+    const ara = ik("2026-12");                        // Ara: yılsonu %30 + yılbaşı %20
+    expect(ara.tl).toBeGreaterThan(0);
+    expect(ara.ad).toContain("Yılsonu");
+    expect(ara.ad).toContain("Yılbaşı");
+    expect(ik("2027-03").ad).toContain("Ramazan");    // Mar 2027: Ramazan Bayramı
+    expect(ik("2027-05").ad).toContain("Kurban");     // May 2027: Kurban Bayramı
+    expect(ik("2028-02").ad).toContain("Ramazan");    // Şub 2028: Ramazan Bayramı (Diyanet)
+    // Ara 2026 ikramiye = %50 × aktif brüt toplam (pozitif ve makul büyüklük)
+    expect(ara.tl).toBeGreaterThan(500000);
+  });
   it("yemek KADEMELİ: C-level 15.000, Team Lead 10.000, baz 9.000", () => {
     // Eyl 2026: 12 aktif = 1 C-Level (CPO) + 1 Team Lead (AST) + 10 baz
     const yemek = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad === "Yemek")!;
@@ -109,6 +122,6 @@ describe("store v4", () => {
     expect(() => fromJSON("{bozuk")).toThrow();
   });
   it("load default (localStorage yok)", () => {
-    expect(load().meta.schemaVersion).toBe("5.4.0");
+    expect(load().meta.schemaVersion).toBe("5.5.0");
   });
 });

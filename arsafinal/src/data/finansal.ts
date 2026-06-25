@@ -23,13 +23,14 @@ export interface Params {
   yemekClevel: number;                 // yemek — C-level ₺/ay
   yolAylik: number;                    // ₺/ay/kişi
   hosgeldinKisi: number;               // ₺/yeni işe alım (tek sefer)
-  ikramiyeMaasYil: number;             // yılda kaç maaş
   perHireCapex: number;                // ₺/yeni işe alım ekipman
   kuruculKod: string;                  // net-hedefli rol kodu (R-CPO)
 }
 
 export interface FounderStep { fromYm: string; netUsd: number; }
 export interface AracStep { fromYm: string; segment: string; aylikTl: number; } // CPO araç kiralama (operasyonel, aylık)
+// İkramiye olayı: belirli ayda, brüt maaşın pct'i kadar prim (bayram öncesi/yıl-sonu öderler).
+export interface IkramiyeOlay { ym: string; pct: number; ad: string; }
 
 // Olgun (256 kişi) aylık küme değerleri — headcount ile ölçeklenir. Hepsi düzenlenebilir.
 export interface OlgunDegerler {
@@ -49,6 +50,7 @@ export interface FinansalData {
   bordro: BordroParams;
   founder: FounderStep[];
   arac: AracStep[];
+  ikramiye: IkramiyeOlay[];
   roles: Role[];
   capex: CapexKalem[];                 // ilk-ay yatırım kalemleri
   olgun: OlgunDegerler;
@@ -56,7 +58,7 @@ export interface FinansalData {
   pazarlama: { ym: string; tl: number }[]; // aya göre pazarlama (reklam) harcaması
 }
 
-export const SCHEMA_VERSION = "5.4.0";
+export const SCHEMA_VERSION = "5.5.0";
 export const MATURE_HC = 256;
 
 const AYLAR = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
@@ -83,7 +85,7 @@ export const DEFAULT_DATA: FinansalData = {
   params: {
     usd: 46.52, eur: 50,
     isverenSgkOran: 0.2375, yemekAylik: 9000, yemekTeamLead: 10000, yemekClevel: 15000, yolAylik: 3000, hosgeldinKisi: 5950,
-    ikramiyeMaasYil: 1, perHireCapex: 24000, kuruculKod: "R-CPO",
+    perHireCapex: 24000, kuruculKod: "R-CPO",
   },
   bordro: PARAMS_2026,
   founder: [
@@ -97,6 +99,22 @@ export const DEFAULT_DATA: FinansalData = {
     { fromYm: "2026-09", segment: "Škoda Superb / Camry / VW Passat B9 / Audi A5 / Mercedes C (W206)", aylikTl: 95000 },
     { fromYm: "2027-06", segment: "Volvo S60 (üst segment)", aylikTl: 110000 },
     { fromYm: "2028-01", segment: "BMW 520+ / Mercedes E 220+ / Audi A6 / Volvo S90", aylikTl: 160000 },
+  ],
+  // İkramiye = yılda 1 maaş, 4 prim halinde belirli aylarda (o ayki brüt maaşa oranlı).
+  // Bayram ayları Diyanet resmî takvimi (2026-2028); yıl-sonu/yılbaşı = Aralık. Düzenlenebilir.
+  ikramiye: [
+    { ym: "2026-03", pct: 0.25, ad: "Ramazan Bayramı primi" },
+    { ym: "2026-05", pct: 0.25, ad: "Kurban Bayramı primi" },
+    { ym: "2026-12", pct: 0.30, ad: "Yılsonu performans primi" },
+    { ym: "2026-12", pct: 0.20, ad: "Yılbaşı primi" },
+    { ym: "2027-03", pct: 0.25, ad: "Ramazan Bayramı primi" },
+    { ym: "2027-05", pct: 0.25, ad: "Kurban Bayramı primi" },
+    { ym: "2027-12", pct: 0.30, ad: "Yılsonu performans primi" },
+    { ym: "2027-12", pct: 0.20, ad: "Yılbaşı primi" },
+    { ym: "2028-02", pct: 0.25, ad: "Ramazan Bayramı primi" },
+    { ym: "2028-05", pct: 0.25, ad: "Kurban Bayramı primi" },
+    { ym: "2028-12", pct: 0.30, ad: "Yılsonu performans primi" },
+    { ym: "2028-12", pct: 0.20, ad: "Yılbaşı primi" },
   ],
   roles: ROLES,
   capex: [
