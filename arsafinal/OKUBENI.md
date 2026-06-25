@@ -1,42 +1,54 @@
-# arsam.net — Kadro & Gider (v3)
+# arsam.net — Aylık Gider Planı (v4)
 
-Gerçek İK planını (256 rol, brüt maaş, işe alım tarihi) finansal modele **zincirleme** bağlayan araç. Amaç: Üzeyir Bey "kim, ne zaman, ne kadar" akışını ve aylık toplam gideri tek yerde görsün; sen de düzenleyebilesin.
+"Her ay ne harcayacağız?" sorusunu kümeler + kalem kırılımıyla, tek sayfa accordion olarak yanıtlar. Personel gideri 256 rolden ve gerçek 2026 bordro motorundan hesaplanır.
 
 - **Canlı:** https://karacaismail.github.io/finalarsa/finansal/
 - **Yerel:** `/Users/karaca/Documents/sonbirarsa/arsafinal/`
-- **Teknoloji:** Vite + React + TypeScript + ECharts + Vitest. Tek sayfa, üç sekme.
+- **Teknoloji:** Vite + React + TypeScript + ECharts + Vitest. Tek sayfa, accordion.
 
-## Zincir (en önemli kavram)
+## İki soru, iki cevap (üstte kartlar)
 
-Kadro (roller + maliyet parametreleri) → her ayın **personel gideri** = o ay aktif rollerin yüklü maliyeti → **aylık toplam** (+ 6 manuel kalem) → Özet kartları, tablo ve grafikler. Bir rolün brüt maaşını veya işe alım ayını ya da bir maliyet parametresini değiştirince **tüm zincir** anında güncellenir.
+1. **İlk ay yatırımı (CAPEX): 2.804.200 ₺** — accordion item 1, kalem kırılımı içinde.
+2. **Her ay toplam:** Eyl 2026 ~5,87M ₺ → Ağu 2028 ~19M ₺; **24 ay toplam ~248M ₺** (varsayılan parametrelerle).
 
-## Üç sekme
+## Accordion liste
 
-**Kadro:** Maaş maliyet modeli (4 düzenlenebilir parametre) + 256 rolün tablosu. Her rolün brüt maaşı ve işe alım ayı düzenlenebilir; "yüklü maliyet/ay" otomatik hesaplanır. Arama + "sadece pencere (≤ Ağu 2028)" filtresi + rol ekle/sil.
+Default kapalı; bir item'a tıklayınca açılır, diğerleri kapanır (tek-açık), açılan item üstten ~80px'e kayar. **Item 1 = CAPEX**, **item 2–25 = 24 ay** (Eyl 2026 → Ağu 2028). Her ay açılınca **küme kırılımı** gelir; her kümeye tıklayınca **kalem kırılımı** açılır.
 
-**Giriş:** Yıl/ay seç. **Personel kalemi salt-okunur** (Kadro'dan otomatik, o ay kaç rol aktifse). Diğer 6 kalemi (Pazarlama reklam, Saha, Dijital altyapı, Ofis, Yazılım, CAPEX) elle girersin. "Bu ay toplam" anında.
+## Kümeler ("başka hangi kümeler var?" cevabı — 8 küme)
 
-**Özet & grafikler:** Özet kartlar (24 ay toplam, aylık ortalama, en yüksek ay, personel payı), 5 dinamik ECharts (aylık gider, aktif rol sayısı, aya göre yığılmış kategori, kümülatif gider, kategori pastası), ay×kategori tablosu ve benchmark referansı.
+1. **Personel giderleri** — net maaşlar, gelir vergisi (stopaj), SGK (işçi+işveren), yemek, yol, hoşgeldin paketi, ikramiye.
+2. **Yatırım (CAPEX)** — ilk ay büyük kalemler + her ay yeni işe alım ekipmanı (24k/kişi).
+3. **Ofis & kira** — kira (150k/ay) + ilk ay depozito.
+4. **Sürekli giderler** — internet, elektrik, su, doğalgaz, mutfak, sarf, kırtasiye, temizlik.
+5. **Pazarlama** — dijital reklam/medya (geçmiş rampı).
+6. **Yazılım / SaaS & AI** — dijital altyapı + AI/yazılım lisansları.
+7. **Profesyonel hizmetler** — muhasebe, hukuk, danışmanlık, İSG/OSGB.
+8. **Saha operasyonu** — araç/yakıt/ekipman.
 
-## Maaş maliyet modeli
+## Personel = gerçek 2026 bordro motoru
 
-Aylık personel gideri (rol başına) = **brüt × işveren SGK çarpanı × (1 + ikramiye/12) + yemek + yan haklar**. Varsayılanlar (düzenlenebilir): SGK çarpanı 1,225 (≈ %22,5 işveren payı), yemek 6.000 ₺/ay/kişi, yan haklar 4.000 ₺/ay/kişi, ikramiye 1 maaş/yıl (Kurban + Ramazan + yılbaşı + yıl-sonu primi). Bu rakamlar senin politikan; sayfada yoktu, parametre yaptım — kendi değerlerinle değiştir.
+`src/lib/payroll.ts`: brüt → net, **kümülatif gelir vergisi** (%15→%40, 2026 ücret tarifesi), işçi/işveren SGK (tavan 297.270 ₺ kapaklı), damga. Parametreler **web-doğrulandı** (Resmî Gazete/SGK/PwC/CottGroup): brüt asgari 33.030, işveren %23,75 (teşviksiz), USD/TRY 46,52.
 
-## Zaman ve veri
+**Kurucu (senin) maaşı: 7.500$ NET hedefi.** Her ay net sabit kalsın diye gerekli brüt çözülür; kümülatif vergi yüzünden brüt yıl içinde **artar** (tavan-taban). Doğrulama: Ocak brüt ~469.940 ₺, işveren maliyeti ~540.541 ₺, Aralık brüt ~624.210 ₺ — paylaştığın araştırmayla birebir (testlerde sabit).
 
-- **Pencere:** Eyl 2026 → Ağu 2028 (24 ay). Bu pencerede 106 rol aktif olur; plan 2031'e kadar 256 rol içerir (hepsi Kadro'da, pencere dışı roller 24 aylık görünümü etkilemez).
-- **Maaşlar brüt** (İK PLANI tablosundan birebir). Aktiflik = işe alım ayı ≤ o ay (sayfadaki ✓ matrisiyle 16.640 hücrede %100 tutarlı — boşluk/çıkış yok).
-- **Kalıcılık:** localStorage otomatik kayıt + JSON içe/dışa aktar. "Sıfırla" → varsayılana döner.
-- **Para birimi:** ₺/$/€ switcher; kurlar düzenlenebilir.
+> Not: Kurucu ücret yapılandırması (maaş vs temettü, 4/a-4/b) bir vergi/SGK kararıdır; ben mali müşavir değilim, müşavirinle kesinleştir. Araç şu an "net maaş bordrosu" senaryosunu modeller.
+
+## Veri ve düzenleme
+
+- **256 rol** `src/data/roles.ts` — İK PLANI'ndan programatik. Aktiflik = işe alım ≤ ay (matrisle %100 tutarlı).
+- **Sürekli/yazılım/saha/profesyonel** kümeleri olgun (256 kişi) değerden **headcount ile ölçeklenir**; hepsi düzenlenebilir.
+- **Varsayımlar paneli** (üstte, aç-kapa): USD kuru, işveren SGK oranı, yemek/yol, ikramiye, kira, sürekli gider tabanı, ekipman.
+- **Kalıcılık:** localStorage + JSON içe/dışa. **Sıfırla** → varsayılan.
+- **Para birimi:** ₺/$/€ switcher; tüm değer/grafik çevrilir.
 
 ## Çalıştırma / test / yayın
 
 - Yerel: `cd arsafinal && npm install && npm run dev`
-- Test: `npm run test` (Vitest — 19 test: roller, aktiflik, maliyet formülü, zincir toplam kimlikleri, JSON/şema).
-- Yayın: `main`'e push → GitHub Actions **önce testleri çalıştırır** (geçmezse deploy yok), sonra derler ve `/finalarsa/finansal/` altına koyar.
+- Test: `npm run test` (Vitest — 19 test: 6 bordro [araştırma rakamlarıyla] + 13 küme/zincir/şema).
+- Yayın: `main`'e push → GitHub Actions **önce test**, sonra derle + `/finalarsa/finansal/`.
 
-## Notlar / sıradaki
+## Sıradaki
 
-- Personel-dışı 6 kalem hâlâ tahmini tohumla gelir; gerçek reklam/altyapı bütçeni Giriş'ten gir.
-- Roller `src/data/roles.ts` — İK PLANI CSV'sinden programatik üretildi (elle yazılmadı).
-- Sıradaki opsiyonlar: yıllık özet, gelir tarafı (net/kâr), departman bazlı maliyet kırılımı, ECharts tree-shake (paket boyutu ~1,2MB→~400KB).
+- Sürekli gider kalemleri için gerçek birim fiyatlar (şu an headcount-ölçekli tahmin).
+- İsteğe bağlı: kurucu için "temettü + tavandan 4/b" senaryosu (maaşa alternatif), yıllık özet, gelir/kâr tarafı.
