@@ -61,7 +61,10 @@ export function hesapla(d: FinansalData): Hesap {
       net += b.net; vergi += b.gelirVergisi; sgk += b.calisanSgk + b.isverenSgk; brutTop += b.brut;
       fytd.matrah += b.gvMatrah; fytd.asgari += bp.asgariGvMatrah;
     }
-    const yemek = kisi * p.yemekAylik, yol = kisi * p.yolAylik;
+    // Yemek KADEMELİ: C-level / Team Lead / baz (her ay aktif rollerin ünvanına göre toplanır; kurucu dahil)
+    let yemek = 0;
+    for (const rr of aktifler) yemek += rr.unvan === "C-Level" ? p.yemekClevel : rr.unvan === "Team Lead" ? p.yemekTeamLead : p.yemekAylik;
+    const yol = kisi * p.yolAylik;
     const hosgeldin = yeni * p.hosgeldinKisi;
     const ikramiye = brutTop * p.ikramiyeMaasYil / 12;
     // CPO araç kiralama (o ay geçerli segment)

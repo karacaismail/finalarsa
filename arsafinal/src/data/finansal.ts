@@ -18,7 +18,9 @@ export interface Role {
 export interface Params {
   usd: number; eur: number;            // 1 birim = kaç TL
   isverenSgkOran: number;              // 0,2375 teşviksiz | 0,2175 (2 puan)
-  yemekAylik: number;                  // ₺/ay/kişi
+  yemekAylik: number;                  // yemek BAZ ₺/ay/kişi (herkes)
+  yemekTeamLead: number;               // yemek — Team Lead ₺/ay
+  yemekClevel: number;                 // yemek — C-level ₺/ay
   yolAylik: number;                    // ₺/ay/kişi
   hosgeldinKisi: number;               // ₺/yeni işe alım (tek sefer)
   ikramiyeMaasYil: number;             // yılda kaç maaş
@@ -54,7 +56,7 @@ export interface FinansalData {
   pazarlama: { ym: string; tl: number }[]; // aya göre pazarlama (reklam) harcaması
 }
 
-export const SCHEMA_VERSION = "5.3.0";
+export const SCHEMA_VERSION = "5.4.0";
 export const MATURE_HC = 256;
 
 const AYLAR = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
@@ -80,7 +82,7 @@ export const DEFAULT_DATA: FinansalData = {
   meta: { schemaVersion: SCHEMA_VERSION, updatedAt: "2026-06-25", baseCurrency: "TRY" },
   params: {
     usd: 46.52, eur: 50,
-    isverenSgkOran: 0.2375, yemekAylik: 6000, yolAylik: 3000, hosgeldinKisi: 5950,
+    isverenSgkOran: 0.2375, yemekAylik: 9000, yemekTeamLead: 10000, yemekClevel: 15000, yolAylik: 3000, hosgeldinKisi: 5950,
     ikramiyeMaasYil: 1, perHireCapex: 24000, kuruculKod: "R-CPO",
   },
   bordro: PARAMS_2026,

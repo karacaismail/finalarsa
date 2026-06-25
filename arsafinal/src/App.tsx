@@ -125,7 +125,9 @@ export function App() {
               <PRow label="USD/TRY kuru" v={data.params.usd} onC={(v) => setParam("usd", v)} hint="kurucu net-hedefi" />
               <PRow label="EUR/TRY kuru" v={data.params.eur} onC={(v) => setParam("eur", v)} />
               <PRow label="İşveren SGK oranı" v={data.params.isverenSgkOran} onC={(v) => setParam("isverenSgkOran", v)} hint="0,2375 · 0,2175" />
-              <PRow label="Yemek (₺/ay/kişi)" v={data.params.yemekAylik} onC={(v) => setParam("yemekAylik", v)} />
+              <PRow label="Yemek — baz (₺/ay/kişi)" v={data.params.yemekAylik} onC={(v) => setParam("yemekAylik", v)} hint="herkes (min)" />
+              <PRow label="Yemek — Team Lead (₺/ay)" v={data.params.yemekTeamLead} onC={(v) => setParam("yemekTeamLead", v)} />
+              <PRow label="Yemek — C-level (₺/ay)" v={data.params.yemekClevel} onC={(v) => setParam("yemekClevel", v)} />
               <PRow label="Yol (₺/ay/kişi)" v={data.params.yolAylik} onC={(v) => setParam("yolAylik", v)} />
               <PRow label="İkramiye (yıl/maaş)" v={data.params.ikramiyeMaasYil} onC={(v) => setParam("ikramiyeMaasYil", v)} />
               <PRow label="CPO araç (1. dönem ₺/ay)" v={data.arac[0].aylikTl} onC={(v) => edit((d) => { d.arac[0].aylikTl = v; })} hint="segment yükselince artar" />

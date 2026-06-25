@@ -67,6 +67,11 @@ describe("personel kümesi (bordro zinciri)", () => {
     const p = ay.kumeler.find((k) => k.key === "personel")!;
     for (const k of ay.kumeler) if (k.key !== "personel" && k.key !== "capex") expect(p.tl).toBeGreaterThanOrEqual(k.tl);
   });
+  it("yemek KADEMELİ: C-level 15.000, Team Lead 10.000, baz 9.000", () => {
+    // Eyl 2026: 12 aktif = 1 C-Level (CPO) + 1 Team Lead (AST) + 10 baz
+    const yemek = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad === "Yemek")!;
+    expect(yemek.tl).toBe(15000 + 10000 + 10 * 9000); // 115.000
+  });
   it("kurucu net-hedef personele dahil (net maaşlar büyük)", () => {
     const net = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler[0].tl;
     expect(net).toBeGreaterThan(348900); // en az kurucu net'i kadar
@@ -104,6 +109,6 @@ describe("store v4", () => {
     expect(() => fromJSON("{bozuk")).toThrow();
   });
   it("load default (localStorage yok)", () => {
-    expect(load().meta.schemaVersion).toBe("5.3.0");
+    expect(load().meta.schemaVersion).toBe("5.4.0");
   });
 });
