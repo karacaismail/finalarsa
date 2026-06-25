@@ -6,25 +6,95 @@ import type { Currency, FinansalData, Money } from "./data/finansal";
 const SYM: Record<Currency, string> = { TRY: "₺", USD: "$", EUR: "€" };
 const CURS: Currency[] = ["TRY", "USD", "EUR"];
 
+// --- sayıyı Türkçe gruplara ayır: en yüksek grup kalın, kalanı normal, ondalık italik ---
+function parts(n: number) {
+  const neg = n < 0;
+  const abs = Math.abs(n);
+  const r = Math.round(abs * 100) / 100;
+  const intPart = Math.floor(r);
+  const dec = Math.round((r - intPart) * 100);
+  const groups = intPart.toLocaleString("tr-TR").split("."); // ["12","345","678"]
+  return {
+    neg,
+    head: groups[0], // en yüksek (soldaki) grup → kalın
+    tail: groups.length > 1 ? "." + groups.slice(1).join(".") : "", // kalan → normal
+    dec: dec > 0 ? "," + String(dec).padStart(2, "0") : "", // ondalık → italik
+  };
+}
+function NumView({ n, sym }: { n: number; sym: string }) {
+  const p = parts(n);
+  return (
+    <span className="num">
+      {p.neg ? "−" : ""}
+      <b>{p.head}</b>
+      <span className="mid">{p.tail}</span>
+      <i className="dec">{p.dec}</i>
+      <span className="sym">{sym}</span>
+    </span>
+  );
+}
+// Türkçe-biçimli metni sayıya çevir (binlik . , ondalık ,)
+const parseTR = (s: string) => {
+  const v = parseFloat(s.replace(/\s/g, "").replace(/\./g, "").replace(",", "."));
+  return isNaN(v) ? null : v;
+};
+// binlik ayraçlı düz metin (düzenleme kutusu için)
+const grouped = (n: number) =>
+  (Math.round(n * 100) / 100).toLocaleString("tr-TR", { maximumFractionDigits: 2 });
+
+const Icon = {
+  lock: "M208 80h-32V56a48 48 0 0 0-96 0v24H48a16 16 0 0 0-16 16v112a16 16 0 0 0 16 16h160a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16M96 56a32 32 0 0 1 64 0v24H96Zm112 152H48V96h160z",
+  edit: "M227.31 73.37l-44.68-44.69a16 16 0 0 0-22.63 0L36.69 152A15.86 15.86 0 0 0 32 163.31V208a16 16 0 0 0 16 16h44.69a15.86 15.86 0 0 0 11.31-4.69L227.31 96a16 16 0 0 0 0-22.63M92.69 208H48v-44.69l88-88L180.69 120ZM192 108.69L147.31 64l24-24L216 84.69Z",
+  down: "M224 152v56a16 16 0 0 1-16 16H48a16 16 0 0 1-16-16v-56a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0m-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 132.69V40a8 8 0 0 0-16 0v92.69l-26.34-26.35a8 8 0 0 0-11.32 11.32Z",
+  up: "M224 152v56a16 16 0 0 1-16 16H48a16 16 0 0 1-16-16v-56a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0M93.66 77.66L120 51.31V144a8 8 0 0 0 16 0V51.31l26.34 26.35a8 8 0 0 0 11.32-11.32l-40-40a8 8 0 0 0-11.32 0l-40 40a8 8 0 0 0 11.32 11.32",
+};
+function Svg({ d }: { d: string }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">
+      <path d={d} />
+    </svg>
+  );
+}
+
+// tıkla-düzenle hücre: okurken stilli sayı, tıklayınca ayraçlı metin kutusu (seçili para biriminde)
+function Cell({ display, onCommit, disabled, sym }: { display: number; onCommit: (d: number) => void; disabled?: boolean; sym: string }) {
+  const [editing, setEditing] = useState(false);
+  if (disabled) return <NumView n={display} sym={sym} />;
+  if (editing)
+    return (
+      <input
+        className="cell-in"
+        type="text"
+        inputMode="decimal"
+        autoFocus
+        defaultValue={grouped(display)}
+        onFocus={(e) => e.target.select()}
+        onBlur={(e) => { const v = parseTR(e.target.value); if (v !== null) onCommit(v); setEditing(false); }}
+        onKeyDown={(e) => { if (e.key === "Enter") (e.target as HTMLInputElement).blur(); if (e.key === "Escape") setEditing(false); }}
+      />
+    );
+  return (
+    <button type="button" className="cell-btn" onClick={() => setEditing(true)} title="Düzenlemek için tıkla">
+      <NumView n={display} sym={sym} />
+      <span className="pen"><Svg d={Icon.edit} /></span>
+    </button>
+  );
+}
+
 export function App() {
   const [data, setData] = useState<FinansalData>(() => structuredClone(DEFAULT_DATA));
   const [disp, setDisp] = useState<Currency>("TRY");
   const fileRef = useRef<HTMLInputElement>(null);
   const r = data.meta.rates;
 
-  // --- para birimi çevirimi: değerler kendi para biriminde tutulur, seçilen birimde gösterilir ---
   const rate = (c: Currency) => (c === "TRY" ? r.TRY : c === "USD" ? r.USD : r.EUR);
   const trToDisp = (tl: number) => tl / rate(disp);
   const dispToTr = (d: number) => d * rate(disp);
   const moneyToDisp = (m: Money) => (m.amount * rate(m.currency)) / rate(disp);
-  const fmt = (n: number) => new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 0 }).format(Math.round(n || 0));
-  const showTl = (tl: number) => `${fmt(trToDisp(tl))} ${SYM[disp]}`;
-  const showM = (m: Money) => `${fmt(moneyToDisp(m))} ${SYM[disp]}`;
 
   const edit = (fn: (d: FinansalData) => void) =>
     setData((prev) => { const n = structuredClone(prev); fn(n); return n; });
 
-  // --- JSON içe/dışa aktar ---
   const exportJSON = () => {
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -43,7 +113,6 @@ export function App() {
         const j = JSON.parse(String(reader.result)) as FinansalData;
         if (!j.meta || !j.monthly) throw new Error("şema");
         setData(j);
-        alert("JSON başarıyla yüklendi.");
       } catch {
         alert("Geçersiz veya uyumsuz JSON dosyası.");
       }
@@ -51,110 +120,76 @@ export function App() {
     reader.readAsText(f);
     e.target.value = "";
   };
-  const reset = () => { if (confirm("Tüm değişiklikler sıfırlanıp varsayılan veriye dönülecek. Emin misin?")) setData(structuredClone(DEFAULT_DATA)); };
+  const reset = () => { if (confirm("Tüm değişiklikler sıfırlanacak. Emin misin?")) setData(structuredClone(DEFAULT_DATA)); };
+  const sym = SYM[disp];
 
-  // --- düzenlenebilir sayı hücresi (seçilen para biriminde düzenler, TL olarak saklar) ---
-  const NumTl = ({ tl, on, disabled }: { tl: number; on: (tl: number) => void; disabled?: boolean }) =>
-    disabled ? (
-      <span className="ro">{showTl(tl)}</span>
-    ) : (
-      <span className="ie">
-        <input
-          type="number"
-          value={Math.round(trToDisp(tl))}
-          onChange={(e) => on(dispToTr(Number(e.target.value)))}
-        />
-        <em>{SYM[disp]}</em>
-      </span>
-    );
-  // düzenlenebilir Money hücresi (kendi biriminde saklar)
-  const NumM = ({ m, on }: { m: Money; on: (m: Money) => void }) => (
-    <span className="ie">
-      <input
-        type="number"
-        value={Math.round(moneyToDisp(m))}
-        onChange={(e) => on({ amount: (dispToTr(Number(e.target.value))) / rate(m.currency), currency: m.currency })}
-      />
-      <em>{SYM[disp]}</em>
-    </span>
-  );
-
-  // --- özet kartlar ---
-  const capexTotalTl = data.capex.items.reduce((s, i) => s + i.amount.amount * rate(i.amount.currency), 0);
-  const opexMonthlyTl = data.opex.items.reduce((s, i) => s + i.monthly.amount * rate(i.monthly.currency), 0);
-  const startSpendTl = data.monthly.rows.reduce((s, row) => s + row.opex + row.pazarlama + row.capex, 0);
+  const capexTl = data.capex.items.reduce((s, i) => s + i.amount.amount * rate(i.amount.currency), 0);
+  const opexTl = data.opex.items.reduce((s, i) => s + i.monthly.amount * rate(i.monthly.currency), 0);
+  const startTl = data.monthly.rows.reduce((s, x) => s + x.opex + x.pazarlama + x.capex, 0);
 
   return (
-    <div className="wrap">
-      {/* ÜST BAR */}
+    <div className="page">
       <header className="bar">
         <div className="brand">
-          <strong>arsam.net</strong> <span>· Finansal Tablo</span>
+          <span className="logo">arsam.net</span>
+          <span className="sep">·</span>
+          <span className="ttl">Finansal Tablo</span>
         </div>
         <div className="tools">
           <div className="cur" role="tablist" aria-label="Para birimi">
             {CURS.map((c) => (
               <button key={c} role="tab" aria-selected={c === disp} className={c === disp ? "on" : ""} onClick={() => setDisp(c)}>
-                {SYM[c]} {c}
+                <span className="cs">{SYM[c]}</span> {c}
               </button>
             ))}
           </div>
-          <button className="btn" onClick={() => fileRef.current?.click()}>JSON içe aktar</button>
-          <button className="btn primary" onClick={exportJSON}>JSON dışa aktar</button>
+          <button className="btn" onClick={() => fileRef.current?.click()}><Svg d={Icon.up} /> İçe aktar</button>
+          <button className="btn primary" onClick={exportJSON}><Svg d={Icon.down} /> Dışa aktar</button>
           <button className="btn ghost" onClick={reset}>Sıfırla</button>
           <input ref={fileRef} type="file" accept="application/json,.json" hidden onChange={importJSON} />
         </div>
       </header>
 
-      <main>
-        <p className="intro">
-          Karmaşık Excel yerine sade tablo. Mavi alanlar <b>düzenlenebilir</b>; düzenler, üstten para birimini değiştirir,
-          istediğin an <b>JSON olarak dışa/içe aktarırsın</b>. Kilit (🔒) işaretli bölümler referanstır, değiştirilemez.
+      <main className="main">
+        <p className="lede">
+          Karmaşık Excel yerine sade tablo. <span className="chip edit"><Svg d={Icon.edit} /> mavi alanlar düzenlenebilir</span>{" "}
+          <span className="chip lock"><Svg d={Icon.lock} /> kilitli alanlar referanstır</span>. Üstten para birimini değiştir;
+          istediğin an JSON olarak içe/dışa aktar.
         </p>
 
-        {/* ÖZET */}
         <section className="cards">
-          <div className="card">
-            <div className="k">Kuruluş yatırımı (CAPEX, bir kerelik)</div>
-            <div className="v">{showTl(capexTotalTl)}</div>
-          </div>
-          <div className="card">
-            <div className="k">OPEX — olgun aylık (2031 temsili)</div>
-            <div className="v">{showTl(opexMonthlyTl)}</div>
-          </div>
-          <div className="card">
-            <div className="k">Başlangıç dönemi toplam gider (Tem 2026 → Ara 2027)</div>
-            <div className="v">{showTl(startSpendTl)}</div>
-          </div>
+          <SummaryCard k="Kuruluş yatırımı · CAPEX (bir kerelik)" n={trToDisp(capexTl)} sym={SYM[disp]} />
+          <SummaryCard k="OPEX · olgun aylık (2031 temsili)" n={trToDisp(opexTl)} sym={SYM[disp]} accent />
+          <SummaryCard k="Başlangıç dönemi toplam gider (Tem 26 → Ara 27)" n={trToDisp(startTl)} sym={SYM[disp]} />
         </section>
 
-        {/* KUR (düzenlenebilir) */}
         <section className="block">
-          <h2>Para birimi kurları <span className="hint">1 birim = kaç ₺ · düzenlenebilir</span></h2>
+          <h2>Para birimi kurları <span className="badge edit"><Svg d={Icon.edit} /> düzenlenebilir</span></h2>
           <div className="rates">
-            <label>1 $ = <input type="number" value={r.USD} onChange={(e) => edit((d) => { d.meta.rates.USD = Number(e.target.value); })} /> ₺</label>
-            <label>1 € = <input type="number" value={r.EUR} onChange={(e) => edit((d) => { d.meta.rates.EUR = Number(e.target.value); })} /> ₺</label>
-            <span className="note">{r.note}</span>
+            <label>1 $ =
+              <input type="text" defaultValue={grouped(r.USD)} key={"usd" + r.USD}
+                onBlur={(e) => { const v = parseTR(e.target.value); if (v) edit((d) => { d.meta.rates.USD = v; }); }} /> ₺</label>
+            <label>1 € =
+              <input type="text" defaultValue={grouped(r.EUR)} key={"eur" + r.EUR}
+                onBlur={(e) => { const v = parseTR(e.target.value); if (v) edit((d) => { d.meta.rates.EUR = v; }); }} /> ₺</label>
+            <span className="note">1 birim = kaç ₺ (ay-sonu, model varsayımı).</span>
           </div>
         </section>
 
-        {/* AYLIK */}
         <section className="block">
           <h2>{data.monthly.title} <Lock on={data.monthly.editable} /></h2>
           <p className="note">{data.monthly.note}</p>
           <div className="tbl-scroll">
-            <table>
-              <thead>
-                <tr><th>Ay</th><th>OPEX</th><th>Pazarlama</th><th>CAPEX</th><th>Toplam ay gideri</th></tr>
-              </thead>
+            <table className="grid">
+              <thead><tr><th>Ay</th><th>OPEX</th><th>Pazarlama</th><th>CAPEX</th><th>Toplam ay gideri</th></tr></thead>
               <tbody>
                 {data.monthly.rows.map((row, i) => (
                   <tr key={i}>
                     <th scope="row">{row.month}</th>
-                    <td><NumTl tl={row.opex} disabled={!data.monthly.editable} on={(v) => edit((d) => { d.monthly.rows[i].opex = v; })} /></td>
-                    <td><NumTl tl={row.pazarlama} disabled={!data.monthly.editable} on={(v) => edit((d) => { d.monthly.rows[i].pazarlama = v; })} /></td>
-                    <td><NumTl tl={row.capex} disabled={!data.monthly.editable} on={(v) => edit((d) => { d.monthly.rows[i].capex = v; })} /></td>
-                    <td className="tot">{showTl(row.opex + row.pazarlama + row.capex)}</td>
+                    <td><Cell sym={sym} display={trToDisp(row.opex)} disabled={!data.monthly.editable} onCommit={(v) => edit((d) => { d.monthly.rows[i].opex = dispToTr(v); })} /></td>
+                    <td><Cell sym={sym} display={trToDisp(row.pazarlama)} disabled={!data.monthly.editable} onCommit={(v) => edit((d) => { d.monthly.rows[i].pazarlama = dispToTr(v); })} /></td>
+                    <td><Cell sym={sym} display={trToDisp(row.capex)} disabled={!data.monthly.editable} onCommit={(v) => edit((d) => { d.monthly.rows[i].capex = dispToTr(v); })} /></td>
+                    <td className="tot"><NumView n={trToDisp(row.opex + row.pazarlama + row.capex)} sym={sym} /></td>
                   </tr>
                 ))}
               </tbody>
@@ -162,21 +197,20 @@ export function App() {
           </div>
         </section>
 
-        {/* OPEX + CAPEX yan yana */}
         <div className="two">
           <section className="block">
             <h2>{data.opex.title} <Lock on={data.opex.editable} /></h2>
             <p className="note">{data.opex.note}</p>
-            <table>
+            <table className="grid">
               <thead><tr><th>Kalem</th><th>Aylık</th></tr></thead>
               <tbody>
                 {data.opex.items.map((it, i) => (
                   <tr key={i}>
                     <th scope="row">{it.name}</th>
-                    <td><NumM m={it.monthly} on={(m) => edit((d) => { d.opex.items[i].monthly = m; })} /></td>
+                    <td><Cell sym={sym} display={moneyToDisp(it.monthly)} onCommit={(v) => edit((d) => { d.opex.items[i].monthly = { amount: dispToTr(v) / rate(it.monthly.currency), currency: it.monthly.currency }; })} /></td>
                   </tr>
                 ))}
-                <tr className="sum"><th scope="row">Toplam aylık OPEX</th><td>{showTl(opexMonthlyTl)}</td></tr>
+                <tr className="sum"><th scope="row">Toplam aylık OPEX</th><td><NumView n={trToDisp(opexTl)} sym={sym} /></td></tr>
               </tbody>
             </table>
           </section>
@@ -184,45 +218,42 @@ export function App() {
           <section className="block">
             <h2>{data.capex.title} <Lock on={data.capex.editable} /></h2>
             <p className="note">{data.capex.note}</p>
-            <table>
+            <table className="grid">
               <thead><tr><th>Kalem</th><th>Tutar</th></tr></thead>
               <tbody>
                 {data.capex.items.map((it, i) => (
                   <tr key={i}>
                     <th scope="row">{it.name}</th>
-                    <td><NumM m={it.amount} on={(m) => edit((d) => { d.capex.items[i].amount = m; })} /></td>
+                    <td><Cell sym={sym} display={moneyToDisp(it.amount)} onCommit={(v) => edit((d) => { d.capex.items[i].amount = { amount: dispToTr(v) / rate(it.amount.currency), currency: it.amount.currency }; })} /></td>
                   </tr>
                 ))}
-                <tr className="sum"><th scope="row">Toplam CAPEX</th><td>{showTl(capexTotalTl)}</td></tr>
+                <tr className="sum"><th scope="row">Toplam CAPEX</th><td><NumView n={trToDisp(capexTl)} sym={sym} /></td></tr>
               </tbody>
             </table>
           </section>
         </div>
 
-        {/* CPO HAKLARI */}
         <section className="block">
           <h2>{data.cpo.title} <Lock on={data.cpo.editable} /></h2>
           <p className="note">{data.cpo.note}</p>
-          <table>
+          <table className="grid narrow">
             <thead><tr><th>Dönem</th><th>Aylık ücret</th></tr></thead>
             <tbody>
               {data.cpo.salary.map((s, i) => (
                 <tr key={i}>
                   <th scope="row">{s.period}</th>
-                  <td><NumM m={s.pay} on={(m) => edit((d) => { d.cpo.salary[i].pay = m; })} /></td>
+                  <td><Cell sym={sym} display={moneyToDisp(s.pay)} onCommit={(v) => edit((d) => { d.cpo.salary[i].pay = { amount: dispToTr(v) / rate(s.pay.currency), currency: s.pay.currency }; })} /></td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <table className="mt">
+          <table className="grid mt">
             <thead><tr><th>Dönem</th><th>Araç segmenti</th></tr></thead>
             <tbody>
               {data.cpo.car.map((c, i) => (
                 <tr key={i}>
                   <th scope="row">{c.period}</th>
-                  <td>
-                    <input className="txt" value={c.segment} onChange={(e) => edit((d) => { d.cpo.car[i].segment = e.target.value; })} />
-                  </td>
+                  <td className="lft"><input className="txt" value={c.segment} onChange={(e) => edit((d) => { d.cpo.car[i].segment = e.target.value; })} /></td>
                 </tr>
               ))}
             </tbody>
@@ -234,40 +265,48 @@ export function App() {
           </ul>
         </section>
 
-        {/* BENCHMARK (kilitli) */}
         <section className="block locked">
-          <h2>{data.benchmarks.title} 🔒</h2>
+          <h2>{data.benchmarks.title} <Lock on={false} /></h2>
           <p className="note warn">{data.benchmarks.disclaimer}</p>
-          <BenchTable title="Yazılımcı maaşları" rows={data.benchmarks.softwareSalaries.map((x) => [x.role, showM(x.min) + " – " + showM(x.max), x.region])} />
-          <BenchTable title="Diğer meslekler" rows={data.benchmarks.professions.map((x) => [x.role, showM(x.min) + " – " + showM(x.max), x.region])} />
-          <BenchTable title="C-level (büyük e-ticaret/teknoloji)" rows={data.benchmarks.cLevel.map((x) => [x.company, showM(x.min) + " – " + showM(x.max), x.note])} />
+          <Bench title="Yazılımcı maaşları" rows={data.benchmarks.softwareSalaries.map((x) => ({ name: x.role, lo: moneyToDisp(x.min), hi: moneyToDisp(x.max), src: x.region }))} sym={SYM[disp]} />
+          <Bench title="Diğer meslekler" rows={data.benchmarks.professions.map((x) => ({ name: x.role, lo: moneyToDisp(x.min), hi: moneyToDisp(x.max), src: x.region }))} sym={SYM[disp]} />
+          <Bench title="C-level (büyük e-ticaret / teknoloji)" rows={data.benchmarks.cLevel.map((x) => ({ name: x.company, lo: moneyToDisp(x.min), hi: moneyToDisp(x.max), src: x.note }))} sym={SYM[disp]} />
         </section>
 
         <footer className="foot">
-          <span className="legend"><i className="dot edit" /> düzenlenebilir (değişken)</span>
-          <span className="legend"><i className="dot lock" /> 🔒 kilitli (sabit referans)</span>
-          <span>Tüm değerler seçili para biriminde ({SYM[disp]} {disp}) gösterilir. Veri tek dosyada; JSON ile taşınır.</span>
+          Tüm değerler seçili para biriminde (<b>{SYM[disp]} {disp}</b>) gösterilir · veri tek dosyada, JSON ile taşınır · arsam.net
         </footer>
       </main>
     </div>
   );
 }
 
-function Lock({ on }: { on: boolean }) {
-  return on ? <span className="badge edit">düzenlenebilir</span> : <span className="badge lock">🔒 kilitli</span>;
+function SummaryCard({ k, n, sym, accent }: { k: string; n: number; sym: string; accent?: boolean }) {
+  return (
+    <div className={"card" + (accent ? " accent" : "")}>
+      <div className="k">{k}</div>
+      <div className="v"><NumView n={n} sym={sym} /></div>
+    </div>
+  );
 }
-
-function BenchTable({ title, rows }: { title: string; rows: string[][] }) {
+function Lock({ on }: { on: boolean }) {
+  return on ? (
+    <span className="badge edit"><Svg d={Icon.edit} /> düzenlenebilir</span>
+  ) : (
+    <span className="badge lock"><Svg d={Icon.lock} /> kilitli</span>
+  );
+}
+function Bench({ title, rows, sym }: { title: string; rows: { name: string; lo: number; hi: number; src: string }[]; sym: string }) {
   return (
     <div className="bench">
       <h3>{title}</h3>
-      <table>
+      <table className="grid">
         <tbody>
-          {rows.map((cells, i) => (
+          {rows.map((x, i) => (
             <tr key={i}>
-              <th scope="row">{cells[0]}</th>
-              <td className="rng">{cells[1]}</td>
-              <td className="src">{cells[2]}</td>
+              <th scope="row">{x.name}</th>
+              <td className="rng"><NumView n={x.lo} sym={sym} /> <span className="dash">–</span> <NumView n={x.hi} sym={sym} /></td>
+              <td className="src">{x.src}</td>
             </tr>
           ))}
         </tbody>
