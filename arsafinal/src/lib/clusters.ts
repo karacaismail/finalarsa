@@ -78,7 +78,7 @@ export function hesapla(d: FinansalData): Hesap {
         { ad: "Yol ücreti", tl: yol },
         { ad: "Hoşgeldin paketi (yeni işe alım)", tl: hosgeldin },
         { ad: "İkramiye (yılda " + p.ikramiyeMaasYil + " maaş)", tl: ikramiye },
-        { ad: "CPO araç — " + aracSeg + " (kiralama)", tl: aracTl },
+        { ad: "2025+ model: CPO araç — " + aracSeg + " (kiralama)", tl: aracTl },
       ],
     };
 

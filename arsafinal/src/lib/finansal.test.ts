@@ -52,10 +52,12 @@ describe("personel kümesi (bordro zinciri)", () => {
     expect(p.tl).toBeGreaterThan(0);
   });
   it("CPO araç kiralama: ilk ay 95.000; 2028 segment yükselir 160.000", () => {
-    const arac0 = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.startsWith("CPO araç"))!;
+    const arac0 = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
     expect(arac0.tl).toBe(95000);
+    expect(arac0.ad).toContain("2025+ model:");
+    expect(arac0.ad).toContain("Insignia");
     const oca28 = H.aylar.find((a) => a.ym === "2028-01")!;
-    const arac28 = oca28.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.startsWith("CPO araç"))!;
+    const arac28 = oca28.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
     expect(arac28.tl).toBe(160000);
   });
   it("personel en büyük kümedir (ilk ay)", () => {
