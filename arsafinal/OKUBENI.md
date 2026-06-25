@@ -1,50 +1,51 @@
-# arsam.net — Finansal Tablo (basit araç)
+# arsam.net — Gider Takibi (v2)
 
-Üzeyir Bey'in karmaşık Excel yerine **okuyup anlayabileceği** sade finansal görünüm. Sen düzenler, para birimini değiştirir, JSON olarak dışa/içe aktarırsın.
+Ay ay gider girip, başka bir sayfada otomatik toplayıp grafikleyen sade araç. Amaç: Üzeyir Bey karmaşık Excel yerine "hangi ay, hangi kategori, ne kadar"ı okuyabilsin.
 
 - **Canlı:** https://karacaismail.github.io/finalarsa/finansal/
 - **Yerel:** `/Users/karaca/Documents/sonbirarsa/arsafinal/`
-- **Teknoloji:** Vite + React + TypeScript (sade, tek sayfa).
+- **Teknoloji:** Vite + React + TypeScript + ECharts (grafik) + Vitest (test). Tek sayfa, iki sekme.
 
-## Ne yapar?
-- **Para birimi switcher (₺ / $ / €):** Üstten seçersin; tüm tablolar/kartlar seçilen para biriminde gösterilir. Kurlar düzenlenebilir (1 $ = 45,2 ₺, 1 € = 49 ₺ varsayılan).
-- **Düzenlenebilir (mavi) alanlar:** aylık harcama planı (Tem 2026 → Ara 2027: OPEX/Pazarlama/CAPEX), OPEX kalemleri, CAPEX kalemleri, CPO maaş/araç/yan haklar.
-- **Kilitli (🔒) alan:** piyasa istatistikleri (yazılımcı jr/md/sn, diğer meslekler, sahibinden/Trendyol/amazon.com.tr C-level) — salt-okunur referans.
-- **JSON içe/dışa aktar:** "JSON dışa aktar" düzenlediğin veriyi indirir; "JSON içe aktar" bir JSON yükleyip tüm veriyi günceller. "Sıfırla" varsayılana döner.
-- **Özet kartlar:** toplam CAPEX, olgun aylık OPEX, başlangıç dönemi toplam gider.
+## İki sekme
 
-## Veri nasıl işaretli? (editable / fixed)
-Veri `src/data/finansal.ts` içindedir. Her grupta `editable` alanı vardır:
-- `editable: true` → düzenlenebilir (değişken veri; mavi kutu).
-- `editable: false` → kilitli (sabit referans; benchmark'lar). UI bu alanları input olarak göstermez.
-Para değerleri kendi para biriminde tutulur (`{ amount, currency }`); ekranda seçilen birime çevrilir. Aylık satırlar TL, CPO maaşı USD tabanlıdır.
+**Giriş:** Yıl/ay seç (veya Önceki/Sonraki ay), o ayın giderlerini 7 kategoride gir. Grup alt toplamı ve "bu ay toplam" anında hesaplanır. Ay ay ilerlersin.
 
-## Önemli not — benchmark rakamları
-Piyasa/C-level ücretleri **tahminîdir, resmî değildir** (özellikle C-level kamuya kapalıdır). Bağlam için konuldu ve kilitlidir. Kesinlik gerekirse gerçek maaş anketi verisiyle güncellenmeli.
+**Özet & grafikler:** Tüm ayları kategori kategori toplar. Üç özet kart (24 ay toplamı, aylık ortalama, en yüksek ay), 4 dinamik ECharts grafik (aylık gider, kümülatif gider, aya göre yığılmış kategori, kategori pastası) ve ay×kategori tablosu (alt toplam + genel toplam). Sen Giriş'te değer değiştirdikçe burası otomatik güncellenir.
 
-## Nasıl güncellenir / yayınlanır?
-- Yerelde: `cd arsafinal && npm install && npm run dev` (geliştirme) veya `npm run build`.
-- Yayın: arsafinal, ana repo'nun (finalarsa) deploy akışına eklendi. `main`'e push → GitHub Actions hem deck'i hem arsafinal'i derler; arsafinal `/finalarsa/finansal/` altına konur.
-- Veriyi koddan değil **JSON içe aktararak** da güncelleyebilirsin (frontend); kalıcı yapmak istersen export edip `src/data/finansal.ts`'e işleyip yeniden deploy edilir.
+## 7 kategori
+
+Personel, Pazarlama, Saha operasyonu, Dijital altyapı & AI, Ofis & idari, Yazılım & AI araçları, CAPEX. Giriş formundaki satırlar bunlardır.
+
+## Veri ve kalıcılık
+
+- **Tarayıcıda otomatik kayıt (localStorage):** Yenileyince/kapatınca girişler durur. "Sıfırla" → varsayılan 24 aya döner.
+- **JSON içe/dışa aktar:** Veriyi yedekle veya başka cihaza taşı. İçe aktarımda şema doğrulanır; bozuk dosya reddedilir.
+- **24 ay default:** Tem 2026 → Haz 2028. Değerler mevcut finansal modelden — Pazarlama ve CAPEX birebir; OPEX toplamı olgun-dönem oranlarıyla 5 alt kaleme bölünür (toplam birebir korunur); 19-24. aylar son artış hızıyla uzatılır (model varsayımı).
+- **Para birimi:** ₺/$/€ switcher üstte; tüm değer/grafik seçilen birimde. Kurlar (1$, 1€) düzenlenebilir. Değerler TL tabanında saklanır.
+- **Benchmark + CPO:** Özet'te referans olarak kalır (kilitli/salt-okunur). Benchmark maaşları tahminîdir, resmî değildir.
+
+## Veri modeli (kısaca)
+
+Tek kaynak: `months: MonthEntry[]` (her ay `{ ym, values: {7 kategori} }`, TL). Tüm toplam/grafik bundan türetilir (`src/lib/calc.ts`). Depolama/şema: `src/lib/store.ts`. Sabit veri (benchmark) `editable:false`. Dosyalar: `data/finansal.ts` (model+seed), `pages/Giris.tsx`, `pages/Ozet.tsx`, `components/num.tsx` (stilli sayı/tıkla-düzenle), `components/Chart.tsx` (ECharts sarmalayıcı).
+
+## Çalıştırma / test / yayın
+
+- Yerel: `cd arsafinal && npm install && npm run dev`
+- Test: `npm run test` (Vitest — seed/dağıtım/toplam kimliği/çevirme/JSON-şema, 19 test).
+- Yayın: `main`'e push → GitHub Actions **önce testleri çalıştırır** (test geçmezse deploy yok), sonra derler ve `/finalarsa/finansal/` altına koyar.
+
+## Sayı biçimi
+
+Binlik ayraçlı; en yüksek rakam grubu **kalın**, kalan normal, ondalık *italik* (örn. USD'de `64.409,29$`). Tüm metin en az 1rem.
 
 ---
 
-## "Başka neler olmalı?" — öneriler (önceliklendirilmiş)
+## Sıradaki öneriler (opsiyonel)
 
-**Anlaşılırlığı en çok artıracaklar (Üzeyir için):**
-1. **Aylık nakit akışı + kümülatif nakit:** Şu an sadece gider var. Gelir + net + kümülatif nakit (40M sermayeden) eklenince "para ne zaman diptedir, ne zaman kendini döndürür" tek bakışta görünür. Başabaş noktası işaretlenir.
-2. **Basit grafik:** Aylık gider çubuk grafiği veya nakit çizgisi (Chart.js/ECharts). Sayı tablosu + tek görsel, kavrayışı çok artırır.
-3. **Yıllık özet (2026 → 2032):** Aylık tablo detaylı; bir de yıl-bazlı tek tablo (gelir/gider/net/yıl sonu nakit) okunabilirlik için.
-4. **Her kaleme kısa açıklama (tooltip):** "OPEX nedir?", "CAPEX nedir?" gibi tek cümlelik baloncuklar.
-
-**Karar/analiz gücü:**
-5. **Senaryo seçici (kötümser/medyan/iyimser):** Gelir senaryosuna göre tablo değişir.
-6. **Otomatik tutarlılık uyarısı:** OPEX kalemleri toplamı ile "aylık OPEX" eşleşmiyorsa uyarı; negatif/boş alan kontrolü.
-7. **Gelir tarafı (7 akış):** İstersen gider + gelir = tam kâr/zarar; net marj görünür. (Şimdilik kapsam dışı bıraktık.)
-
-**Kullanım kolaylığı:**
-8. **Tarayıcıda otomatik kaydet (localStorage):** Sayfa yenilenince düzenlemeler kaybolmasın.
-9. **PDF/yazdır:** Üzeyir'in çıktı alması için temiz baskı görünümü.
-10. **Canlı kur opsiyonu:** Manuel kur yerine güncel kuru çekme (offline basitlik için manuel de kalabilir).
-
-İstersen sıradaki turda 1–4'ü (nakit akışı + grafik + yıllık özet + açıklamalar) ekleyebilirim — Üzeyir Bey'in "okuyunca anlasın" hedefini en çok bunlar karşılar.
+1. **Yıllık özet (2026/2027/2028):** 24 ay detayına ek, yıl-bazlı tek tablo.
+2. **Gelir tarafı:** Gider + gelir = net/kâr ve marj (şimdilik yalnız gider).
+3. **Senaryo seçici (kötümser/medyan/iyimser):** Aynı forma çoklu senaryo.
+4. **Kategori ekle/çıkar/yeniden adlandır:** Şu an 7 kategori sabit.
+5. **Ay aralığını uzat:** 24 ay sabit; dinamik ay ekleme.
+6. **PDF/yazdır:** Üzeyir'in çıktı alması için temiz baskı.
+7. **ECharts tree-shake:** Paket boyutunu ~1,2MB'tan ~400KB'a indirmek için yalnız kullanılan grafik modüllerini import etmek.
