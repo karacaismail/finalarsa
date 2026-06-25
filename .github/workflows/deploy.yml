@@ -31,7 +31,7 @@ jobs:
       - run: npm run build
       - name: Finansal aracı derle (arsafinal → /finansal)
         working-directory: arsafinal
-        run: npm ci && npm run build
+        run: npm ci && npm run test && npm run build
       - name: Finansal aracı dist/finansal altına koy
         run: cp -r ../arsafinal/dist dist/finansal
       - uses: actions/configure-pages@v5
