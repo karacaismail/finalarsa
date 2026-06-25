@@ -1,6 +1,12 @@
-# arsam.net — Aylık Gider Planı (v4)
+# arsam.net — Aylık Gider Planı (v5)
 
-"Her ay ne harcayacağız?" sorusunu kümeler + kalem kırılımıyla, tek sayfa accordion olarak yanıtlar. Personel gideri 256 rolden ve gerçek 2026 bordro motorundan hesaplanır.
+"Her ay ne harcayacağız?" sorusunu kümeler + kalem kırılımıyla, tek sayfa accordion olarak yanıtlar. Personel gideri 256 rolden ve gerçek 2026 bordro motorundan hesaplanır. **Gerçek mobile-first** (iPhone/320px tabanlı).
+
+## v5 yenilikleri
+- **Zaman filtresi:** İlk 6 ay (varsayılan) · Sonraki 6 ay · İkinci sene · TÜMÜ (24 ay). Liste + grafik + dönem toplamı filtrelenir.
+- **Accordion başlığı 2 satır (mobil):** ay adı üstte iri kendi satırında; altta kişi sayısı + ay toplamı. Taşma/sarma yok.
+- **CPO araç kiralama:** personel kümesine eklendi (operasyonel kiralama, aylık). Segment ~yılda bir yükselir: Škoda Superb/Camry/Passat/A5 (~95.000 ₺/ay) → Volvo S60 (2027-06, ~110.000) → BMW 520+/E 220+/A6/S90 (2028, ~160.000). 2026 fiyat araştırmasıyla; düzenlenebilir. Not: 2026'da aylık kiranın yalnız 46.000 ₺'lik kısmı gider yazılabilir (kalanı KKEG) — bu vergi etkisidir, nakit gider tamamıdır.
+- **Gerçek mobile-first:** 320px-first; tek kolon; dokunma hedefleri ≥44px; yatay taşma yok; iri sayı/başlık. ≥820px'te masaüstü düzenine zenginleşir.
 
 - **Canlı:** https://karacaismail.github.io/finalarsa/finansal/
 - **Yerel:** `/Users/karaca/Documents/sonbirarsa/arsafinal/`
