@@ -19,7 +19,7 @@ describe("takvim ve roller", () => {
 describe("hesapla — yapı", () => {
   it("24 ay + capex özeti", () => {
     expect(H.aylar).toHaveLength(24);
-    expect(H.capex.toplamTl).toBe(2804200); // 7 kalem toplamı
+    expect(H.capex.toplamTl).toBe(3134200); // 7 kuruluş + 5 yeni kalem
   });
   it("ilk ay (Eyl 2026): 12 kişi, 7 yeni işe alım", () => {
     expect(H.aylar[0].ym).toBe("2026-09");
