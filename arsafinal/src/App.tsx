@@ -133,6 +133,7 @@ export function App() {
               <PRow label="CPO araç (1. dönem ₺/ay)" v={data.arac[0].aylikTl} onC={(v) => edit((d) => { d.arac[0].aylikTl = v; })} hint="segment yükselince artar" />
               <PRow label="Ofis kirası (₺/ay)" v={data.olgun.kira} onC={(v) => edit((d) => { d.olgun.kira = v; })} />
               <PRow label="Sürekli gider (256 kişi ₺/ay)" v={data.olgun.utilities} onC={(v) => edit((d) => { d.olgun.utilities = v; })} hint="headcount-ölçekli" />
+              <PRow label="Yazılım geliştirme ücreti (USD)" v={data.params.yazilimGelistirmeUsd} onC={(v) => setParam("yazilimGelistirmeUsd", v)} hint="CAPEX'e, kura bağlı ₺" />
             </div>
           )}
         </section>

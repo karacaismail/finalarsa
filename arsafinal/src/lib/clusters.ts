@@ -133,8 +133,14 @@ export function hesapla(d: FinansalData): Hesap {
     return { ym, toplamTl, kisi, yeni, kumeler };
   });
 
-  const capexToplam = d.capex.reduce((s, c) => s + c.tl, 0);
-  return { capex: { toplamTl: capexToplam, kalemler: d.capex.map((c) => ({ ad: c.ad, tl: c.tl })) }, aylar };
+  // Ağustos CAPEX = sabit TL kalemler + USD-bazlı yazılım geliştirme ücreti (kura bağlı)
+  const yazilimUsd = d.params.yazilimGelistirmeUsd;
+  const kalemler: Kalem[] = [
+    ...d.capex.map((c) => ({ ad: c.ad, tl: c.tl })),
+    { ad: `Yazılım geliştirme ücreti (${yazilimUsd.toLocaleString("tr-TR")} USD)`, tl: yazilimUsd * d.params.usd },
+  ];
+  const capexToplam = kalemler.reduce((s, k) => s + k.tl, 0);
+  return { capex: { toplamTl: capexToplam, kalemler }, aylar };
 }
 
 // Para birimi

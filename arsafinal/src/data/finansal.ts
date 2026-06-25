@@ -24,6 +24,7 @@ export interface Params {
   yolAylik: number;                    // ₺/ay/kişi
   hosgeldinKisi: number;               // ₺/yeni işe alım (tek sefer)
   perHireCapex: number;                // ₺/yeni işe alım ekipman
+  yazilimGelistirmeUsd: number;        // CAPEX'e USD-bazlı yazılım geliştirme ücreti (kura bağlı)
   kuruculKod: string;                  // net-hedefli rol kodu (R-CPO)
 }
 
@@ -58,7 +59,7 @@ export interface FinansalData {
   pazarlama: { ym: string; tl: number }[]; // aya göre pazarlama (reklam) harcaması
 }
 
-export const SCHEMA_VERSION = "5.5.0";
+export const SCHEMA_VERSION = "5.6.0";
 export const MATURE_HC = 256;
 
 const AYLAR = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
@@ -85,7 +86,7 @@ export const DEFAULT_DATA: FinansalData = {
   params: {
     usd: 46.52, eur: 50,
     isverenSgkOran: 0.2375, yemekAylik: 9000, yemekTeamLead: 10000, yemekClevel: 15000, yolAylik: 3000, hosgeldinKisi: 5950,
-    perHireCapex: 24000, kuruculKod: "R-CPO",
+    perHireCapex: 24000, yazilimGelistirmeUsd: 18000, kuruculKod: "R-CPO",
   },
   bordro: PARAMS_2026,
   founder: [

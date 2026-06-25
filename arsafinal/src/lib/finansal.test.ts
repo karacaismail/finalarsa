@@ -19,7 +19,7 @@ describe("takvim ve roller", () => {
 describe("hesapla — yapı", () => {
   it("24 ay + capex özeti", () => {
     expect(H.aylar).toHaveLength(24);
-    expect(H.capex.toplamTl).toBe(3134200); // 7 kuruluş + 5 yeni kalem
+    expect(H.capex.toplamTl).toBe(3134200 + 18000 * 46.52); // 7 kuruluş + 5 yeni kalem
   });
   it("ilk ay (Eyl 2026): 12 kişi, 7 yeni işe alım", () => {
     expect(H.aylar[0].ym).toBe("2026-09");
@@ -93,7 +93,7 @@ describe("personel kümesi (bordro zinciri)", () => {
 
 describe("CAPEX & ofis (ilk ay özel)", () => {
   it("CAPEX yalnız Ağustos'ta (H.capex); operasyonel aylarda CAPEX kümesi YOK", () => {
-    expect(H.capex.toplamTl).toBe(3134200);                          // Ağustos = kuruluş yatırımı
+    expect(H.capex.toplamTl).toBe(3134200 + 18000 * 46.52);                          // Ağustos = kuruluş yatırımı
     expect(H.aylar[0].kumeler.find((k) => k.key === "capex")).toBeUndefined(); // Eyl'de CAPEX yok
     expect(H.aylar.some((a) => a.kumeler.some((k) => k.key === "capex"))).toBe(false); // hiçbir ayda yok
   });
@@ -122,6 +122,6 @@ describe("store v4", () => {
     expect(() => fromJSON("{bozuk")).toThrow();
   });
   it("load default (localStorage yok)", () => {
-    expect(load().meta.schemaVersion).toBe("5.5.0");
+    expect(load().meta.schemaVersion).toBe("5.6.0");
   });
 });
