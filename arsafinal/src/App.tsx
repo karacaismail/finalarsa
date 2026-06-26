@@ -131,8 +131,8 @@ export function App() {
               <PRow label="Yemek — C-level (₺/ay)" v={data.params.yemekClevel} onC={(v) => setParam("yemekClevel", v)} />
               <PRow label="Yol (₺/ay/kişi)" v={data.params.yolAylik} onC={(v) => setParam("yolAylik", v)} />
               <PRow label="CPO araç (1. dönem ₺/ay)" v={data.arac[0].aylikTl} onC={(v) => edit((d) => { d.arac[0].aylikTl = v; })} hint="segment yükselince artar" />
-              <PRow label="Ofis kirası (₺/ay)" v={data.olgun.kira} onC={(v) => edit((d) => { d.olgun.kira = v; })} />
-              <PRow label="Sürekli gider (256 kişi ₺/ay)" v={data.olgun.utilities} onC={(v) => edit((d) => { d.olgun.utilities = v; })} hint="headcount-ölçekli" />
+              <PRow label="Ofis kirası (₺/ay)" v={data.kira} onC={(v) => edit((d) => { d.kira = v; })} hint="sabit" />
+              <PRow label="Depozito (ilk ay)" v={data.depozito} onC={(v) => edit((d) => { d.depozito = v; })} hint="2 ay" />
               <PRow label="Yazılım geliştirme ücreti (USD)" v={data.params.yazilimGelistirmeUsd} onC={(v) => setParam("yazilimGelistirmeUsd", v)} hint="CAPEX'e, kura bağlı ₺" />
             </div>
           )}
