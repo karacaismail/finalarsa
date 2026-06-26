@@ -116,15 +116,16 @@ describe("OFİS & OPEX = ym-bazlı mutlak (ölçekleme YOK)", () => {
     expect(kalem("2026-09", "yazilim", "AI & yazılım araçları (lisans)")).toBe(76989);
     expect(kume("2026-09", "yazilim")!.tl).toBe(118489);
   });
-  it("pazarlama: Eyl = 0 (lansman öncesi, küme yok); Eki = 1.066.000", () => {
-    expect(kume("2026-09", "pazarlama")).toBeUndefined();
-    expect(kume("2026-10", "pazarlama")!.tl).toBe(1066000);
+  it("pazarlama (güncel plan): Eyl = 207.000; Eki = 343.000; Ara = 658.000", () => {
+    expect(kume("2026-09", "pazarlama")!.tl).toBe(207000);
+    expect(kume("2026-10", "pazarlama")!.tl).toBe(343000);
+    expect(kume("2026-12", "pazarlama")!.tl).toBe(658000);
   });
   it("profesyonel Eyl = muhasebe 20.000 + İSG 8.000 + güvenlik 4.000 = 32.000", () => {
     expect(kume("2026-09", "profesyonel")!.tl).toBe(32000);
   });
-  it("Eyl toplam ≈ 753.370 (gerçekçi; canlı v12'deki 1.494.318 değil)", () => {
-    expect(ay("2026-09").toplamTl).toBeCloseTo(124750 + 450000 + 28131 + 118489 + 32000, 0);
+  it("Eyl toplam ≈ 960.370 (gerçekçi; canlı v12'deki 1.494.318 değil)", () => {
+    expect(ay("2026-09").toplamTl).toBeCloseTo(124750 + 450000 + 28131 + 118489 + 32000 + 207000, 0);
   });
 });
 
