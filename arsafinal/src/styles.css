@@ -138,3 +138,19 @@ body {
   .acc-item { scroll-margin-top: 86px; }
 }
 @media (min-width: 1000px) { .block { padding: 20px 24px; } }
+
+/* Kalem etiketi + (i) detay popover */
+.lbl-info { position: relative; display: inline-flex; align-items: center; gap: 6px; }
+.info-dot {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; padding: 0; border: none; border-radius: 50%;
+  background: transparent; color: #8a8f98; cursor: pointer; flex: 0 0 auto;
+}
+.info-dot:hover { color: #2f6b34; background: rgba(47,107,52,.10); }
+.info-pop {
+  position: absolute; top: calc(100% + 6px); left: 0; z-index: 30;
+  max-width: 340px; width: max-content;
+  background: #1f2937; color: #fff; font-weight: 400; font-size: .92rem; line-height: 1.45;
+  padding: 9px 12px; border-radius: 10px; box-shadow: 0 6px 22px rgba(0,0,0,.22);
+  cursor: pointer;
+}
