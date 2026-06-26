@@ -41,12 +41,29 @@ export function App() {
   const [openK, setOpenK] = useState<string>("");
   const [ayar, setAyar] = useState(false);
   const [donem, setDonem] = useState("y2026");
+  const [liveFx, setLiveFx] = useState<{ usd: number; eur: number; ts: string } | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => { save(data); }, [data]);
-  const H = useMemo(() => hesapla(data), [data]);
-  const r = rate(data, disp);
+  // Canlı USD/TRY + EUR/TRY kuru çek, üstüne %1 ekle. Başarısızsa varsayılan kur (46,52 / 50) kullanılır.
+  useEffect(() => {
+    let alive = true;
+    fetch("https://open.er-api.com/v6/latest/USD")
+      .then((res) => res.json())
+      .then((d) => {
+        if (!alive || d?.result !== "success" || !d.rates?.TRY) return;
+        const usd = d.rates.TRY * 1.01;
+        const eur = d.rates.EUR ? (d.rates.TRY / d.rates.EUR) * 1.01 : usd;
+        setLiveFx({ usd, eur, ts: d.time_last_update_utc ?? "" });
+      })
+      .catch(() => { /* sessizce varsayılan kur kalır */ });
+    return () => { alive = false; };
+  }, []);
+  // Hesaplamada kullanılan etkin veri: canlı kur varsa USD/EUR'u onunla override et.
+  const eff = useMemo(() => (liveFx ? { ...data, params: { ...data.params, usd: liveFx.usd, eur: liveFx.eur } } : data), [data, liveFx]);
+  const H = useMemo(() => hesapla(eff), [eff]);
+  const r = rate(eff, disp);
   const conv = (tl: number) => tl / r;
   const sym = SYM[disp];
 
@@ -95,7 +112,7 @@ export function App() {
         { name: "Kuruluş (CAPEX)", type: "bar" as const, stack: "g", color: KUME_RENK.capex, data: [...onAylar.map((o) => Math.round(conv(o.capex))), ...gosterilen.map(() => 0)] },
       ] : []),
     ],
-  }), [data, disp, donem]);
+  }), [eff, disp, donem]);
 
   const exportJSON = () => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([toJSON(data)], { type: "application/json" })); a.download = `arsam-gider-${data.meta.updatedAt}.json`; a.click(); };
   const importJSON = (e: ChangeEvent<HTMLInputElement>) => { const f = e.target.files?.[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => { try { setData(fromJSON(String(rd.result))); setOpen(""); } catch { alert("Geçersiz veya uyumsuz JSON."); } }; rd.readAsText(f); e.target.value = ""; };
@@ -158,8 +175,8 @@ export function App() {
           </button>
           {ayar && (
             <div className="params">
-              <PRow label="USD/TRY kuru" v={data.params.usd} onC={(v) => setParam("usd", v)} hint="kurucu net-hedefi" />
-              <PRow label="EUR/TRY kuru" v={data.params.eur} onC={(v) => setParam("eur", v)} />
+              <PRow label="USD/TRY kuru" v={eff.params.usd} onC={(v) => setParam("usd", v)} hint={liveFx ? "canlı kur · +%1 (otomatik)" : "kurucu net-hedefi"} />
+              <PRow label="EUR/TRY kuru" v={eff.params.eur} onC={(v) => setParam("eur", v)} hint={liveFx ? "canlı kur · +%1 (otomatik)" : undefined} />
               <PRow label="İşveren SGK oranı" v={data.params.isverenSgkOran} onC={(v) => setParam("isverenSgkOran", v)} hint="0,2375 · 0,2175" />
               <PRow label="Yemek — baz (₺/ay/kişi)" v={data.params.yemekAylik} onC={(v) => setParam("yemekAylik", v)} hint="herkes (min)" />
               <PRow label="Yemek — Team Lead (₺/ay)" v={data.params.yemekTeamLead} onC={(v) => setParam("yemekTeamLead", v)} />
@@ -228,7 +245,7 @@ export function App() {
         </section>
 
         <footer className="foot">
-          Personel = 256 rol + 2026 bordro motoru · Diğer kümeler geçmiş veriden, düzenlenebilir · <b>{SYM[disp]} {disp}</b> · veri tarayıcıda · arsam.net
+          Personel = 256 rol + 2026 bordro motoru · Diğer kümeler geçmiş veriden, düzenlenebilir · <b>{SYM[disp]} {disp}</b>{liveFx ? <> · canlı kur 1$={liveFx.usd.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}₺ (+%1)</> : null} · veri tarayıcıda · arsam.net
         </footer>
       </main>
     </div>
