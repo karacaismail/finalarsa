@@ -13,10 +13,10 @@ const CURS: Currency[] = ["TRY", "USD", "EUR"];
 const CHEV = "M184.49 136.49l-80 80a12 12 0 0 1-17-17L159 128 87.51 56.49a12 12 0 1 1 17-17l80 80a12 12 0 0 1 0 17Z";
 
 const DONEMLER = [
-  { key: "y2026", ad: "2026 sonu (Eyl–Ara)", a: 0, b: 4 },
-  { key: "ilk12", ad: "İlk 12 ay", a: 0, b: 12 },
-  { key: "ikinci", ad: "İkinci sene", a: 12, b: 24 },
-  { key: "tumu", ad: "TÜMÜ · 24 ay", a: 0, b: 24 },
+  { key: "y2026", ad: "2026", a: 0, b: 4 },
+  { key: "ilk12", ad: "ilk 12 ay", a: 0, b: 12 },
+  { key: "ikinci", ad: "ikinci 12 ay", a: 12, b: 24 },
+  { key: "tumu", ad: "ilk 24 ay", a: 0, b: 24 },
 ];
 
 export function App() {
