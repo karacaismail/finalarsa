@@ -40,9 +40,9 @@ describe("HEADCOUNT = cari ay (başlık)", () => {
     expect(ay("2026-09").yeni).toBe(5);
     expect(ay("2026-09").kisi).toBe(ROLES.filter((r) => r.istihdamYm <= "2026-09").length);
   });
-  it("kadro cari ay ile büyür: Eki 9, Kas 13, Ara 18", () => {
+  it("kadro cari ay ile büyür: Eki 9, Kas 14 (PPC erkene alındı), Ara 18", () => {
     expect(ay("2026-10").kisi).toBe(9);
-    expect(ay("2026-11").kisi).toBe(13);
+    expect(ay("2026-11").kisi).toBe(14);
     expect(ay("2026-12").kisi).toBe(18);
   });
 });
@@ -100,9 +100,9 @@ describe("personel kümesi", () => {
 });
 
 describe("OFİS & OPEX = ym-bazlı mutlak (ölçekleme YOK)", () => {
-  it("ofis: Eyl = kira 150.000 + depozito 300.000 (2 ay) = 450.000; sonraki ay sadece kira", () => {
-    expect(kume("2026-09", "ofis")!.tl).toBe(150000 + 300000);
-    expect(kume("2026-09", "ofis")!.kalemler.find((x) => x.ad.includes("Depozito"))!.ad).toContain("2 ay");
+  it("ofis: Eyl = sadece kira 150.000 (depozito CAPEX'te, tekrar etmez); sonraki ay da 150.000", () => {
+    expect(kume("2026-09", "ofis")!.tl).toBe(150000);
+    expect(kume("2026-09", "ofis")!.kalemler.find((x) => x.ad.includes("Depozito"))).toBeUndefined();
     expect(kume("2026-10", "ofis")!.tl).toBe(150000);
   });
   it("Eyl sürekli giderler = 28.131 (8 kalem; gerçekçi, headcount-ölçekli DEĞİL)", () => {
@@ -126,8 +126,8 @@ describe("OFİS & OPEX = ym-bazlı mutlak (ölçekleme YOK)", () => {
   it("profesyonel Eyl = muhasebe 20.000 + İSG 8.000 + güvenlik 4.000 = 32.000", () => {
     expect(kume("2026-09", "profesyonel")!.tl).toBe(32000);
   });
-  it("Eyl toplam ≈ 960.370 (gerçekçi; canlı v12'deki 1.494.318 değil)", () => {
-    expect(ay("2026-09").toplamTl).toBeCloseTo(124750 + 450000 + 28131 + 118489 + 32000 + 207000, 0);
+  it("Eyl toplam ≈ 660.370 (depozito CAPEX'e taşındı; canlı v12'deki 1.494.318 değil)", () => {
+    expect(ay("2026-09").toplamTl).toBeCloseTo(124750 + 150000 + 28131 + 118489 + 32000 + 207000, 0);
   });
 });
 
@@ -149,7 +149,7 @@ describe("store v6", () => {
     expect(isValid(DEFAULT_DATA)).toBe(true);
     expect(() => fromJSON("{bozuk")).toThrow();
   });
-  it("load default + schemaVersion 6.1.2", () => {
-    expect(load().meta.schemaVersion).toBe("6.1.2");
+  it("load default + schemaVersion 6.1.3", () => {
+    expect(load().meta.schemaVersion).toBe("6.1.3");
   });
 });

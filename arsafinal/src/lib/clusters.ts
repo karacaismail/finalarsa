@@ -109,8 +109,8 @@ export function hesapla(d: FinansalData): Hesap {
     const ox = opexMap.get(ym) ?? SIFIR_OPEX;
 
     // --- OFİS & KİRA ---
+    // Depozito CAPEX'te (Ağustos · "Ofis kurulumu") zaten dahil — operasyonel aylarda tekrar gösterilmez.
     const ofisKalem: Kalem[] = [{ ad: "Ofis kirası", tl: d.kira }];
-    if (idx === 0) ofisKalem.push({ ad: "Depozito (2 ay)", tl: d.depozito });
     const ofis: Kume = { key: "ofis", ad: "Ofis & kira", renk: KUME_RENK.ofis, tl: ofisKalem.reduce((s, k) => s + k.tl, 0), kalemler: ofisKalem };
 
     // --- SÜREKLİ GİDERLER (ym-bazlı mutlak) ---
