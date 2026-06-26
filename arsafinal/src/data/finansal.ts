@@ -60,7 +60,7 @@ export interface FinansalData {
   opex: OpexAy[];                      // ym-bazlı mutlak OPEX
 }
 
-export const SCHEMA_VERSION = "6.0.0";
+export const SCHEMA_VERSION = "6.1.0";
 
 const AYLAR = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 export function ayLabel(ym: string): string { const [y, m] = ym.split("-").map(Number); return `${AYLAR[(m - 1 + 12) % 12]} ${y}`; }
