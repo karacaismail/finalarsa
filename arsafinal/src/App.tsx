@@ -55,7 +55,7 @@ export function App() {
   const kumeAd: Record<string, string> = { personel: "Personel", ofis: "Ofis & kira", surekli: "Sürekli", pazarlama: "Pazarlama", yazilim: "Yazılım/SaaS", profesyonel: "Profesyonel", saha: "Saha" };
   const chart: EChartsOption = useMemo(() => ({
     grid: { left: 52, right: 10, top: 30, bottom: 64 },
-    tooltip: { trigger: "axis", valueFormatter: (v) => Number(v).toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + " " + sym },
+    tooltip: { trigger: "axis", valueFormatter: (v) => Math.ceil(Number(v)).toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + " " + sym },
     legend: { top: 0, type: "scroll", textStyle: { fontSize: 12 } },
     xAxis: { type: "category", data: gosterilen.map((a) => ayLabel(a.ym)), axisLabel: { rotate: 48, fontSize: 11 } },
     yAxis: { type: "value", axisLabel: { fontSize: 11, formatter: (v: number) => (Math.abs(v) >= 1e6 ? (v / 1e6).toLocaleString("tr-TR", { maximumFractionDigits: 1 }) + "M" : (v / 1e3).toFixed(0) + "B") } },
