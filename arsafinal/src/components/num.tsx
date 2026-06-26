@@ -4,7 +4,7 @@ import { useState } from "react";
 // Sayıyı Türkçe gruplara ayır: en yüksek grup kalın, kalan normal, ondalık italik.
 export function parts(n: number) {
   const neg = n < 0;
-  const r = Math.round(Math.abs(n)); // tam sayıya yuvarla — küsürat (kuruş) gösterme
+  const r = Math.ceil(Math.abs(n)); // YUKARI yuvarla — küsürat (kuruş) gösterme
   const groups = r.toLocaleString("tr-TR").split(".");
   return {
     neg,
