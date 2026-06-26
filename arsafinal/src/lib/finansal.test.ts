@@ -78,13 +78,15 @@ describe("personel kümesi", () => {
     expect(p.kalemler).toHaveLength(8);
     expect(kalem("2026-09", "personel", "Hoşgeldin paketi (yeni işe alım)")).toBe(5 * 5950);
   });
-  it("CPO araç: Eyl 95.000 (CPO Eylül başlar); 2028 segment 160.000", () => {
-    const arac0 = kume("2026-09", "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
+  it("CPO araç: kısa etiket 'CPO araç'; model detayı (i)'de; Eyl 95.000; 2028 segment 160.000", () => {
+    const arac0 = kume("2026-09", "personel")!.kalemler.find((x) => x.ad === "CPO araç")!;
     expect(arac0.tl).toBe(95000);
-    expect(arac0.ad).toContain("2025+ model:");
-    expect(arac0.ad).toContain("Mercedes C (W206)");
-    const arac28 = kume("2028-02", "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
+    expect(arac0.ad).toBe("CPO araç");                 // her yerde sadece "CPO araç" yazar
+    expect(arac0.detay).toContain("2025+ model:");      // tam model (i) detayında
+    expect(arac0.detay).toContain("Mercedes C (W206)");
+    const arac28 = kume("2028-02", "personel")!.kalemler.find((x) => x.ad === "CPO araç")!;
     expect(arac28.tl).toBe(160000);
+    expect(arac28.detay).toContain("BMW");
   });
   it("ikramiye TARİHE BAĞLI: Eyl 0, Ara 2026 prim (yılsonu+yılbaşı), Mar/May bayram", () => {
     const ik = (ym: string) => kume(ym, "personel")!.kalemler.find((x) => x.ad.startsWith("İkramiye"))!;

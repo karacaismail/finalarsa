@@ -8,7 +8,7 @@ import { bordroAy, brutCozHedefNet } from "./payroll";
 import { ymList } from "../data/finansal";
 import type { FinansalData, FounderStep, OpexAy } from "../data/finansal";
 
-export interface Kalem { ad: string; tl: number; }
+export interface Kalem { ad: string; tl: number; detay?: string; }
 export interface Kume { key: string; ad: string; renk: string; tl: number; kalemler: Kalem[]; }
 export interface AyKirilim { ym: string; toplamTl: number; kisi: number; yeni: number; kumeler: Kume[]; }
 export interface CapexOzet { toplamTl: number; kalemler: Kalem[]; }
@@ -101,7 +101,7 @@ export function hesapla(d: FinansalData): Hesap {
         { ad: "Yol ücreti", tl: yol },
         { ad: "Hoşgeldin paketi (yeni işe alım)", tl: hosgeldin },
         { ad: ikramiyeAd, tl: ikramiye },
-        { ad: "2025+ model: CPO araç — " + aracSeg + " (kiralama)", tl: aracTl },
+        { ad: "CPO araç", tl: aracTl, detay: aracSeg ? "2025+ model: CPO araç — " + aracSeg + " (kiralama)" : undefined },
       ],
     };
 

@@ -19,6 +19,21 @@ const DONEMLER = [
   { key: "tumu", ad: "ilk 24 ay", a: 0, b: 24 },
 ];
 
+// Kalem etiketi + opsiyonel (i) detay. Tıklayınca detay metni açılır/kapanır.
+function InfoLabel({ ad, detay }: { ad: string; detay?: string }) {
+  const [show, setShow] = useState(false);
+  if (!detay) return <span>{ad}</span>;
+  return (
+    <span className="lbl-info">
+      <span>{ad}</span>
+      <button type="button" className="info-dot" aria-label="Detay göster" aria-expanded={show} onClick={() => setShow((s) => !s)}>
+        <Svg d={Icon.info} size={15} />
+      </button>
+      {show && <span className="info-pop" role="tooltip" onClick={() => setShow(false)}>{detay}</span>}
+    </span>
+  );
+}
+
 export function App() {
   const [data, setData] = useState<FinansalData>(() => load());
   const [disp, setDisp] = useState<Currency>("TRY");
@@ -53,13 +68,23 @@ export function App() {
 
   const kumeAnahtar = ["personel", "ofis", "surekli", "pazarlama", "yazilim", "profesyonel", "saha"];
   const kumeAd: Record<string, string> = { personel: "Personel", ofis: "Ofis & kira", surekli: "Sürekli", pazarlama: "Pazarlama", yazilim: "Yazılım/SaaS", profesyonel: "Profesyonel", saha: "Saha" };
+  // Dönem baştan başlıyorsa (a=0) grafiğe Temmuz (yazılım geliştirme avansı) + Ağustos (kuruluş CAPEX) çubukları eklenir.
+  const onAylar = dd.a === 0
+    ? [{ ad: "Tem 2026", dev: H.yazilimDev.toplamTl, capex: 0 }, { ad: "Ağu 2026", dev: 0, capex: H.capex.toplamTl }]
+    : [];
   const chart: EChartsOption = useMemo(() => ({
     grid: { left: 52, right: 10, top: 30, bottom: 64 },
     tooltip: { trigger: "axis", valueFormatter: (v) => Math.ceil(Number(v)).toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + " " + sym },
     legend: { top: 0, type: "scroll", textStyle: { fontSize: 12 } },
-    xAxis: { type: "category", data: gosterilen.map((a) => ayLabel(a.ym)), axisLabel: { rotate: 48, fontSize: 11 } },
+    xAxis: { type: "category", data: [...onAylar.map((o) => o.ad), ...gosterilen.map((a) => ayLabel(a.ym))], axisLabel: { rotate: 48, fontSize: 11 } },
     yAxis: { type: "value", axisLabel: { fontSize: 11, formatter: (v: number) => (Math.abs(v) >= 1e6 ? (v / 1e6).toLocaleString("tr-TR", { maximumFractionDigits: 1 }) + "M" : (v / 1e3).toFixed(0) + "B") } },
-    series: kumeAnahtar.map((key) => ({ name: kumeAd[key], type: "bar", stack: "g", color: KUME_RENK[key], data: gosterilen.map((a) => Math.round(conv(a.kumeler.find((k) => k.key === key)?.tl ?? 0))) })),
+    series: [
+      ...kumeAnahtar.map((key) => ({ name: kumeAd[key], type: "bar" as const, stack: "g", color: KUME_RENK[key], data: [...onAylar.map(() => 0), ...gosterilen.map((a) => Math.round(conv(a.kumeler.find((k) => k.key === key)?.tl ?? 0)))] })),
+      ...(onAylar.length ? [
+        { name: "Yazılım geliştirme", type: "bar" as const, stack: "g", color: "#475569", data: [...onAylar.map((o) => Math.round(conv(o.dev))), ...gosterilen.map(() => 0)] },
+        { name: "Kuruluş (CAPEX)", type: "bar" as const, stack: "g", color: KUME_RENK.capex, data: [...onAylar.map((o) => Math.round(conv(o.capex))), ...gosterilen.map(() => 0)] },
+      ] : []),
+    ],
   }), [data, disp, donem]);
 
   const exportJSON = () => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([toJSON(data)], { type: "application/json" })); a.download = `arsam-gider-${data.meta.updatedAt}.json`; a.click(); };
@@ -179,7 +204,7 @@ export function App() {
                         </button>
                         {openK === k.key && (
                           <div className="kume-body">
-                            {k.kalemler.map((x, m) => <div className="kalem-row" key={m}><span>{x.ad}</span><NumView n={conv(x.tl)} sym={sym} /></div>)}
+                            {k.kalemler.map((x, m) => <div className="kalem-row" key={m}><InfoLabel ad={x.ad} detay={x.detay} /><NumView n={conv(x.tl)} sym={sym} /></div>)}
                           </div>
                         )}
                       </div>
