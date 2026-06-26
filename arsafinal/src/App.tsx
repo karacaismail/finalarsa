@@ -53,8 +53,8 @@ export function App() {
       .then((res) => res.json())
       .then((d) => {
         if (!alive || d?.result !== "success" || !d.rates?.TRY) return;
-        const usd = d.rates.TRY * 1.01;
-        const eur = d.rates.EUR ? (d.rates.TRY / d.rates.EUR) * 1.01 : usd;
+        const usd = d.rates.TRY;                                   // ham canlı kur (+%1 YOK; o yalnız yazılım maliyetinde)
+        const eur = d.rates.EUR ? d.rates.TRY / d.rates.EUR : usd;
         setLiveFx({ usd, eur, ts: d.time_last_update_utc ?? "" });
       })
       .catch(() => { /* sessizce varsayılan kur kalır */ });
@@ -109,7 +109,7 @@ export function App() {
       ...kumeAnahtar.map((key) => ({ name: kumeAd[key], type: "bar" as const, stack: "g", color: KUME_RENK[key], data: [...onAylar.map(() => 0), ...gosterilen.map((a) => Math.round(conv(a.kumeler.find((k) => k.key === key)?.tl ?? 0)))] })),
       ...(onAylar.length ? [
         { name: "Yazılım geliştirme", type: "bar" as const, stack: "g", color: "#475569", data: [...onAylar.map((o) => Math.round(conv(o.dev))), ...gosterilen.map(() => 0)] },
-        { name: "Kuruluş (CAPEX)", type: "bar" as const, stack: "g", color: KUME_RENK.capex, data: [...onAylar.map((o) => Math.round(conv(o.capex))), ...gosterilen.map(() => 0)] },
+        { name: "Kuruluş yatırımı", type: "bar" as const, stack: "g", color: KUME_RENK.capex, data: [...onAylar.map((o) => Math.round(conv(o.capex))), ...gosterilen.map(() => 0)] },
       ] : []),
     ],
   }), [eff, disp, donem]);
@@ -151,7 +151,7 @@ export function App() {
 
       <main className="main">
         <section className="cards cards4">
-          <Card k="CAPEX (Ağustos 2026)" n={conv(H.capex.toplamTl)} sym={sym} accent />
+          <Card k="Kuruluş yatırımı (Ağu 2026)" n={conv(H.capex.toplamTl)} sym={sym} accent />
           <Card k="İlk 6 ay toplamı" n={conv(ilk6)} sym={sym} />
           <Card k="İlk 12 ay toplamı" n={conv(ilk12)} sym={sym} />
           <Card k="İlk 24 ay toplamı" n={conv(ilk24)} sym={sym} />
@@ -175,16 +175,16 @@ export function App() {
           </button>
           {ayar && (
             <div className="params">
-              <PRow label="USD/TRY kuru" v={eff.params.usd} onC={(v) => setParam("usd", v)} hint={liveFx ? "canlı kur · +%1 (otomatik)" : "kurucu net-hedefi"} />
-              <PRow label="EUR/TRY kuru" v={eff.params.eur} onC={(v) => setParam("eur", v)} hint={liveFx ? "canlı kur · +%1 (otomatik)" : undefined} />
+              <PRow label="USD/TRY kuru" v={eff.params.usd} onC={(v) => setParam("usd", v)} hint={liveFx ? "canlı kur (otomatik)" : "kurucu net-hedefi"} />
+              <PRow label="EUR/TRY kuru" v={eff.params.eur} onC={(v) => setParam("eur", v)} hint={liveFx ? "canlı kur (otomatik)" : undefined} />
               <PRow label="İşveren SGK oranı" v={data.params.isverenSgkOran} onC={(v) => setParam("isverenSgkOran", v)} hint="0,2375 · 0,2175" />
               <PRow label="Yemek — baz (₺/ay/kişi)" v={data.params.yemekAylik} onC={(v) => setParam("yemekAylik", v)} hint="herkes (min)" />
               <PRow label="Yemek — Team Lead (₺/ay)" v={data.params.yemekTeamLead} onC={(v) => setParam("yemekTeamLead", v)} />
               <PRow label="Yemek — C-level (₺/ay)" v={data.params.yemekClevel} onC={(v) => setParam("yemekClevel", v)} />
               <PRow label="Yol (₺/ay/kişi)" v={data.params.yolAylik} onC={(v) => setParam("yolAylik", v)} />
               <PRow label="CPO araç (1. dönem ₺/ay)" v={data.arac[0].aylikTl} onC={(v) => edit((d) => { d.arac[0].aylikTl = v; })} hint="segment yükselince artar" />
-              <PRow label="Ofis kirası (₺/ay)" v={data.kira} onC={(v) => edit((d) => { d.kira = v; })} hint="sabit · depozito CAPEX'te" />
-              <PRow label="Yazılım geliştirme ücreti (USD)" v={data.params.yazilimGelistirmeUsd} onC={(v) => setParam("yazilimGelistirmeUsd", v)} hint="CAPEX'e, kura bağlı ₺" />
+              <PRow label="Ofis kirası (₺/ay)" v={data.kira} onC={(v) => edit((d) => { d.kira = v; })} hint="sabit · depozito kuruluş yatırımında" />
+              <PRow label="Yazılım geliştirme ücreti (USD)" v={data.params.yazilimGelistirmeUsd} onC={(v) => setParam("yazilimGelistirmeUsd", v)} hint="kuruluş yatırımına · +%1 · kura bağlı" />
             </div>
           )}
         </section>
@@ -203,11 +203,11 @@ export function App() {
           )}
           {dd.a === 0 && (
             <div className="acc-item" key="agustos" ref={(el) => { itemRefs.current["agustos"] = el; }}>
-              <Head k="agustos" no={2} title="Ağu 2026" sub="kuruluş yatırımı · sadece CAPEX" tl={H.capex.toplamTl} />
+              <Head k="agustos" no={2} title="Ağu 2026" sub="Kuruluş yatırımı" tl={H.capex.toplamTl} />
               {open === "agustos" && (
                 <div className="acc-body">
                   {H.capex.kalemler.map((k, m) => <div className="kalem-row" key={m}><span>{k.ad}</span><NumView n={conv(k.tl)} sym={sym} /></div>)}
-                  <div className="kalem-row sum big"><span>Ağu 2026 — CAPEX toplam</span><NumView n={conv(H.capex.toplamTl)} sym={sym} /></div>
+                  <div className="kalem-row sum big"><span>Ağu 2026 — Kuruluş yatırımı toplam</span><NumView n={conv(H.capex.toplamTl)} sym={sym} /></div>
                 </div>
               )}
             </div>
@@ -216,7 +216,7 @@ export function App() {
             const i = dd.a + j;
             return (
               <div className="acc-item" key={ay.ym} ref={(el) => { itemRefs.current[ay.ym] = el; }}>
-                <Head k={ay.ym} no={i + 3} title={ayLabel(ay.ym)} sub={`${ay.kisi} kişi${ay.yeni ? ` · +${ay.yeni} yeni` : ""}`} tl={ay.toplamTl} />
+                <Head k={ay.ym} no={i + 3} title={ayLabel(ay.ym)} sub={`${ay.kisi} mevcut${ay.yeni ? ` · +${ay.yeni} yeni istihdam` : ""}`} tl={ay.toplamTl} />
                 {open === ay.ym && (
                   <div className="acc-body">
                     {ay.kumeler.map((k) => (
@@ -244,7 +244,7 @@ export function App() {
         </section>
 
         <footer className="foot">
-          Personel = 256 rol + 2026 bordro motoru · Diğer kümeler geçmiş veriden, düzenlenebilir · <b>{SYM[disp]} {disp}</b>{liveFx ? <> · canlı kur 1$={liveFx.usd.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}₺ (+%1)</> : null} · veri tarayıcıda · arsam.net
+          Personel = 256 rol + 2026 bordro motoru · Diğer kümeler geçmiş veriden, düzenlenebilir · <b>{SYM[disp]} {disp}</b> · İsmail KARACA · arsam.net
         </footer>
       </main>
     </div>

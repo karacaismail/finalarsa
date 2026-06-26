@@ -26,9 +26,9 @@ describe("hesapla — yapı", () => {
     expect(H.capex.toplamTl).toBe(3134200); // Ağustos = yalnız kuruluş/donanım
   });
   it("Temmuz yazılım geliştirme avansı = 18.000 USD, 2 eşit taksit (5 Tem + 5 Ağu)", () => {
-    expect(H.yazilimDev.toplamTl).toBeCloseTo(18000 * 46.52, 2);
+    expect(H.yazilimDev.toplamTl).toBeCloseTo(18000 * 46.52 * 1.01, 2);
     expect(H.yazilimDev.kalemler).toHaveLength(2);
-    expect(H.yazilimDev.kalemler[0].tl).toBeCloseTo(9000 * 46.52, 2);
+    expect(H.yazilimDev.kalemler[0].tl).toBeCloseTo(9000 * 46.52 * 1.01, 2);
     expect(H.yazilimDev.kalemler[0].ad).toContain("5 Temmuz");
     expect(H.yazilimDev.kalemler[1].ad).toContain("5 Ağustos");
   });
