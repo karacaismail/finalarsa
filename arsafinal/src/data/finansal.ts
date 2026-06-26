@@ -1,7 +1,8 @@
-// arsam.net — Aylık Gider Modeli (v4) — TEK KAYNAK.
+// arsam.net — Aylık Gider Modeli (v6) — TEK KAYNAK.
 // "Her ay ne harcayacağız?" → kümeler (personel/capex/sürekli/…) + kalem kırılımı, accordion.
 // Personel kümesi 256 rolden + bordro motorundan TÜRETİLİR (kurucu: net-hedef, kümülatif vergi).
-// Diğer kümeler geçmiş veriden tohumlanır, hepsi düzenlenebilir parametredir.
+// OPEX kümeleri (sürekli/ofis/yazılım/pazarlama/profesyonel/saha) ARTIK ym-bazlı MUTLAK değerlerden gelir
+//   (kaynak: master_plan OPEX + DİJİTAL PAZARLAMA sayfaları). Eski headcount-ölçekleme (olgun×fac) KALDIRILDI.
 
 import { ROLES } from "./roles";
 import { PARAMS_2026 } from "../lib/payroll";
@@ -33,16 +34,16 @@ export interface AracStep { fromYm: string; segment: string; aylikTl: number; } 
 // İkramiye olayı: belirli ayda, brüt maaşın pct'i kadar prim (bayram öncesi/yıl-sonu öderler).
 export interface IkramiyeOlay { ym: string; pct: number; ad: string; }
 
-// Olgun (256 kişi) aylık küme değerleri — headcount ile ölçeklenir. Hepsi düzenlenebilir.
-export interface OlgunDegerler {
-  kira: number; depozito: number;      // ofis (kira sabit; depozito ilk ay)
-  utilities: number;                   // internet+elektrik+su+… toplam (256 kişi)
-  yazilim: number;                     // dijital altyapı + yazılım araçları (256 kişi)
-  saha: number;                        // saha operasyonu (256 kişi)
-  profesyonel: number;                 // muhasebe+hukuk+danışmanlık (256, İSG hariç)
-  isgAylik: number;                    // İSG/OSGB (sabit, ≥1 çalışan)
+// ym-bazlı OPEX (mutlak ₺/ay). Her ay kendi gerçek bütçesiyle gösterilir (ölçekleme yok).
+export interface OpexAy {
+  ym: string;
+  internet: number; elektrik: number; su: number; dogalgaz: number;       // sürekli giderler
+  mutfak: number; sarf: number; kirtasiye: number; temizlik: number;       // sürekli giderler
+  guvenlik: number;                                                        // güvenlik & sigorta (profesyonel)
+  dijitalAltyapi: number; aiAraclar: number;                               // yazılım / SaaS & AI
+  pazarlama: number;                                                       // dijital reklam / medya
+  muhasebeHukuk: number; isg: number; saha: number;                        // profesyonel + saha
 }
-export interface UtilSplit { internet: number; elektrik: number; su: number; dogalgaz: number; mutfak: number; sarf: number; kirtasiye: number; temizlik: number; }
 export interface CapexKalem { ad: string; tl: number; }
 
 export interface FinansalData {
@@ -54,13 +55,12 @@ export interface FinansalData {
   ikramiye: IkramiyeOlay[];
   roles: Role[];
   capex: CapexKalem[];                 // ilk-ay yatırım kalemleri
-  olgun: OlgunDegerler;
-  utilSplit: UtilSplit;                // sürekli giderlerin yüzde dağılımı (toplamı 1)
-  pazarlama: { ym: string; tl: number }[]; // aya göre pazarlama (reklam) harcaması
+  kira: number;                        // ofis kirası ₺/ay (sabit)
+  depozito: number;                    // ilk ay depozito (2 ay)
+  opex: OpexAy[];                      // ym-bazlı mutlak OPEX
 }
 
-export const SCHEMA_VERSION = "5.9.0";
-export const MATURE_HC = 256;
+export const SCHEMA_VERSION = "6.0.0";
 
 const AYLAR = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 export function ayLabel(ym: string): string { const [y, m] = ym.split("-").map(Number); return `${AYLAR[(m - 1 + 12) % 12]} ${y}`; }
@@ -73,16 +73,37 @@ export function ymList(n = DEFAULT_MONTH_COUNT): string[] {
   return out;
 }
 
-// Pazarlama (reklam) aylık — geçmiş modelden (128.205 → 1.230.769), pencereye re-key + uzatma.
-const PAZ_SRC = [128205, 143590, 158974, 174359, 189744, 205128, 769231, 811189, 853147, 895105, 937063, 979021, 1020979, 1062937, 1104895, 1146853, 1188811, 1230769];
-function seedPazarlama(): { ym: string; tl: number }[] {
-  const src = PAZ_SRC.slice(); const d = src[17] - src[16];
-  while (src.length < DEFAULT_MONTH_COUNT + 2) src.push(src[src.length - 1] + d);
-  return ymList().map((ym, i) => ({ ym, tl: Math.round(src[i + 2]) })); // Eyl2026 = src index 2
-}
+// ym-bazlı OPEX tablosu (Eyl 2026 → Ağu 2028). Kaynak: master_plan OPEX + DİJİTAL PAZARLAMA.
+// Eylül pazarlama = 0 (lansman öncesi). Doğalgaz mevsimsel (yaz 0). Saha lansman sonrası rampalanır.
+export const OPEX: OpexAy[] = [
+  { ym: "2026-09", internet: 3000, elektrik: 3284, su: 1847, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 41500, aiAraclar: 76989, pazarlama: 0, muhasebeHukuk: 20000, isg: 8000, saha: 0 },
+  { ym: "2026-10", internet: 3000, elektrik: 3327, su: 1871, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 49500, aiAraclar: 126496, pazarlama: 1066000, muhasebeHukuk: 21500, isg: 8000, saha: 0 },
+  { ym: "2026-11", internet: 3000, elektrik: 3370, su: 1895, dogalgaz: 4000, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 59000, aiAraclar: 146470, pazarlama: 1142000, muhasebeHukuk: 23000, isg: 8000, saha: 0 },
+  { ym: "2026-12", internet: 3000, elektrik: 3414, su: 1920, dogalgaz: 8000, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 71000, aiAraclar: 160000, pazarlama: 1596000, muhasebeHukuk: 24500, isg: 8000, saha: 0 },
+  { ym: "2027-01", internet: 3000, elektrik: 3441, su: 1935, dogalgaz: 8000, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 84000, aiAraclar: 212475, pazarlama: 2084000, muhasebeHukuk: 26000, isg: 8000, saha: 0 },
+  { ym: "2027-02", internet: 3000, elektrik: 3468, su: 1951, dogalgaz: 8000, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 99000, aiAraclar: 216461, pazarlama: 2108000, muhasebeHukuk: 27500, isg: 8000, saha: 0 },
+  { ym: "2027-03", internet: 3000, elektrik: 3496, su: 1967, dogalgaz: 4000, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 117000, aiAraclar: 232985, pazarlama: 2560000, muhasebeHukuk: 29000, isg: 8000, saha: 20000 },
+  { ym: "2027-04", internet: 3000, elektrik: 3524, su: 1982, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 138000, aiAraclar: 258480, pazarlama: 3162000, muhasebeHukuk: 30500, isg: 8000, saha: 40000 },
+  { ym: "2027-05", internet: 3000, elektrik: 3552, su: 1998, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 162000, aiAraclar: 275371, pazarlama: 3186000, muhasebeHukuk: 32000, isg: 8000, saha: 60000 },
+  { ym: "2027-06", internet: 3000, elektrik: 3581, su: 2014, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 189000, aiAraclar: 333530, pazarlama: 3254000, muhasebeHukuk: 33500, isg: 8000, saha: 80000 },
+  { ym: "2027-07", internet: 3000, elektrik: 3610, su: 2030, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 216000, aiAraclar: 352811, pazarlama: 3714000, muhasebeHukuk: 35000, isg: 8000, saha: 100000 },
+  { ym: "2027-08", internet: 3000, elektrik: 3638, su: 2047, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 245000, aiAraclar: 369406, pazarlama: 3740000, muhasebeHukuk: 36500, isg: 8000, saha: 120000 },
+  { ym: "2027-09", internet: 3000, elektrik: 3668, su: 2063, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 273000, aiAraclar: 387985, pazarlama: 3920000, muhasebeHukuk: 38000, isg: 8000, saha: 140000 },
+  { ym: "2027-10", internet: 3000, elektrik: 3697, su: 2079, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 302000, aiAraclar: 394965, pazarlama: 4154000, muhasebeHukuk: 39500, isg: 8000, saha: 160000 },
+  { ym: "2027-11", internet: 3000, elektrik: 3726, su: 2096, dogalgaz: 4000, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 331000, aiAraclar: 436170, pazarlama: 4336000, muhasebeHukuk: 41000, isg: 8000, saha: 180000 },
+  { ym: "2027-12", internet: 3000, elektrik: 3756, su: 2113, dogalgaz: 8000, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 362000, aiAraclar: 455183, pazarlama: 4572000, muhasebeHukuk: 42500, isg: 8000, saha: 200000 },
+  { ym: "2028-01", internet: 3000, elektrik: 3786, su: 2130, dogalgaz: 8000, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 363740, aiAraclar: 466123, pazarlama: 4590288, muhasebeHukuk: 44000, isg: 8000, saha: 220000 },
+  { ym: "2028-02", internet: 3000, elektrik: 3816, su: 2147, dogalgaz: 8000, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 365488, aiAraclar: 470784, pazarlama: 4608650, muhasebeHukuk: 45500, isg: 8000, saha: 240000 },
+  { ym: "2028-03", internet: 3000, elektrik: 3847, su: 2164, dogalgaz: 4000, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 367245, aiAraclar: 475492, pazarlama: 4627084, muhasebeHukuk: 47000, isg: 8000, saha: 260000 },
+  { ym: "2028-04", internet: 3000, elektrik: 3878, su: 2181, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 369010, aiAraclar: 484634, pazarlama: 4645592, muhasebeHukuk: 48500, isg: 8000, saha: 280000 },
+  { ym: "2028-05", internet: 3000, elektrik: 3908, su: 2199, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 370784, aiAraclar: 489480, pazarlama: 4664172, muhasebeHukuk: 50000, isg: 8000, saha: 300000 },
+  { ym: "2028-06", internet: 3000, elektrik: 3940, su: 2216, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 372566, aiAraclar: 495495, pazarlama: 4682828, muhasebeHukuk: 51500, isg: 8000, saha: 320000 },
+  { ym: "2028-07", internet: 3000, elektrik: 3971, su: 2234, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 374358, aiAraclar: 504969, pazarlama: 4701560, muhasebeHukuk: 53000, isg: 8000, saha: 340000 },
+  { ym: "2028-08", internet: 3000, elektrik: 4003, su: 2252, dogalgaz: 0, mutfak: 5000, sarf: 5000, kirtasiye: 5000, temizlik: 5000, guvenlik: 4000, dijitalAltyapi: 376158, aiAraclar: 510019, pazarlama: 4720366, muhasebeHukuk: 54500, isg: 8000, saha: 360000 },
+];
 
 export const DEFAULT_DATA: FinansalData = {
-  meta: { schemaVersion: SCHEMA_VERSION, updatedAt: "2026-06-25", baseCurrency: "TRY" },
+  meta: { schemaVersion: SCHEMA_VERSION, updatedAt: "2026-06-26", baseCurrency: "TRY" },
   params: {
     usd: 46.52, eur: 50,
     isverenSgkOran: 0.2375, yemekAylik: 9000, yemekTeamLead: 10000, yemekClevel: 15000, yolAylik: 3000, hosgeldinKisi: 5950,
@@ -94,15 +115,12 @@ export const DEFAULT_DATA: FinansalData = {
     { fromYm: "2027-01", netUsd: 10000 },
     { fromYm: "2027-06", netUsd: 15000 },
   ],
-  // CPO araç tahsisi — operasyonel kiralama (aylık ödeme). Segment ~yılda bir yükselir (eski proje verisi).
-  // Aylık kira KDV hariç temsilî; 2026'da kiranın yalnız 46.000 ₺'lik kısmı gider yazılabilir (kalanı KKEG).
+  // CPO araç tahsisi — operasyonel kiralama (aylık ödeme). CPO Eylül'de başlar → araç Eylül'den itibaren.
   arac: [
-    { fromYm: "2026-08", segment: "Škoda Superb / Camry / VW Passat B9 / Audi A5 / Mercedes C (W206)", aylikTl: 95000 },
+    { fromYm: "2026-09", segment: "Škoda Superb / Camry / VW Passat B9 / Audi A5 / Mercedes C (W206)", aylikTl: 95000 },
     { fromYm: "2027-06", segment: "Volvo S60 (üst segment)", aylikTl: 110000 },
     { fromYm: "2028-01", segment: "BMW 520+ / Mercedes E 220+ / Audi A6 / Volvo S90", aylikTl: 160000 },
   ],
-  // İkramiye = yılda 1 maaş, 4 prim halinde belirli aylarda (o ayki brüt maaşa oranlı).
-  // Bayram ayları Diyanet resmî takvimi (2026-2028); yıl-sonu/yılbaşı = Aralık. Düzenlenebilir.
   ikramiye: [
     { ym: "2026-03", pct: 0.25, ad: "Ramazan Bayramı primi" },
     { ym: "2026-05", pct: 0.25, ad: "Kurban Bayramı primi" },
@@ -132,7 +150,7 @@ export const DEFAULT_DATA: FinansalData = {
     { ad: "Beyaz tahtalar", tl: 20000 },
     { ad: "Hava temizleyici", tl: 75000 },
   ],
-  olgun: { kira: 150000, depozito: 450000, utilities: 2430000, yazilim: 7056813, saha: 2280000, profesyonel: 200000, isgAylik: 8000 },
-  utilSplit: { internet: 0.10, elektrik: 0.22, su: 0.06, dogalgaz: 0.10, mutfak: 0.24, sarf: 0.12, kirtasiye: 0.06, temizlik: 0.10 },
-  pazarlama: seedPazarlama(),
+  kira: 150000,
+  depozito: 300000,
+  opex: OPEX,
 };

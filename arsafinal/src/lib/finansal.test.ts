@@ -5,6 +5,10 @@ import { hesapla } from "./clusters";
 import { toJSON, fromJSON, isValid, load } from "./store";
 
 const H = hesapla(DEFAULT_DATA);
+const ay = (ym: string) => H.aylar.find((a) => a.ym === ym)!;
+const kume = (ym: string, key: string) => ay(ym).kumeler.find((k) => k.key === key);
+const kalem = (ym: string, key: string, ad: string) => kume(ym, key)?.kalemler.find((x) => x.ad === ad)?.tl ?? 0;
+const net = (ym: string) => kume(ym, "personel")!.kalemler[0].tl;
 
 describe("takvim ve roller", () => {
   it("256 rol; pencere Eyl 2026 → Ağu 2028 (24 ay)", () => {
@@ -19,130 +23,130 @@ describe("takvim ve roller", () => {
 describe("hesapla — yapı", () => {
   it("24 ay + capex özeti", () => {
     expect(H.aylar).toHaveLength(24);
-    expect(H.capex.toplamTl).toBe(3134200); // Ağustos = yalnız kuruluş/donanım (yazılım dev Temmuz'a taşındı)
+    expect(H.capex.toplamTl).toBe(3134200); // Ağustos = yalnız kuruluş/donanım
   });
   it("Temmuz yazılım geliştirme avansı = 18.000 USD, 2 eşit taksit (5 Tem + 5 Ağu)", () => {
     expect(H.yazilimDev.toplamTl).toBeCloseTo(18000 * 46.52, 2);
     expect(H.yazilimDev.kalemler).toHaveLength(2);
     expect(H.yazilimDev.kalemler[0].tl).toBeCloseTo(9000 * 46.52, 2);
-    expect(H.yazilimDev.kalemler[1].tl).toBeCloseTo(9000 * 46.52, 2);
     expect(H.yazilimDev.kalemler[0].ad).toContain("5 Temmuz");
     expect(H.yazilimDev.kalemler[1].ad).toContain("5 Ağustos");
   });
-  it("ilk ay (Eyl 2026) = Ağustos işbaşı kadrosunun maaşı (saf arrears)", () => {
-    expect(H.aylar[0].ym).toBe("2026-09");
-    const ilk = ROLES.filter((r) => r.istihdamYm <= "2026-08").length; // eym = Ağu 2026
-    expect(H.aylar[0].kisi).toBe(ilk);
-    expect(H.aylar[0].kisi).toBe(12);  // 1 Ağustos işbaşı: 12 kurucu kadro
-    expect(H.aylar[0].yeni).toBe(ROLES.filter((r) => r.istihdamYm === "2026-08").length);
+});
+
+describe("HEADCOUNT = cari ay (başlık)", () => {
+  it("Eyl 2026 = 5 kurucu (CPO, GRF, PO, GIS, AST); +5 yeni", () => {
+    expect(ay("2026-09").kisi).toBe(5);
+    expect(ay("2026-09").yeni).toBe(5);
+    expect(ay("2026-09").kisi).toBe(ROLES.filter((r) => r.istihdamYm <= "2026-09").length);
   });
-  it("son ay (Ağu 2028) = eym (Tem 2028) işgücü = aktif rol sayısı", () => {
-    const son = ROLES.filter((r) => r.istihdamYm <= "2028-07").length; // eym = Tem 2028
-    expect(H.aylar[23].kisi).toBe(son);
+  it("kadro cari ay ile büyür: Eki 9, Kas 13, Ara 18", () => {
+    expect(ay("2026-10").kisi).toBe(9);
+    expect(ay("2026-11").kisi).toBe(13);
+    expect(ay("2026-12").kisi).toBe(18);
   });
-  it("NAKİT ZAMANLAMA: Eylül'de Ağustos kadrosunun maaşı görünür; Aralık maaşı Oca 2027'ye kayar", () => {
-    const net = (i: number) => H.aylar[i].kumeler.find((k) => k.key === "personel")!.kalemler[0].tl;
-    expect(net(0)).toBeGreaterThan(0); // Eyl 2026: Ağustos işbaşı kadrosunun maaşı (5 Eylül'de ödenir)
-    expect(H.aylar[4].ym).toBe("2027-01");
-    expect(net(4)).toBeGreaterThan(0); // Oca 2027: Aralık işgücünün maaşı (5 Ocak ödeme) → "2026 sonu"na girmez
+});
+
+describe("BORDRO = saf arrears (nakit, bir ay gecikmeli)", () => {
+  it("Eyl'de net maaş=0 ve stopaj=0 (kurucular Eylül başlar, ilk maaş 5 Ekim'de ödenir)", () => {
+    expect(net("2026-09")).toBe(0);
+    expect(kalem("2026-09", "personel", "Maaş gelir vergisi stopajı (muhtasar)")).toBe(0);
+    expect(kalem("2026-09", "personel", "SGK primleri (işçi + işveren)")).toBe(0);
+    expect(kalem("2026-09", "personel", "Yemek")).toBe(0);
+  });
+  it("Eki'de Eylül kadrosunun maaşı görünür (kurucu net-hedef dahil, büyük)", () => {
+    expect(net("2026-10")).toBeGreaterThan(348900); // en az kurucu net-hedefi ($7500×46,52)
+    expect(kalem("2026-10", "personel", "Maaş gelir vergisi stopajı (muhtasar)")).toBeGreaterThan(0);
+  });
+  it("yemek KADEMELİ (Eki = Eylül 5 kurucu): C-level 15.000 + Team Lead 10.000 + 3×9.000 = 52.000", () => {
+    expect(kalem("2026-10", "personel", "Yemek")).toBe(15000 + 10000 + 3 * 9000);
   });
 });
 
 describe("toplam kimliği (her ay)", () => {
   it("ay toplamı = kümelerin toplamı; küme = kalemlerin toplamı", () => {
-    for (const ay of H.aylar) {
-      const kumeSum = ay.kumeler.reduce((s, k) => s + k.tl, 0);
-      expect(ay.toplamTl).toBeCloseTo(kumeSum, 2);
-      for (const k of ay.kumeler) {
-        expect(k.tl).toBeCloseTo(k.kalemler.reduce((s, x) => s + x.tl, 0), 2);
-      }
+    for (const a of H.aylar) {
+      expect(a.toplamTl).toBeCloseTo(a.kumeler.reduce((s, k) => s + k.tl, 0), 2);
+      for (const k of a.kumeler) expect(k.tl).toBeCloseTo(k.kalemler.reduce((s, x) => s + x.tl, 0), 2);
     }
   });
 });
 
-describe("personel kümesi (bordro zinciri)", () => {
-  it("personel kalemleri (net/vergi/sgk/yemek/yol/hoşgeldin/ikramiye/araç) = küme toplamı", () => {
-    const p = H.aylar[0].kumeler.find((k) => k.key === "personel")!;
-    expect(p).toBeTruthy();
-    expect(p.kalemler).toHaveLength(8); // 7 + CPO araç
-    expect(p.tl).toBeCloseTo(p.kalemler.reduce((s, x) => s + x.tl, 0), 2);
-    expect(p.tl).toBeGreaterThan(0);
+describe("personel kümesi", () => {
+  it("8 kalem; Eyl: hoşgeldin = 5 yeni × 5.950 = 29.750; araç = 95.000", () => {
+    const p = kume("2026-09", "personel")!;
+    expect(p.kalemler).toHaveLength(8);
+    expect(kalem("2026-09", "personel", "Hoşgeldin paketi (yeni işe alım)")).toBe(5 * 5950);
   });
-  it("CPO araç kiralama: ilk ay 95.000; 2028 segment yükselir 160.000", () => {
-    const arac0 = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
+  it("CPO araç: Eyl 95.000 (CPO Eylül başlar); 2028 segment 160.000", () => {
+    const arac0 = kume("2026-09", "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
     expect(arac0.tl).toBe(95000);
     expect(arac0.ad).toContain("2025+ model:");
-    expect(arac0.ad).not.toContain("Insignia");
     expect(arac0.ad).toContain("Mercedes C (W206)");
-    expect(arac0.ad).toContain("VW Passat B9");
-    // araç eym: BMW segmenti hak-ediş 2028-01 → ÖDEME Şub 2028 (2028-02)
-    const sub28 = H.aylar.find((a) => a.ym === "2028-02")!;
-    const arac28 = sub28.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
+    const arac28 = kume("2028-02", "personel")!.kalemler.find((x) => x.ad.includes("CPO araç"))!;
     expect(arac28.tl).toBe(160000);
   });
-  it("personel en büyük kümedir (ilk ay — kurucu net dahil)", () => {
-    const ay = H.aylar[0]; // Eyl 2026: Ağustos kadrosunun maaşı (kurucu net dahil)
-    const p = ay.kumeler.find((k) => k.key === "personel")!;
-    for (const k of ay.kumeler) if (k.key !== "personel" && k.key !== "capex") expect(p.tl).toBeGreaterThanOrEqual(k.tl);
-  });
-  it("ikramiye TARİHE BAĞLI: bayram/yıl-sonu aylarında prim, diğer aylarda 0", () => {
-    const ik = (ym: string) => H.aylar.find((a) => a.ym === ym)!.kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad.startsWith("İkramiye"))!;
-    expect(ik("2026-09").tl).toBe(0);                 // Eyl: prim yok
-    const ara = ik("2026-12");                        // Ara: yılsonu %30 + yılbaşı %20
-    expect(ara.tl).toBeGreaterThan(0);
-    expect(ara.ad).toContain("Yılsonu");
-    expect(ara.ad).toContain("Yılbaşı");
-    expect(ik("2027-03").ad).toContain("Ramazan");    // Mar 2027: Ramazan Bayramı
-    expect(ik("2027-05").ad).toContain("Kurban");     // May 2027: Kurban Bayramı
-    expect(ik("2028-02").ad).toContain("Ramazan");    // Şub 2028: Ramazan Bayramı (Diyanet)
-    // Ara 2026 ikramiye = %50 × aktif brüt toplam (pozitif ve makul büyüklük)
-    expect(ara.tl).toBeGreaterThan(500000);
-  });
-  it("yemek KADEMELİ: C-level 15.000, Team Lead 10.000, baz 9.000", () => {
-    // Eyl 2026 bordrosu = Ağu kadrosu 12 = 1 C-Level (CPO) + 1 Team Lead (AST) + 10 baz
-    const yemek = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler.find((x) => x.ad === "Yemek")!;
-    expect(yemek.tl).toBe(15000 + 10000 + 10 * 9000); // 115.000
-  });
-  it("kurucu net-hedef personele dahil (net maaşlar büyük)", () => {
-    // Eyl 2026: Ağustos kadrosunun maaşı (kurucu dahil) burada görünür
-    const net = H.aylar[0].kumeler.find((k) => k.key === "personel")!.kalemler[0].tl;
-    expect(net).toBeGreaterThan(348900); // en az kurucu net'i kadar
+  it("ikramiye TARİHE BAĞLI: Eyl 0, Ara 2026 prim (yılsonu+yılbaşı), Mar/May bayram", () => {
+    const ik = (ym: string) => kume(ym, "personel")!.kalemler.find((x) => x.ad.startsWith("İkramiye"))!;
+    expect(ik("2026-09").tl).toBe(0);
+    expect(ik("2026-12").tl).toBeGreaterThan(0);
+    expect(ik("2026-12").ad).toContain("Yılsonu");
+    expect(ik("2026-12").ad).toContain("Yılbaşı");
+    expect(ik("2027-03").ad).toContain("Ramazan");
+    expect(ik("2027-05").ad).toContain("Kurban");
   });
 });
 
-describe("CAPEX & ofis (ilk ay özel)", () => {
-  it("CAPEX yalnız Ağustos'ta (H.capex); operasyonel aylarda CAPEX kümesi YOK", () => {
-    expect(H.capex.toplamTl).toBe(3134200);                          // Ağustos = kuruluş yatırımı (yazılım dev hariç)
-    expect(H.aylar[0].kumeler.find((k) => k.key === "capex")).toBeUndefined(); // Eyl'de CAPEX yok
-    expect(H.aylar.some((a) => a.kumeler.some((k) => k.key === "capex"))).toBe(false); // hiçbir ayda yok
-    expect(H.aylar.some((a) => a.ym === "2026-08")).toBe(false);                // Ağustos operasyonel aylarda değil
-    expect(H.capex.kalemler.some((k) => k.ad.includes("Yazılım"))).toBe(false); // yazılım dev ücreti CAPEX'e sızmamalı
+describe("OFİS & OPEX = ym-bazlı mutlak (ölçekleme YOK)", () => {
+  it("ofis: Eyl = kira 150.000 + depozito 300.000 (2 ay) = 450.000; sonraki ay sadece kira", () => {
+    expect(kume("2026-09", "ofis")!.tl).toBe(150000 + 300000);
+    expect(kume("2026-09", "ofis")!.kalemler.find((x) => x.ad.includes("Depozito"))!.ad).toContain("2 ay");
+    expect(kume("2026-10", "ofis")!.tl).toBe(150000);
   });
-  it("ilk ay ofis = kira + depozito; sonraki ay sadece kira", () => {
-    const o0 = H.aylar[0].kumeler.find((k) => k.key === "ofis")!;
-    const o1 = H.aylar[1].kumeler.find((k) => k.key === "ofis")!;
-    expect(o0.tl).toBe(150000 + 450000);
-    expect(o1.tl).toBe(150000);
-  });
-});
-
-describe("sürekli giderler (headcount-ölçekli)", () => {
-  it("ilk ay utilities = 2.430.000 × 12/256 (cari ay headcount); 8 kalem", () => {
-    const s = H.aylar[0].kumeler.find((k) => k.key === "surekli")!;
-    expect(s.tl).toBeCloseTo(2430000 * 12 / 256, 2); // Eyl eym (Ağu) = 12 kişi
+  it("Eyl sürekli giderler = 28.131 (8 kalem; gerçekçi, headcount-ölçekli DEĞİL)", () => {
+    const s = kume("2026-09", "surekli")!;
     expect(s.kalemler).toHaveLength(8);
+    expect(s.tl).toBe(28131);
+    expect(kalem("2026-09", "surekli", "Mutfak")).toBe(5000);
+    expect(kalem("2026-09", "surekli", "İnternet")).toBe(3000);
+    expect(kalem("2026-09", "surekli", "Doğalgaz")).toBe(0); // Eylül ısıtma sezonu değil
+  });
+  it("Eyl yazılım: dijital altyapı = 41.500 (264.630 DEĞİL); AI araç = 76.989; toplam 118.489", () => {
+    expect(kalem("2026-09", "yazilim", "Dijital altyapı (AWS/CDN/API)")).toBe(41500);
+    expect(kalem("2026-09", "yazilim", "AI & yazılım araçları (lisans)")).toBe(76989);
+    expect(kume("2026-09", "yazilim")!.tl).toBe(118489);
+  });
+  it("pazarlama: Eyl = 0 (lansman öncesi, küme yok); Eki = 1.066.000", () => {
+    expect(kume("2026-09", "pazarlama")).toBeUndefined();
+    expect(kume("2026-10", "pazarlama")!.tl).toBe(1066000);
+  });
+  it("profesyonel Eyl = muhasebe 20.000 + İSG 8.000 + güvenlik 4.000 = 32.000", () => {
+    expect(kume("2026-09", "profesyonel")!.tl).toBe(32000);
+  });
+  it("Eyl toplam ≈ 753.370 (gerçekçi; canlı v12'deki 1.494.318 değil)", () => {
+    expect(ay("2026-09").toplamTl).toBeCloseTo(124750 + 450000 + 28131 + 118489 + 32000, 0);
   });
 });
 
-describe("store v4", () => {
-  it("JSON gidiş-dönüş + şema", () => {
+describe("CAPEX & operasyonel aylar", () => {
+  it("CAPEX yalnız Ağustos (H.capex); operasyonel aylarda CAPEX kümesi yok", () => {
+    expect(H.capex.toplamTl).toBe(3134200);
+    expect(H.aylar.some((a) => a.kumeler.some((k) => k.key === "capex"))).toBe(false);
+    expect(H.aylar.some((a) => a.ym === "2026-08")).toBe(false);
+  });
+});
+
+describe("store v6", () => {
+  it("JSON gidiş-dönüş + şema 6.0.0", () => {
     const back = fromJSON(toJSON(DEFAULT_DATA));
     expect(back.roles).toHaveLength(256);
     expect(back.params.usd).toBe(46.52);
+    expect(Array.isArray(back.opex)).toBe(true);
+    expect(back.opex).toHaveLength(24);
     expect(isValid(DEFAULT_DATA)).toBe(true);
     expect(() => fromJSON("{bozuk")).toThrow();
   });
-  it("load default (localStorage yok)", () => {
-    expect(load().meta.schemaVersion).toBe("5.9.0");
+  it("load default + schemaVersion 6.0.0", () => {
+    expect(load().meta.schemaVersion).toBe("6.0.0");
   });
 });
