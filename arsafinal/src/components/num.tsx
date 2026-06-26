@@ -4,15 +4,13 @@ import { useState } from "react";
 // Sayıyı Türkçe gruplara ayır: en yüksek grup kalın, kalan normal, ondalık italik.
 export function parts(n: number) {
   const neg = n < 0;
-  const r = Math.round(Math.abs(n) * 100) / 100;
-  const intPart = Math.floor(r);
-  const dec = Math.round((r - intPart) * 100);
-  const groups = intPart.toLocaleString("tr-TR").split(".");
+  const r = Math.round(Math.abs(n)); // tam sayıya yuvarla — küsürat (kuruş) gösterme
+  const groups = r.toLocaleString("tr-TR").split(".");
   return {
     neg,
     head: groups[0],
     tail: groups.length > 1 ? "." + groups.slice(1).join(".") : "",
-    dec: dec > 0 ? "," + String(dec).padStart(2, "0") : "",
+    dec: "",
   };
 }
 
