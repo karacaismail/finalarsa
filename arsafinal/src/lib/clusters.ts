@@ -150,9 +150,10 @@ export function hesapla(d: FinansalData): Hesap {
   // Temmuz = yazılım geliştirme avansı; USD-bazlı (kura bağlı), 2 eşit taksit: 5 Temmuz + 5 Ağustos.
   const yazilimUsd = d.params.yazilimGelistirmeUsd;
   const yariUsd = yazilimUsd / 2;
-  const yariTl = yariUsd * d.params.usd;
+  const yazilimKur = d.params.usd * 1.01; // +%1 SADECE yazılım maliyeti için (USD ödeme marjı); diğer her şey ham canlı kur
+  const yariTl = yariUsd * yazilimKur;
   const yazilimDev: CapexOzet = {
-    toplamTl: yazilimUsd * d.params.usd,
+    toplamTl: yazilimUsd * yazilimKur,
     kalemler: [
       { ad: `1. taksit — 5 Temmuz (${yariUsd.toLocaleString("tr-TR")} USD)`, tl: yariTl },
       { ad: `2. taksit — 5 Ağustos (${yariUsd.toLocaleString("tr-TR")} USD)`, tl: yariTl },
