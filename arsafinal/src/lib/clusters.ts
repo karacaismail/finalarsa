@@ -1,10 +1,8 @@
-// Aylık küme hesaplayıcı — KARMA NAKİT MODEL.
-// Ağustos = sadece CAPEX (ayrı item). İşbaşı 1 Eylül. İlk maaşlar 5 Ekim'de ödenir, sonra her ay 5'inde.
-// Her ay M satırında:
-//   • Başlık (kişi sayısı), opex (ofis/sürekli/yazılım/saha/profesyonel/pazarlama), hoşgeldin, araç → CARİ ay (ym).
-//   • Maaş bordrosu (net+vergi+SGK+yemek+yol) → ÖNCEKİ ay (eym) hak edilir, bu ay 5'inde ÖDENİR (arrears).
-//   • İkramiye → ödendiği ay (ym, bayram/yıl-sonu öncesi).
-// Sonuç: Eylül'de maaş yok (ilk bordro 5 Ekim); Aralık maaşı 5 Ocak'ta → Oca 2027 satırında, 2026'ya girmez.
+// Aylık küme hesaplayıcı — SAF ARREARS (nakit, bir ay gecikmeli).
+// İşbaşı 1 Ağustos. Gösterilen her ay M = BİR ÖNCEKİ ay (eym) işgücünün gideridir; maaş o ayın 5'inde ödenir.
+// → Eylül satırı = Ağustos işgücünün maaşı (5 Eylül'de ödenir) → maaş Eylül'de görünür.
+// → Aralık işgücünün maaşı 5 Ocak'ta ödenir → Oca 2027 satırında, "2026 sonu" görünümüne girmez.
+// İkramiye = ödendiği ay (ym, bayram/yıl-sonu öncesi). Ağustos ayrıca CAPEX item'ıdır (kuruluş yatırımı).
 import { bordroAy, brutCozHedefNet } from "./payroll";
 import { ymList, MATURE_HC } from "../data/finansal";
 import type { FinansalData, FounderStep } from "../data/finansal";
@@ -45,27 +43,26 @@ export function hesapla(d: FinansalData): Hesap {
   let oncekiYil = "";
 
   const aylar: AyKirilim[] = aylik.map((ym, idx) => {
-    const eym = prevYm(ym);          // bu ay ÖDENEN maaş eym ayında HAK EDİLDİ (5'inde ödenir)
+    const eym = prevYm(ym);          // gösterilen ay = eym işgücünün gideri (maaş 5'inde ödenir)
     const eyil = eym.slice(0, 4);
     if (eyil !== oncekiYil) { for (const k in ytd) delete ytd[Number(k)]; fytd = { matrah: 0, asgari: 0 }; oncekiYil = eyil; }
 
-    // --- CARİ ay işgücü (ym): başlık + headcount-ölçekli opex ---
-    const cariWf = d.roles.filter((r) => aktif(r.istihdamYm, ym));
-    const kisi = cariWf.length;
-    const yeni = d.roles.filter((r) => r.istihdamYm === ym).length;
+    // --- İŞGÜCÜ = eym (bir önceki ay) ---
+    const aktifler = d.roles.filter((r) => aktif(r.istihdamYm, eym));
+    const kisi = aktifler.length;
+    const yeni = d.roles.filter((r) => r.istihdamYm === eym).length;
     const fac = kisi / MATURE_HC;
 
-    // --- BORDRO işgücü (eym): maaş bir önceki ay hak edilir, bu ay 5'inde ödenir ---
-    const payWf = d.roles.filter((r) => aktif(r.istihdamYm, eym));
+    // --- PERSONEL (eym işgücü; bordro YTD) ---
     let net = 0, vergi = 0, sgk = 0, brutTop = 0;
-    for (const r of payWf) {
+    for (const r of aktifler) {
       if (r.kod === p.kuruculKod) continue;
       const y = ytd[r.sira] || (ytd[r.sira] = { matrah: 0, asgari: 0 });
       const b = bordroAy(r.brutMaas, y.matrah, y.asgari, bp);
       net += b.net; vergi += b.gelirVergisi; sgk += b.calisanSgk + b.isverenSgk; brutTop += b.brut;
       y.matrah += b.gvMatrah; y.asgari += bp.asgariGvMatrah;
     }
-    const kurucu = payWf.find((r) => r.kod === p.kuruculKod);
+    const kurucu = aktifler.find((r) => r.kod === p.kuruculKod);
     if (kurucu) {
       const hedefNet = founderNetUsd(d.founder, eym) * p.usd;
       const brut = brutCozHedefNet(hedefNet, fytd.matrah, fytd.asgari, bp);
@@ -73,22 +70,19 @@ export function hesapla(d: FinansalData): Hesap {
       net += b.net; vergi += b.gelirVergisi; sgk += b.calisanSgk + b.isverenSgk; brutTop += b.brut;
       fytd.matrah += b.gvMatrah; fytd.asgari += bp.asgariGvMatrah;
     }
-    // yemek/yol — bordro işgücü (eym), maaşla birlikte ödenir
     let yemek = 0;
-    for (const rr of payWf) yemek += rr.unvan === "C-Level" ? p.yemekClevel : rr.unvan === "Team Lead" ? p.yemekTeamLead : p.yemekAylik;
-    const yol = payWf.length * p.yolAylik;
-    // hoşgeldin — CARİ ayın yeni işe alımları (işbaşında verilir)
+    for (const rr of aktifler) yemek += rr.unvan === "C-Level" ? p.yemekClevel : rr.unvan === "Team Lead" ? p.yemekTeamLead : p.yemekAylik;
+    const yol = kisi * p.yolAylik;
     const hosgeldin = yeni * p.hosgeldinKisi;
-    // İkramiye — ÖDENDİĞİ ay (ym, bayram/yıl-sonu öncesi); tutar bordro işgücünün brütüne oranlı.
+    // İkramiye — ÖDENDİĞİ ay (ym, bayram/yıl-sonu öncesi); tutar o işgücünün brüt toplamına oranlı.
     const ikramiyeOlaylar = d.ikramiye.filter((e) => e.ym === ym);
     const ikramiyePct = ikramiyeOlaylar.reduce((s, e) => s + e.pct, 0);
     const ikramiye = ikramiyePct * brutTop;
     const ikramiyeAd = ikramiyeOlaylar.length
       ? "İkramiye — " + ikramiyeOlaylar.map((e) => `${e.ad} %${Math.round(e.pct * 100)}`).join(" + ")
       : "İkramiye (bu ay yok)";
-    // araç — CARİ ay (aylık operasyonel kiralama, CPO işbaşında başlar)
     let aracSeg = "", aracTl = 0;
-    for (const a of d.arac) if (a.fromYm <= ym) { aracSeg = a.segment; aracTl = a.aylikTl; }
+    for (const a of d.arac) if (a.fromYm <= eym) { aracSeg = a.segment; aracTl = a.aylikTl; }
     const personel: Kume = {
       key: "personel", ad: "Personel giderleri", renk: KUME_RENK.personel,
       tl: net + vergi + sgk + yemek + yol + hosgeldin + ikramiye + aracTl,
@@ -111,7 +105,7 @@ export function hesapla(d: FinansalData): Hesap {
     if (idx === 0) ofisKalem.push({ ad: "Depozito (3 ay)", tl: d.olgun.depozito });
     const ofis: Kume = { key: "ofis", ad: "Ofis & kira", renk: KUME_RENK.ofis, tl: ofisKalem.reduce((s, k) => s + k.tl, 0), kalemler: ofisKalem };
 
-    // --- SÜREKLİ GİDERLER (cari ay headcount-ölçekli) ---
+    // --- SÜREKLİ GİDERLER (eym headcount-ölçekli) ---
     const u = d.olgun.utilities * fac; const s = d.utilSplit;
     const surekliKalem: Kalem[] = [
       { ad: "İnternet", tl: u * s.internet }, { ad: "Elektrik", tl: u * s.elektrik },
@@ -121,23 +115,23 @@ export function hesapla(d: FinansalData): Hesap {
     ];
     const surekli: Kume = { key: "surekli", ad: "Sürekli giderler", renk: KUME_RENK.surekli, tl: u, kalemler: surekliKalem };
 
-    // --- PAZARLAMA (cari ay) ---
-    const pazTl = pazMap.get(ym) ?? 0;
+    // --- PAZARLAMA (eym) ---
+    const pazTl = pazMap.get(eym) ?? 0;
     const pazarlama: Kume = { key: "pazarlama", ad: "Pazarlama", renk: KUME_RENK.pazarlama, tl: pazTl, kalemler: [{ ad: "Dijital reklam / medya", tl: pazTl }] };
 
-    // --- YAZILIM / SaaS & AI (cari ay) ---
+    // --- YAZILIM / SaaS & AI (eym) ---
     const yzTl = d.olgun.yazilim * fac;
     const yazilim: Kume = { key: "yazilim", ad: "Yazılım / SaaS & AI", renk: KUME_RENK.yazilim, tl: yzTl, kalemler: [
       { ad: "Dijital altyapı (AWS/CDN/API)", tl: yzTl * 0.8 }, { ad: "AI & yazılım araçları (lisans)", tl: yzTl * 0.2 },
     ] };
 
-    // --- PROFESYONEL HİZMETLER (cari ay) ---
+    // --- PROFESYONEL HİZMETLER (eym) ---
     const profTl = d.olgun.profesyonel * fac + d.olgun.isgAylik;
     const profesyonel: Kume = { key: "profesyonel", ad: "Profesyonel hizmetler", renk: KUME_RENK.profesyonel, tl: profTl, kalemler: [
       { ad: "Muhasebe & hukuk & danışmanlık", tl: d.olgun.profesyonel * fac }, { ad: "İSG / OSGB", tl: d.olgun.isgAylik },
     ] };
 
-    // --- SAHA OPERASYONU (cari ay) ---
+    // --- SAHA OPERASYONU (eym) ---
     const sahaTl = d.olgun.saha * fac;
     const saha: Kume = { key: "saha", ad: "Saha operasyonu", renk: KUME_RENK.saha, tl: sahaTl, kalemler: [{ ad: "Araç / yakıt / ekipman", tl: sahaTl }] };
 
