@@ -193,7 +193,7 @@ export function App() {
         </section>
 
         <footer className="foot">
-          Personel = 256 rol + 2026 bordro motoru (kurucu 7.500$ net-hedef) + CPO araç kiralama · diğer kümeler geçmiş veriden, düzenlenebilir · <b>{SYM[disp]} {disp}</b> · veri tarayıcıda · arsam.net
+          Personel = 256 rol + 2026 bordro motoru · Diğer kümeler geçmiş veriden, düzenlenebilir · <b>{SYM[disp]} {disp}</b> · veri tarayıcıda · arsam.net
         </footer>
       </main>
     </div>
