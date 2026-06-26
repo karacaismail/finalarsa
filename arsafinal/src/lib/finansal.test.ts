@@ -149,7 +149,7 @@ describe("store v6", () => {
     expect(isValid(DEFAULT_DATA)).toBe(true);
     expect(() => fromJSON("{bozuk")).toThrow();
   });
-  it("load default + schemaVersion 6.1.1", () => {
-    expect(load().meta.schemaVersion).toBe("6.1.1");
+  it("load default + schemaVersion 6.1.2", () => {
+    expect(load().meta.schemaVersion).toBe("6.1.2");
   });
 });

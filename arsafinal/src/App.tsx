@@ -74,7 +74,17 @@ export function App() {
     : [];
   const chart: EChartsOption = useMemo(() => ({
     grid: { left: 52, right: 10, top: 30, bottom: 64 },
-    tooltip: { trigger: "axis", valueFormatter: (v) => Math.ceil(Number(v)).toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + " " + sym },
+    tooltip: { trigger: "axis", formatter: (params: any) => {
+      const arr = Array.isArray(params) ? params : [params];
+      const head = arr.length ? (arr[0].axisValueLabel ?? arr[0].axisValue) : "";
+      const satir = arr.filter((p: any) => Number(p.value) > 0).map((p: any) => {
+        const v = p.seriesName === "Yazılım geliştirme"
+          ? grouped(data.params.yazilimGelistirmeUsd) + " $"
+          : Math.ceil(Number(p.value)).toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + " " + sym;
+        return `${p.marker}${p.seriesName}: <b>${v}</b>`;
+      });
+      return [head, ...satir].join("<br>");
+    } },
     legend: { top: 0, type: "scroll", textStyle: { fontSize: 12 } },
     xAxis: { type: "category", data: [...onAylar.map((o) => o.ad), ...gosterilen.map((a) => ayLabel(a.ym))], axisLabel: { rotate: 48, fontSize: 11 } },
     yAxis: { type: "value", axisLabel: { fontSize: 11, formatter: (v: number) => (Math.abs(v) >= 1e6 ? (v / 1e6).toLocaleString("tr-TR", { maximumFractionDigits: 1 }) + "M" : (v / 1e3).toFixed(0) + "B") } },
@@ -91,7 +101,7 @@ export function App() {
   const importJSON = (e: ChangeEvent<HTMLInputElement>) => { const f = e.target.files?.[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => { try { setData(fromJSON(String(rd.result))); setOpen(""); } catch { alert("Geçersiz veya uyumsuz JSON."); } }; rd.readAsText(f); e.target.value = ""; };
   const reset = () => { if (confirm("Tüm değişiklikler silinip varsayılana dönülecek. Emin misin?")) { clearStorage(); setData(structuredClone(DEFAULT_DATA)); setOpen(""); } };
 
-  const Head = ({ k, no, title, sub, tl }: { k: string; no: number; title: string; sub: string; tl: number }) => (
+  const Head = ({ k, no, title, sub, tl, usd }: { k: string; no: number; title: string; sub: string; tl: number; usd?: number }) => (
     <button className={"acc-head" + (open === k ? " open" : "")} onClick={() => toggle(k)}>
       <span className="ah-top">
         <span className={"chev" + (open === k ? " on" : "")}><Svg d={CHEV} size={18} /></span>
@@ -100,7 +110,7 @@ export function App() {
       </span>
       <span className="ah-bot">
         <span className="acc-sub">{sub}</span>
-        <span className="acc-tot"><NumView n={conv(tl)} sym={sym} /></span>
+        <span className="acc-tot">{usd !== undefined ? <NumView n={usd} sym="$" /> : <NumView n={conv(tl)} sym={sym} />}</span>
       </span>
     </button>
   );
@@ -166,7 +176,7 @@ export function App() {
         <section className="acc">
           {dd.a === 0 && (
             <div className="acc-item" key="temmuz" ref={(el) => { itemRefs.current["temmuz"] = el; }}>
-              <Head k="temmuz" no={1} title="Tem 2026" sub="yazılım geliştirme avansı · 2 taksit" tl={H.yazilimDev.toplamTl} />
+              <Head k="temmuz" no={1} title="Tem 2026" sub="Yazılım Maliyeti" tl={H.yazilimDev.toplamTl} usd={data.params.yazilimGelistirmeUsd} />
               {open === "temmuz" && (
                 <div className="acc-body">
                   {H.yazilimDev.kalemler.map((k, m) => <div className="kalem-row" key={m}><span>{k.ad}</span><NumView n={conv(k.tl)} sym={sym} /></div>)}

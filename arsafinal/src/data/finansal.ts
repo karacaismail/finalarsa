@@ -60,7 +60,7 @@ export interface FinansalData {
   opex: OpexAy[];                      // ym-bazlı mutlak OPEX
 }
 
-export const SCHEMA_VERSION = "6.1.1";
+export const SCHEMA_VERSION = "6.1.2";
 
 const AYLAR = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 export function ayLabel(ym: string): string { const [y, m] = ym.split("-").map(Number); return `${AYLAR[(m - 1 + 12) % 12]} ${y}`; }
@@ -106,7 +106,7 @@ export const DEFAULT_DATA: FinansalData = {
   meta: { schemaVersion: SCHEMA_VERSION, updatedAt: "2026-06-26", baseCurrency: "TRY" },
   params: {
     usd: 46.52, eur: 50,
-    isverenSgkOran: 0.2375, yemekAylik: 9000, yemekTeamLead: 10000, yemekClevel: 15000, yolAylik: 3000, hosgeldinKisi: 5950,
+    isverenSgkOran: 0.2375, yemekAylik: 9000, yemekTeamLead: 10000, yemekClevel: 15000, yolAylik: 3300, hosgeldinKisi: 5950,
     perHireCapex: 24000, yazilimGelistirmeUsd: 18000, kuruculKod: "R-CPO",
   },
   bordro: PARAMS_2026,
