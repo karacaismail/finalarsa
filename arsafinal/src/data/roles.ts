@@ -19,7 +19,7 @@ export const ROLES: Role[] = [
   { sira: 14, kod: "R-DATA", ad: "Data Analyst #1", departman: "6. Engineering — AI / Data / GIS", kademe: "Teknik", unvan: "Mid", brutMaas: 56151, istihdamYm: "2026-11" },
   { sira: 15, kod: "R-CW-1", ad: "Content Writer #1 (Editor)", departman: "7. Marketing & Growth", kademe: "Pazarlama", unvan: "Junior", brutMaas: 33030, istihdamYm: "2026-11" },
   { sira: 16, kod: "R-UX-1", ad: "UX/UI Designer #1", departman: "4. Product & Design", kademe: "Kreatif", unvan: "Mid", brutMaas: 56151, istihdamYm: "2026-12" },
-  { sira: 17, kod: "R-PPC", ad: "PPC Uzmanı #1", departman: "7. Marketing & Growth", kademe: "Pazarlama", unvan: "Mid", brutMaas: 49132, istihdamYm: "2026-12" },
+  { sira: 17, kod: "R-PPC", ad: "PPC Uzmanı #1", departman: "7. Marketing & Growth", kademe: "Pazarlama", unvan: "Mid", brutMaas: 49132, istihdamYm: "2026-11" },
   { sira: 18, kod: "R-CS-2", ad: "CS Rep #2", departman: "8. Customer & Seller Ops", kademe: "Operasyonel", unvan: "Junior", brutMaas: 33030, istihdamYm: "2026-12" },
   { sira: 19, kod: "R-QA-1", ad: "QA Mühendisi #1", departman: "5. Engineering — Platform", kademe: "Teknik", unvan: "Mid", brutMaas: 56151, istihdamYm: "2027-01" },
   { sira: 20, kod: "R-MOD-1", ad: "Content Moderator #1 (AI QA)", departman: "8. Customer & Seller Ops", kademe: "Operasyonel", unvan: "Junior", brutMaas: 33030, istihdamYm: "2027-01" },
