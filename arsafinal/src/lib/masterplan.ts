@@ -1,0 +1,95 @@
+// Canlı master_plan adaptörü (v2). master_plan sheet'inin OPEX + DİJİTAL PAZARLAMA + CAPEX
+// sekmelerini (public, gviz CSV) okuyup app'in ay→küme→kalem yapısına çevirir.
+// Personel kümesi motordan (İK-türevli bordro) korunur; diğer giderler master_plan'dan gelir.
+// Sekme yapısı: OPEX = kalem satırı × ay sütunu (sütun 1'den itibaren "Tem 26", "Agu 26"…).
+import type { Hesap, Kume, Kalem } from "./clusters";
+import { KUME_RENK } from "./clusters";
+
+export const MP_SHEET_ID = "1DNBT0Pe_VyZgDrSut7dISk9MiFX70NTl";
+const gvizUrl = (name: string) =>
+  `https://docs.google.com/spreadsheets/d/${MP_SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(name)}`;
+
+const AY_KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+// Türkçe diakritikleri sadeleştir (sheet "Agu"/"Sub" yazıyor, app "Ağu"/"Şub").
+const nrm = (s: string) =>
+  (s || "").trim().toLocaleLowerCase("tr")
+    .replace(/ğ/g, "g").replace(/ş/g, "s").replace(/ı/g, "i").replace(/i̇/g, "i")
+    .replace(/ü/g, "u").replace(/ö/g, "o").replace(/ç/g, "c");
+
+export function parseCsv(csv: string): string[][] {
+  const R: string[][] = []; let f: string[] = [], c = "", q = false;
+  for (let i = 0; i < csv.length; i++) {
+    const ch = csv[i];
+    if (q) { if (ch === '"') { if (csv[i + 1] === '"') { c += '"'; i++; } else q = false; } else c += ch; }
+    else if (ch === '"') q = true;
+    else if (ch === ",") { f.push(c); c = ""; }
+    else if (ch === "\n") { f.push(c); R.push(f); f = []; c = ""; }
+    else if (ch !== "\r") c += ch;
+  }
+  if (c !== "" || f.length) { f.push(c); R.push(f); }
+  return R;
+}
+export function mpNum(s: string): number {
+  const t = (s || "").replace(/[^\d,.-]/g, "").replace(/\./g, "").replace(",", ".");
+  const n = Number(t);
+  return isNaN(n) ? 0 : n;
+}
+function ymShort(ym: string): string { const [y, m] = ym.split("-").map(Number); return AY_KISA[m - 1] + " " + String(y).slice(2); }
+function monthCol(header: string[], ym: string): number { const t = nrm(ymShort(ym)); return header.findIndex((h) => nrm(h) === t); }
+function rowVal(rows: string[][], header: string[], labelIncludes: string, ym: string): number {
+  const col = monthCol(header, ym); if (col < 1) return 0;
+  const key = nrm(labelIncludes);
+  const row = rows.find((r) => nrm(r[0]).includes(key));
+  return row ? mpNum(row[col]) : 0;
+}
+const sumVal = (rows: string[][], header: string[], labels: string[], ym: string) =>
+  labels.reduce((s, l) => s + rowVal(rows, header, l, ym), 0);
+
+const K = (key: string, ad: string, kalemler: Kalem[]): Kume =>
+  ({ key, ad, renk: KUME_RENK[key], tl: kalemler.reduce((s, x) => s + x.tl, 0), kalemler });
+
+export interface MpTabs { opex: string[][]; paz: string[][]; capex: string[][]; }
+
+export async function fetchMasterplanTabs(): Promise<MpTabs> {
+  const [opex, paz, capex] = await Promise.all([
+    fetch(gvizUrl("OPEX"), { cache: "no-store" }).then((r) => r.text()).then(parseCsv),
+    fetch(gvizUrl("DİJİTAL PAZARLAMA"), { cache: "no-store" }).then((r) => r.text()).then(parseCsv),
+    fetch(gvizUrl("CAPEX"), { cache: "no-store" }).then((r) => r.text()).then(parseCsv),
+  ]);
+  return { opex, paz, capex };
+}
+
+// SAF: motor çıktısı (base) + master_plan sekmeleri → giderleri master_plan'dan alan Hesap.
+export function buildMasterplan(base: Hesap, tabs: MpTabs): Hesap {
+  const oHead = tabs.opex[0] || [];
+  const pHead = tabs.paz[0] || [];
+  const pazTotal = tabs.paz.find((r) => nrm(r[0]).includes("toplam"));
+  const pazVal = (ym: string) => { const c = monthCol(pHead, ym); return pazTotal && c > 0 ? mpNum(pazTotal[c]) : 0; };
+
+  const aylar = base.aylar.map((ay) => {
+    const ym = ay.ym;
+    const personel = ay.kumeler.find((k) => k.key === "personel"); // motordan korunur
+    const ofis = K("ofis", "Ofis & kira", [{ ad: "Ofis kirası", tl: rowVal(tabs.opex, oHead, "ofis kira", ym) }]);
+    const surekli = K("surekli", "Sürekli giderler", [
+      { ad: "Elektrik & Su", tl: rowVal(tabs.opex, oHead, "elektrik", ym) },
+      { ad: "İnternet & Telefon", tl: rowVal(tabs.opex, oHead, "internet", ym) },
+      { ad: "Temizlik", tl: rowVal(tabs.opex, oHead, "temizlik", ym) },
+    ]);
+    const yazilim = K("yazilim", "Yazılım / SaaS & AI", [
+      { ad: "Dijital altyapı (AWS/CDN/API)", tl: sumVal(tabs.opex, oHead, ["aws", "cdn", "email", "maps", "sms"], ym) },
+      { ad: "AI & yazılım araçları", tl: sumVal(tabs.opex, oHead, ["llm", "copilot", "tasarim", "platform payla"], ym) },
+    ]);
+    const profesyonel = K("profesyonel", "Profesyonel hizmetler", [{ ad: "Güvenlik & sigorta", tl: rowVal(tabs.opex, oHead, "guvenlik", ym) }]);
+    const pazarlama = K("pazarlama", "Pazarlama", [{ ad: "Dijital reklam / medya", tl: pazVal(ym) }]);
+    const kumeler = [personel, ofis, surekli, pazarlama, yazilim, profesyonel].filter((k): k is Kume => !!k && k.tl > 0);
+    return { ...ay, kumeler, toplamTl: kumeler.reduce((s, k) => s + k.tl, 0) };
+  });
+
+  // CAPEX sekmesi: Kalem (sütun 0) + Tutar (sütun 1). Başlık/boş satırlar elenir.
+  const capexKalemler: Kalem[] = tabs.capex.slice(1)
+    .map((r) => ({ ad: (r[0] || "").trim(), tl: mpNum(r[1]) }))
+    .filter((k) => k.ad && k.tl > 0);
+  const capexToplam = capexKalemler.reduce((s, k) => s + k.tl, 0);
+
+  return { ...base, aylar, capex: capexToplam > 0 ? { toplamTl: capexToplam, kalemler: capexKalemler } : base.capex };
+}

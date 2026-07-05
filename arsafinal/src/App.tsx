@@ -7,8 +7,8 @@ import { hesapla, rate, KUME_RENK } from "./lib/clusters";
 import type { EChartsOption } from "echarts";
 import { NumView, Svg, Icon, grouped, parseTR } from "./components/num";
 import { EChart } from "./components/Chart";
-import { parseOverridesCsv, applyOverrides, OVERRIDE_CSV_URL } from "./lib/overrides";
-import type { Override } from "./lib/overrides";
+import { fetchMasterplanTabs, buildMasterplan } from "./lib/masterplan";
+import type { MpTabs } from "./lib/masterplan";
 
 const SYM: Record<Currency, string> = { TRY: "₺", USD: "$", EUR: "€" };
 const CURS: Currency[] = ["TRY", "USD", "EUR"];
@@ -44,7 +44,7 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
   const [ayar, setAyar] = useState(false);
   const [donem, setDonem] = useState("y2026");
   const [liveFx, setLiveFx] = useState<{ usd: number; eur: number; ts: string } | null>(null);
-  const [overrides, setOverrides] = useState<Override[]>([]);
+  const [mpTabs, setMpTabs] = useState<MpTabs | null>(null);
   const [sheetStatus, setSheetStatus] = useState<"off" | "loading" | "ok" | "error">("off");
   const fileRef = useRef<HTMLInputElement>(null);
   const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -68,16 +68,14 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
   const eff = useMemo(() => (liveFx ? { ...data, params: { ...data.params, usd: liveFx.usd, eur: liveFx.eur } } : data), [data, liveFx]);
   const H = useMemo(() => {
     const base = hesapla(eff);
-    return sheetMode && overrides.length ? applyOverrides(base, overrides) : base;
-  }, [eff, sheetMode, overrides]);
-  // v2: canlı Google Sheet CSV → ay-bazlı override (hibrit). ?sheet=<CSV_URL> veya sabit OVERRIDE_CSV_URL.
+    return sheetMode && mpTabs ? buildMasterplan(base, mpTabs) : base;
+  }, [eff, sheetMode, mpTabs]);
+  // v2: canlı master_plan sekmeleri (OPEX + DİJİTAL PAZARLAMA + CAPEX) → giderler master_plan'dan; personel motordan.
   useEffect(() => {
     if (!sheetMode) return;
-    document.title = "arsam.net · Finansal v2 (canlı sheet)";
-    const url = new URLSearchParams(window.location.search).get("sheet") || OVERRIDE_CSV_URL;
-    if (!url) { setSheetStatus("off"); return; }
+    document.title = "arsam.net · Finansal v2 (canlı master_plan)";
     let alive = true; setSheetStatus("loading");
-    fetch(url, { cache: "no-store" }).then((r) => r.text()).then((t) => { if (!alive) return; setOverrides(parseOverridesCsv(t)); setSheetStatus("ok"); }).catch(() => { if (alive) setSheetStatus("error"); });
+    fetchMasterplanTabs().then((t) => { if (!alive) return; setMpTabs(t); setSheetStatus("ok"); }).catch(() => { if (alive) setSheetStatus("error"); });
     return () => { alive = false; };
   }, [sheetMode]);
   const r = rate(eff, disp);
@@ -181,10 +179,10 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
         <div className="donem-ozet"><span>{dd.ad} · {gosterilen.length} ay</span><span className="dt">Dönem toplamı: <NumView n={conv(donemToplam)} sym={sym} /></span></div>
         {sheetMode && (
           <div className={"sheet-flag " + sheetStatus}>
-            {sheetStatus === "ok" ? `Canlı Google Sheet bağlı · ${overrides.length} override uygulandı`
-              : sheetStatus === "loading" ? "Google Sheet yükleniyor…"
-              : sheetStatus === "error" ? "Sheet okunamadı — motor değerleri gösteriliyor (yedek)"
-              : "Sheet bağlı değil — adrese ?sheet=<yayınlanan CSV bağlantısı> ekleyin · motor çalışıyor"}
+            {sheetStatus === "ok" ? "Canlı master_plan bağlı — giderler sheet'ten (personel motordan)"
+              : sheetStatus === "loading" ? "master_plan yükleniyor…"
+              : sheetStatus === "error" ? "master_plan okunamadı — motor değerleri gösteriliyor (yedek)"
+              : "master_plan bağlı değil · motor çalışıyor"}
           </div>
         )}
 
