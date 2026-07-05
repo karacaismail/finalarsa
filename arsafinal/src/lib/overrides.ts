@@ -9,8 +9,9 @@ import type { Hesap } from "./clusters";
 
 export interface Override { ym: string; kume: string; kalem?: string; tl: number; }
 
-// Boş = sabit URL yok; v2 ?sheet=<CSV_URL> query parametresinden okur.
-export const OVERRIDE_CSV_URL = "";
+// Sabit sheet: finansalv2 (public, "bağlantıya sahip herkes"). export=csv, ilk sekme (gid=0).
+// v2 ?sheet=<CSV_URL> query parametresi verilirse o önceliklidir.
+export const OVERRIDE_CSV_URL = "https://docs.google.com/spreadsheets/d/1L52WkCg7wKqzIGUbVf9Aex5iaNFqD_2JTDEXmSl2VCU/export?format=csv&gid=0";
 
 const AY_KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 

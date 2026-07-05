@@ -77,7 +77,7 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
     const url = new URLSearchParams(window.location.search).get("sheet") || OVERRIDE_CSV_URL;
     if (!url) { setSheetStatus("off"); return; }
     let alive = true; setSheetStatus("loading");
-    fetch(url).then((r) => r.text()).then((t) => { if (!alive) return; setOverrides(parseOverridesCsv(t)); setSheetStatus("ok"); }).catch(() => { if (alive) setSheetStatus("error"); });
+    fetch(url, { cache: "no-store" }).then((r) => r.text()).then((t) => { if (!alive) return; setOverrides(parseOverridesCsv(t)); setSheetStatus("ok"); }).catch(() => { if (alive) setSheetStatus("error"); });
     return () => { alive = false; };
   }, [sheetMode]);
   const r = rate(eff, disp);
