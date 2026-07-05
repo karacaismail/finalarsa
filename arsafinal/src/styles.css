@@ -154,3 +154,10 @@ body {
   padding: 9px 12px; border-radius: 10px; box-shadow: 0 6px 22px rgba(0,0,0,.22);
   cursor: pointer;
 }
+
+/* v2 · canlı Google Sheet göstergesi */
+.sheet-flag { margin: 2px 0 12px; padding: 9px 13px; border-radius: 10px; font-size: .92rem; font-weight: 500; }
+.sheet-flag.ok { background: rgba(47,107,52,.10); color: #2f6b34; }
+.sheet-flag.loading { background: rgba(184,134,11,.12); color: #8a6508; }
+.sheet-flag.error { background: rgba(190,18,60,.10); color: #be123c; }
+.sheet-flag.off { background: #f1f2f3; color: #5b6472; }

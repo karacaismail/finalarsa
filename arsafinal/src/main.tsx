@@ -3,8 +3,11 @@ import ReactDOM from "react-dom/client";
 import { App } from "./App";
 import "./styles.css";
 
+// /finalarsa/finansal/v2/ → canlı Google Sheet override modu (hibrit). Diğer yollar = klasik (v1).
+const sheetMode = window.location.pathname.includes("/finansal/v2");
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <App sheetMode={sheetMode} />
   </React.StrictMode>,
 );

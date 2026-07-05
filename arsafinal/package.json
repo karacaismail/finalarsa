@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest run",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && mkdir -p dist/v2 && cp dist/index.html dist/v2/index.html",
     "preview": "vite preview --host"
   },
   "dependencies": {
