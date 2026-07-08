@@ -8,7 +8,7 @@ import { bordroAy, brutCozHedefNet } from "./payroll";
 import { ymList } from "../data/finansal";
 import type { FinansalData, FounderStep, OpexAy } from "../data/finansal";
 
-export interface Kalem { ad: string; tl: number; detay?: string; }
+export interface Kalem { ad: string; tl: number; detay?: string; alt?: Array<{ ad: string; tl: number; not?: string }>; }
 export interface Kume { key: string; ad: string; renk: string; tl: number; kalemler: Kalem[]; }
 export interface AyKirilim { ym: string; toplamTl: number; kisi: number; yeni: number; kumeler: Kume[]; }
 export interface CapexOzet { toplamTl: number; kalemler: Kalem[]; }
@@ -60,12 +60,13 @@ export function hesapla(d: FinansalData): Hesap {
 
     // --- BORDRO = eym (bir önceki ay) işgücü; arrears (nakit) ---
     const aktiflerEym = d.roles.filter((r) => aktif(r.istihdamYm, eym));
-    let net = 0, vergi = 0, sgk = 0, brutTop = 0;
+    let net = 0, vergi = 0, sgk = 0, brutTop = 0, sgkIsci = 0, sgkIsveren = 0;
     for (const r of aktiflerEym) {
       if (r.kod === p.kuruculKod) continue;
       const y = ytd[r.sira] || (ytd[r.sira] = { matrah: 0, asgari: 0 });
       const b = bordroAy(r.brutMaas, y.matrah, y.asgari, bp);
       net += b.net; vergi += b.gelirVergisi; sgk += b.calisanSgk + b.isverenSgk; brutTop += b.brut;
+      sgkIsci += b.calisanSgk; sgkIsveren += b.isverenSgk;
       y.matrah += b.gvMatrah; y.asgari += bp.asgariGvMatrah;
     }
     const kurucu = aktiflerEym.find((r) => r.kod === p.kuruculKod);
@@ -74,6 +75,7 @@ export function hesapla(d: FinansalData): Hesap {
       const brut = brutCozHedefNet(hedefNet, fytd.matrah, fytd.asgari, bp);
       const b = bordroAy(brut, fytd.matrah, fytd.asgari, bp);
       net += b.net; vergi += b.gelirVergisi; sgk += b.calisanSgk + b.isverenSgk; brutTop += b.brut;
+      sgkIsci += b.calisanSgk; sgkIsveren += b.isverenSgk;
       fytd.matrah += b.gvMatrah; fytd.asgari += bp.asgariGvMatrah;
     }
     let yemek = 0;
@@ -96,7 +98,10 @@ export function hesapla(d: FinansalData): Hesap {
       kalemler: [
         { ad: "Net maaşlar (önceki ay · 5'inde ödenir)", tl: net },
         { ad: "Maaş gelir vergisi stopajı (muhtasar)", tl: vergi },
-        { ad: "SGK primleri (işçi + işveren)", tl: sgk },
+        { ad: "SGK primleri (işçi + işveren)", tl: sgk, alt: [
+          { ad: "İşçi payı (SGK %14 + işsizlik %1)", tl: sgkIsci, not: "bordro motoru hesabı" },
+          { ad: "İşveren payı (SGK + işsizlik, teşviksiz)", tl: sgkIsveren, not: "bordro motoru hesabı" },
+        ] },
         { ad: "Yemek", tl: yemek },
         { ad: "Yol ücreti", tl: yol },
         { ad: "Hoşgeldin paketi (yeni işe alım)", tl: hosgeldin },

@@ -161,3 +161,32 @@ body {
 .sheet-flag.loading { background: rgba(184,134,11,.12); color: #8a6508; }
 .sheet-flag.error { background: rgba(190,18,60,.10); color: #be123c; }
 .sheet-flag.off { background: #f1f2f3; color: #5b6472; }
+
+/* ===========================================================================
+   v3 · kalem alt-detay modalı (mobile-first: 320px alttan sayfa; ≥600px kart)
+   =========================================================================== */
+.kalem-click { width: 100%; background: none; border: none; cursor: pointer; font: inherit; text-align: left; border-radius: 10px; }
+.kalem-click:hover, .kalem-click:focus-visible { background: rgba(47, 107, 52, .07); }
+.kc-ad { display: inline-flex; align-items: center; gap: 6px; }
+.kume-body .kalem-click .kc-ad { color: var(--muted); }
+.kc-ico { display: inline-flex; color: #2f6b34; opacity: .75; flex: none; }
+
+.dmodal-overlay { position: fixed; inset: 0; z-index: 60; background: rgba(15, 23, 42, .45); display: flex; align-items: flex-end; justify-content: center; }
+.dmodal { background: #fff; width: 100%; max-height: 82vh; display: flex; flex-direction: column; border-radius: 18px 18px 0 0; box-shadow: 0 -8px 32px rgba(0, 0, 0, .25); }
+.dmodal-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 16px 10px; border-bottom: 1px solid var(--line); }
+.dmodal-head h3 { margin: 0; font-size: 1.02rem; line-height: 1.35; color: var(--ink); }
+.dmodal-close { flex: none; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: none; border-radius: 12px; background: #f1f5f0; color: var(--ink); cursor: pointer; }
+.dmodal-close:hover, .dmodal-close:focus-visible { background: #e2e8de; }
+.dmodal-body { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 4px 16px; }
+.dmodal-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; min-height: 44px; padding: 9px 0; border-bottom: 1px solid var(--line-2); font-size: 1rem; }
+.dmodal-row:last-child { border-bottom: none; }
+.dm-ad { color: var(--ink); display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.dm-not { color: var(--muted); font-size: .84rem; }
+.dmodal-sum { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 13px 16px; font-weight: 700; color: var(--grass-ink); background: var(--grass-soft); }
+.dmodal-sum.warn { color: #92400e; background: #fef3c7; }
+
+@media (min-width: 600px) {
+  .dmodal-overlay { align-items: center; padding: 24px; }
+  .dmodal { max-width: 560px; border-radius: 18px; max-height: 80vh; }
+  .dmodal-sum { border-radius: 0 0 18px 18px; }
+}

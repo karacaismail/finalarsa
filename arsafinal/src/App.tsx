@@ -9,6 +9,13 @@ import { NumView, Svg, Icon, grouped, parseTR } from "./components/num";
 import { EChart } from "./components/Chart";
 import { fetchMasterplanTabs, buildMasterplan } from "./lib/masterplan";
 import type { MpTabs } from "./lib/masterplan";
+import { fetchMasterplanRaw, buildMasterplanV3 } from "./lib/masterplan3";
+import type { MpRaw } from "./lib/masterplan3";
+import { fetchSubdetails, findSubdetails } from "./lib/subdetails";
+import type { SubMap, AltDetay } from "./lib/subdetails";
+import { DetailModal } from "./components/DetailModal";
+import type { ModalData } from "./components/DetailModal";
+import type { Kalem } from "./lib/clusters";
 
 const SYM: Record<Currency, string> = { TRY: "₺", USD: "$", EUR: "€" };
 const CURS: Currency[] = ["TRY", "USD", "EUR"];
@@ -36,7 +43,7 @@ function InfoLabel({ ad, detay }: { ad: string; detay?: string }) {
   );
 }
 
-export function App({ sheetMode = false }: { sheetMode?: boolean }) {
+export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean; v3Mode?: boolean }) {
   const [data, setData] = useState<FinansalData>(() => load());
   const [disp, setDisp] = useState<Currency>("TRY");
   const [open, setOpen] = useState<string>("");     // "", "capex" veya ym
@@ -46,6 +53,10 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
   const [liveFx, setLiveFx] = useState<{ usd: number; eur: number; ts: string } | null>(null);
   const [mpTabs, setMpTabs] = useState<MpTabs | null>(null);
   const [sheetStatus, setSheetStatus] = useState<"off" | "loading" | "ok" | "error">("off");
+  const [mpRaw, setMpRaw] = useState<MpRaw | null>(null);          // v3: ham sekmeler
+  const [subMap, setSubMap] = useState<SubMap | null>(null);       // v3: alt_detay haritası
+  const [subErr, setSubErr] = useState(false);
+  const [modal, setModal] = useState<ModalData | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
@@ -68,8 +79,9 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
   const eff = useMemo(() => (liveFx ? { ...data, params: { ...data.params, usd: liveFx.usd, eur: liveFx.eur } } : data), [data, liveFx]);
   const H = useMemo(() => {
     const base = hesapla(eff);
+    if (v3Mode && mpRaw) return buildMasterplanV3(base, mpRaw);
     return sheetMode && mpTabs ? buildMasterplan(base, mpTabs) : base;
-  }, [eff, sheetMode, mpTabs]);
+  }, [eff, sheetMode, mpTabs, v3Mode, mpRaw]);
   // v2: canlı master_plan sekmeleri (OPEX + DİJİTAL PAZARLAMA + CAPEX) → giderler master_plan'dan; personel motordan.
   useEffect(() => {
     if (!sheetMode) return;
@@ -78,6 +90,15 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
     fetchMasterplanTabs().then((t) => { if (!alive) return; setMpTabs(t); setSheetStatus("ok"); }).catch(() => { if (alive) setSheetStatus("error"); });
     return () => { alive = false; };
   }, [sheetMode]);
+  // v3: ham master_plan (OPEX+PAZARLAMA+CAPEX, export CSV) + alt_detay sekmesi (modal içeriği).
+  useEffect(() => {
+    if (!v3Mode) return;
+    document.title = "arsam.net · Finansal v3 (canlı master_plan + alt-detay)";
+    let alive = true; setSheetStatus("loading");
+    fetchMasterplanRaw().then((r) => { if (alive) { setMpRaw(r); setSheetStatus("ok"); } }).catch(() => { if (alive) setSheetStatus("error"); });
+    fetchSubdetails().then((m) => { if (alive) { setSubMap(m); setSubErr(false); } }).catch(() => { if (alive) { setSubMap(null); setSubErr(true); } });
+    return () => { alive = false; };
+  }, [v3Mode]);
   const r = rate(eff, disp);
   const conv = (tl: number) => tl / r;
   const sym = SYM[disp];
@@ -133,6 +154,23 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
   const importJSON = (e: ChangeEvent<HTMLInputElement>) => { const f = e.target.files?.[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => { try { setData(fromJSON(String(rd.result))); setOpen(""); } catch { alert("Geçersiz veya uyumsuz JSON."); } }; rd.readAsText(f); e.target.value = ""; };
   const reset = () => { if (confirm("Tüm değişiklikler silinip varsayılana dönülecek. Emin misin?")) { clearStorage(); setData(structuredClone(DEFAULT_DATA)); setOpen(""); } };
 
+  // v3: kalem satırı — alt-detayı varsa tıklanabilir, modal açar.
+  // Kaynak önceliği: motor kırılımı (kalem.alt, ör. SGK işçi/işveren) → alt_detay sekmesi (toleranslı eşleşme).
+  const kalemRow = (x: Kalem, key: number | string, ym: string, kumeKey: string, kumeAd: string, ayAd: string) => {
+    const rows: AltDetay[] | null = v3Mode
+      ? (x.alt?.length ? x.alt : subMap ? findSubdetails(subMap, ym, kumeKey, x.ad) : null)
+      : null;
+    if (!rows?.length)
+      return <div className="kalem-row" key={key}><InfoLabel ad={x.ad} detay={x.detay} /><NumView n={conv(x.tl)} sym={sym} /></div>;
+    return (
+      <button type="button" className="kalem-row kalem-click" key={key} aria-haspopup="dialog"
+        onClick={() => setModal({ baslik: `${ayAd} · ${kumeAd} · ${x.ad}`, rows, kalemTl: x.tl })}>
+        <span className="kc-ad"><span>{x.ad}</span><span className="kc-ico" aria-hidden="true"><Svg d={Icon.info} size={15} /></span></span>
+        <NumView n={conv(x.tl)} sym={sym} />
+      </button>
+    );
+  };
+
   const Head = ({ k, no, title, sub, tl, usd }: { k: string; no: number; title: string; sub: string; tl: number; usd?: number }) => (
     <button className={"acc-head" + (open === k ? " open" : "")} onClick={() => toggle(k)}>
       <span className="ah-top">
@@ -177,11 +215,12 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
           {DONEMLER.map((d) => <button key={d.key} role="tab" aria-selected={d.key === donem} className={"chip" + (d.key === donem ? " on" : "")} onClick={() => { setDonem(d.key); setOpen(""); }}>{d.ad}</button>)}
         </div>
         <div className="donem-ozet"><span>{dd.ad} · {gosterilen.length} ay</span><span className="dt">Dönem toplamı: <NumView n={conv(donemToplam)} sym={sym} /></span></div>
-        {sheetMode && (
+        {(sheetMode || v3Mode) && (
           <div className={"sheet-flag " + sheetStatus}>
-            {sheetStatus === "ok" ? "Canlı master_plan bağlı — giderler sheet'ten (personel motordan)"
-              : sheetStatus === "loading" ? "master_plan yükleniyor…"
+            {sheetStatus === "loading" ? "master_plan yükleniyor…"
               : sheetStatus === "error" ? "master_plan okunamadı — motor değerleri gösteriliyor (yedek)"
+              : sheetStatus === "ok" && v3Mode ? "Canlı master_plan bağlı (v3) — alt-detayı olan kaleme dokun" + (subErr ? " · alt_detay sekmesi yüklenemedi" : "")
+              : sheetStatus === "ok" ? "Canlı master_plan bağlı — giderler sheet'ten (personel motordan)"
               : "master_plan bağlı değil · motor çalışıyor"}
           </div>
         )}
@@ -229,7 +268,7 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
               <Head k="agustos" no={2} title="Ağu 2026" sub="Kuruluş yatırımı" tl={H.capex.toplamTl} />
               {open === "agustos" && (
                 <div className="acc-body">
-                  {H.capex.kalemler.map((k, m) => <div className="kalem-row" key={m}><span>{k.ad}</span><NumView n={conv(k.tl)} sym={sym} /></div>)}
+                  {H.capex.kalemler.map((k, m) => kalemRow(k, m, "2026-08", "capex", "Kuruluş yatırımı", "Ağu 2026"))}
                   <div className="kalem-row sum big"><span>Ağu 2026 — Kuruluş yatırımı toplam</span><NumView n={conv(H.capex.toplamTl)} sym={sym} /></div>
                 </div>
               )}
@@ -253,7 +292,7 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
                         </button>
                         {openK === k.key && (
                           <div className="kume-body">
-                            {k.kalemler.map((x, m) => <div className="kalem-row" key={m}><InfoLabel ad={x.ad} detay={x.detay} /><NumView n={conv(x.tl)} sym={sym} /></div>)}
+                            {k.kalemler.map((x, m) => kalemRow(x, m, ay.ym, k.key, k.ad, ayLabel(ay.ym)))}
                           </div>
                         )}
                       </div>
@@ -265,6 +304,8 @@ export function App({ sheetMode = false }: { sheetMode?: boolean }) {
             );
           })}
         </section>
+
+        {modal && <DetailModal data={modal} conv={conv} sym={sym} onClose={() => setModal(null)} />}
 
         <footer className="foot">
           Personel = 256 rol + 2026 bordro motoru · Diğer kümeler geçmiş veriden, düzenlenebilir · <b>{SYM[disp]} {disp}</b> · İsmail KARACA · arsam.net

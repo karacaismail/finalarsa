@@ -5,7 +5,9 @@
 import type { Hesap, Kume, Kalem } from "./clusters";
 import { KUME_RENK } from "./clusters";
 
-export const MP_SHEET_ID = "1DNBT0Pe_VyZgDrSut7dISk9MiFX70NTl";
+// 2026-07-08: master_plan native Google Sheet'e taşındı (eski xlsx: 1DNBT0Pe_VyZgDrSut7dISk9MiFX70NTl).
+// v2 ve v3 aynı dosyayı okur; kullanıcı düzenlemeleri artık bu dosyada.
+export const MP_SHEET_ID = "1BVY3JGHnFM52CSwNBFlrg7VCBgGi0vIIVKJ68YW6RTk";
 const gvizUrl = (name: string) =>
   `https://docs.google.com/spreadsheets/d/${MP_SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(name)}`;
 
