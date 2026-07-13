@@ -57,3 +57,43 @@ describe("buildMasterplan — Eyl 2026 master_plan'dan (Agu/Sub diakritik tolera
     expect(a.toplamTl).toBeCloseTo(a.kumeler.reduce((s, k) => s + k.tl, 0), 2);
   });
 });
+
+
+describe("buildMasterplan — CAPEX çift-sayım koruması (TOPLAM/ara-toplam/birim elenir)", () => {
+  const capexTotals = [
+    ["Kalem", "Tutar (₺)", "Dönem"],
+    ["OFİS KURULUMU", "", ""],
+    ["Ofis Depozito (3 Ay Kira)", "375.000", "Tem 26"],
+    ["Mobilya & Dekorasyon", "250.000", "Tem 26"],
+    ["HOŞGELDİN PAKETİ", "", ""],
+    ["  Hoşgeldin Paketi (18 kişi)", "107.100", "Tem 26"],
+    ["  Birim: Headset+Defter+Kupa", "600", ""],
+    ["  Adobe Creative Cloud", "8.000", "Yıllık"],
+    ["  (Figma OPEX SaaS)", "0", "Yıllık"],
+    ["Yıllık Yazılım Lisans Toplamı", "38.000", ""],
+    ["TOPLAM İLK CAPEX (Tem 2026)", "740.100", ""],
+  ];
+  const DETAY = 375000 + 250000 + 107100 + 8000; // yalniz gercek kalemler = 740.100
+  const H2 = buildMasterplan(base, { opex, paz, capex: capexTotals });
+
+  it("toplam yalniz detaylari sayar (TOPLAM/ara-toplam/birim/paren haric)", () => {
+    expect(H2.capex.toplamTl).toBe(DETAY);
+  });
+
+  it("bir kalem degisince toplam 1:1 degisir — 2x DEGIL (cift-sayim yok)", () => {
+    const arti = capexTotals.map((r) => r.slice());
+    arti.find((r) => r[0].includes("Mobilya"))![1] = "300.000";
+    arti.find((r) => r[0].startsWith("TOPLAM İLK"))![1] = "790.100";
+    const H3 = buildMasterplan(base, { opex, paz, capex: arti });
+    expect(H3.capex.toplamTl - H2.capex.toplamTl).toBe(50000);
+  });
+
+  it("kalemler listesinde TOPLAM/ara-toplam/birim/paren satiri yok", () => {
+    for (const k of H2.capex.kalemler) {
+      const na = k.ad.toLocaleLowerCase("tr");
+      expect(na.includes("toplam")).toBe(false);
+      expect(na.startsWith("birim")).toBe(false);
+      expect(k.ad.startsWith("(")).toBe(false);
+    }
+  });
+});

@@ -88,9 +88,18 @@ export function buildMasterplan(base: Hesap, tabs: MpTabs): Hesap {
   });
 
   // CAPEX sekmesi: Kalem (sütun 0) + Tutar (sütun 1). Başlık/boş satırlar elenir.
+  // ÇİFT-SAYIM KORUMASI (v3 ile aynı kural): "TOPLAM …", "… Toplamı", "Birim: …" ve
+  // "(paren)" satırları ELENİR. Bunlar detayların toplamı/açıklaması olduğundan, sayılırlarsa
+  // her kalem iki kez sayılır ve bir hücre değişince toplam 2× oynar.
   const capexKalemler: Kalem[] = tabs.capex.slice(1)
     .map((r) => ({ ad: (r[0] || "").trim(), tl: mpNum(r[1]) }))
-    .filter((k) => k.ad && k.tl > 0);
+    .filter((k) => {
+      if (!k.ad || k.tl <= 0) return false;
+      if (k.ad.startsWith("(")) return false;
+      const na = nrm(k.ad);
+      if (na.includes("toplam") || na.startsWith("birim")) return false;
+      return true;
+    });
   const capexToplam = capexKalemler.reduce((s, k) => s + k.tl, 0);
 
   return { ...base, aylar, capex: capexToplam > 0 ? { toplamTl: capexToplam, kalemler: capexKalemler } : base.capex };
