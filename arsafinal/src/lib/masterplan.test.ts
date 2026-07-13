@@ -97,3 +97,39 @@ describe("buildMasterplan — CAPEX çift-sayım koruması (TOPLAM/ara-toplam/bi
     }
   });
 });
+
+
+describe("buildMasterplan — CAPEX 4 kume gruplama (Kategori/Donem)", () => {
+  const capexKat = [
+    ["Kalem", "Tutar", "Donem", "Kategori", "Not"],
+    ["OFIS KURULUMU", "", "", "", ""],
+    ["Ofis Depozito", "375.000", "Tem 26", "Ofis", ""],
+    ["MUTFAK", "", "", "", ""],
+    ["Buzdolabi", "35.000", "Tem 26", "Mutfak", ""],
+    ["Profesyonel Kahve Makinesi", "50.000", "Tem 26", "Mutfak", ""],
+    ["BILGISAYAR", "", "", "", ""],
+    ["MacBook Pro M5", "300.000", "Tem 26", "Bilgisayar", ""],
+    ["Laptop SEO", "50.000", "Eyl 26", "Bilgisayar", ""],
+    ["YILLIK YAZILIM", "", "", "", ""],
+    ["Adobe Creative Cloud", "8.000", "Yillik", "", ""],
+    ["JetBrains", "30.000", "Yillik", "", ""],
+    ["TOPLAM ILK CAPEX", "848.000", "", "", ""],
+  ];
+  const HK = buildMasterplan(base, { opex, paz, capex: capexKat });
+  const ku = (key: string) => HK.capex.kumeler!.find((k) => k.key === key)!;
+
+  it("kumeler var ve sirali (Kurulus, Bilgisayar, Mutfak, Yazilim)", () => {
+    expect(HK.capex.kumeler!.map((k) => k.key)).toEqual(["capexKurulus", "capexBilgisayar", "capexMutfak", "capexYazilim"]);
+  });
+  it("gruplama dogru", () => {
+    expect(ku("capexKurulus").tl).toBe(375000);
+    expect(ku("capexMutfak").tl).toBe(85000);
+    expect(ku("capexBilgisayar").tl).toBe(350000);
+    expect(ku("capexYazilim").tl).toBe(38000);
+  });
+  it("kume toplamlari = capex toplam (kayip/cift yok)", () => {
+    const s = HK.capex.kumeler!.reduce((a, k) => a + k.tl, 0);
+    expect(s).toBe(HK.capex.toplamTl);
+    expect(s).toBe(848000);
+  });
+});

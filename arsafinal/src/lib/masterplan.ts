@@ -52,6 +52,32 @@ const K = (key: string, ad: string, kalemler: Kalem[]): Kume =>
 
 export interface MpTabs { opex: string[][]; paz: string[][]; capex: string[][]; }
 
+// CAPEX 4 kume: Kategori/Donem'e gore. Yillik lisanslar -> Yazilim; Mutfak/Bilgisayar kendi kumesi; kalan -> Kurulus.
+const CAPEX_KUME_DEF: Record<string, { ad: string; renk: string }> = {
+  capexKurulus: { ad: "Kurulus", renk: "#a16207" },
+  capexBilgisayar: { ad: "Bilgisayar", renk: "#1f6feb" },
+  capexMutfak: { ad: "Mutfak", renk: "#0e7490" },
+  capexYazilim: { ad: "Yazilim", renk: "#be123c" },
+};
+const CAPEX_KUME_SIRA = ["capexKurulus", "capexBilgisayar", "capexMutfak", "capexYazilim"];
+function capexKumeKey(kat: string, donem: string): string {
+  const k = nrm(kat), d = nrm(donem);
+  if (d.includes("yil")) return "capexYazilim";
+  if (k.includes("mutfak")) return "capexMutfak";
+  if (k.includes("bilgisayar")) return "capexBilgisayar";
+  return "capexKurulus";
+}
+function groupCapex(rows: { ad: string; tl: number; donem: string; kat: string }[]): Kume[] {
+  const m = new Map<string, Kume>();
+  for (const r of rows) {
+    const key = capexKumeKey(r.kat, r.donem);
+    let g = m.get(key);
+    if (!g) { const def = CAPEX_KUME_DEF[key]; g = { key, ad: def.ad, renk: def.renk, tl: 0, kalemler: [] }; m.set(key, g); }
+    g.kalemler.push({ ad: r.ad, tl: r.tl }); g.tl += r.tl;
+  }
+  return CAPEX_KUME_SIRA.filter((k) => m.has(k)).map((k) => m.get(k)!);
+}
+
 export async function fetchMasterplanTabs(): Promise<MpTabs> {
   const [opex, paz, capex] = await Promise.all([
     fetch(gvizUrl("OPEX"), { cache: "no-store" }).then((r) => r.text()).then(parseCsv),
@@ -91,8 +117,8 @@ export function buildMasterplan(base: Hesap, tabs: MpTabs): Hesap {
   // ÇİFT-SAYIM KORUMASI (v3 ile aynı kural): "TOPLAM …", "… Toplamı", "Birim: …" ve
   // "(paren)" satırları ELENİR. Bunlar detayların toplamı/açıklaması olduğundan, sayılırlarsa
   // her kalem iki kez sayılır ve bir hücre değişince toplam 2× oynar.
-  const capexKalemler: Kalem[] = tabs.capex.slice(1)
-    .map((r) => ({ ad: (r[0] || "").trim(), tl: mpNum(r[1]) }))
+  const capexRows = tabs.capex.slice(1)
+    .map((r) => ({ ad: (r[0] || "").trim(), tl: mpNum(r[1]), donem: (r[2] || "").trim(), kat: (r[3] || "").trim() }))
     .filter((k) => {
       if (!k.ad || k.tl <= 0) return false;
       if (k.ad.startsWith("(")) return false;
@@ -100,7 +126,9 @@ export function buildMasterplan(base: Hesap, tabs: MpTabs): Hesap {
       if (na.includes("toplam") || na.startsWith("birim")) return false;
       return true;
     });
+  const capexKalemler: Kalem[] = capexRows.map((r) => ({ ad: r.ad, tl: r.tl }));
   const capexToplam = capexKalemler.reduce((s, k) => s + k.tl, 0);
+  const capexKumeler = groupCapex(capexRows);
 
-  return { ...base, aylar, capex: capexToplam > 0 ? { toplamTl: capexToplam, kalemler: capexKalemler } : base.capex };
+  return { ...base, aylar, capex: capexToplam > 0 ? { toplamTl: capexToplam, kalemler: capexKalemler, kumeler: capexKumeler } : base.capex };
 }

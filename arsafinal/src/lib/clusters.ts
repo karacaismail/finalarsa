@@ -11,7 +11,7 @@ import type { FinansalData, FounderStep, OpexAy } from "../data/finansal";
 export interface Kalem { ad: string; tl: number; detay?: string; alt?: Array<{ ad: string; tl: number; not?: string }>; }
 export interface Kume { key: string; ad: string; renk: string; tl: number; kalemler: Kalem[]; }
 export interface AyKirilim { ym: string; toplamTl: number; kisi: number; yeni: number; kumeler: Kume[]; }
-export interface CapexOzet { toplamTl: number; kalemler: Kalem[]; }
+export interface CapexOzet { toplamTl: number; kalemler: Kalem[]; kumeler?: Kume[]; }
 export interface Hesap { capex: CapexOzet; yazilimDev: CapexOzet; aylar: AyKirilim[]; }
 
 export const KUME_RENK: Record<string, string> = {

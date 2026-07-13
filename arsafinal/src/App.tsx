@@ -268,7 +268,24 @@ export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean
               <Head k="agustos" no={2} title="Ağu 2026" sub="Kuruluş yatırımı" tl={H.capex.toplamTl} />
               {open === "agustos" && (
                 <div className="acc-body">
-                  {H.capex.kalemler.map((k, m) => kalemRow(k, m, "2026-08", "capex", "Kuruluş yatırımı", "Ağu 2026"))}
+                  {H.capex.kumeler && H.capex.kumeler.length > 0
+                    ? H.capex.kumeler.map((k) => (
+                        <div className="kume" key={k.key}>
+                          <button className={"kume-head" + (openK === k.key ? " open" : "")} onClick={() => setOpenK(openK === k.key ? "" : k.key)}>
+                            <span className="dot" style={{ background: k.renk }} />
+                            <span className="kume-ad">{k.ad}</span>
+                            <span className="kume-pay">%{Math.round((k.tl / H.capex.toplamTl) * 100)}</span>
+                            <span className="kume-tot"><NumView n={conv(k.tl)} sym={sym} /></span>
+                            <span className={"chev sm" + (openK === k.key ? " on" : "")}><Svg d={CHEV} size={13} /></span>
+                          </button>
+                          {openK === k.key && (
+                            <div className="kume-body">
+                              {k.kalemler.map((x, m) => kalemRow(x, m, "2026-08", k.key, k.ad, "Ağu 2026"))}
+                            </div>
+                          )}
+                        </div>
+                      ))
+                    : H.capex.kalemler.map((k, m) => kalemRow(k, m, "2026-08", "capex", "Kuruluş yatırımı", "Ağu 2026"))}
                   <div className="kalem-row sum big"><span>Ağu 2026 — Kuruluş yatırımı toplam</span><NumView n={conv(H.capex.toplamTl)} sym={sym} /></div>
                 </div>
               )}
