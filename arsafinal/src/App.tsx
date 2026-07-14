@@ -212,7 +212,7 @@ export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean
 
       <main className="main">
         {sheetMode && tab === "roadmap" ? (
-          <RoadmapPage conv={conv} sym={sym} />
+          <RoadmapPage />
         ) : (
         <>
         <section className="cards cards4">

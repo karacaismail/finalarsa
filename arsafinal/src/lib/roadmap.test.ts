@@ -1,118 +1,205 @@
 import { describe, it, expect } from "vitest";
-import { buildRoadmap, monthColumns, mpPct, showRoadmap, selectTab } from "./roadmap";
-import type { RoadmapTabs } from "./roadmap";
+import {
+  monthAxis, ikColumn, hiresByMonth, buildTimeline,
+  PHASES, phaseForYm, showRoadmap, selectTab, IK_ANCHOR_COL, IK_ANCHOR_YM,
+} from "./roadmap";
+import type { IkGrid } from "./roadmap";
 
-// Gerçek sheet yapısını taklit eden 6 aylık fixture (gviz CSV: 0. sütun başlık, aylar 1..N).
-// Değerler gerçek "GELİR SENARYOSU"nun ilk aylarından (Tem 26 → Ara 26).
-const paz: string[][] = [
-  ["ARSAM.NET — DİJİTAL PAZARLAMA", "Tem 26 ", "Agu 26 ", "Eyl 26 ", "Eki 26 ", "Kas 26 ", "Ara 26 "],
-  ["Google Ads", "0", "0", "40.000", "60.000", "80.000", "200.000"],
-  ["TOPLAM DİJİTAL PAZARLAMA", "88.000", "98.000", "207.000", "343.000", "391.000", "658.000"],
-];
-const gelir: string[][] = [
-  ["ARSAM.NET — GELİR PROJEKSİYONU", "Tem 26 ", "Agu 26 ", "Eyl 26 ", "Eki 26 ", "Kas 26 ", "Ara 26 "],
-  ["Toplam İlan Sayısı (Arsa)", "0", "1", "4", "12", "32", "88"],
-  ["TOPLAM AYLIK GELİR (Arsa + Emlak)", "0", "10.285", "41.140", "123.420", "329.120", "905.080"],
-  ["KÜMÜLATİF GELİR", "0", "10.285", "51.425", "174.845", "503.965", "1.409.045"],
-  ["Arsa Hedef Pazar Payı (SOM %)", "0,0%", "0,6%", "1,1%", "1,7%", "2,2%", "2,8%"],
-];
-const tabs: RoadmapTabs = { paz, gelir };
-const M = buildRoadmap(tabs);
-const at = (ym: string) => M.points.find((p) => p.ym === ym)!;
+// ─── İK PLANI fixture (gerçek sheet yapısı) ────────────────────────────────
+// Satır 0: başlık; satır 1: net maaş etiketi; satır 2: kolon başlıkları
+// (Rol Kodu=A/0, Rol Adı=B/1, Job Family=C/2, Kademe=F/5, Ünvan=G/6, Aday=H/7);
+// satır 3+: rol satırları — I/8 = net maaş, J/9'dan itibaren TRUE/FALSE matrisi.
+// Sheet'te J+ başlıkları BOŞ → ay ekseni POZİSYONEL: col 9 = Eyl 26 (2026-09).
+const pad = (n: number) => Array(n).fill("");
+// col:        0        1                       2         3  4  5            6         7      8          9(J)    10      11      12      13      14
+const head0 = ["ARSAM.NET — İSTİHDAM TAKVİMİ", ...pad(7), "Asgari Ücret"];
+const head1 = ["Aylık Net Maaş tutarı"];
+const head2 = ["Rol Kodu", "Rol Adı", "Job Family", "", "", "Kademe", "Ünvan", "Aday"];
+// R-CPO: kuruluştan itibaren TRUE (col9 = Eyl 26)
+const rCPO   = ["R-CPO", "CPO / Strateji", "Product / Stratejik Planlama", "", "", "C-Level", "C-Level", "N/A", "200.000",
+  "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE"];
+// R-PO: yine col9 (Eyl 26)
+const rPO    = ["R-PO", "Product Owner", "Product / UX / Program", "", "", "Ürün", "Senior", "N/A", "77.208",
+  "TRUE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE"];
+// R-DEV1: ilk TRUE col10 (Eki 26) — Eyl'de FALSE
+const rDEV1  = ["R-DEV1", "Backend Dev #1", "Engineering & Platform", "", "", "Teknik", "Mid", "N/A", "56.151",
+  "FALSE", "TRUE", "TRUE", "TRUE", "TRUE", "TRUE"];
+// R-QA: ilk TRUE col11 (Kas 26)
+const rQA    = ["R-QA", "QA Mühendisi", "Engineering & Platform", "", "", "Teknik", "Mid", "N/A", "56.151",
+  "FALSE", "FALSE", "TRUE", "TRUE", "TRUE", "TRUE"];
+// R-CS1: ilk TRUE col12 (Ara 26)
+const rCS1   = ["R-CS1", "CS Rep #1", "Customer & Seller Support / CX", "", "", "Operasyonel", "Junior", "N/A", "33.030",
+  "FALSE", "FALSE", "FALSE", "TRUE", "TRUE", "TRUE"];
+// R-QAX: ilk TRUE col13 (Oca 27) — resmî lansman ayı
+const rQAX   = ["R-QAX", "QA #2", "Engineering & Platform", "", "", "Teknik", "Mid", "N/A", "56.151",
+  "FALSE", "FALSE", "FALSE", "FALSE", "TRUE", "TRUE"];
+// Hiç TRUE olmayan rol → hiçbir aya katılmaz
+const rNONE  = ["R-NONE", "Boş rol", "Admin / PR / Office", "", "", "Idari", "Mid", "N/A", "42.113",
+  "FALSE", "FALSE", "FALSE", "FALSE", "FALSE", "FALSE"];
 
-describe("mpPct / monthColumns", () => {
-  it("yüzde metni → sayı", () => {
-    expect(mpPct("15,0%")).toBe(15);
-    expect(mpPct("0,6%")).toBeCloseTo(0.6, 6);
-    expect(mpPct("")).toBe(0);
+const grid: IkGrid = [head0, head1, head2, rCPO, rPO, rDEV1, rQA, rCS1, rQAX, rNONE];
+
+// ─── Ay ekseni / kolon anahtarları ─────────────────────────────────────────
+describe("monthAxis / ikColumn — pozisyonel ay ekseni (col9 = Eyl 26)", () => {
+  it("anchor sabitleri: col 9 = 2026-09", () => {
+    expect(IK_ANCHOR_COL).toBe(9);
+    expect(IK_ANCHOR_YM).toBe("2026-09");
   });
-  it("ay başlığı → ym (Agu diakritik toleransı)", () => {
-    const cols = monthColumns(["Metrik", "Tem 26 ", "Agu 26 ", "Sub 27 ", "", "boş"]);
-    expect(cols.map((c) => c.ym)).toEqual(["2026-07", "2026-08", "2027-02"]);
-    expect(cols[0].col).toBe(1);
-    expect(cols[2].col).toBe(3);
+  it("col 9 → 2026-09 (Eyl 26), col 10 → 2026-10, col 13 → 2027-01", () => {
+    const ax = monthAxis(grid);
+    const at = (c: number) => ax.find((a) => a.col === c)!;
+    expect(at(9).ym).toBe("2026-09");
+    expect(at(9).label).toBe("Eyl 26");
+    expect(at(10).ym).toBe("2026-10");
+    expect(at(13).ym).toBe("2027-01");
+    expect(at(13).label).toBe("Oca 27");
+  });
+  it("eksen J sütunundan başlar ve matris genişliğince sürer (6 ay fixture)", () => {
+    const ax = monthAxis(grid);
+    expect(ax[0].col).toBe(9);
+    expect(ax.map((a) => a.ym)).toEqual([
+      "2026-09", "2026-10", "2026-11", "2026-12", "2027-01", "2027-02",
+    ]);
+  });
+  it("ikColumn: Rol Kodu=0, Rol Adı=1, Kademe=5, netMaaş=8", () => {
+    expect(ikColumn("kod")).toBe(0);
+    expect(ikColumn("ad")).toBe(1);
+    expect(ikColumn("kademe")).toBe(5);
+    expect(ikColumn("net")).toBe(8);
   });
 });
 
-describe("buildRoadmap — nokta değerleri sheet'ten okunur", () => {
-  it("6 ay noktası (Tem 26 → Ara 26)", () => expect(M.points.length).toBe(6));
-  it("aylık pazarlama Eyl 26 = 207.000", () => expect(at("2026-09").pazAy).toBe(207000));
-  it("aylık gelir Ara 26 = 905.080", () => expect(at("2026-12").gelirAy).toBe(905080));
-  it("ilan Kas 26 = 32", () => expect(at("2026-11").ilan).toBe(32));
-  it("SOM Ara 26 = %2,8", () => expect(at("2026-12").somPct).toBeCloseTo(2.8, 6));
+// ─── İşe alım türetimi: ilk TRUE = katıldığı ay ────────────────────────────
+describe("hiresByMonth — bir rol ilk TRUE olduğu ay 'katıldı'", () => {
+  const byM = hiresByMonth(grid);
+  const on = (ym: string) => byM.get(ym) ?? [];
+  const codes = (ym: string) => on(ym).map((h) => h.kod);
+
+  it("R-CPO Eyl 2026'da katılır (kuruluş çekirdek ekip)", () => {
+    expect(codes("2026-09")).toContain("R-CPO");
+  });
+  it("Eyl 2026 çekirdek ekip = R-CPO + R-PO (col9 TRUE)", () => {
+    expect(codes("2026-09").sort()).toEqual(["R-CPO", "R-PO"]);
+  });
+  it("R-DEV1 Eki 2026'da katılır (col10 ilk TRUE)", () => {
+    expect(codes("2026-10")).toEqual(["R-DEV1"]);
+  });
+  it("R-QA Kas 2026, R-CS1 Ara 2026", () => {
+    expect(codes("2026-11")).toEqual(["R-QA"]);
+    expect(codes("2026-12")).toEqual(["R-CS1"]);
+  });
+  it("R-QAX Oca 2027'de katılır (resmî lansman ayı işe alımı)", () => {
+    expect(codes("2027-01")).toEqual(["R-QAX"]);
+  });
+  it("hiç TRUE olmayan rol (R-NONE) hiçbir aya eklenmez", () => {
+    const all = [...byM.values()].flat().map((h) => h.kod);
+    expect(all).not.toContain("R-NONE");
+  });
+  it("her işe alım kaydında rol adı + kademe taşınır (para YOK)", () => {
+    const cpo = on("2026-09").find((h) => h.kod === "R-CPO")!;
+    expect(cpo.ad).toBe("CPO / Strateji");
+    expect(cpo.kademe).toBe("C-Level");
+    expect(cpo).not.toHaveProperty("maas");
+    expect(cpo).not.toHaveProperty("tl");
+    expect(cpo).not.toHaveProperty("brut");
+  });
 });
 
-describe("buildRoadmap — KÜMÜLATİF hesabı KENDİMİZ (sheet KÜMÜLATİF satırıyla MUTABIK)", () => {
-  // Kritik test: kümülatif gelir = aylık gelirin koşan toplamı; sheet'in KÜMÜLATİF GELİR satırıyla birebir.
-  it("kümülatif gelir her ay = aylık gelirin koşan toplamı", () => {
-    let run = 0;
-    for (const p of M.points) {
-      run += p.gelirAy;
-      expect(p.gelirKum).toBe(run);
+// ─── Fazlar / kilometre taşları (kod sabiti + ay eşlemesi) ─────────────────
+describe("PHASES / phaseForYm — proje fazları koda gömülü", () => {
+  it("kuruluş fazı Tem–Ağu 2026", () => {
+    expect(phaseForYm("2026-07")!.key).toBe("kurulus");
+    expect(phaseForYm("2026-08")!.key).toBe("kurulus");
+  });
+  it("çekirdek ekip / geliştirme Eyl 2026", () => {
+    expect(phaseForYm("2026-09")!.key).toBe("cekirdek");
+  });
+  it("Oca 2027 = RESMÎ LANSMAN (B2B satış başlar)", () => {
+    const ph = phaseForYm("2027-01")!;
+    expect(ph.key).toBe("lansman");
+    expect(ph.ad.toLocaleLowerCase("tr")).toContain("lansman");
+    expect((ph.ad + " " + ph.aciklama).toLocaleLowerCase("tr")).toContain("b2b");
+  });
+  it("2027 (lansman sonrası) = ölçekleme", () => {
+    expect(phaseForYm("2027-06")!.key).toBe("olcekleme");
+  });
+  it("2028+ = plateau / istikrar", () => {
+    expect(phaseForYm("2028-03")!.key).toBe("plato");
+    expect(phaseForYm("2030-01")!.key).toBe("plato");
+  });
+  it("PHASES sıralı ve her fazın açıklaması var; FİNANSAL rakam içermez", () => {
+    expect(PHASES.length).toBeGreaterThanOrEqual(5);
+    for (const p of PHASES) {
+      expect(p.aciklama.length).toBeGreaterThan(0);
+      // para/₺/gelir sızıntısı olmasın
+      expect(p.aciklama).not.toMatch(/₺|\$|gelir|pazarlama bütçe/i);
+    }
+    const keys = PHASES.map((p) => p.key);
+    expect(keys).toEqual([...keys].sort((a, b) => {
+      const ord = PHASES.find((p) => p.key === a)!.baslaYm;
+      const ord2 = PHASES.find((p) => p.key === b)!.baslaYm;
+      return ord < ord2 ? -1 : 1;
+    }));
+  });
+});
+
+// ─── buildTimeline: aylık aksiyon kartları (işe alım + faz + GTM) ──────────
+describe("buildTimeline — aylık proje aksiyon çizelgesi", () => {
+  const tl = buildTimeline(grid);
+  const month = (ym: string) => tl.months.find((m) => m.ym === ym);
+
+  it("her ayın işe alımı sheet'ten gelir; Eyl 2026 çekirdek ekibi", () => {
+    const m = month("2026-09")!;
+    expect(m.hires.map((h) => h.kod).sort()).toEqual(["R-CPO", "R-PO"]);
+    expect(m.phase!.key).toBe("cekirdek");
+  });
+  it("Oca 2027 ayı resmî lansman fazı + o ay işe alınan R-QAX", () => {
+    const m = month("2027-01")!;
+    expect(m.phase!.key).toBe("lansman");
+    expect(m.hires.map((h) => h.kod)).toContain("R-QAX");
+  });
+  it("GTM aksiyonları lansman civarı aylara yerleşir (Ege yıldız ilçeleri)", () => {
+    const gtmMonths = tl.months.filter((m) => m.gtm.length > 0).map((m) => m.ym);
+    // en az bir GTM ayı resmî lansman (2027-01) veya komşusu olmalı
+    expect(gtmMonths.length).toBeGreaterThan(0);
+    const allGtm = tl.months.flatMap((m) => m.gtm).join(" ").toLocaleLowerCase("tr");
+    expect(allGtm).toMatch(/bodrum|çeşme|urla|didim|kuşadası/);
+    expect(allGtm).toMatch(/saha/); // araçlı saha keşif / saha satış
+  });
+  it("kuruluş ayları (Tem–Ağu 2026) işe alım yoksa da faz kartı olarak görünür", () => {
+    // Timeline kuruluştan başlar; Tem/Ağu 2026 fazlı ama işe-alımsız olabilir
+    expect(month("2026-07")).toBeTruthy();
+    expect(month("2026-07")!.phase!.key).toBe("kurulus");
+  });
+  it("kartlar zigzag için index taşır (0-based; çift=sol, tek=sağ)", () => {
+    tl.months.forEach((m, i) => expect(m.index).toBe(i));
+    // side yardımcı: çift index sol, tek sağ
+    expect(tl.months[0].side).toBe("left");
+    expect(tl.months[1].side).toBe("right");
+    expect(tl.months[2].side).toBe("left");
+  });
+  it("timeline yalnız içerikli ayları (faz/işe-alım/GTM) barındırır; boş ay yok", () => {
+    for (const m of tl.months) {
+      const hasContent = !!m.phase || m.hires.length > 0 || m.gtm.length > 0;
+      expect(hasContent).toBe(true);
     }
   });
-  it("son kümülatif gelir = sheet KÜMÜLATİF GELİR son değeri (1.409.045)", () => {
-    expect(M.toplamGelir).toBe(1409045);
-    expect(M.sheetGelirKumSon).toBe(1409045);
-    expect(M.toplamGelir).toBe(M.sheetGelirKumSon); // mutabakat
+  it("toplam işe alınan rol sayısı = matriste ≥1 TRUE olan rol sayısı (6)", () => {
+    const total = tl.months.reduce((s, m) => s + m.hires.length, 0);
+    expect(total).toBe(6); // R-NONE hariç 6 rol
   });
-  it("her ay kümülatif gelir = sheet KÜMÜLATİF satırı (satır satır mutabakat)", () => {
-    const sheetKum = [0, 10285, 51425, 174845, 503965, 1409045];
-    M.points.forEach((p, i) => expect(p.gelirKum).toBe(sheetKum[i]));
-  });
-  it("kümülatif pazarlama = aylık pazarlamanın koşan toplamı", () => {
-    // 88.000 + 98.000 + 207.000 + 343.000 + 391.000 + 658.000 = 1.785.000
-    expect(M.toplamPazarlama).toBe(1785000);
-    expect(at("2026-09").pazKum).toBe(88000 + 98000 + 207000);
+  it("MODELDE FİNANSAL ALAN YOK (gelir/pazarlama/kümülatif/₺)", () => {
+    const json = JSON.stringify(tl);
+    expect(json).not.toMatch(/gelirKum|pazKum|somPct|toplamGelir|toplamPazarlama/);
   });
 });
 
-describe("buildRoadmap — kilometre taşları sheet verisinden türetilir", () => {
-  it("soft-launch = ilk ilan>0 ayı (Agu 26)", () => {
-    const m = M.milestones.find((x) => x.key === "soft")!;
-    expect(m.ym).toBe("2026-08"); // ilan ilk kez 1 → Agu 26
-  });
-  it("resmî lansman = aylık gelir ilk kez ≥ 1.000.000 (6 aylık fixture'da ulaşılmaz → null)", () => {
-    const m = M.milestones.find((x) => x.key === "resmi")!;
-    expect(m.ym).toBeNull(); // Ara 26 geliri 905.080 < 1M
-  });
-  it("plateau = SOM ilk kez ≥ %15 (fixture'da yok → null)", () => {
-    const m = M.milestones.find((x) => x.key === "plateau")!;
-    expect(m.ym).toBeNull();
-  });
-  it("her kilometre taşının açıklama notu var", () => {
-    for (const m of M.milestones) expect(m.not.length).toBeGreaterThan(0);
-  });
-});
-
-describe("buildRoadmap — daha uzun seride lansman/plateau türetimi", () => {
-  // Gelir eşiği ve SOM tavanına ulaşan sentetik 3 aylık uzatma.
-  const paz2: string[][] = [
-    ["x", "Oca 27 ", "Şub 27 ", "Eki 28 "],
-    ["TOPLAM DİJİTAL PAZARLAMA", "782.000", "914.000", "2.407.895"],
-  ];
-  const gelir2: string[][] = [
-    ["x", "Oca 27 ", "Şub 27 ", "Eki 28 "],
-    ["Toplam İlan Sayısı (Arsa)", "233", "585", "5.255"],
-    ["TOPLAM AYLIK GELİR (Arsa + Emlak)", "2.396.405", "6.016.725", "67.496.491"],
-    ["KÜMÜLATİF GELİR", "2.396.405", "8.413.130", "75.909.621"],
-    ["Arsa Hedef Pazar Payı (SOM %)", "3,3%", "3,9%", "15,0%"],
-  ];
-  const M2 = buildRoadmap({ paz: paz2, gelir: gelir2 });
-  it("resmî lansman = Oca 27 (aylık gelir 2.396.405 ≥ 1M)", () => {
-    expect(M2.milestones.find((x) => x.key === "resmi")!.ym).toBe("2027-01");
-  });
-  it("plateau = Eki 28 (SOM %15)", () => {
-    expect(M2.milestones.find((x) => x.key === "plateau")!.ym).toBe("2028-10");
-  });
-  it("plateau SOM payı (max) = %15", () => expect(M2.sonSomPct).toBe(15));
-});
-
+// ─── iki-tab navigasyon (değişmeden korunur) ───────────────────────────────
 describe("iki-tab navigasyon durumu (showRoadmap / selectTab)", () => {
   it("roadmap yalnız sheetMode + roadmap sekmesinde gösterilir", () => {
     expect(showRoadmap(true, "roadmap")).toBe(true);
     expect(showRoadmap(true, "finansal")).toBe(false);
-    expect(showRoadmap(false, "roadmap")).toBe(false); // v1/v3'te tab yok
+    expect(showRoadmap(false, "roadmap")).toBe(false);
     expect(showRoadmap(false, "finansal")).toBe(false);
   });
   it("selectTab tıklanan sekmeyi aktifleştirir (idempotent)", () => {

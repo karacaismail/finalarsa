@@ -208,26 +208,77 @@ body {
   .tab { flex: none; min-height: 38px; padding: 0 20px; }
 }
 
-/* ---------- Yol Haritası sayfası ---------- */
-.rm-caption { margin: 10px 0 0; font-size: .92rem; color: var(--muted); line-height: 1.5; }
 
-.rm-miles { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-.rm-mile { display: flex; gap: 12px; align-items: flex-start; position: relative; padding-left: 4px; }
-.rm-mile::before { content: ""; position: absolute; left: 43px; top: 34px; bottom: -12px; width: 2px; background: var(--line); }
-.rm-mile:last-child::before { display: none; }
-.rm-badge { flex: none; min-width: 72px; min-height: 30px; display: inline-flex; align-items: center; justify-content: center; padding: 0 10px; border-radius: 999px; background: var(--grass); color: #fff; font-size: .9rem; font-weight: 700; z-index: 1; }
-.rm-mile.pending .rm-badge { background: var(--bg-2); color: var(--faint); }
-.rm-mile-txt { display: flex; flex-direction: column; gap: 3px; }
-.rm-mile-ad { font-size: 1.08rem; color: var(--grass-ink); }
-.rm-mile.pending .rm-mile-ad { color: var(--muted); }
-.rm-mile-not { font-size: .95rem; color: var(--muted); line-height: 1.45; }
-.rm-mile-warn { display: inline-flex; align-items: center; gap: 5px; font-size: .88rem; color: var(--warn); background: var(--warn-bg); padding: 4px 9px; border-radius: 8px; margin-top: 3px; align-self: flex-start; }
+/* ===========================================================================
+   Yol Haritası — zigzag dikey timeline (proje ilerleyişi; finansal veri YOK)
+   Mobil (taban): tek kolon, çizgi SOLDA, tüm kartlar alt alta.
+   Desktop (≥ 860px): ortada dikey çizgi; kartlar sırayla SAĞ-SOL alternatif.
+   =========================================================================== */
+.tl-intro { margin: 0 0 12px; font-size: 1rem; color: var(--muted); line-height: 1.55; }
+.tl-intro b { color: var(--grass-ink); font-weight: 600; }
 
-/* yıllık ilerleyiş tablosu (mobil: yatay kaydırma) */
-.rm-table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.rm-tr { display: grid; grid-template-columns: 56px minmax(120px, 1.2fr) minmax(120px, 1.2fr) minmax(80px, .8fr) 64px; gap: 10px; align-items: center; min-height: 44px; padding: 8px 2px; border-bottom: 1px solid var(--line-2); font-size: 1rem; white-space: nowrap; }
-.rm-tr span:not(.rm-y) { text-align: right; justify-self: end; }
-.rm-th { font-size: .88rem; font-weight: 700; color: var(--muted); border-bottom: 2px solid var(--line); position: sticky; top: 0; }
-.rm-th span:not(.rm-y) { text-align: right; }
-.rm-y { font-weight: 700; color: var(--grass-ink); }
-.rm-tr .num b { color: var(--grass-ink); }
+.tl-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 18px; padding: 10px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px; }
+.tl-leg { display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; color: var(--muted); }
+.tl-leg svg { color: var(--grass); }
+.tl-leg-d { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.tl-leg-d.ph { background: var(--grass); }
+
+/* ---- mobil taban: tek kolon, çizgi solda ---- */
+.tl { list-style: none; margin: 0; padding: 0; position: relative; }
+.tl::before { content: ""; position: absolute; left: 15px; top: 6px; bottom: 6px; width: 2px; background: var(--line); border-radius: 2px; }
+.tl-item { position: relative; padding: 0 0 18px 44px; }
+.tl-item:last-child { padding-bottom: 0; }
+
+.tl-node { position: absolute; left: 6px; top: 4px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; z-index: 1; }
+.tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--paper); border: 3px solid var(--grass); box-shadow: 0 0 0 3px var(--bg); }
+.tl-milestone .tl-dot { background: var(--grass); width: 16px; height: 16px; }
+
+.tl-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px 16px; }
+.tl-milestone .tl-card { border-color: var(--grass); box-shadow: 0 1px 2px rgba(24,32,15,.04), 0 8px 22px rgba(47,107,52,.12); }
+
+.tl-card-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 6px; }
+.tl-month { font-size: 1.15rem; font-weight: 700; color: var(--grass-ink); letter-spacing: -.01em; }
+.tl-phase-tag { display: inline-flex; align-items: center; gap: 5px; font-size: .84rem; font-weight: 600; color: var(--grass-ink); background: var(--grass-soft); border-radius: 999px; padding: 3px 10px; }
+.tl-phase-tag svg { color: var(--grass); }
+.tl-phase-tag.on { background: var(--grass); color: #fff; }
+.tl-phase-tag.on svg { color: #fff; }
+
+.tl-phase-desc { margin: 0 0 10px; font-size: .95rem; color: var(--muted); line-height: 1.5; }
+
+.tl-sec { margin-top: 10px; }
+.tl-sec:first-of-type { margin-top: 4px; }
+.tl-sec-h { display: inline-flex; align-items: center; gap: 6px; font-size: .82rem; font-weight: 700; letter-spacing: .01em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.tl-sec-h svg { color: var(--grass); }
+
+.tl-hires { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.tl-hire { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 6px 10px; background: var(--grass-soft); border-radius: 10px; }
+.tl-hire-ad { font-size: .98rem; color: var(--ink); font-weight: 500; }
+.tl-hire-tag { flex: none; font-size: .78rem; font-weight: 600; color: var(--grass-ink); background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; }
+
+.tl-sec-gtm .tl-sec-h { color: #8a6508; }
+.tl-sec-gtm .tl-sec-h svg { color: #b8860b; }
+.tl-gtm { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 5px; }
+.tl-gtm li { font-size: .95rem; color: var(--ink); line-height: 1.45; }
+.tl-gtm li::marker { color: #b8860b; }
+
+/* ---- desktop: gerçek zigzag (orta çizgi, sağ-sol alternatif) ---- */
+@media (min-width: 860px) {
+  .tl::before { left: 50%; transform: translateX(-50%); }
+  .tl-item { padding: 0 0 26px 0; width: 50%; box-sizing: border-box; }
+  .tl-item:last-child { padding-bottom: 0; }
+
+  .tl-node { left: auto; }
+  /* sol kart: sol yarıda, düğüm sağ kenarda; ok sağa bakar */
+  .tl-left { left: 0; padding-right: 40px; text-align: left; }
+  .tl-left .tl-node { right: -10px; left: auto; top: 6px; }
+  .tl-left .tl-card { position: relative; }
+  .tl-left .tl-card::after { content: ""; position: absolute; right: -8px; top: 12px; width: 14px; height: 14px; background: var(--paper); border-right: 1px solid var(--line); border-top: 1px solid var(--line); transform: rotate(45deg); }
+  .tl-left.tl-milestone .tl-card::after { border-color: var(--grass); }
+
+  /* sağ kart: sağ yarıya kaydır, düğüm sol kenarda; ok sola bakar */
+  .tl-right { left: 50%; padding-left: 40px; }
+  .tl-right .tl-node { left: -10px; top: 6px; }
+  .tl-right .tl-card { position: relative; }
+  .tl-right .tl-card::after { content: ""; position: absolute; left: -8px; top: 12px; width: 14px; height: 14px; background: var(--paper); border-left: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); }
+  .tl-right.tl-milestone .tl-card::after { border-color: var(--grass); }
+}

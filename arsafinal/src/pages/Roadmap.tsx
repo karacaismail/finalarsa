@@ -1,170 +1,123 @@
-// Yol Haritası sayfası (v2 iki-tab navigasyonun ikinci sekmesi).
-// master_plan'ın DİJİTAL PAZARLAMA + GELİR SENARYOSU sekmelerinden (canlı gviz CSV)
-// aylık ilerleyiş zaman çizgisi + kilometre taşları türetir. Kümülatifler roadmap.ts'te
-// kendimiz hesaplanır (sheet KÜMÜLATİF satırıyla mutabık — bkz. roadmap.test.ts).
+// Yol Haritası sayfası (v2 iki-tab navigasyonun ikinci sekmesi) — YENİDEN TASARIM.
+// SADECE proje ilerleyişi: her AY bir kart, dikey zigzag timeline (sağ-sol alternatif).
+// Kart içeriği o aya ait AKSİYON/ÇIKTI'dır (işe alınan roller, faz/kilometre taşı, GTM) —
+// FİNANSAL VERİ YOK. İşe alım canlı "İK PLANI" sekmesinden türetilir (bkz. roadmap.ts).
 import { useEffect, useMemo, useState } from "react";
-import type { EChartsOption } from "echarts";
-import { EChart } from "../components/Chart";
-import { NumView, Svg, Icon } from "../components/num";
-import { fetchRoadmapTabs, buildRoadmap } from "../lib/roadmap";
-import type { RoadmapModel } from "../lib/roadmap";
+import { Svg, Icon } from "../components/num";
+import { fetchIkGrid, buildTimeline } from "../lib/roadmap";
+import type { RoadmapTimeline, TimelineMonth } from "../lib/roadmap";
 
-// TR ay etiketi "2026-07" → "Tem 26"
-const AY_KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
-const ymLabel = (ym: string) => { const [y, m] = ym.split("-").map(Number); return `${AY_KISA[m - 1]} ${String(y).slice(2)}`; };
+// Ek SVG ikonları (num.tsx Icon dilini genişletir; emoji YOK).
+const ICO = {
+  team: "M164.47 195.63a8 8 0 0 1-6.7 12.37H10.23a8 8 0 0 1-6.7-12.37 95.83 95.83 0 0 1 47.22-37.71 60 60 0 1 1 66.5 0 95.83 95.83 0 0 1 47.22 37.71M252.47 195.63A95.83 95.83 0 0 0 205.25 157.92a60 60 0 0 0-38.83-107.4 8 8 0 0 0 0 16 44 44 0 0 1 0 88 8 8 0 0 0 0 16 44.24 44.24 0 0 1 30.48 76.51 8 8 0 0 0 5.55 13.78h32a8 8 0 0 0 6.7-12.37Z",
+  flag: "M42.76 50.79A8 8 0 0 0 40 56.79V216a8 8 0 0 0 16 0v-48.9c26.78-16.42 48.65-9.86 74.15-2.24 16.5 4.93 34.79 10.4 54 10.4 15.29 0 31.22-3.47 47.14-13.79A8 8 0 0 0 240 168V56a8 8 0 0 0-12.6-6.54c-27.72 19.4-52.34 12-80.85 3.47C122.5 45.68 92.63 36.75 56 60.14V56.79a8 8 0 0 0-13.24-6Z",
+  pin: "M128 16a88.1 88.1 0 0 0-88 88c0 75.3 80 132.17 83.41 134.55a8 8 0 0 0 9.18 0C136 236.17 216 179.3 216 104a88.1 88.1 0 0 0-88-88Zm0 56a32 32 0 1 1-32 32 32 32 0 0 1 32-32Z",
+  build: "M226.76 69a8 8 0 0 0-12.84-2.08l-19 19-3.36-16.72 19-19a8 8 0 0 0-2.08-12.84c-24.61-14-58.63-9.09-77.87 10.16-16.46 16.46-21.86 41.68-15.05 68.55L36.83 187a24 24 0 0 0 33.94 33.94l71.12-71.12c26.87 6.81 52.09 1.41 68.55-15.05C229.85 115.28 234.79 91.42 226.76 69Z",
+} as const;
 
-// Büyük ₺ değeri için kısa gösterim (eksen/tooltip): 1.409.045 → "1,4M"
-const kisaTL = (v: number) =>
-  Math.abs(v) >= 1e9 ? (v / 1e9).toLocaleString("tr-TR", { maximumFractionDigits: 2 }) + " Mr"
-  : Math.abs(v) >= 1e6 ? (v / 1e6).toLocaleString("tr-TR", { maximumFractionDigits: 1 }) + "M"
-  : (v / 1e3).toLocaleString("tr-TR", { maximumFractionDigits: 0 }) + "B";
-
-export function RoadmapPage({ conv, sym }: { conv: (tl: number) => number; sym: string }) {
-  const [tabs, setTabs] = useState<RoadmapModel | null>(null);
+export function RoadmapPage() {
+  const [model, setModel] = useState<RoadmapTimeline | null>(null);
   const [status, setStatus] = useState<"loading" | "ok" | "error">("loading");
 
   useEffect(() => {
     let alive = true;
     setStatus("loading");
-    fetchRoadmapTabs()
-      .then((t) => { if (alive) { setTabs(buildRoadmap(t)); setStatus("ok"); } })
+    fetchIkGrid()
+      .then((grid) => { if (alive) { setModel(buildTimeline(grid)); setStatus("ok"); } })
       .catch(() => { if (alive) setStatus("error"); });
     return () => { alive = false; };
   }, []);
 
-  // Kümülatif pazarlama harcaması + kümülatif gelir çift eksenli zaman çizgisi.
-  const chart: EChartsOption | null = useMemo(() => {
-    if (!tabs) return null;
-    const p = tabs.points;
-    return {
-      grid: { left: 58, right: 58, top: 28, bottom: 64 },
-      tooltip: {
-        trigger: "axis",
-        formatter: (params: any) => {
-          const arr = Array.isArray(params) ? params : [params];
-          const head = arr.length ? (arr[0].axisValueLabel ?? arr[0].axisValue) : "";
-          const satir = arr.map((s: any) =>
-            `${s.marker}${s.seriesName}: <b>${Math.round(Number(s.value)).toLocaleString("tr-TR")} ${sym}</b>`);
-          return [head, ...satir].join("<br>");
-        },
-      },
-      legend: { top: 0, type: "scroll", textStyle: { fontSize: 12 } },
-      xAxis: { type: "category", data: p.map((x) => x.label), axisLabel: { rotate: 48, fontSize: 10, interval: p.length > 24 ? 2 : 0 } },
-      yAxis: [
-        { type: "value", name: "Gelir", nameTextStyle: { fontSize: 10 }, position: "left", axisLabel: { fontSize: 10, formatter: (v: number) => kisaTL(v) } },
-        { type: "value", name: "Pazarlama", nameTextStyle: { fontSize: 10 }, position: "right", axisLabel: { fontSize: 10, formatter: (v: number) => kisaTL(v) } },
-      ],
-      series: [
-        { name: "Kümülatif gelir", type: "line", yAxisIndex: 0, smooth: true, showSymbol: false, color: "#2f6b34", areaStyle: { opacity: 0.12 }, lineStyle: { width: 2.5 }, data: p.map((x) => Math.round(conv(x.gelirKum))) },
-        { name: "Kümülatif pazarlama", type: "line", yAxisIndex: 1, smooth: true, showSymbol: false, color: "#be123c", lineStyle: { width: 2, type: "dashed" }, data: p.map((x) => Math.round(conv(x.pazKum))) },
-      ],
-    };
-  }, [tabs, sym, conv]);
+  const donemAd = useMemo(() => {
+    if (!model || !model.ilkYm || !model.sonYm) return "";
+    const lab = (ym: string) => { const [y, m] = ym.split("-").map(Number); return `${["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"][m-1]} ${String(y).slice(2)}`; };
+    return `${lab(model.ilkYm)} → ${lab(model.sonYm)} · ${model.toplamRol} rol`;
+  }, [model]);
 
   if (status === "loading")
     return <div className="sheet-flag loading" style={{ marginTop: 8 }}>Yol haritası verileri yükleniyor…</div>;
-  if (status === "error" || !tabs)
-    return <div className="sheet-flag error" style={{ marginTop: 8 }}>Yol haritası okunamadı — master_plan sekmelerine (DİJİTAL PAZARLAMA / GELİR SENARYOSU) erişilemedi.</div>;
-
-  const p = tabs.points;
-  const ilk = p[0], son = p[p.length - 1];
-  const donemAd = ilk && son ? `${ymLabel(ilk.ym)} → ${ymLabel(son.ym)} · ${p.length} ay` : "";
-  // Kümülatif gelir kümülatif pazarlamayı ilk kez aşan ay (kabaca geri-ödeme / break-even eşiği).
-  const breakEven = p.find((x) => x.gelirKum >= x.pazKum && x.gelirKum > 0);
+  if (status === "error" || !model)
+    return <div className="sheet-flag error" style={{ marginTop: 8 }}>Yol haritası okunamadı — master_plan &quot;İK PLANI&quot; sekmesine erişilemedi.</div>;
 
   return (
     <>
       <div className="sheet-flag ok" style={{ marginTop: 8 }}>
-        Canlı master_plan bağlı — yol haritası GELİR SENARYOSU + DİJİTAL PAZARLAMA sekmelerinden türetildi · {donemAd}
+        Canlı master_plan bağlı — yol haritası &quot;İK PLANI&quot; sekmesinden türetildi (işe alım = rolün ilk aktif ayı) · {donemAd}
       </div>
 
-      <section className="cards cards4">
-        <RCard k="Kümülatif gelir (dönem sonu)" n={conv(tabs.toplamGelir)} sym={sym} accent />
-        <RCard k="Kümülatif pazarlama (dönem sonu)" n={conv(tabs.toplamPazarlama)} sym={sym} />
-        <RCard k="Hedef pazar payı (SOM tavanı)" pct={tabs.sonSomPct} />
-        <RCard k="Gelir/pazarlama oranı" ratio={tabs.toplamPazarlama > 0 ? tabs.toplamGelir / tabs.toplamPazarlama : 0} />
-      </section>
-
-      <section className="block chartblock">
-        <h2>Kümülatif ilerleyiş — gelir vs. pazarlama</h2>
-        {chart && <EChart option={chart} height={320} />}
-        <p className="rm-caption">
-          Kümülatif değerler aylık satırların koşan toplamıdır ve sheet&apos;in KÜMÜLATİF GELİR satırıyla mutabıktır.
-          {breakEven ? ` Kümülatif gelir, kümülatif pazarlamayı ${ymLabel(breakEven.ym)} ayında aşar.` : ""}
-        </p>
-      </section>
-
       <section className="block">
-        <h2>Kilometre taşları</h2>
-        <ol className="rm-miles">
-          {tabs.milestones.map((m) => (
-            <li key={m.key} className={"rm-mile" + (m.ym ? "" : " pending")}>
-              <span className="rm-badge">{m.label ?? "—"}</span>
-              <span className="rm-mile-txt">
-                <b className="rm-mile-ad">{m.ad}</b>
-                <span className="rm-mile-not">{m.not}</span>
-                {!m.ym && <span className="rm-mile-warn"><Svg d={Icon.info} size={13} /> Bu eşiğe seçili veri aralığında ulaşılmadı.</span>}
-              </span>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="block">
-        <h2>Yıllık ilerleyiş özeti</h2>
-        <YearTable model={tabs} conv={conv} sym={sym} />
-        <p className="rm-caption">
-          Varsayım: kilometre taşları sheet&apos;in ilan/gelir/pay eşiklerinden türetilir (resmî lansman = aylık gelir ≥ 1M ₺; plateau = SOM %15 tavanı).
-          Emlak geliri sheet&apos;te arsanın 1/10 çarpanı olarak modellenmiştir; gelir toplamı arsa + emlak birleşiğidir.
+        <h2>Proje yol haritası — aylık ilerleyiş</h2>
+        <p className="tl-intro">
+          Aşağıdaki zaman çizelgesi <b>ne yaptığınızın karşılığında ne aldığınızı</b> gösterir: her ay hangi ekibin
+          kurulduğu, projenin hangi aşamaya (kuruluş → soft-launch → resmî lansman → ölçekleme → istikrar) geldiği ve
+          saha satış aksiyonları. Finansal rakamlar Finansal Plan sekmesindedir.
         </p>
+        <Legend />
+        <Timeline months={model.months} />
       </section>
     </>
   );
 }
 
-// Yıl bazında son ayın kümülatiflerini + o yılın SOM tavanını göster (kompakt tablo).
-function YearTable({ model, conv, sym }: { model: RoadmapModel; conv: (tl: number) => number; sym: string }) {
-  const byYear = new Map<string, { gelirKum: number; pazKum: number; som: number; ilan: number }>();
-  for (const pt of model.points) {
-    const y = pt.ym.slice(0, 4);
-    // Her yıl için o yılın SON ayının kümülatif değerleri (map sırayla üzerine yazar) + max SOM/ilan.
-    const cur = byYear.get(y) ?? { gelirKum: 0, pazKum: 0, som: 0, ilan: 0 };
-    byYear.set(y, {
-      gelirKum: pt.gelirKum,
-      pazKum: pt.pazKum,
-      som: Math.max(cur.som, pt.somPct),
-      ilan: Math.max(cur.ilan, pt.ilan),
-    });
-  }
-  const rows = [...byYear.entries()];
+// Zigzag dikey timeline: ortada çizgi + ay düğümü, kartlar sırayla sol/sağ.
+function Timeline({ months }: { months: TimelineMonth[] }) {
   return (
-    <div className="rm-table">
-      <div className="rm-tr rm-th">
-        <span>Yıl</span><span>Kümülatif gelir</span><span>Kümülatif pazarlama</span><span>İlan (Arsa)</span><span>SOM %</span>
-      </div>
-      {rows.map(([y, v]) => (
-        <div className="rm-tr" key={y}>
-          <span className="rm-y">{y}</span>
-          <span><NumView n={conv(v.gelirKum)} sym={sym} /></span>
-          <span><NumView n={conv(v.pazKum)} sym={sym} /></span>
-          <span>{Math.round(v.ilan).toLocaleString("tr-TR")}</span>
-          <span>%{v.som.toLocaleString("tr-TR", { maximumFractionDigits: 1 })}</span>
-        </div>
+    <ol className="tl">
+      {months.map((m) => (
+        <li key={m.ym} className={"tl-item tl-" + m.side + (m.phaseStart ? " tl-milestone" : "")}>
+          <div className="tl-node" aria-hidden="true">
+            <span className="tl-dot" />
+          </div>
+          <div className="tl-card">
+            <div className="tl-card-head">
+              <span className="tl-month">{m.label}</span>
+              {m.phase && (
+                <span className={"tl-phase-tag" + (m.phase.vurgu ? " on" : "")}>
+                  <Svg d={m.phase.vurgu ? ICO.flag : Icon.info} size={13} />
+                  {m.phase.ad}
+                </span>
+              )}
+            </div>
+
+            {m.phase && <p className="tl-phase-desc">{m.phase.aciklama}</p>}
+
+            {m.hires.length > 0 && (
+              <div className="tl-sec">
+                <div className="tl-sec-h"><Svg d={ICO.team} size={14} /> Bu ay ekibe katılan roller ({m.hires.length})</div>
+                <ul className="tl-hires">
+                  {m.hires.map((h) => (
+                    <li key={h.kod} className="tl-hire">
+                      <span className="tl-hire-ad">{h.ad}</span>
+                      {h.kademe && <span className="tl-hire-tag">{h.kademe}</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {m.gtm.length > 0 && (
+              <div className="tl-sec tl-sec-gtm">
+                <div className="tl-sec-h"><Svg d={ICO.pin} size={14} /> Saha & pazara giriş (GTM)</div>
+                <ul className="tl-gtm">
+                  {m.gtm.map((g, i) => <li key={i}>{g}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        </li>
       ))}
-    </div>
+    </ol>
   );
 }
 
-// Kart: ya para (n+sym), ya yüzde (pct), ya oran (ratio "×").
-function RCard({ k, n, sym, accent, pct, ratio }: { k: string; n?: number; sym?: string; accent?: boolean; pct?: number; ratio?: number }) {
+// Kısa gösterim açıklaması (renk/ikon anlamı).
+function Legend() {
   return (
-    <div className={"card" + (accent ? " accent" : "")}>
-      <div className="k">{k}</div>
-      <div className="v">
-        {pct !== undefined ? <span>%{pct.toLocaleString("tr-TR", { maximumFractionDigits: 1 })}</span>
-          : ratio !== undefined ? <span>{ratio.toLocaleString("tr-TR", { maximumFractionDigits: 1 })}×</span>
-          : <NumView n={n ?? 0} sym={sym} />}
-      </div>
+    <div className="tl-legend">
+      <span className="tl-leg"><i className="tl-leg-d ph" /> Faz / kilometre taşı</span>
+      <span className="tl-leg"><Svg d={ICO.team} size={13} /> İşe alım (İK planı)</span>
+      <span className="tl-leg"><Svg d={ICO.pin} size={13} /> Saha satış / GTM</span>
+      <span className="tl-leg"><Svg d={ICO.flag} size={13} /> Resmî lansman</span>
     </div>
   );
 }

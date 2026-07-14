@@ -1,209 +1,259 @@
-// Yol Haritası adaptörü — master_plan'ın "DİJİTAL PAZARLAMA" ve "GELİR SENARYOSU"
-// sekmelerini (public, gviz CSV) okuyup proje yol haritası verisine çevirir.
-// SAF fonksiyonlar: fetch → parse → türet. Kümülatif toplamlar KENDİMİZ hesaplanır
-// ve sheet'in KÜMÜLATİF satırıyla mutabakat testinden geçer (roadmap.test.ts).
+// Yol Haritası adaptörü (v2) — YENİDEN TASARIM.
+// SADECE proje ilerleyişi (aksiyon/çıktı) türetir; FİNANSAL VERİ İÇERMEZ.
+// Kaynak: master_plan "İK PLANI" sekmesi (canlı gviz CSV). Bir rolün aylık TRUE/FALSE
+// matrisinde İLK TRUE olduğu ay = o rolün ekibe "katıldığı" ay. Fazlar ve GTM aksiyonları
+// proje mantığından sabit tanımlı (baraj: koda gömülü + doğru ay eşlemesi). Bkz. roadmap.test.ts.
 //
-// Kaynak satırlar:
-//   DİJİTAL PAZARLAMA → "TOPLAM DİJİTAL PAZARLAMA" (aylık pazarlama bütçesi)
-//   GELİR SENARYOSU   → "TOPLAM AYLIK GELİR (Arsa + Emlak)" (aylık gelir),
-//                       "KÜMÜLATİF GELİR" (mutabakat referansı),
-//                       "Toplam İlan Sayısı (Arsa)" (kilometre taşı eşiği),
-//                       "Arsa Hedef Pazar Payı (SOM %)" (pay hedefi).
-import { parseCsv, mpNum, MP_SHEET_ID } from "./masterplan";
+// İK PLANI sekme yapısı (gviz CSV, 0-index):
+//   satır 0: başlık · satır 1: "Aylık Net Maaş tutarı" · satır 2: kolon başlıkları
+//   A/0 Rol Kodu · B/1 Rol Adı · C/2 Job Family · F/5 Kademe · G/6 Ünvan · H/7 Aday · I/8 net maaş
+//   J/9'dan itibaren aylık TRUE/FALSE matrisi. Sheet'te J+ başlıkları BOŞ → ay ekseni POZİSYONEL.
+import { parseCsv, MP_SHEET_ID } from "./masterplan";
 
 const gvizUrl = (name: string) =>
   `https://docs.google.com/spreadsheets/d/${MP_SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(name)}`;
 
-// TR diakritik sadeleştirme (masterplan.ts ile aynı kural; sheet "Agu"/"Sub" yazar).
+const AY_KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+const AY_NRM = ["oca", "sub", "mar", "nis", "may", "haz", "tem", "agu", "eyl", "eki", "kas", "ara"];
+
+// TR diakritik sadeleştirme (masterplan.ts ile aynı kural).
 const nrm = (s: string) =>
   (s || "").trim().toLocaleLowerCase("tr")
     .replace(/ğ/g, "g").replace(/ş/g, "s").replace(/ı/g, "i").replace(/i̇/g, "i")
     .replace(/ü/g, "u").replace(/ö/g, "o").replace(/ç/g, "c");
 
-const AY_NRM = ["oca", "sub", "mar", "nis", "may", "haz", "tem", "agu", "eyl", "eki", "kas", "ara"];
-const AY_KISA = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
+export type IkGrid = string[][];
 
-// Yüzde metnini sayıya çevir: "15,0%" → 15, "0,6%" → 0.6, "" → 0.
-export function mpPct(s: string): number {
-  const t = (s || "").replace(/[^\d,.-]/g, "").replace(/\./g, "").replace(",", ".");
-  const n = Number(t);
-  return isNaN(n) ? 0 : n;
+// ── Sabit ay ekseni bağlantısı ──────────────────────────────────────────────
+// İK PLANI matrisi J sütunundan (index 9) başlar ve o sütun Eyl 2026'ya (2026-09) denk gelir.
+// (roles.ts istihdamYm ile mutabık: R-CPO=2026-09, ilk TRUE'su col9.) Sheet başlık satırında
+// ay adı yoksa POZİSYONEL eksen kullanılır; bir gün başlık ay adı taşırsa monthAxis onu tercih eder.
+export const IK_ANCHOR_COL = 9;
+export const IK_ANCHOR_YM = "2026-09";
+const [ANCHOR_Y, ANCHOR_M] = IK_ANCHOR_YM.split("-").map(Number); // 2026, 9
+
+// "2026-09" → "Eyl 26"
+export function ymLabel(ym: string): string {
+  const [y, m] = ym.split("-").map(Number);
+  return `${AY_KISA[m - 1]} ${String(y).slice(2)}`;
+}
+// (yıl, ay0-based) ekle: anchor + offset ay → "YYYY-MM"
+function ymFromOffset(offset: number): string {
+  const total = (ANCHOR_Y * 12 + (ANCHOR_M - 1)) + offset;
+  const y = Math.floor(total / 12);
+  const m = (total % 12) + 1;
+  return `${y}-${String(m).padStart(2, "0")}`;
 }
 
-// Ay başlık satırından ym listesi çıkar: header[j] "Tem 26" → { ym:"2026-07", col:j }.
-// Yalnız ay-formatlı sütunlar döner (baştaki başlık hücresi ve boş kuyruk elenir).
+// İK PLANI'ndaki sabit kolon indeksleri (metin başlığından bağımsız, konumsal).
+const IK_COLS = { kod: 0, ad: 1, jobFamily: 2, kademe: 5, unvan: 6, aday: 7, net: 8 } as const;
+export function ikColumn(which: keyof typeof IK_COLS): number { return IK_COLS[which]; }
+
 export interface AyKolon { ym: string; col: number; label: string; }
-export function monthColumns(header: string[]): AyKolon[] {
-  const out: AyKolon[] = [];
+
+// Ay eksenini kur. Öncelik: başlık satırında (satır 2) ay-formatlı hücre varsa onu kullan.
+// Aksi halde POZİSYONEL: J sütunundan (IK_ANCHOR_COL) matris genişliğince, col9 = anchor ay.
+export function monthAxis(grid: IkGrid): AyKolon[] {
+  const header = grid[2] || [];
+  // 1) Başlıkta ay adı var mı? ("Eyl 26" gibi) — varsa ADIYLA eşle.
+  const labelled: AyKolon[] = [];
   header.forEach((cell, j) => {
+    if (j < IK_ANCHOR_COL) return;
     const m = nrm(cell).match(/^([a-z]{3})\s*(\d{2})$/);
     if (!m) return;
     const mi = AY_NRM.indexOf(m[1]);
     if (mi < 0) return;
     const y = 2000 + Number(m[2]);
-    out.push({ ym: `${y}-${String(mi + 1).padStart(2, "0")}`, col: j, label: `${AY_KISA[mi]} ${m[2]}` });
+    labelled.push({ ym: `${y}-${String(mi + 1).padStart(2, "0")}`, col: j, label: `${AY_KISA[mi]} ${m[2]}` });
   });
+  if (labelled.length) return labelled;
+
+  // 2) Pozisyonel: matris genişliğini rol satırlarından (satır 3+) sapta.
+  let maxCol = IK_ANCHOR_COL - 1;
+  for (let r = 3; r < grid.length; r++) {
+    const row = grid[r];
+    if (!row || !(row[IK_COLS.kod] || "").trim()) continue;
+    for (let j = row.length - 1; j >= IK_ANCHOR_COL; j--) {
+      const v = (row[j] || "").trim().toUpperCase();
+      if (v === "TRUE" || v === "FALSE") { if (j > maxCol) maxCol = j; break; }
+    }
+  }
+  const out: AyKolon[] = [];
+  for (let j = IK_ANCHOR_COL; j <= maxCol; j++) {
+    const ym = ymFromOffset(j - IK_ANCHOR_COL);
+    out.push({ ym, col: j, label: ymLabel(ym) });
+  }
   return out;
 }
 
-// Etiketi içeren ilk satırı bul (toleranslı; nrm ile).
-function findRow(grid: string[][], labelIncludes: string): string[] | undefined {
-  const key = nrm(labelIncludes);
-  return grid.find((r) => nrm(r[0] || "").includes(key));
+// Bir işe alım kaydı — SADECE kimlik/rol bilgisi (PARA YOK).
+export interface Hire { kod: string; ad: string; kademe: string; jobFamily: string; }
+
+const isTrue = (s: string) => (s || "").trim().toUpperCase() === "TRUE";
+
+// Her ay için o ay İLK KEZ TRUE olan (ekibe yeni katılan) rollerin listesi.
+export function hiresByMonth(grid: IkGrid): Map<string, Hire[]> {
+  const axis = monthAxis(grid);
+  const colToYm = new Map(axis.map((a) => [a.col, a.ym]));
+  const byMonth = new Map<string, Hire[]>();
+  for (let r = 3; r < grid.length; r++) {
+    const row = grid[r];
+    const kod = (row?.[IK_COLS.kod] || "").trim();
+    if (!kod) continue;
+    // İlk TRUE olan ay kolonunu bul (eksen sırasıyla).
+    let firstCol = -1;
+    for (const a of axis) { if (isTrue(row[a.col])) { firstCol = a.col; break; } }
+    if (firstCol < 0) continue; // hiç TRUE yok → hiçbir aya katılmaz
+    const ym = colToYm.get(firstCol)!;
+    const hire: Hire = {
+      kod,
+      ad: (row[IK_COLS.ad] || "").trim() || kod,
+      kademe: (row[IK_COLS.kademe] || "").trim(),
+      jobFamily: (row[IK_COLS.jobFamily] || "").trim(),
+    };
+    const arr = byMonth.get(ym) ?? [];
+    arr.push(hire);
+    byMonth.set(ym, arr);
+  }
+  return byMonth;
 }
 
-export interface RoadmapTabs { paz: string[][]; gelir: string[][]; }
-
-export async function fetchRoadmapTabs(): Promise<RoadmapTabs> {
-  const get = (name: string) => fetch(gvizUrl(name), { cache: "no-store" }).then((r) => r.text()).then(parseCsv);
-  const [paz, gelir] = await Promise.all([get("DİJİTAL PAZARLAMA"), get("GELİR SENARYOSU")]);
-  return { paz, gelir };
-}
-
-// Bir aylık nokta: pazarlama + gelir (aylık ve kümülatif) + ilan + SOM pay.
-export interface RoadmapPoint {
-  ym: string;             // "2026-07"
-  label: string;          // "Tem 26"
-  pazAy: number;          // aylık pazarlama bütçesi (₺)
-  pazKum: number;         // kümülatif pazarlama (₺) — kendimiz hesapladık
-  gelirAy: number;        // aylık gelir (₺)
-  gelirKum: number;       // kümülatif gelir (₺) — kendimiz hesapladık
-  ilan: number;           // Toplam İlan Sayısı (Arsa)
-  somPct: number;         // Arsa Hedef Pazar Payı (SOM %) — 0..100
-}
-
-// Kilometre taşı: sheet verisinden türetilen bir eşiğe İLK ulaşılan ay.
-export interface Milestone {
+// ── Proje fazları (koda gömülü sabit + ay eşlemesi) ─────────────────────────
+// FİNANSAL RAKAM İÇERMEZ. Her faz bir başlangıç ayından (baslaYm) başlar; bir ay,
+// başlangıcı kendisinden küçük/eşit son faza aittir (phaseForYm).
+export interface Phase {
   key: string;
-  ad: string;             // kısa başlık
-  ym: string | null;      // ulaşıldığı ay (null = veri içinde ulaşılamadı)
-  label: string | null;
-  not: string;            // eşiğin nasıl türetildiği / varsayım notu
+  ad: string;
+  aciklama: string;
+  baslaYm: string;    // fazın başladığı ay (dahil)
+  vurgu?: boolean;    // öne çıkan kilometre taşı (resmî lansman)
+}
+export const PHASES: Phase[] = [
+  {
+    key: "kurulus", ad: "Kuruluş", baslaYm: "2026-07",
+    aciklama: "Şirket kuruluşu, ofis kurulumu, çekirdek ekip toplama ve yazılım geliştirmenin başlangıcı (Tem–Ağu 2026).",
+  },
+  {
+    key: "cekirdek", ad: "Çekirdek ekip & ürün geliştirme", baslaYm: "2026-09",
+    aciklama: "İlk kilit roller işe alınır (strateji, ürün, mühendislik, tasarım); platformun MVP geliştirmesi tam hızda ilerler.",
+  },
+  {
+    key: "soft", ad: "Soft-launch (2026 H2)", baslaYm: "2026-11",
+    aciklama: "Kapalı/sınırlı yayına alma: ilk ilanlar, erken kullanıcı geri bildirimi ve platform doğrulaması. Ekip mühendislik ve operasyonla genişler.",
+  },
+  {
+    key: "lansman", ad: "Resmî Lansman — B2B satış başlar", baslaYm: "2027-01", vurgu: true,
+    aciklama: "Platform kamuya açık resmî lansmana geçer; B2B satış motoru devreye girer. Satış, growth ve müşteri operasyonları ekipleri kurulur.",
+  },
+  {
+    key: "olcekleme", ad: "Ölçekleme (2027)", baslaYm: "2027-02",
+    aciklama: "Ekip hızla büyür (mühendislik, ürün, growth, CX); ürün yetenekleri ve pazar kapsamı genişletilir, saha operasyonları ölçeklenir.",
+  },
+  {
+    key: "plato", ad: "Plateau / İstikrar (2028+)", baslaYm: "2028-01",
+    aciklama: "Organizasyon olgunlaşır; büyüme dengeli bir istikrara oturur, işe alım hızı yavaşlar, operasyonel verimlilik ve ürün derinliği önceliklenir.",
+  },
+];
+
+// Bir ym'nin ait olduğu faz: başlangıcı ≤ ym olan SON faz.
+export function phaseForYm(ym: string): Phase | null {
+  let cur: Phase | null = null;
+  for (const p of PHASES) { if (p.baslaYm <= ym) cur = p; else break; }
+  return cur;
 }
 
-export interface RoadmapModel {
-  points: RoadmapPoint[];
-  milestones: Milestone[];
-  toplamPazarlama: number;   // tüm dönem kümülatif pazarlama (son nokta)
-  toplamGelir: number;       // tüm dönem kümülatif gelir (son nokta)
-  sonSomPct: number;         // plateau SOM payı (max)
-  // Mutabakat için sheet'in KÜMÜLATİF GELİR satırının son değeri (varsa).
-  sheetGelirKumSon: number;
+// ── GTM (go-to-market) aksiyonları — sabit tanım, lansman civarı aylara ─────
+// Ege yıldız ilçeleri + araçlı saha keşif + saha satış ekipleri.
+interface GtmDef { ym: string; aksiyonlar: string[]; }
+const GTM_DEFS: GtmDef[] = [
+  {
+    ym: "2026-12", aksiyonlar: [
+      "Ege yıldız ilçeleri hedef listesi: Bodrum, Çeşme, Urla, Didim, Kuşadası.",
+      "Araçlı saha keşif ekibi hazırlığı: bölge envanteri ve arsa sahibi haritalama.",
+    ],
+  },
+  {
+    ym: "2027-01", aksiyonlar: [
+      "Bodrum & Çeşme'de saha satış ekipleri sahaya çıkar (resmî lansmanla eşzamanlı B2B satış).",
+      "Araçlı saha keşif turları başlar: yerinde arsa doğrulama ve ilan toplama.",
+    ],
+  },
+  {
+    ym: "2027-03", aksiyonlar: [
+      "Urla, Didim ve Kuşadası'na saha satış yayılımı; bölgesel emlak ofisi iş birlikleri.",
+    ],
+  },
+];
+
+// ── Aylık aksiyon çizelgesi (zigzag timeline için) ─────────────────────────
+export interface TimelineMonth {
+  ym: string;
+  label: string;         // "Eyl 26"
+  index: number;         // 0-based sıra (zigzag)
+  side: "left" | "right"; // çift index sol, tek sağ
+  phase: Phase | null;   // o ayın fazı (yalnız faz BAŞLADIĞI ayda dolu → kilometre taşı)
+  phaseStart: boolean;   // bu ay bir fazın başlangıç ayı mı
+  hires: Hire[];         // o ay ekibe katılan roller
+  gtm: string[];         // o ayın GTM aksiyonları
+}
+export interface RoadmapTimeline {
+  months: TimelineMonth[];
+  toplamRol: number;     // türetilen toplam işe alım (rol) sayısı
+  ilkYm: string | null;
+  sonYm: string | null;
 }
 
-// Eşiğe ilk ulaşan noktayı döndür (predicate true olan ilk ay).
-function firstWhere(points: RoadmapPoint[], pred: (p: RoadmapPoint) => boolean): RoadmapPoint | undefined {
-  return points.find(pred);
-}
+// SAF: İK PLANI ızgarasından aylık aksiyon çizelgesi kur.
+export function buildTimeline(grid: IkGrid): RoadmapTimeline {
+  const hires = hiresByMonth(grid);
+  const gtmByYm = new Map(GTM_DEFS.map((g) => [g.ym, g.aksiyonlar]));
 
-// SAF: sheet sekmelerinden yol haritası modelini kur. Kümülatifleri KENDİMİZ toplarız.
-export function buildRoadmap(tabs: RoadmapTabs): RoadmapModel {
-  const pHead = tabs.paz[0] || [];
-  const gHead = tabs.gelir[0] || [];
-  // Ay eksenini GELİR sekmesinden al (asıl zaman çizgisi); pazarlama aynı ay başlıklarını taşır.
-  const cols = monthColumns(gHead.length ? gHead : pHead);
+  // İçerikli tüm ayları topla: faz başlangıçları + işe-alım ayları + GTM ayları.
+  const ymSet = new Set<string>();
+  for (const p of PHASES) ymSet.add(p.baslaYm);
+  for (const ym of hires.keys()) ymSet.add(ym);
+  for (const g of GTM_DEFS) ymSet.add(g.ym);
 
-  const pazT = findRow(tabs.paz, "toplam dijital pazarlama");
-  const gelirT = findRow(tabs.gelir, "toplam aylik gelir");
-  const gelirKumRow = findRow(tabs.gelir, "kumulatif gelir");
-  const ilanRow = findRow(tabs.gelir, "toplam ilan sayisi (arsa");
-  const somRow = findRow(tabs.gelir, "arsa hedef pazar payi");
-
-  // Pazarlama sekmesinin kendi ay kolonları (başlık aynı desende ama ayrı ızgara).
-  const pCols = monthColumns(pHead);
-  const pColByYm = new Map(pCols.map((c) => [c.ym, c.col]));
-
-  let pazKum = 0, gelirKum = 0;
-  const points: RoadmapPoint[] = cols.map((c) => {
-    const pCol = pColByYm.get(c.ym);
-    const pazAy = pazT && pCol !== undefined ? mpNum(pazT[pCol]) : 0;
-    const gelirAy = gelirT ? mpNum(gelirT[c.col]) : 0;
-    pazKum += pazAy;
-    gelirKum += gelirAy;
+  const sorted = [...ymSet].sort();
+  const seenPhase = new Set<string>();
+  const months: TimelineMonth[] = sorted.map((ym, i) => {
+    const ph = phaseForYm(ym);
+    // Faz kartı YALNIZ fazın başladığı ilk görünen ayda (kilometre taşı) işaretlenir.
+    const phaseStart = !!ph && ph.baslaYm === ym && !seenPhase.has(ph.key);
+    if (phaseStart) seenPhase.add(ph!.key);
     return {
-      ym: c.ym,
-      label: c.label,
-      pazAy,
-      pazKum,
-      gelirAy,
-      gelirKum,
-      ilan: ilanRow ? mpNum(ilanRow[c.col]) : 0,
-      somPct: somRow ? mpPct(somRow[c.col]) : 0,
+      ym,
+      label: ymLabel(ym),
+      index: i,
+      side: i % 2 === 0 ? "left" : "right",
+      phase: phaseStart ? ph : null,
+      phaseStart,
+      hires: hires.get(ym) ?? [],
+      gtm: gtmByYm.get(ym) ?? [],
     };
   });
 
-  const sonSomPct = points.reduce((m, p) => Math.max(m, p.somPct), 0);
-  const sheetGelirKumSon = gelirKumRow
-    ? mpNum(gelirKumRow[cols[cols.length - 1]?.col ?? -1] ?? "")
-    : 0;
-
-  // ---- Kilometre taşları (sheet verisinden türetilir) ----
-  // Soft-launch: ilk anlamlı ilan (Arsa ilan sayısı ilk kez > 0 olan ay) — 2026 H2 minimal aktivite.
-  const soft = firstWhere(points, (p) => p.ilan > 0);
-  // Resmî lansman: aylık gelir ilk kez 1.000.000 ₺ eşiğini aşan ay (B2B satış sinyali; ~Oca 2027).
-  const resmi = firstWhere(points, (p) => p.gelirAy >= 1_000_000);
-  // Plateau: SOM payı hedef tavanına (%15) ilk ulaşan ay (2028+ istikrarlı dönem).
-  const plateau = firstWhere(points, (p) => p.somPct >= 15);
-  // Ara SOM hedefleri: %5 ve %10 paya ilk ulaşılan aylar.
-  const som5 = firstWhere(points, (p) => p.somPct >= 5);
-  const som10 = firstWhere(points, (p) => p.somPct >= 10);
-
-  const milestones: Milestone[] = [
-    {
-      key: "soft",
-      ad: "Soft-launch (2026 H2)",
-      ym: soft?.ym ?? null,
-      label: soft?.label ?? null,
-      not: "İlk Arsa ilanı yayına girer (İlan Sayısı > 0). 2026 ikinci yarısı: sınırlı gelir, platform doğrulama dönemi.",
-    },
-    {
-      key: "som5",
-      ad: "SOM %5 payı",
-      ym: som5?.ym ?? null,
-      label: som5?.label ?? null,
-      not: "Arsa Hedef Pazar Payı ilk kez %5. Erken büyüme aşaması.",
-    },
-    {
-      key: "resmi",
-      ad: "Resmî lansman (Oca 2027)",
-      ym: resmi?.ym ?? null,
-      label: resmi?.label ?? null,
-      not: "Aylık gelir ilk kez 1.000.000 ₺ eşiğini aşar (B2B satışların başlangıç sinyali).",
-    },
-    {
-      key: "som10",
-      ad: "SOM %10 payı",
-      ym: som10?.ym ?? null,
-      label: som10?.label ?? null,
-      not: "Arsa Hedef Pazar Payı ilk kez %10. Ölçeklenme aşaması.",
-    },
-    {
-      key: "plateau",
-      ad: "Plateau — SOM tavanı (2028+)",
-      ym: plateau?.ym ?? null,
-      label: plateau?.label ?? null,
-      not: "Arsa Hedef Pazar Payı hedef tavanına (%15) ulaşır ve sabitlenir; büyüme yavaşlar, gelir istikrarlı seyreder.",
-    },
-  ];
-
+  const total = [...hires.values()].reduce((s, arr) => s + arr.length, 0);
   return {
-    points,
-    milestones,
-    toplamPazarlama: points.length ? points[points.length - 1].pazKum : 0,
-    toplamGelir: points.length ? points[points.length - 1].gelirKum : 0,
-    sonSomPct,
-    sheetGelirKumSon,
+    months,
+    toplamRol: total,
+    ilkYm: sorted[0] ?? null,
+    sonYm: sorted[sorted.length - 1] ?? null,
   };
 }
 
-// ---- İki-tab navigasyon durum yardımcıları (App.tsx tab state için saf mantık) ----
-export type TabKey = "finansal" | "roadmap";
+// ── Fetch ──────────────────────────────────────────────────────────────────
+export async function fetchIkGrid(): Promise<IkGrid> {
+  return fetch(gvizUrl("İK PLANI"), { cache: "no-store" }).then((r) => r.text()).then(parseCsv);
+}
 
+// ── İki-tab navigasyon durum yardımcıları (App.tsx tab state için saf mantık) ──
+export type TabKey = "finansal" | "roadmap";
 // Roadmap sayfası yalnız v2 (sheetMode) + roadmap sekmesi seçiliyken gösterilir.
 export function showRoadmap(sheetMode: boolean, tab: TabKey): boolean {
   return sheetMode && tab === "roadmap";
 }
-// Tab'a tıklandığında yeni aktif tab (idempotent — aynı tab'a tıklamak durumu korur).
+// Tab'a tıklandığında yeni aktif tab (idempotent).
 export function selectTab(_current: TabKey, next: TabKey): TabKey {
   return next;
 }
