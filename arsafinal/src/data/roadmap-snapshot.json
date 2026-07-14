@@ -1,0 +1,240 @@
+[
+  {
+    "kod": "R-AST",
+    "ad": "MT (Management trainee)",
+    "jobFamily": "Customer & Seller Support / CX",
+    "kademe": "Operasyonel",
+    "joinYm": "2026-09"
+  },
+  {
+    "kod": "R-CPO",
+    "ad": "CPO / Strateji",
+    "jobFamily": "Product / Stratejik Planlama",
+    "kademe": "C-Level",
+    "joinYm": "2026-09"
+  },
+  {
+    "kod": "R-GIS",
+    "ad": "Entegrasyon Uzmanı",
+    "jobFamily": "Engineering & Platform",
+    "kademe": "Teknik",
+    "joinYm": "2026-09"
+  },
+  {
+    "kod": "R-GRF",
+    "ad": "Grafik Tasarimci",
+    "jobFamily": "Product / UX / Program",
+    "kademe": "Kreatif",
+    "joinYm": "2026-09"
+  },
+  {
+    "kod": "R-PO",
+    "ad": "Product Owner",
+    "jobFamily": "Product / UX / Program",
+    "kademe": "Urun",
+    "joinYm": "2026-09"
+  },
+  {
+    "kod": "R-DEV1",
+    "ad": "Backend Dev #1",
+    "jobFamily": "Engineering & Platform",
+    "kademe": "Teknik",
+    "joinYm": "2026-10"
+  },
+  {
+    "kod": "R-DEV2",
+    "ad": "Backend Dev #2",
+    "jobFamily": "Engineering & Platform",
+    "kademe": "Teknik",
+    "joinYm": "2026-10"
+  },
+  {
+    "kod": "R-ISG",
+    "ad": "ISG Danışmanlığı (Dış Hizmet)",
+    "jobFamily": "Finance / Legal / Corporate",
+    "kademe": "Yasal",
+    "joinYm": "2026-10"
+  },
+  {
+    "kod": "R-SEO",
+    "ad": "SMO Uzmani",
+    "jobFamily": "Marketing / Growth / CRM",
+    "kademe": "Pazarlama",
+    "joinYm": "2026-10"
+  },
+  {
+    "kod": "R-SM",
+    "ad": "SEO Uzmani",
+    "jobFamily": "Marketing / Growth / CRM",
+    "kademe": "Pazarlama",
+    "joinYm": "2026-10"
+  },
+  {
+    "kod": "R-VID",
+    "ad": "Videographer",
+    "jobFamily": "Product / UX / Program",
+    "kademe": "Kreatif",
+    "joinYm": "2026-10"
+  },
+  {
+    "kod": "R-GROWTH",
+    "ad": "Growth/Perf Lead (TL)",
+    "jobFamily": "Marketing / Growth / CRM",
+    "kademe": "Pazarlama",
+    "joinYm": "2026-11"
+  },
+  {
+    "kod": "R-PPC",
+    "ad": "PPC Uzmani",
+    "jobFamily": "Marketing / Growth / CRM",
+    "kademe": "Pazarlama",
+    "joinYm": "2026-11"
+  },
+  {
+    "kod": "R-QA",
+    "ad": "QA Muhendisi",
+    "jobFamily": "Engineering & Platform",
+    "kademe": "Teknik",
+    "joinYm": "2026-11"
+  },
+  {
+    "kod": "R-CS1",
+    "ad": "Helpdesk #1",
+    "jobFamily": "Customer & Seller Support / CX",
+    "kademe": "Operasyonel",
+    "joinYm": "2026-12"
+  },
+  {
+    "kod": "R-DEVOPS",
+    "ad": "Sr. DevOps Engineer (JR)",
+    "jobFamily": "Engineering & Platform",
+    "kademe": "Teknik",
+    "joinYm": "2026-12"
+  },
+  {
+    "kod": "R-CRD",
+    "ad": "Creative Designer",
+    "jobFamily": "Product / UX / Program",
+    "kademe": "Kreatif",
+    "joinYm": "2027-01"
+  },
+  {
+    "kod": "R-CW1",
+    "ad": "Content Writer #1",
+    "jobFamily": "Marketing / Growth / CRM",
+    "kademe": "Pazarlama",
+    "joinYm": "2027-01"
+  },
+  {
+    "kod": "R-CS2",
+    "ad": "Helpdesk #2",
+    "jobFamily": "Customer & Seller Support / CX",
+    "kademe": "Operasyonel",
+    "joinYm": "2027-02"
+  },
+  {
+    "kod": "R-DATA",
+    "ad": "Data Analyst",
+    "jobFamily": "Engineering & Platform",
+    "kademe": "Teknik",
+    "joinYm": "2027-02"
+  },
+  {
+    "kod": "R-DEV3",
+    "ad": "Backend Dev #3",
+    "jobFamily": "Engineering & Platform",
+    "kademe": "Teknik",
+    "joinYm": "2027-02"
+  },
+  {
+    "kod": "R-MOD1",
+    "ad": "Content Moderator #1",
+    "jobFamily": "Customer & Seller Support / CX",
+    "kademe": "Operasyonel",
+    "joinYm": "2027-02"
+  },
+  {
+    "kod": "R-MUH",
+    "ad": "Muhasebe Uzmani",
+    "jobFamily": "Finance / Legal / Corporate",
+    "kademe": "Finans",
+    "joinYm": "2027-02"
+  },
+  {
+    "kod": "R-PM",
+    "ad": "Product Manager",
+    "jobFamily": "Product / UX / Program",
+    "kademe": "Ürün",
+    "joinYm": "2027-02"
+  },
+  {
+    "kod": "R-UX",
+    "ad": "UX/UI Designer",
+    "jobFamily": "Product / UX / Program",
+    "kademe": "Kreatif",
+    "joinYm": "2027-02"
+  },
+  {
+    "kod": "R-COS",
+    "ad": "Chief of Staff / BizOps",
+    "jobFamily": "Product / UX / Program",
+    "kademe": "Yönetim",
+    "joinYm": "2027-03"
+  },
+  {
+    "kod": "R-CSLEAD",
+    "ad": "CS Lead (TL)",
+    "jobFamily": "Customer & Seller Support / CX",
+    "kademe": "Operasyonel",
+    "joinYm": "2027-03"
+  },
+  {
+    "kod": "R-FRAUD",
+    "ad": "Fraud/Trust & Safety Analyst",
+    "jobFamily": "Engineering & Platform",
+    "kademe": "Teknik",
+    "joinYm": "2027-03"
+  },
+  {
+    "kod": "R-HEADENG",
+    "ad": "Head of Engineering",
+    "jobFamily": "Engineering & Platform",
+    "kademe": "Teknik",
+    "joinYm": "2027-03"
+  },
+  {
+    "kod": "R-MOB1",
+    "ad": "Mobile Developer #1",
+    "jobFamily": "Engineering & Platform",
+    "kademe": "Teknik",
+    "joinYm": "2027-03"
+  },
+  {
+    "kod": "R-PERF",
+    "ad": "Performance Analyst",
+    "jobFamily": "Marketing / Growth / CRM",
+    "kademe": "Pazarlama",
+    "joinYm": "2027-03"
+  },
+  {
+    "kod": "R-PJM",
+    "ad": "Project Manager",
+    "jobFamily": "Product / UX / Program",
+    "kademe": "Yönetim",
+    "joinYm": "2027-03"
+  },
+  {
+    "kod": "R-SELLER",
+    "ad": "B2B Account Manager / Seller Ops",
+    "jobFamily": "Marketing / Growth / CRM",
+    "kademe": "Pazarlama",
+    "joinYm": "2027-03"
+  },
+  {
+    "kod": "R-SEOLEAD",
+    "ad": "Content/SEO Lead (TL)",
+    "jobFamily": "Marketing / Growth / CRM",
+    "kademe": "Pazarlama",
+    "joinYm": "2027-03"
+  }
+]

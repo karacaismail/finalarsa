@@ -282,3 +282,45 @@ body {
   .tl-right .tl-card::after { content: ""; position: absolute; left: -8px; top: 12px; width: 14px; height: 14px; background: var(--paper); border-left: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); }
   .tl-right.tl-milestone .tl-card::after { border-color: var(--grass); }
 }
+
+/* ---------- SMART Hedefler kartı (Mar 2027 — GETİRİ/HEDEF, maliyet değil) ---------- */
+.smart { background: var(--paper); border: 1px solid var(--grass); border-radius: var(--radius); box-shadow: 0 1px 2px rgba(24,32,15,.04), 0 8px 22px rgba(47,107,52,.12); padding: 18px; margin-bottom: 16px; }
+.smart-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; margin-bottom: 4px; }
+.smart-head h2 { margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--grass-ink); letter-spacing: -.01em; }
+.smart-head .smart-ufuk { display: inline-flex; align-items: center; gap: 5px; font-size: .84rem; font-weight: 600; color: #fff; background: var(--grass); border-radius: 999px; padding: 3px 11px; }
+.smart-head .smart-ufuk svg { color: #fff; }
+.smart-sub { margin: 0 0 14px; font-size: 1rem; color: var(--muted); line-height: 1.5; }
+.smart-sub b { color: var(--grass-ink); font-weight: 600; }
+.smart-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 560px) { .smart-grid { grid-template-columns: 1fr 1fr; } }
+.smart-kpi { position: relative; overflow: hidden; background: var(--grass-soft); border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; }
+.smart-kpi.lead { background: linear-gradient(180deg, var(--grass-soft), #d9ead2); border-color: var(--grass); }
+.smart-kpi .kpi-h { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 700; letter-spacing: .01em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.smart-kpi .kpi-h svg { color: var(--grass); }
+.smart-kpi .kpi-v { font-size: 1.5rem; color: var(--grass-ink); letter-spacing: -.01em; line-height: 1.15; }
+.smart-kpi .kpi-v .num b { color: var(--grass-ink); }
+.smart-kpi .kpi-note { margin-top: 4px; font-size: .9rem; color: var(--muted); line-height: 1.4; }
+
+/* gelir modeli kırılımı — Arsa vs Emlak bar */
+.smart-split { margin-top: 6px; }
+.smart-split-bar { display: flex; height: 12px; border-radius: 999px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-2); }
+.smart-split-bar i { display: block; height: 100%; }
+.smart-split-bar .seg-arsa { background: var(--grass); }
+.smart-split-bar .seg-emlak { background: #b8860b; }
+.smart-split-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; font-size: .92rem; }
+.smart-split-legend span { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); }
+.smart-split-legend .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.smart-split-legend .dot.arsa { background: var(--grass); }
+.smart-split-legend .dot.emlak { background: #b8860b; }
+.smart-split-legend b { color: var(--grass-ink); font-weight: 700; }
+
+/* milestone satırı (Oca 2027 resmî lansman) */
+.smart-milestone { display: flex; align-items: flex-start; gap: 9px; margin-top: 14px; padding: 11px 13px; background: var(--grass); color: #fff; border-radius: 12px; font-size: .96rem; line-height: 1.45; }
+.smart-milestone svg { flex: none; color: #fff; margin-top: 1px; }
+.smart-milestone b { font-weight: 700; }
+
+/* timeline kartına işlenen "o aya kadar hedef gelir" satırı */
+.tl-rev { display: flex; align-items: center; gap: 7px; margin-top: 10px; padding: 7px 11px; background: var(--grass-soft); border: 1px dashed var(--grass); border-radius: 10px; font-size: .92rem; color: var(--grass-ink); }
+.tl-rev svg { color: var(--grass); flex: none; }
+.tl-rev .num b { color: var(--grass-ink); }
+.tl-rev .rev-lbl { color: var(--muted); font-weight: 500; }

@@ -4,6 +4,10 @@
 // Sekme yapısı: OPEX = kalem satırı × ay sütunu (sütun 1'den itibaren "Tem 26", "Agu 26"…).
 import type { Hesap, Kume, Kalem } from "./clusters";
 import { KUME_RENK } from "./clusters";
+// Build-time snapshot (scripts/roadmap-snapshot.mjs): OPEX/DİJİTAL PAZARLAMA/CAPEX ham CSV
+// satırları. Runtime BAŞLANGIÇ verisi olarak kullanılır (anında GERÇEK sheet değerleri);
+// sonra canlı gviz ile tazelenir. Fetch patlarsa snapshot'ta KALINIR — hardcoded base'e DÜŞÜLMEZ.
+import mpSnapshot from "../data/masterplan-snapshot.json";
 
 // 2026-07-08: master_plan native Google Sheet'e taşındı (eski xlsx: 1DNBT0Pe_VyZgDrSut7dISk9MiFX70NTl).
 // v2 ve v3 aynı dosyayı okur; kullanıcı düzenlemeleri artık bu dosyada.
@@ -132,3 +136,24 @@ export function buildMasterplan(base: Hesap, tabs: MpTabs): Hesap {
 
   return { ...base, aylar, capex: capexToplam > 0 ? { toplamTl: capexToplam, kalemler: capexKalemler, kumeler: capexKumeler } : base.capex };
 }
+
+// ── Build-time snapshot → başlangıç MpTabs (F1: sessiz base düşüşü YOK) ───────
+// SORUN: fetchMasterplanTabs() runtime gviz'e bağlı; patlarsa App hardcoded base'e (DEFAULT_DATA)
+// sessizce düşer → kullanıcı bayat/yanlış veriyi ANLAYAMAZ. ÇÖZÜM (roadmap snapshot deseni):
+// snapshot commit edilir, başlangıçta ANINDA gerçek sheet verisiyle render edilir; canlı fetch
+// sonra tazeler, patlarsa snapshot KORUNUR. base yalnız snapshot da yoksa son çare.
+interface MpSnapshotFile { opex: string[][]; paz: string[][]; capex: string[][]; meta?: { builtAt?: string } }
+const MP_SNAP = mpSnapshot as MpSnapshotFile;
+
+// Snapshot'tan başlangıç sekmeleri (ham grid'ler). buildMasterplan bunları olduğu gibi tüketir.
+export const SNAPSHOT_TABS: MpTabs = { opex: MP_SNAP.opex ?? [], paz: MP_SNAP.paz ?? [], capex: MP_SNAP.capex ?? [] };
+// Snapshot'ın üretildiği build tarihi ("YYYY-MM-DD") — bayatlık göstergesinde kullanılır.
+export const SNAPSHOT_BUILT_AT: string = MP_SNAP.meta?.builtAt ?? "";
+
+// Sekmelerde işlenebilir içerik var mı? (En az OPEX veya CAPEX satırı). base'e düşme kararında kullanılır.
+export function hasMpContent(tabs: MpTabs | null | undefined): boolean {
+  if (!tabs) return false;
+  return (tabs.opex?.length ?? 0) > 1 || (tabs.capex?.length ?? 0) > 1;
+}
+// Snapshot commit edilmiş ve dolu mu? (App başlangıçta snapshot'la mı yoksa base'le mi başlasın).
+export const HAS_SNAPSHOT: boolean = hasMpContent(SNAPSHOT_TABS);

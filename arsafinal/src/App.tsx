@@ -7,7 +7,7 @@ import { hesapla, rate, KUME_RENK } from "./lib/clusters";
 import type { EChartsOption } from "echarts";
 import { NumView, Svg, Icon, grouped, parseTR } from "./components/num";
 import { EChart } from "./components/Chart";
-import { fetchMasterplanTabs, buildMasterplan } from "./lib/masterplan";
+import { fetchMasterplanTabs, buildMasterplan, SNAPSHOT_TABS, SNAPSHOT_BUILT_AT, HAS_SNAPSHOT, hasMpContent } from "./lib/masterplan";
 import type { MpTabs } from "./lib/masterplan";
 import { fetchMasterplanRaw, buildMasterplanV3 } from "./lib/masterplan3";
 import type { MpRaw } from "./lib/masterplan3";
@@ -59,8 +59,12 @@ export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean
   const [ayar, setAyar] = useState(false);
   const [donem, setDonem] = useState("y2026");
   const [liveFx, setLiveFx] = useState<{ usd: number; eur: number; ts: string } | null>(null);
-  const [mpTabs, setMpTabs] = useState<MpTabs | null>(null);
+  // F1: v2'de mpTabs BAŞLANGIÇTA build-time snapshot'tan (gerçek sheet verisi) — canlı fetch
+  // beklenmeden anında render; fetch patlasa snapshot KORUNUR (hardcoded base'e sessizce düşülmez).
+  const [mpTabs, setMpTabs] = useState<MpTabs | null>(() => (sheetMode && HAS_SNAPSHOT ? SNAPSHOT_TABS : null));
   const [sheetStatus, setSheetStatus] = useState<"off" | "loading" | "ok" | "error">("off");
+  // Finansal verinin kaynağı: "live" (canlı gviz) | "snapshot" (build-time anlık görüntü) | "base" (motor yedeği).
+  const [mpSource, setMpSource] = useState<"live" | "snapshot" | "base">(sheetMode && HAS_SNAPSHOT ? "snapshot" : "base");
   const [mpRaw, setMpRaw] = useState<MpRaw | null>(null);          // v3: ham sekmeler
   const [subMap, setSubMap] = useState<SubMap | null>(null);       // v3: alt_detay haritası
   const [subErr, setSubErr] = useState(false);
@@ -107,8 +111,23 @@ export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean
   useEffect(() => {
     if (!sheetMode) return;
     document.title = "arsam.net · Finansal v2 (canlı master_plan)";
-    let alive = true; setSheetStatus("loading");
-    fetchMasterplanTabs().then((t) => { if (!alive) return; setMpTabs(t); setSheetStatus("ok"); }).catch(() => { if (alive) setSheetStatus("error"); });
+    let alive = true;
+    // Snapshot doluysa "loading" gösterme (zaten dolu render var); yoksa yükleniyor.
+    setSheetStatus(HAS_SNAPSHOT ? "ok" : "loading");
+    fetchMasterplanTabs()
+      .then((t) => {
+        if (!alive) return;
+        // Canlı veri işlenebilir içerik taşıyorsa uygula (boş/yarım fetch snapshot'ı ezmesin).
+        if (hasMpContent(t)) { setMpTabs(t); setSheetStatus("ok"); setMpSource("live"); }
+        else if (HAS_SNAPSHOT) { setSheetStatus("ok"); setMpSource("snapshot"); } // snapshot'ta kal
+        else { setSheetStatus("error"); setMpSource("base"); }
+      })
+      .catch(() => {
+        if (!alive) return;
+        // FETCH PATLADI: snapshot varsa ONDA KAL (base'e SESSİZCE DÜŞME); yoksa motor yedeği.
+        if (HAS_SNAPSHOT) { setSheetStatus("ok"); setMpSource("snapshot"); }
+        else { setSheetStatus("error"); setMpSource("base"); }
+      });
     return () => { alive = false; };
   }, [sheetMode]);
   // v3: ham master_plan (OPEX+PAZARLAMA+CAPEX, export CSV) + alt_detay sekmesi (modal içeriği).
@@ -247,12 +266,14 @@ export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean
         </div>
         <div className="donem-ozet"><span>{dd.ad} · {gosterilen.length} ay</span><span className="dt">Dönem toplamı: <NumView n={conv(donemToplam)} sym={sym} /></span></div>
         {(sheetMode || v3Mode) && (
-          <div className={"sheet-flag " + sheetStatus}>
+          <div className={"sheet-flag " + (mpSource === "base" && sheetMode ? "error" : sheetStatus)}>
             {sheetStatus === "loading" ? "master_plan yükleniyor…"
-              : sheetStatus === "error" ? "master_plan okunamadı — motor değerleri gösteriliyor (yedek)"
-              : sheetStatus === "ok" && v3Mode ? "Canlı master_plan bağlı (v3) — alt-detayı olan kaleme dokun" + (subErr ? " · alt_detay sekmesi yüklenemedi" : "")
-              : sheetStatus === "ok" ? "Canlı master_plan bağlı — giderler sheet'ten (personel motordan)"
-              : "master_plan bağlı değil · motor çalışıyor"}
+              : v3Mode ? (sheetStatus === "error" ? "master_plan okunamadı — motor değerleri gösteriliyor (yedek)"
+                  : sheetStatus === "ok" ? "Canlı master_plan bağlı (v3) — alt-detayı olan kaleme dokun" + (subErr ? " · alt_detay sekmesi yüklenemedi" : "")
+                  : "master_plan bağlı değil · motor çalışıyor")
+              : mpSource === "live" ? "veri: canlı — master_plan sekmelerinden (OPEX/pazarlama/CAPEX); personel motordan"
+              : mpSource === "snapshot" ? "veri: anlık görüntü" + (SNAPSHOT_BUILT_AT ? " (build " + SNAPSHOT_BUILT_AT + ")" : "") + " — canlı master_plan'a ulaşılamadı, son alınan sheet verisi gösteriliyor"
+              : "master_plan okunamadı — motor değerleri gösteriliyor (yedek)"}
           </div>
         )}
 

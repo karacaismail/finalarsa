@@ -1,0 +1,101 @@
+[
+  {
+    "ym": "2026-07",
+    "label": "Tem 26",
+    "aylikGelir": 0,
+    "kumulatif": 0,
+    "ilanArsa": 0,
+    "ilanEmlak": 0,
+    "gelirArsa": 0,
+    "gelirEmlak": 0,
+    "somArsa": 0
+  },
+  {
+    "ym": "2026-08",
+    "label": "Ağu 26",
+    "aylikGelir": 10285,
+    "kumulatif": 10285,
+    "ilanArsa": 1,
+    "ilanEmlak": 3,
+    "gelirArsa": 9350,
+    "gelirEmlak": 935,
+    "somArsa": 0.6
+  },
+  {
+    "ym": "2026-09",
+    "label": "Eyl 26",
+    "aylikGelir": 41140,
+    "kumulatif": 51425,
+    "ilanArsa": 4,
+    "ilanEmlak": 12,
+    "gelirArsa": 37400,
+    "gelirEmlak": 3740,
+    "somArsa": 1.1
+  },
+  {
+    "ym": "2026-10",
+    "label": "Eki 26",
+    "aylikGelir": 123420,
+    "kumulatif": 174845,
+    "ilanArsa": 12,
+    "ilanEmlak": 36,
+    "gelirArsa": 112200,
+    "gelirEmlak": 11220,
+    "somArsa": 1.7
+  },
+  {
+    "ym": "2026-11",
+    "label": "Kas 26",
+    "aylikGelir": 329120,
+    "kumulatif": 503965,
+    "ilanArsa": 32,
+    "ilanEmlak": 96,
+    "gelirArsa": 299200,
+    "gelirEmlak": 29920,
+    "somArsa": 2.2
+  },
+  {
+    "ym": "2026-12",
+    "label": "Ara 26",
+    "aylikGelir": 905080,
+    "kumulatif": 1409045,
+    "ilanArsa": 88,
+    "ilanEmlak": 264,
+    "gelirArsa": 822800,
+    "gelirEmlak": 82280,
+    "somArsa": 2.8
+  },
+  {
+    "ym": "2027-01",
+    "label": "Oca 27",
+    "aylikGelir": 2396405,
+    "kumulatif": 3805450,
+    "ilanArsa": 233,
+    "ilanEmlak": 699,
+    "gelirArsa": 2178550,
+    "gelirEmlak": 217855,
+    "somArsa": 3.3
+  },
+  {
+    "ym": "2027-02",
+    "label": "Şub 27",
+    "aylikGelir": 6016725,
+    "kumulatif": 9822175,
+    "ilanArsa": 585,
+    "ilanEmlak": 1755,
+    "gelirArsa": 5469750,
+    "gelirEmlak": 546975,
+    "somArsa": 3.9
+  },
+  {
+    "ym": "2027-03",
+    "label": "Mar 27",
+    "aylikGelir": 13596770,
+    "kumulatif": 23418945,
+    "ilanArsa": 1322,
+    "ilanEmlak": 3966,
+    "gelirArsa": 12360700,
+    "gelirEmlak": 1236070,
+    "somArsa": 4.4
+  }
+]
