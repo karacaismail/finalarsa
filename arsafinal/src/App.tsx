@@ -15,6 +15,7 @@ import { fetchSubdetails, findSubdetails } from "./lib/subdetails";
 import type { SubMap, AltDetay } from "./lib/subdetails";
 import { DetailModal } from "./components/DetailModal";
 import type { ModalData } from "./components/DetailModal";
+import { RoadmapPage } from "./pages/Roadmap";
 import type { Kalem } from "./lib/clusters";
 
 const SYM: Record<Currency, string> = { TRY: "₺", USD: "$", EUR: "€" };
@@ -45,6 +46,7 @@ function InfoLabel({ ad, detay }: { ad: string; detay?: string }) {
 
 export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean; v3Mode?: boolean }) {
   const [data, setData] = useState<FinansalData>(() => load());
+  const [tab, setTab] = useState<"finansal" | "roadmap">("finansal"); // v2 iki-tab navigasyon
   const [disp, setDisp] = useState<Currency>("TRY");
   const [open, setOpen] = useState<string>("");     // "", "capex" veya ym
   const [openK, setOpenK] = useState<string>("");
@@ -200,9 +202,19 @@ export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean
           </div>
           <input ref={fileRef} type="file" accept="application/json,.json" hidden onChange={importJSON} />
         </div>
+        {sheetMode && (
+          <nav className="tabs" role="tablist" aria-label="Sayfa">
+            <button role="tab" aria-selected={tab === "finansal"} className={"tab" + (tab === "finansal" ? " on" : "")} onClick={() => setTab("finansal")}>Finansal Plan</button>
+            <button role="tab" aria-selected={tab === "roadmap"} className={"tab" + (tab === "roadmap" ? " on" : "")} onClick={() => setTab("roadmap")}>Yol Haritası</button>
+          </nav>
+        )}
       </header>
 
       <main className="main">
+        {sheetMode && tab === "roadmap" ? (
+          <RoadmapPage conv={conv} sym={sym} />
+        ) : (
+        <>
         <section className="cards cards4">
           <Card k="Kuruluş yatırımı (Ağu 2026)" n={conv(H.capex.toplamTl)} sym={sym} accent />
           <Card k="İlk 6 ay toplamı" n={conv(ilk6)} sym={sym} />
@@ -327,6 +339,8 @@ export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean
         <footer className="foot">
           Personel = 256 rol + 2026 bordro motoru · Diğer kümeler geçmiş veriden, düzenlenebilir · <b>{SYM[disp]} {disp}</b> · İsmail KARACA · arsam.net
         </footer>
+        </>
+        )}
       </main>
     </div>
   );

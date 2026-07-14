@@ -190,3 +190,44 @@ body {
   .dmodal { max-width: 560px; border-radius: 18px; max-height: 80vh; }
   .dmodal-sum { border-radius: 0 0 18px 18px; }
 }
+
+/* ===========================================================================
+   v2 · iki-tab navigasyon (Finansal Plan / Yol Haritası)
+   Mobil (taban, ≤ ~820px): başlığın ALTINA tam-genişlik double-button satırı.
+   Desktop (≥ 820px): tab'lar başlığın ORTASINA segmented; .bar row olduğunda absolute ortalanır.
+   =========================================================================== */
+.tabs { display: flex; gap: 6px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.tab { flex: 1; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: var(--muted); font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; border-radius: 999px; white-space: nowrap; }
+.tab.on { background: var(--grass); color: #fff; box-shadow: var(--shadow-sm); }
+.tab:active { transform: translateY(1px); }
+
+@media (min-width: 820px) {
+  /* .bar row olur → tab'ları mutlak konumla tam ortala (brand solda, tools sağda kalır). */
+  .bar { position: sticky; }
+  .tabs { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: auto; }
+  .tab { flex: none; min-height: 38px; padding: 0 20px; }
+}
+
+/* ---------- Yol Haritası sayfası ---------- */
+.rm-caption { margin: 10px 0 0; font-size: .92rem; color: var(--muted); line-height: 1.5; }
+
+.rm-miles { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.rm-mile { display: flex; gap: 12px; align-items: flex-start; position: relative; padding-left: 4px; }
+.rm-mile::before { content: ""; position: absolute; left: 43px; top: 34px; bottom: -12px; width: 2px; background: var(--line); }
+.rm-mile:last-child::before { display: none; }
+.rm-badge { flex: none; min-width: 72px; min-height: 30px; display: inline-flex; align-items: center; justify-content: center; padding: 0 10px; border-radius: 999px; background: var(--grass); color: #fff; font-size: .9rem; font-weight: 700; z-index: 1; }
+.rm-mile.pending .rm-badge { background: var(--bg-2); color: var(--faint); }
+.rm-mile-txt { display: flex; flex-direction: column; gap: 3px; }
+.rm-mile-ad { font-size: 1.08rem; color: var(--grass-ink); }
+.rm-mile.pending .rm-mile-ad { color: var(--muted); }
+.rm-mile-not { font-size: .95rem; color: var(--muted); line-height: 1.45; }
+.rm-mile-warn { display: inline-flex; align-items: center; gap: 5px; font-size: .88rem; color: var(--warn); background: var(--warn-bg); padding: 4px 9px; border-radius: 8px; margin-top: 3px; align-self: flex-start; }
+
+/* yıllık ilerleyiş tablosu (mobil: yatay kaydırma) */
+.rm-table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.rm-tr { display: grid; grid-template-columns: 56px minmax(120px, 1.2fr) minmax(120px, 1.2fr) minmax(80px, .8fr) 64px; gap: 10px; align-items: center; min-height: 44px; padding: 8px 2px; border-bottom: 1px solid var(--line-2); font-size: 1rem; white-space: nowrap; }
+.rm-tr span:not(.rm-y) { text-align: right; justify-self: end; }
+.rm-th { font-size: .88rem; font-weight: 700; color: var(--muted); border-bottom: 2px solid var(--line); position: sticky; top: 0; }
+.rm-th span:not(.rm-y) { text-align: right; }
+.rm-y { font-weight: 700; color: var(--grass-ink); }
+.rm-tr .num b { color: var(--grass-ink); }
