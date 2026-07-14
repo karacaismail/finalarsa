@@ -1,9 +1,11 @@
 import { describe, it, expect } from "vitest";
+import { afterEach, beforeEach } from "vitest";
 import {
   monthAxis, ikColumn, hiresByMonth, buildTimeline,
   PHASES, phaseForYm, showRoadmap, selectTab, IK_ANCHOR_COL, IK_ANCHOR_YM,
+  tabFromHash, hashForTab, HASH, TIMELINE_END_YM,
 } from "./roadmap";
-import type { IkGrid } from "./roadmap";
+import type { IkGrid, TabKey } from "./roadmap";
 
 // ─── İK PLANI fixture (gerçek sheet yapısı) ────────────────────────────────
 // Satır 0: başlık; satır 1: net maaş etiketi; satır 2: kolon başlıkları
@@ -206,5 +208,113 @@ describe("iki-tab navigasyon durumu (showRoadmap / selectTab)", () => {
     expect(selectTab("finansal", "roadmap")).toBe("roadmap");
     expect(selectTab("roadmap", "finansal")).toBe("finansal");
     expect(selectTab("roadmap", "roadmap")).toBe("roadmap");
+  });
+});
+
+// ─── Timeline SON AY = Mar 2027 (Nis 2027 ve sonrası YOK) ──────────────────
+// Yol haritası artık yalnız 2026-07 … 2027-03 penceresini gösterir.
+describe("buildTimeline — timeline Mar 2027'de biter (ym <= 2027-03)", () => {
+  const tl = buildTimeline(grid);
+  const yms = tl.months.map((m) => m.ym);
+
+  it("kesim sabiti TIMELINE_END_YM = 2027-03", () => {
+    expect(TIMELINE_END_YM).toBe("2027-03");
+  });
+  it("timeline'ın son ayı 2027-03 (Mar 27)", () => {
+    expect(tl.sonYm).toBe("2027-03");
+    expect(yms[yms.length - 1]).toBe("2027-03");
+  });
+  it("Nis 2027 (2027-04) ve sonrası HİÇBİR ay yok", () => {
+    expect(yms).not.toContain("2027-04");
+    for (const ym of yms) expect(ym <= "2027-03").toBe(true);
+    // 2028+ fazlar (plato) da timeline'a girmez
+    expect(yms.some((y) => y >= "2028-01")).toBe(false);
+    expect(tl.months.some((m) => m.phase?.key === "plato")).toBe(false);
+  });
+  it("son ay Mar 2027 GTM aksiyonunu taşır (Urla/Didim/Kuşadası yayılımı)", () => {
+    const mar = tl.months.find((m) => m.ym === "2027-03");
+    expect(mar).toBeTruthy();
+    expect(mar!.gtm.join(" ").toLocaleLowerCase("tr")).toMatch(/urla|didim|kuşadası/);
+  });
+  it("kesimden sonra zigzag index yine kesintisiz 0..N-1", () => {
+    tl.months.forEach((m, i) => expect(m.index).toBe(i));
+  });
+});
+
+// ─── Hash tabanlı deep-link routing (static GitHub Pages için) ──────────────
+// #yolharitasi → roadmap; #finansalplan / boş → finansal. Saf eşleme + window.location.hash.
+describe("hash routing — tabFromHash / hashForTab (saf eşleme)", () => {
+  it("HASH sabitleri finansalplan / yolharitasi", () => {
+    expect(HASH.finansal).toBe("#finansalplan");
+    expect(HASH.roadmap).toBe("#yolharitasi");
+  });
+  it("#yolharitasi → roadmap", () => {
+    expect(tabFromHash("#yolharitasi")).toBe("roadmap");
+  });
+  it("#finansalplan → finansal", () => {
+    expect(tabFromHash("#finansalplan")).toBe("finansal");
+  });
+  it("boş / eksik / tanınmayan hash → finansal (varsayılan)", () => {
+    expect(tabFromHash("")).toBe("finansal");
+    expect(tabFromHash("#")).toBe("finansal");
+    expect(tabFromHash("#birsey")).toBe("finansal");
+    expect(tabFromHash(undefined as unknown as string)).toBe("finansal");
+  });
+  it("büyük/küçük harf ve baştaki # olsun olmasın toleranslı", () => {
+    expect(tabFromHash("#YolHaritasi")).toBe("roadmap");
+    expect(tabFromHash("yolharitasi")).toBe("roadmap");
+    expect(tabFromHash("#FINANSALPLAN")).toBe("finansal");
+  });
+  it("hashForTab tab'ı ilgili hash'e çevirir", () => {
+    expect(hashForTab("roadmap")).toBe("#yolharitasi");
+    expect(hashForTab("finansal")).toBe("#finansalplan");
+  });
+  it("round-trip: her tab için hashForTab → tabFromHash aynı tab'ı verir", () => {
+    (["finansal", "roadmap"] as TabKey[]).forEach((t) => {
+      expect(tabFromHash(hashForTab(t))).toBe(t);
+    });
+  });
+});
+
+// window.location.hash üzerinden okuma/yazma (jsdom yok → hafif sahte window).
+describe("hash routing — window.location.hash okuma/yazma", () => {
+  const hadWindow = "window" in globalThis;
+  const prevWindow = (globalThis as any).window;
+
+  beforeEach(() => {
+    // Sahte window.location: hash yazılabilir, replaceState hash'i günceller.
+    (globalThis as any).window = {
+      location: { hash: "" },
+      history: {
+        replaceState(_s: unknown, _t: string, url: string) {
+          const i = url.indexOf("#");
+          (globalThis as any).window.location.hash = i >= 0 ? url.slice(i) : "";
+        },
+      },
+    };
+  });
+  afterEach(() => {
+    if (hadWindow) (globalThis as any).window = prevWindow;
+    else delete (globalThis as any).window;
+  });
+
+  it("yüklenirken window.location.hash → doğru başlangıç sekmesi", () => {
+    (globalThis as any).window.location.hash = "#yolharitasi";
+    expect(tabFromHash(window.location.hash)).toBe("roadmap");
+
+    (globalThis as any).window.location.hash = "";
+    expect(tabFromHash(window.location.hash)).toBe("finansal");
+  });
+  it("tab değişince replaceState ile hash güncellenir (sayfa zıplamadan)", () => {
+    // roadmap seçilir → hash #yolharitasi olur
+    window.history.replaceState(null, "", hashForTab("roadmap"));
+    expect(window.location.hash).toBe("#yolharitasi");
+    // finansal'a dönülür → hash #finansalplan olur
+    window.history.replaceState(null, "", hashForTab("finansal"));
+    expect(window.location.hash).toBe("#finansalplan");
+  });
+  it("hashchange senaryosu: dışarıdan hash değişince tabFromHash senkron kalır", () => {
+    (globalThis as any).window.location.hash = "#yolharitasi"; // geri/ileri ile değişti
+    expect(tabFromHash(window.location.hash)).toBe("roadmap");
   });
 });

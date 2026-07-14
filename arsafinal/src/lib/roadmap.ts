@@ -30,6 +30,9 @@ export type IkGrid = string[][];
 // ay adı yoksa POZİSYONEL eksen kullanılır; bir gün başlık ay adı taşırsa monthAxis onu tercih eder.
 export const IK_ANCHOR_COL = 9;
 export const IK_ANCHOR_YM = "2026-09";
+// Timeline penceresi: yol haritası SADECE 2026-07 … 2027-03 aylarını gösterir.
+// (Nisan 2027 ve sonrası dahil edilmez; 2028+ fazlar timeline'a girmez.) Bkz. roadmap.test.ts.
+export const TIMELINE_END_YM = "2027-03";
 const [ANCHOR_Y, ANCHOR_M] = IK_ANCHOR_YM.split("-").map(Number); // 2026, 9
 
 // "2026-09" → "Eyl 26"
@@ -214,7 +217,8 @@ export function buildTimeline(grid: IkGrid): RoadmapTimeline {
   for (const ym of hires.keys()) ymSet.add(ym);
   for (const g of GTM_DEFS) ymSet.add(g.ym);
 
-  const sorted = [...ymSet].sort();
+  // Timeline penceresi: yalnız 2027-03 (dahil) ve öncesi aylar. Nis 2027+ ile 2028+ fazlar düşer.
+  const sorted = [...ymSet].filter((ym) => ym <= TIMELINE_END_YM).sort();
   const seenPhase = new Set<string>();
   const months: TimelineMonth[] = sorted.map((ym, i) => {
     const ph = phaseForYm(ym);
@@ -256,4 +260,26 @@ export function showRoadmap(sheetMode: boolean, tab: TabKey): boolean {
 // Tab'a tıklandığında yeni aktif tab (idempotent).
 export function selectTab(_current: TabKey, next: TabKey): TabKey {
   return next;
+}
+
+// ── Hash tabanlı deep-link routing (static GitHub Pages — path routing 404 verir) ──
+// URL fragment'ı (#...) ile sekme derin-bağlantısı: #yolharitasi → roadmap,
+// #finansalplan / boş / tanınmayan → finansal. WhatsApp linkleri her cihazda çalışsın diye
+// SAF eşleme (App.tsx bunu window.location.hash + history.replaceState + hashchange'e bağlar).
+export const HASH: Record<TabKey, string> = {
+  finansal: "#finansalplan",
+  roadmap: "#yolharitasi",
+};
+
+// Baştaki '#' ve büyük/küçük harf sadeleştirilir; "#YolHaritasi", "yolharitasi" hepsi eşleşir.
+const normHash = (h: string) => (h || "").replace(/^#/, "").trim().toLocaleLowerCase("en");
+
+// window.location.hash → aktif tab. Yalnız "yolharitasi" roadmap açar; diğer her şey finansal.
+export function tabFromHash(hash: string): TabKey {
+  return normHash(hash) === normHash(HASH.roadmap) ? "roadmap" : "finansal";
+}
+
+// Aktif tab → yazılacak hash (history.replaceState için).
+export function hashForTab(tab: TabKey): string {
+  return HASH[tab];
 }

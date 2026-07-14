@@ -16,6 +16,8 @@ import type { SubMap, AltDetay } from "./lib/subdetails";
 import { DetailModal } from "./components/DetailModal";
 import type { ModalData } from "./components/DetailModal";
 import { RoadmapPage } from "./pages/Roadmap";
+import { tabFromHash, hashForTab } from "./lib/roadmap";
+import type { TabKey } from "./lib/roadmap";
 import type { Kalem } from "./lib/clusters";
 
 const SYM: Record<Currency, string> = { TRY: "₺", USD: "$", EUR: "€" };
@@ -46,7 +48,11 @@ function InfoLabel({ ad, detay }: { ad: string; detay?: string }) {
 
 export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean; v3Mode?: boolean }) {
   const [data, setData] = useState<FinansalData>(() => load());
-  const [tab, setTab] = useState<"finansal" | "roadmap">("finansal"); // v2 iki-tab navigasyon
+  // v2 iki-tab navigasyon — başlangıç sekmesi URL hash'inden (deep-link, static Pages güvenli).
+  // #yolharitasi → roadmap; #finansalplan / boş → finansal. Bkz. lib/roadmap tabFromHash.
+  const [tab, setTab] = useState<TabKey>(() =>
+    typeof window !== "undefined" ? tabFromHash(window.location.hash) : "finansal"
+  );
   const [disp, setDisp] = useState<Currency>("TRY");
   const [open, setOpen] = useState<string>("");     // "", "capex" veya ym
   const [openK, setOpenK] = useState<string>("");
@@ -63,6 +69,19 @@ export function App({ sheetMode = false, v3Mode = false }: { sheetMode?: boolean
   const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => { save(data); }, [data]);
+  // Deep-link senkronizasyonu: tab değişince hash'i güncelle (replaceState — sayfa zıplamasın),
+  // geri/ileri (hashchange) olunca tab'ı hash'e göre senkronla. Path routing YOK (static Pages).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const want = hashForTab(tab);
+    if (window.location.hash !== want) history.replaceState(null, "", want);
+  }, [tab]);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const onHash = () => setTab(tabFromHash(window.location.hash));
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
   // Canlı USD/TRY + EUR/TRY kuru çek, üstüne %1 ekle. Başarısızsa varsayılan kur (46,52 / 50) kullanılır.
   useEffect(() => {
     let alive = true;
