@@ -54,10 +54,10 @@ export interface MpTabs { opex: string[][]; paz: string[][]; capex: string[][]; 
 
 // CAPEX 4 kume: Kategori/Donem'e gore. Yillik lisanslar -> Yazilim; Mutfak/Bilgisayar kendi kumesi; kalan -> Kurulus.
 const CAPEX_KUME_DEF: Record<string, { ad: string; renk: string }> = {
-  capexKurulus: { ad: "Kurulus", renk: "#a16207" },
+  capexKurulus: { ad: "Kuruluş", renk: "#a16207" },
   capexBilgisayar: { ad: "Bilgisayar", renk: "#1f6feb" },
   capexMutfak: { ad: "Mutfak", renk: "#0e7490" },
-  capexYazilim: { ad: "Yazilim", renk: "#be123c" },
+  capexYazilim: { ad: "Yazılım", renk: "#be123c" },
 };
 const CAPEX_KUME_SIRA = ["capexKurulus", "capexBilgisayar", "capexMutfak", "capexYazilim"];
 function capexKumeKey(kat: string, donem: string): string {
